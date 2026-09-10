@@ -24,6 +24,9 @@ build/android/*.apk
 build/android/*.aab
 build/android/screen_*.png
 build/android/screen_*.png.import
+builds/android/*.apk
+builds/android/*.apk.idsig
+builds/android/*.aab
 
 # QA capture output (docs at repo root are kept)
 artifacts/**/*.png
