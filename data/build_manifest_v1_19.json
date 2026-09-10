@@ -1,0 +1,40 @@
+{
+  "source_version": "V1.19",
+  "master_version": "1.4",
+  "build_number": 29,
+  "channel": "prototype-test",
+  "runtime_status": "not_runtime_tested",
+  "main_scene": "res://MainGame.tscn",
+  "reference_resolution": [
+    1080,
+    1920
+  ],
+  "orientation": "portrait",
+  "renderer": "gl_compatibility",
+  "android": {
+    "preset": "Android Test",
+    "package": "com.realmalliance.prototype",
+    "architecture": [
+      "arm64-v8a"
+    ],
+    "immersive_mode": true,
+    "export_path": "build/android/RealmAlliance_V1_19_Test.apk"
+  },
+  "web": {
+    "preset": "Web Test",
+    "export_path": "build/web/index.html"
+  },
+  "p0_visible_views": [
+    "home",
+    "wheel",
+    "village"
+  ],
+  "p1_expected_disabled": [
+    "daily",
+    "quests",
+    "heroes",
+    "attack",
+    "defense"
+  ],
+  "debug_harness": "debug_build_only"
+}

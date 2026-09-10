@@ -1,0 +1,44 @@
+{
+  "version": "v1.51-hero-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true
+  },
+  "slots": [
+    {
+      "slot": "HERO_KNIGHT_MASTERY",
+      "placeholder": "assets/v151_heroes/V151_001_knight_mastery.png"
+    },
+    {
+      "slot": "HERO_ARCHER_MASTERY",
+      "placeholder": "assets/v151_heroes/V151_002_archer_mastery.png"
+    },
+    {
+      "slot": "HERO_MAGE_MASTERY",
+      "placeholder": "assets/v151_heroes/V151_003_mage_mastery.png"
+    },
+    {
+      "slot": "HERO_MASTERY_BADGE",
+      "placeholder": "assets/v151_heroes/V151_004_hero_mastery_badge.png"
+    },
+    {
+      "slot": "HERO_WEAPON_UPGRADE",
+      "placeholder": "assets/v151_heroes/V151_005_hero_weapon_upgrade.png"
+    },
+    {
+      "slot": "HERO_CHARM_UPGRADE",
+      "placeholder": "assets/v151_heroes/V151_006_hero_charm_upgrade.png"
+    },
+    {
+      "slot": "HERO_SPECIALIZATION_CARD",
+      "placeholder": "assets/v151_heroes/V151_007_hero_specialization_card.png"
+    },
+    {
+      "slot": "HERO_MASTERY_REWARD",
+      "placeholder": "assets/v151_heroes/V151_008_hero_mastery_reward.png"
+    }
+  ]
+}

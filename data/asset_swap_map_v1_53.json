@@ -1,0 +1,45 @@
+{
+  "version": "v1.53-village-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true,
+    "drop_in_replaceable": true
+  },
+  "slots": [
+    {
+      "slot": "VILLAGE_TOWNHALL_V2",
+      "placeholder": "assets/v153_village/V153_001_townhall_v2.png"
+    },
+    {
+      "slot": "VILLAGE_GOLDMINE_V2",
+      "placeholder": "assets/v153_village/V153_002_goldmine_v2.png"
+    },
+    {
+      "slot": "VILLAGE_FORGE_V2",
+      "placeholder": "assets/v153_village/V153_003_forge_v2.png"
+    },
+    {
+      "slot": "VILLAGE_LUCKTEMPLE_V2",
+      "placeholder": "assets/v153_village/V153_004_lucktemple_v2.png"
+    },
+    {
+      "slot": "VILLAGE_GROWTH_EMBLEM",
+      "placeholder": "assets/v153_village/V153_005_village_growth_emblem.png"
+    },
+    {
+      "slot": "VILLAGE_FORGE_CRAFT",
+      "placeholder": "assets/v153_village/V153_006_forge_craft.png"
+    },
+    {
+      "slot": "VILLAGE_TEMPLE_BLESSING",
+      "placeholder": "assets/v153_village/V153_007_temple_blessing.png"
+    },
+    {
+      "slot": "VILLAGE_REWARD_CARD",
+      "placeholder": "assets/v153_village/V153_008_village_reward_card.png"
+    }
+  ]
+}

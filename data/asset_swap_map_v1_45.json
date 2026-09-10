@@ -1,0 +1,44 @@
+{
+  "version": "v1.45-ui-asset-swap-01",
+  "rules": {
+    "drop_in_replacement": true,
+    "keep_paths_and_dimensions": "preferred",
+    "final_art_required_for_release": true
+  },
+  "slots": [
+    {
+      "runtime_path": "res://assets/wheel/segments/W106_puzzle_bonus.png",
+      "master_slot": "W106",
+      "meaning": "Puzzle Bonus",
+      "placeholder_source": "assets/v145_ui/V145_001_puzzle_bonus_symbol.png"
+    },
+    {
+      "slot": "UI_SHOP_CARD",
+      "placeholder": "assets/v145_ui/V145_002_shop_card_frame.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_BANNER",
+      "placeholder": "assets/v145_ui/V145_003_halloween_banner.png"
+    },
+    {
+      "slot": "UI_RANKING_CARD",
+      "placeholder": "assets/v145_ui/V145_004_ranking_card.png"
+    },
+    {
+      "slot": "UI_AFK_CLAIM",
+      "placeholder": "assets/v145_ui/V145_005_afk_claim_panel.png"
+    },
+    {
+      "slot": "UI_PROGRESSION_CARD",
+      "placeholder": "assets/v145_ui/V145_006_progression_card.png"
+    },
+    {
+      "slot": "UI_MODAL_FRAME",
+      "placeholder": "assets/v145_ui/V145_007_modal_frame.png"
+    },
+    {
+      "slot": "UI_PRIMARY_BUTTON",
+      "placeholder": "assets/v145_ui/V145_008_primary_button_frame.png"
+    }
+  ]
+}

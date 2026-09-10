@@ -1,0 +1,845 @@
+{
+  "version": "1.67",
+  "counts": {
+    "SUPERSEDED": 47,
+    "REVIEW": 55,
+    "CONFIRMED_MISSING": 14,
+    "OBSOLETE": 3
+  },
+  "items": [
+    {
+      "path": "res://assets/account/ACC001_profile_panel_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "860x700"
+    },
+    {
+      "path": "res://assets/account/ACC002_profile_icon_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "280x280"
+    },
+    {
+      "path": "res://assets/account/ACC003_cloud_status_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "760x160"
+    },
+    {
+      "path": "res://assets/account/ACC004_support_card_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "760x180"
+    },
+    {
+      "path": "res://assets/account/ACC005_legal_card_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "760x180"
+    },
+    {
+      "path": "res://assets/account/ACC006_account_action_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "760x150"
+    },
+    {
+      "path": "res://assets/audio/p0/music_greenvale_loop_placeholder.wav",
+      "category": "audio",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": ""
+    },
+    {
+      "path": "res://assets/battle/greenvale/lane_map_greenvale_placeholder.png",
+      "category": "lane_battle",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "1080x1500"
+    },
+    {
+      "path": "res://assets/battle/units/unit_archer_placeholder.png",
+      "category": "lane_battle",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "256x256"
+    },
+    {
+      "path": "res://assets/battle/units/unit_enemy_melee_placeholder.png",
+      "category": "lane_battle",
+      "status": "REVIEW",
+      "note": "Mode art requires final world/gameplay review",
+      "size": "256x256"
+    },
+    {
+      "path": "res://assets/battle/units/unit_knight_placeholder.png",
+      "category": "lane_battle",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "256x256"
+    },
+    {
+      "path": "res://assets/defense/enemies/td_enemy_runner_placeholder.png",
+      "category": "tower_defense",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "220x220"
+    },
+    {
+      "path": "res://assets/defense/enemies/td_enemy_tank_placeholder.png",
+      "category": "tower_defense",
+      "status": "REVIEW",
+      "note": "Mode art requires final world/gameplay review",
+      "size": "220x220"
+    },
+    {
+      "path": "res://assets/defense/greenvale/td_map_greenvale_placeholder.png",
+      "category": "tower_defense",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "1080x1500"
+    },
+    {
+      "path": "res://assets/defense/towers/tower_archer_placeholder.png",
+      "category": "tower_defense",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "320x320"
+    },
+    {
+      "path": "res://assets/defense/towers/tower_mage_placeholder.png",
+      "category": "tower_defense",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "320x320"
+    },
+    {
+      "path": "res://assets/entry/ENTRY001_splash_bg_placeholder.png",
+      "category": "entry",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "1080x1920"
+    },
+    {
+      "path": "res://assets/entry/ENTRY002_welcome_bg_placeholder.png",
+      "category": "entry",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "1080x1920"
+    },
+    {
+      "path": "res://assets/entry/ENTRY003_realm_emblem_placeholder.png",
+      "category": "entry",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "700x700"
+    },
+    {
+      "path": "res://assets/entry/ENTRY010_auth_panel_placeholder.png",
+      "category": "entry",
+      "status": "REVIEW",
+      "note": "Entry family not fully production-ready",
+      "size": "900x980"
+    },
+    {
+      "path": "res://assets/entry/ENTRY011_primary_button_placeholder.png",
+      "category": "entry",
+      "status": "REVIEW",
+      "note": "Entry family not fully production-ready",
+      "size": "760x150"
+    },
+    {
+      "path": "res://assets/entry/ENTRY012_secondary_button_placeholder.png",
+      "category": "entry",
+      "status": "REVIEW",
+      "note": "Entry family not fully production-ready",
+      "size": "760x130"
+    },
+    {
+      "path": "res://assets/fx/fx_reward_burst_placeholder.png",
+      "category": "vfx",
+      "status": "REVIEW",
+      "note": "FX placeholders require runtime visual review; do not replace blindly",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/fx/fx_tower_hit_placeholder.png",
+      "category": "vfx",
+      "status": "REVIEW",
+      "note": "FX placeholders require runtime visual review; do not replace blindly",
+      "size": "160x160"
+    },
+    {
+      "path": "res://assets/fx/fx_unlock_badge_placeholder.png",
+      "category": "vfx",
+      "status": "REVIEW",
+      "note": "FX placeholders require runtime visual review; do not replace blindly",
+      "size": "256x256"
+    },
+    {
+      "path": "res://assets/fx/monster_death_overlay_placeholder.png",
+      "category": "vfx",
+      "status": "REVIEW",
+      "note": "FX placeholders require runtime visual review; do not replace blindly",
+      "size": "640x640"
+    },
+    {
+      "path": "res://assets/fx/monster_hit_overlay_placeholder.png",
+      "category": "vfx",
+      "status": "REVIEW",
+      "note": "FX placeholders require runtime visual review; do not replace blindly",
+      "size": "640x640"
+    },
+    {
+      "path": "res://assets/fx/projectile_magic_placeholder.png",
+      "category": "vfx",
+      "status": "REVIEW",
+      "note": "FX placeholders require runtime visual review; do not replace blindly",
+      "size": "96x96"
+    },
+    {
+      "path": "res://assets/heroes/hero_archer_portrait_placeholder.png",
+      "category": "hero",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/heroes/hero_knight_portrait_placeholder.png",
+      "category": "hero",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/heroes/hero_mage_portrait_placeholder.png",
+      "category": "hero",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/home_polish/HOME001_topbar_frame_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "960x130"
+    },
+    {
+      "path": "res://assets/home_polish/HOME002_hp_frame_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "820x90"
+    },
+    {
+      "path": "res://assets/home_polish/HOME003_tap_prompt_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "560x120"
+    },
+    {
+      "path": "res://assets/home_polish/HOME004_boss_alert_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "560x120"
+    },
+    {
+      "path": "res://assets/home_polish/HOME005_reward_burst_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "320x320"
+    },
+    {
+      "path": "res://assets/home_polish/HOME006_bottom_nav_frame_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "960x170"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_boar_boss_placeholder.png",
+      "category": "monster",
+      "status": "SUPERSEDED",
+      "note": "V1.59+ clean 4-state monster production system supersedes old placeholder",
+      "size": "680x680"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_boar_brute_01_placeholder.png",
+      "category": "monster",
+      "status": "SUPERSEDED",
+      "note": "V1.59+ clean 4-state monster production system supersedes old placeholder",
+      "size": "640x640"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_goblin_01_placeholder.png",
+      "category": "monster",
+      "status": "SUPERSEDED",
+      "note": "V1.59+ clean 4-state monster production system supersedes old placeholder",
+      "size": "640x640"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_slime_01_placeholder.png",
+      "category": "monster",
+      "status": "SUPERSEDED",
+      "note": "V1.59+ clean 4-state monster production system supersedes old placeholder",
+      "size": "640x640"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_treant_boss_01_placeholder.png",
+      "category": "monster",
+      "status": "SUPERSEDED",
+      "note": "V1.59+ clean 4-state monster production system supersedes old placeholder",
+      "size": "720x720"
+    },
+    {
+      "path": "res://assets/social/SOC001_profile_card_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x300"
+    },
+    {
+      "path": "res://assets/social/SOC002_friends_card_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x300"
+    },
+    {
+      "path": "res://assets/social/SOC003_inbox_card_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x300"
+    },
+    {
+      "path": "res://assets/social/SOC004_achievement_card_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x300"
+    },
+    {
+      "path": "res://assets/social/SOC005_notification_badge_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x300"
+    },
+    {
+      "path": "res://assets/social/SOC006_player_badge_placeholder.png",
+      "category": "social",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x300"
+    },
+    {
+      "path": "res://assets/spin/SPIN010_machine_frame_placeholder.png",
+      "category": "spin",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "900x700"
+    },
+    {
+      "path": "res://assets/spin/SPIN020_reel_placeholder.png",
+      "category": "spin",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "220x390"
+    },
+    {
+      "path": "res://assets/spin/SPIN021_reel_placeholder.png",
+      "category": "spin",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "220x390"
+    },
+    {
+      "path": "res://assets/spin/SPIN022_reel_placeholder.png",
+      "category": "spin",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "220x390"
+    },
+    {
+      "path": "res://assets/spin/SPIN030_payline_placeholder.png",
+      "category": "spin",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "760x34"
+    },
+    {
+      "path": "res://assets/spin/SPIN031_jackpot_panel_placeholder.png",
+      "category": "spin",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "620x100"
+    },
+    {
+      "path": "res://assets/spin_contract/SPINC001_result_id_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/spin_contract/SPINC002_visual_seed_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/spin_contract/SPINC003_reel_stop_ids_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/spin_contract/SPINC004_payline_contract_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/spin_contract/SPINC005_resume_contract_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/spin_contract/SPINC006_audit_contract_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/ui/banners/unlock_banner_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "900x180"
+    },
+    {
+      "path": "res://assets/ui/buttons/btn_primary_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "720x128"
+    },
+    {
+      "path": "res://assets/ui/buttons/btn_secondary_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "720x128"
+    },
+    {
+      "path": "res://assets/ui/cards/daily_reward_card_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "420x220"
+    },
+    {
+      "path": "res://assets/ui/cards/quest_card_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "760x150"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_attack_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_daily_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_defense_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_gem_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_gold_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_heroes_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_home_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_quest_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_reward_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_shield_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_spin_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_tap_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_village_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_wheel_placeholder.png",
+      "category": "ui",
+      "status": "OBSOLETE",
+      "note": "REALM SPIN is locked to a 3-reel machine, not an 8-segment wheel",
+      "size": "128x128"
+    },
+    {
+      "path": "res://assets/ui/modals/reward_modal_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "840x760"
+    },
+    {
+      "path": "res://assets/ui/panels/bottomnav_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "980x180"
+    },
+    {
+      "path": "res://assets/ui/panels/home_overlay_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "1080x1920"
+    },
+    {
+      "path": "res://assets/ui/panels/hp_fill_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "820x44"
+    },
+    {
+      "path": "res://assets/ui/panels/hp_frame_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "840x64"
+    },
+    {
+      "path": "res://assets/ui/panels/topbar_placeholder.png",
+      "category": "ui",
+      "status": "SUPERSEDED",
+      "note": "V4 UI / atlas semantic binding now covers this presentation family",
+      "size": "900x150"
+    },
+    {
+      "path": "res://assets/ui_polish/UIP001_more_hub_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/ui_polish/UIP002_daily_tile_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/ui_polish/UIP003_quest_tile_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/ui_polish/UIP004_journey_tile_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/ui_polish/UIP005_notification_badge_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/ui_polish/UIP006_feature_tile_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "360x220"
+    },
+    {
+      "path": "res://assets/v139_polish/P139_001_spin_status_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "720x110"
+    },
+    {
+      "path": "res://assets/v139_polish/P139_002_payline_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "760x80"
+    },
+    {
+      "path": "res://assets/v139_polish/P139_003_village_header_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "720x160"
+    },
+    {
+      "path": "res://assets/v139_polish/P139_004_upgrade_state_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v139_polish/P139_005_locked_state_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v139_polish/P139_006_modal_divider_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "720x70"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_001_halloween_event_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_002_global_ranking_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_003_daily_ranking_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_004_weekly_ranking_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_005_afk_reward_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_006_itemshop_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_007_progression_hub_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v144_liveops/V144_008_event_reward_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "420x260"
+    },
+    {
+      "path": "res://assets/v146_halloween/V146_006_halloween_boss_placeholder.png",
+      "category": "other",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "768x768"
+    },
+    {
+      "path": "res://assets/v149_td/V149_003_td_enemy_placeholder.png",
+      "category": "tower_defense",
+      "status": "REVIEW",
+      "note": "Needs runtime/semantic review before deletion or production",
+      "size": "768x768"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_defense_tower_lv1_placeholder.png",
+      "category": "village",
+      "status": "SUPERSEDED",
+      "note": "Production village building mapping exists",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_forge_lv1_placeholder.png",
+      "category": "village",
+      "status": "SUPERSEDED",
+      "note": "Production village building mapping exists",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_forge_lv2_placeholder.png",
+      "category": "village",
+      "status": "SUPERSEDED",
+      "note": "Production village building mapping exists",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_goldmine_lv1_placeholder.png",
+      "category": "village",
+      "status": "REVIEW",
+      "note": "Current production mapping exists; judge on device",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_goldmine_lv2_placeholder.png",
+      "category": "village",
+      "status": "REVIEW",
+      "note": "Current production mapping exists; judge on device",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv1_placeholder.png",
+      "category": "village",
+      "status": "SUPERSEDED",
+      "note": "Production village building mapping exists",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv2_placeholder.png",
+      "category": "village",
+      "status": "SUPERSEDED",
+      "note": "Production village building mapping exists",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv3_placeholder.png",
+      "category": "village",
+      "status": "SUPERSEDED",
+      "note": "Production village building mapping exists",
+      "size": "512x512"
+    },
+    {
+      "path": "res://assets/village/greenvale/village_ambient_trees_placeholder.png",
+      "category": "village",
+      "status": "CONFIRMED_MISSING",
+      "note": "Production asset required",
+      "size": "512x256"
+    },
+    {
+      "path": "res://assets/wheel/wheel_8segment_placeholder.png",
+      "category": "spin",
+      "status": "OBSOLETE",
+      "note": "REALM SPIN is locked to a 3-reel machine, not an 8-segment wheel",
+      "size": "800x800"
+    },
+    {
+      "path": "res://assets/wheel/wheel_pointer_placeholder.png",
+      "category": "spin",
+      "status": "OBSOLETE",
+      "note": "REALM SPIN is locked to a 3-reel machine, not an 8-segment wheel",
+      "size": "180x180"
+    },
+    {
+      "path": "res://assets/world/greenvale/bg_greenvale_tap_placeholder.png",
+      "category": "world",
+      "status": "REVIEW",
+      "note": "World background must be judged against current production background",
+      "size": "1080x1920"
+    }
+  ],
+  "policy": "Do not delete review items automatically. CONFIRMED_MISSING is the production queue; SUPERSEDED/OBSOLETE may be retired after runtime verification."
+}

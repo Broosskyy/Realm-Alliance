@@ -1,0 +1,2 @@
+REALM ALLIANCE V1.96 STATIC QA: PASS — 25/25 PASS
+Godot runtime/device QA unavailable in this environment.

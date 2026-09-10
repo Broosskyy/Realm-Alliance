@@ -1,0 +1,25 @@
+{
+  "source_version": "V1.43",
+  "master_version": "V2.1",
+  "block": "Shared Monster Defeat Transaction",
+  "service": "MonsterDefeatService",
+  "damage_sources": [
+    "tap",
+    "auto_dps"
+  ],
+  "authoritative_side_effects": [
+    "monster reward",
+    "player xp",
+    "bonus spin roll",
+    "boss spins",
+    "boss dice",
+    "meta boss progress",
+    "next monster spawn",
+    "save"
+  ],
+  "presentation_owner": "MainGame",
+  "save_before_presentation": true,
+  "save_schema": "V20 unchanged",
+  "multi_gameplay_pillars": true,
+  "website": "excluded"
+}

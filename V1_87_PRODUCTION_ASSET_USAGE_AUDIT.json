@@ -1,0 +1,8 @@
+{
+  "version": "1.87",
+  "total_png_assets": 583,
+  "non_placeholder_png_assets": 465,
+  "dedicated_existing_assets_registered_v187": 70,
+  "policy": "Use every semantically safe existing production asset where a matching runtime slot exists. Do not force unrelated art into a screen merely to inflate usage.",
+  "note": "Pass 1 prioritizes V147–V154 dedicated packs plus existing V4/atlas/monster/village systems. Runtime screenshot QA is required for Pass 2."
+}

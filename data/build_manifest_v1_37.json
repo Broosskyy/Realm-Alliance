@@ -1,0 +1,32 @@
+{
+  "source_version": "V1.37",
+  "master_version": "V2.0",
+  "block": "Home Navigation & UI Polish",
+  "primary_nav": [
+    "HOME",
+    "SPIN",
+    "DORF"
+  ],
+  "secondary_quick_actions": [
+    "TAGESBONUS",
+    "REISE",
+    "AUFGABEN",
+    "MEHR"
+  ],
+  "feature_hub": [
+    "HELDEN",
+    "PUZZLE",
+    "DEFENSE",
+    "LANE BATTLE",
+    "EVENTS & META",
+    "PROFIL & SOCIAL"
+  ],
+  "attention_badge_sources": [
+    "local inbox unread",
+    "daily claimable",
+    "quest claimable"
+  ],
+  "save_schema": "V20 unchanged",
+  "placeholder_asset_count": 6,
+  "website": "excluded"
+}

@@ -1,0 +1,22 @@
+{
+  "source_version": "V1.39",
+  "master_version": "V2.0",
+  "block": "SPIN / Village / Modal Polish",
+  "spin_polish": [
+    "available spins + cost + reels",
+    "middle-row payline wording"
+  ],
+  "village_polish": [
+    "region title",
+    "growth subtitle",
+    "MAX/ready/missing-gold states",
+    "explicit affordability modal"
+  ],
+  "responsive_polish": [
+    "village grid spacing",
+    "feature hub grid spacing"
+  ],
+  "placeholder_asset_count": 6,
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

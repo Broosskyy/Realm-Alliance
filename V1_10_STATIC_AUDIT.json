@@ -1,0 +1,24 @@
+{
+  "source_version": "V1.10",
+  "master_concept": "V1.4",
+  "project_version": "1.10.0",
+  "save_version": 17,
+  "checks": {
+    "wheel_weights_100": true,
+    "wheel_proportional_contract": true,
+    "wheel_center_weighted": true,
+    "goldmine_claim_api": true,
+    "goldmine_saved": true,
+    "lucktemple_spin_effect": true,
+    "upgrade_modal_bug_fixed": true,
+    "milestone_5": true,
+    "boss_10_progress": true,
+    "save_v17": true
+  },
+  "missing_percent_nodes": [],
+  "missing_ext_resources": [],
+  "duplicate_functions": {},
+  "syntax_suspects": [],
+  "json_errors": {},
+  "godot_binary": "not installed"
+}

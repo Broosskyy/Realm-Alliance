@@ -1,0 +1,196 @@
+{
+  "version": "v1.47-journey-progression-03",
+  "region": "greenvale",
+  "board_nodes": 12,
+  "starting_dice": 3,
+  "max_dice": 5,
+  "boss_bonus_dice": 1,
+  "lap_portal_charge": 1,
+  "node_rewards": [
+    {
+      "node": 1,
+      "type": "gold",
+      "amount": 30
+    },
+    {
+      "node": 2,
+      "type": "gold",
+      "amount": 40
+    },
+    {
+      "node": 3,
+      "type": "spin",
+      "amount": 1
+    },
+    {
+      "node": 4,
+      "type": "gold",
+      "amount": 50
+    },
+    {
+      "node": 5,
+      "type": "gold",
+      "amount": 60
+    },
+    {
+      "node": 6,
+      "type": "gold",
+      "amount": 75
+    },
+    {
+      "node": 7,
+      "type": "spin",
+      "amount": 1
+    },
+    {
+      "node": 8,
+      "type": "gold",
+      "amount": 85
+    },
+    {
+      "node": 9,
+      "type": "gold",
+      "amount": 100
+    },
+    {
+      "node": 10,
+      "type": "gold",
+      "amount": 120
+    },
+    {
+      "node": 11,
+      "type": "spin",
+      "amount": 1
+    },
+    {
+      "node": 12,
+      "type": "gold",
+      "amount": 150
+    }
+  ],
+  "portal_reward": {
+    "gold": 300,
+    "spins": 1
+  },
+  "production_note": "V1.47 keeps the existing 12-node Grünhain board and reward economy, but adds Journey Mastery, lap relic shards, claimable mastery rewards and a Journey Cache. Values are data-driven.",
+  "result_contract": {
+    "version": "journey-result-v1",
+    "required_fields": [
+      "roll_id",
+      "roll_seed",
+      "config_version",
+      "roll",
+      "from_position",
+      "to_position",
+      "node",
+      "crossed_lap",
+      "portal_charges",
+      "reward"
+    ],
+    "authority_order": [
+      "consume_die",
+      "roll_seed_created",
+      "roll_resolved",
+      "node_reward_granted",
+      "pending_result_saved",
+      "presentation"
+    ],
+    "resume_behavior": "pending result reopens Journey presentation without re-granting node reward",
+    "rng": "per-roll RandomNumberGenerator seeded by persisted roll_seed"
+  },
+  "node_profiles": [
+    {
+      "node": 1,
+      "type": "gold",
+      "label": "WALDPFAD"
+    },
+    {
+      "node": 2,
+      "type": "gold",
+      "label": "MOOSWEG"
+    },
+    {
+      "node": 3,
+      "type": "spin",
+      "label": "SPIN-SCHREIN"
+    },
+    {
+      "node": 4,
+      "type": "shrine",
+      "label": "WALDSCHREIN"
+    },
+    {
+      "node": 5,
+      "type": "gold",
+      "label": "LICHTUNG"
+    },
+    {
+      "node": 6,
+      "type": "encounter",
+      "label": "MONSTERPFAD"
+    },
+    {
+      "node": 7,
+      "type": "spin",
+      "label": "GLÜCKSSTEIN"
+    },
+    {
+      "node": 8,
+      "type": "gold",
+      "label": "ALTE BRÜCKE"
+    },
+    {
+      "node": 9,
+      "type": "cache",
+      "label": "WALDTRUHE"
+    },
+    {
+      "node": 10,
+      "type": "gold",
+      "label": "RUNENPFAD"
+    },
+    {
+      "node": 11,
+      "type": "spin",
+      "label": "REALM-SCHREIN"
+    },
+    {
+      "node": 12,
+      "type": "gateway",
+      "label": "PORTALTOR"
+    }
+  ],
+  "journey_mastery": {
+    "max_level": 5,
+    "level_thresholds": [
+      0,
+      5,
+      12,
+      22,
+      35
+    ],
+    "roll_xp": 1,
+    "lap_xp": 3,
+    "portal_xp": 2,
+    "lap_relic_shards": 1,
+    "cache_cost_shards": 3,
+    "cache_reward": {
+      "gold": 450,
+      "spins": 1
+    },
+    "level_rewards": {
+      "2": {
+        "dice": 1
+      },
+      "3": {
+        "gold": 180
+      },
+      "4": {
+        "spins": 2
+      },
+      "5": {
+        "realm_keys": 1
+      }
+    }
+  }
+}

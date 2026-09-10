@@ -1,0 +1,56 @@
+{
+  "version": "1.23",
+  "master_version": "1.8",
+  "primary_navigation": [
+    "tap",
+    "spin",
+    "build"
+  ],
+  "contextual_bonus": [
+    "dice"
+  ],
+  "modes_entry": [
+    "puzzle",
+    "tower_defense",
+    "lane_battle"
+  ],
+  "primary_cta_rule": "one dominant primary action per screen",
+  "touch_target_min_px": 96,
+  "system_states": [
+    "loading",
+    "offline",
+    "reconnecting",
+    "maintenance",
+    "update_required",
+    "error",
+    "empty",
+    "locked",
+    "cooldown",
+    "no_spins",
+    "reward",
+    "unlock",
+    "purchase_pending",
+    "purchase_failed",
+    "purchase_success"
+  ],
+  "settings": [
+    "sound",
+    "music",
+    "haptics",
+    "reduced_motion",
+    "damage_numbers",
+    "screen_shake",
+    "language"
+  ],
+  "future_settings": [
+    "notifications_by_category",
+    "graphics_auto_performance_quality",
+    "account",
+    "cloud_save",
+    "privacy",
+    "support",
+    "restore_purchases",
+    "logout",
+    "delete_account"
+  ]
+}

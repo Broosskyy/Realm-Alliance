@@ -1,0 +1,9 @@
+{
+  "source_version": "V1.23R4",
+  "master_version": "V2.0",
+  "build_label": "3REEL_SPIN_SCREEN_REWARD_POLISH",
+  "spin_config": "v2.0-3reel-p0-03",
+  "save_schema": "V20",
+  "website_included": false,
+  "next_gate": "real_device_spin_ux_then_final_art_swap"
+}

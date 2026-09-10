@@ -1,0 +1,34 @@
+# Godot 4
+.godot/
+*.translation
+
+# Local/editor
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Secrets / credentials
+.env
+.env.*
+*.pem
+*.p12
+*.keystore
+credentials.json
+
+# Portable Godot binaries (download locally)
+tools/godot/
+
+# Android / export artifacts
+build/android/*.apk
+build/android/*.aab
+build/android/screen_*.png
+build/android/screen_*.png.import
+
+# QA capture output (docs at repo root are kept)
+artifacts/**/*.png
+artifacts/**/*.png.import
+
+# OS / IDE
+.vscode/
+.idea/

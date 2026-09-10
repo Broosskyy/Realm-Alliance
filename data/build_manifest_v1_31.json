@@ -1,0 +1,19 @@
+{
+  "source_version": "V1.31",
+  "master_version": "V2.0",
+  "block": "Heroes vertical slice",
+  "heroes": [
+    "knight",
+    "archer",
+    "mage"
+  ],
+  "auto_dps": true,
+  "equipment_light": [
+    "weapon",
+    "charm"
+  ],
+  "equipment_max_tier": 3,
+  "save_schema": "V20",
+  "art_status": "integration UI/final hero art pending",
+  "next_phase": "Daily + Quests vertical slice"
+}

@@ -1,0 +1,4125 @@
+[gd_scene load_steps=27 format=3]
+[ext_resource type="Script" path="res://MainGame.gd" id="1"]
+
+[ext_resource type="Script" path="res://P02CoreController.gd" id="29"]
+[ext_resource type="Texture2D" path="res://assets/world/greenvale/BG001_gruenhain_home_v11.png" id="30"]
+[ext_resource type="Texture2D" path="res://assets/ui/kit/UI015_resource_gold_pill.png" id="31"]
+[ext_resource type="Texture2D" path="res://assets/ui/kit/UI016_resource_spin_pill.png" id="32"]
+[ext_resource type="Texture2D" path="res://assets/ui/kit/UI017_resource_shield_pill.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/ui/labels/UI030_tap_prompt.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/ui/progress/UI031_monster_progress_10.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/ui/modals/UI032_monster_reward_panel.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX030_boss_intro_burst.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX031_boss_defeat_burst.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX021_building_select_glow.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/ui/modals/UI044_building_upgrade_modal.png" id="48"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX040_wheel_reward_spotlight.png" id="49"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX022_upgrade_coin_burst.png" id="50"]
+[ext_resource type="Texture2D" path="res://assets/ui/modals/UI050_level_up_panel.png" id="51"]
+[ext_resource type="Texture2D" path="res://assets/ui/modals/UI051_settings_panel.png" id="52"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX012_reward_pulse.png" id="53"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX032_boss_shield.png" id="54"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/UI060_nav_home.png" id="55"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/UI061_nav_wheel.png" id="56"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/UI062_nav_village.png" id="57"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/UI063_settings.png" id="58"]
+[ext_resource type="Texture2D" path="res://assets/rewards/RW001_small_chest.png" id="59"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX033_boss_chest_glow.png" id="60"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W101_gold_small.png" id="81"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W102_gold_medium.png" id="82"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W103_gold_large.png" id="83"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W104_shield.png" id="84"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W105_attack_fallback.png" id="85"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W106_defense_fallback.png" id="86"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W107_bonus_spins.png" id="87"]
+[ext_resource type="Texture2D" path="res://assets/wheel/segments/W108_special.png" id="88"]
+[ext_resource type="Texture2D" path="res://assets/ui/overlays/UI064_transition_vignette.png" id="61"]
+[ext_resource type="Texture2D" path="res://assets/monsters/greenvale/states/M001_idle.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/v153_village/V153_001_townhall_v2.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/v153_village/V153_002_goldmine_v2.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/v153_village/V153_003_forge_v2.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX012_reward_pulse.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/v150_lane/V150_001_lane_battlefield.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/v150_lane/V150_002_greenvale_lane_unit.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/v150_lane/V150_003_lane_enemy.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/fx/FX012_reward_pulse.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/v149_td/V149_001_td_battlefield_map.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/v149_td/V149_002_greenvale_tower.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/v149_td/V149_002_greenvale_tower.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/production/v190/td/enemy_forest_a/idle.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/v152_objectives/V152_001_objective_board.png" id="24"]
+[ext_resource type="Texture2D" path="res://assets/production/ui_v4/upgrade_evolution_a/unlock.png" id="26"]
+[ext_resource type="Texture2D" path="res://assets/v145_ui/V145_007_modal_frame.png" id="27"]
+[ext_resource type="Texture2D" path="res://assets/production/v190/world/greenvale_nature_a/broadleaf_tree.png" id="28"]
+[ext_resource type="Texture2D" path="res://assets/village/greenvale/V000_village_ground.png" id="91"]
+[ext_resource type="Script" path="res://SpinReelPresenter.gd" id="90"]
+
+
+[node name="MainGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("30")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03,0.05,0.07,0.20)
+mouse_filter = 2
+
+
+[node name="SpinReelPresenter" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("90")
+
+[node name="Safe" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 38
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Safe"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TopBar" type="HBoxContainer" parent="Safe/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,112)
+theme_override_constants/separation = 10
+
+
+[node name="GoldPillP0" type="TextureRect" parent="Safe/VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(220,88)
+texture = ExtResource("31")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GoldLabel" type="Label" parent="Safe/VBox/TopBar/GoldPillP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.29
+anchor_right = 0.96
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "1.0K"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="SpinPillP0" type="TextureRect" parent="Safe/VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(220,88)
+texture = ExtResource("32")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpinsLabel" type="Label" parent="Safe/VBox/TopBar/SpinPillP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.29
+anchor_right = 0.96
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="ShieldPillP0" type="TextureRect" parent="Safe/VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(220,88)
+texture = ExtResource("33")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShieldsLabel" type="Label" parent="Safe/VBox/TopBar/ShieldPillP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.29
+anchor_right = 0.96
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="SettingsButtonP0" type="Button" parent="Safe/VBox/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(94,92)
+icon = ExtResource("58")
+expand_icon = true
+tooltip_text = "Einstellungen"
+
+[node name="LevelLabel" type="Label" parent="Safe/VBox/TopBar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "STUFE 1"
+
+[node name="QuickActions" type="HBoxContainer" parent="Safe/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,88)
+theme_override_constants/separation = 10
+
+[node name="DailyButton" type="Button" parent="Safe/VBox/QuickActions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 21
+text = "TAGESBONUS"
+
+[node name="HeroesGameButton" type="Button" parent="Safe/VBox/QuickActions"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "HELDEN"
+
+[node name="LaneBattleButton" type="Button" parent="Safe/VBox/QuickActions"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "ANGRIFF"
+
+[node name="DefenseGameButton" type="Button" parent="Safe/VBox/QuickActions"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "VERTEIDIGUNG"
+
+[node name="PuzzleButton" type="Button" parent="Safe/VBox/QuickActions"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "PUZZLE"
+
+[node name="MetaButton" type="Button" parent="Safe/VBox/QuickActions"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "ZIELE"
+
+[node name="JourneyButton" type="Button" parent="Safe/VBox/QuickActions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 21
+text = "REISE"
+
+[node name="QuestButton" type="Button" parent="Safe/VBox/QuickActions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 21
+text = "AUFGABEN"
+
+
+
+[node name="MoreFeaturesButtonP0" type="Button" parent="Safe/VBox/QuickActions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 21
+text = "MEHR"
+
+[node name="QuickBadgeP0" type="Label" parent="Safe/VBox/QuickActions/MoreFeaturesButtonP0"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 18
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Gameplay" type="Control" parent="Safe/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+
+[node name="View_Daily" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DailyTitle" type="Label" parent="Safe/VBox/Gameplay/View_Daily"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 46.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "TAGESBONUS"
+horizontal_alignment = 1
+
+[node name="DailyCard" type="TextureRect" parent="Safe/VBox/Gameplay/View_Daily"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -240.0
+offset_right = 210.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DailyStatusLabel" type="Label" parent="Safe/VBox/Gameplay/View_Daily"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Bereit"
+horizontal_alignment = 1
+
+[node name="DailyCycleLabel" type="Label" parent="Safe/VBox/Gameplay/View_Daily"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 180.0
+offset_bottom = 245.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "7-TAGE-ZYKLUS · ▶1  •2  •3  •4  •5  •6  •7"
+horizontal_alignment = 1
+
+[node name="DailyClaimButton" type="Button" parent="Safe/VBox/Gameplay/View_Daily"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = 120.0
+offset_right = 280.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "ABHOLEN"
+
+
+[node name="View_Quests" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestTitle" type="Label" parent="Safe/VBox/Gameplay/View_Quests"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 45.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "REALM-AUFGABEN"
+horizontal_alignment = 1
+
+[node name="QuestSummaryLabel" type="Label" parent="Safe/VBox/Gameplay/View_Quests"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 115.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "STARTER-AUFGABEN · 0 / 3 ERLEDIGT"
+horizontal_alignment = 1
+
+[node name="QuestScrollV152" type="ScrollContainer" parent="Safe/VBox/Gameplay/View_Quests"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.06
+anchor_top = 0.20
+anchor_right = 0.94
+anchor_bottom = 0.90
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="QuestList" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_Quests/QuestScrollV152"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="View_Puzzle" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PuzzleTitle" type="Label" parent="Safe/VBox/Gameplay/View_Puzzle"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 45.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "GRÜNHAIN PUZZLE"
+horizontal_alignment = 1
+
+[node name="PuzzleStatusLabel" type="Label" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 120.0
+offset_bottom = 185.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "MATCHES · 0 / 3 · VERSUCHE 3"
+horizontal_alignment = 1
+
+[node name="PuzzleStageLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 188.0
+offset_bottom = 235.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 21
+text = "STUFE 1 / 8 · WALDRUNEN"
+horizontal_alignment = 1
+
+[node name="PuzzleMasteryLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 238.0
+offset_bottom = 282.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "PUZZLE-FORTSCHRITT · STUFE 1 · 0 / 4"
+horizontal_alignment = 1
+
+[node name="PuzzleMasteryBarP0" type="ProgressBar" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.16
+anchor_right = 0.84
+offset_top = 286.0
+offset_bottom = 316.0
+grow_horizontal = 2
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="PuzzlePanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_Puzzle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.10
+anchor_top = 0.24
+anchor_right = 0.90
+anchor_bottom = 0.64
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PuzzleGrid" type="GridContainer" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel"]
+layout_mode = 2
+columns = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+
+[node name="PuzzleCell0" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell1" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell2" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell3" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell4" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell5" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell6" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell7" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleCell8" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle/PuzzlePanel/PuzzleGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(190,150)
+theme_override_font_sizes/font_size = 30
+text = "?"
+
+[node name="PuzzleHintLabel" type="Label" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 1010.0
+offset_bottom = 1085.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Zwei benachbarte Felder wählen · bilde einen 3er-Match"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PuzzleMasteryClaimP0" type="Button" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.16
+anchor_top = 1.0
+anchor_right = 0.84
+anchor_bottom = 1.0
+offset_top = -280.0
+offset_bottom = -195.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "PUZZLE-FORTSCHRITTS-BELOHNUNG"
+
+[node name="PuzzleResultLabel" type="Label" parent="Safe/VBox/Gameplay/View_Puzzle"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -190.0
+offset_bottom = -90.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="View_Meta" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MetaTitle" type="Label" parent="Safe/VBox/Gameplay/View_Meta"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 34.0
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "GRÜNHAIN · ZIELE"
+horizontal_alignment = 1
+
+[node name="EventPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_Meta"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.07
+anchor_top = 0.09
+anchor_right = 0.93
+anchor_bottom = 0.37
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EventVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_Meta/EventPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="EventTitle" type="Label" parent="Safe/VBox/Gameplay/View_Meta/EventPanel/EventVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "EVENT · GRÜNHAIN-JAGD"
+horizontal_alignment = 1
+
+[node name="EventProgressLabel" type="Label" parent="Safe/VBox/Gameplay/View_Meta/EventPanel/EventVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "BOSSE · 0 / 3"
+horizontal_alignment = 1
+
+[node name="EventClaimButton" type="Button" parent="Safe/VBox/Gameplay/View_Meta/EventPanel/EventVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,92)
+theme_override_font_sizes/font_size = 27
+text = "EVENT-BELOHNUNG"
+
+[node name="RankingPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_Meta"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.07
+anchor_top = 0.39
+anchor_right = 0.93
+anchor_bottom = 0.69
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RankingVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_Meta/RankingPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="RankingTitle" type="Label" parent="Safe/VBox/Gameplay/View_Meta/RankingPanel/RankingVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "RANKING · BOSSE"
+horizontal_alignment = 1
+
+[node name="RankingRowsLabel" type="Label" parent="Safe/VBox/Gameplay/View_Meta/RankingPanel/RankingVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = ""
+horizontal_alignment = 1
+
+[node name="RealmChestPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_Meta"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.07
+anchor_top = 0.71
+anchor_right = 0.93
+anchor_bottom = 0.96
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmChestVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_Meta/RealmChestPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RealmChestTitle" type="Label" parent="Safe/VBox/Gameplay/View_Meta/RealmChestPanel/RealmChestVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "REALM CHEST"
+horizontal_alignment = 1
+
+[node name="RealmChestStatus" type="Label" parent="Safe/VBox/Gameplay/View_Meta/RealmChestPanel/RealmChestVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "SCHLÜSSEL · 0 / 3"
+horizontal_alignment = 1
+
+[node name="RealmChestButton" type="Button" parent="Safe/VBox/Gameplay/View_Meta/RealmChestPanel/RealmChestVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,92)
+theme_override_font_sizes/font_size = 28
+text = "TRUHE ÖFFNEN"
+
+[node name="MetaResultLabel" type="Label" parent="Safe/VBox/Gameplay/View_Meta"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_bottom = -18.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = ""
+horizontal_alignment = 1
+
+[node name="View_RealmJourney" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JourneyTitle" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 38.0
+offset_bottom = 102.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "REALM-REISE · GRÜNHAIN"
+horizontal_alignment = 1
+
+[node name="JourneySubline" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 110.0
+offset_bottom = 166.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "Würfeln · Feld erreichen · Belohnung erhalten"
+horizontal_alignment = 1
+
+[node name="JourneyBoard" type="PanelContainer" parent="Safe/VBox/Gameplay/View_RealmJourney"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.08
+anchor_top = 0.14
+anchor_right = 0.92
+anchor_bottom = 0.64
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JourneyBoardVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="JourneyProgressLabel" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "FELD 1 / 12"
+horizontal_alignment = 1
+
+[node name="JourneyNodesLabel" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "● ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="JourneyDiceLabel" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "WÜRFEL · 3"
+horizontal_alignment = 1
+
+[node name="JourneyNodeDetailP0" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "FELD 1 · WALDPFAD · GOLD"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="JourneyMasteryLabel" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "REISE-FORTSCHRITT · STUFE 1 · 0 / 5"
+horizontal_alignment = 1
+
+[node name="JourneyMasteryBarP0" type="ProgressBar" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,32)
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="JourneyMasteryClaimP0" type="Button" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,76)
+theme_override_font_sizes/font_size = 21
+text = "FORTSCHRITTS-BELOHNUNG"
+
+[node name="JourneyCacheP0" type="Button" parent="Safe/VBox/Gameplay/View_RealmJourney/JourneyBoard/JourneyBoardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+theme_override_font_sizes/font_size = 21
+text = "RELIKT-SPLITTER · 0 / 3"
+
+[node name="DiceRollButton" type="Button" parent="Safe/VBox/Gameplay/View_RealmJourney"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.18
+anchor_right = 0.82
+offset_top = 760.0
+offset_bottom = 885.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 34
+text = "WÜRFELN"
+
+[node name="DiceResultLabel" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 895.0
+offset_bottom = 975.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 26
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TreasurePortalPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_RealmJourney"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -360.0
+offset_bottom = -70.0
+grow_horizontal = 2
+
+[node name="PortalVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_RealmJourney/TreasurePortalPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="TreasurePortalTitle" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/TreasurePortalPanel/PortalVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "SCHATZPORTAL"
+horizontal_alignment = 1
+
+[node name="TreasurePortalStatus" type="Label" parent="Safe/VBox/Gameplay/View_RealmJourney/TreasurePortalPanel/PortalVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Schließe eine Runde ab"
+horizontal_alignment = 1
+
+[node name="TreasurePortalButton" type="Button" parent="Safe/VBox/Gameplay/View_RealmJourney/TreasurePortalPanel/PortalVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,110)
+theme_override_font_sizes/font_size = 30
+text = "PORTAL ÖFFNEN"
+
+[node name="View_TapHero" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MonsterLevelLabel" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 45.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 34
+text = "WALDWINZLING · STUFE 1"
+horizontal_alignment = 1
+
+[node name="MonsterHP" type="ProgressBar" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.12
+anchor_right = 0.88
+offset_top = 112.0
+offset_bottom = 164.0
+grow_horizontal = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="MonsterHPLabel" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 116.0
+offset_bottom = 162.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "LEBEN 100 / 100"
+horizontal_alignment = 1
+
+
+[node name="TapPromptArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_TapHero"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.25
+anchor_right = 0.75
+offset_top = 180.0
+offset_bottom = 268.0
+grow_horizontal = 2
+texture = ExtResource("34")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="MonsterProgressArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_TapHero"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.16
+anchor_top = 1.0
+anchor_right = 0.84
+anchor_bottom = 1.0
+offset_top = -450.0
+offset_bottom = -370.0
+grow_horizontal = 2
+texture = ExtResource("35")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="MonsterProgressLabel" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.16
+anchor_top = 1.0
+anchor_right = 0.84
+anchor_bottom = 1.0
+offset_top = -442.0
+offset_bottom = -378.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "1 / 10 BIS BOSS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="FirstSessionHintP0" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.12
+anchor_right = 0.88
+offset_top = 184.0
+offset_bottom = 252.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 26
+text = "TIPPE AUF DAS MONSTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="BossProximityP0" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.16
+anchor_right = 0.84
+offset_top = 258.0
+offset_bottom = 312.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="CoreSynergyLabelV174" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.18
+anchor_right = 0.82
+offset_top = 270.0
+offset_bottom = 312.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "REALM-KRAFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="TapMomentumLabelV172" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.20
+anchor_right = 0.80
+offset_top = 316.0
+offset_bottom = 362.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="HeroAssistLabelV172" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.24
+anchor_right = 0.76
+offset_top = 366.0
+offset_bottom = 410.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 19
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+modulate = Color(1,1,1,0)
+mouse_filter = 2
+
+[node name="MonsterButton" type="TextureButton" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -340.0
+offset_right = 340.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3")
+ignore_texture_size = true
+stretch_mode = 5
+
+
+
+[node name="MonsterHitOverlay" type="TextureRect" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -320.0
+offset_right = 320.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="RewardBurst" type="TextureRect" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="DamageLabel" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 465.0
+offset_top = 525.0
+offset_right = 650.0
+offset_bottom = 605.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 64
+text = "-10"
+horizontal_alignment = 1
+modulate = Color(1,1,1,0)
+
+
+[node name="HomeWheelCTA" type="Button" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.16
+anchor_top = 1.0
+anchor_right = 0.84
+anchor_bottom = 1.0
+offset_top = -330.0
+offset_bottom = -205.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "REALM SPIN · BELOHNUNG DREHEN"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="RewardLabel" type="Label" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -245.0
+offset_bottom = -190.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = ""
+horizontal_alignment = 1
+
+[node name="TapUpgradeButton" type="Button" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.13
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.0
+offset_top = -178.0
+offset_bottom = -66.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 27
+text = "TAP-SCHADEN 10\nVerbessern · 250 Gold"
+
+[node name="View_CoinMaster" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WheelTitle" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "REALM SPIN"
+horizontal_alignment = 1
+
+[node name="JackpotPanel" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.18
+anchor_right = 0.82
+offset_top = 92.0
+offset_bottom = 178.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="JackpotLabel" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster/JackpotPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "JACKPOT · +600 GOLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinMachineFrame" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -410.0
+offset_right = 450.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel1" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 190.0
+offset_top = 290.0
+offset_right = 410.0
+offset_bottom = 680.0
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Reel1Symbol0" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel1"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 18.0
+offset_right = 178.0
+offset_bottom = 122.0
+texture = ExtResource("81")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel1Symbol1" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel1"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 135.0
+offset_right = 178.0
+offset_bottom = 239.0
+texture = ExtResource("84")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel1Symbol2" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel1"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 252.0
+offset_right = 178.0
+offset_bottom = 356.0
+texture = ExtResource("87")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel2" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 430.0
+offset_top = 290.0
+offset_right = 650.0
+offset_bottom = 680.0
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Reel2Symbol0" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel2"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 18.0
+offset_right = 178.0
+offset_bottom = 122.0
+texture = ExtResource("82")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel2Symbol1" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel2"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 135.0
+offset_right = 178.0
+offset_bottom = 239.0
+texture = ExtResource("88")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel2Symbol2" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel2"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 252.0
+offset_right = 178.0
+offset_bottom = 356.0
+texture = ExtResource("85")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel3" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 670.0
+offset_top = 290.0
+offset_right = 890.0
+offset_bottom = 680.0
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Reel3Symbol0" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel3"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 18.0
+offset_right = 178.0
+offset_bottom = 122.0
+texture = ExtResource("83")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel3Symbol1" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel3"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 135.0
+offset_right = 178.0
+offset_bottom = 239.0
+texture = ExtResource("86")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Reel3Symbol2" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster/Reel3"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 252.0
+offset_right = 178.0
+offset_bottom = 356.0
+texture = ExtResource("81")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Payline" type="TextureRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 160.0
+offset_top = 468.0
+offset_right = 920.0
+offset_bottom = 502.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="SpinStatusPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.16
+anchor_right = 0.84
+offset_top = 188.0
+offset_bottom = 252.0
+grow_horizontal = 2
+
+[node name="SpinStatusLabel" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster/SpinStatusPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "3 WALZEN · 1 SPIN JE DREHUNG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoSpinsPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = 300.0
+offset_right = 360.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NoSpinsVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_CoinMaster/NoSpinsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="NoSpinsTitle" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster/NoSpinsPanel/NoSpinsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "KEINE SPINS"
+horizontal_alignment = 1
+
+[node name="NoSpinsText" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster/NoSpinsPanel/NoSpinsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Besiege Gegner, Bosse und nutze spätere Belohnungen, um neue Spins zu erhalten."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NoSpinsClose" type="Button" parent="Safe/VBox/Gameplay/View_CoinMaster/NoSpinsPanel/NoSpinsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 76)
+theme_override_font_sizes/font_size = 24
+text = "VERSTANDEN"
+
+[node name="JackpotFlash" type="ColorRect" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.82, 0.18, 0.0)
+
+[node name="WinLineLabel" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 225.0
+offset_top = 512.0
+offset_right = 855.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 22
+text = "GEWINNLINIE · MITTE"
+horizontal_alignment = 1
+mouse_filter = 2
+
+[node name="WheelResult" type="Label" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -290.0
+offset_bottom = -230.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = ""
+horizontal_alignment = 1
+
+[node name="SpinButton" type="Button" parent="Safe/VBox/Gameplay/View_CoinMaster"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.12
+anchor_top = 1.0
+anchor_right = 0.88
+anchor_bottom = 1.0
+offset_top = -220.0
+offset_bottom = -72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 38
+text = "SPIN · 1"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="View_ClashDorf" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VillageTitle" type="Label" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "DORF · GRÜNHAIN"
+horizontal_alignment = 1
+
+
+[node name="VillageSubtitleP0" type="Label" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 108.0
+offset_bottom = 154.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 21
+text = "GRÜNHAIN · 4 GEBÄUDE · SICHTBAR WACHSEN"
+horizontal_alignment = 1
+
+[node name="VillageGrowthLabelV153" type="Label" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 154.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "DORF-FORTSCHRITT · STUFE 1 · 0 / 4"
+horizontal_alignment = 1
+
+[node name="VillageGrowthBarV153" type="ProgressBar" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.16
+anchor_right = 0.84
+offset_top = 200.0
+offset_bottom = 228.0
+grow_horizontal = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="VillageGround" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.04
+anchor_top = 0.15
+anchor_right = 0.96
+anchor_bottom = 0.82
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("91")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="VillageAmbient" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 350.0
+offset_right = 790.0
+offset_bottom = 600.0
+texture = ExtResource("28")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+
+[node name="BuildingSelectGlow" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 260.0
+offset_top = 290.0
+offset_right = 820.0
+offset_bottom = 850.0
+texture = ExtResource("41")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+
+[node name="P0BuildingGrid" type="GridContainer" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.05
+anchor_top = 0.23
+anchor_right = 0.95
+anchor_bottom = 0.70
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[node name="BuildingTownhall" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(440,420)
+theme_override_font_sizes/font_size = 25
+text = "RATHAUS"
+
+[node name="BuildingTownhallArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid/BuildingTownhall"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -155.0
+offset_right = 150.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BuildingGoldmine" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(440,420)
+theme_override_font_sizes/font_size = 25
+text = "GOLDMINE"
+
+[node name="BuildingGoldmineArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid/BuildingGoldmine"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -155.0
+offset_right = 150.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BuildingForge" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(440,420)
+theme_override_font_sizes/font_size = 25
+text = "SCHMIEDE"
+
+[node name="BuildingForgeArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid/BuildingForge"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -155.0
+offset_right = 150.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BuildingLuck" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(440,420)
+theme_override_font_sizes/font_size = 25
+text = "GLÜCKSTEMPEL"
+
+[node name="BuildingLuckArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf/P0BuildingGrid/BuildingLuck"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -155.0
+offset_right = 150.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="TownHallArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -340.0
+offset_right = 280.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="GoldMineArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 70.0
+offset_top = 570.0
+offset_right = 360.0
+offset_bottom = 860.0
+texture = ExtResource("13")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GoldMineLabel" type="Label" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 65.0
+offset_top = 845.0
+offset_right = 365.0
+offset_bottom = 905.0
+theme_override_font_sizes/font_size = 23
+text = "GOLDMINE · Ab Lv. 3"
+horizontal_alignment = 1
+
+[node name="ForgeArt" type="TextureRect" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 650.0
+offset_top = 570.0
+offset_right = 940.0
+offset_bottom = 860.0
+texture = ExtResource("14")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ForgeLabel" type="Label" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 645.0
+offset_top = 845.0
+offset_right = 945.0
+offset_bottom = 905.0
+theme_override_font_sizes/font_size = 23
+text = "SCHMIEDE · Ab Lv. 5"
+horizontal_alignment = 1
+
+[node name="TownHallButton" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.16
+anchor_top = 1.0
+anchor_right = 0.84
+anchor_bottom = 1.0
+offset_top = -205.0
+offset_bottom = -82.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 29
+text = "RATHAUS · STUFE 1\nVerbessern · 500 Gold"
+
+[node name="View_Heroes" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeroTitle" type="Label" parent="Safe/VBox/Gameplay/View_Heroes"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "HELDEN"
+horizontal_alignment = 1
+
+[node name="AutoDPSLabel" type="Label" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 27
+text = "AUTO-SCHADEN · 0 / s"
+horizontal_alignment = 1
+
+[node name="HeroCards" type="HBoxContainer" parent="Safe/VBox/Gameplay/View_Heroes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.04
+anchor_top = 0.18
+anchor_right = 0.96
+anchor_bottom = 0.62
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="HeroKnight" type="Button" parent="Safe/VBox/Gameplay/View_Heroes/HeroCards"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Ritter"
+
+[node name="HeroArcher" type="Button" parent="Safe/VBox/Gameplay/View_Heroes/HeroCards"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Bogenschützin"
+
+[node name="HeroMage" type="Button" parent="Safe/VBox/Gameplay/View_Heroes/HeroCards"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Magier"
+
+
+[node name="HeroMasteryLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -590.0
+offset_bottom = -545.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 21
+text = "HELDEN-FORTSCHRITT · STUFE 1 · 0 / 5"
+horizontal_alignment = 1
+
+[node name="HeroMasteryBarP0" type="ProgressBar" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -540.0
+offset_bottom = -510.0
+grow_horizontal = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="HeroSpecializationButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.49
+anchor_bottom = 1.0
+offset_top = -495.0
+offset_bottom = -405.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "SPEZIALISIERUNG"
+
+[node name="HeroMasteryClaimP0" type="Button" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.51
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -495.0
+offset_bottom = -405.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "FORTSCHRITTS-BELOHNUNG"
+
+[node name="HeroEquipmentHint" type="Label" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -330.0
+offset_bottom = -275.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "AUSRÜSTUNG · RITTER"
+horizontal_alignment = 1
+
+[node name="HeroEquipmentButtons" type="HBoxContainer" parent="Safe/VBox/Gameplay/View_Heroes"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -260.0
+offset_bottom = -130.0
+grow_horizontal = 2
+theme_override_constants/separation = 18
+
+[node name="HeroWeaponButton" type="Button" parent="Safe/VBox/Gameplay/View_Heroes/HeroEquipmentButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "WAFFE"
+
+[node name="HeroCharmButton" type="Button" parent="Safe/VBox/Gameplay/View_Heroes/HeroEquipmentButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "TALISMAN"
+
+[node name="HeroUpgradeButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_Heroes"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.18
+anchor_top = 1.0
+anchor_right = 0.82
+anchor_bottom = 1.0
+offset_top = -118.0
+offset_bottom = -28.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "HELD VERBESSERN"
+
+[node name="View_LaneAttack" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LaneMap" type="TextureRect" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LaneHUD" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.05
+anchor_top = 0.02
+anchor_right = 0.95
+anchor_bottom = 0.22
+grow_horizontal = 2
+
+[node name="LaneTitle" type="Label" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+theme_override_font_sizes/font_size = 34
+text = "ANGRIFF"
+horizontal_alignment = 1
+
+[node name="LaneTimer" type="Label" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 29
+text = "60 s"
+horizontal_alignment = 1
+
+[node name="EnemyHP" type="ProgressBar" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+unique_name_in_owner = true
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="EnergyLabel" type="Label" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 26
+text = "ENERGIE 10/10"
+horizontal_alignment = 1
+
+[node name="LaneStageLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 22
+text = "STUFE 1 / 6 · WALDPFAD"
+horizontal_alignment = 1
+
+[node name="LaneMasteryLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "ANGRIFF-FORTSCHRITT · STUFE 1 · 0 / 3"
+horizontal_alignment = 1
+
+[node name="LaneMasteryBarP0" type="ProgressBar" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneHUD"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,28)
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+
+[node name="LaneLeftUnit" type="TextureRect" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 190.0
+offset_top = 1000.0
+offset_right = 350.0
+offset_bottom = 1160.0
+texture = ExtResource("17")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LaneRightUnit" type="TextureRect" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 690.0
+offset_top = 1000.0
+offset_right = 850.0
+offset_bottom = 1160.0
+texture = ExtResource("18")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="LaneButtons" type="HBoxContainer" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -350.0
+offset_bottom = -225.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="LaneLeftButton" type="Button" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "LINKS\nHELD · 3"
+
+[node name="LaneRightButton" type="Button" parent="Safe/VBox/Gameplay/View_LaneAttack/LaneButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "RECHTS\nHELD · 3"
+
+[node name="LaneTechButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.49
+anchor_bottom = 1.0
+offset_top = -210.0
+offset_bottom = -125.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 19
+text = "EINHEITEN-STÄRKE"
+
+[node name="LaneMasteryClaimP0" type="Button" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.51
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -210.0
+offset_bottom = -125.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 19
+text = "FORTSCHRITTS-BELOHNUNG"
+
+[node name="LaneNextBattleP0" type="Button" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.18
+anchor_top = 1.0
+anchor_right = 0.82
+anchor_bottom = 1.0
+offset_top = -115.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "NÄCHSTEN ANGRIFF STARTEN"
+
+[node name="LaneResult" type="Label" parent="Safe/VBox/Gameplay/View_LaneAttack"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = ""
+horizontal_alignment = 1
+
+
+[node name="View_TowerDefense" type="Control" parent="Safe/VBox/Gameplay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TDMap" type="TextureRect" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TowerA" type="TextureRect" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 400.0
+offset_right = 370.0
+offset_bottom = 660.0
+texture = ExtResource("21")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="TowerB" type="TextureRect" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 580.0
+offset_right = 945.0
+offset_bottom = 840.0
+texture = ExtResource("22")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="TDEnemyMarker" type="TextureRect" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 65.0
+offset_top = 170.0
+offset_right = 235.0
+offset_bottom = 340.0
+texture = ExtResource("23")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="TDHUD" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.06
+anchor_top = 0.02
+anchor_right = 0.94
+anchor_bottom = 0.24
+grow_horizontal = 2
+
+[node name="TDTitle" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+theme_override_font_sizes/font_size = 34
+text = "VERTEIDIGUNG"
+horizontal_alignment = 1
+
+[node name="TDTimer" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 28
+text = "55 s"
+horizontal_alignment = 1
+
+[node name="TDCoreHP" type="ProgressBar" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+unique_name_in_owner = true
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="TDWaveLabel" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 25
+text = "WELLE 0 · 0 GEGNER"
+horizontal_alignment = 1
+
+[node name="TDStageLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 22
+text = "STUFE 1 / 6 · WALDRAND"
+horizontal_alignment = 1
+
+[node name="TDMasteryLabelP0" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "VERTEIDIGUNGS-FORTSCHRITT · STUFE 1 · 0 / 3"
+horizontal_alignment = 1
+
+[node name="TDMasteryBarP0" type="ProgressBar" parent="Safe/VBox/Gameplay/View_TowerDefense/TDHUD"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,28)
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="TDTowerStatusP0" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -530.0
+offset_bottom = -480.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "TÜRME · 0 / 2 · STÄRKE 1"
+horizontal_alignment = 1
+
+[node name="TDEnergyLabel" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -470.0
+offset_bottom = -420.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "ENERGIE 10/10"
+horizontal_alignment = 1
+
+[node name="TDUpgradeButton" type="Button" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.18
+anchor_top = 1.0
+anchor_right = 0.82
+anchor_bottom = 1.0
+offset_top = -405.0
+offset_bottom = -305.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 29
+text = "TURM BAUEN · 2 ENERGIE"
+
+[node name="TDTechButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.10
+anchor_top = 1.0
+anchor_right = 0.49
+anchor_bottom = 1.0
+offset_top = -290.0
+offset_bottom = -200.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 21
+text = "TÜRME VERBESSERN"
+
+[node name="TDMasteryClaimP0" type="Button" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.51
+anchor_top = 1.0
+anchor_right = 0.90
+anchor_bottom = 1.0
+offset_top = -290.0
+offset_bottom = -200.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "FORTSCHRITTS-BELOHNUNG"
+
+[node name="TDFightButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.14
+anchor_top = 1.0
+anchor_right = 0.86
+anchor_bottom = 1.0
+offset_top = -188.0
+offset_bottom = -100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 27
+text = "WELLE VERTEIDIGEN"
+
+[node name="TDRestartButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.20
+anchor_top = 1.0
+anchor_right = 0.80
+anchor_bottom = 1.0
+offset_top = -188.0
+offset_bottom = -100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "NÄCHSTE STUFE STARTEN"
+
+[node name="TDResult" type="Label" parent="Safe/VBox/Gameplay/View_TowerDefense"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -92.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = ""
+horizontal_alignment = 1
+
+[node name="BottomMenu" type="HBoxContainer" parent="Safe/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,148)
+theme_override_constants/separation = 10
+
+[node name="Btn_Tap" type="Button" parent="Safe/VBox/BottomMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0,132)
+theme_override_font_sizes/font_size = 27
+text = "HOME"
+
+icon = ExtResource("55")
+expand_icon = true
+
+[node name="Btn_Rad" type="Button" parent="Safe/VBox/BottomMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0,132)
+theme_override_font_sizes/font_size = 27
+text = "SPIN"
+
+icon = ExtResource("56")
+expand_icon = true
+
+[node name="Btn_Dorf" type="Button" parent="Safe/VBox/BottomMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0,132)
+theme_override_font_sizes/font_size = 27
+text = "DORF"
+
+icon = ExtResource("57")
+expand_icon = true
+
+[node name="Btn_Heroes" type="Button" parent="Safe/VBox/BottomMenu"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0,126)
+theme_override_font_sizes/font_size = 25
+text = "HELDEN"
+
+
+[node name="Btn_Attack" type="Button" parent="Safe/VBox/BottomMenu"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0,126)
+theme_override_font_sizes/font_size = 23
+text = "ANGRIFF"
+
+
+[node name="Btn_Defense" type="Button" parent="Safe/VBox/BottomMenu"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0,126)
+theme_override_font_sizes/font_size = 21
+text = "VERTEIDIGUNG"
+
+[node name="UnlockBanner" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_top = 0.06
+anchor_right = 0.92
+anchor_bottom = 0.16
+grow_horizontal = 2
+texture = ExtResource("26")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UnlockBannerLabel" type="Label" parent="UnlockBanner"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 34
+text = "NEU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardModal" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -380.0
+offset_right = 420.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("27")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RewardModalTitle" type="Label" parent="RewardModal"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 90.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "BELOHNUNG"
+horizontal_alignment = 1
+
+[node name="RewardModalText" type="Label" parent="RewardModal"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.12
+anchor_top = 0.30
+anchor_right = 0.88
+anchor_bottom = 0.65
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardModalClose" type="Button" parent="RewardModal"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.18
+anchor_top = 1.0
+anchor_right = 0.82
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_bottom = -55.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "WEITER"
+
+[node name="P02CoreController" type="Node" parent="."]
+script = ExtResource("29")
+
+
+[node name="MonsterRewardOverlay" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -260.0
+offset_right = 460.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MonsterRewardTitle" type="Label" parent="MonsterRewardOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 75.0
+offset_bottom = 135.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "GESCHAFFT!"
+horizontal_alignment = 1
+
+[node name="MonsterRewardText" type="Label" parent="MonsterRewardOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.12
+anchor_top = 0.30
+anchor_right = 0.88
+anchor_bottom = 0.67
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+text = "+100 Gold\n+10 XP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="BossChestGlowP0" type="TextureRect" parent="MonsterRewardOverlay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -180.0
+offset_right = 210.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("60")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BossRewardChestP0" type="TextureRect" parent="MonsterRewardOverlay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("59")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="MonsterRewardContinue" type="Button" parent="MonsterRewardOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.20
+anchor_top = 1.0
+anchor_right = 0.80
+anchor_bottom = 1.0
+offset_top = -118.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 29
+text = "WEITER"
+
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="KillMilestoneP0" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.18
+anchor_right = 0.82
+offset_top = 260.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 34
+text = "5 / 10 · HALBZEIT ZUM BOSS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="BossIntroOverlay" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BossIntroShade" type="ColorRect" parent="BossIntroOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07,0.04,0.08,0.78)
+
+[node name="BossIntroBurst" type="TextureRect" parent="BossIntroOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("37")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BossIntroLabel" type="Label" parent="BossIntroOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.10
+anchor_top = 0.5
+anchor_right = 0.90
+anchor_bottom = 0.5
+offset_top = -115.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "MOOSKÖNIG\nBOSS-KAMPF · EXTRA-BELOHNUNG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BossDefeatBurst" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("38")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+
+[node name="WheelRewardOverlayP0" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WheelRewardShade" type="ColorRect" parent="WheelRewardOverlayP0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03,0.04,0.05,0.62)
+
+[node name="WheelRewardSpot" type="TextureRect" parent="WheelRewardOverlayP0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -330.0
+offset_right = 260.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("49")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="WheelRewardIconP0" type="TextureRect" parent="WheelRewardOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -255.0
+offset_right = 88.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="WheelRewardTitleP0" type="Label" parent="WheelRewardOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.12
+anchor_top = 0.5
+anchor_right = 0.88
+anchor_bottom = 0.5
+offset_top = -130.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "GEWONNEN!"
+horizontal_alignment = 1
+
+[node name="WheelRewardTextP0" type="Label" parent="WheelRewardOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.12
+anchor_top = 0.5
+anchor_right = 0.88
+anchor_bottom = 0.5
+offset_top = 8.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "+100 Gold"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WheelRewardContinueP0" type="Button" parent="WheelRewardOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.20
+anchor_top = 1.0
+anchor_right = 0.80
+anchor_bottom = 1.0
+offset_top = -220.0
+offset_bottom = -105.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 31
+text = "WEITER"
+
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="VillageFunctionRowV153" type="HBoxContainer" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -355.0
+offset_bottom = -255.0
+grow_horizontal = 2
+theme_override_constants/separation = 18
+
+[node name="VillageForgeActionV153" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf/VillageFunctionRowV153"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 19
+text = "SCHMIEDE · VEREDLUNG"
+
+[node name="VillageTempleActionV153" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf/VillageFunctionRowV153"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 19
+text = "GLÜCKSTEMPEL · SEGEN"
+
+[node name="VillageProsperityClaimV153" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.18
+anchor_top = 1.0
+anchor_right = 0.82
+anchor_bottom = 1.0
+offset_top = -245.0
+offset_bottom = -150.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 21
+text = "DORF-WACHSTUM-BELOHNUNG"
+
+[node name="GoldmineStatusP0" type="Label" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.62
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_bottom = -32.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 23
+text = "GOLDMINE · 0 GOLD"
+vertical_alignment = 1
+
+[node name="GoldmineClaimButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_ClashDorf"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.64
+anchor_top = 1.0
+anchor_right = 0.94
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_bottom = -32.0
+grow_horizontal = 2
+custom_minimum_size = Vector2(220,96)
+theme_override_font_sizes/font_size = 23
+text = "ABHOLEN"
+
+[node name="BuildingUpgradeOverlayP0" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -360.0
+offset_right = 450.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("48")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BuildingStagePreview" type="HBoxContainer" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 160.0
+offset_bottom = 365.0
+grow_horizontal = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Stage1" type="TextureRect" parent="BuildingUpgradeOverlayP0/BuildingStagePreview"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(210,190)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stage2" type="TextureRect" parent="BuildingUpgradeOverlayP0/BuildingStagePreview"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(210,190)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stage3" type="TextureRect" parent="BuildingUpgradeOverlayP0/BuildingStagePreview"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(210,190)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BuildingStageLabel" type="Label" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.12
+anchor_right = 0.88
+offset_top = 370.0
+offset_bottom = 420.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "STUFE 1 → 2 → 3"
+horizontal_alignment = 1
+
+[node name="BuildingUpgradeTitleP0" type="Label" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 38
+text = "RATHAUS · STUFE 1"
+horizontal_alignment = 1
+
+[node name="BuildingUpgradeEffectP0" type="Label" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.12
+anchor_top = 0.27
+anchor_right = 0.88
+anchor_bottom = 0.53
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "DORF-FORTSCHRITT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuildingUpgradeCostP0" type="Label" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.10
+anchor_top = 0.56
+anchor_right = 0.90
+anchor_bottom = 0.56
+offset_top = 0.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 29
+text = "200 GOLD"
+horizontal_alignment = 1
+
+[node name="BuildingUpgradeButtonP0" type="Button" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.17
+anchor_top = 1.0
+anchor_right = 0.83
+anchor_bottom = 1.0
+offset_top = -165.0
+offset_bottom = -60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 29
+text = "VERBESSERN"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="BuildingUpgradeCloseP0" type="Button" parent="BuildingUpgradeOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 790.0
+offset_top = 30.0
+offset_right = 860.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 24
+text = "X"
+
+[node name="UpgradeCoinBurstP0" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("50")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+
+[node name="LevelUpOverlayP0" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -210.0
+offset_right = 450.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("51")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelUpTitleP0" type="Label" parent="LevelUpOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 75.0
+offset_bottom = 145.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 44
+text = "LEVEL AUF!"
+horizontal_alignment = 1
+
+[node name="LevelUpTextP0" type="Label" parent="LevelUpOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.12
+anchor_top = 0.36
+anchor_right = 0.88
+anchor_bottom = 0.64
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "SPIELERSTUFE 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelUpContinueP0" type="Button" parent="LevelUpOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.23
+anchor_top = 1.0
+anchor_right = 0.77
+anchor_bottom = 1.0
+offset_top = -110.0
+offset_bottom = -30.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "WEITER"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="SettingsOverlayP0" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -500.0
+offset_right = 450.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("52")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SettingsTitleP0" type="Label" parent="SettingsOverlayP0"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 55.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "EINSTELLUNGEN"
+horizontal_alignment = 1
+
+[node name="SoundToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 165.0
+offset_right = 770.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 28
+text = "TON · AN"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="MusicToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 285.0
+offset_right = 770.0
+offset_bottom = 365.0
+theme_override_font_sizes/font_size = 28
+text = "MUSIK · AN"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="HapticsToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 405.0
+offset_right = 770.0
+offset_bottom = 485.0
+theme_override_font_sizes/font_size = 28
+text = "HAPTIK · AN"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="ReducedMotionToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 495.0
+offset_right = 770.0
+offset_bottom = 565.0
+theme_override_font_sizes/font_size = 24
+text = "BEWEGUNG REDUZIEREN · AUS"
+
+custom_minimum_size = Vector2(96, 96)
+
+[node name="DamageNumbersToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 585.0
+offset_right = 770.0
+offset_bottom = 655.0
+theme_override_font_sizes/font_size = 24
+text = "SCHADENSZAHLEN · AN"
+
+custom_minimum_size = Vector2(96, 96)
+
+
+[node name="ScreenShakeToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 665.0
+offset_right = 770.0
+offset_bottom = 735.0
+theme_override_font_sizes/font_size = 24
+text = "BILDSCHIRM-WACKELN · AN"
+custom_minimum_size = Vector2(96, 96)
+
+[node name="LanguageToggleP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 745.0
+offset_right = 770.0
+offset_bottom = 815.0
+theme_override_font_sizes/font_size = 24
+text = "SPRACHE · DE"
+custom_minimum_size = Vector2(96, 96)
+
+[node name="AccountButtonP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 130.0
+offset_top = 815.0
+offset_right = 430.0
+offset_bottom = 885.0
+theme_override_font_sizes/font_size = 22
+text = "KONTO"
+
+[node name="SupportButtonP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 470.0
+offset_top = 815.0
+offset_right = 770.0
+offset_bottom = 885.0
+theme_override_font_sizes/font_size = 22
+text = "HILFE & RECHT"
+
+[node name="SettingsCloseP0" type="Button" parent="SettingsOverlayP0"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 340.0
+offset_top = 900.0
+offset_right = 540.0
+offset_bottom = 970.0
+theme_override_font_sizes/font_size = 24
+text = "X"
+
+[node name="FeatureHubOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -610.0
+offset_right = 440.0
+offset_bottom = 610.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FeatureHubVBox" type="VBoxContainer" parent="FeatureHubOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="FeatureHubOverlayP0/FeatureHubVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "SPIELBEREICHE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="FeatureHubOverlayP0/FeatureHubVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Wähle, worauf du gerade Lust hast. HOME, SPIN und DORF bleiben immer schnell erreichbar."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FeatureHubGrid" type="GridContainer" parent="FeatureHubOverlayP0/FeatureHubVBox"]
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+
+[node name="HubHeroesP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,122)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HELDEN\nStärken & Ausrüstung"
+
+[node name="HubJourneyP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "REALM-REISE\nWürfel · Pfad · Portal"
+
+[node name="HubPuzzleP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PUZZLE\nGrünhain"
+
+[node name="HubDefenseP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "VERTEIDIGUNG\nWellen halten"
+
+[node name="HubLaneP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ANGRIFF\nLinks · Rechts"
+
+[node name="HubMetaP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "REALM-ZIELE\nTruhe · Schlüssel · Ziele"
+
+[node name="HubProfileP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PROFIL & FREUNDE\nPostfach · Erfolge"
+
+[node name="HubShopP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ITEMSHOP\nAngebote · Kosmetik"
+
+[node name="HubLiveOpsP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EVENTS & RANGLISTEN\nTäglich · Woche · Saison"
+
+[node name="HubProgressionP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox/FeatureHubGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,135)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FORTSCHRITT\nAlle Spielsäulen"
+
+[node name="FeatureHubStatusV154" type="Label" parent="FeatureHubOverlayP0/FeatureHubVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "ALLE SPIELBEREICHE BEREIT"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FeatureHubHintP0" type="Label" parent="FeatureHubOverlayP0/FeatureHubVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Alle Bereiche stärken denselben Fortschritt. Wähle einfach, worauf du gerade Lust hast."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FeatureHubCloseP0" type="Button" parent="FeatureHubOverlayP0/FeatureHubVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,86)
+layout_mode = 2
+text = "SCHLIESSEN"
+
+[node name="AccountOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -500.0
+offset_right = 430.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccountVBox" type="VBoxContainer" parent="AccountOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="AccountOverlayP0/AccountVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "KONTO & SICHERUNG"
+horizontal_alignment = 1
+
+[node name="AccountStatusP0" type="Label" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "GASTKONTO"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AccountProgressP0" type="Label" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "SPIELERSTUFE 1 · GRÜNHAIN"
+horizontal_alignment = 1
+
+[node name="CloudStatusP0" type="Label" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "ONLINE-SICHERUNG · NICHT VERBUNDEN"
+horizontal_alignment = 1
+
+[node name="LinkGuestP0" type="Button" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "GASTSPIELSTAND MIT KONTO VERKNÜPFEN"
+
+[node name="SocialHubButtonP0" type="Button" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+text = "PROFIL · FREUNDE · ERFOLGE"
+
+[node name="CloudInfoP0" type="Button" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+text = "ONLINE-SICHERUNG"
+
+[node name="AccountMessageP0" type="Label" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Lokaler Spielstand bleibt unabhängig vom Netzwerk spielbar."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AccountCloseP0" type="Button" parent="AccountOverlayP0/AccountVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+text = "SCHLIESSEN"
+
+[node name="SocialOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -590.0
+offset_right = 440.0
+offset_bottom = 590.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SocialVBox" type="VBoxContainer" parent="SocialOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="SocialOverlayP0/SocialVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "PROFIL & FREUNDE"
+horizontal_alignment = 1
+
+[node name="SocialProfileP0" type="Label" parent="SocialOverlayP0/SocialVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "GASTHELD · STUFE 1 · GRÜNHAIN"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SocialStatsP0" type="Label" parent="SocialOverlayP0/SocialVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "BOSSE 0 · RATHAUS 1 · TRUHEN 0"
+horizontal_alignment = 1
+
+[node name="SocialTabsP0" type="HBoxContainer" parent="SocialOverlayP0/SocialVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SocialInboxP0" type="Button" parent="SocialOverlayP0/SocialVBox/SocialTabsP0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "POSTFACH"
+
+[node name="SocialAchievementsP0" type="Button" parent="SocialOverlayP0/SocialVBox/SocialTabsP0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ERFOLGE"
+
+[node name="SocialFriendsP0" type="Button" parent="SocialOverlayP0/SocialVBox/SocialTabsP0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FREUNDE"
+
+[node name="SocialContentP0" type="Label" parent="SocialOverlayP0/SocialVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,560)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "POSTFACH"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SocialActionP0" type="Button" parent="SocialOverlayP0/SocialVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,86)
+text = "ALLE ALS GELESEN MARKIEREN"
+
+[node name="SocialCloseP0" type="Button" parent="SocialOverlayP0/SocialVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+text = "SCHLIESSEN"
+
+[node name="SupportOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -520.0
+offset_right = 430.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SupportVBox" type="VBoxContainer" parent="SupportOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="SupportOverlayP0/SupportVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "HILFE & RECHTLICHES"
+horizontal_alignment = 1
+
+[node name="SupportTextP0" type="Label" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "HILFE-CENTER · Integration vorbereitet\nFAQ · Account · Spielstand · Käufe · Datenschutz"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SupportHelpP0" type="Button" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+text = "HILFE-CENTER"
+
+[node name="SupportPrivacyP0" type="Button" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+text = "DATENSCHUTZ"
+
+[node name="SupportTermsP0" type="Button" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+text = "NUTZUNGSBEDINGUNGEN"
+
+[node name="SupportImprintP0" type="Button" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+text = "IMPRESSUM"
+
+[node name="SupportStatusP0" type="Label" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Offizielle Support-/Rechts-URLs werden für Release konfiguriert."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SupportCloseP0" type="Button" parent="SupportOverlayP0/SupportVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+text = "SCHLIESSEN"
+
+[node name="LiveOpsOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -650.0
+offset_right = 450.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LiveOpsVBox" type="VBoxContainer" parent="LiveOpsOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LiveOpsTitleP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "EVENTS & RANGLISTEN"
+horizontal_alignment = 1
+
+[node name="HalloweenStatusP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "HALLOWEEN · GEPLANT"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HalloweenProgressP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "EVENT-FORTSCHRITT · 0 / 10 BOSSE"
+horizontal_alignment = 1
+
+[node name="HalloweenClaimP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,88)
+text = "HALLOWEEN-BELOHNUNG"
+
+[node name="HalloweenCurrencyP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "KÜRBISMARKEN · 0"
+horizontal_alignment = 1
+
+[node name="HalloweenQuestsP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "EVENT-QUESTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HalloweenQuestClaimP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,78)
+text = "BEREITE EVENT-QUESTS ABHOLEN"
+
+[node name="HalloweenChestP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,88)
+text = "EVENT-TRUHE · 0 / 50 MARKEN"
+
+[node name="RankingTabsP0" type="HBoxContainer" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RankingDailyP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox/RankingTabsP0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TÄGLICH"
+
+[node name="RankingWeeklyP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox/RankingTabsP0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WÖCHENTLICH"
+
+[node name="RankingEventP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox/RankingTabsP0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EVENT"
+
+[node name="RankingStatusP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "RANGLISTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RankingRewardPreviewP0" type="Label" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "RANGLISTEN-BELOHNUNGEN"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RankingClaimP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,86)
+text = "RANGLISTEN-BELOHNUNG"
+
+[node name="LiveOpsCloseP0" type="Button" parent="LiveOpsOverlayP0/LiveOpsVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+text = "SCHLIESSEN"
+
+[node name="ShopOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -610.0
+offset_right = 440.0
+offset_bottom = 610.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopVBox" type="VBoxContainer" parent="ShopOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="ShopTitleP0" type="Label" parent="ShopOverlayP0/ShopVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "REALM ITEMSHOP"
+horizontal_alignment = 1
+
+[node name="ShopStatusP0" type="Label" parent="ShopOverlayP0/ShopVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "KÄUFE SIND IN DIESER TESTVERSION NOCH NICHT AKTIV"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ShopCatalogP0" type="Label" parent="ShopOverlayP0/ShopVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,650)
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "KATALOG"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ShopCloseP0" type="Button" parent="ShopOverlayP0/ShopVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+text = "SCHLIESSEN"
+
+[node name="ProgressionOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -620.0
+offset_right = 440.0
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressionVBox" type="VBoxContainer" parent="ProgressionOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ProgressionTitleP0" type="Label" parent="ProgressionOverlayP0/ProgressionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "REALM FORTSCHRITT"
+horizontal_alignment = 1
+
+[node name="ProgressionTextP0" type="Label" parent="ProgressionOverlayP0/ProgressionVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,820)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "FORTSCHRITT"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgressionCloseP0" type="Button" parent="ProgressionOverlayP0/ProgressionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+text = "SCHLIESSEN"
+
+[node name="AfkOverlayP0" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -330.0
+offset_right = 400.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AfkVBox" type="VBoxContainer" parent="AfkOverlayP0"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="AfkTitleP0" type="Label" parent="AfkOverlayP0/AfkVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "WILLKOMMEN ZURÜCK, HELD"
+horizontal_alignment = 1
+
+[node name="AfkTextP0" type="Label" parent="AfkOverlayP0/AfkVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0,260)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "+0 GOLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AfkClaimP0" type="Button" parent="AfkOverlayP0/AfkVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,110)
+theme_override_font_sizes/font_size = 30
+text = "OFFLINE-BELOHNUNG ABHOLEN"
+
+[node name="RewardPulseP0" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("53")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BossShieldFxP0" type="TextureRect" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -380.0
+offset_right = 380.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("54")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="CoreTransitionP0" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("61")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 0
+modulate = Color(1,1,1,0)
+
+[node name="GoldmineUiTimerP0" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[node name="P0DebugToggle" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 170.0
+offset_right = -30.0
+offset_bottom = 266.0
+grow_horizontal = 0
+custom_minimum_size = Vector2(140,96)
+text = "TEST"
+
+[node name="P0DebugPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -650.0
+offset_right = 460.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P0DebugVBox" type="VBoxContainer" parent="P0DebugPanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="P0DebugTitle" type="Label" parent="P0DebugPanel/P0DebugVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "P0 TEST HARNESS"
+horizontal_alignment = 1
+
+[node name="P0DebugStatus" type="Label" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "DEBUG ONLY"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DebugFresh" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "FRISCHER START"
+
+[node name="DebugHalfBoss" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "5 / 10"
+
+[node name="DebugBoss" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "BOSS · 10 / 10"
+
+[node name="DebugWheel" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "WHEEL · 3 SPINS"
+
+[node name="DebugVillage" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "DORF TEST"
+
+[node name="DebugReturn" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "RETURN TEST"
+
+[node name="DebugLowResource" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "0 SPINS / 20 GOLD"
+
+[node name="DebugRecovery" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "SAVE RECOVERY FIXTURE"
+
+[node name="DebugClose" type="Button" parent="P0DebugPanel/P0DebugVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,96)
+text = "SCHLIESSEN"
+
+[node name="RegionProgressPanel" type="PanelContainer" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 1010.0
+offset_bottom = 1160.0
+grow_horizontal = 2
+
+[node name="RegionProgressVBox" type="VBoxContainer" parent="Safe/VBox/Gameplay/View_TapHero/RegionProgressPanel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RegionProgressTitle" type="Label" parent="Safe/VBox/Gameplay/View_TapHero/RegionProgressPanel/RegionProgressVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "REGION · GRÜNHAIN"
+horizontal_alignment = 1
+
+[node name="RegionProgressBar" type="ProgressBar" parent="Safe/VBox/Gameplay/View_TapHero/RegionProgressPanel/RegionProgressVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+show_percentage = false
+
+[node name="RegionProgressText" type="Label" parent="Safe/VBox/Gameplay/View_TapHero/RegionProgressPanel/RegionProgressVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "FROSTMARK · FREISCHALTUNG AB SPIELERSTUFE 20"
+horizontal_alignment = 1
+
+

@@ -1,0 +1,63 @@
+{
+  "version": "1.79",
+  "master_concept": "V2.2",
+  "mode": "local_development",
+  "production_target": "online_authoritative",
+  "request_contract_version": "authority-intent-v1",
+  "result_contract_version": "authority-result-v1",
+  "offline_queue_policy": {
+    "safe": [
+      "settings",
+      "analytics_batch"
+    ],
+    "review": [
+      "tap_progress",
+      "noncompetitive_pve_intent"
+    ],
+    "forbidden": [
+      "purchase",
+      "spend_currency",
+      "claim_reward",
+      "open_chest",
+      "spin_result",
+      "pvp_result"
+    ]
+  },
+  "server_time_required": [
+    "daily",
+    "goldmine",
+    "temple",
+    "events",
+    "seasons",
+    "offers",
+    "cooldowns"
+  ],
+  "economy_contract_version": "economy-transaction-v1",
+  "snapshot_contract_version": "player-snapshot-v3",
+  "max_pending_intents": 64,
+  "sync_request_contract_version": "player-sync-request-v1",
+  "reconciliation_contract_version": "sync-reconciliation-v1",
+  "remote_snapshot_policy": {
+    "reject_stale_revision": true,
+    "require_server_time": true,
+    "apply_state_only_after_validation": true,
+    "never_fake_remote_response": true
+  },
+  "auth_contract_version": "auth-session-v1",
+  "transport_contract_version": "realm-http-transport-v1",
+  "remote_apply_contract_version": "remote-state-apply-v1",
+  "transport": {
+    "enabled": false,
+    "base_url": "",
+    "require_https": true,
+    "connect_timeout_seconds": 12,
+    "request_timeout_seconds": 20,
+    "max_response_bytes": 1048576
+  },
+  "routes": {
+    "session_guest": "/v1/session/guest",
+    "session_refresh": "/v1/session/refresh",
+    "player_sync": "/v1/player/sync",
+    "authority_intent": "/v1/game/intent"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "version": "v1.46-halloween-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "transparent_background": true,
+    "large_source_size": "768x768",
+    "isolated_elements": true,
+    "replace_by_path_or_registry": true,
+    "final_art_must_preserve_role_and_padding": true
+  },
+  "slots": [
+    {
+      "slot": "EVENT_HALLOWEEN_HERO_BANNER",
+      "placeholder": "assets/v146_halloween/V146_001_halloween_event_banner.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_CHEST",
+      "placeholder": "assets/v146_halloween/V146_002_halloween_event_chest.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_CURRENCY",
+      "placeholder": "assets/v146_halloween/V146_003_pumpkin_token.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_QUEST_BOARD",
+      "placeholder": "assets/v146_halloween/V146_004_halloween_quest_board.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_RANKING",
+      "placeholder": "assets/v146_halloween/V146_005_halloween_ranking_emblem.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_BOSS",
+      "placeholder": "assets/v146_halloween/V146_006_halloween_boss_placeholder.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_JOURNEY_PORTAL",
+      "placeholder": "assets/v146_halloween/V146_007_halloween_journey_portal.png"
+    },
+    {
+      "slot": "EVENT_HALLOWEEN_SPIN_SKIN",
+      "placeholder": "assets/v146_halloween/V146_008_halloween_spin_skin.png"
+    }
+  ]
+}

@@ -1,0 +1,859 @@
+{
+  "version": "1.88",
+  "screens": {
+    "home_tap": {
+      "nodes": {
+        "SettingsButtonP0": {
+          "role": "ui.icon.settings",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "MonsterProgressLabel": {
+          "role": "ui.home.boss_progress",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "HomeWheelCTA": {
+          "role": "ui.button.spin.primary",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "Btn_Tap": {
+          "role": "ui.nav.monster",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "Btn_Rad": {
+          "role": "ui.nav.wheel",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "Btn_Dorf": {
+          "role": "ui.icon.village",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "MoreFeaturesButtonP0": {
+          "role": "ui.nav.menu",
+          "family": "icon",
+          "confidence": "high"
+        }
+      }
+    },
+    "quest": {
+      "nodes": {
+        "QuestSummaryLabel": {
+          "role": "ui.quest.summary",
+          "family": "panel",
+          "confidence": "medium"
+        },
+        "QuestButton": {
+          "role": "ui.nav.quest",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "QuestTitle": {
+          "role": "ui.quest.header",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "shop": {
+      "nodes": {
+        "ShopCatalogP0": {
+          "role": "shop.card.production",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "ShopCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "ShopOverlayP0": {
+          "role": "ui.panel.tall.dark",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "ShopStatusP0": {
+          "role": "ui.shop.featured",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "offline": {
+      "nodes": {
+        "AfkTextP0": {
+          "role": "ui.afk.summary",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "AfkClaimP0": {
+          "role": "ui.afk.claim",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "AfkOverlayP0": {
+          "role": "ui.panel.tall.dark",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "progression": {
+      "nodes": {
+        "ProgressionTextP0": {
+          "role": "progression.card.production",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "ProgressionCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "ProgressionOverlayP0": {
+          "role": "ui.panel.tall.primary",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "ranking": {
+      "nodes": {
+        "RankingStatusP0": {
+          "role": "ui.ranking.header",
+          "family": "panel",
+          "confidence": "medium"
+        },
+        "RankingRewardPreviewP0": {
+          "role": "ui.ranking.reward",
+          "family": "panel",
+          "confidence": "medium"
+        }
+      }
+    },
+    "spin": {
+      "nodes": {
+        "SpinMachineFrame": {
+          "role": "spin.machine.frame",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "Payline": {
+          "role": "spin.payline",
+          "family": "texture",
+          "confidence": "high"
+        },
+        "SpinStatusPanel": {
+          "role": "ui.panel.info.dark",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "SpinButton": {
+          "role": "ui.button.spin.primary",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "village": {
+      "nodes": {
+        "VillageGrowthBarV153": {
+          "role": "ui.progression.progress_bar",
+          "family": "progress_bar",
+          "confidence": "medium"
+        },
+        "VillageTitle": {
+          "role": "ui.panel.banner",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "VillageGrowthLabelV153": {
+          "role": "ui.panel.info.dark",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "VillageProsperityClaimV153": {
+          "role": "ui.button.reward",
+          "family": "button",
+          "confidence": "high"
+        },
+        "GoldmineClaimButtonP0": {
+          "role": "ui.button.positive",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "feature_hub": {
+      "nodes": {
+        "FeatureHubOverlayP0": {
+          "role": "ui.featurehub.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "HubHeroesP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubJourneyP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubPuzzleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubDefenseP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubLaneP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubMetaP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubProfileP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubShopP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubLiveOpsP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HubProgressionP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "FeatureHubCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        }
+      }
+    },
+    "settings": {
+      "nodes": {
+        "SettingsOverlayP0": {
+          "role": "ui.settings.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "SoundToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "MusicToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "HapticsToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "ReducedMotionToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "DamageNumbersToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "ScreenShakeToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "LanguageToggleP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "AccountButtonP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "SupportButtonP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "SettingsCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        }
+      }
+    },
+    "account": {
+      "nodes": {
+        "AccountOverlayP0": {
+          "role": "ui.account.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "LinkGuestP0": {
+          "role": "ui.button.positive",
+          "family": "button",
+          "confidence": "high"
+        },
+        "SocialHubButtonP0": {
+          "role": "ui.button.primary",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "AccountCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "CloudInfoP0": {
+          "role": "ui.button.secondary",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "social": {
+      "nodes": {
+        "SocialOverlayP0": {
+          "role": "ui.social.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "SocialActionP0": {
+          "role": "ui.button.positive",
+          "family": "button",
+          "confidence": "high"
+        },
+        "SocialCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "SocialContentP0": {
+          "role": "ui.panel.tall.dark",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "support": {
+      "nodes": {
+        "SupportOverlayP0": {
+          "role": "ui.support.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "SupportHelpP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "SupportPrivacyP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "SupportTermsP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "SupportImprintP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "SupportCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "SupportTextP0": {
+          "role": "ui.panel.info.parchment",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "liveops": {
+      "nodes": {
+        "LiveOpsOverlayP0": {
+          "role": "ui.liveops.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "HalloweenClaimP0": {
+          "role": "ui.button.positive",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "HalloweenQuestClaimP0": {
+          "role": "ui.button.positive",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "RankingClaimP0": {
+          "role": "ui.button.reward",
+          "family": "button",
+          "confidence": "high"
+        },
+        "RankingDailyP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "RankingWeeklyP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "RankingEventP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "LiveOpsCloseP0": {
+          "role": "ui.modal.close",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "RankingStatusP0": {
+          "role": "ranking.card.production",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "RankingRewardPreviewP0": {
+          "role": "ui.ranking.reward",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "HalloweenStatusP0": {
+          "role": "liveops.halloween.banner",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "heroes": {
+      "nodes": {
+        "View_Heroes": {
+          "role": "ui.hero.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "HeroUpgradeButtonP0": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        },
+        "HeroSpecializationButtonP0": {
+          "role": "hero.specialization",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "HeroMasteryClaimP0": {
+          "role": "hero.reward",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "HeroWeaponButton": {
+          "role": "hero.weapon",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "HeroCharmButton": {
+          "role": "hero.charm",
+          "family": "icon",
+          "confidence": "high"
+        },
+        "HeroTitle": {
+          "role": "ui.hero.panel",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "reward_modal": {
+      "nodes": {
+        "RewardModal": {
+          "role": "ui.reward.panel",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "monster_reward": {
+      "nodes": {
+        "MonsterRewardOverlay": {
+          "role": "ui.reward.panel",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "building_upgrade": {
+      "nodes": {
+        "BuildingUpgradeOverlayP0": {
+          "role": "ui.upgrade.panel",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "level_up": {
+      "nodes": {
+        "LevelUpOverlayP0": {
+          "role": "ui.reward.panel",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "LevelUpTextP0": {
+          "role": "ui.progression.overview",
+          "family": "progression",
+          "confidence": "high"
+        },
+        "LevelUpContinueP0": {
+          "role": "ui.button.positive",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "lane": {
+      "nodes": {
+        "LaneLeftButton": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "LaneRightButton": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "LaneTechButtonP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "LaneNextBattleP0": {
+          "role": "ui.button.primary",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "LaneMasteryClaimP0": {
+          "role": "ui.button.positive",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "LaneStageLabelP0": {
+          "role": "mode.lane.stage",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "LaneMasteryLabelP0": {
+          "role": "mode.lane.mastery",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "defense": {
+      "nodes": {
+        "TDUpgradeButton": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "TDTechButtonP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "TDFightButtonP0": {
+          "role": "ui.button.primary",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "TDRestartButtonP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "TDMasteryClaimP0": {
+          "role": "ui.button.positive",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "TDStageLabelP0": {
+          "role": "mode.td.stage",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "TDMasteryLabelP0": {
+          "role": "mode.td.mastery",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "modal_controls": {
+      "nodes": {
+        "RewardModalClose": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "MonsterRewardContinue": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "WheelRewardContinueP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "BuildingUpgradeCloseP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "LevelUpContinueP0": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "NoSpinsClose": {
+          "role": "ui.button.secondary",
+          "family": "secondary_button",
+          "confidence": "high"
+        },
+        "BuildingUpgradeButtonP0": {
+          "role": "ui.button.positive",
+          "family": "primary_button",
+          "confidence": "high"
+        },
+        "GoldmineClaimButtonP0": {
+          "role": "ui.button.positive",
+          "family": "primary_button",
+          "confidence": "high"
+        }
+      }
+    },
+    "lane_battle": {
+      "nodes": {
+        "LaneTitle": {
+          "role": "ui.panel.banner",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "LaneLeftButton": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        },
+        "LaneRightButton": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "tower_defense": {
+      "nodes": {
+        "TDTitle": {
+          "role": "ui.panel.banner",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "TDUpgradeButton": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        },
+        "TDFightButtonP0": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "journey": {
+      "nodes": {
+        "JourneyBoard": {
+          "role": "mode.journey.board",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "DiceRollButton": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        },
+        "JourneyCacheP0": {
+          "role": "mode.journey.cache",
+          "family": "button",
+          "confidence": "high"
+        },
+        "TreasurePortalPanel": {
+          "role": "mode.journey.portal",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "puzzle": {
+      "nodes": {
+        "PuzzlePanel": {
+          "role": "mode.puzzle.board",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "PuzzleMasteryClaimP0": {
+          "role": "ui.button.reward",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "tap_home": {
+      "nodes": {
+        "MonsterLevelLabel": {
+          "role": "ui.panel.banner",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "MonsterProgressLabel": {
+          "role": "ui.home.boss_progress",
+          "family": "progress",
+          "confidence": "high"
+        },
+        "HomeWheelCTA": {
+          "role": "ui.button.spin.primary",
+          "family": "button",
+          "confidence": "high"
+        },
+        "TapUpgradeButton": {
+          "role": "ui.button.primary",
+          "family": "button",
+          "confidence": "high"
+        },
+        "TapMomentumLabelV172": {
+          "role": "ui.panel.info.dark",
+          "family": "combat_feedback",
+          "confidence": "high"
+        },
+        "HeroAssistLabelV172": {
+          "role": "ui.panel.small.parchment",
+          "family": "hero_feedback",
+          "confidence": "high"
+        },
+        "CoreSynergyLabelV174": {
+          "role": "ui.panel.info.dark",
+          "family": "progression_feedback",
+          "confidence": "high"
+        }
+      }
+    },
+    "reward_flow": {
+      "nodes": {
+        "RewardModalText": {
+          "role": "ui.reward.panel",
+          "family": "reward",
+          "confidence": "high"
+        },
+        "RewardModalClose": {
+          "role": "ui.button.reward",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "meta": {
+      "nodes": {
+        "EventPanel": {
+          "role": "ui.panel.tall.primary",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "RankingPanel": {
+          "role": "ui.panel.tall.dark",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "RealmChestPanel": {
+          "role": "ui.panel.info.parchment",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "EventClaimButton": {
+          "role": "ui.button.reward",
+          "family": "button",
+          "confidence": "high"
+        },
+        "RealmChestButton": {
+          "role": "ui.button.reward",
+          "family": "button",
+          "confidence": "high"
+        },
+        "MetaResultLabel": {
+          "role": "ui.reward.panel",
+          "family": "reward",
+          "confidence": "high"
+        }
+      }
+    },
+    "home": {
+      "nodes": {
+        "MonsterHP": {
+          "role": "ui.monster.hp.normal",
+          "family": "progress_bar",
+          "confidence": "high"
+        },
+        "HomeWheelCTA": {
+          "role": "ui.button.spin.primary",
+          "family": "button",
+          "confidence": "high"
+        }
+      }
+    },
+    "afk": {
+      "nodes": {
+        "AfkOverlayP0": {
+          "role": "afk.panel.production",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    }
+  }
+}

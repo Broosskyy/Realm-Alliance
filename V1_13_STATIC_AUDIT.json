@@ -1,0 +1,40 @@
+{
+  "source_version": "V1.13",
+  "master_concept": "V1.4",
+  "pass": "TECHNICAL_CORE_POLISH",
+  "ok": true,
+  "checks": {
+    "kill_commits_next_before_save": true,
+    "continue_no_second_spawn": true,
+    "legacy_zero_hp_repair": true,
+    "wheel_guard": true,
+    "village_guards": true,
+    "save_v19": true,
+    "p1_still_off": true,
+    "no_new_asset_pass": true
+  },
+  "tools": {
+    "tools/preflight.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"warnings\": [],\n  \"gd_files\": 29,\n  \"scene_nodes\": 169\n}"
+    },
+    "tools/validate_test_harness.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": []\n}"
+    },
+    "tools/simulate_first_session.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"wheel_weights\": [\n    22,\n    18,\n    10,\n    20,\n    10,\n    8,\n    7,\n    5\n  ],\n  \"building_ids\": [\n    \"townhall\",\n    \"goldmine\",\n    \"forge\",\n    \"lucktemple\"\n  ],\n  \"first_monster_taps\": 10\n}"
+    },
+    "tools/validate_core_transactions.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": []\n}"
+    }
+  },
+  "missing_percent_nodes": [],
+  "missing_ext_resources": [],
+  "duplicate_functions": {},
+  "json_errors": {},
+  "godot_binary": "not installed",
+  "runtime_status": "NOT_RUNTIME_TESTED"
+}

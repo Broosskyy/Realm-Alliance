@@ -1,0 +1,51 @@
+{
+  "version": "1.22",
+  "master_version": "1.6",
+  "visible_core": [
+    "home",
+    "wheel",
+    "village"
+  ],
+  "core_loop": [
+    "tap",
+    "reward",
+    "spin",
+    "build",
+    "next"
+  ],
+  "bonus_active_pillar": {
+    "id": "puzzle",
+    "status": "reserved_not_enabled",
+    "permanent_currency": false
+  },
+  "strategy_pillars": [
+    {
+      "id": "tower_defense",
+      "status": "preserved_hidden"
+    },
+    {
+      "id": "lane_battle",
+      "status": "preserved_hidden"
+    }
+  ],
+  "entry_product_layer": [
+    "splash",
+    "bootstrap",
+    "welcome",
+    "login",
+    "register",
+    "guest"
+  ],
+  "commerce_layer": [
+    "shop",
+    "iap",
+    "rewarded_ads"
+  ],
+  "platform_layer": [
+    "cloud_save",
+    "analytics",
+    "remote_config",
+    "admin_liveops"
+  ],
+  "rule": "MEHR CONTENT, NICHT MEHR BEDIENUNG."
+}

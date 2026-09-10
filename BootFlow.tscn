@@ -1,0 +1,444 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://BootFlow.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/entry/ENTRY001_splash_bg_placeholder.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/entry/ENTRY002_welcome_bg_placeholder.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/entry/ENTRY003_realm_emblem_placeholder.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/entry/ENTRY011_primary_button_placeholder.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/entry/ENTRY012_secondary_button_placeholder.png" id="6"]
+
+[node name="BootFlow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Splash" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="Splash"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Emblem" type="TextureRect" parent="Splash"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.18
+anchor_right = 0.82
+offset_top = 300.0
+offset_bottom = 990.0
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Splash"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 1030.0
+offset_bottom = 1190.0
+theme_override_font_sizes/font_size = 62
+text = "REALM ALLIANCE"
+horizontal_alignment = 1
+
+[node name="SplashStatus" type="Label" parent="Splash"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_top = -190.0
+offset_bottom = -110.0
+theme_override_font_sizes/font_size = 24
+text = "DIE REICHE ERWACHEN …"
+horizontal_alignment = 1
+
+[node name="Bootstrap" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="Bootstrap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Bootstrap"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.1
+anchor_top = 0.42
+anchor_right = 0.9
+anchor_bottom = 0.5
+theme_override_font_sizes/font_size = 38
+text = "REALM ALLIANCE"
+horizontal_alignment = 1
+
+[node name="BootstrapStatus" type="Label" parent="Bootstrap"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.08
+anchor_top = 0.52
+anchor_right = 0.92
+anchor_bottom = 0.6
+theme_override_font_sizes/font_size = 22
+text = "SPIEL WIRD VORBEREITET …"
+horizontal_alignment = 1
+
+[node name="Welcome" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Emblem" type="TextureRect" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.28
+anchor_right = 0.72
+offset_top = 120.0
+offset_bottom = 600.0
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 590.0
+offset_bottom = 710.0
+theme_override_font_sizes/font_size = 52
+text = "REALM ALLIANCE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.1
+anchor_right = 0.9
+offset_top = 710.0
+offset_bottom = 790.0
+theme_override_font_sizes/font_size = 24
+text = "TIPPE · DREHE · BAUE · WACHSE"
+horizontal_alignment = 1
+
+[node name="StartGame" type="TextureButton" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.15
+anchor_right = 0.85
+offset_top = 850.0
+offset_bottom = 1000.0
+texture_normal = ExtResource("5")
+expand_icon = true
+
+[node name="Label" type="Label" parent="Welcome/StartGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 34
+text = "SPIEL STARTEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Guest" type="TextureButton" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.15
+anchor_right = 0.85
+offset_top = 1020.0
+offset_bottom = 1150.0
+texture_normal = ExtResource("6")
+expand_icon = true
+
+[node name="Label" type="Label" parent="Welcome/Guest"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 27
+text = "ALS GAST SPIELEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AuthRow" type="HBoxContainer" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.15
+anchor_right = 0.85
+offset_top = 1180.0
+offset_bottom = 1300.0
+theme_override_constants/separation = 22
+
+[node name="LoginButton" type="Button" parent="Welcome/AuthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "ANMELDEN"
+
+[node name="RegisterButton" type="Button" parent="Welcome/AuthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "KONTO ERSTELLEN"
+
+[node name="FeatureLine" type="Label" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 1295.0
+offset_bottom = 1350.0
+theme_override_font_sizes/font_size = 19
+text = "TIPPE · REALM SPIN · DORF · PUZZLE · VERTEIDIGUNG · ANGRIFF"
+horizontal_alignment = 1
+
+[node name="CommunityTitle" type="Label" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.1
+anchor_right = 0.9
+offset_top = 1380.0
+offset_bottom = 1440.0
+theme_override_font_sizes/font_size = 21
+text = "COMMUNITY"
+horizontal_alignment = 1
+
+[node name="SocialRow" type="HBoxContainer" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.12
+anchor_right = 0.88
+offset_top = 1450.0
+offset_bottom = 1555.0
+theme_override_constants/separation = 14
+
+[node name="Discord" type="Button" parent="Welcome/SocialRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DISCORD"
+
+[node name="Instagram" type="Button" parent="Welcome/SocialRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "INSTAGRAM"
+
+[node name="YouTube" type="Button" parent="Welcome/SocialRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "YOUTUBE"
+
+[node name="CommunityStatus" type="Label" parent="Welcome"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.08
+anchor_right = 0.92
+offset_top = 1570.0
+offset_bottom = 1645.0
+theme_override_font_sizes/font_size = 17
+text = "OFFIZIELLE COMMUNITY-LINKS · KONFIGURATION FOLGT"
+horizontal_alignment = 1
+
+[node name="Footer" type="Label" parent="Welcome"]
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.08
+anchor_top = 1.0
+anchor_right = 0.92
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_bottom = -60.0
+theme_override_font_sizes/font_size = 17
+text = "DATENSCHUTZ · NUTZUNGSBEDINGUNGEN · IMPRESSUM"
+horizontal_alignment = 1
+
+[node name="Login" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="Login"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="Login"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.12
+anchor_top = 0.22
+anchor_right = 0.88
+anchor_bottom = 0.78
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="Login/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "WILLKOMMEN ZURÜCK"
+horizontal_alignment = 1
+
+[node name="Email" type="LineEdit" parent="Login/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+placeholder_text = "E-Mail / Benutzername"
+
+[node name="Password" type="LineEdit" parent="Login/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,90)
+placeholder_text = "Passwort"
+secret = true
+
+[node name="Submit" type="Button" parent="Login/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,100)
+text = "ANMELDEN"
+
+[node name="Forgot" type="Button" parent="Login/VBox"]
+layout_mode = 2
+text = "PASSWORT VERGESSEN"
+
+[node name="LoginStatus" type="Label" parent="Login/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ONLINE-KONTO IST IN DIESER TESTVERSION NOCH NICHT AKTIV"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Login/VBox"]
+layout_mode = 2
+text = "ZURÜCK"
+
+[node name="Register" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="TextureRect" parent="Register"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="Register"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.12
+anchor_top = 0.16
+anchor_right = 0.88
+anchor_bottom = 0.84
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Register/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "KONTO ERSTELLEN"
+horizontal_alignment = 1
+
+[node name="RegisterEmail" type="LineEdit" parent="Register/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+placeholder_text = "E-Mail"
+
+[node name="RegisterUsername" type="LineEdit" parent="Register/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+placeholder_text = "Spielername"
+
+[node name="RegisterPassword" type="LineEdit" parent="Register/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+placeholder_text = "Passwort"
+secret = true
+
+[node name="RegisterPassword2" type="LineEdit" parent="Register/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0,82)
+placeholder_text = "Passwort bestätigen"
+secret = true
+
+[node name="RegisterConsent" type="CheckBox" parent="Register/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ich akzeptiere Datenschutz und Nutzungsbedingungen"
+
+[node name="Submit" type="Button" parent="Register/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0,100)
+text = "KONTO ERSTELLEN"
+
+[node name="RegisterStatus" type="Label" parent="Register/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ONLINE-KONTO IST IN DIESER TESTVERSION NOCH NICHT AKTIV"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Register/VBox"]
+layout_mode = 2
+text = "ZURÜCK"
+
+[connection signal="pressed" from="Welcome/StartGame" to="." method="_start_game"]
+[connection signal="pressed" from="Welcome/Guest" to="." method="_guest_game"]
+[connection signal="pressed" from="Welcome/AuthRow/LoginButton" to="." method="_open_login"]
+[connection signal="pressed" from="Welcome/AuthRow/RegisterButton" to="." method="_open_register"]
+[connection signal="pressed" from="Welcome/SocialRow/Discord" to="." method="_social_placeholder" binds= ["discord"]]
+[connection signal="pressed" from="Welcome/SocialRow/Instagram" to="." method="_social_placeholder" binds= ["instagram"]]
+[connection signal="pressed" from="Welcome/SocialRow/YouTube" to="." method="_social_placeholder" binds= ["youtube"]]
+[connection signal="pressed" from="Login/VBox/Submit" to="." method="_login_submit"]
+[connection signal="pressed" from="Login/VBox/Back" to="." method="_back_to_welcome"]
+[connection signal="pressed" from="Register/VBox/Submit" to="." method="_register_submit"]
+[connection signal="pressed" from="Register/VBox/Back" to="." method="_back_to_welcome"]

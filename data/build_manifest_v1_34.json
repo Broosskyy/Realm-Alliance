@@ -1,0 +1,25 @@
+{
+  "source_version": "V1.34",
+  "master_version": "V2.0",
+  "block": "Splash / Start / Account / Community Foundation",
+  "entry_flow": [
+    "Splash",
+    "Bootstrap",
+    "Welcome",
+    "Guest or Login/Register",
+    "MainGame"
+  ],
+  "account_status": "UI scaffold; backend/cloud authentication not implemented",
+  "community_status": "UI scaffold; no official URLs configured",
+  "placeholder_assets": [
+    "ENTRY001",
+    "ENTRY002",
+    "ENTRY003",
+    "ENTRY010",
+    "ENTRY011",
+    "ENTRY012"
+  ],
+  "gameplay_scene": "MainGame.tscn",
+  "save_schema": "V20",
+  "website": "excluded"
+}

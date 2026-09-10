@@ -1,0 +1,45 @@
+{
+  "version": "v1.47-journey-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true,
+    "drop_in_replaceable": true
+  },
+  "slots": [
+    {
+      "slot": "JOURNEY_BOARD_FRAME",
+      "placeholder": "assets/v147_journey/V147_001_journey_board_frame.png"
+    },
+    {
+      "slot": "JOURNEY_REALM_DIE",
+      "placeholder": "assets/v147_journey/V147_002_realm_die.png"
+    },
+    {
+      "slot": "JOURNEY_SPECIAL_NODE",
+      "placeholder": "assets/v147_journey/V147_003_special_node_marker.png"
+    },
+    {
+      "slot": "JOURNEY_MASTERY_EMBLEM",
+      "placeholder": "assets/v147_journey/V147_004_journey_mastery_emblem.png"
+    },
+    {
+      "slot": "JOURNEY_RELIC_SHARD",
+      "placeholder": "assets/v147_journey/V147_005_relic_shard.png"
+    },
+    {
+      "slot": "JOURNEY_CACHE",
+      "placeholder": "assets/v147_journey/V147_006_journey_cache.png"
+    },
+    {
+      "slot": "JOURNEY_TREASURE_PORTAL",
+      "placeholder": "assets/v147_journey/V147_007_treasure_portal_v2.png"
+    },
+    {
+      "slot": "JOURNEY_NODE_CARD",
+      "placeholder": "assets/v147_journey/V147_008_journey_node_card.png"
+    }
+  ]
+}

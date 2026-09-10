@@ -1,0 +1,115 @@
+{
+  "source_version": "V1.17",
+  "master_version": "1.4",
+  "scope": "P0 Core Acceptance",
+  "required_core_views": [
+    "home",
+    "wheel",
+    "village"
+  ],
+  "required_features": [
+    "tap_monster",
+    "monster_hp",
+    "hit_feedback",
+    "monster_defeat_reward",
+    "gold",
+    "spins",
+    "wheel",
+    "village_4_buildings",
+    "building_upgrade",
+    "boss_10",
+    "local_save",
+    "settings"
+  ],
+  "blocked_p1": [
+    "daily",
+    "quests",
+    "heroes",
+    "attack",
+    "defense",
+    "events",
+    "shop"
+  ],
+  "acceptance_scenarios": [
+    {
+      "id": "fresh_start",
+      "profile": "fresh",
+      "must": [
+        "monster_level_1",
+        "hp_full",
+        "gold_300",
+        "spins_5",
+        "p1_hidden"
+      ]
+    },
+    {
+      "id": "first_kill",
+      "profile": "fresh",
+      "must": [
+        "10_taps_at_base_damage",
+        "reward_once",
+        "next_monster_committed"
+      ]
+    },
+    {
+      "id": "half_cycle",
+      "profile": "half_boss",
+      "must": [
+        "mid_cycle_state_valid",
+        "boss_not_active"
+      ]
+    },
+    {
+      "id": "boss_ready",
+      "profile": "boss_ready",
+      "must": [
+        "boss_level_10",
+        "boss_contract",
+        "boss_reward_path"
+      ]
+    },
+    {
+      "id": "wheel",
+      "profile": "wheel",
+      "must": [
+        "spin_guard",
+        "weighted_result",
+        "save_after_spin"
+      ]
+    },
+    {
+      "id": "village",
+      "profile": "village",
+      "must": [
+        "4_buildings",
+        "upgrade_guard",
+        "goldmine_claim_guard"
+      ]
+    },
+    {
+      "id": "return",
+      "profile": "return",
+      "must": [
+        "resume_valid",
+        "goldmine_offline_progress"
+      ]
+    },
+    {
+      "id": "low_resource",
+      "profile": "low_resource",
+      "must": [
+        "no_negative_resources",
+        "wheel_disabled",
+        "upgrade_failure_safe"
+      ]
+    },
+    {
+      "id": "legacy_repair",
+      "profile": "legacy_zero_hp",
+      "must": [
+        "zero_hp_repaired",
+        "no_duplicate_reward"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dtsljdb1ral3n"
+
+[deps]
+
+files=["res://V1_67_PLACEHOLDER_AUDIT.category.translation", "res://V1_67_PLACEHOLDER_AUDIT.status.translation", "res://V1_67_PLACEHOLDER_AUDIT.note.translation", "res://V1_67_PLACEHOLDER_AUDIT.size.translation"]
+
+source_file="res://V1_67_PLACEHOLDER_AUDIT.csv"
+dest_files=["res://V1_67_PLACEHOLDER_AUDIT.category.translation", "res://V1_67_PLACEHOLDER_AUDIT.status.translation", "res://V1_67_PLACEHOLDER_AUDIT.note.translation", "res://V1_67_PLACEHOLDER_AUDIT.size.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

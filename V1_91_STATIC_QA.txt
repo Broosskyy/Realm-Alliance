@@ -1,0 +1,19 @@
+V1.91 STATIC QA: 18/18 PASS
+PASS project version 1.91
+PASS build 91
+PASS v191 bound ids resolve
+PASS production paths exist
+PASS tap hit hook
+PASS monster defeat hook
+PASS spin motion hook
+PASS spin stop hook
+PASS spin win hook
+PASS spin jackpot hook
+PASS td projectile hook
+PASS v191 convergence hook
+PASS presentation service exists
+PASS vfx service has no PlayerData mutation
+PASS vfx service has no reward/economy authority
+PASS greenvale decor production ids
+PASS greenvale decor ignores input
+PASS registry resolves v190 assets namespace

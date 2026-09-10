@@ -1,0 +1,25 @@
+{
+  "status": "production_contract",
+  "runtime_placeholders_must_be_replaced": true,
+  "rules": [
+    "No text baked into final runtime art where localization is required.",
+    "Concept boards are visual direction references only.",
+    "All final assets require transparent padding and mobile readability QA.",
+    "Three reels remain independent runtime nodes."
+  ],
+  "slots": {
+    "SPIN010": "machine_frame",
+    "SPIN020": "reel_left",
+    "SPIN021": "reel_center",
+    "SPIN022": "reel_right",
+    "SPIN030": "payline",
+    "SPIN031": "jackpot_panel",
+    "SPIN101-SPIN108": "reward_symbols",
+    "UI033": "primary_spin_cta_reuse_or_replace",
+    "UI034": "reward_panel_reuse_or_replace",
+    "FX040": "spin_motion_or_trail",
+    "FX041": "reel_stop_burst",
+    "FX042": "jackpot_burst",
+    "FX043": "no_spins_feedback_optional"
+  }
+}

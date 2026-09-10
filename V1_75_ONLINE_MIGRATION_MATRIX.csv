@@ -1,0 +1,15 @@
+priority,domain,authority_owner,current_state,next_step
+P0,SPIN RNG/Reward,Server,Client prototype,Server returns symbols + reward; client animates
+P0,Economy spend/grant,Server,Mixed local,Atomic economy transaction gateway
+P0,Daily/Timers,Server Clock,Clock abstraction added,Require fresh server time production
+P0,Purchases,Server + Store,Production disabled,Receipt/token validation + entitlement
+P0,Save/Sync,Server,Local cache + revision metadata,Snapshot/delta sync
+P1,Monster Defeat/Reward,Server,Authority-ready local adapter,Replace local_result with remote result
+P1,Realm Chest/Event Reward,Server,Authority-ready local adapter,Replace local_result with remote result
+P1,Village/Hero Upgrades,Server,Local,Move spend + upgrade atomically
+P2,Social/Friends,Server,Prototype,Profile/friend/presence APIs
+P2,Guilds/Alliances,Server,Not built,Roles/contributions/guild boss
+P2,Rankings/Seasons,Server,Placeholder,Leaderboard + settlement
+P2,Coop Realm Boss,Server,Not built,Contribution validation
+P2,Async PvP,Server,Not built,Match tokens/defense snapshots/leagues
+P3,Realtime PvP,Server,Not built,Realtime transport later

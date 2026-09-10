@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://j7t71fafqxyc"
+
+[deps]
+
+files=["res://V2_01_ASSET_RUNTIME_AUDIT.node.translation", "res://V2_01_ASSET_RUNTIME_AUDIT.classification.translation", "res://V2_01_ASSET_RUNTIME_AUDIT.path.translation", "res://V2_01_ASSET_RUNTIME_AUDIT.notes.translation"]
+
+source_file="res://V2_01_ASSET_RUNTIME_AUDIT.csv"
+dest_files=["res://V2_01_ASSET_RUNTIME_AUDIT.node.translation", "res://V2_01_ASSET_RUNTIME_AUDIT.classification.translation", "res://V2_01_ASSET_RUNTIME_AUDIT.path.translation", "res://V2_01_ASSET_RUNTIME_AUDIT.notes.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,0 +1,101 @@
+{
+  "version": "v1.51-heroes-v2-04",
+  "heroes": [
+    {
+      "id": "knight",
+      "name": "Ritter",
+      "role": "Nahkampf",
+      "unlock_account_level": 5,
+      "base_power": 6,
+      "power_per_level": 4,
+      "cost_modifier": 1.0,
+      "description": "Stark und zuverlässig."
+    },
+    {
+      "id": "archer",
+      "name": "Bogenschützin",
+      "role": "Fernkampf",
+      "unlock_account_level": 8,
+      "base_power": 9,
+      "power_per_level": 5,
+      "cost_modifier": 1.15,
+      "description": "Schnelle, klare Treffer."
+    },
+    {
+      "id": "mage",
+      "name": "Magier",
+      "role": "Magie",
+      "unlock_account_level": 12,
+      "base_power": 14,
+      "power_per_level": 7,
+      "cost_modifier": 1.35,
+      "description": "Hohe Kraft für spätere Gegner."
+    }
+  ],
+  "production_pass": "V1.51",
+  "equipment_light": {
+    "slots": [
+      "weapon",
+      "charm"
+    ],
+    "max_tier": 3,
+    "tier_power_bonus": [
+      0,
+      2,
+      5,
+      9
+    ]
+  },
+  "mastery": {
+    "max_level": 5,
+    "thresholds": [
+      0,
+      5,
+      14,
+      28,
+      48
+    ],
+    "boss_defeat_xp": 2,
+    "normal_defeat_every": 10,
+    "rewards": {
+      "2": {
+        "gold": 300
+      },
+      "3": {
+        "spins": 2
+      },
+      "4": {
+        "gold": 700
+      },
+      "5": {
+        "realm_keys": 1
+      }
+    }
+  },
+  "specializations": {
+    "knight": {
+      "id": "guardian",
+      "label": "WÄCHTER",
+      "unlock_mastery": 2,
+      "power_bonus": 4
+    },
+    "archer": {
+      "id": "ranger",
+      "label": "WALDLÄUFERIN",
+      "unlock_mastery": 2,
+      "power_bonus": 5
+    },
+    "mage": {
+      "id": "arcanist",
+      "label": "ARKANIST",
+      "unlock_mastery": 2,
+      "power_bonus": 7
+    }
+  },
+  "hero_contract": {
+    "selected_hero": "active specialization focus",
+    "auto_dps": "all unlocked heroes contribute",
+    "mastery_source": "authoritative monster defeat transaction",
+    "no_new_currency": true
+  }
+}

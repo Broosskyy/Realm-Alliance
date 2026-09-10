@@ -1,0 +1,45 @@
+{
+  "version": "v1.49-td-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true,
+    "drop_in_replaceable": true
+  },
+  "slots": [
+    {
+      "slot": "TD_BATTLEFIELD_MAP",
+      "placeholder": "assets/v149_td/V149_001_td_battlefield_map.png"
+    },
+    {
+      "slot": "TD_GREENVALE_TOWER",
+      "placeholder": "assets/v149_td/V149_002_greenvale_tower.png"
+    },
+    {
+      "slot": "TD_ENEMY",
+      "placeholder": "assets/v149_td/V149_003_td_enemy_placeholder.png"
+    },
+    {
+      "slot": "TD_PROJECTILE_FX",
+      "placeholder": "assets/v149_td/V149_004_td_projectile_fx.png"
+    },
+    {
+      "slot": "TD_MASTERY_EMBLEM",
+      "placeholder": "assets/v149_td/V149_005_td_mastery_emblem.png"
+    },
+    {
+      "slot": "TD_STAGE_CARD",
+      "placeholder": "assets/v149_td/V149_006_td_stage_card.png"
+    },
+    {
+      "slot": "TD_REWARD_CHEST",
+      "placeholder": "assets/v149_td/V149_007_td_reward_chest.png"
+    },
+    {
+      "slot": "TD_WAVE_BANNER",
+      "placeholder": "assets/v149_td/V149_008_td_wave_banner.png"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "version": "1.61",
+  "screens": {
+    "home_tap": [
+      {
+        "node": "SettingsButtonP0",
+        "role": "ui.icon.settings",
+        "asset": "v4.ui.navigation.settings",
+        "confidence": "high",
+        "status": "mapped"
+      },
+      {
+        "node": "MonsterProgressLabel",
+        "role": "ui.home.boss_progress",
+        "asset": "v4.ui.resource_bars.resource_bars_08",
+        "confidence": "high",
+        "status": "mapped"
+      },
+      {
+        "node": "HomeWheelCTA",
+        "role": "ui.button.spin.primary",
+        "asset": "v4.ui.buttons.buttons_02",
+        "confidence": "high",
+        "status": "mapped"
+      },
+      {
+        "node": "Btn_Tap",
+        "role": "ui.icon.home",
+        "asset": "v4.ui.navigation.home",
+        "confidence": "high",
+        "status": "mapped"
+      },
+      {
+        "node": "Btn_Rad",
+        "role": "ui.icon.spin",
+        "asset": "v4.ui.navigation.wheel",
+        "confidence": "high",
+        "status": "mapped"
+      },
+      {
+        "node": "Btn_Dorf",
+        "role": "ui.icon.village",
+        "asset": "v4.ui.village_buildings_a.village_buildings_a_01",
+        "confidence": "high",
+        "status": "mapped"
+      },
+      {
+        "node": "MoreFeaturesButtonP0",
+        "role": "ui.icon.menu",
+        "asset": "v4.ui.navigation.menu",
+        "confidence": "high",
+        "status": "mapped"
+      }
+    ],
+    "spin": [
+      {
+        "node": "SpinMachineFrame",
+        "role": "spin.machine.frame",
+        "asset": "atlas:spin_machine_modular_01/asset_06",
+        "confidence": "high",
+        "status": "mapped"
+      }
+    ],
+    "village": [
+      {
+        "node": "VillageGrowthBarV153",
+        "role": "ui.progression.progress_bar",
+        "asset": "atlas:progression_01/progress_bar",
+        "confidence": "medium",
+        "status": "review"
+      }
+    ]
+  },
+  "summary": {
+    "mapped": 8,
+    "review": 1,
+    "unresolved": 0
+  },
+  "dynamic_runtime_owned": [
+    {
+      "node": "MonsterHP",
+      "reason": "boss/normal art changes at runtime; protected from static binder"
+    },
+    {
+      "node": "SpinButton",
+      "reason": "ready/disabled art changes with spin inventory"
+    },
+    {
+      "node": "MonsterButton",
+      "reason": "monster id/state resolver chooses idle/attack/hit/defeated at runtime"
+    },
+    {
+      "node": "Village building art",
+      "reason": "P0VillageVisualSystem resolves production art and level scale at runtime"
+    }
+  ],
+  "remaining_visual_review": [
+    "Goldmine production mapping remains medium-confidence and should be judged on a real Village runtime screenshot.",
+    "VillageGround is still a placeholder-style layout base; do not generate a new one until real-device Village composition is reviewed.",
+    "Home/TAP, SPIN and Village now have normalized non-overlapping composition but require actual Godot/device screenshots for final visual QA."
+  ]
+}

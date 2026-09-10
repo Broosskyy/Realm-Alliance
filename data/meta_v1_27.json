@@ -1,0 +1,33 @@
+{
+  "version": "v1.27-meta-p0-01",
+  "season": {
+    "id": "greenvale_founders",
+    "title": "Grünhain-Aufbruch",
+    "duration_days": 14
+  },
+  "event": {
+    "id": "greenvale_hunt",
+    "title": "Grünhain-Jagd",
+    "target_bosses": 3,
+    "reward": {
+      "gold": 500,
+      "spins": 2
+    }
+  },
+  "realm_chest": {
+    "required_keys": 3,
+    "key_sources": {
+      "boss_defeat": 1,
+      "journey_lap": 1
+    },
+    "reward": {
+      "gold": 750,
+      "spins": 2
+    }
+  },
+  "ranking": {
+    "metric": "boss_defeats",
+    "local_demo_rows": 5,
+    "note": "V1.27 vertical slice uses deterministic local/demo leaderboard presentation; online service comes later."
+  }
+}

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b06ykq8myamqm"
+
+[deps]
+
+files=["res://V1_70_ASSET_INTEGRATION_QUEUE.family.translation", "res://V1_70_ASSET_INTEGRATION_QUEUE.asset.translation", "res://V1_70_ASSET_INTEGRATION_QUEUE.status.translation", "res://V1_70_ASSET_INTEGRATION_QUEUE.next.translation"]
+
+source_file="res://V1_70_ASSET_INTEGRATION_QUEUE.csv"
+dest_files=["res://V1_70_ASSET_INTEGRATION_QUEUE.family.translation", "res://V1_70_ASSET_INTEGRATION_QUEUE.asset.translation", "res://V1_70_ASSET_INTEGRATION_QUEUE.status.translation", "res://V1_70_ASSET_INTEGRATION_QUEUE.next.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

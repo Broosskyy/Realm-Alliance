@@ -1,0 +1,59 @@
+{
+  "version": "v1.32-daily-quests-p0-01",
+  "daily": {
+    "cycle": [
+      {
+        "day": 1,
+        "gold": 300
+      },
+      {
+        "day": 2,
+        "spins": 5
+      },
+      {
+        "day": 3,
+        "gold": 600
+      },
+      {
+        "day": 4,
+        "gems": 25
+      },
+      {
+        "day": 5,
+        "spins": 10
+      },
+      {
+        "day": 6,
+        "gold": 1200
+      },
+      {
+        "day": 7,
+        "gems": 75,
+        "spins": 15
+      }
+    ],
+    "claim_rule": "one claim per UTC calendar day",
+    "streak_rule": "advance through 7-day cycle after each successful claim"
+  },
+  "quests": [
+    {
+      "id": "tap_10",
+      "title": "10× Monster treffen",
+      "target": 10,
+      "reward_gold": 180
+    },
+    {
+      "id": "spin_3",
+      "title": "3× Realm Spin drehen",
+      "target": 3,
+      "reward_gold": 220
+    },
+    {
+      "id": "upgrade_1",
+      "title": "1× etwas verbessern",
+      "target": 1,
+      "reward_gold": 260
+    }
+  ],
+  "scope": "V1.32 lean Daily + starter-quest vertical slice; existing source economy preserved"
+}

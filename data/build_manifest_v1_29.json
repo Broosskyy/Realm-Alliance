@@ -1,0 +1,10 @@
+{
+  "source_version": "V1.29",
+  "master_version": "V2.0",
+  "block": "Tower Defense vertical slice",
+  "mode": "single-lane 3-wave deterministic P0",
+  "save_schema": "V20",
+  "art_status": "integration placeholders",
+  "lane_battle_active": false,
+  "next_master_block": "Lane Battle vertical slice"
+}

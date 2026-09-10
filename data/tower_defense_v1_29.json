@@ -1,0 +1,108 @@
+{
+  "version": "v1.49-td-v2-05",
+  "region": "greenvale",
+  "lanes": 1,
+  "waves": 3,
+  "starting_energy": 4,
+  "tower_cost": 2,
+  "max_towers": 2,
+  "tower_damage": 2,
+  "enemy_hp_per_wave": [
+    4,
+    6,
+    8
+  ],
+  "reward": {
+    "gold": 250,
+    "spins": 1
+  },
+  "scope": "V1.49 deterministic Tower Defense V2 with campaign stage, mastery, permanent tower tech and resumable run completion.",
+  "campaign_stages": 6,
+  "stage_profiles": [
+    {
+      "stage": 1,
+      "label": "WALDRAND",
+      "enemy_hp_bonus": 0
+    },
+    {
+      "stage": 2,
+      "label": "MOOSPASS",
+      "enemy_hp_bonus": 1
+    },
+    {
+      "stage": 3,
+      "label": "ALTE MAUER",
+      "enemy_hp_bonus": 2
+    },
+    {
+      "stage": 4,
+      "label": "KRISTALLPFAD",
+      "enemy_hp_bonus": 3
+    },
+    {
+      "stage": 5,
+      "label": "GRÜNHAIN-TOR",
+      "enemy_hp_bonus": 4
+    },
+    {
+      "stage": 6,
+      "label": "WÄCHTERWALL",
+      "enemy_hp_bonus": 5
+    }
+  ],
+  "progression": {
+    "max_mastery_level": 5,
+    "mastery_thresholds": [
+      0,
+      3,
+      8,
+      15,
+      24
+    ],
+    "wave_xp": 1,
+    "run_xp": 2,
+    "max_tower_tech": 4,
+    "tower_tech_damage_bonus": 1,
+    "tower_tech_costs": [
+      0,
+      300,
+      650,
+      1100
+    ],
+    "mastery_rewards": {
+      "2": {
+        "gold": 220
+      },
+      "3": {
+        "spins": 2
+      },
+      "4": {
+        "gold": 450
+      },
+      "5": {
+        "realm_keys": 1
+      }
+    }
+  },
+  "result_contract": {
+    "version": "td-run-result-v1",
+    "required_fields": [
+      "run_id",
+      "config_version",
+      "stage",
+      "gold",
+      "spins",
+      "mastery_xp",
+      "presentation_pending"
+    ],
+    "authority_order": [
+      "resolve_final_wave",
+      "book_run_progression",
+      "book_rewards",
+      "create_pending_result",
+      "save",
+      "present"
+    ],
+    "resume_behavior": "pending run result reopens TD completion presentation without granting rewards twice"
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "version": 3,
+  "policy": "V1.58: verified runtime surfaces use high-confidence production art; medium only on explicit opt-in. Screen calibration is runtime-owned.",
+  "bindings": {
+    "ui.icon.attack": {
+      "asset": "v4.ui.combat_core.attack",
+      "confidence": "high"
+    },
+    "ui.icon.defense": {
+      "asset": "v4.ui.combat_core.defense",
+      "confidence": "high"
+    },
+    "ui.icon.home": {
+      "asset": "v4.ui.navigation.home",
+      "confidence": "high"
+    },
+    "ui.icon.quest": {
+      "asset": "v4.ui.navigation.quest",
+      "confidence": "high"
+    },
+    "ui.icon.daily": {
+      "asset": "v4.ui.quest_states.daily_quest",
+      "confidence": "high"
+    },
+    "ui.quest.header": {
+      "asset": "atlas:quest_01/header",
+      "confidence": "high"
+    },
+    "ui.quest.row.default": {
+      "asset": "atlas:quest_01/row_standard",
+      "confidence": "medium"
+    },
+    "ui.quest.row.active": {
+      "asset": "atlas:quest_01/row_active",
+      "confidence": "medium"
+    },
+    "ui.quest.row.completed": {
+      "asset": "atlas:quest_01/row_completed",
+      "confidence": "medium"
+    },
+    "ui.shop.featured": {
+      "asset": "atlas:itemshop_01/featured_offer",
+      "confidence": "high"
+    },
+    "ui.shop.item.standard": {
+      "asset": "atlas:itemshop_01/item_standard",
+      "confidence": "medium"
+    },
+    "ui.shop.purchase": {
+      "asset": "atlas:itemshop_01/purchase_button",
+      "confidence": "high"
+    },
+    "ui.afk.summary": {
+      "asset": "atlas:afk_01/summary_panel",
+      "confidence": "high"
+    },
+    "ui.afk.claim": {
+      "asset": "atlas:afk_01/claim_button",
+      "confidence": "high"
+    },
+    "ui.progression.overview": {
+      "asset": "atlas:progression_01/overview_panel",
+      "confidence": "high"
+    },
+    "ui.progression.progress_bar": {
+      "asset": "atlas:progression_01/progress_bar",
+      "confidence": "medium"
+    },
+    "ui.ranking.header": {
+      "asset": "atlas:leaderboard_01/header_primary",
+      "confidence": "medium"
+    },
+    "ui.ranking.badge.first": {
+      "asset": "atlas:leaderboard_01/badge_first",
+      "confidence": "high"
+    },
+    "ui.ranking.badge.second": {
+      "asset": "atlas:leaderboard_01/badge_second",
+      "confidence": "high"
+    },
+    "ui.ranking.badge.third": {
+      "asset": "atlas:leaderboard_01/badge_third",
+      "confidence": "high"
+    },
+    "spin.symbol.gold": {
+      "asset": "atlas:spin_symbols_01/gold",
+      "confidence": "high"
+    },
+    "spin.symbol.crystals": {
+      "asset": "atlas:spin_symbols_01/crystals",
+      "confidence": "high"
+    },
+    "spin.symbol.xp": {
+      "asset": "atlas:spin_symbols_01/xp_orb",
+      "confidence": "medium"
+    },
+    "spin.symbol.energy": {
+      "asset": "atlas:spin_symbols_01/energy",
+      "confidence": "high"
+    },
+    "spin.symbol.chest": {
+      "asset": "atlas:spin_symbols_01/chest",
+      "confidence": "high"
+    },
+    "spin.symbol.materials": {
+      "asset": "atlas:spin_symbols_01/materials",
+      "confidence": "high"
+    },
+    "spin.symbol.token": {
+      "asset": "atlas:spin_symbols_01/realm_token",
+      "confidence": "high"
+    },
+    "spin.symbol.rare": {
+      "asset": "atlas:spin_symbols_01/rare_bonus",
+      "confidence": "high"
+    },
+    "legacy.wheel.base": {
+      "asset": "",
+      "confidence": "hold",
+      "note": "Deprecated: route to 3-reel spin"
+    },
+    "legacy.wheel.pointer": {
+      "asset": "",
+      "confidence": "hold",
+      "note": "Deprecated: route to 3-reel spin"
+    },
+    "ui.quest.summary": {
+      "asset": "atlas:quest_01/progress_container",
+      "confidence": "high"
+    },
+    "ui.quest.category.main": {
+      "asset": "atlas:quest_01/category_main",
+      "confidence": "high"
+    },
+    "ui.quest.category.daily": {
+      "asset": "atlas:quest_01/category_daily",
+      "confidence": "high"
+    },
+    "ui.quest.category.event": {
+      "asset": "atlas:quest_01/category_event",
+      "confidence": "high"
+    },
+    "ui.quest.reward": {
+      "asset": "atlas:quest_01/reward_container",
+      "confidence": "high"
+    },
+    "ui.shop.item.premium": {
+      "asset": "atlas:itemshop_01/item_premium",
+      "confidence": "high"
+    },
+    "ui.shop.item.limited": {
+      "asset": "atlas:itemshop_01/item_limited",
+      "confidence": "high"
+    },
+    "ui.shop.price": {
+      "asset": "atlas:itemshop_01/price_container",
+      "confidence": "high"
+    },
+    "ui.shop.currency": {
+      "asset": "atlas:itemshop_01/currency_socket",
+      "confidence": "high"
+    },
+    "ui.shop.offer_badge": {
+      "asset": "atlas:itemshop_01/offer_badge",
+      "confidence": "high"
+    },
+    "ui.afk.duration": {
+      "asset": "atlas:afk_01/duration_display",
+      "confidence": "high"
+    },
+    "ui.afk.accumulated": {
+      "asset": "atlas:afk_01/accumulated_panel",
+      "confidence": "high"
+    },
+    "ui.afk.reward.standard": {
+      "asset": "atlas:afk_01/reward_slot_standard",
+      "confidence": "high"
+    },
+    "ui.afk.reward.bonus": {
+      "asset": "atlas:afk_01/reward_slot_bonus",
+      "confidence": "high"
+    },
+    "ui.afk.claim.bonus": {
+      "asset": "atlas:afk_01/bonus_claim_button",
+      "confidence": "high"
+    },
+    "ui.progression.level_badge": {
+      "asset": "atlas:progression_01/level_badge",
+      "confidence": "high"
+    },
+    "ui.progression.node.standard": {
+      "asset": "atlas:progression_01/node_standard",
+      "confidence": "high"
+    },
+    "ui.progression.node.locked": {
+      "asset": "atlas:progression_01/node_locked",
+      "confidence": "high"
+    },
+    "ui.progression.node.available": {
+      "asset": "atlas:progression_01/node_available",
+      "confidence": "high"
+    },
+    "ui.progression.node.completed": {
+      "asset": "atlas:progression_01/node_completed",
+      "confidence": "high"
+    },
+    "ui.progression.action": {
+      "asset": "atlas:progression_01/action_button",
+      "confidence": "high"
+    },
+    "ui.ranking.row": {
+      "asset": "atlas:leaderboard_01/row_secondary",
+      "confidence": "high"
+    },
+    "ui.ranking.tab": {
+      "asset": "atlas:leaderboard_01/small_primary",
+      "confidence": "high"
+    },
+    "ui.ranking.reward": {
+      "asset": "atlas:leaderboard_01/small_alert",
+      "confidence": "high"
+    },
+    "spin.control.ready": {
+      "asset": "atlas:spin_controls_01/asset_01",
+      "confidence": "medium"
+    },
+    "spin.control.disabled": {
+      "asset": "atlas:spin_controls_01/asset_04",
+      "confidence": "medium"
+    },
+    "spin.payline": {
+      "asset": "atlas:spin_reel_structure_01/asset_06",
+      "confidence": "high"
+    },
+    "spin.machine.frame": {
+      "asset": "atlas:spin_machine_modular_01/asset_06",
+      "confidence": "high",
+      "note": "Visually verified 3-reel housing with three isolated reel windows."
+    },
+    "spin.machine.header": {
+      "asset": "atlas:spin_machine_modular_01/asset_01",
+      "confidence": "medium",
+      "note": "Verified premium Realm header; optional until final Spin header placement QA."
+    },
+    "ui.monster.hp.normal": {
+      "asset": "v4.ui.monster_boss_hud.small_hp_bar",
+      "confidence": "high"
+    },
+    "ui.monster.hp.boss": {
+      "asset": "v4.ui.monster_boss_hud.hp_bar",
+      "confidence": "high"
+    }
+  }
+}

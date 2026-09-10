@@ -1,0 +1,44 @@
+{
+  "version": "v1.52-objective-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true
+  },
+  "slots": [
+    {
+      "slot": "OBJECTIVE_BOARD",
+      "placeholder": "assets/v152_objectives/V152_001_objective_board.png"
+    },
+    {
+      "slot": "DAILY_EMBLEM",
+      "placeholder": "assets/v152_objectives/V152_002_daily_emblem.png"
+    },
+    {
+      "slot": "WEEKLY_EMBLEM",
+      "placeholder": "assets/v152_objectives/V152_003_weekly_emblem.png"
+    },
+    {
+      "slot": "ACHIEVEMENT_MEDAL",
+      "placeholder": "assets/v152_objectives/V152_004_achievement_medal.png"
+    },
+    {
+      "slot": "BESTIARY_BOOK",
+      "placeholder": "assets/v152_objectives/V152_005_bestiary_book.png"
+    },
+    {
+      "slot": "CLAIM_STAMP",
+      "placeholder": "assets/v152_objectives/V152_006_claim_stamp.png"
+    },
+    {
+      "slot": "OBJECTIVE_REWARD_CHEST",
+      "placeholder": "assets/v152_objectives/V152_007_objective_reward_chest.png"
+    },
+    {
+      "slot": "CROSS_PILLAR_EMBLEM",
+      "placeholder": "assets/v152_objectives/V152_008_cross_pillar_emblem.png"
+    }
+  ]
+}

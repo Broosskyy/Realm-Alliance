@@ -1,0 +1,31 @@
+REALM ALLIANCE V1.92 STATIC QA
+
+PASS | project version 1.92
+PASS | build 92
+PASS | save schema retained 35
+PASS | binding version 1.92
+PASS | all non-atlas bound assets resolve
+PASS | archer idle binding
+PASS | archer attack binding
+PASS | archer ready binding
+PASS | mage idle binding
+PASS | mage attack binding
+PASS | mage ready binding
+PASS | cannon idle binding
+PASS | cannon attack binding
+PASS | cannon ready binding
+PASS | nature idle binding
+PASS | nature attack binding
+PASS | nature ready binding
+PASS | forest_a enemy idle binding
+PASS | mushroom enemy idle binding
+PASS | crystal enemy idle binding
+PASS | forest_b enemy idle binding
+PASS | v192 convergence active
+PASS | projectile starts at tower
+PASS | enemy hit feedback
+PASS | no economy in visual director
+
+RESULT: 25/25 PASS
+Unresolved bindings: 0
+Godot runtime/device QA: NOT RUN (Godot executable unavailable in environment).

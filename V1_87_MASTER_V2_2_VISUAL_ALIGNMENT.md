@@ -1,0 +1,2 @@
+# V1.87 Master V2.2 Visual Alignment
+TAP / SPIN / DORF / MODI remains locked. REALM SPIN remains three-reel. “MEHR CONTENT, NICHT MEHR BEDIENUNG” remains locked. Existing production assets are reused before replacements are generated. Runtime labels stay dynamic Godot text. V4 remains the general UI language; dedicated V147–V154 art overrides generic art only in semantically matching slots. Genuine missing art remains an explicit gap instead of being disguised as final art.

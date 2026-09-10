@@ -1,0 +1,17 @@
+{
+  "source_version": "V1.23R3",
+  "master_version": "V2.0",
+  "build_intent": "3-reel SPIN functional presentation pass",
+  "save_schema": "V20",
+  "website_included": false,
+  "spin": {
+    "presentation": "three_reel_machine",
+    "reels": 3,
+    "visible_rows": 3,
+    "reward_families": 8,
+    "authoritative_reward": "weighted result; reels visualize result"
+  },
+  "next_gate": "Godot/Android real-device QA then final modular SPIN art integration",
+  "build_label": "3REEL_SPIN_UX_STATES",
+  "spin_config": "v2.0-3reel-p0-02"
+}

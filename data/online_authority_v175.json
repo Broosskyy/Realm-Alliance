@@ -1,0 +1,35 @@
+{
+  "version": "1.75",
+  "master_concept": "V2.2",
+  "mode": "local_development",
+  "production_target": "online_authoritative",
+  "request_contract_version": "authority-intent-v1",
+  "result_contract_version": "authority-result-v1",
+  "offline_queue_policy": {
+    "safe": [
+      "settings",
+      "analytics_batch"
+    ],
+    "review": [
+      "tap_progress",
+      "noncompetitive_pve_intent"
+    ],
+    "forbidden": [
+      "purchase",
+      "spend_currency",
+      "claim_reward",
+      "open_chest",
+      "spin_result",
+      "pvp_result"
+    ]
+  },
+  "server_time_required": [
+    "daily",
+    "goldmine",
+    "temple",
+    "events",
+    "seasons",
+    "offers",
+    "cooldowns"
+  ]
+}

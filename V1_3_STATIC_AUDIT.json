@@ -1,0 +1,12 @@
+{
+  "source_version": "V1.3",
+  "master_concept": "V1.4",
+  "masterlist_slots": 85,
+  "monster_state_files_complete": true,
+  "monster_state_count": 16,
+  "building_runtime_art": true,
+  "settings_persisted": true,
+  "level_up_overlay": true,
+  "missing_ext_resources": [],
+  "godot_binary": "not installed"
+}

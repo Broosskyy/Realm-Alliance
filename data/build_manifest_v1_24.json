@@ -1,0 +1,32 @@
+{
+  "source_version": "V1.24",
+  "master_version": "V2.0",
+  "block": "BUILD / Gr\u00fcnhain Village",
+  "ground_asset": "V000_village_ground.png",
+  "buildings": [
+    {
+      "id": "townhall",
+      "stages": 3,
+      "asset_prefix": "V001"
+    },
+    {
+      "id": "goldmine",
+      "stages": 3,
+      "asset_prefix": "V002"
+    },
+    {
+      "id": "forge",
+      "stages": 3,
+      "asset_prefix": "V003"
+    },
+    {
+      "id": "lucktemple",
+      "stages": 3,
+      "asset_prefix": "V004"
+    }
+  ],
+  "required_stage_assets": 12,
+  "upgrade_feedback": true,
+  "save_schema": "V20",
+  "next_master_block": "V1.25 Gr\u00fcnhain Combat M002-M004 + B001"
+}

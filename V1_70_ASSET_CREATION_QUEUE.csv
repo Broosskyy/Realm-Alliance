@@ -1,0 +1,15 @@
+priority,id,tool,slot,spec
+P0,lane_map_greenvale,Recraft,res://assets/battle/greenvale/lane_map_greenvale_placeholder.png,"Portrait/vertical Greenvale lane battle map, no baked UI."
+P0,unit_archer,Image generation,res://assets/battle/units/unit_archer_placeholder.png,Readable battle unit matching hero/monster casual fantasy style.
+P0,unit_knight,Image generation,res://assets/battle/units/unit_knight_placeholder.png,Readable battle unit matching hero/monster casual fantasy style.
+P0,td_enemy_runner,Image generation,res://assets/defense/enemies/td_enemy_runner_placeholder.png,"Small fast enemy, distinct silhouette."
+P0,td_map_greenvale,Recraft,res://assets/defense/greenvale/td_map_greenvale_placeholder.png,"Greenvale tower-defense map with clear path/placement areas, no UI."
+P0,tower_archer,Recraft,res://assets/defense/towers/tower_archer_placeholder.png,"Freestanding archer tower, same village/world material language."
+P0,tower_mage,Recraft,res://assets/defense/towers/tower_mage_placeholder.png,"Freestanding mage tower, same village/world material language."
+P0,entry_splash,Recraft,res://assets/entry/ENTRY001_splash_bg_placeholder.png,REALM ALLIANCE branded splash background.
+P0,entry_welcome,Recraft,res://assets/entry/ENTRY002_welcome_bg_placeholder.png,Welcome/login background derived from brand/world direction.
+P0,realm_emblem,Recraft,res://assets/entry/ENTRY003_realm_emblem_placeholder.png,"Canonical REALM emblem, transparent."
+P0,hero_archer_portrait,Image generation,res://assets/heroes/hero_archer_portrait_placeholder.png,"Niva/archer portrait, transparent."
+P0,hero_knight_portrait,Image generation,res://assets/heroes/hero_knight_portrait_placeholder.png,"Brom/knight portrait, transparent."
+P0,hero_mage_portrait,Image generation,res://assets/heroes/hero_mage_portrait_placeholder.png,"Ember/mage portrait, transparent."
+P0,village_ambient_trees,Recraft,res://assets/village/greenvale/village_ambient_trees_placeholder.png,Transparent modular Greenvale tree/vegetation cluster.

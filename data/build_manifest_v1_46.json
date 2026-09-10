@@ -1,0 +1,30 @@
+{
+  "source_version": "V1.46",
+  "master_version": "V2.1",
+  "block": "Halloween LiveOps Expansion",
+  "event_id": "halloween_2026",
+  "event_currency": "pumpkin_tokens",
+  "cross_mode_sources": [
+    "boss_defeat",
+    "journey_lap",
+    "puzzle_match",
+    "spin"
+  ],
+  "event_quests": 3,
+  "event_chest": true,
+  "rankings": [
+    "daily",
+    "weekly",
+    "event"
+  ],
+  "fake_multiplayer_players": false,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true,
+    "isolated": true
+  },
+  "asset_swap_map": "data/asset_swap_map_v1_46.json",
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

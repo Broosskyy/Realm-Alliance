@@ -1,0 +1,28 @@
+{
+  "source_version": "V1.26",
+  "master_version": "V2.0",
+  "block": "DICE + Realm Journey Grünhain + Treasure Portal",
+  "surface_entry": "REISE quick action",
+  "primary_navigation": [
+    "HOME",
+    "SPIN",
+    "DORF"
+  ],
+  "journey": {
+    "region": "greenvale",
+    "nodes": 12,
+    "dice_range": [
+      1,
+      6
+    ],
+    "starting_dice": 3,
+    "max_dice": 5
+  },
+  "treasure_portal": {
+    "charge_source": "completed journey lap",
+    "enabled": true
+  },
+  "save_schema": "V20",
+  "v1_27_features_active": false,
+  "next_master_block": "V1.27 Events + Rankings + Realm Chest"
+}

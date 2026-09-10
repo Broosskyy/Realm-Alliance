@@ -1,0 +1,14 @@
+PASS source_version_1_97
+PASS build_97
+PASS project_version_1_97
+PASS main_script_ref_restored
+PASS no_missing_extresource_defs
+PASS no_missing_scene_paths
+PASS no_direct_placeholder_extresources
+PASS v197_preloaded
+PASS v197_startup_apply
+PASS four_tab_nav_contract
+PASS legacy_nav_hidden
+PASS reduced_motion_transition
+PASS no_economy_mutation
+OVERALL PASS

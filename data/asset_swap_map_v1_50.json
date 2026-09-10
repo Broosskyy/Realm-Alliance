@@ -1,0 +1,45 @@
+{
+  "version": "v1.50-lane-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true,
+    "drop_in_replaceable": true
+  },
+  "slots": [
+    {
+      "slot": "LANE_BATTLEFIELD",
+      "placeholder": "assets/v150_lane/V150_001_lane_battlefield.png"
+    },
+    {
+      "slot": "LANE_GREENVALE_UNIT",
+      "placeholder": "assets/v150_lane/V150_002_greenvale_lane_unit.png"
+    },
+    {
+      "slot": "LANE_ENEMY",
+      "placeholder": "assets/v150_lane/V150_003_lane_enemy.png"
+    },
+    {
+      "slot": "LANE_STAGE_BANNER",
+      "placeholder": "assets/v150_lane/V150_004_lane_stage_banner.png"
+    },
+    {
+      "slot": "LANE_ENERGY",
+      "placeholder": "assets/v150_lane/V150_005_lane_energy_emblem.png"
+    },
+    {
+      "slot": "LANE_MASTERY_TECH",
+      "placeholder": "assets/v150_lane/V150_006_lane_mastery_tech.png"
+    },
+    {
+      "slot": "LANE_REWARD_CHEST",
+      "placeholder": "assets/v150_lane/V150_007_lane_reward_chest.png"
+    },
+    {
+      "slot": "LANE_RESULT_CARD",
+      "placeholder": "assets/v150_lane/V150_008_lane_result_card.png"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "version": "1.23",
+  "master_version": "1.8",
+  "core_loop": [
+    "tap",
+    "reward",
+    "spin",
+    "build",
+    "next"
+  ],
+  "core_visibility": [
+    "tap",
+    "spin",
+    "build"
+  ],
+  "dice": {
+    "status": "reserved_bonus_vertical_slice",
+    "visible": false
+  },
+  "realm_journey": {
+    "status": "reserved",
+    "visible": false
+  },
+  "realm_chest": {
+    "status": "reserved",
+    "visible": false
+  },
+  "events_rankings": {
+    "status": "reserved",
+    "visible": false
+  },
+  "production_lock": {
+    "v1_23": "spin + ui/interface foundation",
+    "v1_24": "village art",
+    "v1_25": "greenvale combat content",
+    "v1_26": "dice + journey + treasure portal",
+    "v1_27": "events + rankings + realm chest"
+  },
+  "master_sync": "2.0",
+  "source_pass": "1.23R2",
+  "spin_presentation": "three_reel_machine",
+  "legacy_round_wheel_runtime": false,
+  "website_in_game_source": false
+}

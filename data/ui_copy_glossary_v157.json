@@ -1,0 +1,28 @@
+{
+  "version": "v1.57-copy-visual-01",
+  "master_concept": "V2.1",
+  "principle": "Mehr Content, nicht mehr Bedienung",
+  "player_terms": {
+    "mastery": "Fortschritt",
+    "journey": "Reise",
+    "lane_battle": "Angriff",
+    "tower_defense": "Verteidigung",
+    "progression": "Fortschritt",
+    "afk": "Offline",
+    "account": "Konto",
+    "account_level": "Spielerstufe",
+    "cloud_save": "Online-Sicherung",
+    "social": "Freunde",
+    "chest": "Truhe",
+    "help_center": "Hilfe-Center",
+    "screen_shake": "Bildschirm-Wackeln"
+  },
+  "keep_brand_terms": ["REALM ALLIANCE", "REALM SPIN", "SPIN"],
+  "rules": [
+    "Kurze Texte und klare Verben",
+    "Keine Backend- oder Server-Fachsprache im normalen Spielerfluss",
+    "Eine dominante Aktion pro Screen",
+    "Text bleibt runtime-owned und wird nicht in Atlasgrafiken eingebrannt",
+    "Technische IDs und Save-Keys bleiben unverändert"
+  ]
+}

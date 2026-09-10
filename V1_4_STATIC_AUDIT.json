@@ -1,0 +1,16 @@
+{
+  "source_version": "V1.4",
+  "master_concept": "V1.4",
+  "masterlist_slots": 91,
+  "visible_p0_navigation": [
+    "HOME",
+    "RAD",
+    "DORF"
+  ],
+  "hero_autodps_disabled": true,
+  "boss_guaranteed_spins": 2,
+  "save_version": 14,
+  "missing_ext_resources": [],
+  "syntax_suspects": [],
+  "godot_binary": "not installed"
+}

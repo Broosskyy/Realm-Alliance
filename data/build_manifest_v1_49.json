@@ -1,0 +1,30 @@
+{
+  "source_version": "V1.49",
+  "master_version": "V2.1",
+  "block": "Tower Defense V2",
+  "campaign_stages": 6,
+  "defense_mastery": {
+    "max_level": 5,
+    "xp_sources": [
+      "wave_clear",
+      "run_completion"
+    ]
+  },
+  "tower_tech": {
+    "max_level": 4,
+    "currency": "gold"
+  },
+  "run_contract": "td-run-result-v1",
+  "resume_safe_pending_run": true,
+  "dedicated_fight_button": true,
+  "halloween_hook": "td_wave",
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true,
+    "isolated": true
+  },
+  "asset_swap_map": "data/asset_swap_map_v1_49.json",
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

@@ -1,0 +1,24 @@
+screen,node_or_role,classification,path_or_binding,notes
+TAP,Background,PRODUCTION_ACTIVE,res://assets/world/greenvale/BG001_gruenhain_home_v11.png,Main scene background
+TAP,Monster M001-M014,PRODUCTION_ACTIVE,P0MonsterVisualSystem production paths,Runtime bound per level
+TAP,Monster HP bar,PRODUCTION_ACTIVE,ui.monster.hp.normal/boss,ProductionUiBinder
+TAP,Resource pills,PRODUCTION_ACTIVE,v4.ui.pills / UI050-052,Top HUD
+TAP,Nav icons,PRODUCTION_ACTIVE,v4.ui.navigation.*,MobileLayoutOwner
+SPIN,Machine frame,PRODUCTION_ACTIVE,spin.machine.frame atlas,ProductionUiBinder
+SPIN,Reel symbols,PRODUCTION_ACTIVE,spin.symbol.* atlas,W101-W108 fallback only
+SPIN,Payline,PRODUCTION_ACTIVE,spin.payline atlas,Runtime bound
+SPIN,Wheel 8-segment,LEGACY_ACTIVE,assets/wheel legacy,Hidden from player flow; icon name only
+DORF,VillageGround,PLACEHOLDER_ACTIVE→BOUND,was V000_village_ground.png,V2.01 bound to BG001
+DORF,VillageAmbient,PRODUCTION_AVAILABLE_NOT_BOUND,world.greenvale.ambient tree,Hidden; props used instead
+DORF,Building art,PRODUCTION_ACTIVE,assets/village/greenvale/production/*.png,P0VillageVisualSystem
+DORF,Greenvale props,PRODUCTION_AVAILABLE_NOT_BOUND,v190.world.greenvale_* ,Fixed View_ClashDorf binding V2.01
+DORF,BuildingSelectGlow,PLACEHOLDER_ACTIVE,FX022 glow,Hidden at runtime
+MODI,Hub buttons,PRODUCTION_ACTIVE,hub.* / ui.nav.* roles,ScreenUiAssemblyService
+HEROES,Portraits,MISSING,hero_*_portrait_placeholder,By design — not faked
+HEROES,Mastery icons,PRODUCTION_ACTIVE,V151_001-003,Button icons
+PUZZLE,Board cells,PRODUCTION_ACTIVE,mode.puzzle.* roles,Convergence V187
+TD,Towers,PRODUCTION_ACTIVE,mode.td.tower roles,Archer/Mage/Cannon/Nature via registry
+LANE,Units/map,PRODUCTION_ACTIVE,mode.lane.* roles,ProductionAssetConvergenceV187
+NAV,Legacy Btn_Heroes/Attack/Defense,LEGACY_ACTIVE,MainGame.tscn,Hidden V2.01
+NAV,QuickActions row,LEGACY_ACTIVE,TAGESBONUS/REISE/AUFGABEN,Hidden by MobileLayoutOwner
+OVERLAYS,Panel backdrops,PRODUCTION_ACTIVE,ui.*.panel roles,ScreenUiAssemblyService

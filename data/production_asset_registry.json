@@ -1,0 +1,3226 @@
+{
+  "version": "1.90",
+  "rule": "V1.56 visual-verified path-based atlas registry. Region semantics must be QA-verified against source sheet before live binding.",
+  "atlases": {
+    "progression_01": {
+      "path": "res://assets/production/atlases/progression_01.png",
+      "size": [
+        896,
+        1216
+      ],
+      "regions": {
+        "overview_panel": {
+          "region": [
+            32,
+            7,
+            834,
+            293
+          ],
+          "confidence": "high"
+        },
+        "level_badge": {
+          "region": [
+            17,
+            324,
+            231,
+            241
+          ],
+          "confidence": "high"
+        },
+        "progress_bar": {
+          "region": [
+            273,
+            346,
+            610,
+            192
+          ],
+          "confidence": "high"
+        },
+        "node_standard": {
+          "region": [
+            24,
+            602,
+            218,
+            258
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "node_locked": {
+          "region": [
+            246,
+            605,
+            206,
+            255
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "node_available": {
+          "region": [
+            454,
+            597,
+            214,
+            271
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "node_completed": {
+          "region": [
+            666,
+            588,
+            223,
+            283
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "action_button": {
+          "region": [
+            31,
+            897,
+            836,
+            279
+          ],
+          "confidence": "high"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "afk_01": {
+      "path": "res://assets/production/atlases/afk_01.png",
+      "size": [
+        896,
+        1216
+      ],
+      "regions": {
+        "summary_panel": {
+          "region": [
+            17,
+            4,
+            864,
+            241
+          ],
+          "confidence": "high"
+        },
+        "time_socket": {
+          "region": [
+            91,
+            225,
+            193,
+            211
+          ],
+          "confidence": "high"
+        },
+        "duration_display": {
+          "region": [
+            328,
+            263,
+            473,
+            157
+          ],
+          "confidence": "high"
+        },
+        "accumulated_panel": {
+          "region": [
+            187,
+            441,
+            521,
+            186
+          ],
+          "confidence": "high"
+        },
+        "reward_slot_standard": {
+          "region": [
+            83,
+            657,
+            315,
+            304
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "reward_slot_bonus": {
+          "region": [
+            500,
+            628,
+            309,
+            350
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "claim_button": {
+          "region": [
+            31,
+            980,
+            417,
+            219
+          ],
+          "confidence": "high"
+        },
+        "bonus_claim_button": {
+          "region": [
+            452,
+            982,
+            413,
+            219
+          ],
+          "confidence": "high"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "itemshop_01": {
+      "path": "res://assets/production/atlases/itemshop_01.png",
+      "size": [
+        896,
+        1216
+      ],
+      "regions": {
+        "featured_offer": {
+          "region": [
+            139,
+            8,
+            618,
+            380
+          ],
+          "confidence": "high"
+        },
+        "item_standard": {
+          "region": [
+            8,
+            393,
+            285,
+            355
+          ],
+          "confidence": "high"
+        },
+        "item_premium": {
+          "region": [
+            305,
+            407,
+            289,
+            332
+          ],
+          "confidence": "high"
+        },
+        "item_limited": {
+          "region": [
+            600,
+            407,
+            284,
+            331
+          ],
+          "confidence": "high"
+        },
+        "price_container": {
+          "region": [
+            24,
+            819,
+            297,
+            127
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "currency_socket": {
+          "region": [
+            353,
+            772,
+            203,
+            217
+          ],
+          "confidence": "high"
+        },
+        "offer_badge": {
+          "region": [
+            624,
+            762,
+            225,
+            249
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "purchase_button": {
+          "region": [
+            18,
+            1025,
+            860,
+            180
+          ],
+          "confidence": "high"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "quest_01": {
+      "path": "res://assets/production/atlases/quest_01.png",
+      "size": [
+        896,
+        1216
+      ],
+      "regions": {
+        "header": {
+          "region": [
+            13,
+            17,
+            870,
+            318
+          ],
+          "confidence": "high"
+        },
+        "row_standard": {
+          "region": [
+            15,
+            326,
+            868,
+            118
+          ],
+          "confidence": "high"
+        },
+        "row_active": {
+          "region": [
+            17,
+            436,
+            866,
+            140
+          ],
+          "confidence": "high"
+        },
+        "row_completed": {
+          "region": [
+            22,
+            577,
+            854,
+            210
+          ],
+          "confidence": "high"
+        },
+        "progress_container": {
+          "region": [
+            20,
+            781,
+            856,
+            163
+          ],
+          "confidence": "high"
+        },
+        "category_main": {
+          "region": [
+            439,
+            946,
+            206,
+            244
+          ],
+          "confidence": "high"
+        },
+        "category_daily": {
+          "region": [
+            16,
+            955,
+            213,
+            236
+          ],
+          "confidence": "high"
+        },
+        "category_event": {
+          "region": [
+            230,
+            956,
+            208,
+            233
+          ],
+          "confidence": "high"
+        },
+        "reward_container": {
+          "region": [
+            638,
+            1021,
+            251,
+            116
+          ],
+          "confidence": "high"
+        }
+      },
+      "detected_region_count": 9
+    },
+    "leaderboard_01": {
+      "path": "res://assets/production/atlases/leaderboard_01.png",
+      "size": [
+        1536,
+        768
+      ],
+      "regions": {
+        "header_primary": {
+          "region": [
+            24,
+            12,
+            1125,
+            226
+          ],
+          "confidence": "high"
+        },
+        "small_primary": {
+          "region": [
+            1170,
+            16,
+            338,
+            217
+          ],
+          "confidence": "high"
+        },
+        "row_secondary": {
+          "region": [
+            35,
+            276,
+            1108,
+            177
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "small_alert": {
+          "region": [
+            1162,
+            263,
+            345,
+            194
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "badge_first": {
+          "region": [
+            87,
+            455,
+            245,
+            304
+          ],
+          "confidence": "high"
+        },
+        "badge_second": {
+          "region": [
+            444,
+            471,
+            240,
+            285
+          ],
+          "confidence": "high"
+        },
+        "badge_third": {
+          "region": [
+            800,
+            481,
+            241,
+            274
+          ],
+          "confidence": "high"
+        },
+        "badge_generic": {
+          "region": [
+            1176,
+            492,
+            246,
+            256
+          ],
+          "confidence": "high"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "popup_feedback_01b": {
+      "path": "res://assets/production/atlases/popup_feedback_01b.png",
+      "size": [
+        1280,
+        832
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            26,
+            22,
+            289,
+            227
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            966,
+            25,
+            292,
+            225
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            652,
+            26,
+            299,
+            224
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            321,
+            32,
+            330,
+            211
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            417,
+            267,
+            368,
+            541
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            20,
+            268,
+            365,
+            540
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            819,
+            269,
+            444,
+            411
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            815,
+            695,
+            443,
+            96
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "popup_feedback_01a": {
+      "path": "res://assets/production/atlases/popup_feedback_01a.png",
+      "size": [
+        1280,
+        832
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            329,
+            16,
+            305,
+            377
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            647,
+            21,
+            289,
+            365
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            959,
+            21,
+            286,
+            364
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            34,
+            27,
+            279,
+            362
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            649,
+            399,
+            607,
+            267
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            27,
+            424,
+            604,
+            387
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            659,
+            696,
+            587,
+            103
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 7
+    },
+    "spin_machine_modular_01": {
+      "path": "res://assets/production/atlases/spin_machine_modular_01.png",
+      "size": [
+        1281,
+        1227
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            12,
+            0,
+            674,
+            270
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            702,
+            7,
+            519,
+            76
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            707,
+            80,
+            519,
+            140
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            1086,
+            220,
+            141,
+            132
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            729,
+            221,
+            299,
+            118
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            21,
+            256,
+            654,
+            430
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            1120,
+            346,
+            55,
+            274
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            1190,
+            347,
+            56,
+            274
+          ],
+          "confidence": "neutral"
+        },
+        "asset_09": {
+          "region": [
+            681,
+            349,
+            135,
+            240
+          ],
+          "confidence": "neutral"
+        },
+        "asset_10": {
+          "region": [
+            826,
+            349,
+            135,
+            241
+          ],
+          "confidence": "neutral"
+        },
+        "asset_11": {
+          "region": [
+            971,
+            349,
+            136,
+            243
+          ],
+          "confidence": "neutral"
+        },
+        "asset_12": {
+          "region": [
+            721,
+            591,
+            155,
+            153
+          ],
+          "confidence": "neutral"
+        },
+        "asset_13": {
+          "region": [
+            944,
+            591,
+            156,
+            153
+          ],
+          "confidence": "neutral"
+        },
+        "asset_14": {
+          "region": [
+            9,
+            671,
+            678,
+            402
+          ],
+          "confidence": "neutral"
+        },
+        "asset_15": {
+          "region": [
+            711,
+            746,
+            182,
+            167
+          ],
+          "confidence": "neutral"
+        },
+        "asset_16": {
+          "region": [
+            890,
+            746,
+            183,
+            167
+          ],
+          "confidence": "neutral"
+        },
+        "asset_17": {
+          "region": [
+            1068,
+            746,
+            185,
+            167
+          ],
+          "confidence": "neutral"
+        },
+        "asset_18": {
+          "region": [
+            717,
+            904,
+            511,
+            56
+          ],
+          "confidence": "neutral"
+        },
+        "asset_19": {
+          "region": [
+            687,
+            953,
+            584,
+            142
+          ],
+          "confidence": "neutral"
+        },
+        "asset_20": {
+          "region": [
+            20,
+            1069,
+            418,
+            67
+          ],
+          "confidence": "neutral"
+        },
+        "asset_21": {
+          "region": [
+            1010,
+            1099,
+            80,
+            98
+          ],
+          "confidence": "neutral"
+        },
+        "asset_22": {
+          "region": [
+            1087,
+            1099,
+            83,
+            103
+          ],
+          "confidence": "neutral"
+        },
+        "asset_23": {
+          "region": [
+            1168,
+            1100,
+            80,
+            97
+          ],
+          "confidence": "neutral"
+        },
+        "asset_24": {
+          "region": [
+            463,
+            1107,
+            514,
+            63
+          ],
+          "confidence": "neutral"
+        },
+        "asset_25": {
+          "region": [
+            19,
+            1142,
+            420,
+            70
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 25
+    },
+    "spin_reel_structure_01": {
+      "path": "res://assets/production/atlases/spin_reel_structure_01.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            729,
+            11,
+            592,
+            204
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            25,
+            16,
+            335,
+            291
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            376,
+            17,
+            318,
+            293
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            750,
+            250,
+            361,
+            485
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            1179,
+            251,
+            100,
+            488
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            82,
+            327,
+            598,
+            45
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            55,
+            413,
+            633,
+            119
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            36,
+            565,
+            672,
+            180
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "spin_controls_01": {
+      "path": "res://assets/production/atlases/spin_controls_01.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            21,
+            18,
+            300,
+            270
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            360,
+            18,
+            299,
+            269
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            695,
+            18,
+            301,
+            269
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            1028,
+            18,
+            301,
+            270
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            36,
+            317,
+            266,
+            401
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            353,
+            342,
+            314,
+            144
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            1041,
+            440,
+            264,
+            241
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            351,
+            528,
+            316,
+            172
+          ],
+          "confidence": "neutral"
+        },
+        "asset_09": {
+          "region": [
+            691,
+            537,
+            311,
+            155
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 9
+    },
+    "spin_symbols_01": {
+      "path": "res://assets/production/atlases/spin_symbols_01.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "gold": {
+          "region": [
+            43,
+            35,
+            263,
+            281
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "crystals": {
+          "region": [
+            380,
+            25,
+            262,
+            301
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "xp_orb": {
+          "region": [
+            666,
+            11,
+            337,
+            326
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "energy": {
+          "region": [
+            1063,
+            25,
+            210,
+            301
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "chest": {
+          "region": [
+            24,
+            420,
+            322,
+            270
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "materials": {
+          "region": [
+            364,
+            433,
+            296,
+            237
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "realm_token": {
+          "region": [
+            693,
+            411,
+            284,
+            291
+          ],
+          "confidence": "high_visual_verified"
+        },
+        "rare_bonus": {
+          "region": [
+            1024,
+            380,
+            290,
+            335
+          ],
+          "confidence": "high_visual_verified"
+        }
+      },
+      "detected_region_count": 8
+    },
+    "panel_container_01": {
+      "path": "res://assets/production/atlases/panel_container_01.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            26,
+            10,
+            622,
+            404
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            975,
+            15,
+            346,
+            115
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            660,
+            18,
+            304,
+            378
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            984,
+            142,
+            324,
+            428
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            40,
+            409,
+            596,
+            166
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            668,
+            423,
+            290,
+            123
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            653,
+            555,
+            316,
+            196
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            988,
+            598,
+            317,
+            152
+          ],
+          "confidence": "neutral"
+        },
+        "asset_09": {
+          "region": [
+            41,
+            603,
+            598,
+            148
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 9
+    },
+    "panel_container_02": {
+      "path": "res://assets/production/atlases/panel_container_02.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            930,
+            9,
+            391,
+            301
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            330,
+            13,
+            285,
+            367
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            38,
+            19,
+            270,
+            349
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            661,
+            24,
+            252,
+            347
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            359,
+            393,
+            201,
+            348
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            27,
+            400,
+            309,
+            341
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            579,
+            412,
+            437,
+            326
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 7
+    },
+    "tabs_lists_structure_01": {
+      "path": "res://assets/production/atlases/tabs_lists_structure_01.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            448,
+            22,
+            461,
+            165
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            39,
+            23,
+            388,
+            159
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            960,
+            23,
+            311,
+            158
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            663,
+            208,
+            649,
+            249
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            29,
+            217,
+            635,
+            64
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            35,
+            300,
+            619,
+            133
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            36,
+            445,
+            617,
+            132
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            694,
+            479,
+            591,
+            98
+          ],
+          "confidence": "neutral"
+        },
+        "asset_09": {
+          "region": [
+            677,
+            599,
+            626,
+            145
+          ],
+          "confidence": "neutral"
+        },
+        "asset_10": {
+          "region": [
+            35,
+            601,
+            615,
+            131
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 10
+    },
+    "cards_slots_01": {
+      "path": "res://assets/production/atlases/cards_slots_01.png",
+      "size": [
+        1344,
+        768
+      ],
+      "regions": {
+        "asset_01": {
+          "region": [
+            990,
+            9,
+            318,
+            370
+          ],
+          "confidence": "neutral"
+        },
+        "asset_02": {
+          "region": [
+            691,
+            10,
+            282,
+            357
+          ],
+          "confidence": "neutral"
+        },
+        "asset_03": {
+          "region": [
+            367,
+            22,
+            286,
+            347
+          ],
+          "confidence": "neutral"
+        },
+        "asset_04": {
+          "region": [
+            35,
+            23,
+            292,
+            342
+          ],
+          "confidence": "neutral"
+        },
+        "asset_05": {
+          "region": [
+            36,
+            428,
+            298,
+            295
+          ],
+          "confidence": "neutral"
+        },
+        "asset_06": {
+          "region": [
+            695,
+            429,
+            276,
+            301
+          ],
+          "confidence": "neutral"
+        },
+        "asset_07": {
+          "region": [
+            380,
+            443,
+            268,
+            267
+          ],
+          "confidence": "neutral"
+        },
+        "asset_08": {
+          "region": [
+            989,
+            494,
+            325,
+            169
+          ],
+          "confidence": "neutral"
+        }
+      },
+      "detected_region_count": 8
+    }
+  },
+  "textures": {
+    "v4.ui.inventory_equipment.pendant": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/pendant.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.armor": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/armor.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.sword": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/sword.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.helmet": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/helmet.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.shield": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/shield.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.axe": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/axe.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.ring": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/ring.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_equipment.boots": {
+      "path": "res://assets/production/ui_v4/inventory_equipment/boots.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.mana_potion": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/mana_potion.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.purple_orb": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/purple_orb.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.blue_resource": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/blue_resource.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.ore": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/ore.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.health_potion": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/health_potion.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.ingots": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/ingots.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.blue_crystal": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/blue_crystal.png",
+      "type": "texture"
+    },
+    "v4.ui.inventory_consumables.green_potion": {
+      "path": "res://assets/production/ui_v4/inventory_consumables/green_potion.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_b.rewards_chests_b_05": {
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_05.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_b.rewards_chests_b_04": {
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_04.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_b.rewards_chests_b_01": {
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_01.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_b.rewards_chests_b_06": {
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_06.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_b.rewards_chests_b_03": {
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_03.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_b.rewards_chests_b_02": {
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_02.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_a.rewards_chests_a_03": {
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_03.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_a.rewards_chests_a_04": {
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_04.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_a.rewards_chests_a_02": {
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_02.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_a.rewards_chests_a_06": {
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_06.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_a.rewards_chests_a_01": {
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_01.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_a.rewards_chests_a_05": {
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_05.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.settings": {
+      "path": "res://assets/production/ui_v4/navigation/settings.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.inventory": {
+      "path": "res://assets/production/ui_v4/navigation/inventory.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.ranking": {
+      "path": "res://assets/production/ui_v4/navigation/ranking.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.monster": {
+      "path": "res://assets/production/ui_v4/navigation/monster.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.menu": {
+      "path": "res://assets/production/ui_v4/navigation/menu.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.wheel": {
+      "path": "res://assets/production/ui_v4/navigation/wheel.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.currency": {
+      "path": "res://assets/production/ui_v4/navigation/currency.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.home": {
+      "path": "res://assets/production/ui_v4/navigation/home.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.quest": {
+      "path": "res://assets/production/ui_v4/navigation/quest.png",
+      "type": "texture"
+    },
+    "v4.ui.navigation.combat": {
+      "path": "res://assets/production/ui_v4/navigation/combat.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.defense_down": {
+      "path": "res://assets/production/ui_v4/combat_status/defense_down.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.stun": {
+      "path": "res://assets/production/ui_v4/combat_status/stun.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.burn": {
+      "path": "res://assets/production/ui_v4/combat_status/burn.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.freeze": {
+      "path": "res://assets/production/ui_v4/combat_status/freeze.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.poison": {
+      "path": "res://assets/production/ui_v4/combat_status/poison.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.attack_down": {
+      "path": "res://assets/production/ui_v4/combat_status/attack_down.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.attack_up": {
+      "path": "res://assets/production/ui_v4/combat_status/attack_up.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_status.defense_up": {
+      "path": "res://assets/production/ui_v4/combat_status/defense_up.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.magic_orb": {
+      "path": "res://assets/production/ui_v4/resources_basic/magic_orb.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.wood": {
+      "path": "res://assets/production/ui_v4/resources_basic/wood.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.key": {
+      "path": "res://assets/production/ui_v4/resources_basic/key.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.star": {
+      "path": "res://assets/production/ui_v4/resources_basic/star.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.crystals": {
+      "path": "res://assets/production/ui_v4/resources_basic/crystals.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.scroll": {
+      "path": "res://assets/production/ui_v4/resources_basic/scroll.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.coins": {
+      "path": "res://assets/production/ui_v4/resources_basic/coins.png",
+      "type": "texture"
+    },
+    "v4.ui.resources_basic.stone": {
+      "path": "res://assets/production/ui_v4/resources_basic/stone.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_03": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_03.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_06": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_06.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_01": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_01.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_05": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_05.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_08": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_08.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_07": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_07.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_02": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_02.png",
+      "type": "texture"
+    },
+    "v4.ui.slots_rewards.slots_rewards_04": {
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_04.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.checked_slot": {
+      "path": "res://assets/production/ui_v4/utility_controls/checked_slot.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.dropdown": {
+      "path": "res://assets/production/ui_v4/utility_controls/dropdown.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.square_slot": {
+      "path": "res://assets/production/ui_v4/utility_controls/square_slot.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.confirm": {
+      "path": "res://assets/production/ui_v4/utility_controls/confirm.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.back": {
+      "path": "res://assets/production/ui_v4/utility_controls/back.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.info": {
+      "path": "res://assets/production/ui_v4/utility_controls/info.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.close": {
+      "path": "res://assets/production/ui_v4/utility_controls/close.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.slider": {
+      "path": "res://assets/production/ui_v4/utility_controls/slider.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.blue_bar": {
+      "path": "res://assets/production/ui_v4/utility_controls/blue_bar.png",
+      "type": "texture"
+    },
+    "v4.ui.utility_controls.dark_bar": {
+      "path": "res://assets/production/ui_v4/utility_controls/dark_bar.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_b.village_buildings_b_06": {
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_06.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_b.village_buildings_b_04": {
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_04.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_b.village_buildings_b_01": {
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_01.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_b.village_buildings_b_02": {
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_02.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_b.village_buildings_b_03": {
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_03.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_b.village_buildings_b_05": {
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_05.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_a.village_buildings_a_01": {
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_01.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_a.village_buildings_a_05": {
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_05.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_a.village_buildings_a_04": {
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_04.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_a.village_buildings_a_02": {
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_02.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_a.village_buildings_a_03": {
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_03.png",
+      "type": "texture"
+    },
+    "v4.ui.village_buildings_a.village_buildings_a_06": {
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_06.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.side_quest": {
+      "path": "res://assets/production/ui_v4/quest_states/side_quest.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.main_quest": {
+      "path": "res://assets/production/ui_v4/quest_states/main_quest.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.daily_quest": {
+      "path": "res://assets/production/ui_v4/quest_states/daily_quest.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.quest_alert": {
+      "path": "res://assets/production/ui_v4/quest_states/quest_alert.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.in_progress": {
+      "path": "res://assets/production/ui_v4/quest_states/in_progress.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.claim": {
+      "path": "res://assets/production/ui_v4/quest_states/claim.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.streak": {
+      "path": "res://assets/production/ui_v4/quest_states/streak.png",
+      "type": "texture"
+    },
+    "v4.ui.quest_states.complete": {
+      "path": "res://assets/production/ui_v4/quest_states/complete.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_08": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_08.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_03": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_03.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_01": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_01.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_02": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_02.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_06": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_06.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_07": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_07.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_05": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_05.png",
+      "type": "texture"
+    },
+    "v4.ui.elements_status.elements_status_04": {
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_04.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_05": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_05.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_01": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_01.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_02": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_02.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_07": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_07.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_03": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_03.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_08": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_08.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_06": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_06.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_b.upgrade_evolution_b_04": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_04.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_01": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_01.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_04": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_04.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_11": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_11.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_06": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_06.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_12": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_12.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_05": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_05.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_08": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_08.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_02": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_02.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_03": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_03.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_07": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_07.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_10": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_10.png",
+      "type": "texture"
+    },
+    "v4.ui.rewards_chests_c.rewards_chests_c_09": {
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_09.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_03": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_03.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_02": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_02.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_06": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_06.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_07": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_07.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_08": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_08.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_05": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_05.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_01": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_01.png",
+      "type": "texture"
+    },
+    "v4.ui.panels_basic.panels_basic_04": {
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_04.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_08": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_08.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_04": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_04.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_06": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_06.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_02": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_02.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_01": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_01.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_03": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_03.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_05": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_05.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core_alt.combat_core_alt_07": {
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_07.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_08": {
+      "path": "res://assets/production/ui_v4/panels/panels_08.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_01": {
+      "path": "res://assets/production/ui_v4/panels/panels_01.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_04": {
+      "path": "res://assets/production/ui_v4/panels/panels_04.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_05": {
+      "path": "res://assets/production/ui_v4/panels/panels_05.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_06": {
+      "path": "res://assets/production/ui_v4/panels/panels_06.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_07": {
+      "path": "res://assets/production/ui_v4/panels/panels_07.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_03": {
+      "path": "res://assets/production/ui_v4/panels/panels_03.png",
+      "type": "texture"
+    },
+    "v4.ui.panels.panels_02": {
+      "path": "res://assets/production/ui_v4/panels/panels_02.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_01": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_01.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_08": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_08.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_03": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_03.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_05": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_05.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_07": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_07.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_04": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_04.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_02": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_02.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_10": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_10.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_09": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_09.png",
+      "type": "texture"
+    },
+    "v4.ui.resource_bars.resource_bars_06": {
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_06.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_04": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_04.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_08": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_08.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_01": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_01.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_02": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_02.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_05": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_05.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_06": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_06.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_03": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_03.png",
+      "type": "texture"
+    },
+    "v4.ui.rarity_slots.rarity_slots_07": {
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_07.png",
+      "type": "texture"
+    },
+    "v4.ui.shop_rewards.shop_rewards_05": {
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_05.png",
+      "type": "texture"
+    },
+    "v4.ui.shop_rewards.shop_rewards_06": {
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_06.png",
+      "type": "texture"
+    },
+    "v4.ui.shop_rewards.shop_rewards_02": {
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_02.png",
+      "type": "texture"
+    },
+    "v4.ui.shop_rewards.shop_rewards_03": {
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_03.png",
+      "type": "texture"
+    },
+    "v4.ui.shop_rewards.shop_rewards_01": {
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_01.png",
+      "type": "texture"
+    },
+    "v4.ui.shop_rewards.shop_rewards_04": {
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_04.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.power": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/power.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.level_up": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/level_up.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.upgrade_item": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/upgrade_item.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.rank": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/rank.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.evolution": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/evolution.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.max_rank": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/max_rank.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.unlock": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/unlock.png",
+      "type": "texture"
+    },
+    "v4.ui.upgrade_evolution_a.star_up": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/star_up.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_03": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_03.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_02": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_02.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_06": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_06.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_04": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_04.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_05": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_05.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_08": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_08.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_01": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_01.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_07": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_07.png",
+      "type": "texture"
+    },
+    "v4.ui.buttons.buttons_09": {
+      "path": "res://assets/production/ui_v4/buttons/buttons_09.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.heavy_attack": {
+      "path": "res://assets/production/ui_v4/combat_core/heavy_attack.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.attack": {
+      "path": "res://assets/production/ui_v4/combat_core/attack.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.target": {
+      "path": "res://assets/production/ui_v4/combat_core/target.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.heal": {
+      "path": "res://assets/production/ui_v4/combat_core/heal.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.crit": {
+      "path": "res://assets/production/ui_v4/combat_core/crit.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.auto": {
+      "path": "res://assets/production/ui_v4/combat_core/auto.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.defense": {
+      "path": "res://assets/production/ui_v4/combat_core/defense.png",
+      "type": "texture"
+    },
+    "v4.ui.combat_core.speed": {
+      "path": "res://assets/production/ui_v4/combat_core/speed.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_07": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_07.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_02": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_02.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_06": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_06.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_04": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_04.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_01": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_01.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_08": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_08.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_03": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_03.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_09": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_09.png",
+      "type": "texture"
+    },
+    "v4.ui.frames_slots.frames_slots_05": {
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_05.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.locked": {
+      "path": "res://assets/production/ui_v4/village_controls/locked.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.timer": {
+      "path": "res://assets/production/ui_v4/village_controls/timer.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.collect": {
+      "path": "res://assets/production/ui_v4/village_controls/collect.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.upgrade": {
+      "path": "res://assets/production/ui_v4/village_controls/upgrade.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.build": {
+      "path": "res://assets/production/ui_v4/village_controls/build.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.info": {
+      "path": "res://assets/production/ui_v4/village_controls/info.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.max": {
+      "path": "res://assets/production/ui_v4/village_controls/max.png",
+      "type": "texture"
+    },
+    "v4.ui.village_controls.ready": {
+      "path": "res://assets/production/ui_v4/village_controls/ready.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.defeat_frame": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/defeat_frame.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.small_mana_bar": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/small_mana_bar.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.portrait_frame": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/portrait_frame.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.target_frame": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/target_frame.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.elite_frame": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/elite_frame.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.hp_bar": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/hp_bar.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.mana_bar": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/mana_bar.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.boss_frame": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/boss_frame.png",
+      "type": "texture"
+    },
+    "v4.ui.monster_boss_hud.small_hp_bar": {
+      "path": "res://assets/production/ui_v4/monster_boss_hud/small_hp_bar.png",
+      "type": "texture"
+    },
+    "v147.journey.board": {
+      "path": "res://assets/v147_journey/V147_001_journey_board_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.die": {
+      "path": "res://assets/v147_journey/V147_002_realm_die.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.node": {
+      "path": "res://assets/v147_journey/V147_003_special_node_marker.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.mastery": {
+      "path": "res://assets/v147_journey/V147_004_journey_mastery_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.relic": {
+      "path": "res://assets/v147_journey/V147_005_relic_shard.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.cache": {
+      "path": "res://assets/v147_journey/V147_006_journey_cache.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.portal": {
+      "path": "res://assets/v147_journey/V147_007_treasure_portal_v2.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v147.journey.node_card": {
+      "path": "res://assets/v147_journey/V147_008_journey_node_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.board": {
+      "path": "res://assets/v148_puzzle/V148_001_puzzle_board_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.leaf": {
+      "path": "res://assets/v148_puzzle/V148_002_leaf_rune.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.crystal": {
+      "path": "res://assets/v148_puzzle/V148_003_crystal_rune.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.coin": {
+      "path": "res://assets/v148_puzzle/V148_004_coin_rune.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.mastery": {
+      "path": "res://assets/v148_puzzle/V148_005_puzzle_mastery_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.stage": {
+      "path": "res://assets/v148_puzzle/V148_006_puzzle_stage_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.chest": {
+      "path": "res://assets/v148_puzzle/V148_007_puzzle_reward_chest.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v148.puzzle.burst": {
+      "path": "res://assets/v148_puzzle/V148_008_match_burst.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.map": {
+      "path": "res://assets/v149_td/V149_001_td_battlefield_map.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.tower": {
+      "path": "res://assets/v149_td/V149_002_greenvale_tower.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.enemy": {
+      "path": "res://assets/v149_td/V149_003_td_enemy_placeholder.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.projectile": {
+      "path": "res://assets/v149_td/V149_004_td_projectile_fx.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.mastery": {
+      "path": "res://assets/v149_td/V149_005_td_mastery_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.stage": {
+      "path": "res://assets/v149_td/V149_006_td_stage_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.chest": {
+      "path": "res://assets/v149_td/V149_007_td_reward_chest.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v149.td.wave": {
+      "path": "res://assets/v149_td/V149_008_td_wave_banner.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.map": {
+      "path": "res://assets/v150_lane/V150_001_lane_battlefield.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.unit": {
+      "path": "res://assets/v150_lane/V150_002_greenvale_lane_unit.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.enemy": {
+      "path": "res://assets/v150_lane/V150_003_lane_enemy.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.stage": {
+      "path": "res://assets/v150_lane/V150_004_lane_stage_banner.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.energy": {
+      "path": "res://assets/v150_lane/V150_005_lane_energy_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.mastery": {
+      "path": "res://assets/v150_lane/V150_006_lane_mastery_tech.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.chest": {
+      "path": "res://assets/v150_lane/V150_007_lane_reward_chest.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v150.lane.result": {
+      "path": "res://assets/v150_lane/V150_008_lane_result_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.knight": {
+      "path": "res://assets/v151_heroes/V151_001_knight_mastery.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.archer": {
+      "path": "res://assets/v151_heroes/V151_002_archer_mastery.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.mage": {
+      "path": "res://assets/v151_heroes/V151_003_mage_mastery.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.mastery_badge": {
+      "path": "res://assets/v151_heroes/V151_004_hero_mastery_badge.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.weapon": {
+      "path": "res://assets/v151_heroes/V151_005_hero_weapon_upgrade.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.charm": {
+      "path": "res://assets/v151_heroes/V151_006_hero_charm_upgrade.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.specialization": {
+      "path": "res://assets/v151_heroes/V151_007_hero_specialization_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v151.hero.reward": {
+      "path": "res://assets/v151_heroes/V151_008_hero_mastery_reward.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.board": {
+      "path": "res://assets/v152_objectives/V152_001_objective_board.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.daily": {
+      "path": "res://assets/v152_objectives/V152_002_daily_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.weekly": {
+      "path": "res://assets/v152_objectives/V152_003_weekly_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.achievement": {
+      "path": "res://assets/v152_objectives/V152_004_achievement_medal.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.bestiary": {
+      "path": "res://assets/v152_objectives/V152_005_bestiary_book.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.claim": {
+      "path": "res://assets/v152_objectives/V152_006_claim_stamp.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.chest": {
+      "path": "res://assets/v152_objectives/V152_007_objective_reward_chest.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v152.objective.cross": {
+      "path": "res://assets/v152_objectives/V152_008_cross_pillar_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.townhall": {
+      "path": "res://assets/v153_village/V153_001_townhall_v2.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.goldmine": {
+      "path": "res://assets/v153_village/V153_002_goldmine_v2.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.forge": {
+      "path": "res://assets/v153_village/V153_003_forge_v2.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.temple": {
+      "path": "res://assets/v153_village/V153_004_lucktemple_v2.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.growth": {
+      "path": "res://assets/v153_village/V153_005_village_growth_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.craft": {
+      "path": "res://assets/v153_village/V153_006_forge_craft.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.blessing": {
+      "path": "res://assets/v153_village/V153_007_temple_blessing.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v153.village.reward": {
+      "path": "res://assets/v153_village/V153_008_village_reward_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.emblem": {
+      "path": "res://assets/v154_runtime_ui/V154_001_feature_hub_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.journey": {
+      "path": "res://assets/v154_runtime_ui/V154_002_journey_hub_icon.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.resume": {
+      "path": "res://assets/v154_runtime_ui/V154_003_resume_flow_icon.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.reward": {
+      "path": "res://assets/v154_runtime_ui/V154_004_attention_reward_badge.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.nav_frame": {
+      "path": "res://assets/v154_runtime_ui/V154_005_primary_nav_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.touch": {
+      "path": "res://assets/v154_runtime_ui/V154_006_touch_target_marker.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.status": {
+      "path": "res://assets/v154_runtime_ui/V154_007_system_status_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.hub.progression": {
+      "path": "res://assets/v154_runtime_ui/V154_008_progression_link_emblem.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.shop.card": {
+      "path": "res://assets/v145_ui/V145_002_shop_card_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.ranking.card": {
+      "path": "res://assets/v145_ui/V145_004_ranking_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.afk.panel": {
+      "path": "res://assets/v145_ui/V145_005_afk_claim_panel.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.progression.card": {
+      "path": "res://assets/v145_ui/V145_006_progression_card.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.modal.frame": {
+      "path": "res://assets/v145_ui/V145_007_modal_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.primary.frame": {
+      "path": "res://assets/v145_ui/V145_008_primary_button_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v145.halloween.banner": {
+      "path": "res://assets/v145_ui/V145_003_halloween_banner.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v154.nav.frame": {
+      "path": "res://assets/v154_runtime_ui/V154_005_primary_nav_frame.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "fx.tap.hit.production": {
+      "path": "res://assets/fx/FX012_reward_pulse.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "fx.reward.pulse": {
+      "path": "res://assets/fx/FX012_reward_pulse.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v4.upgrade.unlock": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/unlock.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    },
+    "v4.upgrade.level_up": {
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/level_up.png",
+      "source": "existing_production_asset",
+      "confidence": "high"
+    }
+  },
+  "assets": {
+    "v190.monsters.forest_golem.idle": {
+      "path": "res://assets/production/v190/monsters/forest_golem/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_golem.attack": {
+      "path": "res://assets/production/v190/monsters/forest_golem/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_golem.defeat": {
+      "path": "res://assets/production/v190/monsters/forest_golem/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_a.broadleaf_tree": {
+      "path": "res://assets/production/v190/world/greenvale_nature_a/broadleaf_tree.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_a.pine_tree": {
+      "path": "res://assets/production/v190/world/greenvale_nature_a/pine_tree.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_a.ruined_arch": {
+      "path": "res://assets/production/v190/world/greenvale_nature_a/ruined_arch.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_a.mushrooms": {
+      "path": "res://assets/production/v190/world/greenvale_nature_a/mushrooms.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_a.rock_cluster": {
+      "path": "res://assets/production/v190/world/greenvale_nature_a/rock_cluster.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_a.fallen_log": {
+      "path": "res://assets/production/v190/world/greenvale_nature_a/fallen_log.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.broadleaf_tree": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/broadleaf_tree.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.pine_tree": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/pine_tree.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.ruined_arch": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/ruined_arch.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.rock_spires": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/rock_spires.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.fallen_log": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/fallen_log.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.flower_bush": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/flower_bush.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.tree_stump": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/tree_stump.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_nature_b.bluebell_patch": {
+      "path": "res://assets/production/v190/world/greenvale_nature_b/bluebell_patch.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.cannon_tower.idle": {
+      "path": "res://assets/production/v190/td/cannon_tower/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.cannon_tower.attack": {
+      "path": "res://assets/production/v190/td/cannon_tower/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.cannon_tower.ready": {
+      "path": "res://assets/production/v190/td/cannon_tower/ready.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.bridge": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/bridge.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.signpost": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/signpost.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.lantern_post": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/lantern_post.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.well": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/well.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.supply_wagon": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/supply_wagon.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.tool_crates": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/tool_crates.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.camp_cauldron": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/camp_cauldron.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_b.banner_gate": {
+      "path": "res://assets/production/v190/world/greenvale_props_b/banner_gate.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.archer_tower.idle": {
+      "path": "res://assets/production/v190/td/archer_tower/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.archer_tower.attack": {
+      "path": "res://assets/production/v190/td/archer_tower/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.archer_tower.ready": {
+      "path": "res://assets/production/v190/td/archer_tower/ready.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_forest_a.idle": {
+      "path": "res://assets/production/v190/td/enemy_forest_a/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_forest_a.attack": {
+      "path": "res://assets/production/v190/td/enemy_forest_a/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_forest_a.defeat": {
+      "path": "res://assets/production/v190/td/enemy_forest_a/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_mushroom.idle": {
+      "path": "res://assets/production/v190/td/enemy_mushroom/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_mushroom.attack": {
+      "path": "res://assets/production/v190/td/enemy_mushroom/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_mushroom.defeat": {
+      "path": "res://assets/production/v190/td/enemy_mushroom/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.mage_tower.idle": {
+      "path": "res://assets/production/v190/td/mage_tower/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.mage_tower.attack": {
+      "path": "res://assets/production/v190/td/mage_tower/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.mage_tower.ready": {
+      "path": "res://assets/production/v190/td/mage_tower/ready.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.rewards.chest_states.closed": {
+      "path": "res://assets/production/v190/rewards/chest_states/closed.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.rewards.chest_states.opening": {
+      "path": "res://assets/production/v190/rewards/chest_states/opening.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.rewards.chest_states.open_glow": {
+      "path": "res://assets/production/v190/rewards/chest_states/open_glow.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.rewards.chest_states.open": {
+      "path": "res://assets/production/v190/rewards/chest_states/open.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.nature_tower.idle": {
+      "path": "res://assets/production/v190/td/nature_tower/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.nature_tower.attack": {
+      "path": "res://assets/production/v190/td/nature_tower/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.nature_tower.ready": {
+      "path": "res://assets/production/v190/td/nature_tower/ready.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_crystal.idle": {
+      "path": "res://assets/production/v190/td/enemy_crystal/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_crystal.attack": {
+      "path": "res://assets/production/v190/td/enemy_crystal/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_crystal.defeat": {
+      "path": "res://assets/production/v190/td/enemy_crystal/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.archer_projectile": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/archer_projectile.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.mage_projectile": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/mage_projectile.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.cannon_projectile": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/cannon_projectile.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.nature_projectile": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/nature_projectile.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.archer_impact": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/archer_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.mage_impact": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/mage_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.cannon_impact": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/cannon_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.nature_impact": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/nature_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.archer_crit": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/archer_crit.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.mage_crit": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/mage_crit.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.cannon_crit": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/cannon_crit.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.td_projectiles.nature_crit": {
+      "path": "res://assets/production/v190/vfx/td_projectiles/nature_crit.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_forest_b.idle": {
+      "path": "res://assets/production/v190/td/enemy_forest_b/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_forest_b.attack": {
+      "path": "res://assets/production/v190/td/enemy_forest_b/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.td.enemy_forest_b.defeat": {
+      "path": "res://assets/production/v190/td/enemy_forest_b/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.gold_impact": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/gold_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.fire_impact": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/fire_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.ice_impact": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/ice_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.gold_impact_strong": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/gold_impact_strong.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.fire_impact_strong": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/fire_impact_strong.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.ice_impact_strong": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/ice_impact_strong.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.earth_impact": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/earth_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.fire_ring": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/fire_ring.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.combat_impacts.nature_impact": {
+      "path": "res://assets/production/v190/vfx/combat_impacts/nature_impact.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_a.gold_level_beam": {
+      "path": "res://assets/production/v190/vfx/progression_a/gold_level_beam.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_a.blue_level_beam": {
+      "path": "res://assets/production/v190/vfx/progression_a/blue_level_beam.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_a.purple_unlock_vortex": {
+      "path": "res://assets/production/v190/vfx/progression_a/purple_unlock_vortex.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_a.rainbow_level_beam": {
+      "path": "res://assets/production/v190/vfx/progression_a/rainbow_level_beam.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_guardian.idle": {
+      "path": "res://assets/production/v190/monsters/forest_guardian/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_guardian.attack": {
+      "path": "res://assets/production/v190/monsters/forest_guardian/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_guardian.defeat": {
+      "path": "res://assets/production/v190/monsters/forest_guardian/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_b.gold_celebration": {
+      "path": "res://assets/production/v190/vfx/progression_b/gold_celebration.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_b.blue_celebration": {
+      "path": "res://assets/production/v190/vfx/progression_b/blue_celebration.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_b.gold_unlock_beam": {
+      "path": "res://assets/production/v190/vfx/progression_b/gold_unlock_beam.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.progression_b.rainbow_celebration": {
+      "path": "res://assets/production/v190/vfx/progression_b/rainbow_celebration.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_a.well": {
+      "path": "res://assets/production/v190/world/greenvale_props_a/well.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_a.signpost": {
+      "path": "res://assets/production/v190/world/greenvale_props_a/signpost.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_a.tent": {
+      "path": "res://assets/production/v190/world/greenvale_props_a/tent.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_a.supply_cart": {
+      "path": "res://assets/production/v190/world/greenvale_props_a/supply_cart.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_a.fence_gate": {
+      "path": "res://assets/production/v190/world/greenvale_props_a/fence_gate.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.greenvale_props_a.training_dummy": {
+      "path": "res://assets/production/v190/world/greenvale_props_a/training_dummy.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.spin.reel_motion": {
+      "path": "res://assets/production/v190/vfx/spin/reel_motion.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.spin.reel_stop": {
+      "path": "res://assets/production/v190/vfx/spin/reel_stop.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.spin.win": {
+      "path": "res://assets/production/v190/vfx/spin/win.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.spin.jackpot": {
+      "path": "res://assets/production/v190/vfx/spin/jackpot.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.green_crystal": {
+      "path": "res://assets/production/v190/world/resources/green_crystal.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.blue_crystal": {
+      "path": "res://assets/production/v190/world/resources/blue_crystal.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.red_crystal": {
+      "path": "res://assets/production/v190/world/resources/red_crystal.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.gold_crystal": {
+      "path": "res://assets/production/v190/world/resources/gold_crystal.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.gold_chest": {
+      "path": "res://assets/production/v190/world/resources/gold_chest.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.silver_ore": {
+      "path": "res://assets/production/v190/world/resources/silver_ore.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.rune_stone": {
+      "path": "res://assets/production/v190/world/resources/rune_stone.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.world.resources.fossil_skull": {
+      "path": "res://assets/production/v190/world/resources/fossil_skull.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.rewards.gold_burst": {
+      "path": "res://assets/production/v190/vfx/rewards/gold_burst.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.rewards.blue_burst": {
+      "path": "res://assets/production/v190/vfx/rewards/blue_burst.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.rewards.earth_burst": {
+      "path": "res://assets/production/v190/vfx/rewards/earth_burst.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.vfx.rewards.purple_vortex": {
+      "path": "res://assets/production/v190/vfx/rewards/purple_vortex.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_sentinel.idle": {
+      "path": "res://assets/production/v190/monsters/forest_sentinel/idle.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_sentinel.attack": {
+      "path": "res://assets/production/v190/monsters/forest_sentinel/attack.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    },
+    "v190.monsters.forest_sentinel.defeat": {
+      "path": "res://assets/production/v190/monsters/forest_sentinel/defeat.png",
+      "source": "v190_generated_sheet_crop",
+      "confidence": "high"
+    }
+  }
+}

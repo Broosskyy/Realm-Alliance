@@ -1,0 +1,61 @@
+{
+  "source_version": "V1.19",
+  "master_concept": "V1.4",
+  "pass": "RUNTIME_BOOT_DIAGNOSTIC_HARDENING",
+  "ok": true,
+  "checks": {
+    "all_tools_pass": true,
+    "nodes_ok": true,
+    "resources_ok": true,
+    "duplicates_ok": true,
+    "json_ok": true,
+    "p1_off": true,
+    "boot_autoload_present": true,
+    "stale_starting_spins_fixed": true,
+    "no_asset_integration": true
+  },
+  "tools": {
+    "tools/preflight.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"warnings\": [],\n  \"gd_files\": 30,\n  \"scene_nodes\": 171\n}"
+    },
+    "tools/validate_test_harness.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": []\n}"
+    },
+    "tools/simulate_first_session.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"wheel_weights\": [\n    22,\n    18,\n    10,\n    20,\n    10,\n    8,\n    7,\n    5\n  ],\n  \"building_ids\": [\n    \"townhall\",\n    \"goldmine\",\n    \"forge\",\n    \"lucktemple\"\n  ],\n  \"first_monster_taps\": 10\n}"
+    },
+    "tools/validate_core_transactions.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": []\n}"
+    },
+    "tools/validate_core_feel_v1_14.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"checks\": {\n    \"hp_tween\": true,\n    \"damage_reduced_motion_readable\": true,\n    \"monster_idle\": true,\n    \"hit_reaction\": true,\n    \"touch_feedback\": true,\n    \"wheel_reward_scale\": true,\n    \"no_new_p1\": true\n  },\n  \"errors\": []\n}"
+    },
+    "tools/validate_first_session_flow_v1_15.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"checks\": {\n    \"hint_node\": true,\n    \"boss_proximity_node\": true,\n    \"first_action_hint\": true,\n    \"boss_in_countdown\": true,\n    \"wheel_empty_state\": true,\n    \"village_affordance\": true,\n    \"no_p1\": true\n  },\n  \"errors\": []\n}"
+    },
+    "tools/simulate_p0_pacing_v1_16.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"starting_gold\": 300,\n  \"starting_spins\": 5,\n  \"affordable_first_upgrades\": [\n    \"townhall\",\n    \"goldmine\",\n    \"forge\",\n    \"lucktemple\"\n  ],\n  \"first_monster_taps\": 10,\n  \"boss10_hp\": 499,\n  \"boss10_taps_at_10_damage\": 50,\n  \"wheel_expected_direct_gold_per_spin\": 175.6,\n  \"wheel_expected_spin_return_per_spin\": 0.14,\n  \"first_30_level_taps_at_damage_10\": [\n    10,\n    11,\n    12,\n    13,\n    14,\n    15,\n    17,\n    18,\n    20,\n    50,\n    23,\n    25,\n    27,\n    29,\n    32,\n    34,\n    37,\n    40,\n    44,\n    113,\n    52,\n    56,\n    61,\n    66,\n    71,\n    77,\n    84,\n    91,\n    99,\n    256\n  ]\n}"
+    },
+    "tools/run_p0_core_acceptance_v1_17.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": [],\n  \"required_core_views\": [\n    \"home\",\n    \"wheel\",\n    \"village\"\n  ],\n  \"scenario_count\": 9,\n  \"boss10_hp\": 499,\n  \"first_monster_taps\": 10,\n  \"wheel_weights\": [\n    22,\n    18,\n    10,\n    20,\n    10,\n    8,\n    7,\n    5\n  ],\n  \"village_ids\": [\n    \"townhall\",\n    \"goldmine\",\n    \"forge\",\n    \"lucktemple\"\n  ],\n  \"p1_blocked\": true\n}"
+    },
+    "tools/validate_runtime_boot_v1_19.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"errors\": []\n}"
+    }
+  },
+  "missing_percent_nodes": [],
+  "missing_ext_resources": [],
+  "duplicate_functions": {},
+  "json_errors": {},
+  "godot_binary": "not installed",
+  "runtime_status": "NOT_RUNTIME_TESTED"
+}

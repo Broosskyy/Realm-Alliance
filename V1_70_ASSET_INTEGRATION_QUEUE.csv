@@ -1,0 +1,11 @@
+priority,family,asset_group,status,next_use
+P0,Rewards/Chests,rewards_chests_a/b/c,Not fully runtime-mapped,Use for chest rarity/result presentation where actual chest types exist
+P0,Monster/Boss HUD,monster_boss_hud,Partially integrated,Finish boss shield/chest/reward state mapping
+P0,Village Controls,village_controls,Partially integrated,Finish build/upgrade/timer/max/locked states on building buttons
+P1,Upgrade/Evolution,upgrade_evolution_a/b,Partially integrated,Hero/equipment and long-term upgrade screens
+P1,Inventory Consumables,inventory_consumables,Mostly not surfaced,Integrate when consumable inventory interaction is live
+P1,Shop Rewards,shop_rewards,Partially integrated,"Use for real offer/reward rows, not decorative placement"
+P1,Slots/Rewards,slots_rewards,Not fully surfaced,Use for earned reward slots/chest content
+P1,Elements/Status,elements_status,Not fully surfaced,Only bind when elemental/status gameplay actually uses them
+P2,Combat Core Alt,combat_core_alt,Mostly unused,Reserve for alternate combat states/mode-specific controls
+P2,Rarity Slots,rarity_slots,Partially used,Expand only when item rarity inventory loop is visible

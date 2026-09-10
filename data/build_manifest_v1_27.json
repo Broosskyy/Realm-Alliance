@@ -1,0 +1,33 @@
+{
+  "source_version": "V1.27",
+  "master_version": "V2.0",
+  "block": "Events + Rankings + Realm Chest",
+  "surface_entry": "META quick action",
+  "event": {
+    "id": "greenvale_hunt",
+    "target_bosses": 3
+  },
+  "ranking": {
+    "metric": "boss_defeats",
+    "mode": "local_demo_vertical_slice"
+  },
+  "realm_chest": {
+    "key_sources": [
+      "boss_defeat",
+      "journey_lap"
+    ],
+    "required_keys": 3
+  },
+  "save_schema": "V20",
+  "previous_blocks_preserved": [
+    "V1.23 SPIN",
+    "V1.24 Village",
+    "V1.25 Combat",
+    "V1.26 DICE/Journey/Portal"
+  ],
+  "next_master_blocks": [
+    "Puzzle vertical slice",
+    "Tower Defense vertical slice",
+    "Lane Battle vertical slice"
+  ]
+}

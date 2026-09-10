@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c4vvw5ntwdwmo"
+
+[deps]
+
+files=["res://V1_75_ONLINE_MIGRATION_MATRIX.domain.translation", "res://V1_75_ONLINE_MIGRATION_MATRIX.authority.translation", "res://V1_75_ONLINE_MIGRATION_MATRIX.current.translation", "res://V1_75_ONLINE_MIGRATION_MATRIX.next.translation"]
+
+source_file="res://V1_75_ONLINE_MIGRATION_MATRIX.csv"
+dest_files=["res://V1_75_ONLINE_MIGRATION_MATRIX.domain.translation", "res://V1_75_ONLINE_MIGRATION_MATRIX.authority.translation", "res://V1_75_ONLINE_MIGRATION_MATRIX.current.translation", "res://V1_75_ONLINE_MIGRATION_MATRIX.next.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

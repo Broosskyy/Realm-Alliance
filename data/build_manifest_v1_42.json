@@ -1,0 +1,23 @@
+{
+  "source_version": "V1.42",
+  "master_version": "V2.1",
+  "product_lock": "multi-gameplay-pillars",
+  "gameplay_pillars": [
+    "TAP / Monster Combat",
+    "REALM SPIN",
+    "DORF / BUILD",
+    "REALM JOURNEY / DICE",
+    "PUZZLE",
+    "TOWER DEFENSE",
+    "LANE BATTLE",
+    "EVENT / SPECIAL MODES"
+  ],
+  "combat_transaction_foundation": {
+    "defeat_id": true,
+    "source_attribution": true,
+    "single_boundary_scaffold": true,
+    "reward_duplication": false
+  },
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

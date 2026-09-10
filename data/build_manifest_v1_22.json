@@ -1,0 +1,82 @@
+{
+  "source_version": "V1.22",
+  "master_version": "1.6",
+  "build_number": 32,
+  "channel": "prototype-test",
+  "runtime_status": "not_runtime_tested",
+  "main_scene": "res://MainGame.tscn",
+  "reference_resolution": [
+    1080,
+    1920
+  ],
+  "orientation": "portrait",
+  "renderer": "gl_compatibility",
+  "android": {
+    "preset": "Android Test",
+    "package": "com.realmalliance.prototype",
+    "architecture": [
+      "arm64-v8a"
+    ],
+    "immersive_mode": true,
+    "export_path": "build/android/RealmAlliance_V1_22_Test.apk"
+  },
+  "web": {
+    "preset": "Web Test",
+    "export_path": "build/web/index.html"
+  },
+  "p0_visible_views": [
+    "home",
+    "wheel",
+    "village"
+  ],
+  "p1_expected_disabled": [
+    "daily",
+    "quests",
+    "heroes",
+    "attack",
+    "defense"
+  ],
+  "debug_harness": "debug_build_only",
+  "p0_runtime_isolation": {
+    "hero_processing": false,
+    "lane_attack_processing": false,
+    "tower_defense_processing": false,
+    "p1_signal_wiring": "feature-gated"
+  },
+  "save_lifecycle": {
+    "schema_version": 20,
+    "primary_validation": true,
+    "backup_fallback": true,
+    "backup_repromotion": true,
+    "legacy_zero_hp_repair": true,
+    "negative_away_time_clamped": true
+  },
+  "v1_6_realign": {
+    "starting_spins": 10,
+    "wheel_config": "res://data/wheel_p0_v1_6.json",
+    "wheel_weights": [
+      24,
+      18,
+      10,
+      14,
+      8,
+      12,
+      9,
+      5
+    ],
+    "wheel_segments": [
+      "gold_small",
+      "gold_medium",
+      "gold_large",
+      "shield",
+      "attack",
+      "bonus_spins",
+      "puzzle_bonus",
+      "jackpot"
+    ],
+    "puzzle": "reserved_bonus_pillar_not_runtime_enabled",
+    "tower_defense": "preserved_hidden_vertical_slice",
+    "lane_battle": "preserved_hidden_vertical_slice",
+    "art_status": "V1.21 art integration preserved; new SPIN art not yet produced"
+  }
+}

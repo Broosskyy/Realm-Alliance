@@ -1,0 +1,39 @@
+V1.93 STATIC QA
+================================================================
+PASS | build source 1.93
+PASS | build number 93
+PASS | project version 1.93
+PASS | registry uses v193
+PASS | bindings version 1.93
+PASS | all active bindings resolve
+PASS | binding fx.tap.hit.strong
+PASS | binding fx.reward.gold
+PASS | binding fx.reward.blue
+PASS | binding fx.reward.rainbow
+PASS | binding fx.level_up.major
+PASS | binding fx.unlock.vortex
+PASS | binding reward.chest.closed
+PASS | binding reward.chest.opening
+PASS | binding reward.chest.open_glow
+PASS | binding reward.chest.open
+PASS | script GreenvaleWorldVisualDirectorV193.gd
+PASS | script TapCombatVisualDirectorV193.gd
+PASS | script RewardProgressionVisualDirectorV193.gd
+PASS | script ProductionAssetConvergenceV193.gd
+PASS | main v193 convergence
+PASS | tap director hook
+PASS | defeat director hook
+PASS | normal reward hook
+PASS | boss chest sequence
+PASS | boss special reward
+PASS | level up director hook
+PASS | GreenvaleWorldVisualDirectorV193.gd presentation only
+PASS | TapCombatVisualDirectorV193.gd presentation only
+PASS | RewardProgressionVisualDirectorV193.gd presentation only
+PASS | greenvale v193 composition hook
+PASS | balance unchanged MONSTER_BASE_HP := 100
+PASS | balance unchanged HP_GROWTH := 1.085
+PASS | balance unchanged TAP_DAMAGE_GAIN := 5
+PASS | save schema 35 | SAVE_VERSION := 35
+
+RESULT: 35/35 PASS

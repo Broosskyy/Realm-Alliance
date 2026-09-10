@@ -1,0 +1,138 @@
+{
+  "config_version": "v1.46-halloween-liveops-02",
+  "halloween_2026": {
+    "event_id": "halloween_2026",
+    "display_name": "HALLOWEEN · NACHT DER KÜRBISSE",
+    "start_utc": "2026-10-20T00:00:00Z",
+    "end_utc": "2026-11-03T23:59:59Z",
+    "progress_metric": "boss_defeats",
+    "target": 10,
+    "reward": {
+      "gold": 1200,
+      "spins": 8
+    },
+    "visual_theme": "greenvale_halloween",
+    "production_note": "Data-driven seasonal event. Final Halloween art remains replaceable.",
+    "event_currency": {
+      "id": "pumpkin_tokens",
+      "display_name": "KÜRBISMARKEN",
+      "cap": 9999
+    },
+    "point_sources": {
+      "boss_defeat": 5,
+      "journey_lap": 3,
+      "puzzle_match": 1,
+      "spin": 1,
+      "td_wave": 1,
+      "lane_win": 3
+    },
+    "quests": [
+      {
+        "id": "h_boss_3",
+        "title": "NACHTJÄGER",
+        "metric": "boss_defeat",
+        "target": 3,
+        "reward_tokens": 25
+      },
+      {
+        "id": "h_journey_2",
+        "title": "GEISTERPFAD",
+        "metric": "journey_lap",
+        "target": 2,
+        "reward_tokens": 20
+      },
+      {
+        "id": "h_puzzle_6",
+        "title": "VERFLUCHTE RUNEN",
+        "metric": "puzzle_match",
+        "target": 6,
+        "reward_tokens": 20
+      }
+    ],
+    "event_chest": {
+      "cost_tokens": 50,
+      "reward": {
+        "gold": 650,
+        "spins": 3
+      },
+      "chest_id": "halloween_chest_2026"
+    },
+    "cross_mode_hooks": [
+      "boss_defeat",
+      "journey_lap",
+      "puzzle_match",
+      "spin",
+      "td_wave",
+      "lane_win"
+    ]
+  },
+  "leaderboards": {
+    "daily": {
+      "board_id": "daily_global",
+      "metric": "boss_defeats",
+      "reward_preview": [
+        {
+          "rank_min": 1,
+          "rank_max": 10,
+          "gold": 600,
+          "spins": 3
+        },
+        {
+          "rank_min": 11,
+          "rank_max": 100,
+          "gold": 300,
+          "spins": 1
+        }
+      ]
+    },
+    "weekly": {
+      "board_id": "weekly_global",
+      "metric": "boss_defeats",
+      "reward_preview": [
+        {
+          "rank_min": 1,
+          "rank_max": 10,
+          "gold": 1800,
+          "spins": 8
+        },
+        {
+          "rank_min": 11,
+          "rank_max": 100,
+          "gold": 800,
+          "spins": 3
+        }
+      ]
+    },
+    "event": {
+      "board_id": "halloween_2026",
+      "metric": "event_points",
+      "reward_preview": [
+        {
+          "rank_min": 1,
+          "rank_max": 10,
+          "gold": 2400,
+          "spins": 12
+        },
+        {
+          "rank_min": 11,
+          "rank_max": 100,
+          "gold": 1000,
+          "spins": 5
+        }
+      ]
+    }
+  },
+  "multiplayer_contract": {
+    "authoritative_backend_required": true,
+    "local_fake_players_forbidden": true,
+    "reward_claim_requires_signed_server_result": true,
+    "player_snapshot_fields": [
+      "player_id",
+      "display_name",
+      "score",
+      "rank",
+      "period_id",
+      "board_id"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "source_version": "V1.23R5",
+  "master_version": "V2.0",
+  "build_label": "3REEL_SPIN_ACCEPTANCE_CANDIDATE",
+  "spin_config": "v2.0-3reel-p0-04",
+  "save_schema": "V20",
+  "website_included": false,
+  "master_next": "V1.24 BUILD / Gr\u00fcnhain Village after SPIN real-device + final-art gate"
+}

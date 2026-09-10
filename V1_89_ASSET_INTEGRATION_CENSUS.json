@@ -1,0 +1,29 @@
+{
+  "version": "1.89",
+  "physical_visual_assets": 583,
+  "unique_visual_file_hashes": 569,
+  "exact_duplicate_groups": 11,
+  "exact_duplicate_files": 25,
+  "runtime_binding_roles_total": 243,
+  "high_confidence_binding_roles": 231,
+  "medium_confidence_binding_roles": 10,
+  "remaining_active_placeholder_owners": 2,
+  "remaining_true_or_review_visual_gaps": [
+    {
+      "id": "village_ambient_trees",
+      "status": "true_gap"
+    },
+    {
+      "id": "td_enemy_runner",
+      "status": "true_gap"
+    },
+    {
+      "id": "spin_reel_windows",
+      "status": "runtime_atlas_available"
+    },
+    {
+      "id": "spin_jackpot_panel",
+      "status": "review_or_new_art"
+    }
+  ]
+}

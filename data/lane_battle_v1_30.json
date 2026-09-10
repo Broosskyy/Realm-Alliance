@@ -1,0 +1,113 @@
+{
+  "version": "v1.50-lane-v2-06",
+  "region": "greenvale",
+  "duration_seconds": 45.0,
+  "energy_max": 10.0,
+  "energy_regen_per_sec": 1.4,
+  "unit_cost": 3.0,
+  "base_unit_power": 3.2,
+  "enemy_max_hp": 100,
+  "player_max_hp": 100,
+  "enemy_pressure_left": 0.55,
+  "enemy_pressure_right": 0.45,
+  "reward": {
+    "gold": 325,
+    "xp": 20
+  },
+  "scope": "V1.50 two-lane battle V2 with campaign, mastery, unit tech and resumable battle completion.",
+  "campaign_stages": 6,
+  "stage_profiles": [
+    {
+      "stage": 1,
+      "label": "WALDPFAD",
+      "enemy_hp_bonus": 0,
+      "pressure_bonus": 0.0
+    },
+    {
+      "stage": 2,
+      "label": "MOOSBRÜCKE",
+      "enemy_hp_bonus": 12,
+      "pressure_bonus": 0.04
+    },
+    {
+      "stage": 3,
+      "label": "RUINENTOR",
+      "enemy_hp_bonus": 24,
+      "pressure_bonus": 0.08
+    },
+    {
+      "stage": 4,
+      "label": "KRISTALLWEG",
+      "enemy_hp_bonus": 36,
+      "pressure_bonus": 0.12
+    },
+    {
+      "stage": 5,
+      "label": "GRÜNHAIN-WALL",
+      "enemy_hp_bonus": 48,
+      "pressure_bonus": 0.16
+    },
+    {
+      "stage": 6,
+      "label": "KÖNIGSPFAD",
+      "enemy_hp_bonus": 60,
+      "pressure_bonus": 0.2
+    }
+  ],
+  "progression": {
+    "max_mastery_level": 5,
+    "mastery_thresholds": [
+      0,
+      3,
+      8,
+      15,
+      24
+    ],
+    "deployment_xp_every": 4,
+    "win_xp": 3,
+    "max_unit_tech": 4,
+    "unit_power_bonus": 0.8,
+    "unit_tech_costs": [
+      0,
+      350,
+      700,
+      1200
+    ],
+    "mastery_rewards": {
+      "2": {
+        "gold": 250
+      },
+      "3": {
+        "spins": 2
+      },
+      "4": {
+        "gold": 500
+      },
+      "5": {
+        "realm_keys": 1
+      }
+    }
+  },
+  "battle_contract": {
+    "version": "lane-battle-result-v1",
+    "required_fields": [
+      "battle_id",
+      "config_version",
+      "stage",
+      "won",
+      "gold",
+      "xp",
+      "mastery_xp",
+      "presentation_pending"
+    ],
+    "authority_order": [
+      "resolve_battle",
+      "book_progression",
+      "book_rewards",
+      "create_pending_result",
+      "save",
+      "present"
+    ],
+    "resume_behavior": "pending finished battle result reopens without granting rewards twice"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "source_version": "V1.35",
+  "master_version": "V2.0",
+  "block": "Account / Profile / Cloud / Support Polish",
+  "account_modes": [
+    "guest",
+    "local_profile"
+  ],
+  "backend_auth": "not implemented",
+  "cloud_sync": "not implemented; status UX only",
+  "password_persistence": false,
+  "support_slots": [
+    "help_center",
+    "privacy",
+    "terms",
+    "imprint"
+  ],
+  "save_schema": "V20 optional account_state",
+  "placeholder_assets": [
+    "ACC001_profile_panel_placeholder.png",
+    "ACC002_profile_icon_placeholder.png",
+    "ACC003_cloud_status_placeholder.png",
+    "ACC004_support_card_placeholder.png",
+    "ACC005_legal_card_placeholder.png",
+    "ACC006_account_action_placeholder.png"
+  ],
+  "website": "excluded"
+}

@@ -1,0 +1,27 @@
+{
+  "source_version": "V1.48",
+  "master_version": "V2.1",
+  "block": "Grünhain Puzzle V2",
+  "core": "deterministic 3x3 swap match",
+  "stages": 8,
+  "puzzle_mastery": {
+    "max_level": 5,
+    "xp_sources": [
+      "match",
+      "completion"
+    ],
+    "claimable_rewards": true
+  },
+  "completion_contract": "puzzle-complete-v1",
+  "resume_safe_pending_completion": true,
+  "daily_attempts_utc": true,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true,
+    "isolated": true
+  },
+  "asset_swap_map": "data/asset_swap_map_v1_48.json",
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

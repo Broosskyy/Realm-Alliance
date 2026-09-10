@@ -1,0 +1,14 @@
+{
+  "source_version": "V1.23R6",
+  "master_version": "V2.0",
+  "build_label": "3REEL_SPIN_MODULAR_RESUME_SAFE",
+  "spin_config": "v2.0-3reel-p0-05",
+  "save_schema": "V20",
+  "website_included": false,
+  "runtime_components": [
+    "WheelSystem",
+    "SpinPresentationState",
+    "SpinReelPresenter"
+  ],
+  "next_gate": "final SPIN art + real Android QA; then V1.24 Village"
+}

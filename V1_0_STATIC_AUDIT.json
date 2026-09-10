@@ -1,0 +1,10 @@
+{
+  "main_scene_exists": true,
+  "main_script_exists": true,
+  "masterlist_count": 47,
+  "monster_state_files": 16,
+  "village_p0_files": 12,
+  "feature_flags": true,
+  "p02_controller": true,
+  "godot_binary": "not installed"
+}

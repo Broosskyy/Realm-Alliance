@@ -1,0 +1,141 @@
+{
+  "version": "1.72",
+  "global": {
+    "prefer_production_over_placeholder": true,
+    "prefer_high_confidence": true,
+    "preserve_aspect_ratio": true,
+    "allow_medium_only_for_noncritical_ui": true,
+    "labels_are_runtime_text": true,
+    "minimum_touch_height": 78,
+    "primary_touch_height": 96,
+    "minimum_body_font": 18,
+    "default_title_font": 30,
+    "primary_navigation": "TAP_SPIN_DORF_MODI",
+    "quick_actions_persistent": false,
+    "screen_by_screen_ui_assembly": true,
+    "outer_overlay_uses_production_panel": true,
+    "active_primary_nav_has_state_backdrop": true,
+    "objective_rows_use_state_icons": true,
+    "shop_uses_real_item_card_strip": true,
+    "afk_uses_real_reward_slot_row": true,
+    "progression_uses_real_node_strip": true,
+    "decorative_runtime_rows_non_interactive": true,
+    "ranking_uses_real_badges": true,
+    "social_uses_real_panel_families": true,
+    "support_uses_real_panel_families": true,
+    "heroes_use_real_equipment_icons": true,
+    "hero_portraits_remain_missing_not_faked": true,
+    "hero_equipment_preview_is_noninteractive": true,
+    "lane_battle_uses_combat_icon_family": true,
+    "tower_defense_uses_status_icon_preview": true,
+    "journey_uses_progression_nodes_as_visual_language": true,
+    "puzzle_uses_existing_frame_slots": true,
+    "missing_mode_world_art_is_not_faked": true,
+    "minimum_touch_target_px": 78,
+    "primary_touch_target_px": 96,
+    "minimum_body_font_px": 18,
+    "responsive_compact_height_threshold_px": 760,
+    "responsive_compact_width_threshold_px": 390,
+    "placeholder_audit_required_before_deletion": true,
+    "dynamic_spin_button_runtime_owned": true,
+    "medium_confidence_assets_require_explicit_opt_in": true,
+    "shop_cards_follow_runtime_catalog": true,
+    "afk_visuals_follow_pending_reward_state": true,
+    "progression_nodes_follow_runtime_track_state": true,
+    "home_tap_is_primary_visual_loop": true,
+    "monster_hp_art_follows_boss_state": true,
+    "boss_proximity_visual_is_runtime_stateful": true,
+    "village_actions_follow_runtime_availability": true,
+    "village_buildings_use_existing_production_art_only": true,
+    "village_ground_remains_review_not_faked": true,
+    "goldmine_visual_remains_review_only": true,
+    "reward_flow_uses_runtime_state": true,
+    "boss_reward_visually_distinct_from_normal_reward": true,
+    "realm_chest_button_follows_runtime_readiness": true,
+    "event_claim_button_follows_runtime_readiness": true,
+    "level_up_uses_progression_visual_language": true,
+    "session_flow_reuses_existing_reward_art": true,
+    "tap_reward_next_action_is_contextual": true,
+    "boss_intro_communicates_extra_reward": true,
+    "boss_name_is_runtime_catalog_driven": true,
+    "near_finish_hit_feedback_is_stronger": true,
+    "tap_loop_remains_single_action": true,
+    "tap_momentum_has_no_extra_control": true,
+    "tap_momentum_max_tier": 5,
+    "tap_momentum_bonus_per_tier": 0.04,
+    "hero_auto_dps_feedback_is_quiet": true,
+    "reward_and_boss_presentations_reset_momentum": true,
+    "active_tap_remains_primary_combat_input": true
+  },
+  "families": {
+    "monster": {
+      "fit": "contain",
+      "max_screen_width_ratio": 0.72,
+      "max_screen_height_ratio": 0.42,
+      "anchor": "center",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeated"
+      ]
+    },
+    "primary_button": {
+      "min_height": 96,
+      "patch_ratio": 0.2,
+      "text_min": 22,
+      "padding_x": 28,
+      "runtime_text": true
+    },
+    "secondary_button": {
+      "min_height": 78,
+      "patch_ratio": 0.18,
+      "text_min": 20,
+      "padding_x": 24,
+      "runtime_text": true
+    },
+    "panel": {
+      "patch_ratio": 0.14,
+      "padding_x": 24,
+      "padding_y": 20,
+      "runtime_text": true
+    },
+    "progress_bar": {
+      "min_height": 54,
+      "patch_ratio": 0.2,
+      "runtime_fill": true
+    },
+    "resource_pill": {
+      "fit": "contain",
+      "min_height": 58,
+      "text": "runtime"
+    },
+    "icon": {
+      "min_size": 56,
+      "keep_aspect": true,
+      "runtime_text": false
+    },
+    "village_building": {
+      "fit": "contain",
+      "max_width_ratio": 0.28,
+      "label": "runtime"
+    },
+    "primary_navigation": {
+      "fit": "icon_and_runtime_label",
+      "min_height": 110,
+      "icon_max_width": 58,
+      "text": "runtime"
+    },
+    "reward_slot": {
+      "min_size": 88,
+      "keep_aspect": true,
+      "runtime_icon": true,
+      "runtime_value": true
+    }
+  },
+  "dedupe": {
+    "exact_hash": "keep_one_canonical_mark_others_alias",
+    "visual_similar": "review_only",
+    "never_auto_delete": true
+  }
+}

@@ -1,0 +1,886 @@
+{
+  "version": "1.90",
+  "count": 110,
+  "assets": [
+    {
+      "id": "v190.monsters.forest_golem.idle",
+      "path": "res://assets/production/v190/monsters/forest_golem/idle.png",
+      "source_sheet": "file_0000000004f4820ab24edff6cb0e944c.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_golem.attack",
+      "path": "res://assets/production/v190/monsters/forest_golem/attack.png",
+      "source_sheet": "file_0000000004f4820ab24edff6cb0e944c.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_golem.defeat",
+      "path": "res://assets/production/v190/monsters/forest_golem/defeat.png",
+      "source_sheet": "file_0000000004f4820ab24edff6cb0e944c.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_a.broadleaf_tree",
+      "path": "res://assets/production/v190/world/greenvale_nature_a/broadleaf_tree.png",
+      "source_sheet": "file_00000000161081f591b16b4db50f148d.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_a.pine_tree",
+      "path": "res://assets/production/v190/world/greenvale_nature_a/pine_tree.png",
+      "source_sheet": "file_00000000161081f591b16b4db50f148d.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_a.ruined_arch",
+      "path": "res://assets/production/v190/world/greenvale_nature_a/ruined_arch.png",
+      "source_sheet": "file_00000000161081f591b16b4db50f148d.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_a.mushrooms",
+      "path": "res://assets/production/v190/world/greenvale_nature_a/mushrooms.png",
+      "source_sheet": "file_00000000161081f591b16b4db50f148d.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_a.rock_cluster",
+      "path": "res://assets/production/v190/world/greenvale_nature_a/rock_cluster.png",
+      "source_sheet": "file_00000000161081f591b16b4db50f148d.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_a.fallen_log",
+      "path": "res://assets/production/v190/world/greenvale_nature_a/fallen_log.png",
+      "source_sheet": "file_00000000161081f591b16b4db50f148d.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.broadleaf_tree",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/broadleaf_tree.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.pine_tree",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/pine_tree.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.ruined_arch",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/ruined_arch.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.rock_spires",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/rock_spires.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.fallen_log",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/fallen_log.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.flower_bush",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/flower_bush.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.tree_stump",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/tree_stump.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 7,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_nature_b.bluebell_patch",
+      "path": "res://assets/production/v190/world/greenvale_nature_b/bluebell_patch.png",
+      "source_sheet": "file_0000000018308210acfa28bcec626ccd.png",
+      "cell": 8,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.cannon_tower.idle",
+      "path": "res://assets/production/v190/td/cannon_tower/idle.png",
+      "source_sheet": "file_000000001d4081f9a7aab6da53cfc141.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.cannon_tower.attack",
+      "path": "res://assets/production/v190/td/cannon_tower/attack.png",
+      "source_sheet": "file_000000001d4081f9a7aab6da53cfc141.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.cannon_tower.ready",
+      "path": "res://assets/production/v190/td/cannon_tower/ready.png",
+      "source_sheet": "file_000000001d4081f9a7aab6da53cfc141.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.bridge",
+      "path": "res://assets/production/v190/world/greenvale_props_b/bridge.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.signpost",
+      "path": "res://assets/production/v190/world/greenvale_props_b/signpost.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.lantern_post",
+      "path": "res://assets/production/v190/world/greenvale_props_b/lantern_post.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.well",
+      "path": "res://assets/production/v190/world/greenvale_props_b/well.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.supply_wagon",
+      "path": "res://assets/production/v190/world/greenvale_props_b/supply_wagon.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.tool_crates",
+      "path": "res://assets/production/v190/world/greenvale_props_b/tool_crates.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.camp_cauldron",
+      "path": "res://assets/production/v190/world/greenvale_props_b/camp_cauldron.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 7,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_b.banner_gate",
+      "path": "res://assets/production/v190/world/greenvale_props_b/banner_gate.png",
+      "source_sheet": "file_000000001dac8246b9c9cc5d631178ef.png",
+      "cell": 8,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.archer_tower.idle",
+      "path": "res://assets/production/v190/td/archer_tower/idle.png",
+      "source_sheet": "file_000000001e6c820c8e8ff805920fce2b.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.archer_tower.attack",
+      "path": "res://assets/production/v190/td/archer_tower/attack.png",
+      "source_sheet": "file_000000001e6c820c8e8ff805920fce2b.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.archer_tower.ready",
+      "path": "res://assets/production/v190/td/archer_tower/ready.png",
+      "source_sheet": "file_000000001e6c820c8e8ff805920fce2b.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_forest_a.idle",
+      "path": "res://assets/production/v190/td/enemy_forest_a/idle.png",
+      "source_sheet": "file_00000000282c81f49c87447a4786b57e.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_forest_a.attack",
+      "path": "res://assets/production/v190/td/enemy_forest_a/attack.png",
+      "source_sheet": "file_00000000282c81f49c87447a4786b57e.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_forest_a.defeat",
+      "path": "res://assets/production/v190/td/enemy_forest_a/defeat.png",
+      "source_sheet": "file_00000000282c81f49c87447a4786b57e.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_mushroom.idle",
+      "path": "res://assets/production/v190/td/enemy_mushroom/idle.png",
+      "source_sheet": "file_000000002d2881f497416ddf8315c790.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_mushroom.attack",
+      "path": "res://assets/production/v190/td/enemy_mushroom/attack.png",
+      "source_sheet": "file_000000002d2881f497416ddf8315c790.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_mushroom.defeat",
+      "path": "res://assets/production/v190/td/enemy_mushroom/defeat.png",
+      "source_sheet": "file_000000002d2881f497416ddf8315c790.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.mage_tower.idle",
+      "path": "res://assets/production/v190/td/mage_tower/idle.png",
+      "source_sheet": "file_000000002e5c8246810176c35734c946.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.mage_tower.attack",
+      "path": "res://assets/production/v190/td/mage_tower/attack.png",
+      "source_sheet": "file_000000002e5c8246810176c35734c946.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.mage_tower.ready",
+      "path": "res://assets/production/v190/td/mage_tower/ready.png",
+      "source_sheet": "file_000000002e5c8246810176c35734c946.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.rewards.chest_states.closed",
+      "path": "res://assets/production/v190/rewards/chest_states/closed.png",
+      "source_sheet": "file_0000000032c08210b7142c09fe1d12e8.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.rewards.chest_states.opening",
+      "path": "res://assets/production/v190/rewards/chest_states/opening.png",
+      "source_sheet": "file_0000000032c08210b7142c09fe1d12e8.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.rewards.chest_states.open_glow",
+      "path": "res://assets/production/v190/rewards/chest_states/open_glow.png",
+      "source_sheet": "file_0000000032c08210b7142c09fe1d12e8.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.rewards.chest_states.open",
+      "path": "res://assets/production/v190/rewards/chest_states/open.png",
+      "source_sheet": "file_0000000032c08210b7142c09fe1d12e8.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.nature_tower.idle",
+      "path": "res://assets/production/v190/td/nature_tower/idle.png",
+      "source_sheet": "file_00000000340082108d33ab54d7cd5911.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.nature_tower.attack",
+      "path": "res://assets/production/v190/td/nature_tower/attack.png",
+      "source_sheet": "file_00000000340082108d33ab54d7cd5911.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.nature_tower.ready",
+      "path": "res://assets/production/v190/td/nature_tower/ready.png",
+      "source_sheet": "file_00000000340082108d33ab54d7cd5911.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_crystal.idle",
+      "path": "res://assets/production/v190/td/enemy_crystal/idle.png",
+      "source_sheet": "file_00000000521c8243aac8a3899b5d4136.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_crystal.attack",
+      "path": "res://assets/production/v190/td/enemy_crystal/attack.png",
+      "source_sheet": "file_00000000521c8243aac8a3899b5d4136.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_crystal.defeat",
+      "path": "res://assets/production/v190/td/enemy_crystal/defeat.png",
+      "source_sheet": "file_00000000521c8243aac8a3899b5d4136.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.archer_projectile",
+      "path": "res://assets/production/v190/vfx/td_projectiles/archer_projectile.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.mage_projectile",
+      "path": "res://assets/production/v190/vfx/td_projectiles/mage_projectile.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.cannon_projectile",
+      "path": "res://assets/production/v190/vfx/td_projectiles/cannon_projectile.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.nature_projectile",
+      "path": "res://assets/production/v190/vfx/td_projectiles/nature_projectile.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.archer_impact",
+      "path": "res://assets/production/v190/vfx/td_projectiles/archer_impact.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.mage_impact",
+      "path": "res://assets/production/v190/vfx/td_projectiles/mage_impact.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.cannon_impact",
+      "path": "res://assets/production/v190/vfx/td_projectiles/cannon_impact.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 7,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.nature_impact",
+      "path": "res://assets/production/v190/vfx/td_projectiles/nature_impact.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 8,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.archer_crit",
+      "path": "res://assets/production/v190/vfx/td_projectiles/archer_crit.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 9,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.mage_crit",
+      "path": "res://assets/production/v190/vfx/td_projectiles/mage_crit.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 10,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.cannon_crit",
+      "path": "res://assets/production/v190/vfx/td_projectiles/cannon_crit.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 11,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.td_projectiles.nature_crit",
+      "path": "res://assets/production/v190/vfx/td_projectiles/nature_crit.png",
+      "source_sheet": "file_00000000660881f49f938212c608a986.png",
+      "cell": 12,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_forest_b.idle",
+      "path": "res://assets/production/v190/td/enemy_forest_b/idle.png",
+      "source_sheet": "file_0000000078988210955f0e28249d4279.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_forest_b.attack",
+      "path": "res://assets/production/v190/td/enemy_forest_b/attack.png",
+      "source_sheet": "file_0000000078988210955f0e28249d4279.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.td.enemy_forest_b.defeat",
+      "path": "res://assets/production/v190/td/enemy_forest_b/defeat.png",
+      "source_sheet": "file_0000000078988210955f0e28249d4279.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.gold_impact",
+      "path": "res://assets/production/v190/vfx/combat_impacts/gold_impact.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.fire_impact",
+      "path": "res://assets/production/v190/vfx/combat_impacts/fire_impact.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.ice_impact",
+      "path": "res://assets/production/v190/vfx/combat_impacts/ice_impact.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.gold_impact_strong",
+      "path": "res://assets/production/v190/vfx/combat_impacts/gold_impact_strong.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.fire_impact_strong",
+      "path": "res://assets/production/v190/vfx/combat_impacts/fire_impact_strong.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.ice_impact_strong",
+      "path": "res://assets/production/v190/vfx/combat_impacts/ice_impact_strong.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.earth_impact",
+      "path": "res://assets/production/v190/vfx/combat_impacts/earth_impact.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 7,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.fire_ring",
+      "path": "res://assets/production/v190/vfx/combat_impacts/fire_ring.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 8,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.combat_impacts.nature_impact",
+      "path": "res://assets/production/v190/vfx/combat_impacts/nature_impact.png",
+      "source_sheet": "file_000000007a8881f4b156acec380d5c93.png",
+      "cell": 9,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_a.gold_level_beam",
+      "path": "res://assets/production/v190/vfx/progression_a/gold_level_beam.png",
+      "source_sheet": "file_000000007ba081f5b1fb5406a13334b7.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_a.blue_level_beam",
+      "path": "res://assets/production/v190/vfx/progression_a/blue_level_beam.png",
+      "source_sheet": "file_000000007ba081f5b1fb5406a13334b7.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_a.purple_unlock_vortex",
+      "path": "res://assets/production/v190/vfx/progression_a/purple_unlock_vortex.png",
+      "source_sheet": "file_000000007ba081f5b1fb5406a13334b7.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_a.rainbow_level_beam",
+      "path": "res://assets/production/v190/vfx/progression_a/rainbow_level_beam.png",
+      "source_sheet": "file_000000007ba081f5b1fb5406a13334b7.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_guardian.idle",
+      "path": "res://assets/production/v190/monsters/forest_guardian/idle.png",
+      "source_sheet": "file_0000000089408210aeaed07fa659e5c0.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_guardian.attack",
+      "path": "res://assets/production/v190/monsters/forest_guardian/attack.png",
+      "source_sheet": "file_0000000089408210aeaed07fa659e5c0.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_guardian.defeat",
+      "path": "res://assets/production/v190/monsters/forest_guardian/defeat.png",
+      "source_sheet": "file_0000000089408210aeaed07fa659e5c0.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_b.gold_celebration",
+      "path": "res://assets/production/v190/vfx/progression_b/gold_celebration.png",
+      "source_sheet": "file_0000000096d881f9b9c7015fbc96bb95.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_b.blue_celebration",
+      "path": "res://assets/production/v190/vfx/progression_b/blue_celebration.png",
+      "source_sheet": "file_0000000096d881f9b9c7015fbc96bb95.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_b.gold_unlock_beam",
+      "path": "res://assets/production/v190/vfx/progression_b/gold_unlock_beam.png",
+      "source_sheet": "file_0000000096d881f9b9c7015fbc96bb95.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.progression_b.rainbow_celebration",
+      "path": "res://assets/production/v190/vfx/progression_b/rainbow_celebration.png",
+      "source_sheet": "file_0000000096d881f9b9c7015fbc96bb95.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_a.well",
+      "path": "res://assets/production/v190/world/greenvale_props_a/well.png",
+      "source_sheet": "file_00000000c00c8210bd0efeaac8d99b80.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_a.signpost",
+      "path": "res://assets/production/v190/world/greenvale_props_a/signpost.png",
+      "source_sheet": "file_00000000c00c8210bd0efeaac8d99b80.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_a.tent",
+      "path": "res://assets/production/v190/world/greenvale_props_a/tent.png",
+      "source_sheet": "file_00000000c00c8210bd0efeaac8d99b80.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_a.supply_cart",
+      "path": "res://assets/production/v190/world/greenvale_props_a/supply_cart.png",
+      "source_sheet": "file_00000000c00c8210bd0efeaac8d99b80.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_a.fence_gate",
+      "path": "res://assets/production/v190/world/greenvale_props_a/fence_gate.png",
+      "source_sheet": "file_00000000c00c8210bd0efeaac8d99b80.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.greenvale_props_a.training_dummy",
+      "path": "res://assets/production/v190/world/greenvale_props_a/training_dummy.png",
+      "source_sheet": "file_00000000c00c8210bd0efeaac8d99b80.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.spin.reel_motion",
+      "path": "res://assets/production/v190/vfx/spin/reel_motion.png",
+      "source_sheet": "file_00000000c3fc82119a324d96daff21dc.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.spin.reel_stop",
+      "path": "res://assets/production/v190/vfx/spin/reel_stop.png",
+      "source_sheet": "file_00000000c3fc82119a324d96daff21dc.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.spin.win",
+      "path": "res://assets/production/v190/vfx/spin/win.png",
+      "source_sheet": "file_00000000c3fc82119a324d96daff21dc.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.spin.jackpot",
+      "path": "res://assets/production/v190/vfx/spin/jackpot.png",
+      "source_sheet": "file_00000000c3fc82119a324d96daff21dc.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.green_crystal",
+      "path": "res://assets/production/v190/world/resources/green_crystal.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.blue_crystal",
+      "path": "res://assets/production/v190/world/resources/blue_crystal.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.red_crystal",
+      "path": "res://assets/production/v190/world/resources/red_crystal.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.gold_crystal",
+      "path": "res://assets/production/v190/world/resources/gold_crystal.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.gold_chest",
+      "path": "res://assets/production/v190/world/resources/gold_chest.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 5,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.silver_ore",
+      "path": "res://assets/production/v190/world/resources/silver_ore.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 6,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.rune_stone",
+      "path": "res://assets/production/v190/world/resources/rune_stone.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 7,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.world.resources.fossil_skull",
+      "path": "res://assets/production/v190/world/resources/fossil_skull.png",
+      "source_sheet": "file_00000000c4d88230968220860d936173.png",
+      "cell": 8,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.rewards.gold_burst",
+      "path": "res://assets/production/v190/vfx/rewards/gold_burst.png",
+      "source_sheet": "file_00000000d6c481f4a40305e2fe19c27c.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.rewards.blue_burst",
+      "path": "res://assets/production/v190/vfx/rewards/blue_burst.png",
+      "source_sheet": "file_00000000d6c481f4a40305e2fe19c27c.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.rewards.earth_burst",
+      "path": "res://assets/production/v190/vfx/rewards/earth_burst.png",
+      "source_sheet": "file_00000000d6c481f4a40305e2fe19c27c.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.vfx.rewards.purple_vortex",
+      "path": "res://assets/production/v190/vfx/rewards/purple_vortex.png",
+      "source_sheet": "file_00000000d6c481f4a40305e2fe19c27c.png",
+      "cell": 4,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_sentinel.idle",
+      "path": "res://assets/production/v190/monsters/forest_sentinel/idle.png",
+      "source_sheet": "file_00000000f48c81f48aa1d50380a29926.png",
+      "cell": 1,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_sentinel.attack",
+      "path": "res://assets/production/v190/monsters/forest_sentinel/attack.png",
+      "source_sheet": "file_00000000f48c81f48aa1d50380a29926.png",
+      "cell": 2,
+      "alpha": true,
+      "confidence": "high"
+    },
+    {
+      "id": "v190.monsters.forest_sentinel.defeat",
+      "path": "res://assets/production/v190/monsters/forest_sentinel/defeat.png",
+      "source_sheet": "file_00000000f48c81f48aa1d50380a29926.png",
+      "cell": 3,
+      "alpha": true,
+      "confidence": "high"
+    }
+  ]
+}

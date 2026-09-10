@@ -1,0 +1,64 @@
+{
+  "master_version": "1.4",
+  "segments": [
+    {
+      "id": "gold_small",
+      "weight": 22,
+      "reward_type": "gold",
+      "amount_min": 80,
+      "amount_max": 150
+    },
+    {
+      "id": "gold_medium",
+      "weight": 18,
+      "reward_type": "gold",
+      "amount_min": 180,
+      "amount_max": 280
+    },
+    {
+      "id": "gold_large",
+      "weight": 10,
+      "reward_type": "gold",
+      "amount_min": 350,
+      "amount_max": 500
+    },
+    {
+      "id": "shield",
+      "weight": 20,
+      "reward_type": "shield",
+      "amount": 1
+    },
+    {
+      "id": "attack",
+      "weight": 10,
+      "reward_type": "fallback_gold",
+      "amount": 220,
+      "future": "attack"
+    },
+    {
+      "id": "defense",
+      "weight": 8,
+      "reward_type": "fallback_gold",
+      "amount": 180,
+      "future": "defense"
+    },
+    {
+      "id": "bonus_spins",
+      "weight": 7,
+      "reward_type": "spins",
+      "amount": 2
+    },
+    {
+      "id": "special",
+      "weight": 5,
+      "reward_type": "special_gold",
+      "amount": 600
+    }
+  ],
+  "visual_contract": {
+    "segments": 8,
+    "proportional_visual_wedges": true,
+    "probability_note": "Visible wedge sizes follow the configured weights in the P0 prototype.",
+    "pointer_angle_deg": -90.0
+  }
+}

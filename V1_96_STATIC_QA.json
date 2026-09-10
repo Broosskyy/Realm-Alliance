@@ -1,0 +1,135 @@
+{
+  "version": "1.96",
+  "build": 96,
+  "passed": 25,
+  "total": 25,
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "source_version_1_96",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "build_number_96",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "project_version_1_96",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v196_preloaded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v196_apply_startup",
+      "pass": true,
+      "detail": "count=2"
+    },
+    {
+      "name": "puzzle_feedback_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "puzzle_context_hint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "hero_selected_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "hero_upgrade_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "lane_deploy_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "lane_layout_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "lane_result_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "lane_dynamic_button_copy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mode_hub_hook",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "persistent_nav_unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced_motion_guard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "presentation_no_authority_mutation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gdscript_braces_balanced",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "save_schema_35",
+      "pass": true,
+      "detail": "35"
+    },
+    {
+      "name": "nonempty_ModeGameplayPolishV196.gd",
+      "pass": true,
+      "detail": "10014"
+    },
+    {
+      "name": "nonempty_V1_96_CHANGELOG.md",
+      "pass": true,
+      "detail": "987"
+    },
+    {
+      "name": "nonempty_V1_96_MODES_GAMEPLAY_QA.md",
+      "pass": true,
+      "detail": "939"
+    },
+    {
+      "name": "nonempty_MainGame.gd",
+      "pass": true,
+      "detail": "154018"
+    },
+    {
+      "name": "nonempty_BuildInfo.gd",
+      "pass": true,
+      "detail": "248"
+    },
+    {
+      "name": "nonempty_project.godot",
+      "pass": true,
+      "detail": "5059"
+    }
+  ],
+  "godot_runtime_available": false
+}

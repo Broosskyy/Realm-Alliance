@@ -1,0 +1,40 @@
+﻿Priority;Category;Asset;Use;Count;Notes
+P0;UI;Top resource chip;Gold / Spins / Shields / Level;4;1080x1920 safe readable
+P0;UI;Bottom navigation;Tap / Rad / Dorf;3;large touch targets
+P0;UI;Monster HP bar;frame + fill + text;1;scalable 9-slice
+P0;UI;Primary button;spin/upgrade/action;1;9-slice
+P0;Environment;Tap background;Region 1 Grünhain;1;portrait layered
+P0;Monster;Goblin boss;idle/hit/death;1;large central sprite
+P0;Monster;Slime;idle/hit/death;1;early variation
+P0;Monster;Boar brute;idle/hit/death;1;early variation
+P0;FX;Damage number;normal/crit;2;text/particle hybrid
+P0;FX;Monster hit flash;hit feedback;1;shader/overlay
+P0;Wheel;Wheel base;8 segment wheel;1;separate pointer
+P0;Wheel;Pointer;wheel marker;1;animated
+P0;Wheel;Reward icons;gold/shield/attack/defense;4;clear at small size
+P0;Village;Village ground;Region 1 base;1;portrait/isometric hybrid
+P0;Village;Town hall;levels 1-3 visual tiers;3;upgrade feedback
+P1;Village;Gold mine;levels 1-3;3;passive income
+P1;Village;Forge;levels 1-3;3;tap/hero upgrades
+P1;Village;Hero guild;levels 1-3;3;heroes
+P1;Village;Shield workshop;levels 1-3;3;defense
+P1;Village;Lucky temple;levels 1-3;3;wheel upgrades
+P1;Hero;Knight;portrait + battle sprite;2;starter hero
+P1;Hero;Archer;portrait + battle sprite;2;starter hero
+P1;Hero;Mage;portrait + battle sprite;2;starter hero
+P1;UI;Hero card frame;common/rare/epic;3;rarity system
+P1;Combat;Lane map;Region 1;1;2 lanes
+P1;Combat;Tower Defense map;Region 1;1;2-3 paths
+P1;Enemy;Lane melee enemy;battle sprite;1;basic
+P1;Enemy;Lane ranged enemy;battle sprite;1;basic
+P1;Enemy;TD runner;battle sprite;1;basic
+P1;Enemy;TD tank;battle sprite;1;basic
+P1;Shop;Shop card template;currency/bundle/cosmetic;3;no casino overload
+P1;Shop;Gem icon;premium currency;1;distinct from gold
+P1;Shop;Starter bundle art;starter offer;1;simple
+P2;Environment;Frostmark background;Region 2;1;portrait
+P2;Environment;Aschenlande background;Region 3;1;portrait
+P2;Monster;Boss tier set;every 10 levels;6;region variants
+P2;Cosmetic;Hero skins;first collection;6;no stats initially
+P2;Event;Season banner template;liveops;1;reusable
+P2;Social;Clan badge kit;future clans;12;future

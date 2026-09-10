@@ -1,0 +1,109 @@
+{
+  "version": "v1.48-puzzle-v2-04",
+  "board_size": 9,
+  "daily_free_attempts": 3,
+  "symbols": [
+    "leaf",
+    "crystal",
+    "coin"
+  ],
+  "target_matches": 3,
+  "reward": {
+    "gold": 180,
+    "spins": 1
+  },
+  "rules": "Tap two cells to swap. A valid swap must create at least one horizontal or vertical 3-match. Board then refills deterministically for the current session.",
+  "scope": "lean vertical slice; not final match-3 economy or art",
+  "result_contract": {
+    "version": "puzzle-complete-v1",
+    "required_fields": [
+      "completion_id",
+      "config_version",
+      "stage",
+      "matches",
+      "gold",
+      "spins",
+      "mastery_xp",
+      "presentation_pending"
+    ],
+    "authority_order": [
+      "validate_match",
+      "book_progress",
+      "book_rewards",
+      "create_completion",
+      "save",
+      "present"
+    ],
+    "resume_behavior": "pending completion can be re-presented without re-granting rewards"
+  },
+  "puzzle_progression": {
+    "max_mastery_level": 5,
+    "mastery_thresholds": [
+      0,
+      4,
+      10,
+      18,
+      28
+    ],
+    "match_xp": 1,
+    "completion_xp": 2,
+    "stage_count": 8,
+    "stage_objectives": [
+      {
+        "stage": 1,
+        "target_matches": 3,
+        "label": "WALDRUNEN"
+      },
+      {
+        "stage": 2,
+        "target_matches": 3,
+        "label": "KRISTALLPFAD"
+      },
+      {
+        "stage": 3,
+        "target_matches": 4,
+        "label": "GOLDHAUCH"
+      },
+      {
+        "stage": 4,
+        "target_matches": 4,
+        "label": "MOOSZEICHEN"
+      },
+      {
+        "stage": 5,
+        "target_matches": 5,
+        "label": "REALM-RUNEN"
+      },
+      {
+        "stage": 6,
+        "target_matches": 5,
+        "label": "WALDKERN"
+      },
+      {
+        "stage": 7,
+        "target_matches": 6,
+        "label": "URALT-MUSTER"
+      },
+      {
+        "stage": 8,
+        "target_matches": 6,
+        "label": "GRÜNHAIN-MEISTER"
+      }
+    ],
+    "mastery_rewards": {
+      "2": {
+        "gold": 180
+      },
+      "3": {
+        "spins": 2
+      },
+      "4": {
+        "gold": 350
+      },
+      "5": {
+        "realm_keys": 1
+      }
+    }
+  },
+  "production_note": "V1.48 Puzzle V2 keeps the deterministic 3x3 match core and daily attempts, while adding campaign stages, mastery and a resumable completion transaction."
+}

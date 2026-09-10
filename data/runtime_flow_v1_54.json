@@ -1,0 +1,45 @@
+{
+  "version": "v1.54-runtime-flow-01",
+  "pending_presentation_priority": [
+    "spin",
+    "journey",
+    "puzzle",
+    "tower_defense",
+    "lane_battle",
+    "village_upgrade",
+    "afk"
+  ],
+  "rules": {
+    "single_owner": "only the highest-priority committed pending result is restored at a time",
+    "exactly_once": "acknowledged results are not granted again",
+    "continuation": "after acknowledgement, the coordinator checks the next pending result",
+    "modal_safety": "navigation and restoration do not start while a core modal owns input"
+  },
+  "feature_hub": {
+    "pillars": [
+      "realm_journey",
+      "heroes",
+      "puzzle",
+      "tower_defense",
+      "lane_battle"
+    ],
+    "meta": [
+      "realm_meta",
+      "events_rankings",
+      "progression",
+      "profile_social",
+      "itemshop"
+    ],
+    "primary_visible_navigation": [
+      "home",
+      "spin",
+      "village"
+    ],
+    "hierarchy_note": "primary visible navigation is an ergonomic shortcut, not a statement that other gameplay pillars are secondary"
+  },
+  "touch_targets": {
+    "minimum_overlay_button_height": 78,
+    "primary_action_height": 96,
+    "quick_navigation_height": 86
+  }
+}

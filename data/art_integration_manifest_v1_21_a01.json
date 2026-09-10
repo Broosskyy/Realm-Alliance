@@ -1,0 +1,42 @@
+{
+  "pass": "V1.21-P0-ART-INTEGRATION-01",
+  "base_source": "RealmAlliance_V1_21_Source_MASTER_V1_4_SAVE_RESUME_LIFECYCLE.zip",
+  "master_target": "V1.6",
+  "save_schema": "V20",
+  "art_only": true,
+  "preserved": [
+    "logical save validation",
+    "primary->backup fallback",
+    "primary regeneration after backup recovery",
+    "load_source",
+    "save_sequence",
+    "last_save_ok",
+    "legacy HP=0 repair without duplicate reward",
+    "P1 remains disabled"
+  ],
+  "integrated_count": 22,
+  "integrated_assets": [
+    "res://assets/world/greenvale/BG001_gruenhain_home_v11.png",
+    "res://assets/world/greenvale/bg_greenvale_tap_placeholder.png",
+    "res://assets/monsters/greenvale/states/M001_idle.png",
+    "res://assets/monsters/greenvale/states/M001_hit.png",
+    "res://assets/monsters/greenvale/states/M001_defeat.png",
+    "res://assets/monsters/greenvale/monster_slime_01_placeholder.png",
+    "res://assets/ui/icons/UI010_gold.png",
+    "res://assets/ui/icons/UI011_spin.png",
+    "res://assets/ui/icons/UI012_shield.png",
+    "res://assets/ui/icons/UI014_wheel.png",
+    "res://assets/ui/icons/UI063_settings.png",
+    "res://assets/ui/kit/UI015_resource_gold_pill.png",
+    "res://assets/ui/kit/UI016_resource_spin_pill.png",
+    "res://assets/ui/kit/UI017_resource_shield_pill.png",
+    "res://assets/fx/FX010_coin_burst.png",
+    "res://assets/fx/FX011_coin_fly.png",
+    "res://assets/fx/monster_hit_overlay_placeholder.png",
+    "res://assets/fx/monster_death_overlay_placeholder.png",
+    "res://assets/ui/icons/icon_gold_placeholder.png",
+    "res://assets/ui/icons/icon_spin_placeholder.png",
+    "res://assets/ui/icons/icon_shield_placeholder.png",
+    "res://assets/ui/icons/icon_wheel_placeholder.png"
+  ]
+}

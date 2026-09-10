@@ -1,0 +1,21 @@
+{
+  "source_version": "V1.8",
+  "master_concept": "V1.4",
+  "project_version": "1.8.0",
+  "save_version": 16,
+  "static_preflight": {
+    "main_scene_exists": true,
+    "project_exists": true,
+    "export_presets_exists": true,
+    "missing_percent_nodes": [],
+    "missing_ext_resources": [],
+    "duplicate_functions": {},
+    "json_errors": {},
+    "autoload_missing": [],
+    "export_structure_ok": true,
+    "ok": true
+  },
+  "android_preset": "Android Test",
+  "web_preset": "Web Test",
+  "godot_binary": "not installed"
+}

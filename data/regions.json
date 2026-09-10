@@ -1,0 +1,25 @@
+{
+  "regions": [
+    {
+      "id": "greenvale",
+      "name": "Grünhain",
+      "unlock_level": 1,
+      "theme": "bright_fantasy_forest",
+      "monsters": [
+        "slime",
+        "goblin",
+        "boar_brute"
+      ],
+      "boss_every": 10
+    },
+    {
+      "id": "frostmark",
+      "name": "Frostmark",
+      "unlock_level": 20,
+      "theme": "snow_fantasy",
+      "monsters": []
+    }
+  ],
+  "version": "v1.33-region-progression-01",
+  "production_note": "Frostmark is progression/preview only until dedicated region art, encounters, village and mode content exist."
+}

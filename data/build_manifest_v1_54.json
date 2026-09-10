@@ -1,0 +1,27 @@
+{
+  "source_version": "V1.54",
+  "master_version": "V2.1",
+  "block": "Runtime UX Interface Optimization",
+  "runtime_flow_version": "v1.54-runtime-flow-01",
+  "pending_priority": [
+    "spin",
+    "journey",
+    "puzzle",
+    "tower_defense",
+    "lane_battle",
+    "village_upgrade",
+    "afk"
+  ],
+  "lane_restore_bug_fixed": true,
+  "feature_hub_journey": true,
+  "fake_ranking_rows": false,
+  "mobile_touch_polish": true,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true,
+    "isolated": true
+  },
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

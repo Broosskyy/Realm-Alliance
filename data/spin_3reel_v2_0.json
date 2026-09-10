@@ -1,0 +1,209 @@
+{
+  "master_version": "2.0",
+  "config_version": "v2.0-3reel-p0-06",
+  "presentation": "three_reel_machine",
+  "reel_count": 3,
+  "visible_rows": 3,
+  "payline_row": 1,
+  "segments": [
+    {
+      "id": "gold_small",
+      "weight": 24,
+      "reward_type": "gold",
+      "amount_min": 80,
+      "amount_max": 150
+    },
+    {
+      "id": "gold_medium",
+      "weight": 18,
+      "reward_type": "gold",
+      "amount_min": 180,
+      "amount_max": 280
+    },
+    {
+      "id": "gold_large",
+      "weight": 10,
+      "reward_type": "gold",
+      "amount_min": 350,
+      "amount_max": 500
+    },
+    {
+      "id": "shield",
+      "weight": 14,
+      "reward_type": "shield",
+      "amount": 1
+    },
+    {
+      "id": "attack",
+      "weight": 8,
+      "reward_type": "fallback_gold",
+      "amount": 220,
+      "future": "lane_attack"
+    },
+    {
+      "id": "bonus_spins",
+      "weight": 12,
+      "reward_type": "spins",
+      "amount": 2
+    },
+    {
+      "id": "puzzle_bonus",
+      "weight": 9,
+      "reward_type": "fallback_gold",
+      "amount": 240,
+      "future": "puzzle_ticket"
+    },
+    {
+      "id": "jackpot",
+      "weight": 5,
+      "reward_type": "special_gold",
+      "amount": 600,
+      "future": "jackpot_chest"
+    }
+  ],
+  "reel_contract": {
+    "symbol_ids": [
+      "gold_small",
+      "gold_medium",
+      "gold_large",
+      "shield",
+      "attack",
+      "bonus_spins",
+      "puzzle_bonus",
+      "jackpot"
+    ],
+    "stop_order": [
+      0,
+      1,
+      2
+    ],
+    "stagger_seconds": 0.18,
+    "base_duration_seconds": 0.9,
+    "reduced_motion_duration_seconds": 0.12,
+    "result_authority": "weighted_reward_first_full_payline_visual_second",
+    "note": "The weighted reward is authoritative. At final stop all three center-row symbols mirror the booked reward so visible payline and granted reward cannot disagree.",
+    "deterministic_presentation": true,
+    "visual_seed_required": true
+  },
+  "product_contract": {
+    "starting_spins": 10,
+    "puzzle_is_bonus_pillar": true,
+    "permanent_puzzle_currency": false,
+    "future_strategy_modes": [
+      "tower_defense",
+      "lane_battle"
+    ]
+  },
+  "visual_contract": {
+    "dominant_screen_target": true,
+    "machine_width_percent": [
+      84,
+      94
+    ],
+    "spin_cta_width_percent": [
+      76,
+      88
+    ],
+    "legacy_round_wheel_disabled": true,
+    "concept_boards_are_reference_only": true
+  },
+  "state_contract": {
+    "ready": "machine_idle",
+    "spinning": "reels_running",
+    "stopping": "reels_stop_left_to_right",
+    "reward": "reward_overlay",
+    "jackpot": "jackpot_flash_plus_reward_overlay",
+    "no_spins": "dedicated_no_spins_panel",
+    "reduced_motion": "instant_symbols_short_feedback"
+  },
+  "asset_slots": {
+    "SPIN010": "machine_frame",
+    "SPIN020": "reel_left",
+    "SPIN021": "reel_center",
+    "SPIN022": "reel_right",
+    "SPIN030": "payline",
+    "SPIN031": "jackpot_panel",
+    "SPIN101-SPIN108": "reward_symbols",
+    "UI033": "primary_spin_cta_reuse_or_replace",
+    "UI034": "reward_panel_reuse_or_replace",
+    "FX040": "spin_motion_or_trail",
+    "FX041": "reel_stop_burst",
+    "FX042": "jackpot_burst",
+    "FX043": "no_spins_feedback_optional"
+  },
+  "ux_contract": {
+    "primary_action": "SPIN",
+    "cost_display": "1 spin",
+    "status_line": "remaining spins + reel state",
+    "payline": "center row, explicitly labeled",
+    "reward_overlay": "winning icon + localized runtime text",
+    "jackpot_label": "derived from configured jackpot amount",
+    "no_spins_route": "return to HOME/core reward sources",
+    "navigation_priority": "TAP/SPIN/BUILD remain primary"
+  },
+  "device_contract": {
+    "reference": "1080x1920 portrait",
+    "profiles": [
+      "small",
+      "standard",
+      "tall"
+    ],
+    "small_rule": "reels/CTA compress before text or symbols clip",
+    "tall_rule": "machine may grow but primary CTA stays thumb-reachable",
+    "safe_area": "top/bottom safe margins preserved by ResponsiveLayout",
+    "one_second_comprehension": "three reels + dominant SPIN CTA visible without scrolling"
+  },
+  "definition_of_done": {
+    "three_reels_move_and_stop_cleanly": true,
+    "visible_payline_matches_booked_reward": true,
+    "eight_reward_families_preserved": true,
+    "no_spins_reward_jackpot_reduced_motion_states": true,
+    "legacy_round_wheel_runtime_removed": true,
+    "final_art_pending": true,
+    "real_android_qa_pending": true
+  },
+  "resume_contract": {
+    "reward_booking": "authoritative reward is granted and saved before presentation",
+    "presentation_pending": "result payload persists as optional V20 save data until player acknowledges reward overlay",
+    "resume_behavior": "on boot, pending result restores SPIN view, reel stops and reward overlay without granting again",
+    "acknowledgement": "closing reward clears pending presentation and saves",
+    "duplicate_grant_protection": true
+  },
+  "runtime_components": [
+    "WheelSystem (legacy-compatible authoritative reward service)",
+    "SpinPresentationState (resume-safe pending presentation)",
+    "SpinReelPresenter (3-reel animation/symbol presentation)",
+    "MainGame SPIN view/presenter integration"
+  ],
+  "result_contract": {
+    "version": "spin-result-v1",
+    "authority_order": [
+      "weighted_reward_selected",
+      "reward_granted_once",
+      "result_persisted",
+      "reel_presentation"
+    ],
+    "required_fields": [
+      "result_id",
+      "reward_id",
+      "reward_type",
+      "reward_value",
+      "config_version",
+      "outcome_seed",
+      "visual_seed",
+      "reel_stops",
+      "reel_stop_ids",
+      "outcomes",
+      "visual_symbol_index",
+      "visual_symbol_id"
+    ],
+    "legacy_aliases": [
+      "segment_id",
+      "segment_index",
+      "type",
+      "amount"
+    ],
+    "visual_reproducibility": "visual_seed deterministically generates transient reel frames; final stops are stored",
+    "full_shield_fallback": "booked Gold fallback uses gold_medium visual so payline does not claim a Shield reward"
+  }
+}

@@ -1,0 +1,916 @@
+{
+  "master_concept": "V1.4",
+  "source_version": "V1.5",
+  "count": 101,
+  "assets": [
+    {
+      "asset_id": "UI001",
+      "path": "res://assets/ui/kit/UI001_resource_bar.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "900x150",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI002",
+      "path": "res://assets/ui/kit/UI002_primary_button.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "720x132",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI003",
+      "path": "res://assets/ui/kit/UI003_secondary_button.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "600x118",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI004",
+      "path": "res://assets/ui/kit/UI004_reward_panel.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "900x320",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI005",
+      "path": "res://assets/ui/kit/UI005_hp_frame.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "850x88",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI006",
+      "path": "res://assets/ui/kit/UI006_hp_fill_normal.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "820x54",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI007",
+      "path": "res://assets/ui/kit/UI007_hp_fill_boss.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "820x54",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI010",
+      "path": "res://assets/ui/icons/UI010_gold.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI011",
+      "path": "res://assets/ui/icons/UI011_spin.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI012",
+      "path": "res://assets/ui/icons/UI012_shield.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI013",
+      "path": "res://assets/ui/icons/UI013_village.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI014",
+      "path": "res://assets/ui/icons/UI014_wheel.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI020",
+      "path": "res://assets/ui/banners/UI020_boss_intro_panel.png",
+      "category": "UI",
+      "state": "",
+      "target_size": "640x240",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M001_IDLE",
+      "path": "res://assets/monsters/greenvale/states/M001_idle.png",
+      "category": "Monster",
+      "state": "idle",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M001_HIT",
+      "path": "res://assets/monsters/greenvale/states/M001_hit.png",
+      "category": "Monster",
+      "state": "hit",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M001_DEFEAT",
+      "path": "res://assets/monsters/greenvale/states/M001_defeat.png",
+      "category": "Monster",
+      "state": "defeat",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M002_IDLE",
+      "path": "res://assets/monsters/greenvale/states/M002_idle.png",
+      "category": "Monster",
+      "state": "idle",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M002_HIT",
+      "path": "res://assets/monsters/greenvale/states/M002_hit.png",
+      "category": "Monster",
+      "state": "hit",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M002_DEFEAT",
+      "path": "res://assets/monsters/greenvale/states/M002_defeat.png",
+      "category": "Monster",
+      "state": "defeat",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M003_IDLE",
+      "path": "res://assets/monsters/greenvale/states/M003_idle.png",
+      "category": "Monster",
+      "state": "idle",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M003_HIT",
+      "path": "res://assets/monsters/greenvale/states/M003_hit.png",
+      "category": "Monster",
+      "state": "hit",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M003_DEFEAT",
+      "path": "res://assets/monsters/greenvale/states/M003_defeat.png",
+      "category": "Monster",
+      "state": "defeat",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M004_IDLE",
+      "path": "res://assets/monsters/greenvale/states/M004_idle.png",
+      "category": "Monster",
+      "state": "idle",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M004_HIT",
+      "path": "res://assets/monsters/greenvale/states/M004_hit.png",
+      "category": "Monster",
+      "state": "hit",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "M004_DEFEAT",
+      "path": "res://assets/monsters/greenvale/states/M004_defeat.png",
+      "category": "Monster",
+      "state": "defeat",
+      "target_size": "640x640",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "B001_IDLE",
+      "path": "res://assets/monsters/greenvale/states/B001_idle.png",
+      "category": "Boss",
+      "state": "idle",
+      "target_size": "720x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "B001_HIT",
+      "path": "res://assets/monsters/greenvale/states/B001_hit.png",
+      "category": "Boss",
+      "state": "hit",
+      "target_size": "720x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "B001_SHIELD",
+      "path": "res://assets/monsters/greenvale/states/B001_shield.png",
+      "category": "Boss",
+      "state": "shield",
+      "target_size": "720x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "B001_DEFEAT",
+      "path": "res://assets/monsters/greenvale/states/B001_defeat.png",
+      "category": "Boss",
+      "state": "defeat",
+      "target_size": "720x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V001_TOWNHALL_LV1",
+      "path": "res://assets/village/greenvale/p0/V001_townhall_lv1.png",
+      "category": "Village",
+      "state": "lv1",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V001_TOWNHALL_LV2",
+      "path": "res://assets/village/greenvale/p0/V001_townhall_lv2.png",
+      "category": "Village",
+      "state": "lv2",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V001_TOWNHALL_LV3",
+      "path": "res://assets/village/greenvale/p0/V001_townhall_lv3.png",
+      "category": "Village",
+      "state": "lv3",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V002_GOLDMINE_LV1",
+      "path": "res://assets/village/greenvale/p0/V002_goldmine_lv1.png",
+      "category": "Village",
+      "state": "lv1",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V002_GOLDMINE_LV2",
+      "path": "res://assets/village/greenvale/p0/V002_goldmine_lv2.png",
+      "category": "Village",
+      "state": "lv2",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V002_GOLDMINE_LV3",
+      "path": "res://assets/village/greenvale/p0/V002_goldmine_lv3.png",
+      "category": "Village",
+      "state": "lv3",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V003_FORGE_LV1",
+      "path": "res://assets/village/greenvale/p0/V003_forge_lv1.png",
+      "category": "Village",
+      "state": "lv1",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V003_FORGE_LV2",
+      "path": "res://assets/village/greenvale/p0/V003_forge_lv2.png",
+      "category": "Village",
+      "state": "lv2",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V003_FORGE_LV3",
+      "path": "res://assets/village/greenvale/p0/V003_forge_lv3.png",
+      "category": "Village",
+      "state": "lv3",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V004_LUCKTEMPLE_LV1",
+      "path": "res://assets/village/greenvale/p0/V004_lucktemple_lv1.png",
+      "category": "Village",
+      "state": "lv1",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V004_LUCKTEMPLE_LV2",
+      "path": "res://assets/village/greenvale/p0/V004_lucktemple_lv2.png",
+      "category": "Village",
+      "state": "lv2",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V004_LUCKTEMPLE_LV3",
+      "path": "res://assets/village/greenvale/p0/V004_lucktemple_lv3.png",
+      "category": "Village",
+      "state": "lv3",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "V000",
+      "path": "res://assets/village/greenvale/V000_village_ground.png",
+      "category": "Village",
+      "state": "ground",
+      "target_size": "1080x1200",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX010",
+      "path": "res://assets/fx/FX010_coin_burst.png",
+      "category": "FX",
+      "state": "coin_burst",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX020",
+      "path": "res://assets/fx/FX020_building_upgrade_glow.png",
+      "category": "FX",
+      "state": "upgrade",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "BG001",
+      "path": "res://assets/world/greenvale/BG001_gruenhain_home_v11.png",
+      "category": "Background",
+      "state": "home",
+      "target_size": "1080x1920",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W001",
+      "path": "res://assets/wheel/wheel_8segment_placeholder.png",
+      "category": "Wheel",
+      "state": "base",
+      "target_size": "800x800",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W002",
+      "path": "res://assets/wheel/wheel_pointer_placeholder.png",
+      "category": "Wheel",
+      "state": "pointer",
+      "target_size": "180x180",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI015",
+      "path": "res://assets/ui/kit/UI015_resource_gold_pill.png",
+      "category": "UI",
+      "state": "gold_pill",
+      "target_size": "300x96",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI016",
+      "path": "res://assets/ui/kit/UI016_resource_spin_pill.png",
+      "category": "UI",
+      "state": "spin_pill",
+      "target_size": "300x96",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI017",
+      "path": "res://assets/ui/kit/UI017_resource_shield_pill.png",
+      "category": "UI",
+      "state": "shield_pill",
+      "target_size": "300x96",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI030",
+      "path": "res://assets/ui/labels/UI030_tap_prompt.png",
+      "category": "UI",
+      "state": "tap_prompt",
+      "target_size": "540x96",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI031",
+      "path": "res://assets/ui/progress/UI031_monster_progress_10.png",
+      "category": "UI",
+      "state": "monster_progress",
+      "target_size": "720x96",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI032",
+      "path": "res://assets/ui/modals/UI032_monster_reward_panel.png",
+      "category": "UI",
+      "state": "monster_reward",
+      "target_size": "920x520",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI033",
+      "path": "res://assets/ui/kit/UI033_wheel_cta.png",
+      "category": "UI",
+      "state": "wheel_cta",
+      "target_size": "760x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI034",
+      "path": "res://assets/ui/modals/UI034_wheel_reward_panel.png",
+      "category": "UI",
+      "state": "wheel_reward",
+      "target_size": "820x360",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX001",
+      "path": "res://assets/fx/FX001_damage_number.png",
+      "category": "FX",
+      "state": "damage_number",
+      "target_size": "180x100",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX011",
+      "path": "res://assets/fx/FX011_coin_fly.png",
+      "category": "FX",
+      "state": "coin_fly",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX021",
+      "path": "res://assets/fx/FX021_building_select_glow.png",
+      "category": "FX",
+      "state": "building_select",
+      "target_size": "560x560",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX030",
+      "path": "res://assets/fx/FX030_boss_intro_burst.png",
+      "category": "FX",
+      "state": "boss_intro",
+      "target_size": "720x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX031",
+      "path": "res://assets/fx/FX031_boss_defeat_burst.png",
+      "category": "FX",
+      "state": "boss_defeat",
+      "target_size": "720x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "RW001",
+      "path": "res://assets/rewards/RW001_small_chest.png",
+      "category": "Reward",
+      "state": "small_chest",
+      "target_size": "320x260",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W010",
+      "path": "res://assets/wheel/W010_wheel_p0_v14.png",
+      "category": "Wheel",
+      "state": "base",
+      "target_size": "900x900",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W011",
+      "path": "res://assets/wheel/W011_pointer_p0_v14.png",
+      "category": "Wheel",
+      "state": "pointer",
+      "target_size": "220x220",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX040",
+      "path": "res://assets/fx/FX040_wheel_reward_spotlight.png",
+      "category": "FX",
+      "state": "wheel_reward",
+      "target_size": "520x520",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI040",
+      "path": "res://assets/ui/village/UI040_building_card.png",
+      "category": "UI",
+      "state": "townhall_card",
+      "target_size": "470x540",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI041",
+      "path": "res://assets/ui/village/UI041_building_card.png",
+      "category": "UI",
+      "state": "goldmine_card",
+      "target_size": "470x540",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI042",
+      "path": "res://assets/ui/village/UI042_building_card.png",
+      "category": "UI",
+      "state": "forge_card",
+      "target_size": "470x540",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI043",
+      "path": "res://assets/ui/village/UI043_building_card.png",
+      "category": "UI",
+      "state": "lucktemple_card",
+      "target_size": "470x540",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI044",
+      "path": "res://assets/ui/modals/UI044_building_upgrade_modal.png",
+      "category": "UI",
+      "state": "building_upgrade_modal",
+      "target_size": "900x720",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI045",
+      "path": "res://assets/ui/village/UI045_max_level_badge.png",
+      "category": "UI",
+      "state": "max_level",
+      "target_size": "420x120",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX022",
+      "path": "res://assets/fx/FX022_upgrade_coin_burst.png",
+      "category": "FX",
+      "state": "building_upgrade_coins",
+      "target_size": "512x512",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W101",
+      "path": "res://assets/wheel/segments/W101_gold_small.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W102",
+      "path": "res://assets/wheel/segments/W102_gold_medium.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W103",
+      "path": "res://assets/wheel/segments/W103_gold_large.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W104",
+      "path": "res://assets/wheel/segments/W104_shield.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W105",
+      "path": "res://assets/wheel/segments/W105_attack_fallback.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W106",
+      "path": "res://assets/wheel/segments/W106_defense_fallback.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W107",
+      "path": "res://assets/wheel/segments/W107_bonus_spins.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "W108",
+      "path": "res://assets/wheel/segments/W108_special.png",
+      "category": "Wheel",
+      "state": "segment_icon",
+      "target_size": "160x160",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI050",
+      "path": "res://assets/ui/modals/UI050_level_up_panel.png",
+      "category": "UI",
+      "state": "level_up",
+      "target_size": "900x420",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI051",
+      "path": "res://assets/ui/modals/UI051_settings_panel.png",
+      "category": "UI",
+      "state": "settings",
+      "target_size": "900x620",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI052",
+      "path": "res://assets/ui/settings/UI052_toggle_off.png",
+      "category": "UI",
+      "state": "toggle_off",
+      "target_size": "180x84",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI053",
+      "path": "res://assets/ui/settings/UI053_toggle_on.png",
+      "category": "UI",
+      "state": "toggle_on",
+      "target_size": "180x84",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX012",
+      "path": "res://assets/fx/FX012_reward_pulse.png",
+      "category": "FX",
+      "state": "reward_pulse",
+      "target_size": "256x256",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX032",
+      "path": "res://assets/fx/FX032_boss_shield.png",
+      "category": "FX",
+      "state": "boss_shield",
+      "target_size": "760x760",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI060",
+      "path": "res://assets/ui/icons/UI060_nav_home.png",
+      "category": "UI",
+      "state": "nav_home",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI061",
+      "path": "res://assets/ui/icons/UI061_nav_wheel.png",
+      "category": "UI",
+      "state": "nav_wheel",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI062",
+      "path": "res://assets/ui/icons/UI062_nav_village.png",
+      "category": "UI",
+      "state": "nav_village",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI063",
+      "path": "res://assets/ui/icons/UI063_settings.png",
+      "category": "UI",
+      "state": "settings_icon",
+      "target_size": "128x128",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "UI064",
+      "path": "res://assets/ui/overlays/UI064_transition_vignette.png",
+      "category": "UI",
+      "state": "transition_overlay",
+      "target_size": "1080x1920",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "FX033",
+      "path": "res://assets/fx/FX033_boss_chest_glow.png",
+      "category": "FX",
+      "state": "boss_chest_glow",
+      "target_size": "420x340",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX001",
+      "path": "res://assets/audio/p0/sfx_tap.wav",
+      "category": "Audio",
+      "state": "sfx_tap",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX002",
+      "path": "res://assets/audio/p0/sfx_hit_heavy.wav",
+      "category": "Audio",
+      "state": "sfx_hit_heavy",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX003",
+      "path": "res://assets/audio/p0/sfx_kill.wav",
+      "category": "Audio",
+      "state": "sfx_kill",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX004",
+      "path": "res://assets/audio/p0/sfx_coin.wav",
+      "category": "Audio",
+      "state": "sfx_coin",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX005",
+      "path": "res://assets/audio/p0/sfx_wheel_spin.wav",
+      "category": "Audio",
+      "state": "sfx_wheel_spin",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX006",
+      "path": "res://assets/audio/p0/sfx_wheel_stop.wav",
+      "category": "Audio",
+      "state": "sfx_wheel_stop",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX007",
+      "path": "res://assets/audio/p0/sfx_upgrade.wav",
+      "category": "Audio",
+      "state": "sfx_upgrade",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX008",
+      "path": "res://assets/audio/p0/sfx_boss_intro.wav",
+      "category": "Audio",
+      "state": "sfx_boss_intro",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "SFX009",
+      "path": "res://assets/audio/p0/sfx_boss_defeat.wav",
+      "category": "Audio",
+      "state": "sfx_boss_defeat",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    },
+    {
+      "asset_id": "MUS001",
+      "path": "res://assets/audio/p0/music_greenvale_loop_placeholder.wav",
+      "category": "Audio",
+      "state": "greenvale_loop",
+      "target_size": "WAV",
+      "priority": "P0",
+      "replaceable": "YES"
+    }
+  ]
+}

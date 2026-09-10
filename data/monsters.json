@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "monsters": [
+    {
+      "id": "slime",
+      "name": "Moos-Schleim",
+      "tier": "normal",
+      "region": "greenvale",
+      "asset_id": "monster_slime"
+    },
+    {
+      "id": "goblin",
+      "name": "Wald-Goblin",
+      "tier": "normal",
+      "region": "greenvale",
+      "asset_id": "monster_goblin"
+    },
+    {
+      "id": "boar_brute",
+      "name": "Keiler-Brecher",
+      "tier": "elite",
+      "region": "greenvale",
+      "asset_id": "monster_boar"
+    },
+    {
+      "id": "ancient_treant",
+      "name": "Uralter Baumfürst",
+      "tier": "boss",
+      "region": "greenvale",
+      "asset_id": "monster_treant_boss",
+      "milestone_modulo": 10
+    }
+  ]
+}

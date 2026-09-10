@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dh05vnpog8e8a"
+
+[deps]
+
+files=["res://data/MASTER_ASSETLIST_V1_4.path.translation", "res://data/MASTER_ASSETLIST_V1_4.category.translation", "res://data/MASTER_ASSETLIST_V1_4.state.translation", "res://data/MASTER_ASSETLIST_V1_4.target.translation", "res://data/MASTER_ASSETLIST_V1_4.priority.translation", "res://data/MASTER_ASSETLIST_V1_4.replaceable.translation"]
+
+source_file="res://data/MASTER_ASSETLIST_V1_4.csv"
+dest_files=["res://data/MASTER_ASSETLIST_V1_4.path.translation", "res://data/MASTER_ASSETLIST_V1_4.category.translation", "res://data/MASTER_ASSETLIST_V1_4.state.translation", "res://data/MASTER_ASSETLIST_V1_4.target.translation", "res://data/MASTER_ASSETLIST_V1_4.priority.translation", "res://data/MASTER_ASSETLIST_V1_4.replaceable.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

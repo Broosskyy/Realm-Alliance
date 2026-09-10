@@ -1,0 +1,43 @@
+{
+  "master_concept": "V1.4",
+  "source_version": "V1.4",
+  "visible_views": [
+    "home",
+    "wheel",
+    "village"
+  ],
+  "target_resolutions": [
+    [
+      720,
+      1600
+    ],
+    [
+      1080,
+      1920
+    ],
+    [
+      1080,
+      2400
+    ]
+  ],
+  "minimum_touch_target_reference_px": 96,
+  "session_tests_minutes": [
+    5,
+    15,
+    30
+  ],
+  "p1_balance_effects_disabled": [
+    "hero_auto_dps"
+  ],
+  "core_events": [
+    "game_start",
+    "first_tap",
+    "monster_defeat",
+    "wheel_open",
+    "wheel_spin",
+    "village_open",
+    "building_upgrade",
+    "boss_start",
+    "boss_defeat"
+  ]
+}

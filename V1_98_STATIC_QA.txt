@@ -1,0 +1,28 @@
+REALM ALLIANCE V1.98 STATIC QA
+23/23 PASS
+
+PASS source 1.98
+PASS build 98
+PASS project 1.98
+PASS save 35
+PASS preload
+PASS startup apply
+PASS refresh hook
+PASS pending read
+PASS attention read
+PASS no mutation add_gold(
+PASS no mutation add_xp(
+PASS no mutation add_spin(
+PASS no mutation spend_gold(
+PASS no mutation damage_monster(
+PASS no mutation SaveGame.save_game
+PASS no mutation commit_reward
+PASS no mutation commit_gold
+PASS no mutation OnlineAuthorityService.build_intent
+PASS scene resources resolve
+PASS gd static resource refs resolve
+PASS json parse
+PASS four-tab labels
+PASS no direct placeholder scene extresource
+
+Godot runtime/device QA NOT RUN: Godot executable unavailable in this environment.

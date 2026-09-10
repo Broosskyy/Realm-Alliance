@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://lpp4bnlwapup"
+
+[deps]
+
+files=["res://V1_89_VFX_REQUIREMENTS.status.translation", "res://V1_89_VFX_REQUIREMENTS.notes.translation"]
+
+source_file="res://V1_89_VFX_REQUIREMENTS.csv"
+dest_files=["res://V1_89_VFX_REQUIREMENTS.status.translation", "res://V1_89_VFX_REQUIREMENTS.notes.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

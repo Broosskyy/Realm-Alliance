@@ -1,0 +1,16 @@
+{
+  "source_version": "V1.7",
+  "master_concept": "V1.4",
+  "checks": {
+    "responsive_autoload": true,
+    "viewport_resize_hook": true,
+    "modal_lock_helper": true,
+    "settings_close_unlock": true,
+    "upgrade_close_unlock": true,
+    "level_close_unlock": true,
+    "small_profile": true
+  },
+  "missing_ext_resources": [],
+  "syntax_suspects": [],
+  "godot_binary": "not installed"
+}

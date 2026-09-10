@@ -1,0 +1,17 @@
+{
+  "source_version": "V1.28",
+  "master_version": "V2.0",
+  "block": "Puzzle vertical slice",
+  "board": "3x3",
+  "target_matches": 3,
+  "save_schema": "V20",
+  "art_status": "integration glyph placeholders",
+  "previous_blocks_preserved": [
+    "V1.23 SPIN",
+    "V1.24 Village",
+    "V1.25 Combat",
+    "V1.26 Journey",
+    "V1.27 Meta"
+  ],
+  "next_master_block": "Tower Defense vertical slice"
+}

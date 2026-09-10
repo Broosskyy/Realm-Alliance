@@ -1,0 +1,15 @@
+{
+  "version": "1.60",
+  "levels": {
+    "high": "Safe for automatic runtime binding.",
+    "medium": "Can be used for noncritical presentation; remains reviewable.",
+    "low": "Do not bind automatically.",
+    "hold": "Catalog only; no runtime use."
+  },
+  "policy": {
+    "placeholder": "hold",
+    "exact_production_match": "high",
+    "semantic_visual_match": "medium",
+    "unknown": "low"
+  }
+}

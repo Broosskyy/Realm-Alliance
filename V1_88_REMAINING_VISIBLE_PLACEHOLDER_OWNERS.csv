@@ -1,0 +1,11 @@
+placeholder_asset,scene_nodes
+res://assets/spin/SPIN010_machine_frame_placeholder.png,SpinMachineFrame
+res://assets/spin/SPIN020_reel_placeholder.png,Reel1
+res://assets/spin/SPIN021_reel_placeholder.png,Reel2
+res://assets/spin/SPIN022_reel_placeholder.png,Reel3
+res://assets/spin/SPIN030_payline_placeholder.png,Payline
+res://assets/spin/SPIN031_jackpot_panel_placeholder.png,JackpotPanel
+res://assets/fx/monster_hit_overlay_placeholder.png,MonsterHitOverlay
+res://assets/v149_td/V149_003_td_enemy_placeholder.png,TDEnemyMarker
+res://assets/ui/banners/unlock_banner_placeholder.png,UnlockBanner
+res://assets/village/greenvale/village_ambient_trees_placeholder.png,VillageAmbient

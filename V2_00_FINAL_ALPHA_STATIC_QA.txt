@@ -1,0 +1,41 @@
+PASS | source version 2.00
+PASS | build 200
+PASS | project version 2.00
+PASS | save schema 35
+PASS | V200 preload
+PASS | V200 initial+viewport hooks | 2
+PASS | V200 binding active
+PASS | all literal res paths exist | 3689 refs
+PASS | no zero-byte project/source/assets | []
+PASS | all JSON valid | 226 files
+PASS | all images decode | 716 images
+PASS | all active production bindings resolve | 295 active / 2 hold
+PASS | registry paths + atlas bounds valid | issues 0
+PASS | scene extresources resolved
+PASS | no direct placeholder extresources
+PASS | primary nav Btn_Tap
+PASS | primary nav Btn_Rad
+PASS | primary nav Btn_Dorf
+PASS | primary nav MoreFeaturesButtonP0
+PASS | legacy nav hidden Btn_Heroes
+PASS | legacy nav hidden Btn_Attack
+PASS | legacy nav hidden Btn_Defense
+PASS | V200 authority guard PlayerData.gold =
+PASS | V200 authority guard PlayerData.spins =
+PASS | V200 authority guard SaveGame.save_game
+PASS | V200 authority guard grant_reward(
+PASS | V200 authority guard damage_monster(
+PASS | V200 authority guard add_gold(
+PASS | V200 authority guard acknowledge_pending
+PASS | V200 authority guard resolve_pending
+PASS | V200 3-reel responsive geometry
+PASS | V200 village responsive layering
+PASS | four-tab labels enforced
+PASS | balance MONSTER_BASE_HP := 100
+PASS | balance HP_GROWTH := 1.085
+PASS | balance TAP_DAMAGE_GAIN := 5
+PASS | Android export preset exists
+
+RESULT: 37/37 PASS
+
+Godot runtime/device/APK QA: NOT RUN (Godot executable unavailable in this environment).

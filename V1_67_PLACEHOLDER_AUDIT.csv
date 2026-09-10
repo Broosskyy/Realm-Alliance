@@ -1,0 +1,120 @@
+path,category,status,note,size
+res://assets/account/ACC001_profile_panel_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,860x700
+res://assets/account/ACC002_profile_icon_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,280x280
+res://assets/account/ACC003_cloud_status_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,760x160
+res://assets/account/ACC004_support_card_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,760x180
+res://assets/account/ACC005_legal_card_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,760x180
+res://assets/account/ACC006_account_action_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,760x150
+res://assets/audio/p0/music_greenvale_loop_placeholder.wav,audio,REVIEW,Needs runtime/semantic review before deletion or production,
+res://assets/battle/greenvale/lane_map_greenvale_placeholder.png,lane_battle,CONFIRMED_MISSING,Production asset required,1080x1500
+res://assets/battle/units/unit_archer_placeholder.png,lane_battle,CONFIRMED_MISSING,Production asset required,256x256
+res://assets/battle/units/unit_enemy_melee_placeholder.png,lane_battle,REVIEW,Mode art requires final world/gameplay review,256x256
+res://assets/battle/units/unit_knight_placeholder.png,lane_battle,CONFIRMED_MISSING,Production asset required,256x256
+res://assets/defense/enemies/td_enemy_runner_placeholder.png,tower_defense,CONFIRMED_MISSING,Production asset required,220x220
+res://assets/defense/enemies/td_enemy_tank_placeholder.png,tower_defense,REVIEW,Mode art requires final world/gameplay review,220x220
+res://assets/defense/greenvale/td_map_greenvale_placeholder.png,tower_defense,CONFIRMED_MISSING,Production asset required,1080x1500
+res://assets/defense/towers/tower_archer_placeholder.png,tower_defense,CONFIRMED_MISSING,Production asset required,320x320
+res://assets/defense/towers/tower_mage_placeholder.png,tower_defense,CONFIRMED_MISSING,Production asset required,320x320
+res://assets/entry/ENTRY001_splash_bg_placeholder.png,entry,CONFIRMED_MISSING,Production asset required,1080x1920
+res://assets/entry/ENTRY002_welcome_bg_placeholder.png,entry,CONFIRMED_MISSING,Production asset required,1080x1920
+res://assets/entry/ENTRY003_realm_emblem_placeholder.png,entry,CONFIRMED_MISSING,Production asset required,700x700
+res://assets/entry/ENTRY010_auth_panel_placeholder.png,entry,REVIEW,Entry family not fully production-ready,900x980
+res://assets/entry/ENTRY011_primary_button_placeholder.png,entry,REVIEW,Entry family not fully production-ready,760x150
+res://assets/entry/ENTRY012_secondary_button_placeholder.png,entry,REVIEW,Entry family not fully production-ready,760x130
+res://assets/fx/fx_reward_burst_placeholder.png,vfx,REVIEW,FX placeholders require runtime visual review; do not replace blindly,512x512
+res://assets/fx/fx_tower_hit_placeholder.png,vfx,REVIEW,FX placeholders require runtime visual review; do not replace blindly,160x160
+res://assets/fx/fx_unlock_badge_placeholder.png,vfx,REVIEW,FX placeholders require runtime visual review; do not replace blindly,256x256
+res://assets/fx/monster_death_overlay_placeholder.png,vfx,REVIEW,FX placeholders require runtime visual review; do not replace blindly,640x640
+res://assets/fx/monster_hit_overlay_placeholder.png,vfx,REVIEW,FX placeholders require runtime visual review; do not replace blindly,640x640
+res://assets/fx/projectile_magic_placeholder.png,vfx,REVIEW,FX placeholders require runtime visual review; do not replace blindly,96x96
+res://assets/heroes/hero_archer_portrait_placeholder.png,hero,CONFIRMED_MISSING,Production asset required,512x512
+res://assets/heroes/hero_knight_portrait_placeholder.png,hero,CONFIRMED_MISSING,Production asset required,512x512
+res://assets/heroes/hero_mage_portrait_placeholder.png,hero,CONFIRMED_MISSING,Production asset required,512x512
+res://assets/home_polish/HOME001_topbar_frame_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,960x130
+res://assets/home_polish/HOME002_hp_frame_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,820x90
+res://assets/home_polish/HOME003_tap_prompt_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,560x120
+res://assets/home_polish/HOME004_boss_alert_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,560x120
+res://assets/home_polish/HOME005_reward_burst_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,320x320
+res://assets/home_polish/HOME006_bottom_nav_frame_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,960x170
+res://assets/monsters/greenvale/monster_boar_boss_placeholder.png,monster,SUPERSEDED,V1.59+ clean 4-state monster production system supersedes old placeholder,680x680
+res://assets/monsters/greenvale/monster_boar_brute_01_placeholder.png,monster,SUPERSEDED,V1.59+ clean 4-state monster production system supersedes old placeholder,640x640
+res://assets/monsters/greenvale/monster_goblin_01_placeholder.png,monster,SUPERSEDED,V1.59+ clean 4-state monster production system supersedes old placeholder,640x640
+res://assets/monsters/greenvale/monster_slime_01_placeholder.png,monster,SUPERSEDED,V1.59+ clean 4-state monster production system supersedes old placeholder,640x640
+res://assets/monsters/greenvale/monster_treant_boss_01_placeholder.png,monster,SUPERSEDED,V1.59+ clean 4-state monster production system supersedes old placeholder,720x720
+res://assets/social/SOC001_profile_card_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x300
+res://assets/social/SOC002_friends_card_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x300
+res://assets/social/SOC003_inbox_card_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x300
+res://assets/social/SOC004_achievement_card_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x300
+res://assets/social/SOC005_notification_badge_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x300
+res://assets/social/SOC006_player_badge_placeholder.png,social,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x300
+res://assets/spin/SPIN010_machine_frame_placeholder.png,spin,REVIEW,Needs runtime/semantic review before deletion or production,900x700
+res://assets/spin/SPIN020_reel_placeholder.png,spin,REVIEW,Needs runtime/semantic review before deletion or production,220x390
+res://assets/spin/SPIN021_reel_placeholder.png,spin,REVIEW,Needs runtime/semantic review before deletion or production,220x390
+res://assets/spin/SPIN022_reel_placeholder.png,spin,REVIEW,Needs runtime/semantic review before deletion or production,220x390
+res://assets/spin/SPIN030_payline_placeholder.png,spin,REVIEW,Needs runtime/semantic review before deletion or production,760x34
+res://assets/spin/SPIN031_jackpot_panel_placeholder.png,spin,REVIEW,Needs runtime/semantic review before deletion or production,620x100
+res://assets/spin_contract/SPINC001_result_id_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/spin_contract/SPINC002_visual_seed_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/spin_contract/SPINC003_reel_stop_ids_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/spin_contract/SPINC004_payline_contract_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/spin_contract/SPINC005_resume_contract_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/spin_contract/SPINC006_audit_contract_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/ui/banners/unlock_banner_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,900x180
+res://assets/ui/buttons/btn_primary_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,720x128
+res://assets/ui/buttons/btn_secondary_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,720x128
+res://assets/ui/cards/daily_reward_card_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,420x220
+res://assets/ui/cards/quest_card_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,760x150
+res://assets/ui/icons/icon_attack_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_daily_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_defense_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_gem_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_gold_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_heroes_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_home_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_quest_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_reward_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_shield_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_spin_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_tap_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_village_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,128x128
+res://assets/ui/icons/icon_wheel_placeholder.png,ui,OBSOLETE,"REALM SPIN is locked to a 3-reel machine, not an 8-segment wheel",128x128
+res://assets/ui/modals/reward_modal_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,840x760
+res://assets/ui/panels/bottomnav_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,980x180
+res://assets/ui/panels/home_overlay_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,1080x1920
+res://assets/ui/panels/hp_fill_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,820x44
+res://assets/ui/panels/hp_frame_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,840x64
+res://assets/ui/panels/topbar_placeholder.png,ui,SUPERSEDED,V4 UI / atlas semantic binding now covers this presentation family,900x150
+res://assets/ui_polish/UIP001_more_hub_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/ui_polish/UIP002_daily_tile_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/ui_polish/UIP003_quest_tile_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/ui_polish/UIP004_journey_tile_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/ui_polish/UIP005_notification_badge_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/ui_polish/UIP006_feature_tile_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,360x220
+res://assets/v139_polish/P139_001_spin_status_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,720x110
+res://assets/v139_polish/P139_002_payline_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,760x80
+res://assets/v139_polish/P139_003_village_header_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,720x160
+res://assets/v139_polish/P139_004_upgrade_state_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v139_polish/P139_005_locked_state_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v139_polish/P139_006_modal_divider_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,720x70
+res://assets/v144_liveops/V144_001_halloween_event_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_002_global_ranking_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_003_daily_ranking_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_004_weekly_ranking_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_005_afk_reward_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_006_itemshop_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_007_progression_hub_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v144_liveops/V144_008_event_reward_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,420x260
+res://assets/v146_halloween/V146_006_halloween_boss_placeholder.png,other,REVIEW,Needs runtime/semantic review before deletion or production,768x768
+res://assets/v149_td/V149_003_td_enemy_placeholder.png,tower_defense,REVIEW,Needs runtime/semantic review before deletion or production,768x768
+res://assets/village/greenvale/building_defense_tower_lv1_placeholder.png,village,SUPERSEDED,Production village building mapping exists,512x512
+res://assets/village/greenvale/building_forge_lv1_placeholder.png,village,SUPERSEDED,Production village building mapping exists,512x512
+res://assets/village/greenvale/building_forge_lv2_placeholder.png,village,SUPERSEDED,Production village building mapping exists,512x512
+res://assets/village/greenvale/building_goldmine_lv1_placeholder.png,village,REVIEW,Current production mapping exists; judge on device,512x512
+res://assets/village/greenvale/building_goldmine_lv2_placeholder.png,village,REVIEW,Current production mapping exists; judge on device,512x512
+res://assets/village/greenvale/building_townhall_lv1_placeholder.png,village,SUPERSEDED,Production village building mapping exists,512x512
+res://assets/village/greenvale/building_townhall_lv2_placeholder.png,village,SUPERSEDED,Production village building mapping exists,512x512
+res://assets/village/greenvale/building_townhall_lv3_placeholder.png,village,SUPERSEDED,Production village building mapping exists,512x512
+res://assets/village/greenvale/village_ambient_trees_placeholder.png,village,CONFIRMED_MISSING,Production asset required,512x256
+res://assets/wheel/wheel_8segment_placeholder.png,spin,OBSOLETE,"REALM SPIN is locked to a 3-reel machine, not an 8-segment wheel",800x800
+res://assets/wheel/wheel_pointer_placeholder.png,spin,OBSOLETE,"REALM SPIN is locked to a 3-reel machine, not an 8-segment wheel",180x180
+res://assets/world/greenvale/bg_greenvale_tap_placeholder.png,world,REVIEW,World background must be judged against current production background,1080x1920

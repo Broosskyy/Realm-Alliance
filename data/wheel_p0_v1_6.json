@@ -1,0 +1,83 @@
+{
+  "master_version": "1.6",
+  "config_version": "v1.6-p0-01",
+  "segments": [
+    {
+      "id": "gold_small",
+      "weight": 24,
+      "reward_type": "gold",
+      "amount_min": 80,
+      "amount_max": 150
+    },
+    {
+      "id": "gold_medium",
+      "weight": 18,
+      "reward_type": "gold",
+      "amount_min": 180,
+      "amount_max": 280
+    },
+    {
+      "id": "gold_large",
+      "weight": 10,
+      "reward_type": "gold",
+      "amount_min": 350,
+      "amount_max": 500
+    },
+    {
+      "id": "shield",
+      "weight": 14,
+      "reward_type": "shield",
+      "amount": 1
+    },
+    {
+      "id": "attack",
+      "weight": 8,
+      "reward_type": "fallback_gold",
+      "amount": 220,
+      "future": "lane_attack"
+    },
+    {
+      "id": "bonus_spins",
+      "weight": 12,
+      "reward_type": "spins",
+      "amount": 2
+    },
+    {
+      "id": "puzzle_bonus",
+      "weight": 9,
+      "reward_type": "fallback_gold",
+      "amount": 240,
+      "future": "puzzle_ticket"
+    },
+    {
+      "id": "jackpot",
+      "weight": 5,
+      "reward_type": "special_gold",
+      "amount": 600,
+      "future": "jackpot_chest"
+    }
+  ],
+  "visual_contract": {
+    "segments": 8,
+    "dominant_screen_target": true,
+    "wheel_width_percent": [
+      72,
+      82
+    ],
+    "spin_cta_width_percent": [
+      76,
+      88
+    ],
+    "pointer_angle_deg": -90.0,
+    "fixed_equal_visual_segments": true
+  },
+  "product_contract": {
+    "starting_spins": 10,
+    "puzzle_is_bonus_pillar": true,
+    "permanent_puzzle_currency": false,
+    "future_strategy_modes": [
+      "tower_defense",
+      "lane_battle"
+    ]
+  }
+}

@@ -1,0 +1,1206 @@
+{
+  "version": "1.93",
+  "bindings": {
+    "ui.icon.attack": {
+      "asset": "v4.ui.combat_core.attack",
+      "confidence": "high"
+    },
+    "ui.icon.defense": {
+      "asset": "v4.ui.combat_core.defense",
+      "confidence": "high"
+    },
+    "ui.icon.home": {
+      "asset": "v4.ui.navigation.home",
+      "confidence": "high"
+    },
+    "ui.icon.quest": {
+      "asset": "v4.ui.navigation.quest",
+      "confidence": "high"
+    },
+    "ui.icon.daily": {
+      "asset": "v4.ui.quest_states.daily_quest",
+      "confidence": "high"
+    },
+    "ui.quest.header": {
+      "asset": "atlas:quest_01/header",
+      "confidence": "high"
+    },
+    "ui.quest.row.default": {
+      "asset": "atlas:quest_01/row_standard",
+      "confidence": "medium"
+    },
+    "ui.quest.row.active": {
+      "asset": "atlas:quest_01/row_active",
+      "confidence": "medium"
+    },
+    "ui.quest.row.completed": {
+      "asset": "atlas:quest_01/row_completed",
+      "confidence": "medium"
+    },
+    "ui.shop.featured": {
+      "asset": "atlas:itemshop_01/featured_offer",
+      "confidence": "high"
+    },
+    "ui.shop.item.standard": {
+      "asset": "atlas:itemshop_01/item_standard",
+      "confidence": "medium"
+    },
+    "ui.shop.purchase": {
+      "asset": "atlas:itemshop_01/purchase_button",
+      "confidence": "high"
+    },
+    "ui.afk.summary": {
+      "asset": "atlas:afk_01/summary_panel",
+      "confidence": "high"
+    },
+    "ui.afk.claim": {
+      "asset": "atlas:afk_01/claim_button",
+      "confidence": "high"
+    },
+    "ui.progression.overview": {
+      "asset": "atlas:progression_01/overview_panel",
+      "confidence": "high"
+    },
+    "ui.progression.progress_bar": {
+      "asset": "atlas:progression_01/progress_bar",
+      "confidence": "medium"
+    },
+    "ui.ranking.header": {
+      "asset": "atlas:leaderboard_01/header_primary",
+      "confidence": "medium"
+    },
+    "ui.ranking.badge.first": {
+      "asset": "atlas:leaderboard_01/badge_first",
+      "confidence": "high"
+    },
+    "ui.ranking.badge.second": {
+      "asset": "atlas:leaderboard_01/badge_second",
+      "confidence": "high"
+    },
+    "ui.ranking.badge.third": {
+      "asset": "atlas:leaderboard_01/badge_third",
+      "confidence": "high"
+    },
+    "spin.symbol.gold": {
+      "asset": "atlas:spin_symbols_01/gold",
+      "confidence": "high"
+    },
+    "spin.symbol.crystals": {
+      "asset": "atlas:spin_symbols_01/crystals",
+      "confidence": "high"
+    },
+    "spin.symbol.xp": {
+      "asset": "atlas:spin_symbols_01/xp_orb",
+      "confidence": "medium"
+    },
+    "spin.symbol.energy": {
+      "asset": "atlas:spin_symbols_01/energy",
+      "confidence": "high"
+    },
+    "spin.symbol.chest": {
+      "asset": "atlas:spin_symbols_01/chest",
+      "confidence": "high"
+    },
+    "spin.symbol.materials": {
+      "asset": "atlas:spin_symbols_01/materials",
+      "confidence": "high"
+    },
+    "spin.symbol.token": {
+      "asset": "atlas:spin_symbols_01/realm_token",
+      "confidence": "high"
+    },
+    "spin.symbol.rare": {
+      "asset": "atlas:spin_symbols_01/rare_bonus",
+      "confidence": "high"
+    },
+    "legacy.wheel.base": {
+      "asset": "",
+      "confidence": "hold",
+      "note": "Deprecated: route to 3-reel spin"
+    },
+    "legacy.wheel.pointer": {
+      "asset": "",
+      "confidence": "hold",
+      "note": "Deprecated: route to 3-reel spin"
+    },
+    "ui.quest.summary": {
+      "asset": "atlas:quest_01/progress_container",
+      "confidence": "high"
+    },
+    "ui.quest.category.main": {
+      "asset": "atlas:quest_01/category_main",
+      "confidence": "high"
+    },
+    "ui.quest.category.daily": {
+      "asset": "atlas:quest_01/category_daily",
+      "confidence": "high"
+    },
+    "ui.quest.category.event": {
+      "asset": "atlas:quest_01/category_event",
+      "confidence": "high"
+    },
+    "ui.quest.reward": {
+      "asset": "atlas:quest_01/reward_container",
+      "confidence": "high"
+    },
+    "ui.shop.item.premium": {
+      "asset": "atlas:itemshop_01/item_premium",
+      "confidence": "high"
+    },
+    "ui.shop.item.limited": {
+      "asset": "atlas:itemshop_01/item_limited",
+      "confidence": "high"
+    },
+    "ui.shop.price": {
+      "asset": "atlas:itemshop_01/price_container",
+      "confidence": "high"
+    },
+    "ui.shop.currency": {
+      "asset": "atlas:itemshop_01/currency_socket",
+      "confidence": "high"
+    },
+    "ui.shop.offer_badge": {
+      "asset": "atlas:itemshop_01/offer_badge",
+      "confidence": "high"
+    },
+    "ui.afk.duration": {
+      "asset": "atlas:afk_01/duration_display",
+      "confidence": "high"
+    },
+    "ui.afk.accumulated": {
+      "asset": "atlas:afk_01/accumulated_panel",
+      "confidence": "high"
+    },
+    "ui.afk.reward.standard": {
+      "asset": "atlas:afk_01/reward_slot_standard",
+      "confidence": "high"
+    },
+    "ui.afk.reward.bonus": {
+      "asset": "atlas:afk_01/reward_slot_bonus",
+      "confidence": "high"
+    },
+    "ui.afk.claim.bonus": {
+      "asset": "atlas:afk_01/bonus_claim_button",
+      "confidence": "high"
+    },
+    "ui.progression.level_badge": {
+      "asset": "atlas:progression_01/level_badge",
+      "confidence": "high"
+    },
+    "ui.progression.node.standard": {
+      "asset": "atlas:progression_01/node_standard",
+      "confidence": "high"
+    },
+    "ui.progression.node.locked": {
+      "asset": "atlas:progression_01/node_locked",
+      "confidence": "high"
+    },
+    "ui.progression.node.available": {
+      "asset": "atlas:progression_01/node_available",
+      "confidence": "high"
+    },
+    "ui.progression.node.completed": {
+      "asset": "atlas:progression_01/node_completed",
+      "confidence": "high"
+    },
+    "ui.progression.action": {
+      "asset": "atlas:progression_01/action_button",
+      "confidence": "high"
+    },
+    "ui.ranking.row": {
+      "asset": "atlas:leaderboard_01/row_secondary",
+      "confidence": "high"
+    },
+    "ui.ranking.tab": {
+      "asset": "atlas:leaderboard_01/small_primary",
+      "confidence": "high"
+    },
+    "ui.ranking.reward": {
+      "asset": "atlas:leaderboard_01/small_alert",
+      "confidence": "high"
+    },
+    "spin.control.ready": {
+      "asset": "atlas:spin_controls_01/asset_01",
+      "confidence": "medium"
+    },
+    "spin.control.disabled": {
+      "asset": "atlas:spin_controls_01/asset_04",
+      "confidence": "medium"
+    },
+    "spin.payline": {
+      "asset": "atlas:spin_reel_structure_01/asset_06",
+      "confidence": "high"
+    },
+    "spin.machine.frame": {
+      "asset": "atlas:spin_machine_modular_01/asset_06",
+      "confidence": "high",
+      "note": "Visually verified 3-reel housing with three isolated reel windows."
+    },
+    "spin.machine.header": {
+      "asset": "atlas:spin_machine_modular_01/asset_01",
+      "confidence": "medium",
+      "note": "Verified premium Realm header; optional until final Spin header placement QA."
+    },
+    "ui.monster.hp.normal": {
+      "asset": "v4.ui.monster_boss_hud.small_hp_bar",
+      "confidence": "high"
+    },
+    "ui.monster.hp.boss": {
+      "asset": "v4.ui.monster_boss_hud.hp_bar",
+      "confidence": "high"
+    },
+    "ui.button.spin.primary": {
+      "asset": "v4.ui.buttons.buttons_02",
+      "confidence": "high",
+      "note": "Visually selected existing REALM blue/gold wide CTA; runtime label remains dynamic."
+    },
+    "ui.icon.settings": {
+      "asset": "v4.ui.navigation.settings",
+      "confidence": "high"
+    },
+    "ui.icon.spin": {
+      "asset": "v4.ui.navigation.wheel",
+      "confidence": "high"
+    },
+    "ui.icon.menu": {
+      "asset": "v4.ui.navigation.menu",
+      "confidence": "high"
+    },
+    "ui.icon.village": {
+      "asset": "v4.ui.village_buildings_a.village_buildings_a_01",
+      "confidence": "high",
+      "note": "Visually selected town/village building icon for primary DORF navigation."
+    },
+    "ui.home.boss_progress": {
+      "asset": "v4.ui.resource_bars.resource_bars_08",
+      "confidence": "high",
+      "note": "Wide gold/navy progress housing for 1/10 BIS BOSS."
+    },
+    "ui.button.primary": {
+      "asset": "v4.ui.buttons.buttons_02",
+      "confidence": "high",
+      "note": "Blue/gold primary action"
+    },
+    "ui.button.positive": {
+      "asset": "v4.ui.buttons.buttons_01",
+      "confidence": "high",
+      "note": "Green/gold positive/claim action"
+    },
+    "ui.button.secondary": {
+      "asset": "v4.ui.buttons.buttons_05",
+      "confidence": "high",
+      "note": "Dark/navy secondary action"
+    },
+    "ui.button.neutral": {
+      "asset": "v4.ui.buttons.buttons_07",
+      "confidence": "high",
+      "note": "Compact dark neutral action"
+    },
+    "ui.button.danger": {
+      "asset": "v4.ui.buttons.buttons_04",
+      "confidence": "high",
+      "note": "Red destructive/cancel action"
+    },
+    "ui.button.reward": {
+      "asset": "v4.ui.buttons.buttons_09",
+      "confidence": "high",
+      "note": "Large green reward/claim action"
+    },
+    "ui.panel.tall.primary": {
+      "asset": "v4.ui.panels.panels_02",
+      "confidence": "high"
+    },
+    "ui.panel.tall.dark": {
+      "asset": "v4.ui.panels.panels_03",
+      "confidence": "high"
+    },
+    "ui.panel.tall.parchment": {
+      "asset": "v4.ui.panels.panels_01",
+      "confidence": "high"
+    },
+    "ui.panel.wood": {
+      "asset": "v4.ui.panels.panels_04",
+      "confidence": "high"
+    },
+    "ui.panel.banner": {
+      "asset": "v4.ui.panels.panels_05",
+      "confidence": "high"
+    },
+    "ui.panel.info.parchment": {
+      "asset": "v4.ui.panels.panels_06",
+      "confidence": "high"
+    },
+    "ui.panel.info.dark": {
+      "asset": "v4.ui.panels.panels_07",
+      "confidence": "high"
+    },
+    "ui.panel.small.parchment": {
+      "asset": "v4.ui.panels.panels_08",
+      "confidence": "high"
+    },
+    "ui.frame.slot.1": {
+      "asset": "v4.ui.frames_slots.frames_slots_01",
+      "confidence": "high"
+    },
+    "ui.frame.slot.2": {
+      "asset": "v4.ui.frames_slots.frames_slots_02",
+      "confidence": "high"
+    },
+    "ui.frame.slot.3": {
+      "asset": "v4.ui.frames_slots.frames_slots_03",
+      "confidence": "high"
+    },
+    "ui.frame.slot.4": {
+      "asset": "v4.ui.frames_slots.frames_slots_04",
+      "confidence": "high"
+    },
+    "ui.frame.slot.5": {
+      "asset": "v4.ui.frames_slots.frames_slots_05",
+      "confidence": "high"
+    },
+    "ui.frame.slot.6": {
+      "asset": "v4.ui.frames_slots.frames_slots_06",
+      "confidence": "high"
+    },
+    "ui.frame.slot.7": {
+      "asset": "v4.ui.frames_slots.frames_slots_07",
+      "confidence": "high"
+    },
+    "ui.frame.slot.8": {
+      "asset": "v4.ui.frames_slots.frames_slots_08",
+      "confidence": "high"
+    },
+    "ui.frame.slot.9": {
+      "asset": "v4.ui.frames_slots.frames_slots_09",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.1": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_01",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.2": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_02",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.3": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_03",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.4": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_04",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.5": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_05",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.6": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_06",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.7": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_07",
+      "confidence": "high"
+    },
+    "ui.slot.rarity.8": {
+      "asset": "v4.ui.rarity_slots.rarity_slots_08",
+      "confidence": "high"
+    },
+    "ui.bar.1": {
+      "asset": "v4.ui.resource_bars.resource_bars_01",
+      "confidence": "high"
+    },
+    "ui.bar.2": {
+      "asset": "v4.ui.resource_bars.resource_bars_02",
+      "confidence": "high"
+    },
+    "ui.bar.3": {
+      "asset": "v4.ui.resource_bars.resource_bars_03",
+      "confidence": "high"
+    },
+    "ui.bar.4": {
+      "asset": "v4.ui.resource_bars.resource_bars_04",
+      "confidence": "high"
+    },
+    "ui.bar.5": {
+      "asset": "v4.ui.resource_bars.resource_bars_05",
+      "confidence": "high"
+    },
+    "ui.bar.6": {
+      "asset": "v4.ui.resource_bars.resource_bars_06",
+      "confidence": "high"
+    },
+    "ui.bar.7": {
+      "asset": "v4.ui.resource_bars.resource_bars_07",
+      "confidence": "high"
+    },
+    "ui.bar.8": {
+      "asset": "v4.ui.resource_bars.resource_bars_08",
+      "confidence": "high"
+    },
+    "ui.bar.9": {
+      "asset": "v4.ui.resource_bars.resource_bars_09",
+      "confidence": "high"
+    },
+    "ui.bar.10": {
+      "asset": "v4.ui.resource_bars.resource_bars_10",
+      "confidence": "high"
+    },
+    "ui.utility.close": {
+      "asset": "v4.ui.utility_controls.close",
+      "confidence": "high"
+    },
+    "ui.utility.back": {
+      "asset": "v4.ui.utility_controls.back",
+      "confidence": "high"
+    },
+    "ui.utility.confirm": {
+      "asset": "v4.ui.utility_controls.confirm",
+      "confidence": "high"
+    },
+    "ui.utility.info": {
+      "asset": "v4.ui.utility_controls.info",
+      "confidence": "high"
+    },
+    "ui.utility.checked_slot": {
+      "asset": "v4.ui.utility_controls.checked_slot",
+      "confidence": "high"
+    },
+    "ui.utility.square_slot": {
+      "asset": "v4.ui.utility_controls.square_slot",
+      "confidence": "high"
+    },
+    "ui.utility.slider": {
+      "asset": "v4.ui.utility_controls.slider",
+      "confidence": "high"
+    },
+    "ui.utility.dropdown": {
+      "asset": "v4.ui.utility_controls.dropdown",
+      "confidence": "high"
+    },
+    "ui.utility.blue_bar": {
+      "asset": "v4.ui.utility_controls.blue_bar",
+      "confidence": "high"
+    },
+    "ui.utility.dark_bar": {
+      "asset": "v4.ui.utility_controls.dark_bar",
+      "confidence": "high"
+    },
+    "ui.nav.home": {
+      "asset": "v4.ui.navigation.home",
+      "confidence": "high"
+    },
+    "ui.nav.monster": {
+      "asset": "v4.ui.navigation.monster",
+      "confidence": "high"
+    },
+    "ui.nav.combat": {
+      "asset": "v4.ui.navigation.combat",
+      "confidence": "high"
+    },
+    "ui.nav.wheel": {
+      "asset": "v4.ui.navigation.wheel",
+      "confidence": "high"
+    },
+    "ui.nav.currency": {
+      "asset": "v4.ui.navigation.currency",
+      "confidence": "high"
+    },
+    "ui.nav.inventory": {
+      "asset": "v4.ui.navigation.inventory",
+      "confidence": "high"
+    },
+    "ui.nav.quest": {
+      "asset": "v4.ui.navigation.quest",
+      "confidence": "high"
+    },
+    "ui.nav.ranking": {
+      "asset": "v4.ui.navigation.ranking",
+      "confidence": "high"
+    },
+    "ui.nav.settings": {
+      "asset": "v4.ui.navigation.settings",
+      "confidence": "high"
+    },
+    "ui.nav.menu": {
+      "asset": "v4.ui.navigation.menu",
+      "confidence": "high"
+    },
+    "ui.quest.icon.main_quest": {
+      "asset": "v4.ui.quest_states.main_quest",
+      "confidence": "high"
+    },
+    "ui.quest.icon.daily_quest": {
+      "asset": "v4.ui.quest_states.daily_quest",
+      "confidence": "high"
+    },
+    "ui.quest.icon.side_quest": {
+      "asset": "v4.ui.quest_states.side_quest",
+      "confidence": "high"
+    },
+    "ui.quest.icon.quest_alert": {
+      "asset": "v4.ui.quest_states.quest_alert",
+      "confidence": "high"
+    },
+    "ui.quest.icon.in_progress": {
+      "asset": "v4.ui.quest_states.in_progress",
+      "confidence": "high"
+    },
+    "ui.quest.icon.complete": {
+      "asset": "v4.ui.quest_states.complete",
+      "confidence": "high"
+    },
+    "ui.quest.icon.claim": {
+      "asset": "v4.ui.quest_states.claim",
+      "confidence": "high"
+    },
+    "ui.quest.icon.streak": {
+      "asset": "v4.ui.quest_states.streak",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.sword": {
+      "asset": "v4.ui.inventory_equipment.sword",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.axe": {
+      "asset": "v4.ui.inventory_equipment.axe",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.shield": {
+      "asset": "v4.ui.inventory_equipment.shield",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.armor": {
+      "asset": "v4.ui.inventory_equipment.armor",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.helmet": {
+      "asset": "v4.ui.inventory_equipment.helmet",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.boots": {
+      "asset": "v4.ui.inventory_equipment.boots",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.ring": {
+      "asset": "v4.ui.inventory_equipment.ring",
+      "confidence": "high"
+    },
+    "ui.inventory.equipment.pendant": {
+      "asset": "v4.ui.inventory_equipment.pendant",
+      "confidence": "high"
+    },
+    "ui.inventory.item.health_potion": {
+      "asset": "v4.ui.inventory_consumables.health_potion",
+      "confidence": "high"
+    },
+    "ui.inventory.item.mana_potion": {
+      "asset": "v4.ui.inventory_consumables.mana_potion",
+      "confidence": "high"
+    },
+    "ui.inventory.item.green_potion": {
+      "asset": "v4.ui.inventory_consumables.green_potion",
+      "confidence": "high"
+    },
+    "ui.inventory.item.ore": {
+      "asset": "v4.ui.inventory_consumables.ore",
+      "confidence": "high"
+    },
+    "ui.inventory.item.blue_crystal": {
+      "asset": "v4.ui.inventory_consumables.blue_crystal",
+      "confidence": "high"
+    },
+    "ui.inventory.item.ingots": {
+      "asset": "v4.ui.inventory_consumables.ingots",
+      "confidence": "high"
+    },
+    "ui.inventory.item.purple_orb": {
+      "asset": "v4.ui.inventory_consumables.purple_orb",
+      "confidence": "high"
+    },
+    "ui.inventory.item.blue_resource": {
+      "asset": "v4.ui.inventory_consumables.blue_resource",
+      "confidence": "high"
+    },
+    "ui.village.control.build": {
+      "asset": "v4.ui.village_controls.build",
+      "confidence": "high"
+    },
+    "ui.village.control.upgrade": {
+      "asset": "v4.ui.village_controls.upgrade",
+      "confidence": "high"
+    },
+    "ui.village.control.collect": {
+      "asset": "v4.ui.village_controls.collect",
+      "confidence": "high"
+    },
+    "ui.village.control.ready": {
+      "asset": "v4.ui.village_controls.ready",
+      "confidence": "high"
+    },
+    "ui.village.control.timer": {
+      "asset": "v4.ui.village_controls.timer",
+      "confidence": "high"
+    },
+    "ui.village.control.locked": {
+      "asset": "v4.ui.village_controls.locked",
+      "confidence": "high"
+    },
+    "ui.village.control.info": {
+      "asset": "v4.ui.village_controls.info",
+      "confidence": "high"
+    },
+    "ui.village.control.max": {
+      "asset": "v4.ui.village_controls.max",
+      "confidence": "high"
+    },
+    "ui.combat.attack": {
+      "asset": "v4.ui.combat_core.attack",
+      "confidence": "high"
+    },
+    "ui.combat.heavy_attack": {
+      "asset": "v4.ui.combat_core.heavy_attack",
+      "confidence": "high"
+    },
+    "ui.combat.defense": {
+      "asset": "v4.ui.combat_core.defense",
+      "confidence": "high"
+    },
+    "ui.combat.heal": {
+      "asset": "v4.ui.combat_core.heal",
+      "confidence": "high"
+    },
+    "ui.combat.speed": {
+      "asset": "v4.ui.combat_core.speed",
+      "confidence": "high"
+    },
+    "ui.combat.auto": {
+      "asset": "v4.ui.combat_core.auto",
+      "confidence": "high"
+    },
+    "ui.combat.target": {
+      "asset": "v4.ui.combat_core.target",
+      "confidence": "high"
+    },
+    "ui.status.attack_up": {
+      "asset": "v4.ui.combat_status.attack_up",
+      "confidence": "high"
+    },
+    "ui.status.defense_up": {
+      "asset": "v4.ui.combat_status.defense_up",
+      "confidence": "high"
+    },
+    "ui.status.attack_down": {
+      "asset": "v4.ui.combat_status.attack_down",
+      "confidence": "high"
+    },
+    "ui.status.defense_down": {
+      "asset": "v4.ui.combat_status.defense_down",
+      "confidence": "high"
+    },
+    "ui.status.poison": {
+      "asset": "v4.ui.combat_status.poison",
+      "confidence": "high"
+    },
+    "ui.status.burn": {
+      "asset": "v4.ui.combat_status.burn",
+      "confidence": "high"
+    },
+    "ui.status.freeze": {
+      "asset": "v4.ui.combat_status.freeze",
+      "confidence": "high"
+    },
+    "ui.status.stun": {
+      "asset": "v4.ui.combat_status.stun",
+      "confidence": "high"
+    },
+    "ui.featurehub.panel": {
+      "asset": "v4.ui.panels.panels_03",
+      "confidence": "high"
+    },
+    "ui.settings.panel": {
+      "asset": "v4.ui.panels.panels_03",
+      "confidence": "high"
+    },
+    "ui.account.panel": {
+      "asset": "v4.ui.panels.panels_03",
+      "confidence": "high"
+    },
+    "ui.social.panel": {
+      "asset": "v4.ui.panels.panels_03",
+      "confidence": "high"
+    },
+    "ui.support.panel": {
+      "asset": "v4.ui.panels.panels_01",
+      "confidence": "high"
+    },
+    "ui.liveops.panel": {
+      "asset": "v4.ui.panels.panels_02",
+      "confidence": "high"
+    },
+    "ui.reward.panel": {
+      "asset": "v4.ui.panels.panels_06",
+      "confidence": "high"
+    },
+    "ui.upgrade.panel": {
+      "asset": "v4.ui.panels.panels_06",
+      "confidence": "high"
+    },
+    "ui.hero.panel": {
+      "asset": "v4.ui.panels.panels_02",
+      "confidence": "high"
+    },
+    "ui.mode.panel": {
+      "asset": "v4.ui.panels.panels_03",
+      "confidence": "high"
+    },
+    "ui.modal.close": {
+      "asset": "v4.ui.utility_controls.close",
+      "confidence": "high"
+    },
+    "ui.modal.back": {
+      "asset": "v4.ui.utility_controls.back",
+      "confidence": "high"
+    },
+    "ui.modal.confirm": {
+      "asset": "v4.ui.utility_controls.confirm",
+      "confidence": "high"
+    },
+    "mode.journey.board": {
+      "asset": "v147.journey.board",
+      "confidence": "high"
+    },
+    "mode.journey.die": {
+      "asset": "v147.journey.die",
+      "confidence": "high"
+    },
+    "mode.journey.cache": {
+      "asset": "v147.journey.cache",
+      "confidence": "high"
+    },
+    "mode.journey.portal": {
+      "asset": "v147.journey.portal",
+      "confidence": "high"
+    },
+    "mode.puzzle.board": {
+      "asset": "v148.puzzle.board",
+      "confidence": "high"
+    },
+    "mode.puzzle.leaf": {
+      "asset": "v148.puzzle.leaf",
+      "confidence": "high"
+    },
+    "mode.puzzle.crystal": {
+      "asset": "v148.puzzle.crystal",
+      "confidence": "high"
+    },
+    "mode.puzzle.coin": {
+      "asset": "v148.puzzle.coin",
+      "confidence": "high"
+    },
+    "mode.lane.map": {
+      "asset": "v150.lane.map",
+      "confidence": "high"
+    },
+    "mode.lane.unit": {
+      "asset": "v150.lane.unit",
+      "confidence": "high"
+    },
+    "mode.lane.enemy": {
+      "asset": "v150.lane.enemy",
+      "confidence": "high"
+    },
+    "mode.lane.stage": {
+      "asset": "v150.lane.stage",
+      "confidence": "high"
+    },
+    "mode.lane.energy": {
+      "asset": "v150.lane.energy",
+      "confidence": "high"
+    },
+    "mode.lane.mastery": {
+      "asset": "v150.lane.mastery",
+      "confidence": "high"
+    },
+    "mode.td.map": {
+      "asset": "v149.td.map",
+      "confidence": "high"
+    },
+    "mode.td.tower": {
+      "asset": "v149.td.tower",
+      "confidence": "high"
+    },
+    "mode.td.enemy": {
+      "asset": "v149.td.enemy",
+      "confidence": "high"
+    },
+    "mode.td.stage": {
+      "asset": "v149.td.stage",
+      "confidence": "high"
+    },
+    "mode.td.mastery": {
+      "asset": "v149.td.mastery",
+      "confidence": "high"
+    },
+    "hero.knight.mastery": {
+      "asset": "v151.hero.knight",
+      "confidence": "high"
+    },
+    "hero.archer.mastery": {
+      "asset": "v151.hero.archer",
+      "confidence": "high"
+    },
+    "hero.mage.mastery": {
+      "asset": "v151.hero.mage",
+      "confidence": "high"
+    },
+    "hero.weapon": {
+      "asset": "v151.hero.weapon",
+      "confidence": "high"
+    },
+    "hero.charm": {
+      "asset": "v151.hero.charm",
+      "confidence": "high"
+    },
+    "hero.specialization": {
+      "asset": "v151.hero.specialization",
+      "confidence": "high"
+    },
+    "hero.reward": {
+      "asset": "v151.hero.reward",
+      "confidence": "high"
+    },
+    "objective.board": {
+      "asset": "v152.objective.board",
+      "confidence": "high"
+    },
+    "objective.daily": {
+      "asset": "v152.objective.daily",
+      "confidence": "high"
+    },
+    "objective.weekly": {
+      "asset": "v152.objective.weekly",
+      "confidence": "high"
+    },
+    "objective.achievement": {
+      "asset": "v152.objective.achievement",
+      "confidence": "high"
+    },
+    "objective.bestiary": {
+      "asset": "v152.objective.bestiary",
+      "confidence": "high"
+    },
+    "objective.claim": {
+      "asset": "v152.objective.claim",
+      "confidence": "high"
+    },
+    "objective.reward": {
+      "asset": "v152.objective.chest",
+      "confidence": "high"
+    },
+    "village.growth": {
+      "asset": "v153.village.growth",
+      "confidence": "high"
+    },
+    "village.craft": {
+      "asset": "v153.village.craft",
+      "confidence": "high"
+    },
+    "village.blessing": {
+      "asset": "v153.village.blessing",
+      "confidence": "high"
+    },
+    "village.reward": {
+      "asset": "v153.village.reward",
+      "confidence": "high"
+    },
+    "hub.emblem": {
+      "asset": "v154.hub.emblem",
+      "confidence": "high"
+    },
+    "hub.journey": {
+      "asset": "v154.hub.journey",
+      "confidence": "high"
+    },
+    "hub.resume": {
+      "asset": "v154.hub.resume",
+      "confidence": "high"
+    },
+    "hub.reward": {
+      "asset": "v154.hub.reward",
+      "confidence": "high"
+    },
+    "hub.status": {
+      "asset": "v154.hub.status",
+      "confidence": "high"
+    },
+    "hub.progression": {
+      "asset": "v154.hub.progression",
+      "confidence": "high"
+    },
+    "liveops.halloween.banner": {
+      "asset": "v145.halloween.banner",
+      "confidence": "high"
+    },
+    "afk.panel.production": {
+      "asset": "v145.afk.panel",
+      "confidence": "high"
+    },
+    "progression.card.production": {
+      "asset": "v145.progression.card",
+      "confidence": "high"
+    },
+    "shop.card.production": {
+      "asset": "v145.shop.card",
+      "confidence": "high"
+    },
+    "ranking.card.production": {
+      "asset": "v145.ranking.card",
+      "confidence": "high"
+    },
+    "nav.primary.frame": {
+      "asset": "v154.nav.frame",
+      "confidence": "high"
+    },
+    "fx.tap.hit": {
+      "asset": "v190.vfx.combat_impacts.gold_impact",
+      "confidence": "high"
+    },
+    "ui.unlock.banner": {
+      "asset": "v190.vfx.progression_a.purple_unlock_vortex",
+      "confidence": "high"
+    },
+    "fx.level_up": {
+      "asset": "v190.vfx.progression_b.gold_celebration",
+      "confidence": "high"
+    },
+    "fx.puzzle.match": {
+      "asset": "v148.puzzle.burst",
+      "confidence": "high"
+    },
+    "fx.td.projectile": {
+      "asset": "v149.td.projectile",
+      "confidence": "high"
+    },
+    "fx.reward.pulse": {
+      "asset": "fx.reward.pulse",
+      "confidence": "high"
+    },
+    "fx.monster.defeat": {
+      "asset": "v190.vfx.combat_impacts.earth_impact",
+      "confidence": "high"
+    },
+    "fx.chest.open": {
+      "asset": "v190.rewards.chest_states.open_glow",
+      "confidence": "high"
+    },
+    "fx.spin.motion": {
+      "asset": "v190.vfx.spin.reel_motion",
+      "confidence": "high"
+    },
+    "fx.spin.stop": {
+      "asset": "v190.vfx.spin.reel_stop",
+      "confidence": "high"
+    },
+    "fx.spin.win": {
+      "asset": "v190.vfx.spin.win",
+      "confidence": "high"
+    },
+    "fx.spin.jackpot": {
+      "asset": "v190.vfx.spin.jackpot",
+      "confidence": "high"
+    },
+    "fx.td.projectile.archer": {
+      "asset": "v190.vfx.td_projectiles.archer_projectile",
+      "confidence": "high"
+    },
+    "fx.td.projectile.mage": {
+      "asset": "v190.vfx.td_projectiles.mage_projectile",
+      "confidence": "high"
+    },
+    "fx.td.projectile.cannon": {
+      "asset": "v190.vfx.td_projectiles.cannon_projectile",
+      "confidence": "high"
+    },
+    "fx.td.projectile.nature": {
+      "asset": "v190.vfx.td_projectiles.nature_projectile",
+      "confidence": "high"
+    },
+    "fx.td.impact.archer": {
+      "asset": "v190.vfx.td_projectiles.archer_impact",
+      "confidence": "high"
+    },
+    "fx.td.impact.mage": {
+      "asset": "v190.vfx.td_projectiles.mage_impact",
+      "confidence": "high"
+    },
+    "fx.td.impact.cannon": {
+      "asset": "v190.vfx.td_projectiles.cannon_impact",
+      "confidence": "high"
+    },
+    "fx.td.impact.nature": {
+      "asset": "v190.vfx.td_projectiles.nature_impact",
+      "confidence": "high"
+    },
+    "world.greenvale.ambient": {
+      "asset": "v190.world.greenvale_nature_a.broadleaf_tree",
+      "confidence": "high"
+    },
+    "td.enemy.default": {
+      "asset": "v190.td.enemy_forest_a.idle",
+      "confidence": "high"
+    },
+    "td.tower.archer": {
+      "asset": "v190.td.archer_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.mage": {
+      "asset": "v190.td.mage_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.cannon": {
+      "asset": "v190.td.cannon_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.nature": {
+      "asset": "v190.td.nature_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.archer.idle": {
+      "asset": "v190.td.archer_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.archer.attack": {
+      "asset": "v190.td.archer_tower.attack",
+      "confidence": "high"
+    },
+    "td.tower.archer.ready": {
+      "asset": "v190.td.archer_tower.ready",
+      "confidence": "high"
+    },
+    "td.tower.mage.idle": {
+      "asset": "v190.td.mage_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.mage.attack": {
+      "asset": "v190.td.mage_tower.attack",
+      "confidence": "high"
+    },
+    "td.tower.mage.ready": {
+      "asset": "v190.td.mage_tower.ready",
+      "confidence": "high"
+    },
+    "td.tower.cannon.idle": {
+      "asset": "v190.td.cannon_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.cannon.attack": {
+      "asset": "v190.td.cannon_tower.attack",
+      "confidence": "high"
+    },
+    "td.tower.cannon.ready": {
+      "asset": "v190.td.cannon_tower.ready",
+      "confidence": "high"
+    },
+    "td.tower.nature.idle": {
+      "asset": "v190.td.nature_tower.idle",
+      "confidence": "high"
+    },
+    "td.tower.nature.attack": {
+      "asset": "v190.td.nature_tower.attack",
+      "confidence": "high"
+    },
+    "td.tower.nature.ready": {
+      "asset": "v190.td.nature_tower.ready",
+      "confidence": "high"
+    },
+    "td.enemy.forest_a.idle": {
+      "asset": "v190.td.enemy_forest_a.idle",
+      "confidence": "high"
+    },
+    "td.enemy.forest_a.attack": {
+      "asset": "v190.td.enemy_forest_a.attack",
+      "confidence": "high"
+    },
+    "td.enemy.forest_a.defeat": {
+      "asset": "v190.td.enemy_forest_a.defeat",
+      "confidence": "high"
+    },
+    "td.enemy.mushroom.idle": {
+      "asset": "v190.td.enemy_mushroom.idle",
+      "confidence": "high"
+    },
+    "td.enemy.mushroom.attack": {
+      "asset": "v190.td.enemy_mushroom.attack",
+      "confidence": "high"
+    },
+    "td.enemy.mushroom.defeat": {
+      "asset": "v190.td.enemy_mushroom.defeat",
+      "confidence": "high"
+    },
+    "td.enemy.crystal.idle": {
+      "asset": "v190.td.enemy_crystal.idle",
+      "confidence": "high"
+    },
+    "td.enemy.crystal.attack": {
+      "asset": "v190.td.enemy_crystal.attack",
+      "confidence": "high"
+    },
+    "td.enemy.crystal.defeat": {
+      "asset": "v190.td.enemy_crystal.defeat",
+      "confidence": "high"
+    },
+    "td.enemy.forest_b.idle": {
+      "asset": "v190.td.enemy_forest_b.idle",
+      "confidence": "high"
+    },
+    "td.enemy.forest_b.attack": {
+      "asset": "v190.td.enemy_forest_b.attack",
+      "confidence": "high"
+    },
+    "td.enemy.forest_b.defeat": {
+      "asset": "v190.td.enemy_forest_b.defeat",
+      "confidence": "high"
+    },
+    "fx.tap.hit.strong": {
+      "asset": "v190.vfx.combat_impacts.gold_impact_strong",
+      "confidence": "high"
+    },
+    "fx.reward.gold": {
+      "asset": "v190.vfx.rewards.gold_burst",
+      "confidence": "high"
+    },
+    "fx.reward.blue": {
+      "asset": "v190.vfx.rewards.blue_burst",
+      "confidence": "high"
+    },
+    "fx.reward.rainbow": {
+      "asset": "v190.vfx.progression_b.rainbow_celebration",
+      "confidence": "high"
+    },
+    "fx.level_up.major": {
+      "asset": "v190.vfx.progression_a.rainbow_level_beam",
+      "confidence": "high"
+    },
+    "fx.unlock.vortex": {
+      "asset": "v190.vfx.progression_a.purple_unlock_vortex",
+      "confidence": "high"
+    },
+    "reward.chest.closed": {
+      "asset": "v190.rewards.chest_states.closed",
+      "confidence": "high"
+    },
+    "reward.chest.opening": {
+      "asset": "v190.rewards.chest_states.opening",
+      "confidence": "high"
+    },
+    "reward.chest.open_glow": {
+      "asset": "v190.rewards.chest_states.open_glow",
+      "confidence": "high"
+    },
+    "reward.chest.open": {
+      "asset": "v190.rewards.chest_states.open",
+      "confidence": "high"
+    }
+  }
+}

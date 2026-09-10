@@ -1,0 +1,25 @@
+{
+  "source_version": "V1.41",
+  "master_version": "V2.0",
+  "block": "Journey / Puzzle / Hero Hardening",
+  "journey_contract_version": "journey-result-v1",
+  "journey_config_version": "v1.41-journey-02",
+  "journey_fields": [
+    "roll_id",
+    "roll_seed",
+    "config_version",
+    "roll",
+    "from_position",
+    "to_position",
+    "node",
+    "crossed_lap",
+    "portal_charges",
+    "reward"
+  ],
+  "journey_resume": "pending presentation saved, no reward re-grant",
+  "puzzle_daily_reset": "UTC day key",
+  "hero_interaction": "select first, explicit upgrade CTA",
+  "placeholder_asset_count": 6,
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

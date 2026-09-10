@@ -1,0 +1,31 @@
+{
+  "source_version": "V1.47",
+  "master_version": "V2.1",
+  "block": "Realm Journey Progression V2",
+  "board_nodes": 12,
+  "deterministic_roll_contract_preserved": true,
+  "journey_mastery": {
+    "max_level": 5,
+    "xp_sources": [
+      "roll",
+      "lap",
+      "portal"
+    ],
+    "claimable_rewards": true
+  },
+  "relic_shards": {
+    "source": "completed_lap",
+    "cache_cost": 3
+  },
+  "journey_cache": true,
+  "node_profiles": 12,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true,
+    "isolated": true
+  },
+  "asset_swap_map": "data/asset_swap_map_v1_47.json",
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

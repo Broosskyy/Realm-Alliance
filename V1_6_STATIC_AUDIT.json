@@ -1,0 +1,16 @@
+{
+  "source_version": "V1.6",
+  "master_concept": "V1.4",
+  "save_version": 16,
+  "checks": {
+    "daily_auto_reward_removed": true,
+    "quest_tap_guarded": true,
+    "wheel_invalid_feedback_fixed": true,
+    "core_input_lock": true,
+    "pause_save": true,
+    "audio_after_save": true
+  },
+  "missing_ext_resources": [],
+  "syntax_suspects": [],
+  "godot_binary": "not installed"
+}

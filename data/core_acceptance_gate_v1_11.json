@@ -1,0 +1,66 @@
+{
+  "source_version": "V1.11",
+  "master_concept": "V1.4",
+  "gate": "P0_CORE_ACCEPTANCE",
+  "do_not_enable_before_runtime_pass": [
+    "daily",
+    "quests",
+    "heroes",
+    "attack",
+    "defense",
+    "events",
+    "shop"
+  ],
+  "sessions": [
+    {
+      "minutes": 5,
+      "questions": [
+        "first action understood",
+        "monster kill satisfying",
+        "reward understood"
+      ]
+    },
+    {
+      "minutes": 15,
+      "questions": [
+        "wheel desired",
+        "village spending meaningful",
+        "boss direction understood"
+      ]
+    },
+    {
+      "minutes": 30,
+      "questions": [
+        "repeat loop desired",
+        "save/return stable",
+        "no extra systems required"
+      ]
+    }
+  ],
+  "device_profiles": [
+    [
+      720,
+      1600
+    ],
+    [
+      1080,
+      1920
+    ],
+    [
+      1080,
+      2400
+    ]
+  ],
+  "required_flow": [
+    "home_tap",
+    "monster_reward",
+    "wheel",
+    "wheel_reward",
+    "village",
+    "building_upgrade",
+    "boss_intro",
+    "boss_reward",
+    "save_return"
+  ],
+  "pass_rule": "No P1 expansion until real Godot/device Core PASS."
+}

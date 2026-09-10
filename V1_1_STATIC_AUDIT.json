@@ -1,0 +1,12 @@
+{
+  "master_concept": "V1.4",
+  "source_version": "V1.1",
+  "p1_hidden": true,
+  "new_masterlist_count": 61,
+  "p02_bg_exists": true,
+  "reward_overlay_declared": true,
+  "boss_intro_declared": true,
+  "boss_defeat_declared": true,
+  "monster_growth_1_085": true,
+  "godot_binary": "not installed"
+}

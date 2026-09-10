@@ -1,0 +1,41 @@
+{
+  "source_version": "V1.53",
+  "master_version": "V2.1",
+  "block": "Village BUILD V2",
+  "buildings": [
+    "townhall",
+    "goldmine",
+    "forge",
+    "lucktemple"
+  ],
+  "village_growth": {
+    "max_level": 5,
+    "sources": [
+      "building_upgrade",
+      "goldmine_daily_claim",
+      "forge_craft",
+      "temple_blessing"
+    ]
+  },
+  "townhall_dependency": true,
+  "forge": {
+    "max_crafts": 6,
+    "tap_damage_per_craft": 2,
+    "currency": "gold"
+  },
+  "temple": {
+    "daily_utc": true,
+    "reward": "existing level bonus spins"
+  },
+  "upgrade_contract": "village-upgrade-result-v1",
+  "resume_safe_pending_upgrade": true,
+  "legacy_hidden_townhall_runtime_path_removed": true,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true,
+    "isolated": true
+  },
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

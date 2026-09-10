@@ -1,0 +1,90 @@
+{
+  "version": "1.61",
+  "global": {
+    "prefer_production_over_placeholder": true,
+    "prefer_high_confidence": true,
+    "preserve_aspect_ratio": true,
+    "allow_medium_only_for_noncritical_ui": true,
+    "labels_are_runtime_text": true,
+    "minimum_touch_height": 78,
+    "primary_touch_height": 96,
+    "minimum_body_font": 18,
+    "default_title_font": 30,
+    "primary_navigation": "TAP_SPIN_DORF_MODI",
+    "quick_actions_persistent": false
+  },
+  "families": {
+    "monster": {
+      "fit": "contain",
+      "max_screen_width_ratio": 0.72,
+      "max_screen_height_ratio": 0.42,
+      "anchor": "center",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeated"
+      ]
+    },
+    "primary_button": {
+      "fit": "nine_patch",
+      "min_height": 96,
+      "max_width_ratio": 0.78,
+      "padding": [
+        30,
+        18,
+        30,
+        18
+      ],
+      "text": "runtime"
+    },
+    "secondary_button": {
+      "fit": "nine_patch",
+      "min_height": 78,
+      "max_width_ratio": 0.72,
+      "padding": [
+        24,
+        14,
+        24,
+        14
+      ],
+      "text": "runtime"
+    },
+    "panel": {
+      "fit": "nine_patch",
+      "patch_ratio": 0.14,
+      "text": "runtime"
+    },
+    "progress_bar": {
+      "fit": "nine_patch",
+      "patch_ratio": 0.2,
+      "min_height": 54,
+      "fill": "runtime"
+    },
+    "resource_pill": {
+      "fit": "contain",
+      "min_height": 58,
+      "text": "runtime"
+    },
+    "icon": {
+      "fit": "contain",
+      "min_touch": 64
+    },
+    "village_building": {
+      "fit": "contain",
+      "max_width_ratio": 0.28,
+      "label": "runtime"
+    },
+    "primary_navigation": {
+      "fit": "icon_and_runtime_label",
+      "min_height": 110,
+      "icon_max_width": 58,
+      "text": "runtime"
+    }
+  },
+  "dedupe": {
+    "exact_hash": "keep_one_canonical_mark_others_alias",
+    "visual_similar": "review_only",
+    "never_auto_delete": true
+  }
+}

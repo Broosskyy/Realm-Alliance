@@ -1,0 +1,25 @@
+{
+  "source_version": "V1.30",
+  "master_version": "V2.0",
+  "block": "Lane Battle vertical slice",
+  "mode": "two-lane deterministic timed battle",
+  "entry": "LANE BATTLE quick action",
+  "hero_dependency": false,
+  "save_schema": "V20",
+  "art_status": "existing integration assets; final art pending",
+  "previous_blocks_preserved": [
+    "V1.23 SPIN",
+    "V1.24 Village",
+    "V1.25 Combat",
+    "V1.26 Journey",
+    "V1.27 Meta",
+    "V1.28 Puzzle",
+    "V1.29 Tower Defense"
+  ],
+  "next_phase": [
+    "Heroes",
+    "Daily/Quests",
+    "more regions",
+    "progression/UI/content polish"
+  ]
+}

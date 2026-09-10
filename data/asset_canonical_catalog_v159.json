@@ -1,0 +1,1650 @@
+{
+  "version": "v1.59-canonical-assets-01",
+  "policy": "Do not delete visually similar variants automatically. Exact duplicates may alias; semantic selection is screen-specific.",
+  "ui_texture_count": 219,
+  "exact_duplicate_groups": [],
+  "monster_mapping": {
+    "M001": {
+      "source": "M001_CANDIDATE_B_branch_guardian",
+      "display_name": "Waldwinzling",
+      "role": "calibration_reference"
+    },
+    "M002": {
+      "source": "GH_N01_leaf_horn_beast",
+      "display_name": "Blatthorn",
+      "role": "agile_beast"
+    },
+    "M003": {
+      "source": "M003_CANDIDATE_waldkeiler",
+      "display_name": "Waldkeiler",
+      "role": "heavy_silhouette"
+    },
+    "M004": {
+      "source": "M004_CANDIDATE_pilzling",
+      "display_name": "Pilzling",
+      "role": "humor_variant"
+    },
+    "M005": {
+      "source": "GH_N03_forest_beetle",
+      "display_name": "Waldkäfer",
+      "role": "armored_small"
+    },
+    "M006": {
+      "source": "GH_N04_forest_owl_variant_a",
+      "display_name": "Blätterkauz",
+      "role": "flying_variant"
+    },
+    "M007": {
+      "source": "GH_N05_forest_owl_variant_b",
+      "display_name": "Mooskauz",
+      "role": "flying_variant_b"
+    },
+    "M008": {
+      "source": "GH_N06_forest_turtle",
+      "display_name": "Moosschildkröte",
+      "role": "defensive_silhouette"
+    },
+    "M009": {
+      "source": "GH_N07_forest_slime",
+      "display_name": "Waldschleim",
+      "role": "soft_variant"
+    },
+    "M010": {
+      "source": "GH_N08_forest_spirit",
+      "display_name": "Waldgeist",
+      "role": "magic_variant"
+    },
+    "M011": {
+      "source": "GH_N09_crystal_stone_golem",
+      "display_name": "Kristallgolem",
+      "role": "stone_heavy"
+    },
+    "M012": {
+      "source": "GH_N10_leaf_squirrel",
+      "display_name": "Blatthörnchen",
+      "role": "quick_small"
+    },
+    "M013": {
+      "source": "GH_N11_forest_wolf",
+      "display_name": "Waldwolf",
+      "role": "predator"
+    },
+    "M014": {
+      "source": "GH_N02_leaf_boar_variant",
+      "display_name": "Laubkeiler",
+      "role": "boar_variant"
+    },
+    "B001": {
+      "source": "B003_CANDIDATE_elder_woodland_guardian",
+      "display_name": "Mooskönig",
+      "role": "boss_guardian"
+    },
+    "B002": {
+      "source": "B002_CANDIDATE_mushroom_arcane_boss",
+      "display_name": "Pilzmagus",
+      "role": "boss_arcane"
+    },
+    "B003": {
+      "source": "B004_CANDIDATE_massive_forest_beast",
+      "display_name": "Urwaldbestie",
+      "role": "boss_beast"
+    }
+  },
+  "village_mapping": {
+    "townhall": {
+      "source": "village_buildings_a/village_buildings_a_01.png",
+      "confidence": "high",
+      "decision": "use"
+    },
+    "goldmine": {
+      "source": "village_buildings_b/village_buildings_b_03.png",
+      "confidence": "medium",
+      "decision": "temporary-use; dedicated Goldmine art remains a polish gap"
+    },
+    "forge": {
+      "source": "village_buildings_b/village_buildings_b_02.png",
+      "confidence": "high",
+      "decision": "use"
+    },
+    "lucktemple": {
+      "source": "village_buildings_a/village_buildings_a_06.png",
+      "confidence": "high",
+      "decision": "use"
+    }
+  },
+  "textures": [
+    {
+      "id": "v4.buttons.buttons_01",
+      "path": "res://assets/production/ui_v4/buttons/buttons_01.png",
+      "category": "buttons",
+      "sha1": "3159f69e76d7272f9da145318539ce0d01f335d0",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_02",
+      "path": "res://assets/production/ui_v4/buttons/buttons_02.png",
+      "category": "buttons",
+      "sha1": "3806a3aa67ba49e12bdbcd4aabd05ec30646c23d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_03",
+      "path": "res://assets/production/ui_v4/buttons/buttons_03.png",
+      "category": "buttons",
+      "sha1": "ce9e3dd9128c71f168550bf87fd4e938fbaea4a7",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_04",
+      "path": "res://assets/production/ui_v4/buttons/buttons_04.png",
+      "category": "buttons",
+      "sha1": "86e0b7d3e8209f36f0119886958ab97939f2f6a2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_05",
+      "path": "res://assets/production/ui_v4/buttons/buttons_05.png",
+      "category": "buttons",
+      "sha1": "a3e413ebf0e8851a20a8d832b3f9e9f8a3f289d6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_06",
+      "path": "res://assets/production/ui_v4/buttons/buttons_06.png",
+      "category": "buttons",
+      "sha1": "7eae65e74f595c7df83b3f90fe7cdcc6a7d53649",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_07",
+      "path": "res://assets/production/ui_v4/buttons/buttons_07.png",
+      "category": "buttons",
+      "sha1": "c29aa3450dfdca948e109fd328e625a609ac1fc6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_08",
+      "path": "res://assets/production/ui_v4/buttons/buttons_08.png",
+      "category": "buttons",
+      "sha1": "37b2c920dd41595adbf64d2180f8c7baa487e348",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.buttons.buttons_09",
+      "path": "res://assets/production/ui_v4/buttons/buttons_09.png",
+      "category": "buttons",
+      "sha1": "2a4db4db22684abb05590f9eb2698c5450055711",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.attack",
+      "path": "res://assets/production/ui_v4/combat_core/attack.png",
+      "category": "combat_core",
+      "sha1": "4995897e0fb2baebad93d1dad6c6354738d83250",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.auto",
+      "path": "res://assets/production/ui_v4/combat_core/auto.png",
+      "category": "combat_core",
+      "sha1": "87a606bf82ff66db69fc7e4758f2e4e09f087f37",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.crit",
+      "path": "res://assets/production/ui_v4/combat_core/crit.png",
+      "category": "combat_core",
+      "sha1": "db8e906d7db88bf77c6ef8678e580219cfa297d4",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.defense",
+      "path": "res://assets/production/ui_v4/combat_core/defense.png",
+      "category": "combat_core",
+      "sha1": "8adea429ed3e38ac3fbdae41042648050d8471b0",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.heal",
+      "path": "res://assets/production/ui_v4/combat_core/heal.png",
+      "category": "combat_core",
+      "sha1": "383b015003199c9e0b8f218ca27e2a77fcc9b1d5",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.heavy_attack",
+      "path": "res://assets/production/ui_v4/combat_core/heavy_attack.png",
+      "category": "combat_core",
+      "sha1": "e57cf5038eed62922186a8b71890e021fda8d6de",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.speed",
+      "path": "res://assets/production/ui_v4/combat_core/speed.png",
+      "category": "combat_core",
+      "sha1": "57a137b841fd56512f69a1c05451d1b1d6a13f35",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core.target",
+      "path": "res://assets/production/ui_v4/combat_core/target.png",
+      "category": "combat_core",
+      "sha1": "a0f01ef86008edb36794ae4927ef0b668665bc95",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_01",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_01.png",
+      "category": "combat_core_alt",
+      "sha1": "1615f8ecc4e5a536765ea8460278d86676dfb756",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_02",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_02.png",
+      "category": "combat_core_alt",
+      "sha1": "a1562f3848a47365a4f200226a37991f3b74bf3c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_03",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_03.png",
+      "category": "combat_core_alt",
+      "sha1": "141a1c3afe6d9c277398cc15ebd25584288a39d6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_04",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_04.png",
+      "category": "combat_core_alt",
+      "sha1": "a3de529cd5d7a9f316096a54e69a234bd6a4c93d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_05",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_05.png",
+      "category": "combat_core_alt",
+      "sha1": "c5e722205120805b6f6401d0ce0b27238a11651c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_06",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_06.png",
+      "category": "combat_core_alt",
+      "sha1": "826534fa8aae573209b42f2e582d2ba16500efc6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_07",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_07.png",
+      "category": "combat_core_alt",
+      "sha1": "52a08da65b069865a36a7eab4721756e8a2505d5",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_core_alt.combat_core_alt_08",
+      "path": "res://assets/production/ui_v4/combat_core_alt/combat_core_alt_08.png",
+      "category": "combat_core_alt",
+      "sha1": "421b8ad2a972acd06ed089ea69b9a8958cbef430",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.attack_down",
+      "path": "res://assets/production/ui_v4/combat_status/attack_down.png",
+      "category": "combat_status",
+      "sha1": "fbaebf37b465689eea04eb27a68c48de6708e9ed",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.attack_up",
+      "path": "res://assets/production/ui_v4/combat_status/attack_up.png",
+      "category": "combat_status",
+      "sha1": "0643c2fe587178791cb381f92304a83233884ede",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.burn",
+      "path": "res://assets/production/ui_v4/combat_status/burn.png",
+      "category": "combat_status",
+      "sha1": "a64cb46f56e18ec403f1d2577cfd4a10fad32c77",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.defense_down",
+      "path": "res://assets/production/ui_v4/combat_status/defense_down.png",
+      "category": "combat_status",
+      "sha1": "f2a7d8bbebf739b07776037221f6c737741f5409",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.defense_up",
+      "path": "res://assets/production/ui_v4/combat_status/defense_up.png",
+      "category": "combat_status",
+      "sha1": "354ab93fc637be4408bc12c642941969835f147d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.freeze",
+      "path": "res://assets/production/ui_v4/combat_status/freeze.png",
+      "category": "combat_status",
+      "sha1": "0a206479f2f621e09b45c70f0da72f25ddb5cb46",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.poison",
+      "path": "res://assets/production/ui_v4/combat_status/poison.png",
+      "category": "combat_status",
+      "sha1": "163b94f31103df6a365b17964fae21c316ba1baf",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.combat_status.stun",
+      "path": "res://assets/production/ui_v4/combat_status/stun.png",
+      "category": "combat_status",
+      "sha1": "0eacf1df8e564a0864d3b37860fa903567f8714f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_01",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_01.png",
+      "category": "elements_status",
+      "sha1": "72964e420095d2bf9dbd513c314d80fcf854a762",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_02",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_02.png",
+      "category": "elements_status",
+      "sha1": "eb05567492231767282310676ad8b70f846e44c0",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_03",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_03.png",
+      "category": "elements_status",
+      "sha1": "ca69d2bb0beeac073dacb56682cc2e6bb0ab351b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_04",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_04.png",
+      "category": "elements_status",
+      "sha1": "18e069bb553937dc5c2ee876f44562d6d8499afe",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_05",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_05.png",
+      "category": "elements_status",
+      "sha1": "fae19a35fe792d945af2cf3020ac9680f55c367b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_06",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_06.png",
+      "category": "elements_status",
+      "sha1": "639050aa407e522461f1dae22c2464f7d77155de",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_07",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_07.png",
+      "category": "elements_status",
+      "sha1": "06d942d2ee2a5f64f3361be1d3a97d3c8dc8762d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.elements_status.elements_status_08",
+      "path": "res://assets/production/ui_v4/elements_status/elements_status_08.png",
+      "category": "elements_status",
+      "sha1": "fa50c8498f7e54836e0bfd70c4e84296909df00f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_01",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_01.png",
+      "category": "frames_slots",
+      "sha1": "31f45eb70e5b82989747cec3d5fc81a0464e2d98",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_02",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_02.png",
+      "category": "frames_slots",
+      "sha1": "019a1eb752c20e764bcf5e93352e806df7c2c8c7",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_03",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_03.png",
+      "category": "frames_slots",
+      "sha1": "954982829e15c3b5c6189eb903c9ffd7dc08d499",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_04",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_04.png",
+      "category": "frames_slots",
+      "sha1": "8b6000ad178f692c4d9608f63cff66ee75607eaa",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_05",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_05.png",
+      "category": "frames_slots",
+      "sha1": "01ac394a1230f74cd68a1953cf23d8130927caa8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_06",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_06.png",
+      "category": "frames_slots",
+      "sha1": "2ba3ad3fbace1b2a080643ca8b48ebed5b1d7bd9",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_07",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_07.png",
+      "category": "frames_slots",
+      "sha1": "c0f96b51851cd4d7df1959ffdd08f226164096c0",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_08",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_08.png",
+      "category": "frames_slots",
+      "sha1": "959c3d06b870feb07a076c8a8b32a50537342a69",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.frames_slots.frames_slots_09",
+      "path": "res://assets/production/ui_v4/frames_slots/frames_slots_09.png",
+      "category": "frames_slots",
+      "sha1": "d3457b1709ed4ca0dde7d79e7228afeffacdc3d5",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.blue_crystal",
+      "path": "res://assets/production/ui_v4/inventory_consumables/blue_crystal.png",
+      "category": "inventory_consumables",
+      "sha1": "fd6f30e5fce9cf66f806de9d981e63b729b18265",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.blue_resource",
+      "path": "res://assets/production/ui_v4/inventory_consumables/blue_resource.png",
+      "category": "inventory_consumables",
+      "sha1": "f9c8b3aa9b7c98ac59f71288b11e2d9c7b395c90",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.green_potion",
+      "path": "res://assets/production/ui_v4/inventory_consumables/green_potion.png",
+      "category": "inventory_consumables",
+      "sha1": "58abc04b557c7e89f08e324088fc12d85a9890f1",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.health_potion",
+      "path": "res://assets/production/ui_v4/inventory_consumables/health_potion.png",
+      "category": "inventory_consumables",
+      "sha1": "60e46aac182d0e6a223cdfa6d8ab6c9dfccae148",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.ingots",
+      "path": "res://assets/production/ui_v4/inventory_consumables/ingots.png",
+      "category": "inventory_consumables",
+      "sha1": "7a1073c1ac186acd015405e50c36521f876dc792",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.mana_potion",
+      "path": "res://assets/production/ui_v4/inventory_consumables/mana_potion.png",
+      "category": "inventory_consumables",
+      "sha1": "851dcdd7a6019b8f1ff5c39f30d7b77bb926085c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.ore",
+      "path": "res://assets/production/ui_v4/inventory_consumables/ore.png",
+      "category": "inventory_consumables",
+      "sha1": "c5f8a8f28ee039f9cbc94b2dddd839b3e06b267a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_consumables.purple_orb",
+      "path": "res://assets/production/ui_v4/inventory_consumables/purple_orb.png",
+      "category": "inventory_consumables",
+      "sha1": "c004e3ac843623b4df21201ce5fbe89a4f09c0ca",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.armor",
+      "path": "res://assets/production/ui_v4/inventory_equipment/armor.png",
+      "category": "inventory_equipment",
+      "sha1": "7dc0bbe38d2401bd19b64a36cb484649b327c63d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.axe",
+      "path": "res://assets/production/ui_v4/inventory_equipment/axe.png",
+      "category": "inventory_equipment",
+      "sha1": "af739028c4ce3aa223a529b6e56f7b747590e220",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.boots",
+      "path": "res://assets/production/ui_v4/inventory_equipment/boots.png",
+      "category": "inventory_equipment",
+      "sha1": "fc4ac38fda66e03ed69c3a53abecb4422a99ca5e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.helmet",
+      "path": "res://assets/production/ui_v4/inventory_equipment/helmet.png",
+      "category": "inventory_equipment",
+      "sha1": "fae014698d15d934443e65e63df39fd9445e1166",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.pendant",
+      "path": "res://assets/production/ui_v4/inventory_equipment/pendant.png",
+      "category": "inventory_equipment",
+      "sha1": "10dd13bbc841b9dd08ed5d01604d91a74bd69614",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.ring",
+      "path": "res://assets/production/ui_v4/inventory_equipment/ring.png",
+      "category": "inventory_equipment",
+      "sha1": "4d3af21ea15711253a5e79a21d9acc80e90ad6c2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.shield",
+      "path": "res://assets/production/ui_v4/inventory_equipment/shield.png",
+      "category": "inventory_equipment",
+      "sha1": "440061ec482465c774db99fafe22ec8f1edae75f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.inventory_equipment.sword",
+      "path": "res://assets/production/ui_v4/inventory_equipment/sword.png",
+      "category": "inventory_equipment",
+      "sha1": "6311021508e05203ee642ff53eb002775e3a8fe7",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.boss_frame",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/boss_frame.png",
+      "category": "monster_boss_hud",
+      "sha1": "54773e1017484a1fef101e7a6dd540c243e9df4e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.defeat_frame",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/defeat_frame.png",
+      "category": "monster_boss_hud",
+      "sha1": "a73185a61e69c4f71397b1532364202b22a40465",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.elite_frame",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/elite_frame.png",
+      "category": "monster_boss_hud",
+      "sha1": "5f7db88cd8e45064ef96da26286bebad0d0fda92",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.hp_bar",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/hp_bar.png",
+      "category": "monster_boss_hud",
+      "sha1": "94f71e21fd4f0ea0db2229ae32ed005a845dfabd",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.mana_bar",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/mana_bar.png",
+      "category": "monster_boss_hud",
+      "sha1": "80ceef7164563d4106cff6e448fee31406cdd2bb",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.portrait_frame",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/portrait_frame.png",
+      "category": "monster_boss_hud",
+      "sha1": "d3898b5f65879fecf69b84c0990fdc72920578a2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.small_hp_bar",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/small_hp_bar.png",
+      "category": "monster_boss_hud",
+      "sha1": "1a1332561bb2c87ee45c49c62fb21bb080348344",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.small_mana_bar",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/small_mana_bar.png",
+      "category": "monster_boss_hud",
+      "sha1": "3e4004976749f47bb465e0a265a68044b998b5f2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.monster_boss_hud.target_frame",
+      "path": "res://assets/production/ui_v4/monster_boss_hud/target_frame.png",
+      "category": "monster_boss_hud",
+      "sha1": "24776ff75d342a0239d24910dd42119f865c780c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.combat",
+      "path": "res://assets/production/ui_v4/navigation/combat.png",
+      "category": "navigation",
+      "sha1": "c6d67f495edaf3b9b43931cae5362e00ee0abd45",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.currency",
+      "path": "res://assets/production/ui_v4/navigation/currency.png",
+      "category": "navigation",
+      "sha1": "40f41da9eb5e89483eebe239b55982348cc66d2a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.home",
+      "path": "res://assets/production/ui_v4/navigation/home.png",
+      "category": "navigation",
+      "sha1": "3b311930d8d6258b0882bc032dcb5933d05d8892",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.inventory",
+      "path": "res://assets/production/ui_v4/navigation/inventory.png",
+      "category": "navigation",
+      "sha1": "00a77e41728804ff69b48856bfb021eab0392266",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.menu",
+      "path": "res://assets/production/ui_v4/navigation/menu.png",
+      "category": "navigation",
+      "sha1": "8337a7a86d99ad5a8107dca16113b0e4ea8fb96c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.monster",
+      "path": "res://assets/production/ui_v4/navigation/monster.png",
+      "category": "navigation",
+      "sha1": "85642c691ed5ac893a0ebe27d5904c9fa8689e73",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.quest",
+      "path": "res://assets/production/ui_v4/navigation/quest.png",
+      "category": "navigation",
+      "sha1": "300b61d4f33c7ec52499839ef0080193dd7a6dbe",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.ranking",
+      "path": "res://assets/production/ui_v4/navigation/ranking.png",
+      "category": "navigation",
+      "sha1": "f8773f8d03ad26ec7baa1ac5807a00edb28e5ede",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.settings",
+      "path": "res://assets/production/ui_v4/navigation/settings.png",
+      "category": "navigation",
+      "sha1": "120bdda10507e454fcf76f3edbb3ff71fc66510e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.navigation.wheel",
+      "path": "res://assets/production/ui_v4/navigation/wheel.png",
+      "category": "navigation",
+      "sha1": "ffddfa8e7469988b70b77f9694f5a82321b84f19",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_01",
+      "path": "res://assets/production/ui_v4/panels/panels_01.png",
+      "category": "panels",
+      "sha1": "4d5a6da8992a2b93e49c4c4d26b6532e726935ee",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_02",
+      "path": "res://assets/production/ui_v4/panels/panels_02.png",
+      "category": "panels",
+      "sha1": "29ff26901ad30bbf90596b83918bb3554cc53aa6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_03",
+      "path": "res://assets/production/ui_v4/panels/panels_03.png",
+      "category": "panels",
+      "sha1": "65b175c0fc2a24f65bca502ed61e3cd514b4e30f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_04",
+      "path": "res://assets/production/ui_v4/panels/panels_04.png",
+      "category": "panels",
+      "sha1": "f906a3f4a741e196516a56b48f4ef58237e31e3b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_05",
+      "path": "res://assets/production/ui_v4/panels/panels_05.png",
+      "category": "panels",
+      "sha1": "beb087eb0bcd24b729413c8aaef54fa277e58048",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_06",
+      "path": "res://assets/production/ui_v4/panels/panels_06.png",
+      "category": "panels",
+      "sha1": "c0d2734d87d26405ec2f088f09c9da883c735b93",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_07",
+      "path": "res://assets/production/ui_v4/panels/panels_07.png",
+      "category": "panels",
+      "sha1": "2f6d5e0b0f9468ca95dbd3bb1bd9e94502edc292",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels.panels_08",
+      "path": "res://assets/production/ui_v4/panels/panels_08.png",
+      "category": "panels",
+      "sha1": "a42313e09ab25c1136cc2126f59446f9afa1a92f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_01",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_01.png",
+      "category": "panels_basic",
+      "sha1": "dee68d759d184649f0d26ae2f977d361d9c06a95",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_02",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_02.png",
+      "category": "panels_basic",
+      "sha1": "08335ba4e02df06675506dbf49be9e695caa4c3b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_03",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_03.png",
+      "category": "panels_basic",
+      "sha1": "03f2bed5628cc692524f501f7e069653471a00fa",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_04",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_04.png",
+      "category": "panels_basic",
+      "sha1": "29f75fd81844b685bb5dd27008170b83593f38f8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_05",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_05.png",
+      "category": "panels_basic",
+      "sha1": "05afcde156bdd30f94bb9b61005fa860167c6ed3",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_06",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_06.png",
+      "category": "panels_basic",
+      "sha1": "ac945c7b5a75625939ce001db6fb747e682f7501",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_07",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_07.png",
+      "category": "panels_basic",
+      "sha1": "0f3d887c97944de15d3b5376c841ed43c9e9021e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.panels_basic.panels_basic_08",
+      "path": "res://assets/production/ui_v4/panels_basic/panels_basic_08.png",
+      "category": "panels_basic",
+      "sha1": "d26912745e830e271ea7b15221408bf4babde105",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.claim",
+      "path": "res://assets/production/ui_v4/quest_states/claim.png",
+      "category": "quest_states",
+      "sha1": "c3ead26aab77b3143eb07e33916fc15c4accdf8e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.complete",
+      "path": "res://assets/production/ui_v4/quest_states/complete.png",
+      "category": "quest_states",
+      "sha1": "75b4fd60820c589ae73e716ced76d28a1d9839e2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.daily_quest",
+      "path": "res://assets/production/ui_v4/quest_states/daily_quest.png",
+      "category": "quest_states",
+      "sha1": "0c0d6462c7f5fb4c5e4c011c8d90b05432f11395",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.in_progress",
+      "path": "res://assets/production/ui_v4/quest_states/in_progress.png",
+      "category": "quest_states",
+      "sha1": "19383831c57dcb4330a9d7db1b26e2e5770ed364",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.main_quest",
+      "path": "res://assets/production/ui_v4/quest_states/main_quest.png",
+      "category": "quest_states",
+      "sha1": "6e48c42b63ce991ef10160a4d5c989ad684801ab",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.quest_alert",
+      "path": "res://assets/production/ui_v4/quest_states/quest_alert.png",
+      "category": "quest_states",
+      "sha1": "627af82902ecf4035ef7d4e2925da5c432383a9e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.side_quest",
+      "path": "res://assets/production/ui_v4/quest_states/side_quest.png",
+      "category": "quest_states",
+      "sha1": "d0911798632086966696c7378df3a61a1c1e42fc",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.quest_states.streak",
+      "path": "res://assets/production/ui_v4/quest_states/streak.png",
+      "category": "quest_states",
+      "sha1": "3e52a54d91218c4fc11ef71886772809a8c0a55c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_01",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_01.png",
+      "category": "rarity_slots",
+      "sha1": "58b1420c04f4bffd179740a714f0beb578c7e961",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_02",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_02.png",
+      "category": "rarity_slots",
+      "sha1": "a6d8f12c08439982ca1d53baa75afafb6d1d7e7c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_03",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_03.png",
+      "category": "rarity_slots",
+      "sha1": "350e0487eabf9a249e8ae2ac63a3b0f74eed10b1",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_04",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_04.png",
+      "category": "rarity_slots",
+      "sha1": "63142e091d1c7442df8b58d609e212fcee4182cd",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_05",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_05.png",
+      "category": "rarity_slots",
+      "sha1": "e0d8a26b9b157449800519a36b354cb4cd9eee5a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_06",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_06.png",
+      "category": "rarity_slots",
+      "sha1": "bb46ffb358308668ceb12b71a55ca906f03a6d1a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_07",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_07.png",
+      "category": "rarity_slots",
+      "sha1": "563ecb0ca387f22f38e5a8dbfba92a5834538b15",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rarity_slots.rarity_slots_08",
+      "path": "res://assets/production/ui_v4/rarity_slots/rarity_slots_08.png",
+      "category": "rarity_slots",
+      "sha1": "d76eea81ec0ec43c077fc3c81d7f05648131a306",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_01",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_01.png",
+      "category": "resource_bars",
+      "sha1": "919844e06151968a0ccaedcc0dd1cdf5cc5e7a56",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_02",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_02.png",
+      "category": "resource_bars",
+      "sha1": "733dd8540754e8dc72ea6fab089eac13bdafad95",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_03",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_03.png",
+      "category": "resource_bars",
+      "sha1": "92c3a6e39fed7b6cc9346b3be9ceed492dfb786d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_04",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_04.png",
+      "category": "resource_bars",
+      "sha1": "376c4e643d66e0f8ef3d2fb9d534b0b536b7c564",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_05",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_05.png",
+      "category": "resource_bars",
+      "sha1": "67d41ba25be3fdf227f5bbaa21ee7e7145b85866",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_06",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_06.png",
+      "category": "resource_bars",
+      "sha1": "b6e37a63726ba02ba0cb557b21e6297d52e81e9a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_07",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_07.png",
+      "category": "resource_bars",
+      "sha1": "efec1a1236bd61968a0f9710e0c5fa62dcbb9652",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_08",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_08.png",
+      "category": "resource_bars",
+      "sha1": "5c267d56a23bc976cb11bf850a0529d97b7efe3d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_09",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_09.png",
+      "category": "resource_bars",
+      "sha1": "9ea731e889b5a49117c07d2229da0e299df235a5",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resource_bars.resource_bars_10",
+      "path": "res://assets/production/ui_v4/resource_bars/resource_bars_10.png",
+      "category": "resource_bars",
+      "sha1": "de4c7d5f217a0fd4b2bafa56b90921bfb1bbe602",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.coins",
+      "path": "res://assets/production/ui_v4/resources_basic/coins.png",
+      "category": "resources_basic",
+      "sha1": "ff3a827791e2d1bd538c682749de326493730065",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.crystals",
+      "path": "res://assets/production/ui_v4/resources_basic/crystals.png",
+      "category": "resources_basic",
+      "sha1": "42584256f1e2fe95b36b74de095a5b41c2eea199",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.key",
+      "path": "res://assets/production/ui_v4/resources_basic/key.png",
+      "category": "resources_basic",
+      "sha1": "2864ebfb8113fadad85d70addba9ee1174d9e775",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.magic_orb",
+      "path": "res://assets/production/ui_v4/resources_basic/magic_orb.png",
+      "category": "resources_basic",
+      "sha1": "ae28b1e6e26553e7a81be1bcf18c23da1f41ab24",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.scroll",
+      "path": "res://assets/production/ui_v4/resources_basic/scroll.png",
+      "category": "resources_basic",
+      "sha1": "d22d524c95a77bb923e49cd0590a971bf66208b8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.star",
+      "path": "res://assets/production/ui_v4/resources_basic/star.png",
+      "category": "resources_basic",
+      "sha1": "7ea36e443e53dd256c142ff17cd040358ae0c794",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.stone",
+      "path": "res://assets/production/ui_v4/resources_basic/stone.png",
+      "category": "resources_basic",
+      "sha1": "d8f403c77e7f114aefb663150645c52f6fa41676",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.resources_basic.wood",
+      "path": "res://assets/production/ui_v4/resources_basic/wood.png",
+      "category": "resources_basic",
+      "sha1": "f3b8104be0344e83e8825728788687d2a8fbee3f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_a.rewards_chests_a_01",
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_01.png",
+      "category": "rewards_chests_a",
+      "sha1": "13816b4e517abe96786902f107c3ee10ab732084",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_a.rewards_chests_a_02",
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_02.png",
+      "category": "rewards_chests_a",
+      "sha1": "741af2751a24b9034daafe8a52b9a8a05dd70336",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_a.rewards_chests_a_03",
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_03.png",
+      "category": "rewards_chests_a",
+      "sha1": "6705717c9fc4e6e670a688bd2f275823b4800fd8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_a.rewards_chests_a_04",
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_04.png",
+      "category": "rewards_chests_a",
+      "sha1": "3086390f2a2f3cc196586c248fd5901d78c0e504",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_a.rewards_chests_a_05",
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_05.png",
+      "category": "rewards_chests_a",
+      "sha1": "d0db11aac42b353c5ea75b8cf4241466643148ca",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_a.rewards_chests_a_06",
+      "path": "res://assets/production/ui_v4/rewards_chests_a/rewards_chests_a_06.png",
+      "category": "rewards_chests_a",
+      "sha1": "2f735dd590fc52ad341d887be749f6ccaa42fb1b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_b.rewards_chests_b_01",
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_01.png",
+      "category": "rewards_chests_b",
+      "sha1": "e537a775ef5a27a916d985a8ed3613660a890f37",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_b.rewards_chests_b_02",
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_02.png",
+      "category": "rewards_chests_b",
+      "sha1": "6a8c682269a2d3f47a21a8e9f56019fdf546fb3f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_b.rewards_chests_b_03",
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_03.png",
+      "category": "rewards_chests_b",
+      "sha1": "936b6275fda6afff953836454e1d4c676b4537f8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_b.rewards_chests_b_04",
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_04.png",
+      "category": "rewards_chests_b",
+      "sha1": "3762113cae0ef136064e645a0ee5092c0479f27c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_b.rewards_chests_b_05",
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_05.png",
+      "category": "rewards_chests_b",
+      "sha1": "20e4cb43543449da5c8dad8cedfc90f069fb1e1f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_b.rewards_chests_b_06",
+      "path": "res://assets/production/ui_v4/rewards_chests_b/rewards_chests_b_06.png",
+      "category": "rewards_chests_b",
+      "sha1": "a3d21667dbd49bed5e579487d88aa969e16583af",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_01",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_01.png",
+      "category": "rewards_chests_c",
+      "sha1": "242d14afc66e70f5cf28c7042a4a87a5bd7d4d56",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_02",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_02.png",
+      "category": "rewards_chests_c",
+      "sha1": "aca676ebfaa04d001f472e043345b5f92292f7c2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_03",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_03.png",
+      "category": "rewards_chests_c",
+      "sha1": "37137cdb66e3568f3283cd31d78b927bb7adbdec",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_04",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_04.png",
+      "category": "rewards_chests_c",
+      "sha1": "77e1ba53d8c8f63ef29f21dd1e2020e30973bad7",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_05",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_05.png",
+      "category": "rewards_chests_c",
+      "sha1": "f753417735565e047b72dc2e22cf706bee36a36b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_06",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_06.png",
+      "category": "rewards_chests_c",
+      "sha1": "41fcdc41d5019ada680057329b9ffdcde33eba45",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_07",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_07.png",
+      "category": "rewards_chests_c",
+      "sha1": "da28b13ae817d6643cda1edfd4af0f259d7684c4",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_08",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_08.png",
+      "category": "rewards_chests_c",
+      "sha1": "22627c70999c9081301e572346a4a0e6f9d8b5b4",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_09",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_09.png",
+      "category": "rewards_chests_c",
+      "sha1": "e041ddf99086344808d3f757323ae8d74c1dfb2d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_10",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_10.png",
+      "category": "rewards_chests_c",
+      "sha1": "7c7984c0806dabcfdfb3846cb83cac9f07157272",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_11",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_11.png",
+      "category": "rewards_chests_c",
+      "sha1": "36e31344af4f2561d828d5788db42986e4756855",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.rewards_chests_c.rewards_chests_c_12",
+      "path": "res://assets/production/ui_v4/rewards_chests_c/rewards_chests_c_12.png",
+      "category": "rewards_chests_c",
+      "sha1": "535e4e9d2f95bb72d0b9ee6a7b59a1ce8bae8de4",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.shop_rewards.shop_rewards_01",
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_01.png",
+      "category": "shop_rewards",
+      "sha1": "217a3817516579411ad815fb48a455440c814bb4",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.shop_rewards.shop_rewards_02",
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_02.png",
+      "category": "shop_rewards",
+      "sha1": "2daa174bf8e9451aae7137b1cd205fc2cfb77938",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.shop_rewards.shop_rewards_03",
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_03.png",
+      "category": "shop_rewards",
+      "sha1": "c020672cf3f0c08ac0aea8cd88e9a8e1b38248a7",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.shop_rewards.shop_rewards_04",
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_04.png",
+      "category": "shop_rewards",
+      "sha1": "db4f472f76b759a070af7de64222e430c1ab3aac",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.shop_rewards.shop_rewards_05",
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_05.png",
+      "category": "shop_rewards",
+      "sha1": "8bc4a7d13283d8b242b5ab7c29a61aaf066ae29f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.shop_rewards.shop_rewards_06",
+      "path": "res://assets/production/ui_v4/shop_rewards/shop_rewards_06.png",
+      "category": "shop_rewards",
+      "sha1": "1cc0c9f288681e65310b5e8800fa524f642cdfaa",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_01",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_01.png",
+      "category": "slots_rewards",
+      "sha1": "21cd275d28f1daec0a4965f022ba1b226be62477",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_02",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_02.png",
+      "category": "slots_rewards",
+      "sha1": "9eace502e7e6ef8e49ec789e4179c903535e0dab",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_03",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_03.png",
+      "category": "slots_rewards",
+      "sha1": "b5834c99797f2c662ce80d02cc40302237f79640",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_04",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_04.png",
+      "category": "slots_rewards",
+      "sha1": "93aeb4a47470caa9bde79cdc07dd26d89672c2d5",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_05",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_05.png",
+      "category": "slots_rewards",
+      "sha1": "788c6be1d9432e434974b450b684bcd5933fd611",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_06",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_06.png",
+      "category": "slots_rewards",
+      "sha1": "54666408b650b1ad5fa4a3c52d7c45cf0f2c52ea",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_07",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_07.png",
+      "category": "slots_rewards",
+      "sha1": "81be2955cca8a0136365be8f2d9c3a15d12b41ac",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.slots_rewards.slots_rewards_08",
+      "path": "res://assets/production/ui_v4/slots_rewards/slots_rewards_08.png",
+      "category": "slots_rewards",
+      "sha1": "9d1924be72bf074aaea44c4e82d38da4fb3a19ba",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.evolution",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/evolution.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "68cbe8af50ce15599980b14352107475470342b0",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.level_up",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/level_up.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "3e0b9c4ca347bafbd0034e9a753c0db32764f5dc",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.max_rank",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/max_rank.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "7c50d4b27c790a542285db2db5e59403cd8871e3",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.power",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/power.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "ad3a9f0b4b1031c3357d2929dcb6e72ca370ce0f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.rank",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/rank.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "dd3d7658025e206e22c26c545a181a2b171874f8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.star_up",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/star_up.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "39b995f7adf823937db0f5c589c9b32423c378a1",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.unlock",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/unlock.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "39056291225cdb713111c6193134b5a75a44f888",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_a.upgrade_item",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_a/upgrade_item.png",
+      "category": "upgrade_evolution_a",
+      "sha1": "f317afe994317ca5caba07918b4e674087c19448",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_01",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_01.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "67037fe2e48b8642ec2dc5fcd94020ec5f425f61",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_02",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_02.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "10eeb10d6d0a4377eb313ca84f5dd07b55397ace",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_03",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_03.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "e1d3a2a187efab4ee358c61efdc2aac673c5aa89",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_04",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_04.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "54adaefed8522f648c632c8f70f6efb7eeb1ca9b",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_05",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_05.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "1d9a2395f05120a7f7154f7ed5617ec63100a14d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_06",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_06.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "9c26a7cc0de29622d0e95342dab96b5ea60e4441",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_07",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_07.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "be4f463e9f78cfdc032b793edd1e22ff3503e729",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.upgrade_evolution_b.upgrade_evolution_b_08",
+      "path": "res://assets/production/ui_v4/upgrade_evolution_b/upgrade_evolution_b_08.png",
+      "category": "upgrade_evolution_b",
+      "sha1": "141f1d262e7b9ea859b2ac273213bc3ab899cc8e",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.back",
+      "path": "res://assets/production/ui_v4/utility_controls/back.png",
+      "category": "utility_controls",
+      "sha1": "b63d94607304e898933542199c71d7acc010b4c6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.blue_bar",
+      "path": "res://assets/production/ui_v4/utility_controls/blue_bar.png",
+      "category": "utility_controls",
+      "sha1": "ca3e1a1e2137c86196186c5a313f7f56fac2645a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.checked_slot",
+      "path": "res://assets/production/ui_v4/utility_controls/checked_slot.png",
+      "category": "utility_controls",
+      "sha1": "f78095e0987702e833aeaa9a104117c6bd453dbe",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.close",
+      "path": "res://assets/production/ui_v4/utility_controls/close.png",
+      "category": "utility_controls",
+      "sha1": "056d2c1ca7804aa7d021093b5fc605ec93d6d6a1",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.confirm",
+      "path": "res://assets/production/ui_v4/utility_controls/confirm.png",
+      "category": "utility_controls",
+      "sha1": "e778067ebc799e33c46bcbdd06aedf54f066d276",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.dark_bar",
+      "path": "res://assets/production/ui_v4/utility_controls/dark_bar.png",
+      "category": "utility_controls",
+      "sha1": "65410e78d195cc415151e764acb3a54ff9c7be6a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.dropdown",
+      "path": "res://assets/production/ui_v4/utility_controls/dropdown.png",
+      "category": "utility_controls",
+      "sha1": "7f8e101e6fafb61d78c9fece47dce367b782a6ac",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.info",
+      "path": "res://assets/production/ui_v4/utility_controls/info.png",
+      "category": "utility_controls",
+      "sha1": "501a2b7d812d6b9187b625084c9abcf72ea6a44f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.slider",
+      "path": "res://assets/production/ui_v4/utility_controls/slider.png",
+      "category": "utility_controls",
+      "sha1": "29af770457edf5c7a4598dc40692ff5186a99134",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.utility_controls.square_slot",
+      "path": "res://assets/production/ui_v4/utility_controls/square_slot.png",
+      "category": "utility_controls",
+      "sha1": "dbe0e4b41e1a513cfe320d523ceed0d62c48eb5c",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_a.village_buildings_a_01",
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_01.png",
+      "category": "village_buildings_a",
+      "sha1": "71daaecc60b5209b705c81f19abcbfeffa095734",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_a.village_buildings_a_02",
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_02.png",
+      "category": "village_buildings_a",
+      "sha1": "1376137fc68bb1e1f114474d1755ed7e63fa0ebb",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_a.village_buildings_a_03",
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_03.png",
+      "category": "village_buildings_a",
+      "sha1": "1a1d3ada1d2e9e004431e483f84beda39be34024",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_a.village_buildings_a_04",
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_04.png",
+      "category": "village_buildings_a",
+      "sha1": "dd54791ab6e8317e3c62e3838606e4a8020870d5",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_a.village_buildings_a_05",
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_05.png",
+      "category": "village_buildings_a",
+      "sha1": "15d45eb3c6f287ffd39e09d57409773139704785",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_a.village_buildings_a_06",
+      "path": "res://assets/production/ui_v4/village_buildings_a/village_buildings_a_06.png",
+      "category": "village_buildings_a",
+      "sha1": "c90ed6332519e1ca5a67453da1de7a4ad6db3176",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_b.village_buildings_b_01",
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_01.png",
+      "category": "village_buildings_b",
+      "sha1": "8b4da97d038333c8e085bdd75e9b4dee1527327d",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_b.village_buildings_b_02",
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_02.png",
+      "category": "village_buildings_b",
+      "sha1": "07be8f3d7fc0175b7e515c5b1ef213fba34662f3",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_b.village_buildings_b_03",
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_03.png",
+      "category": "village_buildings_b",
+      "sha1": "d1c301a5eb7d5e03afd0c44a14e03b01f2fbb64f",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_b.village_buildings_b_04",
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_04.png",
+      "category": "village_buildings_b",
+      "sha1": "fbf1dc06ac83592d76f55315d9d56fa0c2b11f79",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_b.village_buildings_b_05",
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_05.png",
+      "category": "village_buildings_b",
+      "sha1": "337ac6b18884057ae45a2f97b11e5c89b3c289fe",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_buildings_b.village_buildings_b_06",
+      "path": "res://assets/production/ui_v4/village_buildings_b/village_buildings_b_06.png",
+      "category": "village_buildings_b",
+      "sha1": "06f74a3c5a56e60bb1db46282f27a0e038c13e6a",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.build",
+      "path": "res://assets/production/ui_v4/village_controls/build.png",
+      "category": "village_controls",
+      "sha1": "42b95b04dd96ef2daaa741a6e5a0b76ebe14ea00",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.collect",
+      "path": "res://assets/production/ui_v4/village_controls/collect.png",
+      "category": "village_controls",
+      "sha1": "fb6fa29c2eb262e5dab7ab22ef4a7bc0310a9ed6",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.info",
+      "path": "res://assets/production/ui_v4/village_controls/info.png",
+      "category": "village_controls",
+      "sha1": "5fce39c34a6f39cc34adbec45282c5f15575b2c8",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.locked",
+      "path": "res://assets/production/ui_v4/village_controls/locked.png",
+      "category": "village_controls",
+      "sha1": "432a88bb359292c8e31ff6e927f46d95f1f4c4d2",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.max",
+      "path": "res://assets/production/ui_v4/village_controls/max.png",
+      "category": "village_controls",
+      "sha1": "399174c27dad0e248805e430499d93b014f6b220",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.ready",
+      "path": "res://assets/production/ui_v4/village_controls/ready.png",
+      "category": "village_controls",
+      "sha1": "9ef7245e209671f894a251081bc6ddc7fe73e5d1",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.timer",
+      "path": "res://assets/production/ui_v4/village_controls/timer.png",
+      "category": "village_controls",
+      "sha1": "efe5cc6b1d08c4f073b259121f34e3dcfc78fb90",
+      "status": "canonical_source"
+    },
+    {
+      "id": "v4.village_controls.upgrade",
+      "path": "res://assets/production/ui_v4/village_controls/upgrade.png",
+      "category": "village_controls",
+      "sha1": "e5078f9b49359e1e7518e367e203e3cb50fe5f0f",
+      "status": "canonical_source"
+    }
+  ]
+}

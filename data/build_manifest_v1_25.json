@@ -1,0 +1,63 @@
+{
+  "source_version": "V1.25",
+  "master_version": "V2.0",
+  "block": "Grünhain Combat Content",
+  "encounters": [
+    {
+      "id": "M001",
+      "name": "Waldwinzling",
+      "states": [
+        "idle",
+        "hit",
+        "defeat"
+      ],
+      "role": "calibration reference"
+    },
+    {
+      "id": "M002",
+      "name": "Goblin-Plünderer",
+      "states": [
+        "idle",
+        "hit",
+        "defeat"
+      ]
+    },
+    {
+      "id": "M003",
+      "name": "Waldkeiler",
+      "states": [
+        "idle",
+        "hit",
+        "defeat"
+      ]
+    },
+    {
+      "id": "M004",
+      "name": "Pilzling",
+      "states": [
+        "idle",
+        "hit",
+        "defeat"
+      ]
+    },
+    {
+      "id": "B001",
+      "name": "Mooskönig",
+      "states": [
+        "idle",
+        "hit",
+        "shield",
+        "defeat"
+      ],
+      "boss": true
+    }
+  ],
+  "required_state_assets": 16,
+  "boss_frequency": 10,
+  "save_schema": "V20",
+  "previous_blocks_preserved": [
+    "V1.23 SPIN",
+    "V1.24 Village"
+  ],
+  "next_master_block": "V1.26 DICE + Realm Journey Grünhain + Treasure Portal"
+}

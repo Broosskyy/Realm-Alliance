@@ -1,0 +1,22 @@
+{
+  "source_version": "V1.9",
+  "master_concept": "V1.4",
+  "project_version": "1.9.0",
+  "save_version": 16,
+  "checks": {
+    "portable_save_replace": true,
+    "focus_out_save": true,
+    "connect_once_helper": true,
+    "responsive_modal_clamp": true,
+    "audio_sfx_pool": true,
+    "monster_data_fallback": true,
+    "android_v19": true
+  },
+  "missing_percent_nodes": [],
+  "missing_ext_resources": [],
+  "duplicate_functions": {},
+  "syntax_suspects": [],
+  "json_errors": {},
+  "autoload_missing": [],
+  "godot_binary": "not installed"
+}

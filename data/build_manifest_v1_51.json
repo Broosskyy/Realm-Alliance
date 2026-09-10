@@ -1,0 +1,26 @@
+{
+  "source_version": "V1.51",
+  "master_version": "V2.1",
+  "block": "Heroes & Combat Progression V2",
+  "heroes": [
+    "knight",
+    "archer",
+    "mage"
+  ],
+  "mastery_max": 5,
+  "specializations": [
+    "guardian",
+    "ranger",
+    "arcanist"
+  ],
+  "mastery_source": "MonsterDefeatService authoritative defeat signal",
+  "legacy_fake_rankings_removed": true,
+  "new_currency": false,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true
+  },
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

@@ -1,0 +1,27 @@
+{
+  "source_version": "V1.52",
+  "master_version": "V2.1",
+  "block": "Quests Achievements Collections V2",
+  "daily": 3,
+  "weekly": 3,
+  "achievements": 5,
+  "collection": "greenvale_bestiary",
+  "cross_pillar_hooks": [
+    "monster_defeat",
+    "boss_defeat",
+    "spin",
+    "journey_lap",
+    "puzzle_complete",
+    "td_win",
+    "lane_win",
+    "village_upgrade"
+  ],
+  "new_currency": false,
+  "placeholder_assets": {
+    "count": 8,
+    "size": "768x768",
+    "transparent": true
+  },
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

@@ -1,0 +1,32 @@
+{
+  "source_version": "V1.40",
+  "master_version": "V2.0",
+  "block": "Deterministic SPIN Result Contract",
+  "spin_config_version": "v2.0-3reel-p0-06",
+  "result_contract_version": "spin-result-v1",
+  "required_result_fields": [
+    "result_id",
+    "reward_id",
+    "reward_type",
+    "reward_value",
+    "config_version",
+    "outcome_seed",
+    "visual_seed",
+    "reel_stops",
+    "reel_stop_ids",
+    "outcomes",
+    "visual_symbol_id",
+    "visual_symbol_index"
+  ],
+  "legacy_aliases": [
+    "segment_id",
+    "segment_index",
+    "type",
+    "amount"
+  ],
+  "reward_authority": "reward first, presentation second",
+  "visual_rng": "deterministic from visual_seed",
+  "save_schema": "V20 unchanged",
+  "placeholder_asset_count": 6,
+  "website": "excluded"
+}

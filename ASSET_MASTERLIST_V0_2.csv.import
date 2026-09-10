@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b32wdhkeufemb"
+
+[deps]
+
+source_file="res://ASSET_MASTERLIST_V0_2.csv"
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

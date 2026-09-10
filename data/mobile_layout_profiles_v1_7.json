@@ -1,0 +1,48 @@
+{
+  "source_version": "V1.7",
+  "master_concept": "V1.4",
+  "profiles": {
+    "small": {
+      "reference": [
+        720,
+        1600
+      ],
+      "focus": [
+        "compact topbar",
+        "minimum 96px touch targets",
+        "modal scaling 88%"
+      ]
+    },
+    "standard": {
+      "reference": [
+        1080,
+        1920
+      ],
+      "focus": [
+        "master layout"
+      ]
+    },
+    "tall": {
+      "reference": [
+        1080,
+        2400
+      ],
+      "focus": [
+        "extra vertical breathing room",
+        "larger monster/wheel"
+      ]
+    }
+  },
+  "manual_checks": [
+    "No topbar clipping",
+    "No settings overlay clipping",
+    "No reward overlay clipping",
+    "No upgrade modal clipping",
+    "Monster remains dominant action",
+    "Wheel CTA remains reachable with one hand",
+    "Bottom nav has exactly Home/Rad/Dorf",
+    "All primary buttons >=96 reference pixels",
+    "Rotate/rescale does not leave stale offsets",
+    "Opening a modal blocks navigation underneath"
+  ]
+}

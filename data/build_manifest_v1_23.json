@@ -1,0 +1,47 @@
+{
+  "source_version": "V1.23",
+  "master_version": "1.8",
+  "build_number": 33,
+  "channel": "prototype-test",
+  "runtime_status": "not_runtime_tested",
+  "base_source": "V1.22 Master V1.6 Realignment + V1.21 Save/Resume hardening + Art Integration 01",
+  "main_scene": "res://MainGame.tscn",
+  "reference_resolution": [
+    1080,
+    1920
+  ],
+  "orientation": "portrait",
+  "renderer": "gl_compatibility",
+  "p0_visible_views": [
+    "home",
+    "wheel",
+    "village"
+  ],
+  "save_lifecycle": {
+    "schema_version": 20,
+    "preserved": true
+  },
+  "v1_23": {
+    "spin_ui_contract": "dominant dedicated gameplay moment",
+    "settings_expanded": true,
+    "analytics_spin_contract": true,
+    "dice_reserved": true,
+    "journey_reserved": true,
+    "events_rankings_reserved": true,
+    "realm_chest_reserved": true,
+    "new_visual_reference": "V1.23 SPIN/UI concept generated; not production-sliced art"
+  },
+  "android": {
+    "preset": "Android Test",
+    "package": "com.realmalliance.prototype",
+    "architecture": [
+      "arm64-v8a"
+    ],
+    "immersive_mode": true,
+    "export_path": "build/android/RealmAlliance_V1_23_Test.apk"
+  },
+  "web": {
+    "preset": "Web Test",
+    "export_path": "build/web/index.html"
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "version": 6,
+  "count": 29,
+  "assets": [
+    {
+      "path": "res://assets/fx/fx_reward_burst_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/fx_unlock_badge_placeholder.png",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/heroes/hero_archer_portrait_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/heroes/hero_knight_portrait_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/heroes/hero_mage_portrait_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_boar_brute_01_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_goblin_01_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_slime_01_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_treant_boss_01_placeholder.png",
+      "width": 720,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/buttons/btn_primary_placeholder.png",
+      "width": 720,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/buttons/btn_secondary_placeholder.png",
+      "width": 720,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_gem_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_gold_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_heroes_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_shield_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_spin_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_tap_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_village_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_wheel_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/bottomnav_placeholder.png",
+      "width": 980,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/hp_fill_placeholder.png",
+      "width": 820,
+      "height": 44,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/hp_frame_placeholder.png",
+      "width": 840,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/topbar_placeholder.png",
+      "width": 900,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_forge_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_goldmine_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/wheel/wheel_8segment_placeholder.png",
+      "width": 800,
+      "height": 800,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/wheel/wheel_pointer_placeholder.png",
+      "width": 180,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/world/greenvale/bg_greenvale_tap_placeholder.png",
+      "width": 1080,
+      "height": 1920,
+      "mode": "RGBA"
+    }
+  ]
+}

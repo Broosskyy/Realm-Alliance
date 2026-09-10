@@ -1,0 +1,25 @@
+{
+  "source_version": "V1.36",
+  "master_version": "V2.0",
+  "block": "Profile / Social / Inbox / Achievements Foundation",
+  "social_backend": "not implemented",
+  "profile_metrics": [
+    "account_level",
+    "region",
+    "boss_defeats",
+    "townhall_level",
+    "realm_chests_opened"
+  ],
+  "achievements": [
+    "first_steps",
+    "greenvale_guard",
+    "builder",
+    "chest_seeker"
+  ],
+  "achievement_rewards": "none in V1.36",
+  "inbox": "local system messages only",
+  "friends_alliances": "backend placeholder only",
+  "save_schema": "V20 optional social_hub",
+  "placeholder_asset_count": 6,
+  "website": "excluded"
+}

@@ -1,0 +1,374 @@
+{
+  "version": 9,
+  "rule": "Keep file paths and dimensions when replacing placeholders with final production art.",
+  "assets": {
+    "background_greenvale": {
+      "path": "res://assets/world/greenvale/bg_greenvale_tap_placeholder.png",
+      "size": [
+        1080,
+        1920
+      ],
+      "alpha": false
+    },
+    "monster_slime": {
+      "path": "res://assets/monsters/greenvale/monster_slime_01_placeholder.png",
+      "size": [
+        640,
+        640
+      ],
+      "alpha": true
+    },
+    "monster_goblin": {
+      "path": "res://assets/monsters/greenvale/monster_goblin_01_placeholder.png",
+      "size": [
+        640,
+        640
+      ],
+      "alpha": true
+    },
+    "monster_boar": {
+      "path": "res://assets/monsters/greenvale/monster_boar_brute_01_placeholder.png",
+      "size": [
+        640,
+        640
+      ],
+      "alpha": true
+    },
+    "hero_knight": {
+      "path": "res://assets/heroes/hero_knight_portrait_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "hero_archer": {
+      "path": "res://assets/heroes/hero_archer_portrait_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "hero_mage": {
+      "path": "res://assets/heroes/hero_mage_portrait_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "townhall_lv1": {
+      "path": "res://assets/village/greenvale/building_townhall_lv1_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "wheel_base": {
+      "path": "res://assets/wheel/wheel_8segment_placeholder.png",
+      "size": [
+        800,
+        800
+      ],
+      "alpha": true
+    },
+    "wheel_pointer": {
+      "path": "res://assets/wheel/wheel_pointer_placeholder.png",
+      "size": [
+        180,
+        180
+      ],
+      "alpha": true
+    },
+    "monster_treant_boss": {
+      "path": "res://assets/monsters/greenvale/monster_treant_boss_01_placeholder.png",
+      "size": [
+        720,
+        720
+      ],
+      "alpha": true
+    },
+    "goldmine_lv1": {
+      "path": "res://assets/village/greenvale/building_goldmine_lv1_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "forge_lv1": {
+      "path": "res://assets/village/greenvale/building_forge_lv1_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "fx_reward_burst": {
+      "path": "res://assets/fx/fx_reward_burst_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "fx_unlock_badge": {
+      "path": "res://assets/fx/fx_unlock_badge_placeholder.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": true
+    },
+    "lane_map_greenvale": {
+      "path": "res://assets/battle/greenvale/lane_map_greenvale_placeholder.png",
+      "size": [
+        1080,
+        1500
+      ],
+      "alpha": false
+    },
+    "unit_knight": {
+      "path": "res://assets/battle/units/unit_knight_placeholder.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": true
+    },
+    "unit_archer": {
+      "path": "res://assets/battle/units/unit_archer_placeholder.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": true
+    },
+    "unit_enemy_melee": {
+      "path": "res://assets/battle/units/unit_enemy_melee_placeholder.png",
+      "size": [
+        256,
+        256
+      ],
+      "alpha": true
+    },
+    "monster_hit_overlay": {
+      "path": "res://assets/fx/monster_hit_overlay_placeholder.png",
+      "size": [
+        640,
+        640
+      ],
+      "alpha": true
+    },
+    "monster_death_overlay": {
+      "path": "res://assets/fx/monster_death_overlay_placeholder.png",
+      "size": [
+        640,
+        640
+      ],
+      "alpha": true
+    },
+    "townhall_lv2": {
+      "path": "res://assets/village/greenvale/building_townhall_lv2_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "townhall_lv3": {
+      "path": "res://assets/village/greenvale/building_townhall_lv3_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "icon_attack": {
+      "path": "res://assets/ui/icons/icon_attack_placeholder.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    "td_map_greenvale": {
+      "path": "res://assets/defense/greenvale/td_map_greenvale_placeholder.png",
+      "size": [
+        1080,
+        1500
+      ],
+      "alpha": false
+    },
+    "tower_archer": {
+      "path": "res://assets/defense/towers/tower_archer_placeholder.png",
+      "size": [
+        320,
+        320
+      ],
+      "alpha": true
+    },
+    "tower_mage": {
+      "path": "res://assets/defense/towers/tower_mage_placeholder.png",
+      "size": [
+        320,
+        320
+      ],
+      "alpha": true
+    },
+    "td_enemy_runner": {
+      "path": "res://assets/defense/enemies/td_enemy_runner_placeholder.png",
+      "size": [
+        220,
+        220
+      ],
+      "alpha": true
+    },
+    "td_enemy_tank": {
+      "path": "res://assets/defense/enemies/td_enemy_tank_placeholder.png",
+      "size": [
+        220,
+        220
+      ],
+      "alpha": true
+    },
+    "projectile_magic": {
+      "path": "res://assets/fx/projectile_magic_placeholder.png",
+      "size": [
+        96,
+        96
+      ],
+      "alpha": true
+    },
+    "fx_tower_hit": {
+      "path": "res://assets/fx/fx_tower_hit_placeholder.png",
+      "size": [
+        160,
+        160
+      ],
+      "alpha": true
+    },
+    "goldmine_lv2": {
+      "path": "res://assets/village/greenvale/building_goldmine_lv2_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "forge_lv2": {
+      "path": "res://assets/village/greenvale/building_forge_lv2_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "defense_tower_lv1": {
+      "path": "res://assets/village/greenvale/building_defense_tower_lv1_placeholder.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true
+    },
+    "monster_boar_boss": {
+      "path": "res://assets/monsters/greenvale/monster_boar_boss_placeholder.png",
+      "size": [
+        680,
+        680
+      ],
+      "alpha": true
+    },
+    "icon_defense": {
+      "path": "res://assets/ui/icons/icon_defense_placeholder.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    "home_overlay": {
+      "path": "res://assets/ui/panels/home_overlay_placeholder.png",
+      "size": [
+        1080,
+        1920
+      ],
+      "alpha": true
+    },
+    "daily_reward_card": {
+      "path": "res://assets/ui/cards/daily_reward_card_placeholder.png",
+      "size": [
+        420,
+        220
+      ],
+      "alpha": true
+    },
+    "quest_card": {
+      "path": "res://assets/ui/cards/quest_card_placeholder.png",
+      "size": [
+        760,
+        150
+      ],
+      "alpha": true
+    },
+    "unlock_banner": {
+      "path": "res://assets/ui/banners/unlock_banner_placeholder.png",
+      "size": [
+        900,
+        180
+      ],
+      "alpha": true
+    },
+    "reward_modal": {
+      "path": "res://assets/ui/modals/reward_modal_placeholder.png",
+      "size": [
+        840,
+        760
+      ],
+      "alpha": true
+    },
+    "icon_home": {
+      "path": "res://assets/ui/icons/icon_home_placeholder.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    "icon_daily": {
+      "path": "res://assets/ui/icons/icon_daily_placeholder.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    "icon_quest": {
+      "path": "res://assets/ui/icons/icon_quest_placeholder.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    "icon_reward": {
+      "path": "res://assets/ui/icons/icon_reward_placeholder.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    "village_ambient_trees": {
+      "path": "res://assets/village/greenvale/village_ambient_trees_placeholder.png",
+      "size": [
+        512,
+        256
+      ],
+      "alpha": true
+    }
+  }
+}

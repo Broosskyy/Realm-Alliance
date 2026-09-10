@@ -1,0 +1,42 @@
+{
+  "source_version": "V1.32",
+  "master_version": "V2.0",
+  "block": "Daily + Quests vertical slice",
+  "entry": [
+    "TAGESBONUS quick action",
+    "AUFGABEN quick action"
+  ],
+  "daily": {
+    "cycle_days": 7,
+    "claim_rule": "one claim per UTC calendar day",
+    "economy": "preserved from pre-V1.32 source"
+  },
+  "quests": {
+    "type": "starter set",
+    "count": 3,
+    "ids": [
+      "tap_10",
+      "spin_3",
+      "upgrade_1"
+    ],
+    "economy": "preserved from pre-V1.32 source"
+  },
+  "save_schema": "V20",
+  "art_status": "existing integration assets; final art pending",
+  "previous_blocks_preserved": [
+    "V1.23 SPIN",
+    "V1.24 Village",
+    "V1.25 Combat",
+    "V1.26 Journey",
+    "V1.27 Meta",
+    "V1.28 Puzzle",
+    "V1.29 Tower Defense",
+    "V1.30 Lane Battle",
+    "V1.31 Heroes"
+  ],
+  "next_phase": [
+    "more regions",
+    "progression expansion",
+    "UI/content polish"
+  ]
+}

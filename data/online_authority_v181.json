@@ -1,0 +1,114 @@
+{
+  "version": "1.81",
+  "master_concept": "V2.2",
+  "mode": "local_development",
+  "production_target": "online_authoritative",
+  "request_contract_version": "authority-intent-v1",
+  "result_contract_version": "authority-result-v1",
+  "offline_queue_policy": {
+    "safe": [
+      "settings",
+      "analytics_batch"
+    ],
+    "review": [
+      "tap_progress",
+      "noncompetitive_pve_intent"
+    ],
+    "forbidden": [
+      "purchase",
+      "spend_currency",
+      "claim_reward",
+      "open_chest",
+      "spin_result",
+      "pvp_result"
+    ]
+  },
+  "server_time_required": [
+    "daily",
+    "goldmine",
+    "temple",
+    "events",
+    "seasons",
+    "offers",
+    "cooldowns"
+  ],
+  "economy_contract_version": "economy-transaction-v1",
+  "snapshot_contract_version": "player-snapshot-v3",
+  "max_pending_intents": 64,
+  "sync_request_contract_version": "player-sync-request-v1",
+  "reconciliation_contract_version": "sync-reconciliation-v1",
+  "remote_snapshot_policy": {
+    "reject_stale_revision": true,
+    "require_server_time": true,
+    "apply_state_only_after_validation": true,
+    "never_fake_remote_response": true
+  },
+  "auth_contract_version": "auth-session-v1",
+  "transport_contract_version": "realm-http-transport-v1",
+  "remote_apply_contract_version": "remote-state-apply-v1",
+  "transport": {
+    "enabled": false,
+    "base_url": "",
+    "require_https": true,
+    "connect_timeout_seconds": 12,
+    "request_timeout_seconds": 20,
+    "max_response_bytes": 1048576,
+    "max_retries": 2,
+    "retry_backoff_seconds": [
+      1,
+      3
+    ],
+    "disconnect_after_consecutive_failures": 3
+  },
+  "routes": {
+    "session_guest": "/v1/session/guest",
+    "session_refresh": "/v1/session/refresh",
+    "player_sync": "/v1/player/sync",
+    "authority_intent": "/v1/game/intent",
+    "friends_list": "/v1/social/friends",
+    "friend_request": "/v1/social/friend-request",
+    "friend_accept": "/v1/social/friend-accept",
+    "guild_snapshot": "/v1/guild/snapshot",
+    "guild_create": "/v1/guild/create",
+    "guild_join": "/v1/guild/join",
+    "guild_leave": "/v1/guild/leave",
+    "ranking_snapshot": "/v1/rankings/snapshot",
+    "ranking_claim": "/v1/rankings/claim",
+    "remote_spin": "/v1/game/spin",
+    "remote_combat_defeat": "/v1/game/combat/defeat",
+    "guild_boss_snapshot": "/v1/guild/boss/snapshot",
+    "guild_boss_attack": "/v1/guild/boss/attack",
+    "guild_boss_claim": "/v1/guild/boss/claim",
+    "pvp_opponents": "/v1/pvp/opponents",
+    "pvp_attack": "/v1/pvp/attack",
+    "pvp_history": "/v1/pvp/history",
+    "pvp_claim": "/v1/pvp/claim"
+  },
+  "response_router_contract_version": "response-router-v1",
+  "network_resilience_contract_version": "network-resilience-v1",
+  "social_contract_version": "social-service-v1",
+  "guild_contract_version": "guild-service-v1",
+  "ranking_contract_version": "ranking-service-v1",
+  "remote_gameplay_contract_version": "remote-gameplay-v1",
+  "guild_boss_contract_version": "guild-boss-v1",
+  "async_pvp_contract_version": "async-pvp-v1",
+  "remote_gameplay_policy": {
+    "spin_rng_server_only_in_online_mode": true,
+    "spin_cost_and_reward_server_atomic": true,
+    "combat_reward_server_only_in_online_mode": true,
+    "client_damage_prediction_allowed": true,
+    "valuable_result_requires_revision": true,
+    "valuable_result_requires_server_time": true
+  },
+  "async_pvp_policy": {
+    "server_selects_opponents": true,
+    "server_resolves_result": true,
+    "client_submits_loadout_snapshot_reference": true,
+    "no_realtime_transport_required": true
+  },
+  "guild_boss_policy": {
+    "server_owns_global_hp": true,
+    "server_owns_contribution": true,
+    "server_owns_reward_eligibility": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "1.62",
+  "ui_v4_png_files": 219,
+  "atlas_png_files": 15,
+  "semantic_binding_count": 188,
+  "screen_contract_node_count": 91,
+  "missing_contract_nodes": [],
+  "canonical_button_roles": [
+    "ui.button.primary",
+    "ui.button.positive",
+    "ui.button.secondary",
+    "ui.button.neutral",
+    "ui.button.danger",
+    "ui.button.reward"
+  ],
+  "canonical_panel_roles": [
+    "ui.panel.tall.primary",
+    "ui.panel.tall.dark",
+    "ui.panel.tall.parchment",
+    "ui.panel.wood",
+    "ui.panel.banner",
+    "ui.panel.info.parchment",
+    "ui.panel.info.dark",
+    "ui.panel.small.parchment"
+  ],
+  "policy": "Use existing REALM UI first. Runtime text/icons remain separate. No new generic UI art until a screen contract proves a real gap."
+}

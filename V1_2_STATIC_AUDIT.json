@@ -1,0 +1,15 @@
+{
+  "source_version": "V1.2",
+  "master_concept": "V1.4",
+  "masterlist_slots": 79,
+  "wheel_segment_assets": 8,
+  "p0_buildings": 4,
+  "p0_building_visual_stages": 12,
+  "save_version": 12,
+  "missing_ext_resources": [],
+  "missing_unique_node_refs": [
+    "d",
+    "s"
+  ],
+  "godot_binary": "not installed"
+}

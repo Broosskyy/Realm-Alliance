@@ -1,0 +1,24 @@
+{
+  "source_version": "V1.45",
+  "master_version": "V2.1",
+  "block": "UI Interface Visual Polish",
+  "ui_polish_service": true,
+  "polished_overlays": [
+    "feature_hub",
+    "liveops",
+    "shop",
+    "progression",
+    "afk",
+    "account",
+    "social",
+    "support",
+    "settings"
+  ],
+  "ranking_selected_state": true,
+  "shop_payload_preview": true,
+  "spin_w106": "Puzzle Bonus",
+  "asset_swap_map": "data/asset_swap_map_v1_45.json",
+  "placeholder_asset_count": 8,
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

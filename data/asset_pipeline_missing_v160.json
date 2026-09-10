@@ -1,0 +1,111 @@
+{
+  "version": "1.60",
+  "confirmed_missing_now": [
+    {
+      "id": "lane_map_greenvale",
+      "slot": "res://assets/battle/greenvale/lane_map_greenvale_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Portrait/vertical Greenvale lane battle map, no baked UI."
+    },
+    {
+      "id": "unit_archer",
+      "slot": "res://assets/battle/units/unit_archer_placeholder.png",
+      "tool": "Image generation",
+      "priority": "P0",
+      "spec": "Readable battle unit matching hero/monster casual fantasy style."
+    },
+    {
+      "id": "unit_knight",
+      "slot": "res://assets/battle/units/unit_knight_placeholder.png",
+      "tool": "Image generation",
+      "priority": "P0",
+      "spec": "Readable battle unit matching hero/monster casual fantasy style."
+    },
+    {
+      "id": "td_enemy_runner",
+      "slot": "res://assets/defense/enemies/td_enemy_runner_placeholder.png",
+      "tool": "Image generation",
+      "priority": "P0",
+      "spec": "Small fast enemy, distinct silhouette."
+    },
+    {
+      "id": "td_map_greenvale",
+      "slot": "res://assets/defense/greenvale/td_map_greenvale_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Greenvale tower-defense map with clear path/placement areas, no UI."
+    },
+    {
+      "id": "tower_archer",
+      "slot": "res://assets/defense/towers/tower_archer_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Freestanding archer tower, same village/world material language."
+    },
+    {
+      "id": "tower_mage",
+      "slot": "res://assets/defense/towers/tower_mage_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Freestanding mage tower, same village/world material language."
+    },
+    {
+      "id": "entry_splash",
+      "slot": "res://assets/entry/ENTRY001_splash_bg_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "REALM ALLIANCE branded splash background."
+    },
+    {
+      "id": "entry_welcome",
+      "slot": "res://assets/entry/ENTRY002_welcome_bg_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Welcome/login background derived from brand/world direction."
+    },
+    {
+      "id": "realm_emblem",
+      "slot": "res://assets/entry/ENTRY003_realm_emblem_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Canonical REALM emblem, transparent."
+    },
+    {
+      "id": "hero_archer_portrait",
+      "slot": "res://assets/heroes/hero_archer_portrait_placeholder.png",
+      "tool": "Image generation",
+      "priority": "P0",
+      "spec": "Niva/archer portrait, transparent."
+    },
+    {
+      "id": "hero_knight_portrait",
+      "slot": "res://assets/heroes/hero_knight_portrait_placeholder.png",
+      "tool": "Image generation",
+      "priority": "P0",
+      "spec": "Brom/knight portrait, transparent."
+    },
+    {
+      "id": "hero_mage_portrait",
+      "slot": "res://assets/heroes/hero_mage_portrait_placeholder.png",
+      "tool": "Image generation",
+      "priority": "P0",
+      "spec": "Ember/mage portrait, transparent."
+    },
+    {
+      "id": "village_ambient_trees",
+      "slot": "res://assets/village/greenvale/village_ambient_trees_placeholder.png",
+      "tool": "Recraft",
+      "priority": "P0",
+      "spec": "Transparent modular Greenvale tree/vegetation cluster."
+    }
+  ],
+  "review_only": [
+    {
+      "id": "goldmine_visual",
+      "status": "medium",
+      "note": "Current mapping is usable but must be judged on-device; only produce a new goldmine if it reads incorrectly."
+    }
+  ],
+  "policy": "Do not generate generic UI again. Fill only confirmed gaps after current assets are bound."
+}

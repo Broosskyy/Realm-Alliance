@@ -1,0 +1,366 @@
+{
+  "version": 9,
+  "count": 60,
+  "assets": [
+    {
+      "path": "res://assets/battle/greenvale/lane_map_greenvale_placeholder.png",
+      "width": 1080,
+      "height": 1500,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/battle/units/unit_archer_placeholder.png",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/battle/units/unit_enemy_melee_placeholder.png",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/battle/units/unit_knight_placeholder.png",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/defense/enemies/td_enemy_runner_placeholder.png",
+      "width": 220,
+      "height": 220,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/defense/enemies/td_enemy_tank_placeholder.png",
+      "width": 220,
+      "height": 220,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/defense/greenvale/td_map_greenvale_placeholder.png",
+      "width": 1080,
+      "height": 1500,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/defense/towers/tower_archer_placeholder.png",
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/defense/towers/tower_mage_placeholder.png",
+      "width": 320,
+      "height": 320,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/fx_reward_burst_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/fx_tower_hit_placeholder.png",
+      "width": 160,
+      "height": 160,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/fx_unlock_badge_placeholder.png",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/monster_death_overlay_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/monster_hit_overlay_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/fx/projectile_magic_placeholder.png",
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/heroes/hero_archer_portrait_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/heroes/hero_knight_portrait_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/heroes/hero_mage_portrait_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_boar_boss_placeholder.png",
+      "width": 680,
+      "height": 680,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_boar_brute_01_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_goblin_01_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_slime_01_placeholder.png",
+      "width": 640,
+      "height": 640,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/monsters/greenvale/monster_treant_boss_01_placeholder.png",
+      "width": 720,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/banners/unlock_banner_placeholder.png",
+      "width": 900,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/buttons/btn_primary_placeholder.png",
+      "width": 720,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/buttons/btn_secondary_placeholder.png",
+      "width": 720,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/cards/daily_reward_card_placeholder.png",
+      "width": 420,
+      "height": 220,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/cards/quest_card_placeholder.png",
+      "width": 760,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_attack_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_daily_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_defense_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_gem_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_gold_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_heroes_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_home_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_quest_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_reward_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_shield_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_spin_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_tap_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_village_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/icons/icon_wheel_placeholder.png",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/modals/reward_modal_placeholder.png",
+      "width": 840,
+      "height": 760,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/bottomnav_placeholder.png",
+      "width": 980,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/home_overlay_placeholder.png",
+      "width": 1080,
+      "height": 1920,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/hp_fill_placeholder.png",
+      "width": 820,
+      "height": 44,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/hp_frame_placeholder.png",
+      "width": 840,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/ui/panels/topbar_placeholder.png",
+      "width": 900,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_defense_tower_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_forge_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_forge_lv2_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_goldmine_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_goldmine_lv2_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv1_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv2_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/building_townhall_lv3_placeholder.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/village/greenvale/village_ambient_trees_placeholder.png",
+      "width": 512,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/wheel/wheel_8segment_placeholder.png",
+      "width": 800,
+      "height": 800,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/wheel/wheel_pointer_placeholder.png",
+      "width": 180,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "res://assets/world/greenvale/bg_greenvale_tap_placeholder.png",
+      "width": 1080,
+      "height": 1920,
+      "mode": "RGBA"
+    }
+  ]
+}

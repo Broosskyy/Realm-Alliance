@@ -1,0 +1,34 @@
+{
+  "buildings": [
+    {
+      "id": "town_hall",
+      "name": "Rathaus",
+      "available": true
+    },
+    {
+      "id": "gold_mine",
+      "name": "Goldmine",
+      "unlock_level": 3
+    },
+    {
+      "id": "forge",
+      "name": "Schmiede",
+      "unlock_level": 5
+    },
+    {
+      "id": "hero_guild",
+      "name": "Heldengilde",
+      "unlock_level": 5
+    },
+    {
+      "id": "shield_workshop",
+      "name": "Schildwerkstatt",
+      "unlock_level": 8
+    },
+    {
+      "id": "lucky_temple",
+      "name": "Glückstempel",
+      "unlock_level": 10
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "master_version": "v1.53-village-v2-06",
+  "buildings": [
+    {
+      "id": "townhall",
+      "master_id": "V001",
+      "name": "Rathaus",
+      "levels": [
+        {
+          "level": 1,
+          "cost_to_next": 200,
+          "effect": "Dorfstruktur · schaltet Gebäude-Stufe 1 frei",
+          "asset_id": "V001_TOWNHALL_LV1"
+        },
+        {
+          "level": 2,
+          "cost_to_next": 600,
+          "effect": "Dorfstruktur · schaltet Gebäude-Stufe 2 frei",
+          "asset_id": "V001_TOWNHALL_LV2"
+        },
+        {
+          "level": 3,
+          "cost_to_next": 0,
+          "effect": "Dorfstruktur · schaltet Gebäude-Stufe 3 frei",
+          "asset_id": "V001_TOWNHALL_LV3"
+        }
+      ]
+    },
+    {
+      "id": "goldmine",
+      "master_id": "V002",
+      "name": "Goldmine",
+      "levels": [
+        {
+          "level": 1,
+          "cost_to_next": 150,
+          "effect": "30 Gold/Min · max. 30 Min speichern",
+          "asset_id": "V002_GOLDMINE_LV1",
+          "gold_per_minute": 30,
+          "claim_cap_minutes": 30
+        },
+        {
+          "level": 2,
+          "cost_to_next": 450,
+          "effect": "50 Gold/Min · max. 45 Min speichern",
+          "asset_id": "V002_GOLDMINE_LV2",
+          "gold_per_minute": 50,
+          "claim_cap_minutes": 45
+        },
+        {
+          "level": 3,
+          "cost_to_next": 0,
+          "effect": "75 Gold/Min · max. 60 Min speichern",
+          "asset_id": "V002_GOLDMINE_LV3",
+          "gold_per_minute": 75,
+          "claim_cap_minutes": 60
+        }
+      ]
+    },
+    {
+      "id": "forge",
+      "master_id": "V003",
+      "name": "Schmiede",
+      "levels": [
+        {
+          "level": 1,
+          "cost_to_next": 180,
+          "effect": "Tap-Stärke + Schmiede-Veredelung bis 2 / 6",
+          "asset_id": "V003_FORGE_LV1"
+        },
+        {
+          "level": 2,
+          "cost_to_next": 550,
+          "effect": "Tap-Stärke + Schmiede-Veredelung bis 4 / 6",
+          "asset_id": "V003_FORGE_LV2"
+        },
+        {
+          "level": 3,
+          "cost_to_next": 0,
+          "effect": "Tap-Stärke + Schmiede-Veredelung bis 6 / 6",
+          "asset_id": "V003_FORGE_LV3"
+        }
+      ]
+    },
+    {
+      "id": "lucktemple",
+      "master_id": "V004",
+      "name": "Glückstempel",
+      "levels": [
+        {
+          "level": 1,
+          "cost_to_next": 180,
+          "effect": "Bonus-Spins-Feld + täglicher Segen: +2 Spins",
+          "asset_id": "V004_LUCKTEMPLE_LV1",
+          "bonus_spin_amount": 2
+        },
+        {
+          "level": 2,
+          "cost_to_next": 550,
+          "effect": "Bonus-Spins-Feld + täglicher Segen: +3 Spins",
+          "asset_id": "V004_LUCKTEMPLE_LV2",
+          "bonus_spin_amount": 3
+        },
+        {
+          "level": 3,
+          "cost_to_next": 0,
+          "effect": "Bonus-Spins-Feld + täglicher Segen: +4 Spins",
+          "asset_id": "V004_LUCKTEMPLE_LV3",
+          "bonus_spin_amount": 4
+        }
+      ]
+    }
+  ],
+  "village_progression": {
+    "prosperity_max_level": 5,
+    "prosperity_thresholds": [
+      0,
+      4,
+      10,
+      18,
+      28
+    ],
+    "upgrade_xp": 2,
+    "goldmine_daily_xp": 1,
+    "forge_craft_xp": 1,
+    "temple_blessing_xp": 1,
+    "prosperity_rewards": {
+      "2": {
+        "gold": 250
+      },
+      "3": {
+        "spins": 2
+      },
+      "4": {
+        "gold": 600
+      },
+      "5": {
+        "realm_keys": 1
+      }
+    }
+  },
+  "forge_function": {
+    "max_crafts": 6,
+    "crafts_per_forge_level": 2,
+    "tap_damage_per_craft": 2,
+    "costs": [
+      160,
+      260,
+      400,
+      600,
+      850,
+      1150
+    ]
+  },
+  "temple_function": {
+    "claim_rule": "one blessing per UTC calendar day",
+    "spin_reward_source": "lucktemple current level bonus_spin_amount"
+  },
+  "upgrade_contract": {
+    "version": "village-upgrade-result-v1",
+    "prerequisite": "non-townhall target level may not exceed townhall level",
+    "required_fields": [
+      "upgrade_id",
+      "building_id",
+      "from_level",
+      "to_level",
+      "cost",
+      "config_version",
+      "presentation_pending"
+    ],
+    "resume_behavior": "pending committed upgrade can be re-presented without charging Gold twice"
+  }
+}

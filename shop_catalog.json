@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "id": "starter_pack",
+      "type": "one_time",
+      "price_tier": "TIER_1",
+      "payload": {
+        "gold": 2500,
+        "spins": 25,
+        "gems": 100
+      }
+    },
+    {
+      "id": "spin_pack_small",
+      "type": "consumable",
+      "price_tier": "TIER_1",
+      "payload": {
+        "spins": 30
+      }
+    },
+    {
+      "id": "gem_pack_small",
+      "type": "consumable",
+      "price_tier": "TIER_2",
+      "payload": {
+        "gems": 250
+      }
+    },
+    {
+      "id": "no_ads",
+      "type": "non_consumable",
+      "price_tier": "TIER_3",
+      "payload": {
+        "no_ads": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "version": "v1.54-runtime-ui-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true
+  },
+  "slots": [
+    {
+      "slot": "FEATURE_HUB_EMBLEM",
+      "placeholder": "assets/v154_runtime_ui/V154_001_feature_hub_emblem.png"
+    },
+    {
+      "slot": "JOURNEY_HUB_ICON",
+      "placeholder": "assets/v154_runtime_ui/V154_002_journey_hub_icon.png"
+    },
+    {
+      "slot": "RESUME_FLOW_ICON",
+      "placeholder": "assets/v154_runtime_ui/V154_003_resume_flow_icon.png"
+    },
+    {
+      "slot": "ATTENTION_REWARD_BADGE",
+      "placeholder": "assets/v154_runtime_ui/V154_004_attention_reward_badge.png"
+    },
+    {
+      "slot": "PRIMARY_NAV_FRAME",
+      "placeholder": "assets/v154_runtime_ui/V154_005_primary_nav_frame.png"
+    },
+    {
+      "slot": "TOUCH_TARGET_MARKER",
+      "placeholder": "assets/v154_runtime_ui/V154_006_touch_target_marker.png"
+    },
+    {
+      "slot": "SYSTEM_STATUS_CARD",
+      "placeholder": "assets/v154_runtime_ui/V154_007_system_status_card.png"
+    },
+    {
+      "slot": "PROGRESSION_LINK_EMBLEM",
+      "placeholder": "assets/v154_runtime_ui/V154_008_progression_link_emblem.png"
+    }
+  ]
+}

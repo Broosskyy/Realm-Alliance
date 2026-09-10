@@ -1,0 +1,22 @@
+vfx_family,status,notes
+Tap hit/impact,PARTIAL,Dedicated impact/spark/slash family missing.
+Monster defeat,PARTIAL,Dedicated death puff/dissolve/burst missing.
+Damage numbers,EXISTS,FX001.
+Coin reward,EXISTS,FX010/011/012.
+Boss VFX,EXISTS,FX030/031/032/033.
+Building VFX,EXISTS,FX020/021/022.
+Level up,PARTIAL,Art/pulse integrated; celebration particles missing.
+Chest opening,MISSING_CORE,"Opening pop, rays, particles, reward fly-out."
+SPIN reel motion,MISSING_CORE,Dedicated final motion/trail missing.
+SPIN reel stop,MISSING_CORE,FX041 missing.
+SPIN jackpot,MISSING_CORE,FX042 missing.
+SPIN no-spins,OPTIONAL_MISSING,FX043 missing.
+Puzzle match,EXISTS,V148_008.
+Tower projectile,EXISTS,V149_004.
+Tower hit,MISSING,Placeholder only.
+Magic projectile,MISSING,Placeholder only.
+Unlock,PARTIAL,Art exists; celebration VFX desirable.
+Portal,PARTIAL,Art exists; animated particles missing.
+Loot rarity aura,MISSING,Common→legendary readability VFX.
+Quest complete,MISSING,Completion burst/check feedback.
+PvP/Guild boss,FUTURE_MISSING,Crit/shield break/heal/buff/debuff/contribution.

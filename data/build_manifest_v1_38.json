@@ -1,0 +1,26 @@
+{
+  "source_version": "V1.38",
+  "master_version": "V2.0",
+  "block": "Home / Combat / Responsive UI Polish",
+  "primary_nav": [
+    "HOME",
+    "SPIN",
+    "DORF"
+  ],
+  "home_polish": [
+    "consistent monster title",
+    "portrait HP spacing",
+    "Realm Spin CTA wording",
+    "deterministic damage number positions",
+    "Reduced Motion reward pulse"
+  ],
+  "responsive_polish": [
+    "viewport-derived spin center",
+    "dynamic payline bounds",
+    "small-profile resource pills",
+    "new overlay fitting"
+  ],
+  "placeholder_asset_count": 6,
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

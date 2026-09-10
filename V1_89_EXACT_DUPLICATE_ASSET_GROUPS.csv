@@ -1,0 +1,12 @@
+group,files
+1,assets/v145_ui/V145_001_puzzle_bonus_symbol.png | assets/wheel/segments/W106_puzzle_bonus.png
+2,assets/village/greenvale/production/townhall.png | assets/production/ui_v4/village_buildings_a/village_buildings_a_01.png
+3,assets/village/greenvale/production/forge.png | assets/production/ui_v4/village_buildings_b/village_buildings_b_02.png
+4,assets/village/greenvale/production/lucktemple.png | assets/production/ui_v4/village_buildings_a/village_buildings_a_06.png
+5,assets/village/greenvale/production/goldmine.png | assets/production/ui_v4/village_buildings_b/village_buildings_b_03.png
+6,assets/ui/icons/icon_gold_placeholder.png | assets/ui/icons/UI010_gold.png
+7,assets/ui/icons/UI011_spin.png | assets/ui/icons/UI014_wheel.png | assets/ui/icons/icon_spin_placeholder.png | assets/ui/icons/icon_wheel_placeholder.png
+8,assets/ui/icons/icon_shield_placeholder.png | assets/ui/icons/UI012_shield.png
+9,assets/world/greenvale/BG001_gruenhain_home_v11.png | assets/world/greenvale/bg_greenvale_tap_placeholder.png
+10,assets/spin/SPIN022_reel_placeholder.png | assets/spin/SPIN021_reel_placeholder.png | assets/spin/SPIN020_reel_placeholder.png
+11,assets/monsters/greenvale/states/B001_shield.png | assets/monsters/greenvale/states/B001_attack.png

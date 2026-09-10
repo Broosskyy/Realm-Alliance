@@ -1,0 +1,126 @@
+{
+  "version": "v1.52-objectives-v2-05",
+  "daily": [
+    {
+      "id": "d_combat_8",
+      "title": "Monsterjagd",
+      "metric": "monster_defeat",
+      "target": 8,
+      "reward": {
+        "gold": 220
+      }
+    },
+    {
+      "id": "d_spin_2",
+      "title": "Realm Spin",
+      "metric": "spin",
+      "target": 2,
+      "reward": {
+        "gold": 180
+      }
+    },
+    {
+      "id": "d_any_mode_4",
+      "title": "Realm-Aktivität",
+      "metric": "pillar_action",
+      "target": 4,
+      "reward": {
+        "spins": 1
+      }
+    }
+  ],
+  "weekly": [
+    {
+      "id": "w_boss_5",
+      "title": "Bossbrecher",
+      "metric": "boss_defeat",
+      "target": 5,
+      "reward": {
+        "gold": 900,
+        "spins": 3
+      }
+    },
+    {
+      "id": "w_journey_3",
+      "title": "Weltenwanderer",
+      "metric": "journey_lap",
+      "target": 3,
+      "reward": {
+        "gold": 650
+      }
+    },
+    {
+      "id": "w_pillars_12",
+      "title": "Viele Wege",
+      "metric": "pillar_action",
+      "target": 12,
+      "reward": {
+        "realm_keys": 1
+      }
+    }
+  ],
+  "achievements": [
+    {
+      "id": "a_monsters_25",
+      "title": "Waldjäger I",
+      "metric": "monster_defeat",
+      "target": 25,
+      "reward": {
+        "gold": 500
+      }
+    },
+    {
+      "id": "a_puzzle_5",
+      "title": "Runenleser I",
+      "metric": "puzzle_complete",
+      "target": 5,
+      "reward": {
+        "spins": 2
+      }
+    },
+    {
+      "id": "a_defense_5",
+      "title": "Schild Grünhains",
+      "metric": "td_win",
+      "target": 5,
+      "reward": {
+        "gold": 600
+      }
+    },
+    {
+      "id": "a_lane_5",
+      "title": "Pfadstürmer",
+      "metric": "lane_win",
+      "target": 5,
+      "reward": {
+        "gold": 600
+      }
+    },
+    {
+      "id": "a_journey_5",
+      "title": "Pfadfinder",
+      "metric": "journey_lap",
+      "target": 5,
+      "reward": {
+        "spins": 3
+      }
+    }
+  ],
+  "collection": {
+    "id": "greenvale_bestiary",
+    "title": "GRÜNHAIN-BESTIARIUM",
+    "target_unique": 5,
+    "reward": {
+      "gold": 800,
+      "realm_keys": 1
+    }
+  },
+  "rules": {
+    "daily_reset": "UTC calendar day",
+    "weekly_reset": "ISO-like Monday UTC bucket",
+    "achievements": "persistent",
+    "collection": "unique defeated production encounter IDs",
+    "claim": "grant once then persist",
+    "no_new_currency": true
+  }
+}

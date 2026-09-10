@@ -1,0 +1,41 @@
+{
+  "source_version": "V1.44",
+  "master_version": "V2.1",
+  "block": "LiveOps Rankings AFK Itemshop Progression",
+  "halloween": {
+    "event_id": "halloween_2026",
+    "start": "2026-10-20",
+    "end": "2026-11-03",
+    "data_driven": true
+  },
+  "rankings": [
+    "daily",
+    "weekly",
+    "event"
+  ],
+  "ranking_rewards": "server-authoritative claim required",
+  "fake_multiplayer_players": false,
+  "afk": {
+    "min_seconds": 120,
+    "cap_seconds": 28800,
+    "persistent_pending_claim": true
+  },
+  "itemshop": {
+    "catalog": true,
+    "production_client_grants_disabled": true,
+    "server_validation_required": true
+  },
+  "progression_tracks": [
+    "account",
+    "combat",
+    "village",
+    "journey",
+    "puzzle",
+    "heroes",
+    "meta"
+  ],
+  "placeholder_asset_count": 8,
+  "responsive_overlays": true,
+  "save_schema": "V20 unchanged",
+  "website": "excluded"
+}

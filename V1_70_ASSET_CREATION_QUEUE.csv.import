@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dld3n7jfuagvp"
+
+[deps]
+
+files=["res://V1_70_ASSET_CREATION_QUEUE.id.translation", "res://V1_70_ASSET_CREATION_QUEUE.tool.translation", "res://V1_70_ASSET_CREATION_QUEUE.slot.translation", "res://V1_70_ASSET_CREATION_QUEUE.spec.translation"]
+
+source_file="res://V1_70_ASSET_CREATION_QUEUE.csv"
+dest_files=["res://V1_70_ASSET_CREATION_QUEUE.id.translation", "res://V1_70_ASSET_CREATION_QUEUE.tool.translation", "res://V1_70_ASSET_CREATION_QUEUE.slot.translation", "res://V1_70_ASSET_CREATION_QUEUE.spec.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

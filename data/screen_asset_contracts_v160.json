@@ -1,0 +1,81 @@
+{
+  "version": "1.60",
+  "screens": {
+    "home_tap": {
+      "nodes": {
+        "SettingsButtonP0": {
+          "role": "ui.icon.settings",
+          "family": "icon",
+          "confidence": "high"
+        }
+      }
+    },
+    "quest": {
+      "nodes": {
+        "QuestSummaryLabel": {
+          "role": "ui.quest.summary",
+          "family": "panel",
+          "confidence": "medium"
+        }
+      }
+    },
+    "shop": {
+      "nodes": {
+        "ShopCatalogP0": {
+          "role": "ui.shop.featured",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "offline": {
+      "nodes": {
+        "AfkTextP0": {
+          "role": "ui.afk.summary",
+          "family": "panel",
+          "confidence": "high"
+        },
+        "AfkClaimP0": {
+          "role": "ui.afk.claim",
+          "family": "primary_button",
+          "confidence": "high"
+        }
+      }
+    },
+    "progression": {
+      "nodes": {
+        "ProgressionTextP0": {
+          "role": "ui.progression.overview",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "ranking": {
+      "nodes": {
+        "RankingStatusP0": {
+          "role": "ui.ranking.header",
+          "family": "panel",
+          "confidence": "medium"
+        },
+        "RankingRewardPreviewP0": {
+          "role": "ui.ranking.reward",
+          "family": "panel",
+          "confidence": "medium"
+        }
+      }
+    },
+    "spin": {
+      "nodes": {
+        "SpinMachineFrame": {
+          "role": "spin.machine.frame",
+          "family": "panel",
+          "confidence": "high"
+        }
+      }
+    },
+    "village": {
+      "nodes": {}
+    }
+  }
+}

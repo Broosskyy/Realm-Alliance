@@ -1,0 +1,29 @@
+{
+  "source_version": "V1.33",
+  "master_version": "V2.0",
+  "block": "Region Progression Foundation",
+  "authoritative_region_source": "data/regions.json",
+  "regions": [
+    {
+      "id": "greenvale",
+      "unlock_level": 1,
+      "runtime_content": "existing"
+    },
+    {
+      "id": "frostmark",
+      "unlock_level": 20,
+      "runtime_content": "locked/preview only"
+    }
+  ],
+  "save_schema": "V20",
+  "primary_nav": [
+    "HOME",
+    "SPIN",
+    "DORF"
+  ],
+  "next_phase": [
+    "Frostmark content production when dedicated assets/data exist",
+    "progression polish",
+    "UI/content polish"
+  ]
+}

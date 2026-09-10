@@ -1,0 +1,25 @@
+{
+  "version": "1.97",
+  "build": 97,
+  "pass": true,
+  "checks": {
+    "source_version_1_97": true,
+    "build_97": true,
+    "project_version_1_97": true,
+    "main_script_ref_restored": true,
+    "no_missing_extresource_defs": true,
+    "no_missing_scene_paths": true,
+    "no_direct_placeholder_extresources": true,
+    "v197_preloaded": true,
+    "v197_startup_apply": true,
+    "four_tab_nav_contract": true,
+    "legacy_nav_hidden": true,
+    "reduced_motion_transition": true,
+    "no_economy_mutation": true
+  },
+  "missing_extresource_defs": [],
+  "unused_extresource_defs": [],
+  "missing_scene_paths": [],
+  "direct_placeholder_extresources": [],
+  "godot_runtime_qa": "unavailable: Godot executable not installed"
+}

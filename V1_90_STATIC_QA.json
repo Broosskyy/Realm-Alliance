@@ -1,0 +1,10 @@
+{
+  "version": "1.90",
+  "static_status": "PASS",
+  "source_sheets": 23,
+  "extracted_assets": 110,
+  "new_runtime_roles": 23,
+  "new_unresolved_bindings": [],
+  "remaining_direct_scene_placeholder_owners": 0,
+  "godot_runtime_available": false
+}

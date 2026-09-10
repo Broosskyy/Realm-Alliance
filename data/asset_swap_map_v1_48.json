@@ -1,0 +1,45 @@
+{
+  "version": "v1.48-puzzle-asset-swap-01",
+  "production_rules": {
+    "kit_asset_count": 8,
+    "canvas": "768x768",
+    "transparent_background": true,
+    "isolated_element_per_file": true,
+    "generous_padding": true,
+    "drop_in_replaceable": true
+  },
+  "slots": [
+    {
+      "slot": "PUZZLE_BOARD_FRAME",
+      "placeholder": "assets/v148_puzzle/V148_001_puzzle_board_frame.png"
+    },
+    {
+      "slot": "PUZZLE_RUNE_LEAF",
+      "placeholder": "assets/v148_puzzle/V148_002_leaf_rune.png"
+    },
+    {
+      "slot": "PUZZLE_RUNE_CRYSTAL",
+      "placeholder": "assets/v148_puzzle/V148_003_crystal_rune.png"
+    },
+    {
+      "slot": "PUZZLE_RUNE_COIN",
+      "placeholder": "assets/v148_puzzle/V148_004_coin_rune.png"
+    },
+    {
+      "slot": "PUZZLE_MASTERY_EMBLEM",
+      "placeholder": "assets/v148_puzzle/V148_005_puzzle_mastery_emblem.png"
+    },
+    {
+      "slot": "PUZZLE_STAGE_CARD",
+      "placeholder": "assets/v148_puzzle/V148_006_puzzle_stage_card.png"
+    },
+    {
+      "slot": "PUZZLE_REWARD_CHEST",
+      "placeholder": "assets/v148_puzzle/V148_007_puzzle_reward_chest.png"
+    },
+    {
+      "slot": "PUZZLE_MATCH_BURST",
+      "placeholder": "assets/v148_puzzle/V148_008_match_burst.png"
+    }
+  ]
+}

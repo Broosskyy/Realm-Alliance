@@ -1,0 +1,256 @@
+{
+  "master_version": "2.1",
+  "asset_mapping_version": "v1.59-production-monsters-01",
+  "monsters": [
+    {
+      "id": "M001",
+      "name": "Waldwinzling",
+      "role": "calibration_reference",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "M001_CANDIDATE_B_branch_guardian"
+    },
+    {
+      "id": "M002",
+      "name": "Blatthorn",
+      "role": "agile_beast",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N01_leaf_horn_beast"
+    },
+    {
+      "id": "M003",
+      "name": "Waldkeiler",
+      "role": "heavy_silhouette",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "M003_CANDIDATE_waldkeiler"
+    },
+    {
+      "id": "M004",
+      "name": "Pilzling",
+      "role": "humor_variant",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "M004_CANDIDATE_pilzling"
+    },
+    {
+      "id": "M005",
+      "name": "Waldkäfer",
+      "role": "armored_small",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N03_forest_beetle"
+    },
+    {
+      "id": "M006",
+      "name": "Blätterkauz",
+      "role": "flying_variant",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N04_forest_owl_variant_a"
+    },
+    {
+      "id": "M007",
+      "name": "Mooskauz",
+      "role": "flying_variant_b",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N05_forest_owl_variant_b"
+    },
+    {
+      "id": "M008",
+      "name": "Moosschildkröte",
+      "role": "defensive_silhouette",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N06_forest_turtle"
+    },
+    {
+      "id": "M009",
+      "name": "Waldschleim",
+      "role": "soft_variant",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N07_forest_slime"
+    },
+    {
+      "id": "M010",
+      "name": "Waldgeist",
+      "role": "magic_variant",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N08_forest_spirit"
+    },
+    {
+      "id": "M011",
+      "name": "Kristallgolem",
+      "role": "stone_heavy",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N09_crystal_stone_golem"
+    },
+    {
+      "id": "M012",
+      "name": "Blatthörnchen",
+      "role": "quick_small",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N10_leaf_squirrel"
+    },
+    {
+      "id": "M013",
+      "name": "Waldwolf",
+      "role": "predator",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N11_forest_wolf"
+    },
+    {
+      "id": "M014",
+      "name": "Laubkeiler",
+      "role": "boar_variant",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "GH_N02_leaf_boar_variant"
+    },
+    {
+      "id": "B001",
+      "name": "Mooskönig",
+      "role": "boss_guardian",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "B003_CANDIDATE_elder_woodland_guardian"
+    },
+    {
+      "id": "B002",
+      "name": "Pilzmagus",
+      "role": "boss_arcane",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "B002_CANDIDATE_mushroom_arcane_boss"
+    },
+    {
+      "id": "B003",
+      "name": "Urwaldbestie",
+      "role": "boss_beast",
+      "states": [
+        "idle",
+        "attack",
+        "hit",
+        "defeat"
+      ],
+      "production_status": "production_bound",
+      "source_folder": "B004_CANDIDATE_massive_forest_beast"
+    }
+  ],
+  "rotation": [
+    "M001",
+    "M002",
+    "M003",
+    "M004",
+    "M005",
+    "M006",
+    "M007",
+    "M008",
+    "M009",
+    "M010",
+    "M011",
+    "M012",
+    "M013",
+    "M014"
+  ],
+  "boss_rotation": [
+    "B001",
+    "B002",
+    "B003"
+  ],
+  "boss_every_kills": 10,
+  "states_contract": [
+    "idle",
+    "attack",
+    "hit",
+    "defeat"
+  ],
+  "combat_pass": "V1.59"
+}

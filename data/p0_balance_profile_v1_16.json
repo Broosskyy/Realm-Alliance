@@ -1,0 +1,50 @@
+{
+  "version": "1.16",
+  "master_version": "1.4",
+  "scope": "P0 pacing calibration",
+  "locked_master_values": {
+    "monster_base_hp": 100,
+    "monster_hp_growth": 1.085,
+    "boss_hp_multiplier": 2.4,
+    "wheel_weights": [
+      22,
+      18,
+      10,
+      20,
+      10,
+      8,
+      7,
+      5
+    ],
+    "village_costs": {
+      "townhall": [
+        200,
+        600
+      ],
+      "goldmine": [
+        150,
+        450
+      ],
+      "forge": [
+        180,
+        550
+      ],
+      "lucktemple": [
+        180,
+        550
+      ]
+    }
+  },
+  "calibrated_starting_economy": {
+    "gold": 300,
+    "spins": 5,
+    "shields": 0,
+    "tap_damage": 10
+  },
+  "targets": {
+    "first_monster_taps": 10,
+    "first_upgrade_choice": "available immediately, but not all four upgrades",
+    "wheel_exposure": "available immediately without 50-spin flood",
+    "boss_10": "short highlight, not wall"
+  }
+}

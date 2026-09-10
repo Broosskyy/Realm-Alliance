@@ -1,0 +1,45 @@
+{
+  "source_version": "V1.13",
+  "master_concept": "V1.4",
+  "profiles": {
+    "fresh": {
+      "monster_level": 1,
+      "spins": 50,
+      "purpose": "first-action / 5-minute"
+    },
+    "half_boss": {
+      "monster_level": 5,
+      "purpose": "5/10 milestone"
+    },
+    "boss_ready": {
+      "monster_level": 10,
+      "purpose": "boss intro/reward"
+    },
+    "wheel": {
+      "spins": 3,
+      "purpose": "spin consume/result/empty state"
+    },
+    "village": {
+      "gold": 2500,
+      "purpose": "four building upgrades + mine claim"
+    },
+    "return": {
+      "monster_level": 7,
+      "hp_ratio": 0.45,
+      "purpose": "save/return continuity"
+    },
+    "low_resource": {
+      "spins": 0,
+      "gold": 20,
+      "shields": 3,
+      "purpose": "disabled/empty/fallback states"
+    },
+    "legacy_zero_hp": {
+      "monster_level": 4,
+      "current_hp": 0,
+      "purpose": "verify V1.12 rewarded HP=0 save migrates to next encounter without granting reward again"
+    }
+  },
+  "recovery_fixture": "Writes invalid primary save and valid backup; restart should recover backup.",
+  "release_rule": "Harness button must be invisible when OS.is_debug_build() is false."
+}

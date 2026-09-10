@@ -1,0 +1,12 @@
+{
+  "version": "1.74",
+  "tap_bonus_per_village_prosperity_level": 0.02,
+  "tap_bonus_per_selected_hero_mastery_level": 0.015,
+  "tap_bonus_cap": 0.2,
+  "boss_defeat_village_xp": 1,
+  "player_facing_copy": {
+    "source": "REALM-KRAFT",
+    "village": "DORF",
+    "hero": "HELD"
+  }
+}

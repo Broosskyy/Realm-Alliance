@@ -1,0 +1,23 @@
+{
+  "source_version": "V1.12",
+  "master_concept": "V1.4",
+  "project_version": "1.12.0",
+  "save_version": 18,
+  "checks": {
+    "debug_gated": true,
+    "debug_ui_hidden_release": true,
+    "seven_profiles": true,
+    "recovery_fixture": true,
+    "save_v18": true,
+    "p1_still_off": true,
+    "boss_profile_10": true,
+    "low_resource_profile": true
+  },
+  "missing_percent_nodes": [],
+  "missing_ext_resources": [],
+  "duplicate_functions": {},
+  "syntax_suspects": [],
+  "json_errors": {},
+  "godot_binary": "not installed",
+  "runtime_status": "NOT_RUNTIME_TESTED"
+}
