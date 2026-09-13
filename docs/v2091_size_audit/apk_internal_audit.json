@@ -1,0 +1,959 @@
+{
+  "apk_path": "builds/android/RealmAlliance_V2_09_Test.apk",
+  "total_compressed_bytes": 1013997818,
+  "total_uncompressed_bytes": 1072671636,
+  "file_count": 2851,
+  "by_type": {
+    "other": {
+      "compressed": 986316844,
+      "uncompressed": 990488742,
+      "count": 1173
+    },
+    "native library": {
+      "compressed": 25920129,
+      "uncompressed": 77555944,
+      "count": 2
+    },
+    "PNG": {
+      "compressed": 38981,
+      "uncompressed": 38981,
+      "count": 16
+    },
+    "WebP": {
+      "compressed": 385616,
+      "uncompressed": 385616,
+      "count": 26
+    },
+    "compiled script": {
+      "compressed": 773644,
+      "uncompressed": 779510,
+      "count": 155
+    },
+    "import meta": {
+      "compressed": 179443,
+      "uncompressed": 217335,
+      "count": 1058
+    },
+    "JSON/data": {
+      "compressed": 374431,
+      "uncompressed": 3196954,
+      "count": 255
+    },
+    "remap": {
+      "compressed": 8730,
+      "uncompressed": 8554,
+      "count": 166
+    }
+  },
+  "by_top_directory": {
+    "META-INF": {
+      "compressed": 767,
+      "uncompressed": 856,
+      "count": 27
+    },
+    "classes.dex": {
+      "compressed": 1960045,
+      "uncompressed": 5711532,
+      "count": 1
+    },
+    "classes10.dex": {
+      "compressed": 13236,
+      "uncompressed": 28280,
+      "count": 1
+    },
+    "classes11.dex": {
+      "compressed": 21053,
+      "uncompressed": 47076,
+      "count": 1
+    },
+    "classes12.dex": {
+      "compressed": 11585,
+      "uncompressed": 39156,
+      "count": 1
+    },
+    "classes13.dex": {
+      "compressed": 2268,
+      "uncompressed": 4348,
+      "count": 1
+    },
+    "classes2.dex": {
+      "compressed": 1152,
+      "uncompressed": 1960,
+      "count": 1
+    },
+    "classes3.dex": {
+      "compressed": 19690,
+      "uncompressed": 40204,
+      "count": 1
+    },
+    "classes4.dex": {
+      "compressed": 27734,
+      "uncompressed": 64160,
+      "count": 1
+    },
+    "classes5.dex": {
+      "compressed": 9884,
+      "uncompressed": 22304,
+      "count": 1
+    },
+    "classes6.dex": {
+      "compressed": 20779,
+      "uncompressed": 49584,
+      "count": 1
+    },
+    "classes7.dex": {
+      "compressed": 58427,
+      "uncompressed": 137052,
+      "count": 1
+    },
+    "classes8.dex": {
+      "compressed": 9648,
+      "uncompressed": 20052,
+      "count": 1
+    },
+    "classes9.dex": {
+      "compressed": 3872,
+      "uncompressed": 7772,
+      "count": 1
+    },
+    "lib": {
+      "compressed": 25920129,
+      "uncompressed": 77555944,
+      "count": 2
+    },
+    "AndroidManifest.xml": {
+      "compressed": 2219,
+      "uncompressed": 7632,
+      "count": 1
+    },
+    "res": {
+      "compressed": 398123,
+      "uncompressed": 410922,
+      "count": 69
+    },
+    "resources.arsc": {
+      "compressed": 39736,
+      "uncompressed": 39736,
+      "count": 1
+    },
+    "DebugProbesKt.bin": {
+      "compressed": 782,
+      "uncompressed": 1738,
+      "count": 1
+    },
+    "kotlin": {
+      "compressed": 11134,
+      "uncompressed": 32063,
+      "count": 8
+    },
+    "assets": {
+      "compressed": 985465555,
+      "uncompressed": 988449265,
+      "count": 2729
+    }
+  },
+  "pck_files": [],
+  "top_100": [
+    {
+      "path": "lib/arm64-v8a/libgodot_android.so",
+      "file_type": "native library",
+      "compressed_bytes": 25465279,
+      "uncompressed_bytes": 76181608,
+      "compression_ratio": 0.3343,
+      "percentage_of_apk": 2.5114
+    },
+    {
+      "path": "assets/.godot/imported/viewport_boss_b001_1440x3200.png-b45c8109fe3b0991f0d0a286b21252a7.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4340778,
+      "uncompressed_bytes": 4340778,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4281
+    },
+    {
+      "path": "assets/.godot/imported/viewport_elite_1440x3200.png-dcd65b54c99c8189204e15e542bcb4ab.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4333744,
+      "uncompressed_bytes": 4333744,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4274
+    },
+    {
+      "path": "assets/.godot/imported/viewport_tall_m011_1440x3200.png-5961954c6d846760393288870244f41f.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4323998,
+      "uncompressed_bytes": 4323998,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4264
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-3f91ae6a06841af55c77d812c767bc57.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4295752,
+      "uncompressed_bytes": 4295752,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4236
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-47bfa2381c1b23f6ea306d48af5e5076.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4295346,
+      "uncompressed_bytes": 4295346,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4236
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-62cd67087dc0761335311fb250a9adf5.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4282368,
+      "uncompressed_bytes": 4282368,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4223
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-eaf1ffb065f7997f5a62c5bff0fdaa4c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4282368,
+      "uncompressed_bytes": 4282368,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4223
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-08bbc1d3264644ee943aa4f29876e77c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4267204,
+      "uncompressed_bytes": 4267204,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4208
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-1c3446ad26c642512b5835cb11ab033c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4265970,
+      "uncompressed_bytes": 4265970,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4207
+    },
+    {
+      "path": "assets/.godot/imported/viewport_normal_1440x3200.png-f964db2ab673179ef0a70317714afc34.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4237962,
+      "uncompressed_bytes": 4237962,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4179
+    },
+    {
+      "path": "assets/.godot/imported/viewport_flying_m006_1440x3200.png-d9e66c578ab54df4d5ebe3a6d7a6c9d9.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4230924,
+      "uncompressed_bytes": 4230924,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4173
+    },
+    {
+      "path": "assets/.godot/imported/viewport_tough_m003_1440x3200.png-c2c715a1b3fd6ea625b6faa69ced0905.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4227934,
+      "uncompressed_bytes": 4227934,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.417
+    },
+    {
+      "path": "assets/.godot/imported/viewport_small_m012_1440x3200.png-8a7f45879667e9eb4a17ec73a4eed4a3.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4195028,
+      "uncompressed_bytes": 4195028,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4137
+    },
+    {
+      "path": "assets/.godot/imported/viewport_wide_m008_1440x3200.png-de5dca631e6729d20234b0b64bb03f31.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4173152,
+      "uncompressed_bytes": 4173152,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4116
+    },
+    {
+      "path": "assets/.godot/imported/viewport_boss_1440x3200.png-23c5be1f1416ce5700c40ca57c1864da.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4164332,
+      "uncompressed_bytes": 4164332,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4107
+    },
+    {
+      "path": "assets/.godot/imported/viewport_main_1440x3200.png-6c26c602bb2466f991d2584d20eea0ed.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4155300,
+      "uncompressed_bytes": 4155300,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4098
+    },
+    {
+      "path": "assets/.godot/imported/viewport_elite_m010_1440x3200.png-41d04f1625de88515cf562efffd20655.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4150170,
+      "uncompressed_bytes": 4150170,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4093
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1440x3200.png-a94355eaad8799b7fad0c39c2554418d.ctex",
+      "file_type": "other",
+      "compressed_bytes": 4123304,
+      "uncompressed_bytes": 4123304,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.4066
+    },
+    {
+      "path": "assets/.godot/imported/viewport_inventory_1440x3200.png-084ae4273e34f88e5afc1b01e3aa2b28.ctex",
+      "file_type": "other",
+      "compressed_bytes": 3935106,
+      "uncompressed_bytes": 3935106,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.3881
+    },
+    {
+      "path": "assets/.godot/imported/viewport_heroes_1440x3200.png-c496ade9d4e4851224ef941c40db0cec.ctex",
+      "file_type": "other",
+      "compressed_bytes": 3799358,
+      "uncompressed_bytes": 3799358,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.3747
+    },
+    {
+      "path": "assets/.godot/imported/06_village_1080x2340.png-1bc51d824e712fe47dab4a66b398105f.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2974246,
+      "uncompressed_bytes": 2974246,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2933
+    },
+    {
+      "path": "assets/.godot/imported/village_1080x2340.png-507e33be9e1a7fd579e277faba9e11b4.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2963456,
+      "uncompressed_bytes": 2963456,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2923
+    },
+    {
+      "path": "assets/.godot/imported/08_village_1080x2340.png-816158c471d820f4be117bcc54d59923.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2930116,
+      "uncompressed_bytes": 2930116,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.289
+    },
+    {
+      "path": "assets/.godot/imported/08_village_1080x2340.png-dab3e91e6addea0e2fbe5bef80c984d6.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2929784,
+      "uncompressed_bytes": 2929784,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2889
+    },
+    {
+      "path": "assets/.godot/imported/06_village_1080x2340.png-019a269a8085fc9befd07bd27ee5fd9c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2929644,
+      "uncompressed_bytes": 2929644,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2889
+    },
+    {
+      "path": "assets/.godot/imported/08_village_1080x2340.png-56efc7c03b50dce4cf846aca9b6296d6.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2929128,
+      "uncompressed_bytes": 2929128,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2889
+    },
+    {
+      "path": "assets/.godot/imported/08_village_1080x2340.png-305f0bfb45df8caaf64f8e8e16730b5c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2927390,
+      "uncompressed_bytes": 2927390,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2887
+    },
+    {
+      "path": "assets/.godot/imported/08_village_1080x2340.png-cb7d284d3f448ba8a7b651adaa2210e1.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2912014,
+      "uncompressed_bytes": 2912014,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2872
+    },
+    {
+      "path": "assets/.godot/imported/12_boss_ready_1080x2340.png-229f4eda0e8b5fcd9562ed6dc064179a.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2831168,
+      "uncompressed_bytes": 2831168,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2792
+    },
+    {
+      "path": "assets/.godot/imported/13_boss_intro_1080x2340.png-f4c98012cb3fb7fc3ed3dbc6d3f88eee.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2829790,
+      "uncompressed_bytes": 2829790,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2791
+    },
+    {
+      "path": "assets/.godot/imported/14_boss_combat_1080x2340.png-1414d0f979388ff60adcad5bf19c5e61.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2829790,
+      "uncompressed_bytes": 2829790,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2791
+    },
+    {
+      "path": "assets/.godot/imported/viewport_boss_b001_1080x2400.png-a10685dc2b4cd8cfb34f5dbdc45f69f9.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2824196,
+      "uncompressed_bytes": 2824196,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2785
+    },
+    {
+      "path": "assets/.godot/imported/viewport_elite_1080x2400.png-eac0c8670192dd5b3d24344b3ff98e10.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2819974,
+      "uncompressed_bytes": 2819974,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2781
+    },
+    {
+      "path": "assets/.godot/imported/12_boss_ready_1080x2340.png-a9d9d6b0e5aaab3d8364435ae181bd1f.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2815728,
+      "uncompressed_bytes": 2815728,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2777
+    },
+    {
+      "path": "assets/.godot/imported/13_boss_intro_1080x2340.png-0e3b0dd4857a124bf66c8dfafdd355b8.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2815728,
+      "uncompressed_bytes": 2815728,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2777
+    },
+    {
+      "path": "assets/.godot/imported/14_boss_combat_1080x2340.png-a3a0e5196e64f89aa932f9995874fa68.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2815728,
+      "uncompressed_bytes": 2815728,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2777
+    },
+    {
+      "path": "assets/.godot/imported/viewport_tall_m011_1080x2400.png-368d32212c9b19951764dc538b944549.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2815098,
+      "uncompressed_bytes": 2815098,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2776
+    },
+    {
+      "path": "assets/.godot/imported/12_boss_ready_1080x2340.png-04151f086cc63c6017a27f0037188ca9.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2813706,
+      "uncompressed_bytes": 2813706,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2775
+    },
+    {
+      "path": "assets/.godot/imported/13_boss_intro_1080x2340.png-acdad0fe297f6f17aeed545c847a137d.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2813706,
+      "uncompressed_bytes": 2813706,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2775
+    },
+    {
+      "path": "assets/.godot/imported/14_boss_combat_1080x2340.png-3ac225c734bf838e3a21e19c8b433388.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2813706,
+      "uncompressed_bytes": 2813706,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2775
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2400.png-b5dbd50c7075a6ba020abf0e6047a0ec.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2801972,
+      "uncompressed_bytes": 2801972,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2763
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2400.png-2a9ade285394e170177f315be3b5bd78.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2801930,
+      "uncompressed_bytes": 2801930,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2763
+    },
+    {
+      "path": "assets/.godot/imported/12_boss_ready_1080x2340.png-f4a189d7340c67c7f7df24b6ca5f7666.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2799726,
+      "uncompressed_bytes": 2799726,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2761
+    },
+    {
+      "path": "assets/.godot/imported/13_boss_intro_1080x2340.png-8813696d2c84e00f4abcf9ee7261ddfc.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2799726,
+      "uncompressed_bytes": 2799726,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2761
+    },
+    {
+      "path": "assets/.godot/imported/14_boss_combat_1080x2340.png-7368bcd60a6302899262cea85547756e.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2799726,
+      "uncompressed_bytes": 2799726,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2761
+    },
+    {
+      "path": "assets/.godot/imported/viewport_boss_b001_1080x2340.png-cce76dbde49e85e74631cfe6834fce8c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2797180,
+      "uncompressed_bytes": 2797180,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2759
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2400.png-9eb5ba42d0480706781513faa960d8a3.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2793158,
+      "uncompressed_bytes": 2793158,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2755
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2400.png-a1f97ae4181987cdca3135e2f30671bf.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2793158,
+      "uncompressed_bytes": 2793158,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2755
+    },
+    {
+      "path": "assets/.godot/imported/viewport_elite_1080x2340.png-ee6ed76ae8ad1843d03432091850bff6.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2792974,
+      "uncompressed_bytes": 2792974,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2754
+    },
+    {
+      "path": "assets/.godot/imported/viewport_tall_m011_1080x2340.png-7d5cca6d1ccf83c45120f2f079fc2a4c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2787276,
+      "uncompressed_bytes": 2787276,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2749
+    },
+    {
+      "path": "assets/.godot/imported/15_boss_victory_1080x2340.png-64ba5574d44b29e4ea7916f2b3a83a6f.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2786654,
+      "uncompressed_bytes": 2786654,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2748
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2400.png-13f56af759f4d96a4bdc46e8be4de696.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2784902,
+      "uncompressed_bytes": 2784902,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2746
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2400.png-7c889b973f7062c3b0e34dc08d64bc02.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2776660,
+      "uncompressed_bytes": 2776660,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2738
+    },
+    {
+      "path": "assets/.godot/imported/03_defeat_reward_1080x2340.png-61e7d784ce8c4fe99e8b931b83d9b9ca.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2775886,
+      "uncompressed_bytes": 2775886,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2738
+    },
+    {
+      "path": "assets/.godot/imported/02b_crit_hit_1080x2340.png-0fbc1f31ec0d62889c8fa8644b66ce31.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2771594,
+      "uncompressed_bytes": 2771594,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2733
+    },
+    {
+      "path": "assets/.godot/imported/02b_crit_hit_1080x2340.png-d2c90d67f26b5c834fe89d9c6df3beb7.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2771322,
+      "uncompressed_bytes": 2771322,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2733
+    },
+    {
+      "path": "assets/.godot/imported/02b_crit_hit_1080x2340.png-1fe32974b1955dc17e1f9afb21e8e098.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2771148,
+      "uncompressed_bytes": 2771148,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2733
+    },
+    {
+      "path": "assets/.godot/imported/02b_crit_hit_1080x2340.png-c19842d8c15b94d727ad0106b3876e0b.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2770524,
+      "uncompressed_bytes": 2770524,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2732
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-c9379162420f93c1d73436d78952518a.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2770314,
+      "uncompressed_bytes": 2770314,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2732
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-076ffa917e2494037cfa84b81e3c52e5.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2770290,
+      "uncompressed_bytes": 2770290,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2732
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-8feec708b2f8ccf8008edb07f5973979.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2768048,
+      "uncompressed_bytes": 2768048,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.273
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-e8c3c7d849005592e194eff64d911e33.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2768048,
+      "uncompressed_bytes": 2768048,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.273
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-4495971c3b165e00c97159480d8e7f0b.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2766850,
+      "uncompressed_bytes": 2766850,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2729
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-d40a69ed2938f774c7c80cbe8a0d7627.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2766836,
+      "uncompressed_bytes": 2766836,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2729
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-346eba8b95c5652668b794fa066b387c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2760950,
+      "uncompressed_bytes": 2760950,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2723
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-ec65c7cda55a0f256284d976097cbd91.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2760950,
+      "uncompressed_bytes": 2760950,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2723
+    },
+    {
+      "path": "assets/.godot/imported/02b_crit_hit_1080x2340.png-dc7689201bc3b8182725b7e81e628568.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2756650,
+      "uncompressed_bytes": 2756650,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2719
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-2fa1a678e391c8bd4868261f1de4f8b4.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2754160,
+      "uncompressed_bytes": 2754160,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2716
+    },
+    {
+      "path": "assets/.godot/imported/viewport_normal_1080x2400.png-90af0e297b82263d650ed0242e2c4556.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2753624,
+      "uncompressed_bytes": 2753624,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2716
+    },
+    {
+      "path": "assets/.godot/imported/09_return_main_1080x2340.png-6ae8fd1b6320587ff1ad3e5bed76cc68.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2752920,
+      "uncompressed_bytes": 2752920,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2715
+    },
+    {
+      "path": "assets/.godot/imported/viewport_flying_m006_1080x2400.png-5cb9ccb0dd936a0827c1c803195a5a17.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2750528,
+      "uncompressed_bytes": 2750528,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2713
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-0359eea2a9a1219b2602df60b1668fc1.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2750388,
+      "uncompressed_bytes": 2750388,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2712
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-400ec46cbe93a1fdfcb11e36838fd956.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2748386,
+      "uncompressed_bytes": 2748386,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.271
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-1256a2efe590f7ba23a1eae4dbcf02da.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2748368,
+      "uncompressed_bytes": 2748368,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.271
+    },
+    {
+      "path": "assets/.godot/imported/34_hud_resource_bars_1080x2340.png-cf96077663d80ebda4e6da48eeece8cc.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2748368,
+      "uncompressed_bytes": 2748368,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.271
+    },
+    {
+      "path": "assets/.godot/imported/35_hud_gold_bar_1080x2340.png-fa46262ea9c574c49716cc0419121e74.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2748368,
+      "uncompressed_bytes": 2748368,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.271
+    },
+    {
+      "path": "assets/.godot/imported/36_hud_spin_shield_bars_1080x2340.png-a660f61e4aa2285745aabbdecc0cff41.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2748368,
+      "uncompressed_bytes": 2748368,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.271
+    },
+    {
+      "path": "assets/.godot/imported/viewport_tough_m003_1080x2400.png-1c507dd63f0bf3bd099a0cf2d76e8cb5.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2748122,
+      "uncompressed_bytes": 2748122,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.271
+    },
+    {
+      "path": "assets/.godot/imported/28_hero_deployed_1080x2340.png-5a4779e3d7e5af4e5579744d44d8a3a7.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2736592,
+      "uncompressed_bytes": 2736592,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2699
+    },
+    {
+      "path": "assets/.godot/imported/32_combined_combat_1080x2340.png-f7dc9bc4d04260017c35e5c609e05db5.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2736318,
+      "uncompressed_bytes": 2736318,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2699
+    },
+    {
+      "path": "assets/.godot/imported/31_hero_auto_attack_1080x2340.png-4c6220a246c57e354ea33d54b3f58bf1.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2734386,
+      "uncompressed_bytes": 2734386,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2697
+    },
+    {
+      "path": "assets/.godot/imported/viewport_normal_1080x2340.png-70b0c79d63af62c4adafb8c7149f36bb.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2729126,
+      "uncompressed_bytes": 2729126,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2691
+    },
+    {
+      "path": "assets/.godot/imported/01_main_1080x2340.png-b9ec79d84c4499acbc34e19165eb318c.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2728660,
+      "uncompressed_bytes": 2728660,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2691
+    },
+    {
+      "path": "assets/.godot/imported/viewport_flying_m006_1080x2340.png-c43619ff6deb9f4c3a53996f6a59f345.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2726140,
+      "uncompressed_bytes": 2726140,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2689
+    },
+    {
+      "path": "assets/.godot/imported/viewport_small_m012_1080x2400.png-b670d52d0b522f21658351eb64f5017f.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2725566,
+      "uncompressed_bytes": 2725566,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2688
+    },
+    {
+      "path": "assets/.godot/imported/viewport_tough_m003_1080x2340.png-d17efb2ef05bdd515fd45e7a050116ad.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2723400,
+      "uncompressed_bytes": 2723400,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2686
+    },
+    {
+      "path": "assets/.godot/imported/28_hero_deployed_1080x2340.png-621c5fc91e39428c803f7ad4c524f39b.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2723312,
+      "uncompressed_bytes": 2723312,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2686
+    },
+    {
+      "path": "assets/.godot/imported/02_tap_hit_1080x2340.png-0fc364551df108ee61adcb8511495954.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2723032,
+      "uncompressed_bytes": 2723032,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2685
+    },
+    {
+      "path": "assets/.godot/imported/32_combined_combat_1080x2340.png-24cf68d8ec443dbe17e73e576d8c240f.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2721242,
+      "uncompressed_bytes": 2721242,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2684
+    },
+    {
+      "path": "assets/.godot/imported/boot_1080x2400.png-5eba8edc458d9723f6315bb403f97a42.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2719748,
+      "uncompressed_bytes": 2719748,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2682
+    },
+    {
+      "path": "assets/.godot/imported/31_hero_auto_attack_1080x2340.png-5d76fab13888059baf32118a4333c75a.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2718284,
+      "uncompressed_bytes": 2718284,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2681
+    },
+    {
+      "path": "assets/.godot/imported/BG001_gruenhain_home_v11.png-3db42963d8b4838e7ff4fc9de1f9ae41.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2716326,
+      "uncompressed_bytes": 2716326,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2679
+    },
+    {
+      "path": "assets/.godot/imported/bg_greenvale_tap_placeholder.png-a87db2dcb94cd39e818062d07e4317be.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2716326,
+      "uncompressed_bytes": 2716326,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2679
+    },
+    {
+      "path": "assets/.godot/imported/05_upgrade_bought_1080x2340.png-84b3a1b794486239b9652459a89f0fcb.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2714852,
+      "uncompressed_bytes": 2714852,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2677
+    },
+    {
+      "path": "assets/.godot/imported/05_upgrade_bought_1080x2340.png-e91d62d5754869afb61ddfb0ca4095ca.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2714512,
+      "uncompressed_bytes": 2714512,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2677
+    },
+    {
+      "path": "assets/.godot/imported/viewport_wide_m008_1080x2400.png-119ed269e495e576922ed5ccbb5eeb37.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2714060,
+      "uncompressed_bytes": 2714060,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2677
+    },
+    {
+      "path": "assets/.godot/imported/05_upgrade_bought_1080x2340.png-280e10de43bf17280538afba422703d9.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2713784,
+      "uncompressed_bytes": 2713784,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2676
+    },
+    {
+      "path": "assets/.godot/imported/05_upgrade_bought_1080x2340.png-c7585ffbd1834982b8b041089365643a.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2713176,
+      "uncompressed_bytes": 2713176,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2676
+    },
+    {
+      "path": "assets/.godot/imported/tap_1080x2340.png-5448c8dd67106fcc037c6bb3f43db2ae.ctex",
+      "file_type": "other",
+      "compressed_bytes": 2710468,
+      "uncompressed_bytes": 2710468,
+      "compression_ratio": 1.0,
+      "percentage_of_apk": 0.2673
+    }
+  ],
+  "all_entries_count": 2851
+}

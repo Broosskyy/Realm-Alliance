@@ -1,0 +1,3246 @@
+{
+  "by_top_directory": {
+    "docs": {
+      "bytes": 1750232044,
+      "files": 698
+    },
+    "docs/v205_visual_runtime_qa": {
+      "bytes": 672001425,
+      "files": 75
+    },
+    "build": {
+      "bytes": 378762168,
+      "files": 19
+    },
+    "tools": {
+      "bytes": 267257554,
+      "files": 82
+    },
+    "docs/v209_visual_runtime_qa": {
+      "bytes": 206101599,
+      "files": 100
+    },
+    "docs/v2061_visual_runtime_qa": {
+      "bytes": 179410207,
+      "files": 96
+    },
+    "assets": {
+      "bytes": 174883537,
+      "files": 1452
+    },
+    "docs/v206_visual_runtime_qa": {
+      "bytes": 166218554,
+      "files": 88
+    },
+    "docs/v208_visual_runtime_qa": {
+      "bytes": 129523405,
+      "files": 65
+    },
+    "docs/v207_visual_runtime_qa": {
+      "bytes": 104876267,
+      "files": 63
+    },
+    "docs/v204_visual_runtime_qa": {
+      "bytes": 100830419,
+      "files": 55
+    },
+    "docs/v203_visual_runtime_qa": {
+      "bytes": 64560199,
+      "files": 38
+    },
+    "docs/v2021_visual_runtime_qa": {
+      "bytes": 50633039,
+      "files": 29
+    },
+    "docs/v2022_visual_runtime_qa": {
+      "bytes": 49765759,
+      "files": 28
+    },
+    "docs/v202_runtime_qa": {
+      "bytes": 22478519,
+      "files": 13
+    },
+    "artifacts": {
+      "bytes": 20930515,
+      "files": 12
+    },
+    "docs/visual_reference": {
+      "bytes": 3099828,
+      "files": 2
+    },
+    "data": {
+      "bytes": 2083633,
+      "files": 207
+    },
+    "docs/V1_58_SCREEN_CALIBRATION_BOARD.png": {
+      "bytes": 522949,
+      "files": 1
+    },
+    "MainGame.gd": {
+      "bytes": 172282,
+      "files": 1
+    },
+    "MainGame.tscn": {
+      "bytes": 118138,
+      "files": 1
+    },
+    "qa_v208_run.log": {
+      "bytes": 73578,
+      "files": 1
+    },
+    "docs/v209_final_qa": {
+      "bytes": 68904,
+      "files": 1
+    },
+    "ScreenUiAssemblyService.gd": {
+      "bytes": 55471,
+      "files": 1
+    },
+    "V2021VisualRuntimeQa.gd": {
+      "bytes": 47216,
+      "files": 1
+    },
+    "V209WorldRuntimeQa.gd": {
+      "bytes": 30453,
+      "files": 1
+    },
+    "MobileLayoutOwner.gd": {
+      "bytes": 24878,
+      "files": 1
+    },
+    "docs/qa_run_logs": {
+      "bytes": 24788,
+      "files": 8
+    },
+    "V207InventoryRuntimeQa.gd": {
+      "bytes": 21977,
+      "files": 1
+    },
+    "V208WorldRuntimeQa.gd": {
+      "bytes": 21835,
+      "files": 1
+    },
+    "V1_67_PLACEHOLDER_AUDIT.csv": {
+      "bytes": 16758,
+      "files": 1
+    },
+    "InventoryUiController.gd": {
+      "bytes": 15876,
+      "files": 1
+    },
+    "V207ItemDomainQa.gd": {
+      "bytes": 15138,
+      "files": 1
+    },
+    "HeroSystem.gd": {
+      "bytes": 13699,
+      "files": 1
+    },
+    "OnlineResponseRouter.gd": {
+      "bytes": 13657,
+      "files": 1
+    },
+    "ItemInventoryService.gd": {
+      "bytes": 12822,
+      "files": 1
+    },
+    "BootFlow.tscn": {
+      "bytes": 12510,
+      "files": 1
+    },
+    "LiveOpsRankingSystem.gd": {
+      "bytes": 12191,
+      "files": 1
+    },
+    "SaveGame.gd": {
+      "bytes": 11480,
+      "files": 1
+    },
+    "V1_21_P0_ART_INTEGRATION_01_STATIC_TESTS.json": {
+      "bytes": 11394,
+      "files": 1
+    },
+    "ModeGameplayPolishV196.gd": {
+      "bytes": 10264,
+      "files": 1
+    },
+    "ObjectiveSystem.gd": {
+      "bytes": 10259,
+      "files": 1
+    },
+    "ScreenCompositionService.gd": {
+      "bytes": 10120,
+      "files": 1
+    },
+    "RewardPipeline.gd": {
+      "bytes": 9767,
+      "files": 1
+    },
+    "qa_v208_run3.log": {
+      "bytes": 9762,
+      "files": 1
+    },
+    "AsyncPvpService.gd": {
+      "bytes": 9639,
+      "files": 1
+    },
+    "V209WorldDomainQa.gd": {
+      "bytes": 9373,
+      "files": 1
+    },
+    "VillageProgressionSystem.gd": {
+      "bytes": 8536,
+      "files": 1
+    },
+    "qa_v208_run4.log": {
+      "bytes": 8476,
+      "files": 1
+    },
+    "WheelSystem.gd": {
+      "bytes": 8279,
+      "files": 1
+    },
+    "P0VillageSystem.gd": {
+      "bytes": 8277,
+      "files": 1
+    },
+    "docs/V204_ABSCHLUSSREPORT.md": {
+      "bytes": 8176,
+      "files": 1
+    },
+    "V1_67_PLACEHOLDER_AUDIT.note.translation": {
+      "bytes": 8173,
+      "files": 1
+    },
+    "qa_v208_run2.log": {
+      "bytes": 8150,
+      "files": 1
+    },
+    "P0TestHarness.gd": {
+      "bytes": 8144,
+      "files": 1
+    },
+    "docs/v207_domain_qa": {
+      "bytes": 8014,
+      "files": 1
+    },
+    "RemoteGameplayService.gd": {
+      "bytes": 7542,
+      "files": 1
+    },
+    "TowerDefenseProgressionSystem.gd": {
+      "bytes": 7491,
+      "files": 1
+    },
+    "ScreenVisualCalibration.gd": {
+      "bytes": 7473,
+      "files": 1
+    },
+    "MASTER_CONCEPT_V0_2.md": {
+      "bytes": 7417,
+      "files": 1
+    },
+    "docs/v209_balance": {
+      "bytes": 7194,
+      "files": 2
+    },
+    "LaneAttackSystem.gd": {
+      "bytes": 7175,
+      "files": 1
+    },
+    "JourneyProgressionSystem.gd": {
+      "bytes": 7173,
+      "files": 1
+    },
+    "V202RuntimeAcceptanceHost.gd": {
+      "bytes": 7169,
+      "files": 1
+    },
+    "LaneBattleProgressionSystem.gd": {
+      "bytes": 7106,
+      "files": 1
+    },
+    "docs/V207_AUDIT_REPORT.md": {
+      "bytes": 6945,
+      "files": 1
+    },
+    "GuildBossService.gd": {
+      "bytes": 6925,
+      "files": 1
+    },
+    "HeroProgressionSystem.gd": {
+      "bytes": 6770,
+      "files": 1
+    },
+    "docs/v209_domain_qa": {
+      "bytes": 6675,
+      "files": 3
+    },
+    "EncounterCatalogValidator.gd": {
+      "bytes": 6652,
+      "files": 1
+    },
+    "V208WorldDomainQa.gd": {
+      "bytes": 6308,
+      "files": 1
+    },
+    "RegionProgressionSystem.gd": {
+      "bytes": 6261,
+      "files": 1
+    },
+    "docs/v206_asset_convergence": {
+      "bytes": 6240,
+      "files": 3
+    },
+    "docs/V209_ABSCHLUSSREPORT.md": {
+      "bytes": 6164,
+      "files": 1
+    },
+    "EconomyAuthorityService.gd": {
+      "bytes": 5997,
+      "files": 1
+    },
+    "SpinVillageResponsivePolishV194.gd": {
+      "bytes": 5945,
+      "files": 1
+    },
+    "project.godot": {
+      "bytes": 5880,
+      "files": 1
+    },
+    "UiCopyCalibration.gd": {
+      "bytes": 5876,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV188.gd": {
+      "bytes": 5741,
+      "files": 1
+    },
+    "docs/V205_ABSCHLUSSREPORT.md": {
+      "bytes": 5666,
+      "files": 1
+    },
+    "OnlineAuthorityService.gd": {
+      "bytes": 5650,
+      "files": 1
+    },
+    "OnlineTransportService.gd": {
+      "bytes": 5636,
+      "files": 1
+    },
+    "docs/v209_asset_convergence": {
+      "bytes": 5597,
+      "files": 2
+    },
+    "PuzzleSystem.gd": {
+      "bytes": 5586,
+      "files": 1
+    },
+    "DiceJourneySystem.gd": {
+      "bytes": 5518,
+      "files": 1
+    },
+    "GuildDiscoveryService.gd": {
+      "bytes": 5488,
+      "files": 1
+    },
+    "MonsterDefeatService.gd": {
+      "bytes": 5469,
+      "files": 1
+    },
+    "docs/V209_PHASE1_REPORT.md": {
+      "bytes": 5443,
+      "files": 1
+    },
+    "PuzzleProgressionSystem.gd": {
+      "bytes": 5295,
+      "files": 1
+    },
+    "P0MonsterVisualSystem.gd": {
+      "bytes": 5154,
+      "files": 1
+    },
+    "PlayerData.gd": {
+      "bytes": 5070,
+      "files": 1
+    },
+    "docs/V209_PHASE2_REPORT.md": {
+      "bytes": 5022,
+      "files": 1
+    },
+    "FullUiConvergenceV197.gd": {
+      "bytes": 5020,
+      "files": 1
+    },
+    "V1_67_PLACEHOLDER_AUDIT.status.translation": {
+      "bytes": 4967,
+      "files": 1
+    },
+    "UiPolishService.gd": {
+      "bytes": 4872,
+      "files": 1
+    },
+    "GuildTaskService.gd": {
+      "bytes": 4865,
+      "files": 1
+    },
+    "PlayerSnapshotService.gd": {
+      "bytes": 4864,
+      "files": 1
+    },
+    "GameConfig.gd": {
+      "bytes": 4806,
+      "files": 1
+    },
+    "docs/v207_economy_sim": {
+      "bytes": 4799,
+      "files": 1
+    },
+    "MetaProgressSystem.gd": {
+      "bytes": 4795,
+      "files": 1
+    },
+    "RewardLedgerService.gd": {
+      "bytes": 4794,
+      "files": 1
+    },
+    "addons": {
+      "bytes": 4763,
+      "files": 3
+    },
+    "docs/V206_ABSCHLUSSREPORT.md": {
+      "bytes": 4731,
+      "files": 1
+    },
+    "HomeNavigationRewardPolishV195.gd": {
+      "bytes": 4728,
+      "files": 1
+    },
+    "V1_67_PLACEHOLDER_AUDIT.size.translation": {
+      "bytes": 4705,
+      "files": 1
+    },
+    "docs/v207_phase1_domain_qa": {
+      "bytes": 4572,
+      "files": 1
+    },
+    "InventoryEntitlementService.gd": {
+      "bytes": 4565,
+      "files": 1
+    },
+    "AuthSessionService.gd": {
+      "bytes": 4557,
+      "files": 1
+    },
+    "ChestRewardSystem.gd": {
+      "bytes": 4501,
+      "files": 1
+    },
+    "MASTER_CONCEPT_V2_2.md": {
+      "bytes": 4494,
+      "files": 1
+    },
+    "CombatDamageResolver.gd": {
+      "bytes": 4429,
+      "files": 1
+    },
+    "PartyLobbyService.gd": {
+      "bytes": 4376,
+      "files": 1
+    },
+    "V1_67_PLACEHOLDER_AUDIT.category.translation": {
+      "bytes": 4373,
+      "files": 1
+    },
+    "TowerDefenseSystem.gd": {
+      "bytes": 4336,
+      "files": 1
+    },
+    "EncounterStatService.gd": {
+      "bytes": 4320,
+      "files": 1
+    },
+    "GameplayVfxService.gd": {
+      "bytes": 4268,
+      "files": 1
+    },
+    "OnlineChatService.gd": {
+      "bytes": 4114,
+      "files": 1
+    },
+    "AfkRewardSystem.gd": {
+      "bytes": 4042,
+      "files": 1
+    },
+    "V1_18_STATIC_AUDIT.json": {
+      "bytes": 4010,
+      "files": 1
+    },
+    "SyncReconciliationService.gd": {
+      "bytes": 4007,
+      "files": 1
+    },
+    "DefenseTeamService.gd": {
+      "bytes": 3966,
+      "files": 1
+    },
+    "FinalAlphaConvergenceV200.gd": {
+      "bytes": 3924,
+      "files": 1
+    },
+    "ProgressionOverviewSystem.gd": {
+      "bytes": 3895,
+      "files": 1
+    },
+    "StatModifierService.gd": {
+      "bytes": 3841,
+      "files": 1
+    },
+    "ResponsiveRuntimePolish.gd": {
+      "bytes": 3830,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV2061.gd": {
+      "bytes": 3764,
+      "files": 1
+    },
+    "OnlineSocialService.gd": {
+      "bytes": 3760,
+      "files": 1
+    },
+    "docs/v207_asset_convergence": {
+      "bytes": 3706,
+      "files": 2
+    },
+    "V1_21_STATIC_AUDIT.json": {
+      "bytes": 3697,
+      "files": 1
+    },
+    "V1_19_STATIC_AUDIT.json": {
+      "bytes": 3690,
+      "files": 1
+    },
+    "docs/V2061_ABSCHLUSSREPORT.md": {
+      "bytes": 3687,
+      "files": 1
+    },
+    "V1_20_STATIC_AUDIT.json": {
+      "bytes": 3670,
+      "files": 1
+    },
+    "PushNotificationService.gd": {
+      "bytes": 3642,
+      "files": 1
+    },
+    "GuildGovernanceService.gd": {
+      "bytes": 3599,
+      "files": 1
+    },
+    "OnlineActivityService.gd": {
+      "bytes": 3599,
+      "files": 1
+    },
+    "DailyRewards.gd": {
+      "bytes": 3553,
+      "files": 1
+    },
+    "LootTableService.gd": {
+      "bytes": 3551,
+      "files": 1
+    },
+    "ProductionAssetRegistry.gd": {
+      "bytes": 3501,
+      "files": 1
+    },
+    "docs/V207_ABSCHLUSSREPORT.md": {
+      "bytes": 3483,
+      "files": 1
+    },
+    "RemoteStateApplyService.gd": {
+      "bytes": 3474,
+      "files": 1
+    },
+    "V1_17_STATIC_AUDIT.json": {
+      "bytes": 3463,
+      "files": 1
+    },
+    "V2_01_DEVICE_RECOVERY_CHANGELOG.md": {
+      "bytes": 3454,
+      "files": 1
+    },
+    "P0BootDiagnostics.gd": {
+      "bytes": 3448,
+      "files": 1
+    },
+    "CoreAcceptanceService.gd": {
+      "bytes": 3262,
+      "files": 1
+    },
+    "ServerInboxService.gd": {
+      "bytes": 3253,
+      "files": 1
+    },
+    "docs/v2061_asset_convergence": {
+      "bytes": 3242,
+      "files": 3
+    },
+    "GuildService.gd": {
+      "bytes": 3240,
+      "files": 1
+    },
+    "SpinReelPresenter.gd": {
+      "bytes": 3202,
+      "files": 1
+    },
+    "LoadoutSnapshotService.gd": {
+      "bytes": 3148,
+      "files": 1
+    },
+    "SeasonSettlementService.gd": {
+      "bytes": 3132,
+      "files": 1
+    },
+    "PresenceService.gd": {
+      "bytes": 3037,
+      "files": 1
+    },
+    "docs/v208_asset_convergence": {
+      "bytes": 3036,
+      "files": 2
+    },
+    "V1_16_STATIC_AUDIT.json": {
+      "bytes": 3019,
+      "files": 1
+    },
+    "CoreLoopProductionReadinessV198.gd": {
+      "bytes": 2966,
+      "files": 1
+    },
+    "QuestSystem.gd": {
+      "bytes": 2966,
+      "files": 1
+    },
+    "ItemUiPresentation.gd": {
+      "bytes": 2933,
+      "files": 1
+    },
+    "BootFlow.gd": {
+      "bytes": 2901,
+      "files": 1
+    },
+    "docs/v208_domain_qa": {
+      "bytes": 2872,
+      "files": 1
+    },
+    "RankingOnlineService.gd": {
+      "bytes": 2831,
+      "files": 1
+    },
+    "SocialModerationService.gd": {
+      "bytes": 2814,
+      "files": 1
+    },
+    "V2_02_RUNTIME_RECOVERY_CHANGELOG.md": {
+      "bytes": 2802,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV187.gd": {
+      "bytes": 2763,
+      "files": 1
+    },
+    "RuntimeFlowService.gd": {
+      "bytes": 2729,
+      "files": 1
+    },
+    "ScreenAssetBinder.gd": {
+      "bytes": 2706,
+      "files": 1
+    },
+    "NetworkResilienceService.gd": {
+      "bytes": 2695,
+      "files": 1
+    },
+    "README.txt": {
+      "bytes": 2681,
+      "files": 1
+    },
+    "docs/V208_ABSCHLUSSREPORT.md": {
+      "bytes": 2672,
+      "files": 1
+    },
+    "GreenvaleWorldVisualDirectorV193.gd": {
+      "bytes": 2647,
+      "files": 1
+    },
+    "V1_96_STATIC_QA.json": {
+      "bytes": 2580,
+      "files": 1
+    },
+    "PurchaseService.gd": {
+      "bytes": 2556,
+      "files": 1
+    },
+    "SemanticAssetRegistry.gd": {
+      "bytes": 2517,
+      "files": 1
+    },
+    "BossChallengeSystem.gd": {
+      "bytes": 2508,
+      "files": 1
+    },
+    "docs/V207_PHASE1_REPORT.md": {
+      "bytes": 2456,
+      "files": 1
+    },
+    "SocialHubSystem.gd": {
+      "bytes": 2452,
+      "files": 1
+    },
+    "AccountState.gd": {
+      "bytes": 2446,
+      "files": 1
+    },
+    "EncounterProgressService.gd": {
+      "bytes": 2432,
+      "files": 1
+    },
+    "ProductionUiBinder.gd": {
+      "bytes": 2424,
+      "files": 1
+    },
+    "GameplayEventService.gd": {
+      "bytes": 2386,
+      "files": 1
+    },
+    "V1_67_ASSET_AUDIT_RESPONSIVE_QA.md": {
+      "bytes": 2383,
+      "files": 1
+    },
+    "SeasonResetService.gd": {
+      "bytes": 2382,
+      "files": 1
+    },
+    "SpinPresentationState.gd": {
+      "bytes": 2360,
+      "files": 1
+    },
+    "InviteDeepLinkService.gd": {
+      "bytes": 2317,
+      "files": 1
+    },
+    "TowerDefenseVisualDirectorV192.gd": {
+      "bytes": 2315,
+      "files": 1
+    },
+    "V1_93_CHANGELOG.md": {
+      "bytes": 2219,
+      "files": 1
+    },
+    "RuntimeGuidanceService.gd": {
+      "bytes": 2216,
+      "files": 1
+    },
+    "ASSET_MASTERLIST_V0_2.csv": {
+      "bytes": 2212,
+      "files": 1
+    },
+    "RewardProgressionVisualDirectorV193.gd": {
+      "bytes": 2194,
+      "files": 1
+    },
+    "V1_60_CHANGELOG.md": {
+      "bytes": 2190,
+      "files": 1
+    },
+    "V1_15_STATIC_AUDIT.json": {
+      "bytes": 2116,
+      "files": 1
+    },
+    "V1_58_CHANGELOG.md": {
+      "bytes": 2102,
+      "files": 1
+    },
+    "MonsterCatalog.gd": {
+      "bytes": 2057,
+      "files": 1
+    },
+    "SettingsService.gd": {
+      "bytes": 2043,
+      "files": 1
+    },
+    "V2_01_ASSET_RUNTIME_AUDIT.csv": {
+      "bytes": 2040,
+      "files": 1
+    },
+    "V1_70_ASSET_CREATION_QUEUE.csv": {
+      "bytes": 2027,
+      "files": 1
+    },
+    "V1_59_ASSET_DECISIONS.md": {
+      "bytes": 1984,
+      "files": 1
+    },
+    "docs/V208_WORLD_REGION_AUDIT.md": {
+      "bytes": 1980,
+      "files": 1
+    },
+    "PreAlphaClosureV199.gd": {
+      "bytes": 1978,
+      "files": 1
+    },
+    "docs/v209_phase2": {
+      "bytes": 1966,
+      "files": 1
+    },
+    "V2_01_MOBILE_LAYOUT_AUDIT.md": {
+      "bytes": 1914,
+      "files": 1
+    },
+    "V2_01_DEVICE_QA.md": {
+      "bytes": 1905,
+      "files": 1
+    },
+    "CoreProgressionSynergySystem.gd": {
+      "bytes": 1899,
+      "files": 1
+    },
+    "V1_53_CHANGELOG.md": {
+      "bytes": 1893,
+      "files": 1
+    },
+    "export_presets.cfg": {
+      "bytes": 1888,
+      "files": 1
+    },
+    "AudioService.gd": {
+      "bytes": 1812,
+      "files": 1
+    },
+    "V1_14_STATIC_AUDIT.json": {
+      "bytes": 1758,
+      "files": 1
+    },
+    "TapCombatVisualDirectorV193.gd": {
+      "bytes": 1754,
+      "files": 1
+    },
+    "AssetImportPipeline.gd": {
+      "bytes": 1753,
+      "files": 1
+    },
+    "EncounterFeelSystem.gd": {
+      "bytes": 1733,
+      "files": 1
+    },
+    "V2_00_PRE_APK_DEVICE_RUNBOOK.md": {
+      "bytes": 1732,
+      "files": 1
+    },
+    "GreenvaleWorldDecorationV191.gd": {
+      "bytes": 1728,
+      "files": 1
+    },
+    "V1_89_EXACT_DUPLICATE_ASSET_GROUPS.files.translation": {
+      "bytes": 1718,
+      "files": 1
+    },
+    "V1_18_ENGINE_EXPORT_RUNBOOK.md": {
+      "bytes": 1713,
+      "files": 1
+    },
+    "V1_17_P0_RC_DEVICE_RUNBOOK.md": {
+      "bytes": 1655,
+      "files": 1
+    },
+    "V1_91_CHANGELOG.md": {
+      "bytes": 1602,
+      "files": 1
+    },
+    "V1_54_CHANGELOG.md": {
+      "bytes": 1560,
+      "files": 1
+    },
+    "ServerClockService.gd": {
+      "bytes": 1559,
+      "files": 1
+    },
+    "V1_32_DAILY_QUESTS_QA.md": {
+      "bytes": 1538,
+      "files": 1
+    },
+    "V2_00_FINAL_ALPHA_STATIC_QA.txt": {
+      "bytes": 1538,
+      "files": 1
+    },
+    "P0RuntimeContract.gd": {
+      "bytes": 1510,
+      "files": 1
+    },
+    "AssetRegistry.gd": {
+      "bytes": 1471,
+      "files": 1
+    },
+    "V1_41_CHANGELOG.md": {
+      "bytes": 1453,
+      "files": 1
+    },
+    "V1_56_PRODUCTION_ART_QA.md": {
+      "bytes": 1451,
+      "files": 1
+    },
+    "V1_40_CHANGELOG.md": {
+      "bytes": 1440,
+      "files": 1
+    },
+    "V2_00_CHANGELOG.md": {
+      "bytes": 1435,
+      "files": 1
+    },
+    "V1_93_STATIC_QA.txt": {
+      "bytes": 1428,
+      "files": 1
+    },
+    "V1_13_STATIC_AUDIT.json": {
+      "bytes": 1424,
+      "files": 1
+    },
+    "V1_38_CHANGELOG.md": {
+      "bytes": 1416,
+      "files": 1
+    },
+    "V1_58_FULL_VISUAL_QA.md": {
+      "bytes": 1412,
+      "files": 1
+    },
+    "V1_30_CHANGELOG.md": {
+      "bytes": 1398,
+      "files": 1
+    },
+    "V1_89_VFX_REQUIREMENTS.notes.translation": {
+      "bytes": 1398,
+      "files": 1
+    },
+    "V1_32_CHANGELOG.md": {
+      "bytes": 1397,
+      "files": 1
+    },
+    "V1_49_CHANGELOG.md": {
+      "bytes": 1393,
+      "files": 1
+    },
+    "V1_4_CHANGELOG.md": {
+      "bytes": 1351,
+      "files": 1
+    },
+    "V1_22_CHANGELOG.md": {
+      "bytes": 1339,
+      "files": 1
+    },
+    "V1_55_ATLAS_REGISTRY_QA.md": {
+      "bytes": 1329,
+      "files": 1
+    },
+    "V1_90_CHANGELOG.md": {
+      "bytes": 1329,
+      "files": 1
+    },
+    "V1_48_CHANGELOG.md": {
+      "bytes": 1316,
+      "files": 1
+    },
+    "V1_0_MASTER_V1_4_REALIGNMENT.md": {
+      "bytes": 1303,
+      "files": 1
+    },
+    "V1_35_CHANGELOG.md": {
+      "bytes": 1301,
+      "files": 1
+    },
+    "V1_27_META_QA.md": {
+      "bytes": 1294,
+      "files": 1
+    },
+    "V0_4_MASTER_ALIGNMENT.md": {
+      "bytes": 1293,
+      "files": 1
+    },
+    "V1_4_CORE_CLOSURE_QA.md": {
+      "bytes": 1292,
+      "files": 1
+    },
+    "P02CoreController.gd": {
+      "bytes": 1290,
+      "files": 1
+    },
+    "V1_56_CHANGELOG.md": {
+      "bytes": 1285,
+      "files": 1
+    },
+    "V208WorldRuntimeQaHost.gd": {
+      "bytes": 1275,
+      "files": 1
+    },
+    "V1_89_EXACT_DUPLICATE_ASSET_GROUPS.csv": {
+      "bytes": 1274,
+      "files": 1
+    },
+    "V1_31_HEROES_QA.md": {
+      "bytes": 1260,
+      "files": 1
+    },
+    "V1_47_CHANGELOG.md": {
+      "bytes": 1260,
+      "files": 1
+    },
+    "V1_30_LANE_BATTLE_QA.md": {
+      "bytes": 1254,
+      "files": 1
+    },
+    "V1_60_ASSET_PIPELINE_QA.md": {
+      "bytes": 1239,
+      "files": 1
+    },
+    "V1_26_JOURNEY_QA.md": {
+      "bytes": 1238,
+      "files": 1
+    },
+    "V0_6_CHANGELOG.md": {
+      "bytes": 1236,
+      "files": 1
+    },
+    "V1_40_SPIN_CONTRACT_QA.md": {
+      "bytes": 1234,
+      "files": 1
+    },
+    "V1_23_CHANGELOG.md": {
+      "bytes": 1225,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV190.gd": {
+      "bytes": 1211,
+      "files": 1
+    },
+    "V1_53_VILLAGE_BUILD_V2_QA.md": {
+      "bytes": 1201,
+      "files": 1
+    },
+    "CombatMomentumSystem.gd": {
+      "bytes": 1196,
+      "files": 1
+    },
+    "V1_82_ONLINE_ECONOMY_LOADOUT_PVP_CONTRACTS.md": {
+      "bytes": 1191,
+      "files": 1
+    },
+    "P0VillageVisualSystem.gd": {
+      "bytes": 1183,
+      "files": 1
+    },
+    "V1_70_ASSET_INTEGRATION_QUEUE.csv": {
+      "bytes": 1172,
+      "files": 1
+    },
+    "V1_45_CHANGELOG.md": {
+      "bytes": 1171,
+      "files": 1
+    },
+    "V1_38_HOME_COMBAT_RESPONSIVE_QA.md": {
+      "bytes": 1164,
+      "files": 1
+    },
+    "V1_44_CHANGELOG.md": {
+      "bytes": 1164,
+      "files": 1
+    },
+    "UiComponentFactory.gd": {
+      "bytes": 1163,
+      "files": 1
+    },
+    "V1_35_ACCOUNT_SUPPORT_QA.md": {
+      "bytes": 1163,
+      "files": 1
+    },
+    "V1_86_SOCIAL_COOP_INBOX_CONTRACTS.md": {
+      "bytes": 1161,
+      "files": 1
+    },
+    "V1_46_CHANGELOG.md": {
+      "bytes": 1160,
+      "files": 1
+    },
+    "V1_81_MULTIPLAYER_GAMEPLAY_CONTRACTS.md": {
+      "bytes": 1158,
+      "files": 1
+    },
+    "V1_79_CHANGELOG.md": {
+      "bytes": 1153,
+      "files": 1
+    },
+    "V1_89_VFX_REQUIREMENTS.status.translation": {
+      "bytes": 1151,
+      "files": 1
+    },
+    "V1_75_ONLINE_MIGRATION_MATRIX.csv": {
+      "bytes": 1149,
+      "files": 1
+    },
+    "V1_50_CHANGELOG.md": {
+      "bytes": 1144,
+      "files": 1
+    },
+    "V1_44_LIVEOPS_UI_QA.md": {
+      "bytes": 1142,
+      "files": 1
+    },
+    "V1_48_PUZZLE_V2_QA.md": {
+      "bytes": 1142,
+      "files": 1
+    },
+    "V1_12_DEVICE_TEST_RUNBOOK.md": {
+      "bytes": 1136,
+      "files": 1
+    },
+    "SPIN_FINAL_ASSET_SWAP_V2_0.md": {
+      "bytes": 1132,
+      "files": 1
+    },
+    "V1_23R5_SPIN_DEVICE_QA.md": {
+      "bytes": 1130,
+      "files": 1
+    },
+    "V1_26_CHANGELOG.md": {
+      "bytes": 1129,
+      "files": 1
+    },
+    "V1_25_COMBAT_QA.md": {
+      "bytes": 1128,
+      "files": 1
+    },
+    "V1_11_CORE_ACCEPTANCE_QA.md": {
+      "bytes": 1124,
+      "files": 1
+    },
+    "V1_2_CHANGELOG.md": {
+      "bytes": 1121,
+      "files": 1
+    },
+    "V1_88_CHANGELOG.md": {
+      "bytes": 1115,
+      "files": 1
+    },
+    "V1_49_TOWER_DEFENSE_V2_QA.md": {
+      "bytes": 1111,
+      "files": 1
+    },
+    "V1_52_CHANGELOG.md": {
+      "bytes": 1109,
+      "files": 1
+    },
+    "V1_39_CHANGELOG.md": {
+      "bytes": 1108,
+      "files": 1
+    },
+    "V1_89_VFX_REQUIREMENTS.csv": {
+      "bytes": 1106,
+      "files": 1
+    },
+    "V1_31_CHANGELOG.md": {
+      "bytes": 1104,
+      "files": 1
+    },
+    "V1_3_CHANGELOG.md": {
+      "bytes": 1104,
+      "files": 1
+    },
+    "V1_41_JOURNEY_PUZZLE_HERO_QA.md": {
+      "bytes": 1098,
+      "files": 1
+    },
+    "V209WorldRuntimeQaHost.gd": {
+      "bytes": 1095,
+      "files": 1
+    },
+    "V1_13_CORE_TRANSACTION_QA.md": {
+      "bytes": 1087,
+      "files": 1
+    },
+    "V1_1_CHANGELOG.md": {
+      "bytes": 1086,
+      "files": 1
+    },
+    "V1_81_CHANGELOG.md": {
+      "bytes": 1077,
+      "files": 1
+    },
+    "V1_27_CHANGELOG.md": {
+      "bytes": 1072,
+      "files": 1
+    },
+    "V0_7_CHANGELOG.md": {
+      "bytes": 1060,
+      "files": 1
+    },
+    "V1_29_TOWER_DEFENSE_QA.md": {
+      "bytes": 1052,
+      "files": 1
+    },
+    "V0_9_CHANGELOG.md": {
+      "bytes": 1050,
+      "files": 1
+    },
+    "V0_8_CHANGELOG.md": {
+      "bytes": 1046,
+      "files": 1
+    },
+    "ASSET_SWAP_GUIDE.md": {
+      "bytes": 1039,
+      "files": 1
+    },
+    "V1_80_ONLINE_SERVICE_CONTRACTS.md": {
+      "bytes": 1034,
+      "files": 1
+    },
+    "V1_85_SOCIAL_LIVEOPS_CONTRACTS.md": {
+      "bytes": 1034,
+      "files": 1
+    },
+    "V1_28_PUZZLE_QA.md": {
+      "bytes": 1028,
+      "files": 1
+    },
+    "V1_83_RAID_PVP_REWARD_LEDGER_CONTRACTS.md": {
+      "bytes": 1022,
+      "files": 1
+    },
+    "V1_16_CHANGELOG.md": {
+      "bytes": 1018,
+      "files": 1
+    },
+    "V1_36_CHANGELOG.md": {
+      "bytes": 1016,
+      "files": 1
+    },
+    "V1_23R_CHANGELOG.md": {
+      "bytes": 1011,
+      "files": 1
+    },
+    "V1_78_CHANGELOG.md": {
+      "bytes": 1008,
+      "files": 1
+    },
+    "docs/V1_58_SCREEN_CALIBRATION_BOARD.png.import": {
+      "bytes": 999,
+      "files": 1
+    },
+    "V1_96_CHANGELOG.md": {
+      "bytes": 998,
+      "files": 1
+    },
+    "V1_15_FIRST_SESSION_QA.md": {
+      "bytes": 995,
+      "files": 1
+    },
+    "V1_62_CHANGELOG.md": {
+      "bytes": 990,
+      "files": 1
+    },
+    "V1_43_CHANGELOG.md": {
+      "bytes": 987,
+      "files": 1
+    },
+    "V1_87_CHANGELOG.md": {
+      "bytes": 987,
+      "files": 1
+    },
+    "V1_47_JOURNEY_V2_QA.md": {
+      "bytes": 986,
+      "files": 1
+    },
+    "V1_23R6_CHANGELOG.md": {
+      "bytes": 975,
+      "files": 1
+    },
+    "V1_86_CHANGELOG.md": {
+      "bytes": 974,
+      "files": 1
+    },
+    "V1_51_CHANGELOG.md": {
+      "bytes": 973,
+      "files": 1
+    },
+    "V1_13_CHANGELOG.md": {
+      "bytes": 972,
+      "files": 1
+    },
+    "V1_82_CHANGELOG.md": {
+      "bytes": 969,
+      "files": 1
+    },
+    "V0_6_MASTER_ALIGNMENT.md": {
+      "bytes": 968,
+      "files": 1
+    },
+    "V1_98_CHANGELOG.md": {
+      "bytes": 967,
+      "files": 1
+    },
+    "MonsterAssetResolver.gd": {
+      "bytes": 963,
+      "files": 1
+    },
+    "V1_28_CHANGELOG.md": {
+      "bytes": 963,
+      "files": 1
+    },
+    "V1_80_CHANGELOG.md": {
+      "bytes": 963,
+      "files": 1
+    },
+    "V1_14_CORE_FEEL_QA.md": {
+      "bytes": 961,
+      "files": 1
+    },
+    "V1_61_CHANGELOG.md": {
+      "bytes": 957,
+      "files": 1
+    },
+    "V1_96_MODES_GAMEPLAY_QA.md": {
+      "bytes": 955,
+      "files": 1
+    },
+    "V1_1_P0_QA_CHECKLIST.md": {
+      "bytes": 953,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV189.gd": {
+      "bytes": 952,
+      "files": 1
+    },
+    "V1_25_CHANGELOG.md": {
+      "bytes": 950,
+      "files": 1
+    },
+    "V1_84_ONLINE_SOCIAL_GUILD_SEASON_CONTRACTS.md": {
+      "bytes": 947,
+      "files": 1
+    },
+    "V1_18_CHANGELOG.md": {
+      "bytes": 945,
+      "files": 1
+    },
+    "V1_37_CHANGELOG.md": {
+      "bytes": 944,
+      "files": 1
+    },
+    "V1_57_UI_COPY_VISUAL_QA.md": {
+      "bytes": 944,
+      "files": 1
+    },
+    "V1_92_CHANGELOG.md": {
+      "bytes": 941,
+      "files": 1
+    },
+    "V1_21_CHANGELOG.md": {
+      "bytes": 939,
+      "files": 1
+    },
+    "V1_93_GAMEPLAY_VISUAL_QA.md": {
+      "bytes": 936,
+      "files": 1
+    },
+    "V1_92_STATIC_QA.txt": {
+      "bytes": 928,
+      "files": 1
+    },
+    "V1_45_UI_VISUAL_QA.md": {
+      "bytes": 917,
+      "files": 1
+    },
+    "V1_83_CHANGELOG.md": {
+      "bytes": 915,
+      "files": 1
+    },
+    "V0_5_CHANGELOG.md": {
+      "bytes": 909,
+      "files": 1
+    },
+    "V1_85_CHANGELOG.md": {
+      "bytes": 906,
+      "files": 1
+    },
+    "V1_24_VILLAGE_QA.md": {
+      "bytes": 905,
+      "files": 1
+    },
+    "V1_59_CHANGELOG.md": {
+      "bytes": 904,
+      "files": 1
+    },
+    "V1_29_CHANGELOG.md": {
+      "bytes": 902,
+      "files": 1
+    },
+    "V2_01_ASSET_RUNTIME_AUDIT.notes.translation": {
+      "bytes": 898,
+      "files": 1
+    },
+    "V1_7_MOBILE_DEVICE_QA.md": {
+      "bytes": 897,
+      "files": 1
+    },
+    "FeatureFlags.gd": {
+      "bytes": 896,
+      "files": 1
+    },
+    "V0_3_CHANGELOG.md": {
+      "bytes": 896,
+      "files": 1
+    },
+    "V1_33_CHANGELOG.md": {
+      "bytes": 892,
+      "files": 1
+    },
+    "V1_46_HALLOWEEN_VISUAL_QA.md": {
+      "bytes": 891,
+      "files": 1
+    },
+    "V1_94_CHANGELOG.md": {
+      "bytes": 890,
+      "files": 1
+    },
+    "V1_37_HOME_UI_QA.md": {
+      "bytes": 889,
+      "files": 1
+    },
+    "V1_99_PRE_ALPHA_CLOSURE_QA.md": {
+      "bytes": 888,
+      "files": 1
+    },
+    "V1_6_CHANGELOG.md": {
+      "bytes": 886,
+      "files": 1
+    },
+    "V1_24_CHANGELOG.md": {
+      "bytes": 879,
+      "files": 1
+    },
+    "V1_19_CHANGELOG.md": {
+      "bytes": 877,
+      "files": 1
+    },
+    "V1_65_CHANGELOG.md": {
+      "bytes": 877,
+      "files": 1
+    },
+    "V1_79_TRANSPORT_AUTH_RECONCILIATION_QA.md": {
+      "bytes": 876,
+      "files": 1
+    },
+    "V1_11_CHANGELOG.md": {
+      "bytes": 874,
+      "files": 1
+    },
+    "V2_01_ASSET_RUNTIME_AUDIT.classification.translation": {
+      "bytes": 871,
+      "files": 1
+    },
+    "V1_34_CHANGELOG.md": {
+      "bytes": 869,
+      "files": 1
+    },
+    "V1_69_CHANGELOG.md": {
+      "bytes": 868,
+      "files": 1
+    },
+    "V1_10_P0_FUNCTIONAL_QA.md": {
+      "bytes": 865,
+      "files": 1
+    },
+    "V1_33_REGION_PROGRESSION_QA.md": {
+      "bytes": 864,
+      "files": 1
+    },
+    "VillageAssetResolver.gd": {
+      "bytes": 862,
+      "files": 1
+    },
+    "V1_21_SAVE_RESUME_QA.md": {
+      "bytes": 861,
+      "files": 1
+    },
+    "V1_76_CHANGELOG.md": {
+      "bytes": 861,
+      "files": 1
+    },
+    "V2_01_ASSET_RUNTIME_AUDIT.path.translation": {
+      "bytes": 857,
+      "files": 1
+    },
+    "V1_69_HOME_TAP_VILLAGE_QA.md": {
+      "bytes": 855,
+      "files": 1
+    },
+    "docs/v209_release_notes.md": {
+      "bytes": 846,
+      "files": 1
+    },
+    "V1_57_CHANGELOG.md": {
+      "bytes": 845,
+      "files": 1
+    },
+    "V1_39_SPIN_VILLAGE_MODAL_QA.md": {
+      "bytes": 835,
+      "files": 1
+    },
+    "V1_36_SOCIAL_PROFILE_QA.md": {
+      "bytes": 834,
+      "files": 1
+    },
+    "V1_20_CHANGELOG.md": {
+      "bytes": 832,
+      "files": 1
+    },
+    "V1_81_REMOTE_GAMEPLAY_COOP_PVP_QA.md": {
+      "bytes": 831,
+      "files": 1
+    },
+    "V1_84_CHANGELOG.md": {
+      "bytes": 831,
+      "files": 1
+    },
+    "V1_79_BACKEND_ADAPTER_CONTRACT.md": {
+      "bytes": 826,
+      "files": 1
+    },
+    "V1_17_CHANGELOG.md": {
+      "bytes": 814,
+      "files": 1
+    },
+    "V1_23R3_CHANGELOG.md": {
+      "bytes": 812,
+      "files": 1
+    },
+    "V1_97_CHANGELOG.md": {
+      "bytes": 812,
+      "files": 1
+    },
+    "V2_01_ASSET_RUNTIME_AUDIT.node.translation": {
+      "bytes": 805,
+      "files": 1
+    },
+    "V1_34_ENTRY_ACCOUNT_QA.md": {
+      "bytes": 802,
+      "files": 1
+    },
+    "V1_99_CHANGELOG.md": {
+      "bytes": 799,
+      "files": 1
+    },
+    "V1_88_REMAINING_VISIBLE_PLACEHOLDER_OWNERS.scene.translation": {
+      "bytes": 798,
+      "files": 1
+    },
+    "V1_75_ONLINE_ARCHITECTURE.md": {
+      "bytes": 796,
+      "files": 1
+    },
+    "V1_86_SOCIAL_COOP_INBOX_QA.md": {
+      "bytes": 793,
+      "files": 1
+    },
+    "V1_68_CHANGELOG.md": {
+      "bytes": 792,
+      "files": 1
+    },
+    "V1_82_INVENTORY_LOADOUT_MATCHMAKING_QA.md": {
+      "bytes": 789,
+      "files": 1
+    },
+    "V1_85_SOCIAL_LIVEOPS_QA.md": {
+      "bytes": 787,
+      "files": 1
+    },
+    "V1_70_CHANGELOG.md": {
+      "bytes": 786,
+      "files": 1
+    },
+    "V1_95_CHANGELOG.md": {
+      "bytes": 786,
+      "files": 1
+    },
+    "V1_14_CHANGELOG.md": {
+      "bytes": 783,
+      "files": 1
+    },
+    "V1_77_CHANGELOG.md": {
+      "bytes": 783,
+      "files": 1
+    },
+    "V1_8_BUILD_READINESS.md": {
+      "bytes": 783,
+      "files": 1
+    },
+    "V1_23R2_CHANGELOG.md": {
+      "bytes": 778,
+      "files": 1
+    },
+    "V0_8_MASTER_ALIGNMENT.md": {
+      "bytes": 777,
+      "files": 1
+    },
+    "V1_10_CHANGELOG.md": {
+      "bytes": 765,
+      "files": 1
+    },
+    "V1_16_BALANCE_QA.md": {
+      "bytes": 763,
+      "files": 1
+    },
+    "V1_54_RUNTIME_UX_QA.md": {
+      "bytes": 761,
+      "files": 1
+    },
+    "V1_51_HERO_COMBAT_PROGRESSION_QA.md": {
+      "bytes": 760,
+      "files": 1
+    },
+    "V1_76_AUTHORITY_MIGRATION.md": {
+      "bytes": 754,
+      "files": 1
+    },
+    "V1_97_STATIC_QA.json": {
+      "bytes": 752,
+      "files": 1
+    },
+    "V1_74_CHANGELOG.md": {
+      "bytes": 750,
+      "files": 1
+    },
+    "V1_52_OBJECTIVES_COLLECTIONS_QA.md": {
+      "bytes": 748,
+      "files": 1
+    },
+    "UnlockService.gd": {
+      "bytes": 747,
+      "files": 1
+    },
+    "V1_0_CHANGELOG.md": {
+      "bytes": 747,
+      "files": 1
+    },
+    "V1_94_SPIN_VILLAGE_RESPONSIVE_QA.md": {
+      "bytes": 745,
+      "files": 1
+    },
+    "V1_98_STATIC_QA.txt": {
+      "bytes": 743,
+      "files": 1
+    },
+    "OnlineSessionState.gd": {
+      "bytes": 741,
+      "files": 1
+    },
+    "V1_77_AUTHORITY_STATUS.md": {
+      "bytes": 740,
+      "files": 1
+    },
+    "V1_23R4_CHANGELOG.md": {
+      "bytes": 733,
+      "files": 1
+    },
+    "V1_23R6_SPIN_RESUME_QA.md": {
+      "bytes": 733,
+      "files": 1
+    },
+    "V1_42_CHANGELOG.md": {
+      "bytes": 732,
+      "files": 1
+    },
+    "V1_9_CHANGELOG.md": {
+      "bytes": 723,
+      "files": 1
+    },
+    "V1_72_CHANGELOG.md": {
+      "bytes": 722,
+      "files": 1
+    },
+    "V1_75_ONLINE_MIGRATION_MATRIX.csv.import": {
+      "bytes": 713,
+      "files": 1
+    },
+    "V1_89_ASSET_INTEGRATION_CENSUS.json": {
+      "bytes": 713,
+      "files": 1
+    },
+    "qa_v208_stderr.log": {
+      "bytes": 711,
+      "files": 1
+    },
+    "shop_catalog.json": {
+      "bytes": 707,
+      "files": 1
+    },
+    "V1_23R5_CHANGELOG.md": {
+      "bytes": 705,
+      "files": 1
+    },
+    "V1_70_ASSET_INTEGRATION_QUEUE.csv.import": {
+      "bytes": 703,
+      "files": 1
+    },
+    "V1_82_AUTHORITY_STATUS.md": {
+      "bytes": 700,
+      "files": 1
+    },
+    "V1_83_RAID_PVP_REWARD_LEDGER_QA.md": {
+      "bytes": 691,
+      "files": 1
+    },
+    "V1_88_REMAINING_VISIBLE_PLACEHOLDER_OWNERS.csv": {
+      "bytes": 690,
+      "files": 1
+    },
+    "V1_84_GUILD_ACTIVITY_SEASON_QA.md": {
+      "bytes": 689,
+      "files": 1
+    },
+    "V1_70_REWARD_BOSS_SESSION_FLOW_QA.md": {
+      "bytes": 687,
+      "files": 1
+    },
+    "V1_79_AUTHORITY_STATUS.md": {
+      "bytes": 686,
+      "files": 1
+    },
+    "V1_91_GAMEPLAY_FEEL_QA.md": {
+      "bytes": 683,
+      "files": 1
+    },
+    "V1_78_MODE_REWARDS_REMOTE_SYNC_QA.md": {
+      "bytes": 682,
+      "files": 1
+    },
+    "V1_83_AUTHORITY_STATUS.md": {
+      "bytes": 681,
+      "files": 1
+    },
+    "V1_75_CHANGELOG.md": {
+      "bytes": 680,
+      "files": 1
+    },
+    "V2_01_ASSET_RUNTIME_AUDIT.csv.import": {
+      "bytes": 678,
+      "files": 1
+    },
+    "V1_63_SCREEN_BY_SCREEN_UI_QA.md": {
+      "bytes": 677,
+      "files": 1
+    },
+    "V0_7_MASTER_ALIGNMENT.md": {
+      "bytes": 675,
+      "files": 1
+    },
+    "V1_64_DEEP_SCREEN_UI_QA.md": {
+      "bytes": 674,
+      "files": 1
+    },
+    "V1_50_LANE_BATTLE_V2_QA.md": {
+      "bytes": 668,
+      "files": 1
+    },
+    "V1_63_CHANGELOG.md": {
+      "bytes": 667,
+      "files": 1
+    },
+    "V0_4_CHANGELOG.md": {
+      "bytes": 666,
+      "files": 1
+    },
+    "V1_70_ASSET_CREATION_QUEUE.csv.import": {
+      "bytes": 662,
+      "files": 1
+    },
+    "V1_19_RUNTIME_BOOT_QA.md": {
+      "bytes": 659,
+      "files": 1
+    },
+    "V1_78_REMOTE_SYNC_CONTRACT.md": {
+      "bytes": 658,
+      "files": 1
+    },
+    "V0_9_MASTER_ALIGNMENT.md": {
+      "bytes": 657,
+      "files": 1
+    },
+    "V1_15_CHANGELOG.md": {
+      "bytes": 652,
+      "files": 1
+    },
+    "V1_66_CHANGELOG.md": {
+      "bytes": 651,
+      "files": 1
+    },
+    "V1_67_PLACEHOLDER_AUDIT.csv.import": {
+      "bytes": 651,
+      "files": 1
+    },
+    "V1_68_DYNAMIC_UI_STATE_QA.md": {
+      "bytes": 646,
+      "files": 1
+    },
+    "V1_73_CHANGELOG.md": {
+      "bytes": 644,
+      "files": 1
+    },
+    "V1_10_STATIC_AUDIT.json": {
+      "bytes": 642,
+      "files": 1
+    },
+    "V1_72_COMBAT_CURVE_HERO_SYNERGY_QA.md": {
+      "bytes": 634,
+      "files": 1
+    },
+    "ResponsiveLayout.gd": {
+      "bytes": 631,
+      "files": 1
+    },
+    "V1_86_AUTHORITY_STATUS.md": {
+      "bytes": 631,
+      "files": 1
+    },
+    "V1_80_RESPONSE_ROUTING_ONLINE_SERVICES_QA.md": {
+      "bytes": 630,
+      "files": 1
+    },
+    "V1_70_ASSET_INTEGRATION_QUEUE.next.translation": {
+      "bytes": 625,
+      "files": 1
+    },
+    "V1_7_CHANGELOG.md": {
+      "bytes": 625,
+      "files": 1
+    },
+    "V1_95_GAMEPLAY_FEEL_QA.md": {
+      "bytes": 622,
+      "files": 1
+    },
+    "V1_75_ONLINE_MIGRATION_MATRIX.next.translation": {
+      "bytes": 621,
+      "files": 1
+    },
+    "V1_11_STATIC_AUDIT.json": {
+      "bytes": 610,
+      "files": 1
+    },
+    "CoreAnalytics.gd": {
+      "bytes": 607,
+      "files": 1
+    },
+    "V1_80_AUTHORITY_STATUS.md": {
+      "bytes": 605,
+      "files": 1
+    },
+    "V1_78_AUTHORITY_STATUS.md": {
+      "bytes": 603,
+      "files": 1
+    },
+    "V1_98_PRODUCTION_READINESS_QA.md": {
+      "bytes": 603,
+      "files": 1
+    },
+    "V1_84_AUTHORITY_STATUS.md": {
+      "bytes": 601,
+      "files": 1
+    },
+    ".gitignore": {
+      "bytes": 599,
+      "files": 1
+    },
+    "V1_76_ECONOMY_SPIN_SYNC_QA.md": {
+      "bytes": 599,
+      "files": 1
+    },
+    "V1_12_STATIC_AUDIT.json": {
+      "bytes": 597,
+      "files": 1
+    },
+    "V1_64_CHANGELOG.md": {
+      "bytes": 592,
+      "files": 1
+    },
+    "V1_75_ONLINE_MIGRATION_MATRIX.domain.translation": {
+      "bytes": 587,
+      "files": 1
+    },
+    "V1_12_CHANGELOG.md": {
+      "bytes": 585,
+      "files": 1
+    },
+    "V1_75_ONLINE_MIGRATION_MATRIX.current.translation": {
+      "bytes": 584,
+      "files": 1
+    },
+    "V1_20_RELEASE_ISOLATION_QA.md": {
+      "bytes": 580,
+      "files": 1
+    },
+    "V1_8_CHANGELOG.md": {
+      "bytes": 571,
+      "files": 1
+    },
+    "V1_74_CORE_PROGRESSION_SYNERGY_QA.md": {
+      "bytes": 569,
+      "files": 1
+    },
+    "V1_9_STATIC_AUDIT.json": {
+      "bytes": 567,
+      "files": 1
+    },
+    "V1_91_STATIC_QA.txt": {
+      "bytes": 563,
+      "files": 1
+    },
+    "V1_75_ONLINE_MIGRATION_MATRIX.authority.translation": {
+      "bytes": 562,
+      "files": 1
+    },
+    "V1_2_MASTER_V1_4_ALIGNMENT.md": {
+      "bytes": 560,
+      "files": 1
+    },
+    "V1_88_MASTER_V2_2_VISUAL_ALIGNMENT.md": {
+      "bytes": 556,
+      "files": 1
+    },
+    "V1_70_ASSET_INTEGRATION_QUEUE.family.translation": {
+      "bytes": 555,
+      "files": 1
+    },
+    "V1_81_AUTHORITY_STATUS.md": {
+      "bytes": 555,
+      "files": 1
+    },
+    "V1_18_CRITICAL_SHA256.json": {
+      "bytes": 553,
+      "files": 1
+    },
+    "V1_70_ASSET_INTEGRATION_QUEUE.status.translation": {
+      "bytes": 551,
+      "files": 1
+    },
+    "V1_77_REWARD_UPGRADE_AUTHORITY_QA.md": {
+      "bytes": 551,
+      "files": 1
+    },
+    "V1_70_ASSET_INTEGRATION_QUEUE.asset.translation": {
+      "bytes": 550,
+      "files": 1
+    },
+    "V1_71_CHANGELOG.md": {
+      "bytes": 549,
+      "files": 1
+    },
+    "V1_8_STATIC_AUDIT.json": {
+      "bytes": 548,
+      "files": 1
+    },
+    "V1_66_COMBAT_MODES_UI_QA.md": {
+      "bytes": 545,
+      "files": 1
+    },
+    "V1_97_FULL_CONVERGENCE_QA.md": {
+      "bytes": 545,
+      "files": 1
+    },
+    "V209WorldDomainQaHost.gd": {
+      "bytes": 545,
+      "files": 1
+    },
+    "V1_88_PRODUCTION_ASSET_CONVERGENCE_QA.md": {
+      "bytes": 540,
+      "files": 1
+    },
+    "V1_67_CHANGELOG.md": {
+      "bytes": 533,
+      "files": 1
+    },
+    "V208WorldDomainQaHost.gd": {
+      "bytes": 529,
+      "files": 1
+    },
+    "V1_70_ASSET_CREATION_QUEUE.slot.translation": {
+      "bytes": 517,
+      "files": 1
+    },
+    "V1_85_AUTHORITY_STATUS.md": {
+      "bytes": 514,
+      "files": 1
+    },
+    "V1_89_REMAINING_VISIBLE_PLACEHOLDER_OWNERS.scene.translation": {
+      "bytes": 514,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV191.gd": {
+      "bytes": 510,
+      "files": 1
+    },
+    "V1_62_FULL_UI_CONVERGENCE_QA.md": {
+      "bytes": 500,
+      "files": 1
+    },
+    "V1_70_ASSET_CREATION_QUEUE.spec.translation": {
+      "bytes": 497,
+      "files": 1
+    },
+    "V1_90_PRODUCTION_ASSET_INTEGRATION_QA.md": {
+      "bytes": 492,
+      "files": 1
+    },
+    "V1_87_MASTER_V2_2_VISUAL_ALIGNMENT.md": {
+      "bytes": 487,
+      "files": 1
+    },
+    "V1_61_SCREEN_COMPOSITION_QA.md": {
+      "bytes": 484,
+      "files": 1
+    },
+    "V1_3_MASTER_V1_4_ALIGNMENT.md": {
+      "bytes": 483,
+      "files": 1
+    },
+    "V1_70_ASSET_CREATION_QUEUE.id.translation": {
+      "bytes": 479,
+      "files": 1
+    },
+    "V1_87_PRODUCTION_ASSET_USAGE_AUDIT.json": {
+      "bytes": 472,
+      "files": 1
+    },
+    "V1_70_ASSET_CREATION_QUEUE.tool.translation": {
+      "bytes": 469,
+      "files": 1
+    },
+    "GAME_SOURCE_SCOPE.md": {
+      "bytes": 460,
+      "files": 1
+    },
+    "V1_9_ENGINE_READINESS.md": {
+      "bytes": 460,
+      "files": 1
+    },
+    "V1_75_ONLINE_AUTHORITY_QA.md": {
+      "bytes": 451,
+      "files": 1
+    },
+    "V1_73_ENCOUNTER_HERO_ROLE_QA.md": {
+      "bytes": 443,
+      "files": 1
+    },
+    "V1_65_META_SOCIAL_HERO_UI_QA.md": {
+      "bytes": 442,
+      "files": 1
+    },
+    "V1_89_VFX_REQUIREMENTS.csv.import": {
+      "bytes": 439,
+      "files": 1
+    },
+    "V1_71_TAP_BOSS_GAMEFEEL_QA.md": {
+      "bytes": 433,
+      "files": 1
+    },
+    "RewardService.gd": {
+      "bytes": 431,
+      "files": 1
+    },
+    "V1_7_STATIC_AUDIT.json": {
+      "bytes": 408,
+      "files": 1
+    },
+    "HapticsService.gd": {
+      "bytes": 404,
+      "files": 1
+    },
+    "V1_6_STATIC_AUDIT.json": {
+      "bytes": 399,
+      "files": 1
+    },
+    "V1_88_REMAINING_VISIBLE_PLACEHOLDER_OWNERS.csv.import": {
+      "bytes": 398,
+      "files": 1
+    },
+    "V1_89_REMAINING_VISIBLE_PLACEHOLDER_OWNERS.csv.import": {
+      "bytes": 397,
+      "files": 1
+    },
+    "V1_87_PRODUCTION_ASSET_CONVERGENCE_QA.md": {
+      "bytes": 394,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV193.gd": {
+      "bytes": 391,
+      "files": 1
+    },
+    "V207InventoryRuntimeQaHost.gd": {
+      "bytes": 391,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV192.gd": {
+      "bytes": 377,
+      "files": 1
+    },
+    "tests": {
+      "bytes": 376,
+      "files": 1
+    },
+    "V1_89_EXACT_DUPLICATE_ASSET_GROUPS.csv.import": {
+      "bytes": 373,
+      "files": 1
+    },
+    "V1_97_STATIC_QA.txt": {
+      "bytes": 373,
+      "files": 1
+    },
+    "V1_23_STATIC_QA.md": {
+      "bytes": 362,
+      "files": 1
+    },
+    "V207ItemDomainQaHost.gd": {
+      "bytes": 348,
+      "files": 1
+    },
+    "V1_4_STATIC_AUDIT.json": {
+      "bytes": 343,
+      "files": 1
+    },
+    "V1_2_STATIC_AUDIT.json": {
+      "bytes": 325,
+      "files": 1
+    },
+    "V1_3_STATIC_AUDIT.json": {
+      "bytes": 320,
+      "files": 1
+    },
+    "V1_1_STATIC_AUDIT.json": {
+      "bytes": 310,
+      "files": 1
+    },
+    "V1_5_CHANGELOG.md": {
+      "bytes": 296,
+      "files": 1
+    },
+    "V2022VisualRuntimeQaSmokeHost.gd": {
+      "bytes": 294,
+      "files": 1
+    },
+    "V2021VisualRuntimeQaHost.gd": {
+      "bytes": 291,
+      "files": 1
+    },
+    "V1_89_VFX_AND_ASSET_AUDIT.md": {
+      "bytes": 281,
+      "files": 1
+    },
+    "BuildInfo.gd": {
+      "bytes": 260,
+      "files": 1
+    },
+    "V1_90_STATIC_QA.json": {
+      "bytes": 255,
+      "files": 1
+    },
+    "V1_5_AUDIO_ASSET_SWAP_GUIDE.md": {
+      "bytes": 246,
+      "files": 1
+    },
+    "V1_5_STATIC_AUDIT.json": {
+      "bytes": 240,
+      "files": 1
+    },
+    "V1_0_STATIC_AUDIT.json": {
+      "bytes": 237,
+      "files": 1
+    },
+    "ASSET_MASTERLIST_V0_2.csv.import": {
+      "bytes": 217,
+      "files": 1
+    },
+    "V2022VisualRuntimeQaSmokeHost.tscn": {
+      "bytes": 205,
+      "files": 1
+    },
+    "V1_89_PRODUCTION_ASSET_CONVERGENCE_QA.md": {
+      "bytes": 202,
+      "files": 1
+    },
+    "V1_89_CHANGELOG.md": {
+      "bytes": 199,
+      "files": 1
+    },
+    "V207InventoryRuntimeQaHost.tscn": {
+      "bytes": 199,
+      "files": 1
+    },
+    "V202RuntimeAcceptanceHost.tscn": {
+      "bytes": 197,
+      "files": 1
+    },
+    "V2021VisualRuntimeQaHost.tscn": {
+      "bytes": 195,
+      "files": 1
+    },
+    "V208WorldRuntimeQaHost.tscn": {
+      "bytes": 191,
+      "files": 1
+    },
+    "V209WorldRuntimeQaHost.tscn": {
+      "bytes": 191,
+      "files": 1
+    },
+    "V208WorldDomainQaHost.tscn": {
+      "bytes": 189,
+      "files": 1
+    },
+    "V209WorldDomainQaHost.tscn": {
+      "bytes": 189,
+      "files": 1
+    },
+    "V207ItemDomainQaHost.tscn": {
+      "bytes": 187,
+      "files": 1
+    },
+    "V1_89_REMAINING_VISIBLE_PLACEHOLDER_OWNERS.csv": {
+      "bytes": 186,
+      "files": 1
+    },
+    "qa_v208_stdout.log": {
+      "bytes": 172,
+      "files": 1
+    },
+    "V1_96_STATIC_QA.txt": {
+      "bytes": 111,
+      "files": 1
+    },
+    "AccountState.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "AssetImportPipeline.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "AssetRegistry.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "AsyncPvpService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "AuthSessionService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "BootFlow.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "BuildInfo.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "CombatMomentumSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "CoreAnalytics.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "CoreLoopProductionReadinessV198.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "CoreProgressionSynergySystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "DefenseTeamService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "DiceJourneySystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "EconomyAuthorityService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "EncounterFeelSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "FeatureFlags.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "FinalAlphaConvergenceV200.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "FullUiConvergenceV197.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GameConfig.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GameplayVfxService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GreenvaleWorldDecorationV191.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GreenvaleWorldVisualDirectorV193.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GuildBossService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GuildDiscoveryService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GuildGovernanceService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GuildService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "GuildTaskService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "HeroProgressionSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "HeroSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "InventoryEntitlementService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "JourneyProgressionSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "LaneAttackSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "LiveOpsRankingSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "LoadoutSnapshotService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "MainGame.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ModeGameplayPolishV196.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "MonsterCatalog.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "MonsterDefeatService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ObjectiveSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "OnlineActivityService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "OnlineChatService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "OnlineResponseRouter.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "P02CoreController.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "P0BootDiagnostics.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "P0MonsterVisualSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "P0RuntimeContract.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "P0VillageSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "P0VillageVisualSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "PartyLobbyService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "PreAlphaClosureV199.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "PresenceService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV187.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV188.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV190.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV192.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV193.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionAssetRegistry.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProductionUiBinder.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ProgressionOverviewSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "PurchaseService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "PushNotificationService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "PuzzleProgressionSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "QuestSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "RemoteStateApplyService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ResponsiveLayout.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ResponsiveRuntimePolish.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "RewardProgressionVisualDirectorV193.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "RewardService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "RuntimeFlowService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "RuntimeGuidanceService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SaveGame.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ScreenAssetBinder.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ScreenCompositionService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ScreenUiAssemblyService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ScreenVisualCalibration.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SeasonResetService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SemanticAssetRegistry.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "ServerInboxService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SocialModerationService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SpinPresentationState.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SpinReelPresenter.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SpinVillageResponsivePolishV194.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "SyncReconciliationService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "TowerDefenseProgressionSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "TowerDefenseSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "TowerDefenseVisualDirectorV192.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "UiComponentFactory.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "UiCopyCalibration.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "UiPolishService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "UnlockService.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "VillageAssetResolver.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "VillageProgressionSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "WheelSystem.gd.uid": {
+      "bytes": 21,
+      "files": 1
+    },
+    "AfkRewardSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "AudioService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "BossChallengeSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "CombatDamageResolver.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "DailyRewards.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "EncounterCatalogValidator.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "EncounterProgressService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "GameplayEventService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "HapticsService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "InviteDeepLinkService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ItemInventoryService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ItemUiPresentation.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "LaneBattleProgressionSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "LootTableService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "MetaProgressSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "MobileLayoutOwner.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "MonsterAssetResolver.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "NetworkResilienceService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "OnlineAuthorityService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "OnlineSessionState.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "OnlineSocialService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "OnlineTransportService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "P0TestHarness.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "PlayerData.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "PlayerSnapshotService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV189.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV191.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ProductionAssetConvergenceV2061.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "PuzzleSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "RankingOnlineService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "RegionProgressionSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "RemoteGameplayService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "RewardLedgerService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "RewardPipeline.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "SeasonSettlementService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ServerClockService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "SettingsService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "SocialHubSystem.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "StatModifierService.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "TapCombatVisualDirectorV193.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V2021VisualRuntimeQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V2021VisualRuntimeQaHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V2022VisualRuntimeQaSmokeHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V207InventoryRuntimeQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V207InventoryRuntimeQaHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V207ItemDomainQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V207ItemDomainQaHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V208WorldDomainQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V208WorldDomainQaHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V208WorldRuntimeQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V208WorldRuntimeQaHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V209WorldDomainQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V209WorldDomainQaHost.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "V209WorldRuntimeQa.gd.uid": {
+      "bytes": 20,
+      "files": 1
+    },
+    "ChestRewardSystem.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "CoreAcceptanceService.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "EncounterStatService.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "HomeNavigationRewardPolishV195.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "InventoryUiController.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "V202RuntimeAcceptanceHost.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "V209WorldRuntimeQaHost.gd.uid": {
+      "bytes": 19,
+      "files": 1
+    },
+    "Test": {
+      "bytes": 2,
+      "files": 1
+    }
+  },
+  "top_100_source_files": [
+    {
+      "path": "docs/v205_visual_runtime_qa/smoke_latest.log",
+      "bytes": 533947778
+    },
+    {
+      "path": "build/android/RealmAlliance_V2_01_Test.apk",
+      "bytes": 190905684
+    },
+    {
+      "path": "tools/godot/Godot_v4.7.2-stable_win64.exe",
+      "bytes": 180858888
+    },
+    {
+      "path": "build/android/RealmAlliance_V2_00_Test.apk",
+      "bytes": 173388554
+    },
+    {
+      "path": "tools/godot/Godot.zip",
+      "bytes": 86013866
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_boss_b001_1440x3200.png",
+      "bytes": 6564608
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_elite_1440x3200.png",
+      "bytes": 6559042
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_tall_m011_1440x3200.png",
+      "bytes": 6549416
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6509694
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6509669
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6497968
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6497968
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6489902
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6479685
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_flying_m006_1440x3200.png",
+      "bytes": 6427787
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_normal_1440x3200.png",
+      "bytes": 6426343
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_tough_m003_1440x3200.png",
+      "bytes": 6416515
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_small_m012_1440x3200.png",
+      "bytes": 6376787
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_wide_m008_1440x3200.png",
+      "bytes": 6359317
+    },
+    {
+      "path": "docs/v207_visual_runtime_qa/viewport_main_1440x3200.png",
+      "bytes": 6346923
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_boss_1440x3200.png",
+      "bytes": 6332677
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_elite_m010_1440x3200.png",
+      "bytes": 6320774
+    },
+    {
+      "path": "docs/v2021_visual_runtime_qa/01_main_1440x3200.png",
+      "bytes": 6041179
+    },
+    {
+      "path": "docs/v207_visual_runtime_qa/viewport_inventory_1440x3200.png",
+      "bytes": 5949384
+    },
+    {
+      "path": "docs/v207_visual_runtime_qa/viewport_heroes_1440x3200.png",
+      "bytes": 5696964
+    },
+    {
+      "path": "docs/v202_runtime_qa/screenshots/village_1080x2340.png",
+      "bytes": 4292375
+    },
+    {
+      "path": "docs/v2021_visual_runtime_qa/06_village_1080x2340.png",
+      "bytes": 4286302
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/08_village_1080x2340.png",
+      "bytes": 4210157
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/06_village_1080x2340.png",
+      "bytes": 4209894
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/08_village_1080x2340.png",
+      "bytes": 4208760
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/08_village_1080x2340.png",
+      "bytes": 4208517
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/08_village_1080x2340.png",
+      "bytes": 4208050
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/08_village_1080x2340.png",
+      "bytes": 4191006
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_elite_1080x2400.png",
+      "bytes": 4168472
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_boss_b001_1080x2400.png",
+      "bytes": 4168074
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_tall_m011_1080x2400.png",
+      "bytes": 4162678
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/12_boss_ready_1080x2340.png",
+      "bytes": 4158302
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/14_boss_combat_1080x2340.png",
+      "bytes": 4156132
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/13_boss_intro_1080x2340.png",
+      "bytes": 4156132
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/01_main_1080x2400.png",
+      "bytes": 4146312
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/01_main_1080x2400.png",
+      "bytes": 4146277
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/01_main_1080x2400.png",
+      "bytes": 4140394
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/01_main_1080x2400.png",
+      "bytes": 4140394
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/14_boss_combat_1080x2340.png",
+      "bytes": 4138218
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/13_boss_intro_1080x2340.png",
+      "bytes": 4138218
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/12_boss_ready_1080x2340.png",
+      "bytes": 4138218
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/14_boss_combat_1080x2340.png",
+      "bytes": 4136055
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/13_boss_intro_1080x2340.png",
+      "bytes": 4136055
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/12_boss_ready_1080x2340.png",
+      "bytes": 4136055
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/01_main_1080x2400.png",
+      "bytes": 4135175
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/01_main_1080x2400.png",
+      "bytes": 4122965
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/14_boss_combat_1080x2340.png",
+      "bytes": 4117799
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/13_boss_intro_1080x2340.png",
+      "bytes": 4117799
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/12_boss_ready_1080x2340.png",
+      "bytes": 4117799
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_boss_b001_1080x2340.png",
+      "bytes": 4111463
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_elite_1080x2340.png",
+      "bytes": 4109858
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/03_defeat_reward_1080x2340.png",
+      "bytes": 4108537
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_tall_m011_1080x2340.png",
+      "bytes": 4105035
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/15_boss_victory_1080x2340.png",
+      "bytes": 4100343
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/02b_crit_hit_1080x2340.png",
+      "bytes": 4092693
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/02b_crit_hit_1080x2340.png",
+      "bytes": 4092643
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/02b_crit_hit_1080x2340.png",
+      "bytes": 4092150
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/02b_crit_hit_1080x2340.png",
+      "bytes": 4092123
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4089127
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4089090
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4087715
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4087676
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4087561
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4087561
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_flying_m006_1080x2400.png",
+      "bytes": 4086276
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_normal_1080x2400.png",
+      "bytes": 4085842
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/09_return_main_1080x2340.png",
+      "bytes": 4084122
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4081398
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4081398
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_tough_m003_1080x2400.png",
+      "bytes": 4079697
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4078241
+    },
+    {
+      "path": "docs/v2022_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4076984
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/02b_crit_hit_1080x2340.png",
+      "bytes": 4074589
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4069659
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/36_hud_spin_shield_bars_1080x2340.png",
+      "bytes": 4063715
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/35_hud_gold_bar_1080x2340.png",
+      "bytes": 4063715
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/34_hud_resource_bars_1080x2340.png",
+      "bytes": 4063715
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4063715
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_small_m012_1080x2400.png",
+      "bytes": 4056658
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_wide_m008_1080x2400.png",
+      "bytes": 4047134
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/28_hero_deployed_1080x2340.png",
+      "bytes": 4045141
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/32_combined_combat_1080x2340.png",
+      "bytes": 4043887
+    },
+    {
+      "path": "docs/v2021_visual_runtime_qa/01_main_1080x2340.png",
+      "bytes": 4041511
+    },
+    {
+      "path": "docs/v206_visual_runtime_qa/31_hero_auto_attack_1080x2340.png",
+      "bytes": 4041055
+    },
+    {
+      "path": "docs/v207_visual_runtime_qa/viewport_main_1080x2400.png",
+      "bytes": 4038468
+    },
+    {
+      "path": "docs/v2021_visual_runtime_qa/02_tap_hit_1080x2340.png",
+      "bytes": 4038238
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_flying_m006_1080x2340.png",
+      "bytes": 4031369
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_boss_1080x2400.png",
+      "bytes": 4030581
+    },
+    {
+      "path": "docs/v208_visual_runtime_qa/viewport_normal_1080x2340.png",
+      "bytes": 4029716
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/28_hero_deployed_1080x2340.png",
+      "bytes": 4027861
+    },
+    {
+      "path": "docs/v2061_visual_runtime_qa/32_combined_combat_1080x2340.png",
+      "bytes": 4026860
+    },
+    {
+      "path": "docs/v209_visual_runtime_qa/viewport_elite_m010_1080x2400.png",
+      "bytes": 4024342
+    },
+    {
+      "path": "docs/v203_visual_runtime_qa/05_upgrade_bought_1080x2340.png",
+      "bytes": 4024236
+    },
+    {
+      "path": "docs/v204_visual_runtime_qa/05_upgrade_bought_1080x2340.png",
+      "bytes": 4024203
+    },
+    {
+      "path": "docs/v205_visual_runtime_qa/05_upgrade_bought_1080x2340.png",
+      "bytes": 4024021
+    }
+  ]
+}

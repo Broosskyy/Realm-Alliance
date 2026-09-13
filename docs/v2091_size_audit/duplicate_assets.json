@@ -1,0 +1,579 @@
+{
+  "duplicate_groups": [
+    {
+      "sha256": "e92e020a4fb586d94b04258c1e366c75a3eb70aa702014046cbb31fad3d05b6d",
+      "count": 6,
+      "wasted_bytes": 17437230,
+      "files": [
+        {
+          "path": "artifacts/v2.01-device-recovery/01_tap_auto.png",
+          "bytes": 3487446
+        },
+        {
+          "path": "artifacts/v2.01-device-recovery/02_spin_nav.png",
+          "bytes": 3487446
+        },
+        {
+          "path": "artifacts/v2.01-device-recovery/03_spin_view.png",
+          "bytes": 3487446
+        },
+        {
+          "path": "artifacts/v2.01-device-recovery/04_dorf_view.png",
+          "bytes": 3487446
+        },
+        {
+          "path": "artifacts/v2.01-device-recovery/05_modi_hub.png",
+          "bytes": 3487446
+        },
+        {
+          "path": "artifacts/v2.01-device-recovery/06_heroes_via_modi.png",
+          "bytes": 3487446
+        }
+      ]
+    },
+    {
+      "sha256": "1bcd16dd8755e72540fbe78f1f8571cbf799392cbcb92ea2a15ecd69219b9450",
+      "count": 4,
+      "wasted_bytes": 12191145,
+      "files": [
+        {
+          "path": "docs/v2061_visual_runtime_qa/01_main_1080x2340.png",
+          "bytes": 4063715
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/34_hud_resource_bars_1080x2340.png",
+          "bytes": 4063715
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/35_hud_gold_bar_1080x2340.png",
+          "bytes": 4063715
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/36_hud_spin_shield_bars_1080x2340.png",
+          "bytes": 4063715
+        }
+      ]
+    },
+    {
+      "sha256": "3ec521a6a91d7552b479384e39e04514590e920937ccb761e032a18c08ec1dbc",
+      "count": 3,
+      "wasted_bytes": 8276436,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/12_boss_ready_1080x2340.png",
+          "bytes": 4138218
+        },
+        {
+          "path": "docs/v205_visual_runtime_qa/13_boss_intro_1080x2340.png",
+          "bytes": 4138218
+        },
+        {
+          "path": "docs/v205_visual_runtime_qa/14_boss_combat_1080x2340.png",
+          "bytes": 4138218
+        }
+      ]
+    },
+    {
+      "sha256": "0e685f3f7b88dadac00b8dc3230aee210b2b127c7a1790c60b4b01d96126fc16",
+      "count": 3,
+      "wasted_bytes": 8272110,
+      "files": [
+        {
+          "path": "docs/v206_visual_runtime_qa/12_boss_ready_1080x2340.png",
+          "bytes": 4136055
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/13_boss_intro_1080x2340.png",
+          "bytes": 4136055
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/14_boss_combat_1080x2340.png",
+          "bytes": 4136055
+        }
+      ]
+    },
+    {
+      "sha256": "2c7fa52685e0b2554a8c46c36ab12944ca5e0370b6c42f9c2b26001605c398ce",
+      "count": 3,
+      "wasted_bytes": 8235598,
+      "files": [
+        {
+          "path": "docs/v2061_visual_runtime_qa/12_boss_ready_1080x2340.png",
+          "bytes": 4117799
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/13_boss_intro_1080x2340.png",
+          "bytes": 4117799
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/14_boss_combat_1080x2340.png",
+          "bytes": 4117799
+        }
+      ]
+    },
+    {
+      "sha256": "d37e5bb11b8f8e5d89aa195174c29a608dc22884619693c95f662dc8f1998cbf",
+      "count": 3,
+      "wasted_bytes": 7028542,
+      "files": [
+        {
+          "path": "docs/v2061_visual_runtime_qa/29_hero_unlock_1080x2340.png",
+          "bytes": 3514271
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/30_hero_deployed_1080x2340.png",
+          "bytes": 3514271
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/37_hero_detail_1080x2340.png",
+          "bytes": 3514271
+        }
+      ]
+    },
+    {
+      "sha256": "7e11312cbc25adcee4e32bb7b4da72c454973731348d4a232e1583eb761b7352",
+      "count": 2,
+      "wasted_bytes": 6497968,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/01_main_1440x3200.png",
+          "bytes": 6497968
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/01_main_1440x3200.png",
+          "bytes": 6497968
+        }
+      ]
+    },
+    {
+      "sha256": "17808eef46d6bae06514ab996c676b3242d39bbf36fa1538df409edf808875f1",
+      "count": 3,
+      "wasted_bytes": 5258290,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/14b_boss_failure_1080x2340.png",
+          "bytes": 2629145
+        },
+        {
+          "path": "docs/v205_visual_runtime_qa/14c_boss_retry_1080x2340.png",
+          "bytes": 2629145
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/14c_boss_retry_1080x2340.png",
+          "bytes": 2629145
+        }
+      ]
+    },
+    {
+      "sha256": "beac921a89d2f461460e90ff70d41f7657c202c2ba3771a206efb843361f5d6e",
+      "count": 2,
+      "wasted_bytes": 4156132,
+      "files": [
+        {
+          "path": "docs/v204_visual_runtime_qa/13_boss_intro_1080x2340.png",
+          "bytes": 4156132
+        },
+        {
+          "path": "docs/v204_visual_runtime_qa/14_boss_combat_1080x2340.png",
+          "bytes": 4156132
+        }
+      ]
+    },
+    {
+      "sha256": "18f75a0d0ef98fd9749de2fce13ace6c697d1c58feefe241d36c094df7ceb67b",
+      "count": 2,
+      "wasted_bytes": 4140394,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/01_main_1080x2400.png",
+          "bytes": 4140394
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/01_main_1080x2400.png",
+          "bytes": 4140394
+        }
+      ]
+    },
+    {
+      "sha256": "2cc4bf1c07dbf1ae5805d273d496115b93c960e92af4300ae6ee3a4f6ceb2f76",
+      "count": 2,
+      "wasted_bytes": 4087561,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/02_tap_hit_1080x2340.png",
+          "bytes": 4087561
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/02_tap_hit_1080x2340.png",
+          "bytes": 4087561
+        }
+      ]
+    },
+    {
+      "sha256": "f1c186785a65d59d005c70d00afbbbe7482d83513f5ae6c59aa7c733ff97c60b",
+      "count": 2,
+      "wasted_bytes": 4081398,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/01_main_1080x2340.png",
+          "bytes": 4081398
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/01_main_1080x2340.png",
+          "bytes": 4081398
+        }
+      ]
+    },
+    {
+      "sha256": "f2713722e2ce234d7e27d5645e8743f7949384d788625557274862a0ee4639e5",
+      "count": 2,
+      "wasted_bytes": 4008806,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/26_chest_opening_1080x2340.png",
+          "bytes": 4008806
+        },
+        {
+          "path": "docs/v205_visual_runtime_qa/27_chest_reward_1080x2340.png",
+          "bytes": 4008806
+        }
+      ]
+    },
+    {
+      "sha256": "aa50f8e9437e052fab8a7975764d7672b7dc026fcaaed8cbfc05ad560b82a60a",
+      "count": 2,
+      "wasted_bytes": 4008632,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/21_quest_complete_1080x2340.png",
+          "bytes": 4008632
+        },
+        {
+          "path": "docs/v205_visual_runtime_qa/22_quest_reward_1080x2340.png",
+          "bytes": 4008632
+        }
+      ]
+    },
+    {
+      "sha256": "e059a5f689f46dabe02143e9da2f9234031d819fcad54f02ef4eae84503d77d9",
+      "count": 2,
+      "wasted_bytes": 4008220,
+      "files": [
+        {
+          "path": "docs/v206_visual_runtime_qa/26_chest_opening_1080x2340.png",
+          "bytes": 4008220
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/27_chest_reward_1080x2340.png",
+          "bytes": 4008220
+        }
+      ]
+    },
+    {
+      "sha256": "00ac6aa88ff6df9206bdef7d5882ac3383a182be96e17c1e1f44e00a64d26c9d",
+      "count": 2,
+      "wasted_bytes": 4007361,
+      "files": [
+        {
+          "path": "docs/v206_visual_runtime_qa/21_quest_complete_1080x2340.png",
+          "bytes": 4007361
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/22_quest_reward_1080x2340.png",
+          "bytes": 4007361
+        }
+      ]
+    },
+    {
+      "sha256": "4dbcf8541915a426c2b884f81861ea92d9adb19aa80b5d82ee29005bea6baac6",
+      "count": 2,
+      "wasted_bytes": 3990403,
+      "files": [
+        {
+          "path": "docs/v2061_visual_runtime_qa/26_chest_opening_1080x2340.png",
+          "bytes": 3990403
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/27_chest_reward_1080x2340.png",
+          "bytes": 3990403
+        }
+      ]
+    },
+    {
+      "sha256": "2226e8c840d182459b04c157adda6f815c71852b002b372668e37f6f84dfe004",
+      "count": 2,
+      "wasted_bytes": 3989742,
+      "files": [
+        {
+          "path": "docs/v2061_visual_runtime_qa/21_quest_complete_1080x2340.png",
+          "bytes": 3989742
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/22_quest_reward_1080x2340.png",
+          "bytes": 3989742
+        }
+      ]
+    },
+    {
+      "sha256": "c23c11a9ce07f605605d084e65a95e503e6e3efe67cccc670ceb720ef7eac154",
+      "count": 2,
+      "wasted_bytes": 3949158,
+      "files": [
+        {
+          "path": "docs/v206_visual_runtime_qa/29_hero_unlock_1080x2340.png",
+          "bytes": 3949158
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/30_hero_deployed_1080x2340.png",
+          "bytes": 3949158
+        }
+      ]
+    },
+    {
+      "sha256": "6f5891de7eb7b72329e71a85a7e5bc9846f97d1f9ab781d8aa690d89c01b5d3b",
+      "count": 2,
+      "wasted_bytes": 3899434,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/18_afk_claim_1080x2340.png",
+          "bytes": 3899434
+        },
+        {
+          "path": "docs/v205_visual_runtime_qa/19_main_reload_1080x2340.png",
+          "bytes": 3899434
+        }
+      ]
+    },
+    {
+      "sha256": "79fb8f6258e4a7a3d0bb9dc261de8147b91900aa5e51f9e34662ecf37ddd1e11",
+      "count": 2,
+      "wasted_bytes": 3890488,
+      "files": [
+        {
+          "path": "docs/v204_visual_runtime_qa/18_afk_claim_1080x2340.png",
+          "bytes": 3890488
+        },
+        {
+          "path": "docs/v204_visual_runtime_qa/19_main_reload_1080x2340.png",
+          "bytes": 3890488
+        }
+      ]
+    },
+    {
+      "sha256": "9470ca0a34b08be7fa31faf1953c3f3c35cc4c367e6f55f641f8a13461afce5c",
+      "count": 2,
+      "wasted_bytes": 3882063,
+      "files": [
+        {
+          "path": "docs/v206_visual_runtime_qa/18_afk_claim_1080x2340.png",
+          "bytes": 3882063
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/19_main_reload_1080x2340.png",
+          "bytes": 3882063
+        }
+      ]
+    },
+    {
+      "sha256": "bdfec3d862e3b21c56061736919e97381f202beec6dd646e8259d83f96728234",
+      "count": 2,
+      "wasted_bytes": 3877848,
+      "files": [
+        {
+          "path": "docs/v2061_visual_runtime_qa/18_afk_claim_1080x2340.png",
+          "bytes": 3877848
+        },
+        {
+          "path": "docs/v2061_visual_runtime_qa/19_main_reload_1080x2340.png",
+          "bytes": 3877848
+        }
+      ]
+    },
+    {
+      "sha256": "626cbc344eb15ef885e108648030965529cd01e6d90f9f0f688ed4e30e51646d",
+      "count": 2,
+      "wasted_bytes": 3835824,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/06_spin_open_1080x2340.png",
+          "bytes": 3835824
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/06_spin_open_1080x2340.png",
+          "bytes": 3835824
+        }
+      ]
+    },
+    {
+      "sha256": "c404f5148dcbedb027217efe0da28b0240abf4b8e4094d9a58cbcd8bf29b1309",
+      "count": 2,
+      "wasted_bytes": 3835617,
+      "files": [
+        {
+          "path": "docs/v203_visual_runtime_qa/04_spin_open_1080x2340.png",
+          "bytes": 3835617
+        },
+        {
+          "path": "docs/v204_visual_runtime_qa/04_spin_open_1080x2340.png",
+          "bytes": 3835617
+        }
+      ]
+    },
+    {
+      "sha256": "28fb0df52177266a47b8562b4cd2a86b69e2cb4cd9b97ea3a0a63319e449c9b7",
+      "count": 2,
+      "wasted_bytes": 3743677,
+      "files": [
+        {
+          "path": "docs/v205_visual_runtime_qa/01_main_1080x1920.png",
+          "bytes": 3743677
+        },
+        {
+          "path": "docs/v206_visual_runtime_qa/01_main_1080x1920.png",
+          "bytes": 3743677
+        }
+      ]
+    },
+    {
+      "sha256": "d5cf8d0c34c2c0bd231d430bc17c817f57462b52349fe5a8adeeea752076e99a",
+      "count": 2,
+      "wasted_bytes": 3585751,
+      "files": [
+        {
+          "path": "docs/v207_visual_runtime_qa/06_accessory_equipped.png",
+          "bytes": 3585751
+        },
+        {
+          "path": "docs/v207_visual_runtime_qa/08_both_slots_equipped.png",
+          "bytes": 3585751
+        }
+      ]
+    },
+    {
+      "sha256": "dd5d5b11c7dd8338a9222acba09d190b65735793a68e6389c3fe27631a13ff81",
+      "count": 2,
+      "wasted_bytes": 3426620,
+      "files": [
+        {
+          "path": "assets/world/greenvale/BG001_gruenhain_home_v11.png",
+          "bytes": 3426620
+        },
+        {
+          "path": "assets/world/greenvale/bg_greenvale_tap_placeholder.png",
+          "bytes": 3426620
+        }
+      ]
+    },
+    {
+      "sha256": "238c79ff2953d452c432691a36b5c9cc6f0e166882666cbb9591363d5d430e8a",
+      "count": 2,
+      "wasted_bytes": 1076725,
+      "files": [
+        {
+          "path": "docs/v207_visual_runtime_qa/05_hero_after_weapon.png",
+          "bytes": 1076725
+        },
+        {
+          "path": "docs/v207_visual_runtime_qa/06_hero_after_accessory.png",
+          "bytes": 1076725
+        }
+      ]
+    },
+    {
+      "sha256": "d871c79c054a39d95984fc10e080443d488c2593aaa9bf84a59ef8a0d40405b2",
+      "count": 2,
+      "wasted_bytes": 703205,
+      "files": [
+        {
+          "path": "assets/monsters/greenvale/states/B001_attack.png",
+          "bytes": 703205
+        },
+        {
+          "path": "assets/monsters/greenvale/states/B001_shield.png",
+          "bytes": 703205
+        }
+      ]
+    },
+    {
+      "sha256": "3dbdac7b8680b82c4ccfdf19094365b1b7c51ca9a56c13866d771447b7d23b5b",
+      "count": 3,
+      "wasted_bytes": 309632,
+      "files": [
+        {
+          "path": "build/android/screen_debug.png",
+          "bytes": 154816
+        },
+        {
+          "path": "build/android/screen_fixed_boot.png",
+          "bytes": 154816
+        },
+        {
+          "path": "build/android/screen_maingame2.png",
+          "bytes": 154816
+        }
+      ]
+    },
+    {
+      "sha256": "5908fc5220a21738692c8f30672acf8e8b9cf1b63ef7396b1ba80b981a464f03",
+      "count": 2,
+      "wasted_bytes": 198125,
+      "files": [
+        {
+          "path": "assets/production/ui_v4/village_buildings_a/village_buildings_a_01.png",
+          "bytes": 198125
+        },
+        {
+          "path": "assets/village/greenvale/production/townhall.png",
+          "bytes": 198125
+        }
+      ]
+    },
+    {
+      "sha256": "88f9826ad881a5944fc9ac7beb9c56d209f445576b2ddfc7f286c93261544123",
+      "count": 2,
+      "wasted_bytes": 174946,
+      "files": [
+        {
+          "path": "assets/production/ui_v4/village_buildings_b/village_buildings_b_03.png",
+          "bytes": 174946
+        },
+        {
+          "path": "assets/village/greenvale/production/goldmine.png",
+          "bytes": 174946
+        }
+      ]
+    },
+    {
+      "sha256": "82430b9f8d99585f7b9278ab33cfa78f6fa0fa414749b31c32cf5eeef98d900e",
+      "count": 2,
+      "wasted_bytes": 151198,
+      "files": [
+        {
+          "path": "assets/production/ui_v4/village_buildings_b/village_buildings_b_02.png",
+          "bytes": 151198
+        },
+        {
+          "path": "assets/village/greenvale/production/forge.png",
+          "bytes": 151198
+        }
+      ]
+    },
+    {
+      "sha256": "6f5c8be6b17aa29cbdb383e5712867a24773d4080cdc29080a8f99fc50bd71fc",
+      "count": 2,
+      "wasted_bytes": 130554,
+      "files": [
+        {
+          "path": "assets/production/ui_v4/village_buildings_a/village_buildings_a_06.png",
+          "bytes": 130554
+        },
+        {
+          "path": "assets/village/greenvale/production/lucktemple.png",
+          "bytes": 130554
+        }
+      ]
+    }
+  ],
+  "total_wasted_bytes": 154346833,
+  "group_count": 35
+}

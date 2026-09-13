@@ -18,14 +18,14 @@
 				},
 				"equip_result": {
 					"hero_id": "knight",
-					"instance_id": "itm_1789270345_1",
+					"instance_id": "itm_1789326639_1",
 					"item_id": "wpn_gruenhain_blade",
 					"ok": true,
 					"previous_instance_id": "",
 					"rarity": "common",
 					"slot": "weapon"
 				},
-				"instance_id": "itm_1789270345_1",
+				"instance_id": "itm_1789326639_1",
 				"item_id": "wpn_gruenhain_blade",
 				"modifier_stats": [
 					"tap_damage"
@@ -52,14 +52,14 @@
 				},
 				"equip_result": {
 					"hero_id": "knight",
-					"instance_id": "itm_1789270345_2",
+					"instance_id": "itm_1789326639_2",
 					"item_id": "acc_silver_ring",
 					"ok": true,
 					"previous_instance_id": "",
 					"rarity": "common",
 					"slot": "accessory"
 				},
-				"instance_id": "itm_1789270345_2",
+				"instance_id": "itm_1789326639_2",
 				"item_id": "acc_silver_ring",
 				"modifier_stats": [
 					"hero_damage"
@@ -72,8 +72,8 @@
 			"evidence": {
 				"after": {
 					"crit_chance_pct": 8,
-					"hero_effective": 14,
-					"hero_real": 14,
+					"hero_effective": 15,
+					"hero_real": 15,
 					"tap_preview": 32,
 					"tap_real": 32
 				},
@@ -85,17 +85,17 @@
 					"tap_real": 25
 				},
 				"new_equipped": true,
-				"new_instance": "itm_1789270345_3",
+				"new_instance": "itm_1789326639_3",
 				"new_item_id": "wpn_battle_axe",
 				"old_equipped": false,
-				"old_instance": "itm_1789270345_1",
+				"old_instance": "itm_1789326639_1",
 				"old_item_id": "wpn_gruenhain_blade",
 				"result": {
 					"hero_id": "knight",
-					"instance_id": "itm_1789270345_3",
+					"instance_id": "itm_1789326639_3",
 					"item_id": "wpn_battle_axe",
 					"ok": true,
-					"previous_instance_id": "itm_1789270345_1",
+					"previous_instance_id": "itm_1789326639_1",
 					"rarity": "uncommon",
 					"slot": "weapon"
 				}
@@ -110,7 +110,7 @@
 					"hero_effective": 14,
 					"hero_real": 14,
 					"tap_preview": 25,
-					"tap_real": 25
+					"tap_real": 50
 				},
 				"after": {
 					"crit_chance_pct": 8,
@@ -121,16 +121,16 @@
 				},
 				"before": {
 					"crit_chance_pct": 8,
-					"hero_effective": 14,
-					"hero_real": 14,
+					"hero_effective": 15,
+					"hero_real": 15,
 					"tap_preview": 32,
 					"tap_real": 32
 				},
-				"instance_id": "itm_1789270345_3",
+				"instance_id": "itm_1789326639_3",
 				"item_id": "wpn_battle_axe",
 				"result": {
 					"hero_id": "knight",
-					"instance_id": "itm_1789270345_3",
+					"instance_id": "itm_1789326639_3",
 					"item_id": "wpn_battle_axe",
 					"ok": true,
 					"slot": "weapon"
@@ -151,14 +151,14 @@
 						"knight": [
 							{
 								"operation": "flat",
-								"source_id": "itm_1789270345_2",
+								"source_id": "itm_1789326639_2",
 								"source_type": "item",
 								"stat": "hero_damage",
 								"value": 8.0
 							},
 							{
 								"operation": "flat",
-								"source_id": "itm_1789270345_1",
+								"source_id": "itm_1789326639_1",
 								"source_type": "item",
 								"stat": "tap_damage",
 								"value": 15.0
@@ -224,14 +224,14 @@
 						"knight": [
 							{
 								"operation": "flat",
-								"source_id": "itm_1789270345_2",
+								"source_id": "itm_1789326639_2",
 								"source_type": "item",
 								"stat": "hero_damage",
 								"value": 8.0
 							},
 							{
 								"operation": "flat",
-								"source_id": "itm_1789270345_1",
+								"source_id": "itm_1789326639_1",
 								"source_type": "item",
 								"stat": "tap_damage",
 								"value": 15.0
@@ -296,7 +296,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.737,
+				"bright_ratio": 0.731,
 				"category": "combat",
 				"dark_ratio": 0.022,
 				"file": "res://docs/v207_visual_runtime_qa/04_tap_combat_after_weapon.png",
@@ -310,7 +310,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.737,
+				"bright_ratio": 0.731,
 				"category": "inventory_detail",
 				"dark_ratio": 0.022,
 				"file": "res://docs/v207_visual_runtime_qa/05_accessory_detail.png",
@@ -338,7 +338,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.735,
+				"bright_ratio": 0.731,
 				"category": "combat",
 				"dark_ratio": 0.022,
 				"file": "res://docs/v207_visual_runtime_qa/07_hero_combat_after_accessory.png",
@@ -450,7 +450,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.733,
+				"bright_ratio": 0.729,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.022,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2340.png",
@@ -464,7 +464,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.604,
+				"bright_ratio": 0.605,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.038,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x1920.png",
@@ -492,7 +492,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.645,
+				"bright_ratio": 0.64,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.042,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x1920.png",
@@ -534,7 +534,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.742,
+				"bright_ratio": 0.74,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.02,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2400.png",
@@ -576,7 +576,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.742,
+				"bright_ratio": 0.739,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.02,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1440x3200.png",
@@ -607,21 +607,21 @@
 			},
 			"equip_result": {
 				"hero_id": "knight",
-				"instance_id": "itm_1789270345_2",
+				"instance_id": "itm_1789326639_2",
 				"item_id": "acc_silver_ring",
 				"ok": true,
 				"previous_instance_id": "",
 				"rarity": "common",
 				"slot": "accessory"
 			},
-			"instance_id": "itm_1789270345_2",
+			"instance_id": "itm_1789326639_2",
 			"item_id": "acc_silver_ring",
 			"modifier_stats": [
 				"hero_damage"
 			]
 		},
 		"boss_loot": {
-			"authority_request_id": "monster_defeat_reward_21229358_795410451",
+			"authority_request_id": "monster_defeat_reward_20153311_2293539320",
 			"authority_revision": 1,
 			"balances_after": {
 				"gems": 0,
@@ -639,13 +639,13 @@
 			"error_code": "",
 			"granted_items": [
 				{
-					"acquired_at": 1789270357,
+					"acquired_at": 1789326651,
 					"acquired_source": "boss_defeat",
 					"enhancement_level": 0,
 					"equipped": false,
 					"equipped_to": "",
-					"instance_id": "itm_1789270357_4",
-					"item_id": "wpn_battle_axe",
+					"instance_id": "itm_1789326651_4",
+					"item_id": "wpn_gruenhain_blade",
 					"metadata": {
 						"bonus_spin": false,
 						"boss": true,
@@ -658,7 +658,7 @@
 				}
 			],
 			"instance_ids": [
-				"itm_1789270357_4"
+				"itm_1789326651_4"
 			],
 			"inventory_after": 4,
 			"inventory_before": 3,
@@ -678,7 +678,7 @@
 				"gold": 680,
 				"items": [
 					{
-						"item_id": "wpn_battle_axe",
+						"item_id": "wpn_gruenhain_blade",
 						"quantity": 1
 					}
 				],
@@ -688,11 +688,11 @@
 			},
 			"reward_id": "monster_kill_15",
 			"source": "boss_defeat",
-			"timestamp_unix": 1789270357,
-			"transaction_id": "boss_defeat_1789270357_20"
+			"timestamp_unix": 1789326651,
+			"transaction_id": "boss_defeat_1789326651_20"
 		},
 		"chest_loot": {
-			"chest_id": "chest_1789270359_3",
+			"chest_id": "chest_1789326653_3",
 			"ok": true,
 			"reward": {
 				"gold": 600,
@@ -707,7 +707,7 @@
 				"xp": 25
 			},
 			"reward_transaction": {
-				"authority_request_id": "chest_open_22798824_2761804069",
+				"authority_request_id": "chest_open_21637344_3324159649",
 				"authority_revision": 2,
 				"balances_after": {
 					"gems": 0,
@@ -725,15 +725,15 @@
 				"error_code": "",
 				"granted_items": [
 					{
-						"acquired_at": 1789270359,
+						"acquired_at": 1789326653,
 						"acquired_source": "chest",
 						"enhancement_level": 0,
 						"equipped": false,
 						"equipped_to": "",
-						"instance_id": "itm_1789270359_5",
+						"instance_id": "itm_1789326653_5",
 						"item_id": "wpn_gruenhain_blade",
 						"metadata": {
-							"chest_id": "chest_1789270359_3",
+							"chest_id": "chest_1789326653_3",
 							"source": "qa_v207_chest",
 							"tier": "boss"
 						},
@@ -741,14 +741,14 @@
 					}
 				],
 				"instance_ids": [
-					"itm_1789270359_5"
+					"itm_1789326653_5"
 				],
 				"inventory_after": 5,
 				"inventory_before": 4,
 				"item_duplicate": false,
 				"message": "",
 				"metadata": {
-					"chest_id": "chest_1789270359_3",
+					"chest_id": "chest_1789326653_3",
 					"source": "qa_v207_chest",
 					"tier": "boss"
 				},
@@ -766,10 +766,10 @@
 					"shields": 0,
 					"spins": 2
 				},
-				"reward_id": "chest_1789270359_3",
+				"reward_id": "chest_1789326653_3",
 				"source": "chest",
-				"timestamp_unix": 1789270359,
-				"transaction_id": "chest_1789270359_3"
+				"timestamp_unix": 1789326653,
+				"transaction_id": "chest_1789326653_3"
 			},
 			"tier": "boss"
 		},
@@ -788,54 +788,54 @@
 			"duplicate": false,
 			"granted_items": [
 				{
-					"acquired_at": 1789270345,
+					"acquired_at": 1789326639,
 					"acquired_source": "qa_accept",
 					"enhancement_level": 0,
 					"equipped": false,
 					"equipped_to": "",
-					"instance_id": "itm_1789270345_1",
+					"instance_id": "itm_1789326639_1",
 					"item_id": "wpn_gruenhain_blade",
 					"metadata": {},
 					"slot": "weapon"
 				},
 				{
-					"acquired_at": 1789270345,
+					"acquired_at": 1789326639,
 					"acquired_source": "qa_accept",
 					"enhancement_level": 0,
 					"equipped": false,
 					"equipped_to": "",
-					"instance_id": "itm_1789270345_2",
+					"instance_id": "itm_1789326639_2",
 					"item_id": "acc_silver_ring",
 					"metadata": {},
 					"slot": "accessory"
 				},
 				{
-					"acquired_at": 1789270345,
+					"acquired_at": 1789326639,
 					"acquired_source": "qa_accept",
 					"enhancement_level": 0,
 					"equipped": false,
 					"equipped_to": "",
-					"instance_id": "itm_1789270345_3",
+					"instance_id": "itm_1789326639_3",
 					"item_id": "wpn_battle_axe",
 					"metadata": {},
 					"slot": "weapon"
 				}
 			],
 			"instance_ids": [
-				"itm_1789270345_1",
-				"itm_1789270345_2",
-				"itm_1789270345_3"
+				"itm_1789326639_1",
+				"itm_1789326639_2",
+				"itm_1789326639_3"
 			],
 			"inventory_count": 3,
 			"ok": true,
 			"source": "qa_accept",
-			"transaction_id": "qa_v207_accept_1789270345"
+			"transaction_id": "qa_v207_accept_1789326639"
 		},
 		"replace": {
 			"after": {
 				"crit_chance_pct": 8,
-				"hero_effective": 14,
-				"hero_real": 14,
+				"hero_effective": 15,
+				"hero_real": 15,
 				"tap_preview": 32,
 				"tap_real": 32
 			},
@@ -847,17 +847,17 @@
 				"tap_real": 25
 			},
 			"new_equipped": true,
-			"new_instance": "itm_1789270345_3",
+			"new_instance": "itm_1789326639_3",
 			"new_item_id": "wpn_battle_axe",
 			"old_equipped": false,
-			"old_instance": "itm_1789270345_1",
+			"old_instance": "itm_1789326639_1",
 			"old_item_id": "wpn_gruenhain_blade",
 			"result": {
 				"hero_id": "knight",
-				"instance_id": "itm_1789270345_3",
+				"instance_id": "itm_1789326639_3",
 				"item_id": "wpn_battle_axe",
 				"ok": true,
-				"previous_instance_id": "itm_1789270345_1",
+				"previous_instance_id": "itm_1789326639_1",
 				"rarity": "uncommon",
 				"slot": "weapon"
 			}
@@ -873,14 +873,14 @@
 					"knight": [
 						{
 							"operation": "flat",
-							"source_id": "itm_1789270345_2",
+							"source_id": "itm_1789326639_2",
 							"source_type": "item",
 							"stat": "hero_damage",
 							"value": 8.0
 						},
 						{
 							"operation": "flat",
-							"source_id": "itm_1789270345_1",
+							"source_id": "itm_1789326639_1",
 							"source_type": "item",
 							"stat": "tap_damage",
 							"value": 15.0
@@ -897,7 +897,7 @@
 				"hero_effective": 14,
 				"hero_real": 14,
 				"tap_preview": 25,
-				"tap_real": 25
+				"tap_real": 50
 			},
 			"after": {
 				"crit_chance_pct": 8,
@@ -908,16 +908,16 @@
 			},
 			"before": {
 				"crit_chance_pct": 8,
-				"hero_effective": 14,
-				"hero_real": 14,
+				"hero_effective": 15,
+				"hero_real": 15,
 				"tap_preview": 32,
 				"tap_real": 32
 			},
-			"instance_id": "itm_1789270345_3",
+			"instance_id": "itm_1789326639_3",
 			"item_id": "wpn_battle_axe",
 			"result": {
 				"hero_id": "knight",
-				"instance_id": "itm_1789270345_3",
+				"instance_id": "itm_1789326639_3",
 				"item_id": "wpn_battle_axe",
 				"ok": true,
 				"slot": "weapon"
@@ -940,14 +940,14 @@
 			},
 			"equip_result": {
 				"hero_id": "knight",
-				"instance_id": "itm_1789270345_1",
+				"instance_id": "itm_1789326639_1",
 				"item_id": "wpn_gruenhain_blade",
 				"ok": true,
 				"previous_instance_id": "",
 				"rarity": "common",
 				"slot": "weapon"
 			},
-			"instance_id": "itm_1789270345_1",
+			"instance_id": "itm_1789326639_1",
 			"item_id": "wpn_gruenhain_blade",
 			"modifier_stats": [
 				"tap_damage"
@@ -984,7 +984,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.733,
+				"bright_ratio": 0.729,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.022,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2340.png",
@@ -997,7 +997,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.604,
+				"bright_ratio": 0.605,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.038,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x1920.png",
@@ -1023,7 +1023,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.645,
+				"bright_ratio": 0.64,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.042,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x1920.png",
@@ -1062,7 +1062,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.742,
+				"bright_ratio": 0.74,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.02,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2400.png",
@@ -1101,7 +1101,7 @@
 		},
 		{
 			"analysis": {
-				"bright_ratio": 0.742,
+				"bright_ratio": 0.739,
 				"category": "viewport_matrix",
 				"dark_ratio": 0.02,
 				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1440x3200.png",
