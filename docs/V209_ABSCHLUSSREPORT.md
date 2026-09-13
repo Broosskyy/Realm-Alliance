@@ -156,17 +156,21 @@ Export exit code 0. `aapt dump badging` confirms package, versionCode 2090, vers
 | Repository | `https://github.com/Broosskyy/Realm-Alliance.git` |
 | Remote | `origin` |
 | Branch | `main` (tracks `origin/main`) |
-| Local commit | `79dc8ce63a4caeba4c486aca90ad77bf3a63b69d` |
+| Local commit | `96f595c5916605a422fde80b693d658cfaf71071` |
 | Commit message | `feat(realm): complete V2.09 Greenvale production pass` |
-| Files changed | 830 files (+113 616 / −726) |
+| Files changed | 829 files (+113 616 / −726) |
 | Working tree | clean |
 | APK in git | **no** (`builds/android/*.apk` ignored) |
-| Push status | **PENDING** — local `main` ahead of `origin/main` by 1 commit |
-| Remote HEAD | *(pending push verification)* |
+| Push status | **SUCCESS** (2026-09-13) |
+| Local HEAD | `96f595c5916605a422fde80b693d658cfaf71071` |
+| Remote HEAD | `96f595c5916605a422fde80b693d658cfaf71071` |
+| Match | **true** |
 
 Security audit: no `.env`, keystore, tokens, or APK staged.
 
-Publish helper: `tools/publish_v209_github.bat` (push + release + APK upload)
+**Push fix:** Initial push rejected `docs/v205_visual_runtime_qa/smoke_latest.log` (509 MB > GitHub 100 MB limit). File excluded via `.gitignore` and omitted from commit.
+
+Publish helper: `tools/publish_v209_github.bat`
 
 ---
 
@@ -176,11 +180,13 @@ Publish helper: `tools/publish_v209_github.bat` (push + release + APK upload)
 |---|---|
 | Tag | `v2.09.0-test` |
 | Release name | `REALM ALLIANCE V2.09 Test` |
-| Target commit | `79dc8ce63a4caeba4c486aca90ad77bf3a63b69d` |
-| Release status | **PENDING** (requires push first) |
+| Target commit | `96f595c5916605a422fde80b693d658cfaf71071` |
+| Release status | **SUCCESS** |
 | Asset name | `RealmAlliance_V2_09_Test.apk` |
-| Asset SHA-256 | `8d484ac55b33628b4d29826f5caf1652bdbf50053d7ca118104c6e9b27759cbc` |
-| Direct download URL | *(pending release upload — use `gh release view v2.09.0-test` after publish)* |
+| Asset size | 1 014 587 634 bytes |
+| Asset SHA-256 | `8d484ac55b33628b4d29826f5caf1652bdbf50053d7ca118104c6e9b27759cbc` (verified on GitHub) |
+| Release URL | https://github.com/Broosskyy/Realm-Alliance/releases/tag/v2.09.0-test |
+| Direct APK download | https://github.com/Broosskyy/Realm-Alliance/releases/download/v2.09.0-test/RealmAlliance_V2_09_Test.apk |
 
 ---
 
