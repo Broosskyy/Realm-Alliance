@@ -79,11 +79,18 @@ V2.09.0 release **`v2.09.0-test`** preserved as baseline.
 
 ## GIT / GITHUB
 
-*(Updated after push)*
+| Field | Value |
+|---|---|
+| Repository | `https://github.com/Broosskyy/Realm-Alliance.git` |
+| Branch | `main` |
+| Commit | `a8b227543ada2cd242531ef3934b9ec13b4bba82` |
+| Push | **SUCCESS** |
+| Release tag | `v2.09.1-test` |
+| Release URL | https://github.com/Broosskyy/Realm-Alliance/releases/tag/v2.09.1-test |
+| Direct APK download | https://github.com/Broosskyy/Realm-Alliance/releases/download/v2.09.1-test/RealmAlliance_V2_09_1_Test.apk |
+| Asset SHA-256 (GitHub) | `2f08a308bf4998f6aa10cb9314bbf4715b4ebdf25b4cbc2bfaa711b39abd0f4a` |
 
----
-
-## DEFERRED
+V2.09.0 release **`v2.09.0-test`** unchanged (baseline preserved).
 
 - Tier-2 per-texture mobile compression (only if further size reduction needed)
 - Monster attack state / Player HP
