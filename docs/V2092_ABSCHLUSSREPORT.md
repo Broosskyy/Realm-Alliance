@@ -79,9 +79,8 @@ Gameplay unchanged from V2.09.1 size-optimized export filters.
 | Field | Value |
 |---|---|
 | Tag | `v2.09.2-test` |
-| Prior releases preserved | `v2.09.0-test`, `v2.09.1-test` |
-
-*(Release URL updated after upload)*
+| Direct download | https://github.com/Broosskyy/Realm-Alliance/releases/download/v2.09.2-test/RealmAlliance_V2_09_2_Test.apk |
+| Commit | `b369796cf012b71530ec41bc12e1977f3e65285c` |
 
 ---
 
