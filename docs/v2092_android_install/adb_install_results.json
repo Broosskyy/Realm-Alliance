@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-09-13T20:04:00+00:00",
+  "device": {
+    "connection": "emulator-5554",
+    "abi": "x86_64",
+    "avd": "RealmAlliance_Pixel6",
+    "note": "Samsung real-device failure reproduced via identical certificate parse error on unsigned APK"
+  },
+  "v2091_unsigned": {
+    "apk": "RealmAlliance_V2_09_1_Test.apk",
+    "sha256": "2f08a308bf4998f6aa10cb9314bbf4715b4ebdf25b4cbc2bfaa711b39abd0f4a",
+    "test": "clean_install",
+    "command": "adb install RealmAlliance_V2_09_1_Test.apk",
+    "result": "FAIL",
+    "raw_output": "adb: failed to install ... Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES: Failed to collect certificates from /data/app/vmdl1766831238.tmp/base.apk: Attempt to get length of null array]",
+    "apksigner_verified": false,
+    "apksigner_error": "Missing META-INF/MANIFEST.MF"
+  },
+  "v2092_signed": {
+    "apk": "RealmAlliance_V2_09_2_Test.apk",
+    "sha256": "6ab5e07cd7b569ea34842181154a83d8b9e3ab5d1cf70e0ed9ede900ff2f2e98",
+    "tests": [
+      {
+        "name": "clean_install",
+        "command": "adb uninstall com.realmalliance.prototype && adb install RealmAlliance_V2_09_2_Test.apk",
+        "result": "Success"
+      },
+      {
+        "name": "update_from_v208",
+        "command": "adb install RealmAlliance_V2_08_Test.apk && adb install -r RealmAlliance_V2_09_2_Test.apk",
+        "result": "Success",
+        "note": "Same Godot debug certificate SHA-256 as V2.08 — update path valid"
+      },
+      {
+        "name": "launch",
+        "command": "adb shell monkey -p com.realmalliance.prototype -c android.intent.category.LAUNCHER 1",
+        "result": "Success",
+        "events_injected": 1
+      }
+    ],
+    "logcat_fatal_on_launch": false
+  },
+  "samsung_expected_error": "INSTALL_PARSE_FAILED_NO_CERTIFICATES (unsigned APK — matches Manuel real-device 'App not installed')"
+}

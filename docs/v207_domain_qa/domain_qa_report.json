@@ -18,13 +18,13 @@
 		"boss_chest": {
 			"boss_granted_items": [
 				{
-					"acquired_at": 1789324491,
+					"acquired_at": 1789329883,
 					"acquired_source": "boss_defeat",
 					"enhancement_level": 0,
 					"equipped": false,
 					"equipped_to": "",
-					"instance_id": "itm_1789324491_1",
-					"item_id": "wpn_gruenhain_blade",
+					"instance_id": "itm_1789329883_1",
+					"item_id": "acc_guardian_pendant",
 					"metadata": {
 						"bonus_spin": false,
 						"boss": true,
@@ -33,7 +33,7 @@
 						"loot_source": "greenvale_boss",
 						"monster_level": 15
 					},
-					"slot": "weapon"
+					"slot": "accessory"
 				}
 			],
 			"chest_duplicate_blocked": true,
@@ -43,12 +43,12 @@
 		"equipment_save": {
 			"equipped_after_reload": {
 				"knight": {
-					"accessory": "itm_1789324491_2"
+					"accessory": "itm_1789329883_2"
 				}
 			},
 			"equipped_before": {
 				"knight": {
-					"accessory": "itm_1789324491_2"
+					"accessory": "itm_1789329883_2"
 				}
 			},
 			"modifier_state": {
@@ -57,7 +57,7 @@
 					"knight": [
 						{
 							"operation": "flat",
-							"source_id": "itm_1789324491_2",
+							"source_id": "itm_1789329883_2",
 							"source_type": "item",
 							"stat": "hero_damage",
 							"value": 8.0
@@ -67,38 +67,38 @@
 			}
 		},
 		"grant": {
-			"instance_id": "itm_1789324491_1",
+			"instance_id": "itm_1789329883_1",
 			"inventory_count": 1,
 			"item_id": "wpn_gruenhain_blade",
 			"source": "qa_test",
-			"transaction_id": "qa_grant_1789324491"
+			"transaction_id": "qa_grant_1789329883"
 		},
 		"idempotency": {
 			"first_inventory_count": 1,
 			"inventory_count_after_duplicate": 1,
 			"second_duplicate": true,
-			"transaction_id": "qa_idempotent_1789324491"
+			"transaction_id": "qa_idempotent_1789329883"
 		},
 		"mixed_reward": {
 			"gold_delta": 75,
 			"granted_items": [
 				{
-					"acquired_at": 1789324491,
+					"acquired_at": 1789329883,
 					"acquired_source": "qa_mixed",
 					"enhancement_level": 0,
 					"equipped": false,
 					"equipped_to": "",
-					"instance_id": "itm_1789324491_1",
+					"instance_id": "itm_1789329883_1",
 					"item_id": "wpn_battle_axe",
 					"metadata": {},
 					"slot": "weapon"
 				}
 			],
 			"inventory_count": 1,
-			"transaction_id": "qa_mixed_1789324491"
+			"transaction_id": "qa_mixed_1789329883"
 		},
 		"save": {
-			"instance_id": "itm_1789324491_1",
+			"instance_id": "itm_1789329883_1",
 			"instances_after_reload": 1,
 			"instances_before": 1,
 			"preserved": true
@@ -124,11 +124,11 @@
 		},
 		{
 			"evidence": {
-				"instance_id": "itm_1789324491_1",
+				"instance_id": "itm_1789329883_1",
 				"inventory_count": 1,
 				"item_id": "wpn_gruenhain_blade",
 				"source": "qa_test",
-				"transaction_id": "qa_grant_1789324491"
+				"transaction_id": "qa_grant_1789329883"
 			},
 			"name": "item_grant_instance",
 			"ok": true
@@ -138,7 +138,7 @@
 				"first_inventory_count": 1,
 				"inventory_count_after_duplicate": 1,
 				"second_duplicate": true,
-				"transaction_id": "qa_idempotent_1789324491"
+				"transaction_id": "qa_idempotent_1789329883"
 			},
 			"name": "duplicate_transaction_blocked",
 			"ok": true
@@ -155,19 +155,19 @@
 				"gold_delta": 75,
 				"granted_items": [
 					{
-						"acquired_at": 1789324491,
+						"acquired_at": 1789329883,
 						"acquired_source": "qa_mixed",
 						"enhancement_level": 0,
 						"equipped": false,
 						"equipped_to": "",
-						"instance_id": "itm_1789324491_1",
+						"instance_id": "itm_1789329883_1",
 						"item_id": "wpn_battle_axe",
 						"metadata": {},
 						"slot": "weapon"
 					}
 				],
 				"inventory_count": 1,
-				"transaction_id": "qa_mixed_1789324491"
+				"transaction_id": "qa_mixed_1789329883"
 			},
 			"name": "reward_pipeline_currency_plus_item",
 			"ok": true
@@ -193,7 +193,7 @@
 		},
 		{
 			"evidence": {
-				"txn": "boss_defeat_1789324491_3"
+				"txn": "boss_defeat_1789329883_3"
 			},
 			"name": "boss_reward_item_grant",
 			"ok": true
@@ -202,13 +202,13 @@
 			"evidence": {
 				"boss_granted_items": [
 					{
-						"acquired_at": 1789324491,
+						"acquired_at": 1789329883,
 						"acquired_source": "boss_defeat",
 						"enhancement_level": 0,
 						"equipped": false,
 						"equipped_to": "",
-						"instance_id": "itm_1789324491_1",
-						"item_id": "wpn_gruenhain_blade",
+						"instance_id": "itm_1789329883_1",
+						"item_id": "acc_guardian_pendant",
 						"metadata": {
 							"bonus_spin": false,
 							"boss": true,
@@ -217,7 +217,7 @@
 							"loot_source": "greenvale_boss",
 							"monster_level": 15
 						},
-						"slot": "weapon"
+						"slot": "accessory"
 					}
 				],
 				"chest_duplicate_blocked": true,
@@ -234,7 +234,7 @@
 		},
 		{
 			"evidence": {
-				"instance_id": "itm_1789324491_1",
+				"instance_id": "itm_1789329883_1",
 				"instances_after_reload": 1,
 				"instances_before": 1,
 				"preserved": true
@@ -272,7 +272,7 @@
 				"hero_damage_after_weapon": 6,
 				"hero_damage_before": 6,
 				"hero_id": "knight",
-				"instance_id": "itm_1789324491_1",
+				"instance_id": "itm_1789329883_1",
 				"tap_after_weapon": 25,
 				"tap_before": 10
 			},
@@ -298,10 +298,10 @@
 		{
 			"evidence": {
 				"hero_id": "knight",
-				"instance_id": "itm_1789324491_3",
+				"instance_id": "itm_1789329883_3",
 				"item_id": "wpn_battle_axe",
 				"ok": true,
-				"previous_instance_id": "itm_1789324491_1",
+				"previous_instance_id": "itm_1789329883_1",
 				"rarity": "uncommon",
 				"slot": "weapon"
 			},
@@ -311,7 +311,7 @@
 		{
 			"evidence": {
 				"hero_id": "knight",
-				"instance_id": "itm_1789324491_3",
+				"instance_id": "itm_1789329883_3",
 				"item_id": "wpn_battle_axe",
 				"ok": true,
 				"slot": "weapon"
@@ -347,12 +347,12 @@
 			"evidence": {
 				"equipped_after_reload": {
 					"knight": {
-						"accessory": "itm_1789324491_2"
+						"accessory": "itm_1789329883_2"
 					}
 				},
 				"equipped_before": {
 					"knight": {
-						"accessory": "itm_1789324491_2"
+						"accessory": "itm_1789329883_2"
 					}
 				},
 				"modifier_state": {
@@ -361,7 +361,7 @@
 						"knight": [
 							{
 								"operation": "flat",
-								"source_id": "itm_1789324491_2",
+								"source_id": "itm_1789329883_2",
 								"source_type": "item",
 								"stat": "hero_damage",
 								"value": 8.0
@@ -394,7 +394,7 @@
 		},
 		{
 			"evidence": {
-				"transaction_id": "qa_dup_equip_1789324491"
+				"transaction_id": "qa_dup_equip_1789329883"
 			},
 			"name": "duplicate_reward_still_blocked",
 			"ok": true

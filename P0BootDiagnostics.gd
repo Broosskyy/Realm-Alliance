@@ -36,7 +36,7 @@ func complete_scene_boot(main_scene: Control) -> Dictionary:
 	for error in contract_errors:
 		errors.append("Core contract: %s" % error)
 
-	if BuildInfo.SOURCE_VERSION != "2.09.1":
+	if BuildInfo.SOURCE_VERSION != "2.09.2":
 		warnings.append("BuildInfo source version: %s" % BuildInfo.SOURCE_VERSION)
 
 	if P0TestHarness.enabled and not OS.is_debug_build():
