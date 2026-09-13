@@ -159,7 +159,10 @@ func export_save_data()->Dictionary:
 func apply_save_data(data:Dictionary)->void:
 	var incoming:Array=data.get("board",[])
 	if incoming.size()==9:
-		board=incoming.duplicate()
+		var typed: Array[int] = []
+		for value in incoming:
+			typed.append(int(value))
+		board = typed
 	else:
 		_generate_board()
 	attempts=clampi(int(data.get("attempts",int(config.get("daily_free_attempts",3)))),0,99)

@@ -3,7 +3,7 @@ extends Node
 const SAVE_PATH := "user://savegame.json"
 const TEMP_SAVE_PATH := "user://savegame.tmp"
 const BACKUP_SAVE_PATH := "user://savegame.bak"
-const SAVE_VERSION := 35
+const SAVE_VERSION := 41
 
 signal save_completed
 signal load_completed
@@ -32,6 +32,7 @@ func save_game() -> void:
 		"village_level": PlayerData.village_level,
 		"tap_level": PlayerData.tap_level,
 		"tap_damage": PlayerData.tap_damage,
+		"crit_level": PlayerData.crit_level,
 		"monster_level": PlayerData.monster_level,
 		"monster_max_hp": PlayerData.monster_max_hp,
 		"current_monster_hp": PlayerData.current_monster_hp,
@@ -54,6 +55,10 @@ func save_game() -> void:
 		"lane_battle": LaneAttackSystem.export_save_data(),
 		"liveops_ranking": LiveOpsRankingSystem.export_save_data(),
 		"afk_rewards": AfkRewardSystem.export_save_data(),
+		"boss_challenge": BossChallengeSystem.export_save_data(),
+		"reward_pipeline": RewardPipeline.export_save_data(),
+		"daily_rewards": DailyRewards.export_save_data(),
+		"chest_rewards": ChestRewardSystem.export_save_data(),
 		"journey_progression": JourneyProgressionSystem.export_save_data(),
 		"puzzle_progression": PuzzleProgressionSystem.export_save_data(),
 		"tower_defense_progression": TowerDefenseProgressionSystem.export_save_data(),
@@ -65,7 +70,9 @@ func save_game() -> void:
 		"server_clock": ServerClockService.export_sync_state(),
 		"player_snapshot_sync": PlayerSnapshotService.sync_metadata(),
 		"sync_reconciliation": SyncReconciliationService.export_sync_state(),
-		"auth_session_descriptor": AuthSessionService.session_descriptor()
+		"auth_session_descriptor": AuthSessionService.session_descriptor(),
+		"item_inventory": ItemInventoryService.export_save_data(),
+		"region_progression": RegionProgressionSystem.export_save_data()
 	}
 
 	var file := FileAccess.open(TEMP_SAVE_PATH, FileAccess.WRITE)
@@ -131,6 +138,13 @@ func load_game() -> void:
 		LaneAttackSystem.apply_save_data({})
 		LiveOpsRankingSystem.apply_save_data({})
 		AfkRewardSystem.apply_save_data({})
+		BossChallengeSystem.apply_save_data({})
+		RewardPipeline.apply_save_data({})
+		DailyRewards.apply_save_data({})
+		ChestRewardSystem.apply_save_data({})
+		ItemInventoryService.apply_save_data({})
+		RegionProgressionSystem.reset_runtime()
+		P0MonsterVisualSystem.reload_for_region(RegionProgressionSystem.combat_region_id(), true)
 		JourneyProgressionSystem.apply_save_data({})
 		SocialHubSystem.apply_save_data({})
 		last_seen_unix = ServerClockService.now_unix()
@@ -170,6 +184,13 @@ func load_game() -> void:
 	LaneAttackSystem.apply_save_data(parsed.get("lane_battle", {}))
 	LiveOpsRankingSystem.apply_save_data(parsed.get("liveops_ranking", {}))
 	AfkRewardSystem.apply_save_data(parsed.get("afk_rewards", {}))
+	BossChallengeSystem.apply_save_data(parsed.get("boss_challenge", {}))
+	RewardPipeline.apply_save_data(parsed.get("reward_pipeline", {}))
+	DailyRewards.apply_save_data(parsed.get("daily_rewards", {}))
+	ChestRewardSystem.apply_save_data(parsed.get("chest_rewards", {}))
+	ItemInventoryService.apply_save_data(parsed.get("item_inventory", {}))
+	RegionProgressionSystem.import_save_data(parsed.get("region_progression", {}))
+	P0MonsterVisualSystem.reload_for_region(RegionProgressionSystem.combat_region_id(), true)
 	JourneyProgressionSystem.apply_save_data(parsed.get("journey_progression", {}))
 
 	var repaired := _repair_legacy_zero_hp_monster()

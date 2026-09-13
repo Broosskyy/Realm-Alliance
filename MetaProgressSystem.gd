@@ -84,7 +84,6 @@ func can_open_chest() -> bool:
 	return realm_keys >= required_keys()
 
 func open_realm_chest() -> Dictionary:
-	var authority_intent := OnlineAuthorityService.build_intent("open_realm_chest", {"realm_keys":realm_keys,"required_keys":required_keys()})
 	if not can_open_chest():
 		return {"ok":false,"message":"Noch nicht genug Realm-Schlüssel"}
 	var next_opened := realm_chests_opened + 1
@@ -92,22 +91,25 @@ func open_realm_chest() -> Dictionary:
 	var reward: Dictionary = config.get("realm_chest",{}).get("reward",{})
 	var gold := maxi(int(reward.get("gold",0)),0)
 	var spins := maxi(int(reward.get("spins",0)),0)
-	var economy_result := EconomyAuthorityService.commit_reward_local(
-		authority_intent,
-		{"gold":gold,"spins":spins},
-		{"realm_keys":next_keys,"realm_chests_opened":next_opened}
-	)
-	if not bool(economy_result.get("ok",false)):
-		return {"ok":false,"message":str(economy_result.get("message","Truhe konnte nicht bestätigt werden"))}
 	realm_keys = next_keys
 	realm_chests_opened = next_opened
+	var chest_id := "realm_chest_%d" % next_opened
+	var reward_txn := RewardPipeline.grant_chest(chest_id, {"gold": gold, "spins": spins}, {
+		"source": "realm_keys",
+		"opened": next_opened
+	})
+	if not bool(reward_txn.get("ok", false)):
+		realm_keys += required_keys()
+		realm_chests_opened -= 1
+		return {"ok": false, "message": str(reward_txn.get("message", "Truhe konnte nicht bestätigt werden"))}
 	var result := {
-		"ok":true,
-		"gold":gold,
-		"spins":spins,
-		"opened":realm_chests_opened,
-		"authority_request_id":str(authority_intent.get("request_id","")),
-		"authority_revision":int(economy_result.get("revision",0))
+		"ok": true,
+		"gold": gold,
+		"spins": spins,
+		"opened": realm_chests_opened,
+		"reward_transaction": reward_txn,
+		"authority_request_id": str(reward_txn.get("authority_request_id", "")),
+		"authority_revision": int(reward_txn.get("authority_revision", 0))
 	}
 	SaveGame.save_game()
 	meta_changed.emit()

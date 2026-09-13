@@ -14,7 +14,7 @@ func apply(root: Node) -> void:
 	_set_visible(root, "PuzzleButton", false)
 	_set_visible(root, "DefenseGameButton", false)
 	_set_visible(root, "LaneBattleButton", false)
-	_set_visible(root, "HeroesGameButton", false)
+	_set_visible(root, "HeroesGameButton", FeatureFlags.SHOW_HEROES)
 	var quick := root.find_child("QuickActions", true, false)
 	if quick:
 		quick.visible = true

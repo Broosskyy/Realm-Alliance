@@ -62,20 +62,32 @@ func commit_defeat(source: String) -> Dictionary:
 		defeat_sequence
 	]
 
-	# Authoritative reward booking happens exactly once inside this boundary.
-	var reward := PlayerData.reward_monster_kill()
-
-	var boss_bonus_spins := 0
+	var reward_txn := RewardPipeline.grant_monster_defeat(defeated_level, boss_defeated)
+	if not bool(reward_txn.get("ok", false)):
+		transaction_active = false
+		return {
+			"ok": false,
+			"message": str(reward_txn.get("message", "Belohnung konnte nicht gebucht werden")),
+			"error_code": str(reward_txn.get("error_code", "REWARD_FAILED"))
+		}
+	var reward: Dictionary = reward_txn.get("reward", {})
+	var boss_bonus_spins := maxi(int(reward.get("spins", 0)), 0) if boss_defeated else 0
 	var boss_bonus_dice := 0
 	if boss_defeated:
-		boss_bonus_spins = 2
-		PlayerData.add_spin(boss_bonus_spins)
 		if FeatureFlags.SHOW_DICE:
-			boss_bonus_dice = int(DiceJourneySystem.config.get("boss_bonus_dice",1))
+			boss_bonus_dice = int(DiceJourneySystem.config.get("boss_bonus_dice", 1))
 			DiceJourneySystem.grant_dice(boss_bonus_dice)
 		if FeatureFlags.SHOW_EVENTS or FeatureFlags.SHOW_RANKINGS or FeatureFlags.SHOW_REALM_CHEST:
 			MetaProgressSystem.register_boss_defeat()
 		LiveOpsRankingSystem.register_boss_defeat()
+		BossChallengeSystem.on_boss_defeated()
+		ChestRewardSystem.acquire_chest("boss", "boss_defeat")
+
+	RegionProgressionSystem.record_encounter_cleared(
+		RegionProgressionSystem.combat_region_id(),
+		defeated_level,
+		boss_defeated
+	)
 
 	var next_level := defeated_level + 1
 	PlayerData.spawn_next_monster()
@@ -91,8 +103,9 @@ func commit_defeat(source: String) -> Dictionary:
 		"encounter_id":defeated_id,
 		"boss":boss_defeated,
 		"reward":reward.duplicate(true),
+		"reward_transaction":reward_txn.duplicate(true),
 		"reward_gold":int(reward.get("gold",0)),
-		"bonus_spin":bool(reward.get("bonus_spin",false)),
+		"bonus_spin":bool(reward_txn.get("metadata", {}).get("bonus_spin", false)),
 		"boss_bonus_spins":boss_bonus_spins,
 		"boss_bonus_dice":boss_bonus_dice,
 		"next_level":next_level
@@ -111,6 +124,12 @@ func commit_defeat(source: String) -> Dictionary:
 	# monster can never be rewarded again on resume.
 	SaveGame.save_game()
 
+	if source == "hero_auto" or source == "auto_dps":
+		GameplayEventService.publish(GameplayEventService.EVENT_HERO_DEFEAT_CONTRIBUTION, 1, {
+			"hero_id": HeroSystem.get_deployed_hero_id(),
+			"defeated_level": defeated_level,
+			"boss": boss_defeated
+		})
 	CoreAnalytics.log_event("monster_defeat", {
 		"defeat_id":defeat_id,
 		"source":source,

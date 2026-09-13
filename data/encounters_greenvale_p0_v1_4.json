@@ -1,256 +1,397 @@
 {
   "master_version": "2.1",
   "asset_mapping_version": "v1.59-production-monsters-01",
-  "monsters": [
-    {
-      "id": "M001",
-      "name": "Waldwinzling",
-      "role": "calibration_reference",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "M001_CANDIDATE_B_branch_guardian"
-    },
-    {
-      "id": "M002",
-      "name": "Blatthorn",
-      "role": "agile_beast",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N01_leaf_horn_beast"
-    },
-    {
-      "id": "M003",
-      "name": "Waldkeiler",
-      "role": "heavy_silhouette",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "M003_CANDIDATE_waldkeiler"
-    },
-    {
-      "id": "M004",
-      "name": "Pilzling",
-      "role": "humor_variant",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "M004_CANDIDATE_pilzling"
-    },
-    {
-      "id": "M005",
-      "name": "Waldkäfer",
-      "role": "armored_small",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N03_forest_beetle"
-    },
-    {
-      "id": "M006",
-      "name": "Blätterkauz",
-      "role": "flying_variant",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N04_forest_owl_variant_a"
-    },
-    {
-      "id": "M007",
-      "name": "Mooskauz",
-      "role": "flying_variant_b",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N05_forest_owl_variant_b"
-    },
-    {
-      "id": "M008",
-      "name": "Moosschildkröte",
-      "role": "defensive_silhouette",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N06_forest_turtle"
-    },
-    {
-      "id": "M009",
-      "name": "Waldschleim",
-      "role": "soft_variant",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N07_forest_slime"
-    },
-    {
-      "id": "M010",
-      "name": "Waldgeist",
-      "role": "magic_variant",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N08_forest_spirit"
-    },
-    {
-      "id": "M011",
-      "name": "Kristallgolem",
-      "role": "stone_heavy",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N09_crystal_stone_golem"
-    },
-    {
-      "id": "M012",
-      "name": "Blatthörnchen",
-      "role": "quick_small",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N10_leaf_squirrel"
-    },
-    {
-      "id": "M013",
-      "name": "Waldwolf",
-      "role": "predator",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N11_forest_wolf"
-    },
-    {
-      "id": "M014",
-      "name": "Laubkeiler",
-      "role": "boar_variant",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "GH_N02_leaf_boar_variant"
-    },
-    {
-      "id": "B001",
-      "name": "Mooskönig",
-      "role": "boss_guardian",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "B003_CANDIDATE_elder_woodland_guardian"
-    },
-    {
-      "id": "B002",
-      "name": "Pilzmagus",
-      "role": "boss_arcane",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "B002_CANDIDATE_mushroom_arcane_boss"
-    },
-    {
-      "id": "B003",
-      "name": "Urwaldbestie",
-      "role": "boss_beast",
-      "states": [
-        "idle",
-        "attack",
-        "hit",
-        "defeat"
-      ],
-      "production_status": "production_bound",
-      "source_folder": "B004_CANDIDATE_massive_forest_beast"
-    }
-  ],
+  "combat_pass": "V2.09-cycle2-gruenhain-01",
+  "region_id": "greenvale",
+  "version": "v2.09-encounters-02",
+  "boss_every_kills": 15,
+  "states_contract": ["idle", "attack", "hit", "defeat"],
   "rotation": [
     "M001",
+    "M012",
     "M002",
     "M003",
     "M004",
     "M005",
     "M006",
-    "M007",
-    "M008",
-    "M009",
-    "M010",
-    "M011",
-    "M012",
     "M013",
-    "M014"
+    "M008",
+    "M011",
+    "M004",
+    "M012",
+    "M003",
+    "M010"
   ],
-  "boss_rotation": [
-    "B001",
-    "B002",
-    "B003"
+  "rotation_overflow": [
+    "M007",
+    "M009",
+    "M014",
+    "M002"
   ],
-  "boss_every_kills": 10,
-  "states_contract": [
-    "idle",
-    "attack",
-    "hit",
-    "defeat"
-  ],
-  "combat_pass": "V1.59"
+  "boss_rotation": ["B001", "B002", "B003"],
+  "monsters": [
+    {
+      "id": "M001",
+      "name": "Waldwinzling",
+      "role": "calibration_reference",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "M001_CANDIDATE_B_branch_guardian",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 88,
+        "hp_scaling": 1.0,
+        "xp_reward": 55,
+        "reward_multiplier": 1.0,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.0
+      },
+      "visual": {"display_scale": 1.0, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.08}, "damage_text": {"x": 0.0, "y": -0.22}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "M012",
+      "name": "Blatthörnchen",
+      "role": "quick_small",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N10_leaf_squirrel",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 72,
+        "hp_scaling": 1.0,
+        "xp_reward": 50,
+        "reward_multiplier": 0.95,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.0
+      },
+      "visual": {"display_scale": 0.93, "offset_x": 0.0, "offset_y": 0.02},
+      "anchors": {"hit": {"x": 0.0, "y": -0.06}, "damage_text": {"x": 0.0, "y": -0.18}, "vfx": {"x": 0.0, "y": -0.04}}
+    },
+    {
+      "id": "M002",
+      "name": "Blatthorn",
+      "role": "agile_beast",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N01_leaf_horn_beast",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 96,
+        "hp_scaling": 1.02,
+        "xp_reward": 55,
+        "reward_multiplier": 1.0,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.10
+      },
+      "visual": {"display_scale": 0.98, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.07}, "damage_text": {"x": 0.0, "y": -0.2}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "M003",
+      "name": "Waldkeiler",
+      "role": "heavy_silhouette",
+      "classification": "tough",
+      "type": "tough",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "M003_CANDIDATE_waldkeiler",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 138,
+        "hp_scaling": 1.06,
+        "xp_reward": 62,
+        "reward_multiplier": 1.18,
+        "loot_source": "greenvale_tough",
+        "loot_roll_chance": 0.20
+      },
+      "visual": {"display_scale": 1.05, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.1}, "damage_text": {"x": 0.0, "y": -0.24}, "vfx": {"x": 0.0, "y": -0.06}}
+    },
+    {
+      "id": "M004",
+      "name": "Pilzling",
+      "role": "humor_variant",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "M004_CANDIDATE_pilzling",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 102,
+        "hp_scaling": 1.01,
+        "xp_reward": 64,
+        "reward_multiplier": 1.05,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.12
+      },
+      "visual": {"display_scale": 0.96, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.08}, "damage_text": {"x": 0.0, "y": -0.2}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "M005",
+      "name": "Waldkäfer",
+      "role": "armored_small",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N03_forest_beetle",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 118,
+        "hp_scaling": 1.03,
+        "xp_reward": 70,
+        "reward_multiplier": 1.1,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.12
+      },
+      "visual": {"display_scale": 0.94, "offset_x": 0.0, "offset_y": 0.01},
+      "anchors": {"hit": {"x": 0.0, "y": -0.07}, "damage_text": {"x": 0.0, "y": -0.19}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "M010",
+      "name": "Waldgeist",
+      "role": "magic_variant",
+      "classification": "elite",
+      "type": "elite",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N08_forest_spirit",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 192,
+        "hp_scaling": 1.08,
+        "xp_reward": 32,
+        "reward_multiplier": 1.42,
+        "loot_source": "greenvale_elite",
+        "loot_roll_chance": 0.75
+      },
+      "visual": {"display_scale": 1.02, "offset_x": 0.0, "offset_y": -0.02},
+      "anchors": {"hit": {"x": 0.0, "y": -0.12}, "damage_text": {"x": 0.0, "y": -0.26}, "vfx": {"x": 0.0, "y": -0.08}}
+    },
+    {
+      "id": "M006",
+      "name": "Blätterkauz",
+      "role": "flying_variant",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N04_forest_owl_variant_a",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 98,
+        "hp_scaling": 1.02,
+        "xp_reward": 52,
+        "reward_multiplier": 1.0,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.12
+      },
+      "visual": {"display_scale": 0.97, "offset_x": 0.0, "offset_y": -0.03},
+      "anchors": {"hit": {"x": 0.0, "y": -0.08}, "damage_text": {"x": 0.0, "y": -0.2}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "M007",
+      "name": "Mooskauz",
+      "role": "flying_variant_b",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N05_forest_owl_variant_b",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 108,
+        "hp_scaling": 1.02,
+        "xp_reward": 28,
+        "reward_multiplier": 1.02,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.1
+      },
+      "visual": {"display_scale": 0.97, "offset_x": 0.0, "offset_y": -0.03},
+      "anchors": {"hit": {"x": 0.0, "y": -0.08}, "damage_text": {"x": 0.0, "y": -0.2}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "M008",
+      "name": "Moosschildkröte",
+      "role": "defensive_silhouette",
+      "classification": "tough",
+      "type": "tough",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N06_forest_turtle",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 158,
+        "hp_scaling": 1.05,
+        "xp_reward": 58,
+        "reward_multiplier": 1.16,
+        "loot_source": "greenvale_tough",
+        "loot_roll_chance": 0.18
+      },
+      "visual": {"display_scale": 1.04, "offset_x": 0.0, "offset_y": 0.02},
+      "anchors": {"hit": {"x": 0.0, "y": -0.1}, "damage_text": {"x": 0.0, "y": -0.22}, "vfx": {"x": 0.0, "y": -0.06}}
+    },
+    {
+      "id": "M009",
+      "name": "Waldschleim",
+      "role": "soft_variant",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N07_forest_slime",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 92,
+        "hp_scaling": 1.0,
+        "xp_reward": 26,
+        "reward_multiplier": 0.98,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.08
+      },
+      "visual": {"display_scale": 0.95, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.07}, "damage_text": {"x": 0.0, "y": -0.18}, "vfx": {"x": 0.0, "y": -0.04}}
+    },
+    {
+      "id": "M011",
+      "name": "Kristallgolem",
+      "role": "stone_heavy",
+      "classification": "tough",
+      "type": "tough",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N09_crystal_stone_golem",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 175,
+        "hp_scaling": 1.07,
+        "xp_reward": 60,
+        "reward_multiplier": 1.2,
+        "loot_source": "greenvale_tough",
+        "loot_roll_chance": 0.20
+      },
+      "visual": {"display_scale": 1.06, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.11}, "damage_text": {"x": 0.0, "y": -0.24}, "vfx": {"x": 0.0, "y": -0.06}}
+    },
+    {
+      "id": "M013",
+      "name": "Waldwolf",
+      "role": "predator",
+      "classification": "tough",
+      "type": "tough",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N11_forest_wolf",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 148,
+        "hp_scaling": 1.05,
+        "xp_reward": 56,
+        "reward_multiplier": 1.17,
+        "loot_source": "greenvale_tough",
+        "loot_roll_chance": 0.18
+      },
+      "visual": {"display_scale": 1.03, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.09}, "damage_text": {"x": 0.0, "y": -0.22}, "vfx": {"x": 0.0, "y": -0.06}}
+    },
+    {
+      "id": "M014",
+      "name": "Laubkeiler",
+      "role": "boar_variant",
+      "classification": "normal",
+      "type": "normal",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "GH_N02_leaf_boar_variant",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 112,
+        "hp_scaling": 1.02,
+        "xp_reward": 30,
+        "reward_multiplier": 1.06,
+        "loot_source": "greenvale_normal",
+        "loot_roll_chance": 0.12
+      },
+      "visual": {"display_scale": 1.05, "offset_x": 0.0, "offset_y": 0.0},
+      "anchors": {"hit": {"x": 0.0, "y": -0.09}, "damage_text": {"x": 0.0, "y": -0.21}, "vfx": {"x": 0.0, "y": -0.05}}
+    },
+    {
+      "id": "B001",
+      "name": "Mooskönig",
+      "role": "boss_guardian",
+      "classification": "boss",
+      "type": "boss",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "B003_CANDIDATE_elder_woodland_guardian",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 438,
+        "hp_scaling": 1.0,
+        "xp_reward": 45,
+        "gold_reward": 680,
+        "reward_multiplier": 3.2,
+        "loot_source": "greenvale_boss",
+        "loot_roll_chance": 1.0,
+        "boss_time_limit": 45
+      },
+      "visual": {"display_scale": 1.08, "offset_x": 0.0, "offset_y": -0.04},
+      "anchors": {"hit": {"x": 0.0, "y": -0.14}, "damage_text": {"x": 0.0, "y": -0.3}, "vfx": {"x": 0.0, "y": -0.1}}
+    },
+    {
+      "id": "B002",
+      "name": "Pilzmagus",
+      "role": "boss_arcane",
+      "classification": "boss",
+      "type": "boss",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "B002_CANDIDATE_mushroom_arcane_boss",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 462,
+        "hp_scaling": 1.02,
+        "xp_reward": 48,
+        "gold_reward": 710,
+        "reward_multiplier": 3.25,
+        "loot_source": "greenvale_boss",
+        "loot_roll_chance": 1.0,
+        "boss_time_limit": 44
+      },
+      "visual": {"display_scale": 1.1, "offset_x": 0.0, "offset_y": -0.04},
+      "anchors": {"hit": {"x": 0.0, "y": -0.14}, "damage_text": {"x": 0.0, "y": -0.3}, "vfx": {"x": 0.0, "y": -0.1}}
+    },
+    {
+      "id": "B003",
+      "name": "Urwaldbestie",
+      "role": "boss_beast",
+      "classification": "boss",
+      "type": "boss",
+      "region_id": "greenvale",
+      "production_status": "production_bound",
+      "source_folder": "B004_CANDIDATE_massive_forest_beast",
+      "states": ["idle", "attack", "hit", "defeat"],
+      "stats": {
+        "base_hp": 488,
+        "hp_scaling": 1.03,
+        "xp_reward": 50,
+        "gold_reward": 740,
+        "reward_multiplier": 3.3,
+        "loot_source": "greenvale_boss",
+        "loot_roll_chance": 1.0,
+        "boss_time_limit": 43
+      },
+      "visual": {"display_scale": 1.12, "offset_x": 0.0, "offset_y": -0.05},
+      "anchors": {"hit": {"x": 0.0, "y": -0.15}, "damage_text": {"x": 0.0, "y": -0.32}, "vfx": {"x": 0.0, "y": -0.1}}
+    }
+  ]
 }

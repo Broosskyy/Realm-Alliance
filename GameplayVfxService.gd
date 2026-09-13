@@ -1,4 +1,5 @@
 extends RefCounted
+class_name GameplayVfxService
 
 # Presentation-only VFX helper. It never decides damage, rewards, odds, timing authority or economy state.
 const ROLE := {

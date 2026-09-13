@@ -276,6 +276,21 @@
       "confidence": "high",
       "note": "Wide gold/navy progress housing for 1/10 BIS BOSS."
     },
+    "ui.hud.resource.gold": {
+      "asset": "v4.ui.resource_bars.resource_bars_06",
+      "confidence": "high",
+      "note": "V2.06.1 HUD rebind — replaces legacy UI015 gold pill."
+    },
+    "ui.hud.resource.spin": {
+      "asset": "v4.ui.resource_bars.resource_bars_03",
+      "confidence": "high",
+      "note": "V2.06.1 HUD rebind — replaces legacy UI016 spin pill."
+    },
+    "ui.hud.resource.shield": {
+      "asset": "v4.ui.resource_bars.resource_bars_08",
+      "confidence": "high",
+      "note": "V2.06.1 HUD rebind — replaces legacy UI017 shield pill (blue diamond housing)."
+    },
     "ui.button.primary": {
       "asset": "v4.ui.buttons.buttons_02",
       "confidence": "high",
@@ -853,6 +868,21 @@
     "hero.mage.mastery": {
       "asset": "v151.hero.mage",
       "confidence": "high"
+    },
+    "hero.knight.portrait": {
+      "asset": "hero.portrait.knight.placeholder",
+      "confidence": "medium",
+      "note": "Placeholder until production knight portrait ships."
+    },
+    "hero.archer.portrait": {
+      "asset": "hero.portrait.archer.placeholder",
+      "confidence": "medium",
+      "note": "Placeholder until production archer portrait ships."
+    },
+    "hero.mage.portrait": {
+      "asset": "hero.portrait.mage.placeholder",
+      "confidence": "medium",
+      "note": "Placeholder until production mage portrait ships."
     },
     "hero.weapon": {
       "asset": "v151.hero.weapon",

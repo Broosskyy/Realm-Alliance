@@ -1,0 +1,371 @@
+{
+	"issues": [],
+	"milestone": "V2.09-Phase2",
+	"state_evidence": {
+		"classification_hp": {
+			"B001": 438,
+			"M001": 88,
+			"M003": 142,
+			"M006": 100,
+			"M010": 223,
+			"M012": 72
+		},
+		"curated_rotation": {
+			"rotation_size": 14,
+			"sequence": [
+				"M001",
+				"M012",
+				"M002",
+				"M003",
+				"M004",
+				"M005",
+				"M006",
+				"M013",
+				"M008",
+				"M011",
+				"M004",
+				"M012",
+				"M003",
+				"M010",
+				"B001"
+			]
+		},
+		"hero_pacing": {
+			"hero_unlock_encounter_level": 6,
+			"trace": [
+				{
+					"encounter_level": 1,
+					"monster_id": "M001",
+					"player_level": 2,
+					"player_xp": 5,
+					"xp_gain": 55
+				},
+				{
+					"encounter_level": 2,
+					"monster_id": "M012",
+					"player_level": 2,
+					"player_xp": 55,
+					"xp_gain": 50
+				},
+				{
+					"encounter_level": 3,
+					"monster_id": "M002",
+					"player_level": 3,
+					"player_xp": 46,
+					"xp_gain": 55
+				},
+				{
+					"encounter_level": 4,
+					"monster_id": "M003",
+					"player_level": 4,
+					"player_xp": 26,
+					"xp_gain": 62
+				},
+				{
+					"encounter_level": 5,
+					"monster_id": "M004",
+					"player_level": 4,
+					"player_xp": 90,
+					"xp_gain": 64
+				},
+				{
+					"encounter_level": 6,
+					"monster_id": "M005",
+					"player_level": 5,
+					"player_xp": 55,
+					"xp_gain": 70
+				},
+				{
+					"encounter_level": 7,
+					"monster_id": "M006",
+					"player_level": 5,
+					"player_xp": 107,
+					"xp_gain": 52
+				},
+				{
+					"encounter_level": 8,
+					"monster_id": "M013",
+					"player_level": 6,
+					"player_xp": 29,
+					"xp_gain": 56
+				},
+				{
+					"encounter_level": 9,
+					"monster_id": "M008",
+					"player_level": 6,
+					"player_xp": 87,
+					"xp_gain": 58
+				},
+				{
+					"encounter_level": 10,
+					"monster_id": "M011",
+					"player_level": 6,
+					"player_xp": 147,
+					"xp_gain": 60
+				},
+				{
+					"encounter_level": 11,
+					"monster_id": "M004",
+					"player_level": 7,
+					"player_xp": 39,
+					"xp_gain": 64
+				},
+				{
+					"encounter_level": 12,
+					"monster_id": "M012",
+					"player_level": 7,
+					"player_xp": 89,
+					"xp_gain": 50
+				},
+				{
+					"encounter_level": 13,
+					"monster_id": "M003",
+					"player_level": 7,
+					"player_xp": 151,
+					"xp_gain": 62
+				},
+				{
+					"encounter_level": 14,
+					"monster_id": "M010",
+					"player_level": 7,
+					"player_xp": 183,
+					"xp_gain": 32
+				}
+			]
+		},
+		"loot_simulation": {
+			"pct_has_item_before_elite": 0.8147,
+			"pct_no_item_before_elite": 0.1853,
+			"pct_three_plus_before_elite": 0.1925,
+			"runs": 10000
+		}
+	},
+	"status": "PASS",
+	"tests": [
+		{
+			"evidence": {
+				"error_count": 0,
+				"errors": []
+			},
+			"name": "encounter_catalog_validator",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"catalog_version": "v2.09-encounters-02",
+				"encounter_count": 15
+			},
+			"name": "cycle_length_14_to_16",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"rotation_size": 14,
+				"sequence": [
+					"M001",
+					"M012",
+					"M002",
+					"M003",
+					"M004",
+					"M005",
+					"M006",
+					"M013",
+					"M008",
+					"M011",
+					"M004",
+					"M012",
+					"M003",
+					"M010",
+					"B001"
+				]
+			},
+			"name": "curated_encounter_sequence",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"checked_ids": [
+					"M001",
+					"M012",
+					"M002",
+					"M003",
+					"M004",
+					"M005",
+					"M006",
+					"M013",
+					"M008",
+					"M011",
+					"M010",
+					"B001"
+				],
+				"missing": []
+			},
+			"name": "active_production_asset_refs",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_level": 15,
+				"elite_level": 14,
+				"gap": 1
+			},
+			"name": "m010_before_b001",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_source": "greenvale_boss",
+				"elite_source": "greenvale_elite",
+				"normal_source": "greenvale_normal",
+				"tough_source": "greenvale_tough"
+			},
+			"name": "loot_semantics_normal_tough_elite_boss",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"pct_has_item_before_elite": 0.8147,
+				"pct_no_item_before_elite": 0.1853,
+				"pct_three_plus_before_elite": 0.1925,
+				"runs": 10000
+			},
+			"name": "loot_simulation_10k",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"B001": 438,
+				"M001": 88,
+				"M003": 142,
+				"M006": 100,
+				"M010": 223,
+				"M012": 72
+			},
+			"name": "classification_changes_runtime_values",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"hero_unlock_encounter_level": 6,
+				"trace": [
+					{
+						"encounter_level": 1,
+						"monster_id": "M001",
+						"player_level": 2,
+						"player_xp": 5,
+						"xp_gain": 55
+					},
+					{
+						"encounter_level": 2,
+						"monster_id": "M012",
+						"player_level": 2,
+						"player_xp": 55,
+						"xp_gain": 50
+					},
+					{
+						"encounter_level": 3,
+						"monster_id": "M002",
+						"player_level": 3,
+						"player_xp": 46,
+						"xp_gain": 55
+					},
+					{
+						"encounter_level": 4,
+						"monster_id": "M003",
+						"player_level": 4,
+						"player_xp": 26,
+						"xp_gain": 62
+					},
+					{
+						"encounter_level": 5,
+						"monster_id": "M004",
+						"player_level": 4,
+						"player_xp": 90,
+						"xp_gain": 64
+					},
+					{
+						"encounter_level": 6,
+						"monster_id": "M005",
+						"player_level": 5,
+						"player_xp": 55,
+						"xp_gain": 70
+					},
+					{
+						"encounter_level": 7,
+						"monster_id": "M006",
+						"player_level": 5,
+						"player_xp": 107,
+						"xp_gain": 52
+					},
+					{
+						"encounter_level": 8,
+						"monster_id": "M013",
+						"player_level": 6,
+						"player_xp": 29,
+						"xp_gain": 56
+					},
+					{
+						"encounter_level": 9,
+						"monster_id": "M008",
+						"player_level": 6,
+						"player_xp": 87,
+						"xp_gain": 58
+					},
+					{
+						"encounter_level": 10,
+						"monster_id": "M011",
+						"player_level": 6,
+						"player_xp": 147,
+						"xp_gain": 60
+					},
+					{
+						"encounter_level": 11,
+						"monster_id": "M004",
+						"player_level": 7,
+						"player_xp": 39,
+						"xp_gain": 64
+					},
+					{
+						"encounter_level": 12,
+						"monster_id": "M012",
+						"player_level": 7,
+						"player_xp": 89,
+						"xp_gain": 50
+					},
+					{
+						"encounter_level": 13,
+						"monster_id": "M003",
+						"player_level": 7,
+						"player_xp": 151,
+						"xp_gain": 62
+					},
+					{
+						"encounter_level": 14,
+						"monster_id": "M010",
+						"player_level": 7,
+						"player_xp": 183,
+						"xp_gain": 32
+					}
+				]
+			},
+			"name": "hero_unlock_kill_6_m005",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"monsters_json_status": "DEPRECATED_NON_RUNTIME"
+			},
+			"name": "legacy_catalog_deprecated",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"encounters_cleared": 1
+			},
+			"name": "region_save_reload",
+			"ok": true
+		}
+	],
+	"tests_passed": 11,
+	"tests_total": 11
+}

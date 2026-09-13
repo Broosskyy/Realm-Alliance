@@ -1,26 +1,40 @@
 {
-  "version": 2,
+  "version": 3,
+  "runtime_status": "DEPRECATED_NON_RUNTIME",
+  "deprecated_milestone": "V2.09",
+  "replacement": "res://data/encounters_greenvale_p0_v1_4.json + P0MonsterVisualSystem",
+  "notes": "Legacy pre-V1.59 catalog. Do not bind new content. Placeholder assets in assets/monsters/greenvale/*_placeholder.png are NON-RUNTIME.",
+  "legacy_placeholder_assets": [
+    "res://assets/monsters/greenvale/monster_slime_01_placeholder.png",
+    "res://assets/monsters/greenvale/monster_goblin_01_placeholder.png",
+    "res://assets/monsters/greenvale/monster_boar_brute_01_placeholder.png",
+    "res://assets/monsters/greenvale/monster_boar_boss_placeholder.png",
+    "res://assets/monsters/greenvale/monster_treant_boss_01_placeholder.png"
+  ],
   "monsters": [
     {
       "id": "slime",
       "name": "Moos-Schleim",
       "tier": "normal",
       "region": "greenvale",
-      "asset_id": "monster_slime"
+      "asset_id": "monster_slime",
+      "runtime_status": "DEPRECATED"
     },
     {
       "id": "goblin",
       "name": "Wald-Goblin",
       "tier": "normal",
       "region": "greenvale",
-      "asset_id": "monster_goblin"
+      "asset_id": "monster_goblin",
+      "runtime_status": "DEPRECATED"
     },
     {
       "id": "boar_brute",
       "name": "Keiler-Brecher",
       "tier": "elite",
       "region": "greenvale",
-      "asset_id": "monster_boar"
+      "asset_id": "monster_boar",
+      "runtime_status": "DEPRECATED"
     },
     {
       "id": "ancient_treant",
@@ -28,7 +42,8 @@
       "tier": "boss",
       "region": "greenvale",
       "asset_id": "monster_treant_boss",
-      "milestone_modulo": 10
+      "milestone_modulo": 10,
+      "runtime_status": "DEPRECATED"
     }
   ]
 }

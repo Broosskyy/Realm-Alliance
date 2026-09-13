@@ -1,0 +1,1835 @@
+{
+	"assertions": [
+		{
+			"evidence": {
+				"catalog_version": "v2.09-encounters-02",
+				"encounter_count": 15,
+				"final_monster_level": 16,
+				"flow_ok": true
+			},
+			"name": "natural_curated_sequence",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"account_level_after": 5,
+				"account_level_before": 4,
+				"account_xp_after": 55,
+				"account_xp_before": 90,
+				"encounter_level": 6,
+				"expected_unlock_level": 5,
+				"granted_xp": 70,
+				"hero_unlocked_after": true,
+				"hero_unlocked_before": false,
+				"monster_id": "M005"
+			},
+			"name": "hero_unlock_runtime_m005",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"samples": [
+					{
+						"encounter_level": 1,
+						"granted_items": [],
+						"loot_source_metadata": "greenvale_normal",
+						"monster_id": "M001",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 4,
+						"granted_items": [],
+						"loot_source_metadata": "greenvale_tough",
+						"monster_id": "M003",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 8,
+						"granted_items": [],
+						"loot_source_metadata": "greenvale_tough",
+						"monster_id": "M013",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 9,
+						"granted_items": [
+							{
+								"acquired_at": 1789270576,
+								"acquired_source": "monster_defeat",
+								"enhancement_level": 0,
+								"equipped": false,
+								"equipped_to": "",
+								"instance_id": "itm_1789270576_1",
+								"item_id": "wpn_gruenhain_blade",
+								"metadata": {
+									"bonus_spin": false,
+									"boss": false,
+									"classification": "tough",
+									"loot_roll_chance": 0.18,
+									"loot_source": "greenvale_tough",
+									"monster_level": 9
+								},
+								"slot": "weapon"
+							}
+						],
+						"loot_source_metadata": "greenvale_tough",
+						"monster_id": "M008",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 10,
+						"granted_items": [],
+						"loot_source_metadata": "greenvale_tough",
+						"monster_id": "M011",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 13,
+						"granted_items": [],
+						"loot_source_metadata": "greenvale_tough",
+						"monster_id": "M003",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 14,
+						"granted_items": [
+							{
+								"acquired_at": 1789270585,
+								"acquired_source": "monster_defeat",
+								"enhancement_level": 0,
+								"equipped": false,
+								"equipped_to": "",
+								"instance_id": "itm_1789270585_2",
+								"item_id": "acc_guardian_pendant",
+								"metadata": {
+									"bonus_spin": false,
+									"boss": false,
+									"classification": "elite",
+									"loot_roll_chance": 0.75,
+									"loot_source": "greenvale_elite",
+									"monster_level": 14
+								},
+								"slot": "accessory"
+							}
+						],
+						"loot_source_metadata": "greenvale_elite",
+						"monster_id": "M010",
+						"ok": true,
+						"reward_pipeline_source": "monster_defeat"
+					},
+					{
+						"encounter_level": 15,
+						"granted_items": [
+							{
+								"acquired_at": 1789270593,
+								"acquired_source": "boss_defeat",
+								"enhancement_level": 0,
+								"equipped": false,
+								"equipped_to": "",
+								"instance_id": "itm_1789270593_3",
+								"item_id": "wpn_gruenhain_blade",
+								"metadata": {
+									"bonus_spin": false,
+									"boss": true,
+									"classification": "boss",
+									"loot_roll_chance": 1.0,
+									"loot_source": "greenvale_boss",
+									"monster_level": 15
+								},
+								"slot": "weapon"
+							}
+						],
+						"loot_source_metadata": "greenvale_boss",
+						"monster_id": "B001",
+						"ok": true,
+						"reward_pipeline_source": "boss_defeat"
+					},
+					{
+						"encounter_level": 1,
+						"expected_source": "greenvale_normal",
+						"match": true,
+						"monster_id": "M001",
+						"runtime_source": "greenvale_normal"
+					},
+					{
+						"encounter_level": 4,
+						"expected_source": "greenvale_tough",
+						"match": true,
+						"monster_id": "M003",
+						"runtime_source": "greenvale_tough"
+					},
+					{
+						"encounter_level": 15,
+						"expected_source": "greenvale_boss",
+						"match": true,
+						"monster_id": "B001",
+						"runtime_source": "greenvale_boss"
+					},
+					{
+						"encounter_level": 14,
+						"expected_source": "greenvale_elite",
+						"match": true,
+						"monster_id": "M010",
+						"runtime_source": "greenvale_elite"
+					},
+					{
+						"encounter_level": 8,
+						"expected_source": "greenvale_tough",
+						"match": true,
+						"monster_id": "M013",
+						"runtime_source": "greenvale_tough"
+					},
+					{
+						"encounter_level": 9,
+						"expected_source": "greenvale_tough",
+						"match": true,
+						"monster_id": "M008",
+						"runtime_source": "greenvale_tough"
+					},
+					{
+						"encounter_level": 10,
+						"expected_source": "greenvale_tough",
+						"match": true,
+						"monster_id": "M011",
+						"runtime_source": "greenvale_tough"
+					},
+					{
+						"encounter_level": 13,
+						"expected_source": "greenvale_tough",
+						"match": true,
+						"monster_id": "M003",
+						"runtime_source": "greenvale_tough"
+					}
+				]
+			},
+			"name": "loot_source_runtime",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss": 438,
+				"elite": 223,
+				"normal": 88,
+				"tough": 142
+			},
+			"name": "hp_profile_normal_lt_tough_lt_elite_lt_boss",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"B001": {
+					"expected": "res://assets/monsters/greenvale/states/B001_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/B001_idle.png"
+				},
+				"M001": {
+					"expected": "res://assets/monsters/greenvale/states/M001_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M001_idle.png"
+				},
+				"M002": {
+					"expected": "res://assets/monsters/greenvale/states/M002_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M002_idle.png"
+				},
+				"M003": {
+					"expected": "res://assets/monsters/greenvale/states/M003_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M003_idle.png"
+				},
+				"M004": {
+					"expected": "res://assets/monsters/greenvale/states/M004_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M004_idle.png"
+				},
+				"M005": {
+					"expected": "res://assets/monsters/greenvale/states/M005_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M005_idle.png"
+				},
+				"M006": {
+					"expected": "res://assets/monsters/greenvale/states/M006_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M006_idle.png"
+				},
+				"M008": {
+					"expected": "res://assets/monsters/greenvale/states/M008_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M008_idle.png"
+				},
+				"M010": {
+					"expected": "res://assets/monsters/greenvale/states/M010_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M010_idle.png"
+				},
+				"M011": {
+					"expected": "res://assets/monsters/greenvale/states/M011_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M011_idle.png"
+				},
+				"M012": {
+					"expected": "res://assets/monsters/greenvale/states/M012_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M012_idle.png"
+				},
+				"M013": {
+					"expected": "res://assets/monsters/greenvale/states/M013_idle.png",
+					"match": true,
+					"runtime": "res://assets/monsters/greenvale/states/M013_idle.png"
+				}
+			},
+			"name": "core_production_asset_paths",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"afk": true,
+				"boss": true,
+				"chest": true,
+				"crit": true,
+				"daily": true,
+				"equipment": true,
+				"hero_autodps_flag": true,
+				"hero_unlock": true,
+				"inventory": true,
+				"quest": true,
+				"region_progression": true,
+				"reward_pipeline": true,
+				"save_version": 41,
+				"spin": true,
+				"stat_modifier_service": true,
+				"tap": true,
+				"village": true
+			},
+			"name": "regression_smoke",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"hero_knight": true,
+					"monster_level": 16,
+					"player_level": 8
+				},
+				"before": {
+					"hero_knight": true,
+					"inventory_count": 3,
+					"monster_level": 16,
+					"player_level": 8,
+					"player_xp": 8,
+					"region": {
+						"config_version": "v2.08-region-catalog-01",
+						"current_region_id": "greenvale",
+						"region_progress": {
+							"frostmark": {
+								"boss_cycle_complete": false,
+								"bosses_defeated": 0,
+								"encounters_cleared": 0,
+								"highest_stage": 0
+							},
+							"greenvale": {
+								"boss_cycle_complete": false,
+								"bosses_defeated": 1,
+								"encounters_cleared": 15,
+								"highest_stage": 15
+							}
+						}
+					}
+				}
+			},
+			"name": "save_reload_v41",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"core_monsters": [
+					"M001",
+					"M012",
+					"M002",
+					"M003",
+					"M004",
+					"M005",
+					"M006",
+					"M013",
+					"M008",
+					"M011",
+					"M010",
+					"B001"
+				]
+			},
+			"name": "visual_inspection",
+			"ok": true
+		}
+	],
+	"assertions_passed": 8,
+	"assertions_total": 8,
+	"duration_ms": 83353,
+	"encounter_trace": [
+		{
+			"base_hp": 88,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 88,
+			"encounter_index": 1,
+			"expected_asset": "res://assets/monsters/greenvale/states/M001_idle.png",
+			"hero_unlocked": false,
+			"hp_scaling": 1.0,
+			"loot_roll_chance": 0.0,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M001",
+			"player_level": 1,
+			"player_xp": 0,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M001_idle.png",
+			"stage_factor": 1.0,
+			"xp_reward": 55
+		},
+		{
+			"base_hp": 72,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 72,
+			"encounter_index": 2,
+			"expected_asset": "res://assets/monsters/greenvale/states/M012_idle.png",
+			"hero_unlocked": false,
+			"hp_scaling": 1.0,
+			"loot_roll_chance": 0.0,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M012",
+			"player_level": 2,
+			"player_xp": 5,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M012_idle.png",
+			"stage_factor": 1.0,
+			"xp_reward": 50
+		},
+		{
+			"base_hp": 96,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 97,
+			"encounter_index": 3,
+			"expected_asset": "res://assets/monsters/greenvale/states/M002_idle.png",
+			"hero_unlocked": false,
+			"hp_scaling": 1.02,
+			"loot_roll_chance": 0.1,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M002",
+			"player_level": 2,
+			"player_xp": 55,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M002_idle.png",
+			"stage_factor": 1.00595846966764,
+			"xp_reward": 55
+		},
+		{
+			"base_hp": 138,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "tough",
+			"effective_hp": 142,
+			"encounter_index": 4,
+			"expected_asset": "res://assets/monsters/greenvale/states/M003_idle.png",
+			"hero_unlocked": false,
+			"hp_scaling": 1.06,
+			"loot_roll_chance": 0.2,
+			"loot_source": "greenvale_tough",
+			"monster_id": "M003",
+			"player_level": 3,
+			"player_xp": 46,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M003_idle.png",
+			"stage_factor": 1.02656780377441,
+			"xp_reward": 62
+		},
+		{
+			"base_hp": 102,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 103,
+			"encounter_index": 5,
+			"expected_asset": "res://assets/monsters/greenvale/states/M004_idle.png",
+			"hero_unlocked": false,
+			"hp_scaling": 1.01,
+			"loot_roll_chance": 0.12,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M004",
+			"player_level": 4,
+			"player_xp": 26,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M004_idle.png",
+			"stage_factor": 1.00598805566627,
+			"xp_reward": 64
+		},
+		{
+			"base_hp": 118,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 121,
+			"encounter_index": 6,
+			"expected_asset": "res://assets/monsters/greenvale/states/M005_idle.png",
+			"hero_unlocked": false,
+			"hp_scaling": 1.03,
+			"loot_roll_chance": 0.12,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M005",
+			"player_level": 4,
+			"player_xp": 90,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M005_idle.png",
+			"stage_factor": 1.02241666222949,
+			"xp_reward": 70
+		},
+		{
+			"base_hp": 98,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 100,
+			"encounter_index": 7,
+			"expected_asset": "res://assets/monsters/greenvale/states/M006_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.02,
+			"loot_roll_chance": 0.12,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M006",
+			"player_level": 5,
+			"player_xp": 55,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M006_idle.png",
+			"stage_factor": 1.01798213063095,
+			"xp_reward": 52
+		},
+		{
+			"base_hp": 148,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "tough",
+			"effective_hp": 156,
+			"encounter_index": 8,
+			"expected_asset": "res://assets/monsters/greenvale/states/M013_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.05,
+			"loot_roll_chance": 0.18,
+			"loot_source": "greenvale_tough",
+			"monster_id": "M013",
+			"player_level": 5,
+			"player_xp": 107,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M013_idle.png",
+			"stage_factor": 1.05256461054125,
+			"xp_reward": 56
+		},
+		{
+			"base_hp": 158,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "tough",
+			"effective_hp": 168,
+			"encounter_index": 9,
+			"expected_asset": "res://assets/monsters/greenvale/states/M008_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.05,
+			"loot_roll_chance": 0.18,
+			"loot_source": "greenvale_tough",
+			"monster_id": "M008",
+			"player_level": 6,
+			"player_xp": 29,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M008_idle.png",
+			"stage_factor": 1.06029608755716,
+			"xp_reward": 58
+		},
+		{
+			"base_hp": 175,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "tough",
+			"effective_hp": 192,
+			"encounter_index": 10,
+			"expected_asset": "res://assets/monsters/greenvale/states/M011_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.07,
+			"loot_roll_chance": 0.2,
+			"loot_source": "greenvale_tough",
+			"monster_id": "M011",
+			"player_level": 6,
+			"player_xp": 87,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M011_idle.png",
+			"stage_factor": 1.09564055661184,
+			"xp_reward": 60
+		},
+		{
+			"base_hp": 102,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 104,
+			"encounter_index": 11,
+			"expected_asset": "res://assets/monsters/greenvale/states/M004_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.01,
+			"loot_roll_chance": 0.12,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M004",
+			"player_level": 6,
+			"player_xp": 147,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M004_idle.png",
+			"stage_factor": 1.01503743773321,
+			"xp_reward": 64
+		},
+		{
+			"base_hp": 72,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "normal",
+			"effective_hp": 72,
+			"encounter_index": 12,
+			"expected_asset": "res://assets/monsters/greenvale/states/M012_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.0,
+			"loot_roll_chance": 0.0,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M012",
+			"player_level": 7,
+			"player_xp": 39,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M012_idle.png",
+			"stage_factor": 1.0,
+			"xp_reward": 50
+		},
+		{
+			"base_hp": 138,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "tough",
+			"effective_hp": 153,
+			"encounter_index": 13,
+			"expected_asset": "res://assets/monsters/greenvale/states/M003_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.06,
+			"loot_roll_chance": 0.2,
+			"loot_source": "greenvale_tough",
+			"monster_id": "M003",
+			"player_level": 7,
+			"player_xp": 89,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M003_idle.png",
+			"stage_factor": 1.11058181384932,
+			"xp_reward": 62
+		},
+		{
+			"base_hp": 192,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "elite",
+			"effective_hp": 223,
+			"encounter_index": 14,
+			"expected_asset": "res://assets/monsters/greenvale/states/M010_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.08,
+			"loot_roll_chance": 0.75,
+			"loot_source": "greenvale_elite",
+			"monster_id": "M010",
+			"player_level": 7,
+			"player_xp": 151,
+			"runtime_asset": "res://assets/monsters/greenvale/states/M010_idle.png",
+			"stage_factor": 1.16192025675137,
+			"xp_reward": 32
+		},
+		{
+			"base_hp": 438,
+			"catalog_version": "v2.09-encounters-02",
+			"classification": "boss",
+			"effective_hp": 438,
+			"encounter_index": 15,
+			"expected_asset": "res://assets/monsters/greenvale/states/B001_idle.png",
+			"hero_unlocked": true,
+			"hp_scaling": 1.0,
+			"loot_roll_chance": 1.0,
+			"loot_source": "greenvale_boss",
+			"monster_id": "B001",
+			"player_level": 7,
+			"player_xp": 183,
+			"runtime_asset": "res://assets/monsters/greenvale/states/B001_idle.png",
+			"stage_factor": 1.0,
+			"xp_reward": 45
+		}
+	],
+	"hero_unlock_evidence": {
+		"account_level_after": 5,
+		"account_level_before": 4,
+		"account_xp_after": 55,
+		"account_xp_before": 90,
+		"encounter_level": 6,
+		"expected_unlock_level": 5,
+		"granted_xp": 70,
+		"hero_unlocked_after": true,
+		"hero_unlocked_before": false,
+		"monster_id": "M005"
+	},
+	"hp_evidence": {
+		"B001": {
+			"base_hp": 438,
+			"classification": "boss",
+			"effective_hp": 438,
+			"hp_scaling": 1.0,
+			"stage_factor": 1.0,
+			"stage_in_cycle": 15
+		},
+		"M001": {
+			"base_hp": 88,
+			"classification": "normal",
+			"effective_hp": 88,
+			"hp_scaling": 1.0,
+			"stage_factor": 1.0,
+			"stage_in_cycle": 1
+		},
+		"M002": {
+			"base_hp": 96,
+			"classification": "normal",
+			"effective_hp": 97,
+			"hp_scaling": 1.02,
+			"stage_factor": 1.00595846966764,
+			"stage_in_cycle": 3
+		},
+		"M003": {
+			"base_hp": 138,
+			"classification": "tough",
+			"effective_hp": 142,
+			"hp_scaling": 1.06,
+			"stage_factor": 1.02656780377441,
+			"stage_in_cycle": 4
+		},
+		"M005": {
+			"base_hp": 118,
+			"classification": "normal",
+			"effective_hp": 121,
+			"hp_scaling": 1.03,
+			"stage_factor": 1.02241666222949,
+			"stage_in_cycle": 6
+		},
+		"M006": {
+			"base_hp": 98,
+			"classification": "normal",
+			"effective_hp": 100,
+			"hp_scaling": 1.02,
+			"stage_factor": 1.01798213063095,
+			"stage_in_cycle": 7
+		},
+		"M008": {
+			"base_hp": 158,
+			"classification": "tough",
+			"effective_hp": 168,
+			"hp_scaling": 1.05,
+			"stage_factor": 1.06029608755716,
+			"stage_in_cycle": 9
+		},
+		"M010": {
+			"base_hp": 192,
+			"classification": "elite",
+			"effective_hp": 223,
+			"hp_scaling": 1.08,
+			"stage_factor": 1.16192025675137,
+			"stage_in_cycle": 14
+		},
+		"M011": {
+			"base_hp": 175,
+			"classification": "tough",
+			"effective_hp": 192,
+			"hp_scaling": 1.07,
+			"stage_factor": 1.09564055661184,
+			"stage_in_cycle": 10
+		},
+		"M012": {
+			"base_hp": 72,
+			"classification": "normal",
+			"effective_hp": 72,
+			"hp_scaling": 1.0,
+			"stage_factor": 1.0,
+			"stage_in_cycle": 2
+		},
+		"M013": {
+			"base_hp": 148,
+			"classification": "tough",
+			"effective_hp": 156,
+			"hp_scaling": 1.05,
+			"stage_factor": 1.05256461054125,
+			"stage_in_cycle": 8
+		}
+	},
+	"issues": [],
+	"item_timing": {
+		"first_controlled_runtime_drop": {
+			"encounter_index": 9,
+			"item_id": "wpn_gruenhain_blade",
+			"loot_source": "greenvale_tough",
+			"monster_id": "M008",
+			"rarity": "tough"
+		},
+		"first_possible_drop": {
+			"encounter_index": 3,
+			"loot_roll_chance": 0.1,
+			"loot_source": "greenvale_normal",
+			"monster_id": "M002"
+		},
+		"note": "Production RNG may drop later than first possible encounter."
+	},
+	"loot_source_evidence": [
+		{
+			"encounter_level": 1,
+			"granted_items": [],
+			"loot_source_metadata": "greenvale_normal",
+			"monster_id": "M001",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 4,
+			"granted_items": [],
+			"loot_source_metadata": "greenvale_tough",
+			"monster_id": "M003",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 8,
+			"granted_items": [],
+			"loot_source_metadata": "greenvale_tough",
+			"monster_id": "M013",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 9,
+			"granted_items": [
+				{
+					"acquired_at": 1789270576,
+					"acquired_source": "monster_defeat",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270576_1",
+					"item_id": "wpn_gruenhain_blade",
+					"metadata": {
+						"bonus_spin": false,
+						"boss": false,
+						"classification": "tough",
+						"loot_roll_chance": 0.18,
+						"loot_source": "greenvale_tough",
+						"monster_level": 9
+					},
+					"slot": "weapon"
+				}
+			],
+			"loot_source_metadata": "greenvale_tough",
+			"monster_id": "M008",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 10,
+			"granted_items": [],
+			"loot_source_metadata": "greenvale_tough",
+			"monster_id": "M011",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 13,
+			"granted_items": [],
+			"loot_source_metadata": "greenvale_tough",
+			"monster_id": "M003",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 14,
+			"granted_items": [
+				{
+					"acquired_at": 1789270585,
+					"acquired_source": "monster_defeat",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270585_2",
+					"item_id": "acc_guardian_pendant",
+					"metadata": {
+						"bonus_spin": false,
+						"boss": false,
+						"classification": "elite",
+						"loot_roll_chance": 0.75,
+						"loot_source": "greenvale_elite",
+						"monster_level": 14
+					},
+					"slot": "accessory"
+				}
+			],
+			"loot_source_metadata": "greenvale_elite",
+			"monster_id": "M010",
+			"ok": true,
+			"reward_pipeline_source": "monster_defeat"
+		},
+		{
+			"encounter_level": 15,
+			"granted_items": [
+				{
+					"acquired_at": 1789270593,
+					"acquired_source": "boss_defeat",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270593_3",
+					"item_id": "wpn_gruenhain_blade",
+					"metadata": {
+						"bonus_spin": false,
+						"boss": true,
+						"classification": "boss",
+						"loot_roll_chance": 1.0,
+						"loot_source": "greenvale_boss",
+						"monster_level": 15
+					},
+					"slot": "weapon"
+				}
+			],
+			"loot_source_metadata": "greenvale_boss",
+			"monster_id": "B001",
+			"ok": true,
+			"reward_pipeline_source": "boss_defeat"
+		},
+		{
+			"encounter_level": 1,
+			"expected_source": "greenvale_normal",
+			"match": true,
+			"monster_id": "M001",
+			"runtime_source": "greenvale_normal"
+		},
+		{
+			"encounter_level": 4,
+			"expected_source": "greenvale_tough",
+			"match": true,
+			"monster_id": "M003",
+			"runtime_source": "greenvale_tough"
+		},
+		{
+			"encounter_level": 15,
+			"expected_source": "greenvale_boss",
+			"match": true,
+			"monster_id": "B001",
+			"runtime_source": "greenvale_boss"
+		},
+		{
+			"encounter_level": 14,
+			"expected_source": "greenvale_elite",
+			"match": true,
+			"monster_id": "M010",
+			"runtime_source": "greenvale_elite"
+		},
+		{
+			"encounter_level": 8,
+			"expected_source": "greenvale_tough",
+			"match": true,
+			"monster_id": "M013",
+			"runtime_source": "greenvale_tough"
+		},
+		{
+			"encounter_level": 9,
+			"expected_source": "greenvale_tough",
+			"match": true,
+			"monster_id": "M008",
+			"runtime_source": "greenvale_tough"
+		},
+		{
+			"encounter_level": 10,
+			"expected_source": "greenvale_tough",
+			"match": true,
+			"monster_id": "M011",
+			"runtime_source": "greenvale_tough"
+		},
+		{
+			"encounter_level": 13,
+			"expected_source": "greenvale_tough",
+			"match": true,
+			"monster_id": "M003",
+			"runtime_source": "greenvale_tough"
+		}
+	],
+	"milestone": "V2.09-Phase2-ExtendedCycle",
+	"process_exit": {
+		"assertions_passed": 8,
+		"assertions_total": 8,
+		"duration_ms": 83350,
+		"status": "BLOCKED"
+	},
+	"production_asset_paths": {
+		"B001": {
+			"expected": "res://assets/monsters/greenvale/states/B001_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/B001_idle.png"
+		},
+		"M001": {
+			"expected": "res://assets/monsters/greenvale/states/M001_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M001_idle.png"
+		},
+		"M002": {
+			"expected": "res://assets/monsters/greenvale/states/M002_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M002_idle.png"
+		},
+		"M003": {
+			"expected": "res://assets/monsters/greenvale/states/M003_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M003_idle.png"
+		},
+		"M004": {
+			"expected": "res://assets/monsters/greenvale/states/M004_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M004_idle.png"
+		},
+		"M005": {
+			"expected": "res://assets/monsters/greenvale/states/M005_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M005_idle.png"
+		},
+		"M006": {
+			"expected": "res://assets/monsters/greenvale/states/M006_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M006_idle.png"
+		},
+		"M008": {
+			"expected": "res://assets/monsters/greenvale/states/M008_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M008_idle.png"
+		},
+		"M010": {
+			"expected": "res://assets/monsters/greenvale/states/M010_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M010_idle.png"
+		},
+		"M011": {
+			"expected": "res://assets/monsters/greenvale/states/M011_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M011_idle.png"
+		},
+		"M012": {
+			"expected": "res://assets/monsters/greenvale/states/M012_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M012_idle.png"
+		},
+		"M013": {
+			"expected": "res://assets/monsters/greenvale/states/M013_idle.png",
+			"match": true,
+			"runtime": "res://assets/monsters/greenvale/states/M013_idle.png"
+		}
+	},
+	"qa_performance": {
+		"elapsed_ms": 83353,
+		"max_runtime_ms": 900000,
+		"slowest_step": {
+			"duration_ms": 43832,
+			"result": "PASS",
+			"start_ms": 39515,
+			"step": "viewport_matrix"
+		},
+		"start_ms": 3715
+	},
+	"regression": {
+		"afk": true,
+		"boss": true,
+		"chest": true,
+		"crit": true,
+		"daily": true,
+		"equipment": true,
+		"hero_autodps_flag": true,
+		"hero_unlock": true,
+		"inventory": true,
+		"quest": true,
+		"region_progression": true,
+		"reward_pipeline": true,
+		"save_version": 41,
+		"spin": true,
+		"stat_modifier_service": true,
+		"tap": true,
+		"village": true
+	},
+	"screenshots": [
+		{
+			"analysis": {
+				"bright_ratio": 0.0141666666666667,
+				"dark_ratio": 0.0841975308641975,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/01_m001_waldwinzling.png",
+			"screenshot": "01_m001_waldwinzling"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0196913580246914,
+				"dark_ratio": 0.0815740740740741,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/02_m012_blatthoernchen.png",
+			"screenshot": "02_m012_blatthoernchen"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0136728395061728,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/03_m002_blatthorn.png",
+			"screenshot": "03_m002_blatthorn"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0144444444444444,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/04_m003_waldkeiler_tough.png",
+			"screenshot": "04_m003_waldkeiler_tough"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0227777777777778,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/05_m004_pilzling.png",
+			"screenshot": "05_m004_pilzling"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0119753086419753,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/06_m005_waldkaefer.png",
+			"screenshot": "06_m005_waldkaefer"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0200925925925926,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "hero",
+			"file": "res://docs/v209_visual_runtime_qa/13_hero_unlock.png",
+			"screenshot": "13_hero_unlock"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0140432098765432,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/09_m006_blaetterkauz.png",
+			"screenshot": "09_m006_blaetterkauz"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0178703703703704,
+				"dark_ratio": 0.0816666666666667,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/10_m013_waldwolf.png",
+			"screenshot": "10_m013_waldwolf"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0164506172839506,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/11_m008_moosschildkroete.png",
+			"screenshot": "11_m008_moosschildkroete"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0113271604938272,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/12_m011_kristallgolem.png",
+			"screenshot": "12_m011_kristallgolem"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.024320987654321,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/05_m004_pilzling.png",
+			"screenshot": "05_m004_pilzling"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.012962962962963,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/02_m012_blatthoernchen.png",
+			"screenshot": "02_m012_blatthoernchen"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0126543209876543,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/04_m003_waldkeiler_tough.png",
+			"screenshot": "04_m003_waldkeiler_tough"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0105555555555556,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/07_m010_waldgeist_elite.png",
+			"screenshot": "07_m010_waldgeist_elite"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0210802469135802,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "elite",
+			"file": "res://docs/v209_visual_runtime_qa/10_elite_pre_boss.png",
+			"screenshot": "10_elite_pre_boss"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0107098765432099,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "reward",
+			"file": "res://docs/v209_visual_runtime_qa/10_elite_reward.png",
+			"screenshot": "10_elite_reward"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0107407407407407,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "core_monster",
+			"file": "res://docs/v209_visual_runtime_qa/08_b001_mooskoenig_boss.png",
+			"screenshot": "08_b001_mooskoenig_boss"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0107098765432099,
+				"dark_ratio": 0.0815123456790123,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "boss",
+			"file": "res://docs/v209_visual_runtime_qa/11_boss_combat.png",
+			"screenshot": "11_boss_combat"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0273765432098765,
+				"dark_ratio": 0.0825925925925926,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "boss",
+			"file": "res://docs/v209_visual_runtime_qa/14_boss_victory.png",
+			"screenshot": "14_boss_victory"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0304012345679012,
+				"dark_ratio": 0.0824074074074074,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "reward",
+			"file": "res://docs/v209_visual_runtime_qa/15_boss_loot.png",
+			"screenshot": "15_boss_loot"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0135493827160494,
+				"dark_ratio": 0.0826851851851852,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_small_m012_1080x1920.png",
+			"screenshot": "viewport_small_m012_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0159259259259259,
+				"dark_ratio": 0.083179012345679,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_flying_m006_1080x1920.png",
+			"screenshot": "viewport_flying_m006_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0124382716049383,
+				"dark_ratio": 0.082962962962963,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_wide_m008_1080x1920.png",
+			"screenshot": "viewport_wide_m008_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0136728395061728,
+				"dark_ratio": 0.0838888888888889,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_tall_m011_1080x1920.png",
+			"screenshot": "viewport_tall_m011_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0108333333333333,
+				"dark_ratio": 0.0838888888888889,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_elite_m010_1080x1920.png",
+			"screenshot": "viewport_elite_m010_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0140740740740741,
+				"dark_ratio": 0.0823148148148148,
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_boss_b001_1080x1920.png",
+			"screenshot": "viewport_boss_b001_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0138779851596728,
+				"dark_ratio": 0.0450021526071872,
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_small_m012_1080x2340.png",
+			"screenshot": "viewport_small_m012_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0162585154607846,
+				"dark_ratio": 0.0455086484159344,
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_flying_m006_1080x2340.png",
+			"screenshot": "viewport_flying_m006_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0135994124648619,
+				"dark_ratio": 0.0452300757211234,
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_wide_m008_1080x2340.png",
+			"screenshot": "viewport_wide_m008_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0161318915085978,
+				"dark_ratio": 0.0468002127282397,
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_tall_m011_1080x2340.png",
+			"screenshot": "viewport_tall_m011_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0117253779724973,
+				"dark_ratio": 0.0461417681768683,
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_elite_m010_1080x2340.png",
+			"screenshot": "viewport_elite_m010_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0138020107883607,
+				"dark_ratio": 0.0448755286550004,
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_boss_b001_1080x2340.png",
+			"screenshot": "viewport_boss_b001_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0136543209876543,
+				"dark_ratio": 0.0417037037037037,
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_small_m012_1080x2400.png",
+			"screenshot": "viewport_small_m012_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0158271604938272,
+				"dark_ratio": 0.0421481481481482,
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_flying_m006_1080x2400.png",
+			"screenshot": "viewport_flying_m006_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0135308641975309,
+				"dark_ratio": 0.0417037037037037,
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_wide_m008_1080x2400.png",
+			"screenshot": "viewport_wide_m008_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0158765432098765,
+				"dark_ratio": 0.0434320987654321,
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_tall_m011_1080x2400.png",
+			"screenshot": "viewport_tall_m011_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0118024691358025,
+				"dark_ratio": 0.0427407407407407,
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_elite_m010_1080x2400.png",
+			"screenshot": "viewport_elite_m010_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0136543209876543,
+				"dark_ratio": 0.0417283950617284,
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_boss_b001_1080x2400.png",
+			"screenshot": "viewport_boss_b001_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.012625,
+				"dark_ratio": 0.0426111111111111,
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_small_m012_1440x3200.png",
+			"screenshot": "viewport_small_m012_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0145833333333333,
+				"dark_ratio": 0.0429166666666667,
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_flying_m006_1440x3200.png",
+			"screenshot": "viewport_flying_m006_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0117361111111111,
+				"dark_ratio": 0.0428611111111111,
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_wide_m008_1440x3200.png",
+			"screenshot": "viewport_wide_m008_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0144305555555556,
+				"dark_ratio": 0.0441111111111111,
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_tall_m011_1440x3200.png",
+			"screenshot": "viewport_tall_m011_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.0105555555555556,
+				"dark_ratio": 0.0437222222222222,
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_elite_m010_1440x3200.png",
+			"screenshot": "viewport_elite_m010_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.012875,
+				"dark_ratio": 0.0424583333333333,
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"file": "res://docs/v209_visual_runtime_qa/viewport_boss_b001_1440x3200.png",
+			"screenshot": "viewport_boss_b001_1440x3200"
+		}
+	],
+	"state_evidence": {
+		"hero_unlock": {
+			"account_level_after": 5,
+			"account_level_before": 4,
+			"account_xp_after": 55,
+			"account_xp_before": 90,
+			"encounter_level": 6,
+			"expected_unlock_level": 5,
+			"granted_xp": 70,
+			"hero_unlocked_after": true,
+			"hero_unlocked_before": false,
+			"monster_id": "M005"
+		},
+		"save_reload": {
+			"before": {
+				"hero_knight": true,
+				"inventory_count": 3,
+				"monster_level": 16,
+				"player_level": 8,
+				"player_xp": 8,
+				"region": {
+					"config_version": "v2.08-region-catalog-01",
+					"current_region_id": "greenvale",
+					"region_progress": {
+						"frostmark": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0,
+							"encounters_cleared": 0,
+							"highest_stage": 0
+						},
+						"greenvale": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 1,
+							"encounters_cleared": 15,
+							"highest_stage": 15
+						}
+					}
+				}
+			}
+		}
+	},
+	"status": "PASS",
+	"step_timings": [
+		{
+			"duration_ms": 4524,
+			"result": "PASS",
+			"start_ms": 0,
+			"step": "boot"
+		},
+		{
+			"duration_ms": 34818,
+			"result": "PASS",
+			"start_ms": 4525,
+			"step": "natural_curated_flow"
+		},
+		{
+			"duration_ms": 25,
+			"result": "PASS",
+			"start_ms": 39345,
+			"step": "hero_unlock_runtime"
+		},
+		{
+			"duration_ms": 0,
+			"result": "PASS",
+			"start_ms": 39372,
+			"step": "loot_pipeline_verify"
+		},
+		{
+			"duration_ms": 1,
+			"result": "PASS",
+			"start_ms": 39374,
+			"step": "classification_hp_verify"
+		},
+		{
+			"duration_ms": 2,
+			"result": "PASS",
+			"start_ms": 39377,
+			"step": "production_assets"
+		},
+		{
+			"duration_ms": 0,
+			"result": "PASS",
+			"start_ms": 39381,
+			"step": "regression_smoke"
+		},
+		{
+			"duration_ms": 129,
+			"result": "PASS",
+			"start_ms": 39383,
+			"step": "save_reload"
+		},
+		{
+			"duration_ms": 43832,
+			"result": "PASS",
+			"start_ms": 39515,
+			"step": "viewport_matrix"
+		},
+		{
+			"duration_ms": 0,
+			"result": "PASS",
+			"start_ms": 83350,
+			"step": "visual_inspection"
+		}
+	],
+	"viewport_matrix": [
+		{
+			"monster_id": "M012",
+			"profile": "1080x1920",
+			"scenario": "small_m012",
+			"screenshot": "viewport_small_m012_1080x1920"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1080x1920",
+			"scenario": "flying_m006",
+			"screenshot": "viewport_flying_m006_1080x1920"
+		},
+		{
+			"monster_id": "M008",
+			"profile": "1080x1920",
+			"scenario": "wide_m008",
+			"screenshot": "viewport_wide_m008_1080x1920"
+		},
+		{
+			"monster_id": "M011",
+			"profile": "1080x1920",
+			"scenario": "tall_m011",
+			"screenshot": "viewport_tall_m011_1080x1920"
+		},
+		{
+			"monster_id": "M010",
+			"profile": "1080x1920",
+			"scenario": "elite_m010",
+			"screenshot": "viewport_elite_m010_1080x1920"
+		},
+		{
+			"monster_id": "B001",
+			"profile": "1080x1920",
+			"scenario": "boss_b001",
+			"screenshot": "viewport_boss_b001_1080x1920"
+		},
+		{
+			"monster_id": "M012",
+			"profile": "1080x2340",
+			"scenario": "small_m012",
+			"screenshot": "viewport_small_m012_1080x2340"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1080x2340",
+			"scenario": "flying_m006",
+			"screenshot": "viewport_flying_m006_1080x2340"
+		},
+		{
+			"monster_id": "M008",
+			"profile": "1080x2340",
+			"scenario": "wide_m008",
+			"screenshot": "viewport_wide_m008_1080x2340"
+		},
+		{
+			"monster_id": "M011",
+			"profile": "1080x2340",
+			"scenario": "tall_m011",
+			"screenshot": "viewport_tall_m011_1080x2340"
+		},
+		{
+			"monster_id": "M010",
+			"profile": "1080x2340",
+			"scenario": "elite_m010",
+			"screenshot": "viewport_elite_m010_1080x2340"
+		},
+		{
+			"monster_id": "B001",
+			"profile": "1080x2340",
+			"scenario": "boss_b001",
+			"screenshot": "viewport_boss_b001_1080x2340"
+		},
+		{
+			"monster_id": "M012",
+			"profile": "1080x2400",
+			"scenario": "small_m012",
+			"screenshot": "viewport_small_m012_1080x2400"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1080x2400",
+			"scenario": "flying_m006",
+			"screenshot": "viewport_flying_m006_1080x2400"
+		},
+		{
+			"monster_id": "M008",
+			"profile": "1080x2400",
+			"scenario": "wide_m008",
+			"screenshot": "viewport_wide_m008_1080x2400"
+		},
+		{
+			"monster_id": "M011",
+			"profile": "1080x2400",
+			"scenario": "tall_m011",
+			"screenshot": "viewport_tall_m011_1080x2400"
+		},
+		{
+			"monster_id": "M010",
+			"profile": "1080x2400",
+			"scenario": "elite_m010",
+			"screenshot": "viewport_elite_m010_1080x2400"
+		},
+		{
+			"monster_id": "B001",
+			"profile": "1080x2400",
+			"scenario": "boss_b001",
+			"screenshot": "viewport_boss_b001_1080x2400"
+		},
+		{
+			"monster_id": "M012",
+			"profile": "1440x3200",
+			"scenario": "small_m012",
+			"screenshot": "viewport_small_m012_1440x3200"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1440x3200",
+			"scenario": "flying_m006",
+			"screenshot": "viewport_flying_m006_1440x3200"
+		},
+		{
+			"monster_id": "M008",
+			"profile": "1440x3200",
+			"scenario": "wide_m008",
+			"screenshot": "viewport_wide_m008_1440x3200"
+		},
+		{
+			"monster_id": "M011",
+			"profile": "1440x3200",
+			"scenario": "tall_m011",
+			"screenshot": "viewport_tall_m011_1440x3200"
+		},
+		{
+			"monster_id": "M010",
+			"profile": "1440x3200",
+			"scenario": "elite_m010",
+			"screenshot": "viewport_elite_m010_1440x3200"
+		},
+		{
+			"monster_id": "B001",
+			"profile": "1440x3200",
+			"scenario": "boss_b001",
+			"screenshot": "viewport_boss_b001_1440x3200"
+		}
+	],
+	"visual_issues": []
+}

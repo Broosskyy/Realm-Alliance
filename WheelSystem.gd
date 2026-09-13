@@ -146,15 +146,16 @@ func spin() -> Dictionary:
 	result["result_contract_version"] = RESULT_CONTRACT_VERSION
 	result["authority_request_id"] = str(authority_intent.get("request_id",""))
 
-	var economy_result := EconomyAuthorityService.commit_spin_local(authority_intent, result)
-	if not bool(economy_result.get("ok",false)):
+	var reward_txn := RewardPipeline.commit_spin_reward(authority_intent, result)
+	if not bool(reward_txn.get("ok", false)):
 		spin_transaction_active = false
 		return {
-			"ok":false,
-			"message":str(economy_result.get("message","Spin konnte nicht bestätigt werden")),
-			"error_code":str(economy_result.get("error_code","AUTHORITY_REJECTED"))
+			"ok": false,
+			"message": str(reward_txn.get("message", "Spin konnte nicht bestätigt werden")),
+			"error_code": str(reward_txn.get("error_code", "AUTHORITY_REJECTED"))
 		}
-	result["authority_revision"] = int(economy_result.get("revision",0))
+	result["reward_transaction"] = reward_txn.duplicate(true)
+	result["authority_revision"] = int(reward_txn.get("authority_revision", 0))
 	result["authority"] = "local_development"
 
 	SpinPresentationState.set_pending_result(result, CONFIG_VERSION)

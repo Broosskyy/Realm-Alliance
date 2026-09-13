@@ -1,33 +1,42 @@
 {
-  "version": "v1.51-heroes-v2-04",
+  "version": "v2.06-heroes-01",
   "heroes": [
     {
       "id": "knight",
       "name": "Ritter",
-      "role": "Nahkampf",
+      "role": "damage",
+      "rarity": "common",
       "unlock_account_level": 5,
       "base_power": 6,
       "power_per_level": 4,
+      "power_scaling": 4,
+      "attack_interval": 1.0,
       "cost_modifier": 1.0,
       "description": "Stark und zuverlässig."
     },
     {
       "id": "archer",
       "name": "Bogenschützin",
-      "role": "Fernkampf",
+      "role": "crit",
+      "rarity": "rare",
       "unlock_account_level": 8,
       "base_power": 9,
       "power_per_level": 5,
+      "power_scaling": 5,
+      "attack_interval": 0.9,
       "cost_modifier": 1.15,
       "description": "Schnelle, klare Treffer."
     },
     {
       "id": "mage",
       "name": "Magier",
-      "role": "Magie",
+      "role": "boss",
+      "rarity": "epic",
       "unlock_account_level": 12,
       "base_power": 14,
       "power_per_level": 7,
+      "power_scaling": 7,
+      "attack_interval": 1.2,
       "cost_modifier": 1.35,
       "description": "Hohe Kraft für spätere Gegner."
     }
@@ -93,8 +102,9 @@
     }
   },
   "hero_contract": {
-    "selected_hero": "active specialization focus",
-    "auto_dps": "all unlocked heroes contribute",
+    "selected_hero": "mastery and specialization focus",
+    "deployed_hero": "active auto-attack slot",
+    "auto_dps": "deployed hero attacks on interval",
     "mastery_source": "authoritative monster defeat transaction",
     "no_new_currency": true
   }

@@ -1218,6 +1218,20 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 27
 text = "TAP-SCHADEN 10\nVerbessern · 250 Gold"
 
+[node name="CritUpgradeButtonP0" type="Button" parent="Safe/VBox/Gameplay/View_TapHero"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_left = 0.13
+anchor_top = 1.0
+anchor_right = 0.87
+anchor_bottom = 1.0
+offset_top = -292.0
+offset_bottom = -186.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "KRIT 8% · x2.0\nMeisterschaft · 320 Gold"
+
 [node name="View_CoinMaster" type="Control" parent="Safe/VBox/Gameplay"]
 unique_name_in_owner = true
 visible = false

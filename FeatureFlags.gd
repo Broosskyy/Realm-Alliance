@@ -1,7 +1,10 @@
 extends Node
 
+# P0 Core closure: hidden P1 systems must not affect P0 balance.
+# V2.03: P1 surfaces stay reachable via MODI hub, not on the core boot path.
+const ENABLE_HERO_AUTODPS := true
+
 # Master Concept V1.8 / Source V1.23 visibility contract.
-# Systems may exist technically without appearing in the first core build.
 const SHOW_DAILY := true
 const SHOW_QUESTS := true
 const SHOW_HEROES := true
@@ -12,10 +15,6 @@ const SHOW_GEMS := false
 const SHOW_WHEEL := true
 const SHOW_VILLAGE := true
 const SHOW_SETTINGS := true
-
-
-# P0 Core closure: hidden P1 systems must not affect P0 balance.
-const ENABLE_HERO_AUTODPS := true
 
 # V1.23 reserved product surfaces - intentionally not runtime-visible yet.
 const SHOW_DICE := true

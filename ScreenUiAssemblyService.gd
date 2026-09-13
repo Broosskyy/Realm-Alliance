@@ -21,7 +21,8 @@ const OVERLAY_SPECS := {
 }
 
 const FEATURE_HUB_ICONS := {
-	"HubHeroesP0": "ui.nav.inventory",
+	"HubHeroesP0": "ui.nav.combat",
+	"HubInventoryP207": "ui.nav.inventory",
 	"HubJourneyP0": "ui.nav.quest",
 	"HubPuzzleP0": "ui.quest.icon.main_quest",
 	"HubDefenseP0": "ui.icon.defense",
@@ -38,6 +39,7 @@ static func apply(root: Control) -> Dictionary:
 		return {"applied": 0}
 	var applied := 0
 	applied += _style_overlays(root)
+	applied += _style_overlay_close_buttons(root)
 	applied += _style_feature_hub(root)
 	applied += _style_quest(root)
 	applied += _style_core_secondary_panels(root)
@@ -117,6 +119,19 @@ static func _style_scoped_labels(scope: Node) -> void:
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		if label.get_theme_font_size("font_size") < 18:
 			label.add_theme_font_size_override("font_size", 18)
+
+static func _style_overlay_close_buttons(root: Control) -> int:
+	var count := 0
+	for node_name in ["SettingsCloseP0", "FeatureHubCloseP0", "AccountCloseP0", "SocialCloseP0", "SupportCloseP0", "LiveOpsCloseP0", "ShopCloseP0", "ProgressionCloseP0", "BuildingUpgradeCloseP0"]:
+		var close := root.find_child(node_name, true, false) as Button
+		if close == null:
+			continue
+		close.text = "SCHLIESSEN"
+		close.custom_minimum_size = Vector2(maxi(close.custom_minimum_size.x, 280.0), maxi(close.custom_minimum_size.y, 88.0))
+		close.add_theme_font_size_override("font_size", maxi(close.get_theme_font_size("font_size"), 22))
+		if ProductionUiBinder.apply_backdrop(close, "ui.button.secondary", false, 0.18, true):
+			count += 1
+	return count
 
 static func _style_feature_hub(root: Control) -> int:
 	var count := 0
@@ -218,12 +233,12 @@ static func set_primary_nav_state(root: Control, active_view: Control) -> void:
 		"Btn_Rad": "View_CoinMaster",
 		"Btn_Dorf": "View_ClashDorf"
 	}
-	var active_name := active_view.name if active_view != null else ""
+	var active_name: String = active_view.name if active_view != null else ""
 	for button_name in mapping.keys():
 		var button := root.find_child(button_name, true, false) as Button
 		if button == null:
 			continue
-		var active := active_name == str(mapping[button_name])
+		var active: bool = active_name == str(mapping[button_name])
 		ProductionUiBinder.apply_backdrop(button, "ui.button.primary" if active else "ui.button.secondary", false, 0.18, true)
 	var more := root.find_child("MoreFeaturesButtonP0", true, false) as Button
 	if more:
@@ -1242,8 +1257,25 @@ static func refresh_runtime_state(root: Control, products: Dictionary, pending_a
 	refresh_progression_state(root, tracks)
 
 static func _active_core_view(root: Control) -> Control:
-	for name in ["View_TapHero", "View_CoinMaster", "View_ClashDorf"]:
+	for name in ["View_TapHero", "View_CoinMaster", "View_ClashDorf", "View_Inventory"]:
 		var view := root.find_child(name, true, false) as Control
 		if view and view.visible:
 			return view
 	return null
+
+static func ensure_inventory_hub_button(root: Control, callback: Callable) -> void:
+	var grid := root.find_child("FeatureHubGrid", true, false) as GridContainer
+	if grid == null:
+		return
+	var existing := grid.find_child("HubInventoryP207", false, false) as Button
+	if existing != null:
+		return
+	var button := Button.new()
+	button.name = "HubInventoryP207"
+	button.text = "INVENTAR"
+	button.custom_minimum_size = Vector2(220, 92)
+	ProductionUiBinder.apply_backdrop(button, "ui.button.secondary", false, 0.18, true)
+	_assign_button_icon(button, FEATURE_HUB_ICONS.get("HubInventoryP207", "ui.nav.inventory"), 48)
+	if not callback.is_null():
+		button.pressed.connect(callback)
+	grid.add_child(button)

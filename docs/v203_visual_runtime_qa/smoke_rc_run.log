@@ -1,0 +1,84 @@
+﻿Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 610.88 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 5060
+
+Godot_v4.7.2-stable_win64_console.exe : Unicode parsing error, some characters were replaced with ´┐¢ (U+FFFD): 
+Unexpected NUL character
+In C:\Users\manue\AppData\Local\Temp\ps-script-0f209944-fac4-4e8d-bd9b-2b799237b0c6.ps1:103 Zeichen:159
++ ... StartNew(); & "tools\godot\Godot_v4.7.2-stable_win64_console.exe" --p ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Unicode parsing...d NUL character:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Unicode parsing error, some characters were replaced with ´┐¢ (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with ´┐¢ (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with ´┐¢ (U+FFFD): Unexpected NUL character
+[VisualRuntimeQa] start smoke acceptance
+[VisualRuntimeQa] tap determinism x3
+[CORE_ANALYTICS] {"event":"test_profile_applied","payload":{"profile":"fresh"},"time_unix":1789119966.853}
+[CORE_ANALYTICS] {"event":"game_start","payload":{},"time_unix":1789119967.957}
+[CORE_ANALYTICS] {"event":"core_session_start","payload":{"gold":300,"monster_level":1,"save_recovered":false,"seconds_away":1,"spins":10},"time_unix":1789119968.026}
+[CORE_ANALYTICS] {"event":"core_contract_pass","payload":{},"time_unix":1789119968.026}
+ERROR: [P0_BOOT] Main scene setting drift: res://BootFlow.tscn
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] complete_scene_boot (res://P0BootDiagnostics.gd:79)
+       [1] _ready (res://MainGame.gd:544)
+[CORE_ANALYTICS] {"event":"p0_boot_fail","payload":{"errors":["Main scene setting drift: res://BootFlow.tscn"]},"time_unix":1789119968.033}
+[CORE_ANALYTICS] {"event":"first_tap","payload":{"encounter_id":"M001"},"time_unix":1789119970.382}
+[CORE_ANALYTICS] {"event":"test_profile_applied","payload":{"profile":"fresh"},"time_unix":1789119970.413}
+[CORE_ANALYTICS] {"event":"game_start","payload":{},"time_unix":1789119970.507}
+[CORE_ANALYTICS] {"event":"core_session_start","payload":{"gold":300,"monster_level":1,"save_recovered":false,"seconds_away":0,"spins":10},"time_unix":1789119970.561}
+[CORE_ANALYTICS] {"event":"core_contract_pass","payload":{},"time_unix":1789119970.561}
+ERROR: [P0_BOOT] Main scene setting drift: res://BootFlow.tscn
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] complete_scene_boot (res://P0BootDiagnostics.gd:79)
+       [1] _ready (res://MainGame.gd:544)
+[CORE_ANALYTICS] {"event":"p0_boot_fail","payload":{"errors":["Main scene setting drift: res://BootFlow.tscn"]},"time_unix":1789119970.568}
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+[CORE_ANALYTICS] {"event":"test_profile_applied","payload":{"profile":"fresh"},"time_unix":1789119972.59}
+[CORE_ANALYTICS] {"event":"game_start","payload":{},"time_unix":1789119972.696}
+[CORE_ANALYTICS] {"event":"core_session_start","payload":{"gold":300,"monster_level":1,"save_recovered":false,"seconds_away":0,"spins":10},"time_unix":1789119972.757}
+[CORE_ANALYTICS] {"event":"core_contract_pass","payload":{},"time_unix":1789119972.757}
+ERROR: [P0_BOOT] Main scene setting drift: res://BootFlow.tscn
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] complete_scene_boot (res://P0BootDiagnostics.gd:79)
+       [1] _ready (res://MainGame.gd:544)
+[CORE_ANALYTICS] {"event":"p0_boot_fail","payload":{"errors":["Main scene setting drift: res://BootFlow.tscn"]},"time_unix":1789119972.764}
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+[CORE_ANALYTICS] {"event":"test_profile_applied","payload":{"profile":"fresh"},"time_unix":1789119975.642}
+[CORE_ANALYTICS] {"event":"game_start","payload":{},"time_unix":1789119975.873}
+[CORE_ANALYTICS] {"event":"core_session_start","payload":{"gold":300,"monster_level":1,"save_recovered":false,"seconds_away":0,"spins":10},"time_unix":1789119975.926}
+[CORE_ANALYTICS] {"event":"core_contract_pass","payload":{},"time_unix":1789119975.926}
+ERROR: [P0_BOOT] Main scene setting drift: res://BootFlow.tscn
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] complete_scene_boot (res://P0BootDiagnostics.gd:79)
+       [1] _ready (res://MainGame.gd:544)
+[CORE_ANALYTICS] {"event":"p0_boot_fail","payload":{"errors":["Main scene setting drift: res://BootFlow.tscn"]},"time_unix":1789119975.933}
+ERROR: Lambda capture at index 0 was freed. Passed "null" instead.
+   at: call (modules/gdscript/gdscript_lambda_callable.cpp:110)
+[VisualRuntimeQa] main loaded=true
+[CORE_ANALYTICS] {"event":"wheel_open","payload":{},"time_unix":1789119980.3}
+[VisualRuntimeQa] regression
+[CORE_ANALYTICS] {"event":"test_profile_applied","payload":{"profile":"fresh"},"time_unix":1789119981.488}
+[CORE_ANALYTICS] {"event":"game_start","payload":{},"time_unix":1789119981.586}
+[CORE_ANALYTICS] {"event":"core_session_start","payload":{"gold":300,"monster_level":1,"save_recovered":false,"seconds_away":0,"spins":10},"time_unix":1789119981.643}
+[CORE_ANALYTICS] {"event":"core_contract_pass","payload":{},"time_unix":1789119981.643}
+ERROR: [P0_BOOT] Main scene setting drift: res://BootFlow.tscn
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] complete_scene_boot (res://P0BootDiagnostics.gd:79)
+       [1] _ready (res://MainGame.gd:544)
+[CORE_ANALYTICS] {"event":"p0_boot_fail","payload":{"errors":["Main scene setting drift: res://BootFlow.tscn"]},"time_unix":1789119981.651}
+[CORE_ANALYTICS] {"event":"wheel_open","payload":{},"time_unix":1789119983.568}
+[CORE_ANALYTICS] {"event":"spin_request","payload":{"config_version":"v2.0-3reel-p0-06","presentation":"three_reel_machine","spins_after_cost":11},"time_unix":1789119983.577}
+[CORE_ANALYTICS] {"event":"spin_result","payload":{"authority_request_id":"realm_spin_18752258_3522846501","authority_revision":1,"config_version":"v2.0-3reel-p0-06","payline_match":true,"reel_stop_ids":["reel_1_stop_5_bonus_spins","reel_2_stop_5_bonus_spins","reel_3_stop_5_bonus_spins"],"reel_stops":[5,5,5],"result_id":"spin_1789119983_1_1789125369112316","reward_id":"bonus_spins","reward_type":"spins","reward_value":2,"segment_id":"bonus_spins","visual_seed":1789125372916031},"time_unix":1789119983.579}
+{"elapsed_sec":16.877,"status":"PASS","tap":{"pass":true,"pass_count":3,"required":3,"runs":[{"hp_after":90,"hp_before":100,"monster_max_hp":100,"pass":true,"reason":"","run":1},{"hp_after":90,"hp_before":100,"monster_max_hp":100,"pass":true,"reason":"","run":2},{"hp_after":89,"hp_before":100,"monster_max_hp":100,"pass":true,"reason":"","run":3}]}}
+WARNING: 261 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

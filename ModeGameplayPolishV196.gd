@@ -81,8 +81,8 @@ static func _polish_lane(root: Control, compact: bool) -> void:
 static func _polish_mode_hub(root: Control, compact: bool, vp: Vector2) -> void:
 	var overlay := root.find_child("FeatureHubOverlayP0", true, false) as PanelContainer
 	if overlay:
-		var half_w := min(440.0, max(160.0, vp.x * 0.46))
-		var half_h := min(610.0, max(280.0, vp.y * 0.45))
+		var half_w: float = minf(440.0, maxf(160.0, vp.x * 0.46))
+		var half_h: float = minf(610.0, maxf(280.0, vp.y * 0.45))
 		overlay.offset_left = -half_w
 		overlay.offset_right = half_w
 		overlay.offset_top = -half_h
@@ -161,8 +161,8 @@ static func lane_layout(root: Control, state: Dictionary) -> void:
 	var left := root.find_child("LaneLeftUnit", true, false) as TextureRect
 	var right := root.find_child("LaneRightUnit", true, false) as TextureRect
 	var push: Array = state.get("lane_push", [0.0,0.0])
-	var p0 := clamp(float(push[0]), 0.0, 1.0) if push.size() > 0 else 0.0
-	var p1 := clamp(float(push[1]), 0.0, 1.0) if push.size() > 1 else 0.0
+	var p0: float = clamp(float(push[0]), 0.0, 1.0) if push.size() > 0 else 0.0
+	var p1: float = clamp(float(push[1]), 0.0, 1.0) if push.size() > 1 else 0.0
 	var start_y := size.y * 0.77
 	var end_y := size.y * 0.27
 	if left:

@@ -31,6 +31,7 @@ builds/android/*.aab
 # QA capture output (docs at repo root are kept)
 artifacts/**/*.png
 artifacts/**/*.png.import
+docs/**/smoke_latest.log
 
 # OS / IDE
 .vscode/

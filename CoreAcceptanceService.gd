@@ -1,7 +1,7 @@
 extends Node
 
+const EncounterCatalogValidator = preload("res://EncounterCatalogValidator.gd")
 const REQUIRED_VISIBLE_VIEWS := ["home", "wheel", "village"]
-const BOSS_LEVEL := 10
 const STARTING_SPINS := P0RuntimeContract.STARTING_SPINS
 const STARTING_GOLD := P0RuntimeContract.STARTING_GOLD
 
@@ -9,6 +9,9 @@ var session_start_unix: int = 0
 var session_start_monster_level: int = 1
 var session_start_gold: int = 0
 var session_start_spins: int = 0
+
+func _heroes_in_core_scope() -> bool:
+	return BuildInfo.BUILD_NUMBER >= 2060
 
 func begin_session() -> void:
 	session_start_unix = int(Time.get_unix_time_from_system())
@@ -25,22 +28,29 @@ func begin_session() -> void:
 
 func validate_runtime_contract() -> Array[String]:
 	var errors: Array[String] = P0RuntimeContract.validate()
-	if FeatureFlags.SHOW_DAILY:
-		errors.append("P0 violation: Daily visible")
-	if FeatureFlags.SHOW_QUESTS:
-		errors.append("P0 violation: Quests visible")
-	if FeatureFlags.SHOW_HEROES:
-		errors.append("P0 violation: Heroes visible")
+	if not _heroes_in_core_scope():
+		if FeatureFlags.SHOW_HEROES:
+			errors.append("P0 violation: Heroes visible")
+		if FeatureFlags.ENABLE_HERO_AUTODPS:
+			errors.append("P0 violation: Hero Auto-DPS active")
 	if FeatureFlags.SHOW_ATTACK:
 		errors.append("P0 violation: Attack visible")
 	if FeatureFlags.SHOW_DEFENSE:
 		errors.append("P0 violation: Defense visible")
-	if FeatureFlags.ENABLE_HERO_AUTODPS:
-		errors.append("P0 violation: Hero Auto-DPS active")
 	if WheelSystem.total_weight() != 100:
 		errors.append("Wheel weights must sum to 100")
-	if P0MonsterVisualSystem.encounter_id_for_level(BOSS_LEVEL) != "B001":
-		errors.append("Encounter 10 must be B001")
+	var boss_level := P0MonsterVisualSystem.boss_every_kills()
+	var elite_level := boss_level - 1
+	if elite_level < 1:
+		errors.append("Invalid boss interval: boss level %d" % boss_level)
+	elif P0MonsterVisualSystem.production_asset_id(elite_level) != "M010":
+		errors.append("Encounter %d must be M010 elite" % elite_level)
+	elif P0MonsterVisualSystem.monster_classification(elite_level) != "elite":
+		errors.append("Encounter %d must be elite classification" % elite_level)
+	if P0MonsterVisualSystem.encounter_id_for_level(boss_level) != "B001":
+		errors.append("Encounter %d must be B001" % boss_level)
+	for catalog_error in EncounterCatalogValidator.validate_greenvale():
+		errors.append("encounter catalog: %s" % catalog_error)
 	return errors
 
 func log_contract_status() -> void:

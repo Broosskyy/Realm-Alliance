@@ -71,6 +71,7 @@ static func _apply_top_hud(root: Control, profile: String, compact: bool) -> voi
 	var quick := root.find_child("QuickActions", true, false) as Control
 	if quick:
 		quick.visible = false
+		quick.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for name in ["DailyButton", "JourneyButton", "QuestButton", "HeroesGameButton", "LaneBattleButton", "DefenseGameButton", "PuzzleButton", "MetaButton"]:
 		var shortcut := root.find_child(name, true, false) as Control
 		if shortcut:
@@ -149,7 +150,12 @@ static func _apply_home_tap(root: Control, profile: String, compact: bool) -> vo
 	if progress_art:
 		progress_art.visible = false
 	if upgrade:
-		upgrade.visible = false
+		upgrade.visible = true
+		upgrade.custom_minimum_size.y = 88.0 if compact else 96.0
+	var crit_upgrade := root.find_child("CritUpgradeButtonP0", true, false) as Button
+	if crit_upgrade:
+		crit_upgrade.visible = true
+		crit_upgrade.custom_minimum_size.y = 88.0 if compact else 96.0
 	if synergy:
 		synergy.visible = false
 	if momentum:
@@ -163,9 +169,12 @@ static func _apply_home_tap(root: Control, profile: String, compact: bool) -> vo
 	_set_anchor_rect(region_title, 0.10, 0.178, 0.90, 0.210)
 	_set_anchor_rect(region_text, 0.10, 0.208, 0.90, 0.240)
 	_set_anchor_rect(monster, 0.10, 0.24, 0.90, 0.68)
-	_set_anchor_rect(hint, 0.12, 0.685, 0.88, 0.725)
-	_set_anchor_rect(progress, 0.12, 0.728, 0.88, 0.775)
-	_set_anchor_rect(cta, 0.12, 0.785, 0.88, 0.885)
+	if monster:
+		monster.z_index = 12
+		monster.mouse_filter = Control.MOUSE_FILTER_STOP
+	_set_anchor_rect(hint, 0.12, 0.655, 0.88, 0.695)
+	_set_anchor_rect(progress, 0.12, 0.698, 0.88, 0.735)
+	_set_anchor_rect(cta, 0.12, 0.742, 0.88, 0.805)
 	if title:
 		title.add_theme_font_size_override("font_size", 28 if compact else (32 if profile == PROFILE_TALL else 30))
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -289,12 +298,17 @@ static func _apply_village(root: Control, profile: String, compact: bool) -> voi
 	if grid:
 		grid.columns = 2
 		grid.z_index = 2
-		grid.add_theme_constant_override("h_separation", 14 if profile == PROFILE_TALL else 12)
-		grid.add_theme_constant_override("v_separation", 14 if profile == PROFILE_TALL else 12)
+		grid.add_theme_constant_override("h_separation", 16 if profile == PROFILE_TALL else 14)
+		grid.add_theme_constant_override("v_separation", 18 if profile == PROFILE_TALL else 16)
 		for child in grid.get_children():
 			if child is Button:
-				child.custom_minimum_size = Vector2(0, 280.0 if profile == PROFILE_TALL else (240.0 if compact else 260.0))
-				child.add_theme_font_size_override("font_size", 18 if compact else 20)
+				var cell_w := 340.0 if profile == PROFILE_SMALL else (400.0 if profile == PROFILE_TALL else 380.0)
+				var cell_h := 200.0 if profile == PROFILE_SMALL else (230.0 if profile == PROFILE_TALL else 215.0)
+				child.custom_minimum_size = Vector2(cell_w, cell_h)
+				child.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				child.add_theme_font_size_override("font_size", 16 if compact else 18)
+				child.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+				child.clip_contents = true
 	if title:
 		title.add_theme_font_size_override("font_size", 30 if compact else 32)
 	if subtitle:
@@ -460,6 +474,8 @@ static func _apply_overlays(root: Control, profile: String, vp: Vector2) -> void
 		var overlay := root.find_child(node_name, true, false) as Control
 		if overlay == null:
 			continue
+		overlay.z_index = 100
+		overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 		var size: Vector2 = overlay_sizes[node_name] * scale
 		size.x = minf(size.x, maxf(320.0, vp.x - 40.0))
 		size.y = minf(size.y, maxf(420.0, vp.y - 80.0))
@@ -480,7 +496,7 @@ static func _bump_overlay_typography(scope: Node) -> void:
 			button.custom_minimum_size.y = maxf(button.custom_minimum_size.y, 72.0)
 
 static func _hide_legacy_nodes(root: Control) -> void:
-	for name in ["TownHallArt", "GoldMineArt", "ForgeArt", "GoldMineLabel", "ForgeLabel", "TownHallButton"]:
+	for name in ["P0DebugToggle", "P0DebugPanel", "TownHallArt", "GoldMineArt", "ForgeArt", "GoldMineLabel", "ForgeLabel", "TownHallButton"]:
 		var node := root.find_child(name, true, false) as Control
 		if node:
 			node.visible = false

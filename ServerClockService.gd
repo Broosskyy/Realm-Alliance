@@ -23,6 +23,18 @@ func sync_server_time(server_unix: int) -> void:
 func is_server_time_authoritative() -> bool:
 	return has_server_time
 
+func day_key(unix_time: int = -1) -> String:
+	var unix := unix_time if unix_time >= 0 else now_unix()
+	var d := Time.get_datetime_dict_from_unix_time(unix)
+	return "%04d-%02d-%02d" % [int(d.year), int(d.month), int(d.day)]
+
+func week_bucket_key(unix_time: int = -1) -> String:
+	var unix := unix_time if unix_time >= 0 else now_unix()
+	var d := Time.get_datetime_dict_from_unix_time(unix)
+	var weekday := int(d.weekday)
+	var since_monday := (weekday + 6) % 7
+	return str((unix - since_monday * 86400) / 604800)
+
 func export_sync_state() -> Dictionary:
 	return {"server_unix_at_sync":server_unix_at_sync,"has_server_time":has_server_time}
 

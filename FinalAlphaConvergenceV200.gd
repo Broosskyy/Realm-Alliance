@@ -13,12 +13,12 @@ static func _fix_spin_geometry(root: Control) -> void:
 	var s := view.size
 	if s.x <= 1.0 or s.y <= 1.0: return
 	var compact := s.x < 700.0 or s.y < 900.0
-	var reel_w := clamp(s.x * 0.18, 118.0, 220.0)
-	var reel_h := clamp(s.y * 0.34, 250.0, 390.0)
-	var gap := clamp(s.x * 0.018, 10.0, 24.0)
-	var group_w := reel_w * 3.0 + gap * 2.0
-	var left := (s.x - group_w) * 0.5
-	var top := clamp(s.y * 0.27, 210.0, 310.0)
+	var reel_w: float = clampf(s.x * 0.18, 118.0, 220.0)
+	var reel_h: float = clampf(s.y * 0.34, 250.0, 390.0)
+	var gap: float = clampf(s.x * 0.018, 10.0, 24.0)
+	var group_w: float = reel_w * 3.0 + gap * 2.0
+	var left: float = (s.x - group_w) * 0.5
+	var top: float = clampf(s.y * 0.27, 210.0, 310.0)
 	for i in range(3):
 		var reel := root.find_child("Reel%d" % (i + 1), true, false) as TextureRect
 		if reel:
@@ -49,8 +49,8 @@ static func _fix_village_geometry(root: Control) -> void:
 	var ambient := root.find_child("VillageAmbient", true, false) as TextureRect
 	if ambient:
 		ambient.set_anchors_preset(Control.PRESET_CENTER)
-		var w := clamp(view.size.x * 0.55, 300.0, 620.0)
-		var h := w * 0.52
+		var w: float = clampf(view.size.x * 0.55, 300.0, 620.0)
+		var h: float = w * 0.52
 		ambient.position = Vector2((view.size.x-w)*0.5, view.size.y*0.30)
 		ambient.size = Vector2(w,h)
 		ambient.modulate = Color(1,1,1,0.58)

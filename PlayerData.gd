@@ -19,6 +19,7 @@ var player_xp: int = 0
 var village_level: int = 1
 var tap_level: int = 1
 var tap_damage: int = 10
+var crit_level: int = 1
 
 var monster_level: int = 1
 var monster_max_hp: int = 100
@@ -89,6 +90,15 @@ func increase_tap_damage() -> bool:
 	stats_changed.emit()
 	return true
 
+func increase_crit_mastery() -> bool:
+	var cost := GameConfig.crit_upgrade_cost(crit_level)
+	if not spend_gold(cost):
+		return false
+	crit_level += 1
+	progression_changed.emit()
+	stats_changed.emit()
+	return true
+
 func damage_monster(amount: int) -> bool:
 	current_monster_hp = maxi(current_monster_hp - max(amount, 0), 0)
 	monster_changed.emit()
@@ -153,6 +163,7 @@ func apply_save_data(data: Dictionary) -> void:
 	village_level = int(data.get("village_level", village_level))
 	tap_level = int(data.get("tap_level", tap_level))
 	tap_damage = int(data.get("tap_damage", tap_damage))
+	crit_level = int(data.get("crit_level", 1))
 	monster_level = int(data.get("monster_level", monster_level))
 	monster_max_hp = int(data.get("monster_max_hp", GameConfig.effective_monster_hp(monster_level)))
 	current_monster_hp = int(data.get("current_monster_hp", monster_max_hp))

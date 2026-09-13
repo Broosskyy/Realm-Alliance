@@ -1,5 +1,7 @@
 extends Node
 
+const CombatDamageResolver = preload("res://CombatDamageResolver.gd")
+
 signal momentum_changed(tier: int, multiplier: float)
 
 const MAX_TIER := 5
@@ -34,8 +36,7 @@ func damage_multiplier() -> float:
 	return 1.0 + float(maxi(tier - 1, 0)) * BONUS_PER_TIER
 
 func effective_tap_damage(base_damage: int) -> int:
-	var realm_base := CoreProgressionSynergySystem.apply_tap_synergy(base_damage)
-	return maxi(1, int(round(float(realm_base) * damage_multiplier())))
+	return int(CombatDamageResolver.preview_tap(base_damage).get("normal", base_damage))
 
 func reset() -> void:
 	if tier == 0:

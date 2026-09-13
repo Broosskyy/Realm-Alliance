@@ -1,5 +1,7 @@
 extends RefCounted
 
+const GameplayVfxService = preload("res://GameplayVfxService.gd")
+
 # Presentation-only reward/progression polish. It never grants currency, XP, unlocks or items.
 static func reward(root: Control, anchor: Control, kind: String, reduced_motion: bool) -> void:
 	var effect := "reward_gold"

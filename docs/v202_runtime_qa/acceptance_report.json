@@ -1,0 +1,46 @@
+{
+	"godot": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"known_issues": [],
+	"milestone": "V2.02",
+	"status": "PASS",
+	"tests": {
+		"boot": true,
+		"hud": true,
+		"navigation": true,
+		"profile_1080x1920": {
+			"hud": true,
+			"nav": true,
+			"spin": true,
+			"tap": true,
+			"village": true
+		},
+		"profile_1080x2340": {
+			"hud": true,
+			"nav": true,
+			"spin": true,
+			"tap": true,
+			"village": true
+		},
+		"profile_1080x2400": {
+			"hud": true,
+			"nav": true,
+			"spin": true,
+			"tap": true,
+			"village": true
+		},
+		"save_resume": true,
+		"spin": true,
+		"tap_damage": true,
+		"village": true
+	}
+}

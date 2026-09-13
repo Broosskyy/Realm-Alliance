@@ -1,5 +1,9 @@
 extends Node
 
+## DEPRECATED (V2.09): Legacy pre-V1.59 monster catalog.
+## Active TAP combat uses P0MonsterVisualSystem + encounters_greenvale catalog.
+## Retained autoload for save compatibility only — do not bind new content here.
+
 signal monster_definition_changed(definition: Dictionary)
 
 var definitions: Dictionary = {}

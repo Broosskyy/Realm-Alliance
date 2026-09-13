@@ -1,0 +1,26 @@
+{
+  "version": "v2.05-chest-01",
+  "tiers": {
+    "common": {
+      "gold": 150,
+      "spins": 0,
+      "xp": 5
+    },
+    "rare": {
+      "gold": 350,
+      "spins": 1,
+      "xp": 15
+    },
+    "boss": {
+      "gold": 600,
+      "spins": 2,
+      "xp": 25,
+      "realm_keys": 1
+    }
+  },
+  "presentation": {
+    "common": "ui.chest.common",
+    "rare": "ui.chest.rare",
+    "boss": "ui.chest.boss"
+  }
+}

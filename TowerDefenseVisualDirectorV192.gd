@@ -14,12 +14,12 @@ static func refresh(root: Control) -> Dictionary:
 	var built := TowerDefenseSystem.towers
 	var tech := TowerDefenseProgressionSystem.tower_tech_level
 	var wave := TowerDefenseSystem.wave
-	var primary := ROLES[posmod(tech - 1,ROLES.size())]
-	var secondary := ROLES[posmod(tech + wave - 1,ROLES.size())]
+	var primary: String = ROLES[posmod(tech - 1, ROLES.size())]
+	var secondary: String = ROLES[posmod(tech + wave - 1, ROLES.size())]
 	_apply_tower(a,primary,built >= 1,"idle")
 	_apply_tower(b,secondary,built >= 2,"idle")
 	if enemy != null:
-		var enemy_role := ["forest_a","mushroom","crystal","forest_b"][posmod(wave-1,4)]
+		var enemy_role: String = ["forest_a","mushroom","crystal","forest_b"][posmod(wave-1,4)]
 		var tex := ProductionAssetRegistry.bound_texture("td.enemy.%s.idle" % enemy_role,false)
 		if tex != null: enemy.texture = tex
 	return {"ok":true,"primary":primary,"secondary":secondary,"built":built}

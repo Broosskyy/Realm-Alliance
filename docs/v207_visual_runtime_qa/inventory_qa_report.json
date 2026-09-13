@@ -1,0 +1,1117 @@
+{
+	"assertions": [
+		{
+			"evidence": {
+				"after": {
+					"crit_chance_pct": 8,
+					"hero_effective": 6,
+					"hero_real": 6,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"before": {
+					"crit_chance_pct": 8,
+					"hero_effective": 6,
+					"hero_real": 6,
+					"tap_preview": 10,
+					"tap_real": 10
+				},
+				"equip_result": {
+					"hero_id": "knight",
+					"instance_id": "itm_1789270345_1",
+					"item_id": "wpn_gruenhain_blade",
+					"ok": true,
+					"previous_instance_id": "",
+					"rarity": "common",
+					"slot": "weapon"
+				},
+				"instance_id": "itm_1789270345_1",
+				"item_id": "wpn_gruenhain_blade",
+				"modifier_stats": [
+					"tap_damage"
+				]
+			},
+			"name": "weapon_equip",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"before": {
+					"crit_chance_pct": 8,
+					"hero_effective": 6,
+					"hero_real": 6,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"equip_result": {
+					"hero_id": "knight",
+					"instance_id": "itm_1789270345_2",
+					"item_id": "acc_silver_ring",
+					"ok": true,
+					"previous_instance_id": "",
+					"rarity": "common",
+					"slot": "accessory"
+				},
+				"instance_id": "itm_1789270345_2",
+				"item_id": "acc_silver_ring",
+				"modifier_stats": [
+					"hero_damage"
+				]
+			},
+			"name": "accessory_equip",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 32,
+					"tap_real": 32
+				},
+				"before": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"new_equipped": true,
+				"new_instance": "itm_1789270345_3",
+				"new_item_id": "wpn_battle_axe",
+				"old_equipped": false,
+				"old_instance": "itm_1789270345_1",
+				"old_item_id": "wpn_gruenhain_blade",
+				"result": {
+					"hero_id": "knight",
+					"instance_id": "itm_1789270345_3",
+					"item_id": "wpn_battle_axe",
+					"ok": true,
+					"previous_instance_id": "itm_1789270345_1",
+					"rarity": "uncommon",
+					"slot": "weapon"
+				}
+			},
+			"name": "slot_replacement",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"accessory_baseline": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"after": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 10,
+					"tap_real": 10
+				},
+				"before": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 32,
+					"tap_real": 32
+				},
+				"instance_id": "itm_1789270345_3",
+				"item_id": "wpn_battle_axe",
+				"result": {
+					"hero_id": "knight",
+					"instance_id": "itm_1789270345_3",
+					"item_id": "wpn_battle_axe",
+					"ok": true,
+					"slot": "weapon"
+				}
+			},
+			"name": "unequip",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"equipped_match": true,
+				"hero_after_reload": 14,
+				"hero_before": 14,
+				"instances_match": true,
+				"modifier_state": {
+					"config_version": "v2.07-stat-modifier-02",
+					"heroes": {
+						"knight": [
+							{
+								"operation": "flat",
+								"source_id": "itm_1789270345_2",
+								"source_type": "item",
+								"stat": "hero_damage",
+								"value": 8.0
+							},
+							{
+								"operation": "flat",
+								"source_id": "itm_1789270345_1",
+								"source_type": "item",
+								"stat": "tap_damage",
+								"value": 15.0
+							}
+						]
+					}
+				},
+				"tap_after_reload": 25,
+				"tap_before": 25
+			},
+			"name": "save_reload_equipment",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"before": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				}
+			},
+			"name": "save_reload_tap_preserved",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				},
+				"before": {
+					"crit_chance_pct": 8,
+					"hero_effective": 14,
+					"hero_real": 14,
+					"tap_preview": 25,
+					"tap_real": 25
+				}
+			},
+			"name": "save_reload_hero_preserved",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"equipped_match": true,
+				"hero_after_reload": 14,
+				"hero_before": 14,
+				"instances_match": true,
+				"modifier_state": {
+					"config_version": "v2.07-stat-modifier-02",
+					"heroes": {
+						"knight": [
+							{
+								"operation": "flat",
+								"source_id": "itm_1789270345_2",
+								"source_type": "item",
+								"stat": "hero_damage",
+								"value": 8.0
+							},
+							{
+								"operation": "flat",
+								"source_id": "itm_1789270345_1",
+								"source_type": "item",
+								"stat": "tap_damage",
+								"value": 15.0
+							}
+						]
+					}
+				},
+				"tap_after_reload": 25,
+				"tap_before": 25
+			},
+			"name": "save_reload_no_double_modifier",
+			"ok": true
+		}
+	],
+	"fix": "QA reads item catalog modifiers and validates the declared stat semantics with negative leak checks",
+	"issues": [],
+	"milestone": "V2.07",
+	"previous_false_positive": "hero_damage_did_not_rise",
+	"root_cause": "QA expected hero damage rise for weapon item whose catalog modifiers only affect tap_damage",
+	"screenshots": [
+		{
+			"analysis": {
+				"bright_ratio": 0.743,
+				"category": "inventory",
+				"dark_ratio": 0.022,
+				"file": "res://docs/v207_visual_runtime_qa/01_inventory_empty.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "inventory",
+			"name": "01_inventory_empty",
+			"path": "res://docs/v207_visual_runtime_qa/01_inventory_empty.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.684,
+				"category": "inventory_detail",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/02_weapon_detail.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "inventory_detail",
+			"name": "02_weapon_detail",
+			"path": "res://docs/v207_visual_runtime_qa/02_weapon_detail.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.708,
+				"category": "hero_equipment",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/03_weapon_equipped.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "hero_equipment",
+			"name": "03_weapon_equipped",
+			"path": "res://docs/v207_visual_runtime_qa/03_weapon_equipped.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.737,
+				"category": "combat",
+				"dark_ratio": 0.022,
+				"file": "res://docs/v207_visual_runtime_qa/04_tap_combat_after_weapon.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "combat",
+			"name": "04_tap_combat_after_weapon",
+			"path": "res://docs/v207_visual_runtime_qa/04_tap_combat_after_weapon.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.737,
+				"category": "inventory_detail",
+				"dark_ratio": 0.022,
+				"file": "res://docs/v207_visual_runtime_qa/05_accessory_detail.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "inventory_detail",
+			"name": "05_accessory_detail",
+			"path": "res://docs/v207_visual_runtime_qa/05_accessory_detail.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.707,
+				"category": "hero_equipment",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/06_accessory_equipped.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "hero_equipment",
+			"name": "06_accessory_equipped",
+			"path": "res://docs/v207_visual_runtime_qa/06_accessory_equipped.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.735,
+				"category": "combat",
+				"dark_ratio": 0.022,
+				"file": "res://docs/v207_visual_runtime_qa/07_hero_combat_after_accessory.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "combat",
+			"name": "07_hero_combat_after_accessory",
+			"path": "res://docs/v207_visual_runtime_qa/07_hero_combat_after_accessory.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.707,
+				"category": "hero_equipment",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/08_both_slots_equipped.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "hero_equipment",
+			"name": "08_both_slots_equipped",
+			"path": "res://docs/v207_visual_runtime_qa/08_both_slots_equipped.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.684,
+				"category": "inventory",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/09_item_replacement.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "inventory",
+			"name": "09_item_replacement",
+			"path": "res://docs/v207_visual_runtime_qa/09_item_replacement.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.684,
+				"category": "inventory",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/12_inventory_after_reload.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "inventory",
+			"name": "12_inventory_after_reload",
+			"path": "res://docs/v207_visual_runtime_qa/12_inventory_after_reload.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.677,
+				"category": "reward",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/10_boss_loot.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "reward",
+			"name": "10_boss_loot",
+			"path": "res://docs/v207_visual_runtime_qa/10_boss_loot.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.677,
+				"category": "reward",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/11_chest_item_reward.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "reward",
+			"name": "11_chest_item_reward",
+			"path": "res://docs/v207_visual_runtime_qa/11_chest_item_reward.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.685,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x2340.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_inventory_1080x2340",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x2340.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.707,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x2340.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_heroes_1080x2340",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x2340.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.733,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.022,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2340.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_main_1080x2340",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2340.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.604,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.038,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x1920.png",
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_inventory_1080x1920",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x1920.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.618,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.041,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x1920.png",
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_heroes_1080x1920",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x1920.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.645,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.042,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x1920.png",
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_main_1080x1920",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_main_1080x1920.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.695,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x2400.png",
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_inventory_1080x2400",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x2400.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.72,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x2400.png",
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_heroes_1080x2400",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x2400.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.742,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.02,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2400.png",
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_main_1080x2400",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2400.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.695,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1440x3200.png",
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_inventory_1440x3200",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_inventory_1440x3200.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.719,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1440x3200.png",
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_heroes_1440x3200",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_heroes_1440x3200.png"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.742,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.02,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1440x3200.png",
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"category": "viewport_matrix",
+			"name": "viewport_main_1440x3200",
+			"path": "res://docs/v207_visual_runtime_qa/viewport_main_1440x3200.png"
+		}
+	],
+	"state_evidence": {
+		"accessory_equip": {
+			"after": {
+				"crit_chance_pct": 8,
+				"hero_effective": 14,
+				"hero_real": 14,
+				"tap_preview": 25,
+				"tap_real": 25
+			},
+			"before": {
+				"crit_chance_pct": 8,
+				"hero_effective": 6,
+				"hero_real": 6,
+				"tap_preview": 25,
+				"tap_real": 25
+			},
+			"equip_result": {
+				"hero_id": "knight",
+				"instance_id": "itm_1789270345_2",
+				"item_id": "acc_silver_ring",
+				"ok": true,
+				"previous_instance_id": "",
+				"rarity": "common",
+				"slot": "accessory"
+			},
+			"instance_id": "itm_1789270345_2",
+			"item_id": "acc_silver_ring",
+			"modifier_stats": [
+				"hero_damage"
+			]
+		},
+		"boss_loot": {
+			"authority_request_id": "monster_defeat_reward_21229358_795410451",
+			"authority_revision": 1,
+			"balances_after": {
+				"gems": 0,
+				"gold": 11650,
+				"shields": 0,
+				"spins": 46
+			},
+			"balances_before": {
+				"gems": 0,
+				"gold": 10970,
+				"shields": 0,
+				"spins": 44
+			},
+			"config_version": "v2.07-reward-pipeline-01",
+			"error_code": "",
+			"granted_items": [
+				{
+					"acquired_at": 1789270357,
+					"acquired_source": "boss_defeat",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270357_4",
+					"item_id": "wpn_battle_axe",
+					"metadata": {
+						"bonus_spin": false,
+						"boss": true,
+						"classification": "boss",
+						"loot_roll_chance": 1.0,
+						"loot_source": "greenvale_boss",
+						"monster_level": 15
+					},
+					"slot": "weapon"
+				}
+			],
+			"instance_ids": [
+				"itm_1789270357_4"
+			],
+			"inventory_after": 4,
+			"inventory_before": 3,
+			"item_duplicate": false,
+			"message": "",
+			"metadata": {
+				"bonus_spin": false,
+				"boss": true,
+				"classification": "boss",
+				"loot_roll_chance": 1.0,
+				"loot_source": "greenvale_boss",
+				"monster_level": 15
+			},
+			"ok": true,
+			"reward": {
+				"gems": 0,
+				"gold": 680,
+				"items": [
+					{
+						"item_id": "wpn_battle_axe",
+						"quantity": 1
+					}
+				],
+				"realm_keys": 0,
+				"shields": 0,
+				"spins": 2
+			},
+			"reward_id": "monster_kill_15",
+			"source": "boss_defeat",
+			"timestamp_unix": 1789270357,
+			"transaction_id": "boss_defeat_1789270357_20"
+		},
+		"chest_loot": {
+			"chest_id": "chest_1789270359_3",
+			"ok": true,
+			"reward": {
+				"gold": 600,
+				"items": [
+					{
+						"item_id": "wpn_gruenhain_blade",
+						"quantity": 1
+					}
+				],
+				"realm_keys": 1,
+				"spins": 2,
+				"xp": 25
+			},
+			"reward_transaction": {
+				"authority_request_id": "chest_open_22798824_2761804069",
+				"authority_revision": 2,
+				"balances_after": {
+					"gems": 0,
+					"gold": 12250,
+					"shields": 0,
+					"spins": 48
+				},
+				"balances_before": {
+					"gems": 0,
+					"gold": 11650,
+					"shields": 0,
+					"spins": 46
+				},
+				"config_version": "v2.07-reward-pipeline-01",
+				"error_code": "",
+				"granted_items": [
+					{
+						"acquired_at": 1789270359,
+						"acquired_source": "chest",
+						"enhancement_level": 0,
+						"equipped": false,
+						"equipped_to": "",
+						"instance_id": "itm_1789270359_5",
+						"item_id": "wpn_gruenhain_blade",
+						"metadata": {
+							"chest_id": "chest_1789270359_3",
+							"source": "qa_v207_chest",
+							"tier": "boss"
+						},
+						"slot": "weapon"
+					}
+				],
+				"instance_ids": [
+					"itm_1789270359_5"
+				],
+				"inventory_after": 5,
+				"inventory_before": 4,
+				"item_duplicate": false,
+				"message": "",
+				"metadata": {
+					"chest_id": "chest_1789270359_3",
+					"source": "qa_v207_chest",
+					"tier": "boss"
+				},
+				"ok": true,
+				"reward": {
+					"gems": 0,
+					"gold": 600,
+					"items": [
+						{
+							"item_id": "wpn_gruenhain_blade",
+							"quantity": 1
+						}
+					],
+					"realm_keys": 1,
+					"shields": 0,
+					"spins": 2
+				},
+				"reward_id": "chest_1789270359_3",
+				"source": "chest",
+				"timestamp_unix": 1789270359,
+				"transaction_id": "chest_1789270359_3"
+			},
+			"tier": "boss"
+		},
+		"hero_baseline": {
+			"hero_id": "knight",
+			"level": 1,
+			"stats": {
+				"crit_chance_pct": 8,
+				"hero_effective": 6,
+				"hero_real": 6,
+				"tap_preview": 10,
+				"tap_real": 10
+			}
+		},
+		"loot_grant": {
+			"duplicate": false,
+			"granted_items": [
+				{
+					"acquired_at": 1789270345,
+					"acquired_source": "qa_accept",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270345_1",
+					"item_id": "wpn_gruenhain_blade",
+					"metadata": {},
+					"slot": "weapon"
+				},
+				{
+					"acquired_at": 1789270345,
+					"acquired_source": "qa_accept",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270345_2",
+					"item_id": "acc_silver_ring",
+					"metadata": {},
+					"slot": "accessory"
+				},
+				{
+					"acquired_at": 1789270345,
+					"acquired_source": "qa_accept",
+					"enhancement_level": 0,
+					"equipped": false,
+					"equipped_to": "",
+					"instance_id": "itm_1789270345_3",
+					"item_id": "wpn_battle_axe",
+					"metadata": {},
+					"slot": "weapon"
+				}
+			],
+			"instance_ids": [
+				"itm_1789270345_1",
+				"itm_1789270345_2",
+				"itm_1789270345_3"
+			],
+			"inventory_count": 3,
+			"ok": true,
+			"source": "qa_accept",
+			"transaction_id": "qa_v207_accept_1789270345"
+		},
+		"replace": {
+			"after": {
+				"crit_chance_pct": 8,
+				"hero_effective": 14,
+				"hero_real": 14,
+				"tap_preview": 32,
+				"tap_real": 32
+			},
+			"before": {
+				"crit_chance_pct": 8,
+				"hero_effective": 14,
+				"hero_real": 14,
+				"tap_preview": 25,
+				"tap_real": 25
+			},
+			"new_equipped": true,
+			"new_instance": "itm_1789270345_3",
+			"new_item_id": "wpn_battle_axe",
+			"old_equipped": false,
+			"old_instance": "itm_1789270345_1",
+			"old_item_id": "wpn_gruenhain_blade",
+			"result": {
+				"hero_id": "knight",
+				"instance_id": "itm_1789270345_3",
+				"item_id": "wpn_battle_axe",
+				"ok": true,
+				"previous_instance_id": "itm_1789270345_1",
+				"rarity": "uncommon",
+				"slot": "weapon"
+			}
+		},
+		"save_reload": {
+			"equipped_match": true,
+			"hero_after_reload": 14,
+			"hero_before": 14,
+			"instances_match": true,
+			"modifier_state": {
+				"config_version": "v2.07-stat-modifier-02",
+				"heroes": {
+					"knight": [
+						{
+							"operation": "flat",
+							"source_id": "itm_1789270345_2",
+							"source_type": "item",
+							"stat": "hero_damage",
+							"value": 8.0
+						},
+						{
+							"operation": "flat",
+							"source_id": "itm_1789270345_1",
+							"source_type": "item",
+							"stat": "tap_damage",
+							"value": 15.0
+						}
+					]
+				}
+			},
+			"tap_after_reload": 25,
+			"tap_before": 25
+		},
+		"unequip": {
+			"accessory_baseline": {
+				"crit_chance_pct": 8,
+				"hero_effective": 14,
+				"hero_real": 14,
+				"tap_preview": 25,
+				"tap_real": 25
+			},
+			"after": {
+				"crit_chance_pct": 8,
+				"hero_effective": 14,
+				"hero_real": 14,
+				"tap_preview": 10,
+				"tap_real": 10
+			},
+			"before": {
+				"crit_chance_pct": 8,
+				"hero_effective": 14,
+				"hero_real": 14,
+				"tap_preview": 32,
+				"tap_real": 32
+			},
+			"instance_id": "itm_1789270345_3",
+			"item_id": "wpn_battle_axe",
+			"result": {
+				"hero_id": "knight",
+				"instance_id": "itm_1789270345_3",
+				"item_id": "wpn_battle_axe",
+				"ok": true,
+				"slot": "weapon"
+			}
+		},
+		"weapon_equip": {
+			"after": {
+				"crit_chance_pct": 8,
+				"hero_effective": 6,
+				"hero_real": 6,
+				"tap_preview": 25,
+				"tap_real": 25
+			},
+			"before": {
+				"crit_chance_pct": 8,
+				"hero_effective": 6,
+				"hero_real": 6,
+				"tap_preview": 10,
+				"tap_real": 10
+			},
+			"equip_result": {
+				"hero_id": "knight",
+				"instance_id": "itm_1789270345_1",
+				"item_id": "wpn_gruenhain_blade",
+				"ok": true,
+				"previous_instance_id": "",
+				"rarity": "common",
+				"slot": "weapon"
+			},
+			"instance_id": "itm_1789270345_1",
+			"item_id": "wpn_gruenhain_blade",
+			"modifier_stats": [
+				"tap_damage"
+			]
+		}
+	},
+	"status": "PASS",
+	"viewport_matrix": [
+		{
+			"analysis": {
+				"bright_ratio": 0.685,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x2340.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x2340",
+			"screenshot": "viewport_inventory_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.707,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.021,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x2340.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x2340",
+			"screenshot": "viewport_heroes_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.733,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.022,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2340.png",
+				"height": 2340,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x2340",
+			"screenshot": "viewport_main_1080x2340"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.604,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.038,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x1920.png",
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x1920",
+			"screenshot": "viewport_inventory_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.618,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.041,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x1920.png",
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x1920",
+			"screenshot": "viewport_heroes_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.645,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.042,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x1920.png",
+				"height": 1920,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x1920",
+			"screenshot": "viewport_main_1080x1920"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.695,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1080x2400.png",
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x2400",
+			"screenshot": "viewport_inventory_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.72,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1080x2400.png",
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x2400",
+			"screenshot": "viewport_heroes_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.742,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.02,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1080x2400.png",
+				"height": 2400,
+				"ok": true,
+				"width": 1080
+			},
+			"profile": "1080x2400",
+			"screenshot": "viewport_main_1080x2400"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.695,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_inventory_1440x3200.png",
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"profile": "1440x3200",
+			"screenshot": "viewport_inventory_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.719,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.019,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_heroes_1440x3200.png",
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"profile": "1440x3200",
+			"screenshot": "viewport_heroes_1440x3200"
+		},
+		{
+			"analysis": {
+				"bright_ratio": 0.742,
+				"category": "viewport_matrix",
+				"dark_ratio": 0.02,
+				"file": "res://docs/v207_visual_runtime_qa/viewport_main_1440x3200.png",
+				"height": 3200,
+				"ok": true,
+				"width": 1440
+			},
+			"profile": "1440x3200",
+			"screenshot": "viewport_main_1440x3200"
+		}
+	],
+	"visual_issues": []
+}

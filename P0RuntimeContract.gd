@@ -25,8 +25,9 @@ static func validate() -> Array[String]:
 		errors.append("Current monster HP above max")
 	if PlayerData.monster_level < 1:
 		errors.append("Invalid monster level")
-	if P0MonsterVisualSystem.encounter_id_for_level(10) != "B001":
-		errors.append("Boss interval broken")
+	var boss_level := P0MonsterVisualSystem.boss_every_kills()
+	if P0MonsterVisualSystem.encounter_id_for_level(boss_level) != "B001":
+		errors.append("Boss slot must be B001 at level %d" % boss_level)
 	if WheelSystem.total_weight() != 100:
 		errors.append("Wheel weights must total 100")
 	for building_id in ["townhall","goldmine","forge","lucktemple"]:

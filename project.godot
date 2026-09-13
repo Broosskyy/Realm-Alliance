@@ -1,14 +1,23 @@
 ; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [application]
+
 config/name="Realm Alliance"
-config/icon="res://assets/entry/ENTRY003_realm_emblem_placeholder.png"
+config/version="2.08.0"
 run/main_scene="res://BootFlow.tscn"
-config/version="2.01"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://assets/entry/ENTRY003_realm_emblem_placeholder.png"
 
 [autoload]
+
 GameConfig="*res://GameConfig.gd"
 PlayerData="*res://PlayerData.gd"
 PurchaseService="*res://PurchaseService.gd"
@@ -41,10 +50,10 @@ BuildInfo="*res://BuildInfo.gd"
 CoreAcceptanceService="*res://CoreAcceptanceService.gd"
 P0TestHarness="*res://P0TestHarness.gd"
 P0VillageVisualSystem="*res://P0VillageVisualSystem.gd"
-P0MonsterVisualSystem="*res://P0MonsterVisualSystem.gd"
 P0BootDiagnostics="*res://P0BootDiagnostics.gd"
-
+VisualRuntimeQa="*res://V2021VisualRuntimeQa.gd"
 RegionProgressionSystem="*res://RegionProgressionSystem.gd"
+P0MonsterVisualSystem="*res://P0MonsterVisualSystem.gd"
 AccountState="*res://AccountState.gd"
 SocialHubSystem="*res://SocialHubSystem.gd"
 MonsterDefeatService="*res://MonsterDefeatService.gd"
@@ -95,22 +104,34 @@ GuildBossService="*res://GuildBossService.gd"
 AsyncPvpService="*res://AsyncPvpService.gd"
 OnlineResponseRouter="*res://OnlineResponseRouter.gd"
 EconomyAuthorityService="*res://EconomyAuthorityService.gd"
+StatModifierService="*res://StatModifierService.gd"
+ItemInventoryService="*res://ItemInventoryService.gd"
+LootTableService="*res://LootTableService.gd"
+EncounterStatService="*res://EncounterStatService.gd"
+RewardPipeline="*res://RewardPipeline.gd"
+BossChallengeSystem="*res://BossChallengeSystem.gd"
+GameplayEventService="*res://GameplayEventService.gd"
+ChestRewardSystem="*res://ChestRewardSystem.gd"
 PlayerSnapshotService="*res://PlayerSnapshotService.gd"
 RemoteStateApplyService="*res://RemoteStateApplyService.gd"
 SyncReconciliationService="*res://SyncReconciliationService.gd"
 
 [display]
+
 window/size/viewport_width=1080
-window/size/viewport_height=1920
+window/size/viewport_height=2340
 window/size/window_width_override=540
-window/size/window_height_override=960
+window/size/window_height_override=1170
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/realm_asset_pipeline/plugin.cfg")
+
 [rendering]
-textures/vram_compression/import_etc2_astc=true
+
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-
-[editor_plugins]
-enabled=PackedStringArray("res://addons/realm_asset_pipeline/plugin.cfg")
+textures/vram_compression/import_etc2_astc=true

@@ -1,0 +1,155 @@
+{
+	"issues": [],
+	"milestone": "V2.08",
+	"state_evidence": {
+		"encounter_rotation": {
+			"boss_level_10": "B001",
+			"levels_1_5": [
+				"M001",
+				"M002",
+				"M003",
+				"M004",
+				"M005"
+			],
+			"unique_monsters": [
+				"M001",
+				"M002",
+				"M003",
+				"M004",
+				"M005"
+			]
+		}
+	},
+	"status": "PASS",
+	"tests": [
+		{
+			"evidence": {
+				"background": "res://assets/world/greenvale/BG001_gruenhain_home_v11.png",
+				"encounter_catalog": "res://data/encounters_greenvale_p0_v1_4.json",
+				"region_id": "greenvale"
+			},
+			"name": "region_catalog_greenvale",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_level_10": "B001",
+				"levels_1_5": [
+					"M001",
+					"M002",
+					"M003",
+					"M004",
+					"M005"
+				],
+				"unique_monsters": [
+					"M001",
+					"M002",
+					"M003",
+					"M004",
+					"M005"
+				]
+			},
+			"name": "encounter_rotation_different_ids",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"missing": [],
+				"sample_ids": [
+					"M001",
+					"M002",
+					"M010",
+					"B001"
+				]
+			},
+			"name": "monster_production_assets",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"elite_level_for_M010": 11
+			},
+			"name": "monster_classification",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_source": "greenvale_boss",
+				"elite_source": "greenvale_elite"
+			},
+			"name": "region_loot_sources",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_cycle_complete": false,
+				"bosses_defeated": 1,
+				"encounters_cleared": 2,
+				"highest_stage": 10
+			},
+			"name": "region_progress_tracking",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"config_version": "v2.08-region-catalog-01",
+					"current_region_id": "greenvale",
+					"region_progress": {
+						"frostmark": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0,
+							"encounters_cleared": 0,
+							"highest_stage": 0
+						},
+						"greenvale": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0,
+							"encounters_cleared": 1,
+							"highest_stage": 3
+						}
+					}
+				},
+				"before": {
+					"config_version": "v2.08-region-catalog-01",
+					"current_region_id": "greenvale",
+					"region_progress": {
+						"frostmark": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0,
+							"encounters_cleared": 0,
+							"highest_stage": 0
+						},
+						"greenvale": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0,
+							"encounters_cleared": 1,
+							"highest_stage": 3
+						}
+					}
+				}
+			},
+			"name": "region_save_reload",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"item_catalog": 4,
+				"loot_sources": [
+					"normal_monster",
+					"boss",
+					"greenvale_normal",
+					"greenvale_elite",
+					"greenvale_boss",
+					"chest_common",
+					"chest_rare",
+					"chest_boss"
+				]
+			},
+			"name": "v207_foundation_intact",
+			"ok": true
+		}
+	],
+	"tests_passed": 8,
+	"tests_total": 8
+}

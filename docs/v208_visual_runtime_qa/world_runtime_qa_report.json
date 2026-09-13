@@ -1,0 +1,844 @@
+{
+	"assertions": [
+		{
+			"evidence": {
+				"background_asset": "res://assets/world/greenvale/BG001_gruenhain_home_v11.png",
+				"background_exists": true,
+				"region_id": "greenvale"
+			},
+			"name": "gruenhain_region",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"asset_path": "res://assets/monsters/greenvale/states/M001_idle.png",
+				"monster_id": "M001"
+			},
+			"name": "monster_a_id",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"damage": 6,
+				"hero_id": "knight",
+				"hit": {
+					"base_damage": 6,
+					"crit_chance": 0.0,
+					"crit_multiplier": 1.0,
+					"critical": false,
+					"damage": 6,
+					"item_modifier_count": 0,
+					"momentum_multiplier": 1.0,
+					"source": "hero",
+					"source_id": "knight",
+					"source_type": "hero",
+					"target_id": "M001",
+					"timestamp_unix": 1789240362
+				},
+				"hp_after": 71,
+				"hp_before": 77,
+				"ok": true
+			},
+			"name": "hero_attack",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after_id": "M012",
+				"after_path": "res://assets/monsters/greenvale/states/M012_idle.png",
+				"before_id": "M001",
+				"before_path": "res://assets/monsters/greenvale/states/M001_idle.png"
+			},
+			"name": "monster_rotation",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"classification": "elite",
+				"encounter_id": "M010",
+				"is_boss": false,
+				"monster_level": 9,
+				"monster_name": "Waldgeist",
+				"progress_label": "GRÜNHAIN · ELITE · 9 / 10 BIS BOSS",
+				"region_id": "greenvale",
+				"region_name": "Grünhain",
+				"stage_in_cycle": 9,
+				"until_boss": 1
+			},
+			"name": "boss_ready_progress",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"classification": "normal",
+				"monster_id": "M006",
+				"progress_label": "GRÜNHAIN · 1 / 10 BIS BOSS"
+			},
+			"name": "elite_encounter",
+			"ok": false
+		},
+		{
+			"evidence": {
+				"active": true,
+				"boss_level": 10,
+				"boss_state": "active",
+				"failed": false,
+				"failure_count": 0,
+				"time_limit": 45.0,
+				"time_remaining": 45.0
+			},
+			"name": "boss_challenge_active",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_challenge": {
+					"active": false,
+					"boss_level": 0,
+					"boss_state": "idle",
+					"failed": false,
+					"failure_count": 0,
+					"time_limit": 0.0,
+					"time_remaining": 0.0
+				},
+				"boss_chest_visible": false,
+				"boss_id": "B001",
+				"region_progress": {
+					"boss_cycle_complete": false,
+					"bosses_defeated": 1,
+					"encounters_cleared": 3,
+					"highest_stage": 10
+				},
+				"reward_overlay_visible": false
+			},
+			"name": "boss_victory",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"boss_cycle_complete": false,
+				"bosses_defeated": 1,
+				"encounters_cleared": 3,
+				"highest_stage": 10
+			},
+			"name": "region_progress_after_boss",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"hero_effective": 6,
+					"hero_real": 6,
+					"tap_preview": 26,
+					"tap_real": 26
+				},
+				"before": {
+					"hero_effective": 6,
+					"hero_real": 6,
+					"tap_preview": 11,
+					"tap_real": 11
+				}
+			},
+			"name": "v207_weapon_tap",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"hero_effective": 14,
+					"hero_real": 22,
+					"tap_preview": 26,
+					"tap_real": 26
+				},
+				"before": {
+					"hero_effective": 6,
+					"hero_real": 6,
+					"tap_preview": 26,
+					"tap_real": 26
+				}
+			},
+			"name": "v207_accessory_hero",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"after": {
+					"inventory": {
+						"config_version": "v2.07-item-inventory-01",
+						"equipped_by_hero": {
+							"knight": {
+								"accessory": "itm_1789240366_2",
+								"weapon": "itm_1789240366_1"
+							}
+						},
+						"granted_transactions": {
+							"qa_v208_weapon_1789240366": {
+								"duplicate": false,
+								"granted_items": [
+									{
+										"acquired_at": 1789240366.0,
+										"acquired_source": "qa_v208",
+										"enhancement_level": 0.0,
+										"equipped": false,
+										"equipped_to": "",
+										"instance_id": "itm_1789240366_1",
+										"item_id": "wpn_gruenhain_blade",
+										"metadata": {},
+										"slot": "weapon"
+									},
+									{
+										"acquired_at": 1789240366.0,
+										"acquired_source": "qa_v208",
+										"enhancement_level": 0.0,
+										"equipped": false,
+										"equipped_to": "",
+										"instance_id": "itm_1789240366_2",
+										"item_id": "acc_silver_ring",
+										"metadata": {},
+										"slot": "accessory"
+									}
+								],
+								"instance_ids": [
+									"itm_1789240366_1",
+									"itm_1789240366_2"
+								],
+								"inventory_count": 2.0,
+								"ok": true,
+								"source": "qa_v208",
+								"transaction_id": "qa_v208_weapon_1789240366"
+							}
+						},
+						"instances": {
+							"itm_1789240366_1": {
+								"acquired_at": 1789240366.0,
+								"acquired_source": "qa_v208",
+								"enhancement_level": 0.0,
+								"equipped": true,
+								"equipped_to": "knight",
+								"instance_id": "itm_1789240366_1",
+								"item_id": "wpn_gruenhain_blade",
+								"metadata": {},
+								"slot": "weapon"
+							},
+							"itm_1789240366_2": {
+								"acquired_at": 1789240366.0,
+								"acquired_source": "qa_v208",
+								"enhancement_level": 0.0,
+								"equipped": true,
+								"equipped_to": "knight",
+								"instance_id": "itm_1789240366_2",
+								"item_id": "acc_silver_ring",
+								"metadata": {},
+								"slot": "accessory"
+							}
+						},
+						"sequence": 2
+					},
+					"region": {
+						"config_version": "v2.08-region-catalog-01",
+						"current_region_id": "greenvale",
+						"region_progress": {
+							"frostmark": {
+								"boss_cycle_complete": false,
+								"bosses_defeated": 0.0,
+								"encounters_cleared": 0.0,
+								"highest_stage": 0.0
+							},
+							"greenvale": {
+								"boss_cycle_complete": false,
+								"bosses_defeated": 1.0,
+								"encounters_cleared": 3.0,
+								"highest_stage": 10.0
+							}
+						}
+					},
+					"stats": {
+						"hero_effective": 14,
+						"hero_real": 22,
+						"tap_preview": 26,
+						"tap_real": 52
+					}
+				},
+				"before": {
+					"inventory": {
+						"config_version": "v2.07-item-inventory-01",
+						"equipped_by_hero": {
+							"knight": {
+								"accessory": "itm_1789240366_2",
+								"weapon": "itm_1789240366_1"
+							}
+						},
+						"granted_transactions": {
+							"qa_v208_weapon_1789240366": {
+								"duplicate": false,
+								"granted_items": [
+									{
+										"acquired_at": 1789240366,
+										"acquired_source": "qa_v208",
+										"enhancement_level": 0,
+										"equipped": false,
+										"equipped_to": "",
+										"instance_id": "itm_1789240366_1",
+										"item_id": "wpn_gruenhain_blade",
+										"metadata": {},
+										"slot": "weapon"
+									},
+									{
+										"acquired_at": 1789240366,
+										"acquired_source": "qa_v208",
+										"enhancement_level": 0,
+										"equipped": false,
+										"equipped_to": "",
+										"instance_id": "itm_1789240366_2",
+										"item_id": "acc_silver_ring",
+										"metadata": {},
+										"slot": "accessory"
+									}
+								],
+								"instance_ids": [
+									"itm_1789240366_1",
+									"itm_1789240366_2"
+								],
+								"inventory_count": 2,
+								"ok": true,
+								"source": "qa_v208",
+								"transaction_id": "qa_v208_weapon_1789240366"
+							}
+						},
+						"instances": {
+							"itm_1789240366_1": {
+								"acquired_at": 1789240366,
+								"acquired_source": "qa_v208",
+								"enhancement_level": 0,
+								"equipped": true,
+								"equipped_to": "knight",
+								"instance_id": "itm_1789240366_1",
+								"item_id": "wpn_gruenhain_blade",
+								"metadata": {},
+								"slot": "weapon"
+							},
+							"itm_1789240366_2": {
+								"acquired_at": 1789240366,
+								"acquired_source": "qa_v208",
+								"enhancement_level": 0,
+								"equipped": true,
+								"equipped_to": "knight",
+								"instance_id": "itm_1789240366_2",
+								"item_id": "acc_silver_ring",
+								"metadata": {},
+								"slot": "accessory"
+							}
+						},
+						"sequence": 2
+					},
+					"region": {
+						"config_version": "v2.08-region-catalog-01",
+						"current_region_id": "greenvale",
+						"region_progress": {
+							"frostmark": {
+								"boss_cycle_complete": false,
+								"bosses_defeated": 0,
+								"encounters_cleared": 0,
+								"highest_stage": 0
+							},
+							"greenvale": {
+								"boss_cycle_complete": false,
+								"bosses_defeated": 1,
+								"encounters_cleared": 3,
+								"highest_stage": 10
+							}
+						}
+					},
+					"stats": {
+						"hero_effective": 14,
+						"hero_real": 22,
+						"tap_preview": 26,
+						"tap_real": 26
+					}
+				}
+			},
+			"name": "save_v41_reload",
+			"ok": true
+		},
+		{
+			"evidence": {
+				"expected": {
+					"B001_idle": "res://assets/monsters/greenvale/states/B001_idle.png",
+					"M001_idle": "res://assets/monsters/greenvale/states/M001_idle.png",
+					"greenvale_bg": "res://assets/world/greenvale/BG001_gruenhain_home_v11.png"
+				},
+				"runtime": {
+					"B001_idle": "res://assets/monsters/greenvale/states/B001_idle.png",
+					"M001_idle": "res://assets/monsters/greenvale/states/M001_idle.png",
+					"greenvale_bg": "res://assets/world/greenvale/BG001_gruenhain_home_v11.png"
+				}
+			},
+			"name": "asset_mapping_runtime",
+			"ok": true
+		}
+	],
+	"assertions_passed": 12,
+	"assertions_total": 13,
+	"current_step": "visual_inspection",
+	"duration_ms": 10858,
+	"failed_step": "visual_inspection",
+	"issues": [
+		"elite_encounter",
+		"elite_encounter",
+		"visual_inspection"
+	],
+	"milestone": "V2.08",
+	"process_exit": {},
+	"qa_performance": {
+		"elapsed_ms": 10858,
+		"max_runtime_ms": 600000,
+		"start_ms": 1869
+	},
+	"regression": {
+		"accessory_hero": true,
+		"hero_after_accessory": 22,
+		"tap_after_weapon": 26,
+		"tap_before": 11,
+		"weapon_tap": true
+	},
+	"screenshots": [],
+	"state_evidence": {
+		"boss": {
+			"boss_id": "B001",
+			"challenge": {
+				"active": false,
+				"boss_level": 0,
+				"boss_state": "idle",
+				"failed": false,
+				"failure_count": 0,
+				"time_limit": 0.0,
+				"time_remaining": 0.0
+			},
+			"region_progress": {
+				"boss_cycle_complete": false,
+				"bosses_defeated": 1,
+				"encounters_cleared": 3,
+				"highest_stage": 10
+			}
+		},
+		"monster_diversity": {
+			"monster_a": {
+				"id": "M001",
+				"path": "res://assets/monsters/greenvale/states/M001_idle.png"
+			},
+			"monster_b": {
+				"id": "M012",
+				"path": "res://assets/monsters/greenvale/states/M012_idle.png"
+			}
+		},
+		"monster_states": {
+			"B001": {
+				"classification": "boss",
+				"display_scale": 1.08,
+				"level": 10,
+				"states": {
+					"defeat": "res://assets/monsters/greenvale/states/B001_defeat.png",
+					"hit": "res://assets/monsters/greenvale/states/B001_hit.png",
+					"idle": "res://assets/monsters/greenvale/states/B001_idle.png"
+				}
+			},
+			"M001": {
+				"classification": "normal",
+				"display_scale": 1.0,
+				"level": 1,
+				"states": {
+					"defeat": "res://assets/monsters/greenvale/states/M001_defeat.png",
+					"hit": "res://assets/monsters/greenvale/states/M001_hit.png",
+					"idle": "res://assets/monsters/greenvale/states/M001_idle.png"
+				}
+			},
+			"M006": {
+				"classification": "normal",
+				"display_scale": 0.97,
+				"level": 11,
+				"states": {
+					"defeat": "res://assets/monsters/greenvale/states/M006_defeat.png",
+					"hit": "res://assets/monsters/greenvale/states/M006_hit.png",
+					"idle": "res://assets/monsters/greenvale/states/M006_idle.png"
+				}
+			},
+			"M012": {
+				"classification": "normal",
+				"display_scale": 0.93,
+				"level": 2,
+				"states": {
+					"defeat": "res://assets/monsters/greenvale/states/M012_defeat.png",
+					"hit": "res://assets/monsters/greenvale/states/M012_hit.png",
+					"idle": "res://assets/monsters/greenvale/states/M012_idle.png"
+				}
+			}
+		},
+		"save_reload": {
+			"after": {
+				"inventory": {
+					"config_version": "v2.07-item-inventory-01",
+					"equipped_by_hero": {
+						"knight": {
+							"accessory": "itm_1789240366_2",
+							"weapon": "itm_1789240366_1"
+						}
+					},
+					"granted_transactions": {
+						"qa_v208_weapon_1789240366": {
+							"duplicate": false,
+							"granted_items": [
+								{
+									"acquired_at": 1789240366.0,
+									"acquired_source": "qa_v208",
+									"enhancement_level": 0.0,
+									"equipped": false,
+									"equipped_to": "",
+									"instance_id": "itm_1789240366_1",
+									"item_id": "wpn_gruenhain_blade",
+									"metadata": {},
+									"slot": "weapon"
+								},
+								{
+									"acquired_at": 1789240366.0,
+									"acquired_source": "qa_v208",
+									"enhancement_level": 0.0,
+									"equipped": false,
+									"equipped_to": "",
+									"instance_id": "itm_1789240366_2",
+									"item_id": "acc_silver_ring",
+									"metadata": {},
+									"slot": "accessory"
+								}
+							],
+							"instance_ids": [
+								"itm_1789240366_1",
+								"itm_1789240366_2"
+							],
+							"inventory_count": 2.0,
+							"ok": true,
+							"source": "qa_v208",
+							"transaction_id": "qa_v208_weapon_1789240366"
+						}
+					},
+					"instances": {
+						"itm_1789240366_1": {
+							"acquired_at": 1789240366.0,
+							"acquired_source": "qa_v208",
+							"enhancement_level": 0.0,
+							"equipped": true,
+							"equipped_to": "knight",
+							"instance_id": "itm_1789240366_1",
+							"item_id": "wpn_gruenhain_blade",
+							"metadata": {},
+							"slot": "weapon"
+						},
+						"itm_1789240366_2": {
+							"acquired_at": 1789240366.0,
+							"acquired_source": "qa_v208",
+							"enhancement_level": 0.0,
+							"equipped": true,
+							"equipped_to": "knight",
+							"instance_id": "itm_1789240366_2",
+							"item_id": "acc_silver_ring",
+							"metadata": {},
+							"slot": "accessory"
+						}
+					},
+					"sequence": 2
+				},
+				"region": {
+					"config_version": "v2.08-region-catalog-01",
+					"current_region_id": "greenvale",
+					"region_progress": {
+						"frostmark": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0.0,
+							"encounters_cleared": 0.0,
+							"highest_stage": 0.0
+						},
+						"greenvale": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 1.0,
+							"encounters_cleared": 3.0,
+							"highest_stage": 10.0
+						}
+					}
+				},
+				"stats": {
+					"hero_effective": 14,
+					"hero_real": 22,
+					"tap_preview": 26,
+					"tap_real": 52
+				}
+			},
+			"before": {
+				"inventory": {
+					"config_version": "v2.07-item-inventory-01",
+					"equipped_by_hero": {
+						"knight": {
+							"accessory": "itm_1789240366_2",
+							"weapon": "itm_1789240366_1"
+						}
+					},
+					"granted_transactions": {
+						"qa_v208_weapon_1789240366": {
+							"duplicate": false,
+							"granted_items": [
+								{
+									"acquired_at": 1789240366,
+									"acquired_source": "qa_v208",
+									"enhancement_level": 0,
+									"equipped": false,
+									"equipped_to": "",
+									"instance_id": "itm_1789240366_1",
+									"item_id": "wpn_gruenhain_blade",
+									"metadata": {},
+									"slot": "weapon"
+								},
+								{
+									"acquired_at": 1789240366,
+									"acquired_source": "qa_v208",
+									"enhancement_level": 0,
+									"equipped": false,
+									"equipped_to": "",
+									"instance_id": "itm_1789240366_2",
+									"item_id": "acc_silver_ring",
+									"metadata": {},
+									"slot": "accessory"
+								}
+							],
+							"instance_ids": [
+								"itm_1789240366_1",
+								"itm_1789240366_2"
+							],
+							"inventory_count": 2,
+							"ok": true,
+							"source": "qa_v208",
+							"transaction_id": "qa_v208_weapon_1789240366"
+						}
+					},
+					"instances": {
+						"itm_1789240366_1": {
+							"acquired_at": 1789240366,
+							"acquired_source": "qa_v208",
+							"enhancement_level": 0,
+							"equipped": true,
+							"equipped_to": "knight",
+							"instance_id": "itm_1789240366_1",
+							"item_id": "wpn_gruenhain_blade",
+							"metadata": {},
+							"slot": "weapon"
+						},
+						"itm_1789240366_2": {
+							"acquired_at": 1789240366,
+							"acquired_source": "qa_v208",
+							"enhancement_level": 0,
+							"equipped": true,
+							"equipped_to": "knight",
+							"instance_id": "itm_1789240366_2",
+							"item_id": "acc_silver_ring",
+							"metadata": {},
+							"slot": "accessory"
+						}
+					},
+					"sequence": 2
+				},
+				"region": {
+					"config_version": "v2.08-region-catalog-01",
+					"current_region_id": "greenvale",
+					"region_progress": {
+						"frostmark": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 0,
+							"encounters_cleared": 0,
+							"highest_stage": 0
+						},
+						"greenvale": {
+							"boss_cycle_complete": false,
+							"bosses_defeated": 1,
+							"encounters_cleared": 3,
+							"highest_stage": 10
+						}
+					}
+				},
+				"stats": {
+					"hero_effective": 14,
+					"hero_real": 22,
+					"tap_preview": 26,
+					"tap_real": 26
+				}
+			}
+		}
+	},
+	"status": "FAIL",
+	"step_timings": [
+		{
+			"duration_ms": 2365,
+			"result": "PASS",
+			"start_ms": 0,
+			"step": "boot"
+		},
+		{
+			"duration_ms": 832,
+			"result": "PASS",
+			"start_ms": 2366,
+			"step": "main_ready"
+		},
+		{
+			"duration_ms": 583,
+			"result": "PASS",
+			"start_ms": 3199,
+			"step": "encounter_1"
+		},
+		{
+			"duration_ms": 8,
+			"result": "PASS",
+			"start_ms": 3783,
+			"step": "encounter_progression"
+		},
+		{
+			"duration_ms": 31,
+			"result": "FAIL",
+			"start_ms": 3792,
+			"step": "elite_encounter"
+		},
+		{
+			"duration_ms": 2855,
+			"result": "PASS",
+			"start_ms": 3824,
+			"step": "boss_flow"
+		},
+		{
+			"duration_ms": 164,
+			"result": "PASS",
+			"start_ms": 6681,
+			"step": "inventory_regression"
+		},
+		{
+			"duration_ms": 167,
+			"result": "PASS",
+			"start_ms": 6846,
+			"step": "save_reload"
+		},
+		{
+			"duration_ms": 3841,
+			"result": "PASS",
+			"start_ms": 7014,
+			"step": "viewport_matrix"
+		},
+		{
+			"duration_ms": 0,
+			"result": "FAIL",
+			"start_ms": 10857,
+			"step": "visual_inspection"
+		}
+	],
+	"viewport_matrix": [
+		{
+			"monster_id": "M002",
+			"profile": "1080x1920",
+			"scenario": "normal",
+			"screenshot": "viewport_normal_1080x1920"
+		},
+		{
+			"monster_id": "M007",
+			"profile": "1080x1920",
+			"scenario": "elite",
+			"screenshot": "viewport_elite_1080x1920"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1080x1920",
+			"scenario": "boss",
+			"screenshot": "viewport_boss_1080x1920"
+		},
+		{
+			"monster_id": "M002",
+			"profile": "1080x2340",
+			"scenario": "normal",
+			"screenshot": "viewport_normal_1080x2340"
+		},
+		{
+			"monster_id": "M007",
+			"profile": "1080x2340",
+			"scenario": "elite",
+			"screenshot": "viewport_elite_1080x2340"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1080x2340",
+			"scenario": "boss",
+			"screenshot": "viewport_boss_1080x2340"
+		},
+		{
+			"monster_id": "M002",
+			"profile": "1080x2400",
+			"scenario": "normal",
+			"screenshot": "viewport_normal_1080x2400"
+		},
+		{
+			"monster_id": "M007",
+			"profile": "1080x2400",
+			"scenario": "elite",
+			"screenshot": "viewport_elite_1080x2400"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1080x2400",
+			"scenario": "boss",
+			"screenshot": "viewport_boss_1080x2400"
+		},
+		{
+			"monster_id": "M002",
+			"profile": "1440x3200",
+			"scenario": "normal",
+			"screenshot": "viewport_normal_1440x3200"
+		},
+		{
+			"monster_id": "M007",
+			"profile": "1440x3200",
+			"scenario": "elite",
+			"screenshot": "viewport_elite_1440x3200"
+		},
+		{
+			"monster_id": "M006",
+			"profile": "1440x3200",
+			"scenario": "boss",
+			"screenshot": "viewport_boss_1440x3200"
+		}
+	],
+	"visual_issues": [
+		"01_gruenhain_main:capture_failed",
+		"02_monster_a_idle:capture_failed",
+		"03_monster_a_hit:capture_failed",
+		"04_monster_a_defeated:capture_failed",
+		"05_reward:capture_failed",
+		"06_monster_b:capture_failed",
+		"08_encounter_progress:capture_failed",
+		"07_tough_elite:capture_failed",
+		"12_boss_ready:capture_failed",
+		"13_boss_intro:capture_failed",
+		"14_boss_combat:capture_failed",
+		"15_boss_hit:capture_failed",
+		"16_boss_victory:capture_failed",
+		"17_boss_loot:capture_failed",
+		"18_region_progress:capture_failed",
+		"09_region_loot_inventory:capture_failed",
+		"10_inventory_regression:capture_failed",
+		"11_equipment_regression:capture_failed",
+		"19_main_after_reload:capture_failed",
+		"20_inventory_after_reload:capture_failed",
+		"viewport_normal_1080x1920:capture_failed",
+		"viewport_elite_1080x1920:capture_failed",
+		"viewport_boss_1080x1920:capture_failed",
+		"viewport_normal_1080x2340:capture_failed",
+		"viewport_elite_1080x2340:capture_failed",
+		"viewport_boss_1080x2340:capture_failed",
+		"viewport_normal_1080x2400:capture_failed",
+		"viewport_elite_1080x2400:capture_failed",
+		"viewport_boss_1080x2400:capture_failed",
+		"viewport_normal_1440x3200:capture_failed",
+		"viewport_elite_1440x3200:capture_failed",
+		"viewport_boss_1440x3200:capture_failed"
+	]
+}

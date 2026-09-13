@@ -1,0 +1,91 @@
+{
+  "version": "v2.07-items-01",
+  "valid_rarities": ["common", "uncommon", "rare", "epic"],
+  "valid_slots": ["weapon", "accessory"],
+  "valid_stats": [
+    "tap_damage",
+    "hero_damage",
+    "crit_chance",
+    "crit_damage",
+    "gold_reward",
+    "boss_damage",
+    "attack_speed"
+  ],
+  "valid_operations": ["flat", "percent"],
+  "items": [
+    {
+      "item_id": "wpn_gruenhain_blade",
+      "name": "Grünhain-Klinge",
+      "category": "equipment",
+      "slot": "weapon",
+      "rarity": "common",
+      "icon_asset": "ui.inventory.equipment.sword",
+      "stackable": false,
+      "level_requirement": 1,
+      "base_stats": {},
+      "modifiers": [
+        {"stat": "tap_damage", "operation": "flat", "value": 15}
+      ],
+      "acquisition_tags": ["boss", "chest", "quest"],
+      "sell_value": 120,
+      "future_upgrade_enabled": true,
+      "future_set_id": ""
+    },
+    {
+      "item_id": "wpn_battle_axe",
+      "name": "Kampfaxt",
+      "category": "equipment",
+      "slot": "weapon",
+      "rarity": "uncommon",
+      "icon_asset": "ui.inventory.equipment.axe",
+      "stackable": false,
+      "level_requirement": 3,
+      "base_stats": {},
+      "modifiers": [
+        {"stat": "tap_damage", "operation": "flat", "value": 22},
+        {"stat": "boss_damage", "operation": "percent", "value": 5}
+      ],
+      "acquisition_tags": ["boss", "chest"],
+      "sell_value": 180,
+      "future_upgrade_enabled": true,
+      "future_set_id": ""
+    },
+    {
+      "item_id": "acc_silver_ring",
+      "name": "Silberring",
+      "category": "equipment",
+      "slot": "accessory",
+      "rarity": "common",
+      "icon_asset": "ui.inventory.equipment.ring",
+      "stackable": false,
+      "level_requirement": 1,
+      "base_stats": {},
+      "modifiers": [
+        {"stat": "hero_damage", "operation": "flat", "value": 8}
+      ],
+      "acquisition_tags": ["chest", "quest"],
+      "sell_value": 90,
+      "future_upgrade_enabled": true,
+      "future_set_id": ""
+    },
+    {
+      "item_id": "acc_guardian_pendant",
+      "name": "Wächter-Anhänger",
+      "category": "equipment",
+      "slot": "accessory",
+      "rarity": "rare",
+      "icon_asset": "ui.inventory.equipment.pendant",
+      "stackable": false,
+      "level_requirement": 5,
+      "base_stats": {},
+      "modifiers": [
+        {"stat": "hero_damage", "operation": "flat", "value": 14},
+        {"stat": "crit_chance", "operation": "flat", "value": 2}
+      ],
+      "acquisition_tags": ["boss", "chest"],
+      "sell_value": 240,
+      "future_upgrade_enabled": true,
+      "future_set_id": ""
+    }
+  ]
+}

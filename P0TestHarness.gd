@@ -11,6 +11,7 @@ const PROFILE_VILLAGE := "village"
 const PROFILE_RETURN := "return"
 const PROFILE_LOW_RESOURCE := "low_resource"
 const PROFILE_LEGACY_ZERO_HP := "legacy_zero_hp"
+const PROFILE_HERO_UNLOCK := "hero_unlock"
 
 var enabled: bool = OS.is_debug_build()
 
@@ -23,7 +24,8 @@ func available_profiles() -> Array[String]:
 		PROFILE_VILLAGE,
 		PROFILE_RETURN,
 		PROFILE_LOW_RESOURCE,
-		PROFILE_LEGACY_ZERO_HP
+		PROFILE_LEGACY_ZERO_HP,
+		PROFILE_HERO_UNLOCK
 	]
 
 func apply_profile(profile_id: String) -> Dictionary:
@@ -49,10 +51,13 @@ func apply_profile(profile_id: String) -> Dictionary:
 			_apply_low_resource()
 		PROFILE_LEGACY_ZERO_HP:
 			_apply_legacy_zero_hp()
+		PROFILE_HERO_UNLOCK:
+			_apply_hero_unlock()
 		_:
 			return {"ok":false,"message":"Unbekanntes Testprofil: %s" % profile_id}
 
 	SaveGame.save_game()
+	SaveGame.seconds_away_on_last_load = 0
 	profile_applied.emit(profile_id)
 	CoreAnalytics.log_event("test_profile_applied", {"profile":profile_id})
 	return {"ok":true,"profile":profile_id}
@@ -67,6 +72,7 @@ func _reset_shared_state() -> void:
 	PlayerData.village_level = 1
 	PlayerData.tap_level = 1
 	PlayerData.tap_damage = 10
+	PlayerData.crit_level = 1
 	PlayerData.monster_level = 1
 	PlayerData.monster_max_hp = GameConfig.effective_monster_hp(1)
 	PlayerData.current_monster_hp = PlayerData.monster_max_hp
@@ -78,6 +84,21 @@ func _reset_shared_state() -> void:
 		"lucktemple":1
 	}
 	P0VillageSystem.last_goldmine_claim_unix = int(Time.get_unix_time_from_system())
+	BossChallengeSystem.reset_runtime()
+	AfkRewardSystem.reset_runtime()
+	ChestRewardSystem.reset_runtime()
+	SpinPresentationState.apply_save_data({})
+	DiceJourneySystem.apply_save_data({})
+	PuzzleSystem.apply_save_data({})
+	TowerDefenseSystem.apply_save_data({})
+	LaneAttackSystem.apply_save_data({})
+	P0VillageSystem.pending_upgrade_result = {}
+	ObjectiveSystem.apply_save_data({})
+	DailyRewards.apply_save_data({})
+	HeroSystem.reset_runtime()
+	HeroProgressionSystem.apply_save_data({})
+	PlayerData.daily_streak = 0
+	PlayerData.last_daily_claim_unix = 0
 	PlayerData.stats_changed.emit()
 	PlayerData.monster_changed.emit()
 	PlayerData.progression_changed.emit()
@@ -97,6 +118,17 @@ func _set_monster_level(level: int, hp_ratio: float = 1.0) -> void:
 func _apply_fresh() -> void:
 	pass
 
+func _apply_hero_unlock() -> void:
+	PlayerData.player_level = 5
+	PlayerData.player_xp = 0
+	PlayerData.gold = 1800
+	_set_monster_level(3)
+	HeroSystem.hero_owned = {"knight": false, "archer": false, "mage": false}
+	HeroSystem.deployed_hero_id = ""
+	HeroSystem.selected_hero_id = "knight"
+	HeroSystem.sync_progression_unlocks()
+	PlayerData.progression_changed.emit()
+
 func _apply_half_boss() -> void:
 	_set_monster_level(5)
 	PlayerData.gold = 1450
@@ -105,6 +137,7 @@ func _apply_boss_ready() -> void:
 	_set_monster_level(10)
 	PlayerData.gold = 1900
 	PlayerData.spins = 48
+	BossChallengeSystem.start_challenge(10)
 
 func _apply_wheel() -> void:
 	_set_monster_level(3)

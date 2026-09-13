@@ -29,10 +29,12 @@ func pending_count()->int:
 
 func attention_count()->int:
 	var count:=SocialHubSystem.unread_count()
-	if FeatureFlags.SHOW_DAILY and DailyRewards.can_claim():count+=1
+	if FeatureFlags.SHOW_DAILY and DailyRewards.can_claim_today():
+		count += 1
 	if FeatureFlags.SHOW_QUESTS:
-		for quest in QuestSystem.QUESTS:
-			if QuestSystem.is_ready(str(quest.get("id",""))):count+=1
+		count += ObjectiveSystem.ready_count()
+	if ChestRewardSystem.has_pending_chest():
+		count += 1
 	if VillageProgressionSystem.can_claim_prosperity():count+=1
 	if FeatureFlags.SHOW_PUZZLE and PuzzleProgressionSystem.can_claim_mastery_reward():count+=1
 	if FeatureFlags.SHOW_TOWER_DEFENSE and TowerDefenseProgressionSystem.can_claim_mastery_reward():count+=1

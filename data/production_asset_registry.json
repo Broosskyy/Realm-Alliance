@@ -2465,6 +2465,21 @@
       "source": "existing_production_asset",
       "confidence": "high"
     },
+    "hero.portrait.knight.placeholder": {
+      "path": "res://assets/heroes/hero_knight_portrait_placeholder.png",
+      "source": "placeholder_asset",
+      "confidence": "medium"
+    },
+    "hero.portrait.archer.placeholder": {
+      "path": "res://assets/heroes/hero_archer_portrait_placeholder.png",
+      "source": "placeholder_asset",
+      "confidence": "medium"
+    },
+    "hero.portrait.mage.placeholder": {
+      "path": "res://assets/heroes/hero_mage_portrait_placeholder.png",
+      "source": "placeholder_asset",
+      "confidence": "medium"
+    },
     "v151.hero.mastery_badge": {
       "path": "res://assets/v151_heroes/V151_004_hero_mastery_badge.png",
       "source": "existing_production_asset",

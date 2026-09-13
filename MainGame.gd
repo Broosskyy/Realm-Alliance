@@ -11,8 +11,11 @@ const ProductionAssetConvergenceV191 = preload("res://ProductionAssetConvergence
 const TowerDefenseVisualDirectorV192 = preload("res://TowerDefenseVisualDirectorV192.gd")
 const ProductionAssetConvergenceV192 = preload("res://ProductionAssetConvergenceV192.gd")
 const ProductionAssetConvergenceV193 = preload("res://ProductionAssetConvergenceV193.gd")
+const ProductionAssetConvergenceV2061 = preload("res://ProductionAssetConvergenceV2061.gd")
 const TapCombatVisualDirectorV193 = preload("res://TapCombatVisualDirectorV193.gd")
 const RewardProgressionVisualDirectorV193 = preload("res://RewardProgressionVisualDirectorV193.gd")
+const CombatDamageResolver = preload("res://CombatDamageResolver.gd")
+const EncounterProgressService = preload("res://EncounterProgressService.gd")
 const SpinVillageResponsivePolishV194 = preload("res://SpinVillageResponsivePolishV194.gd")
 const HomeNavigationRewardPolishV195 = preload("res://HomeNavigationRewardPolishV195.gd")
 const ModeGameplayPolishV196 = preload("res://ModeGameplayPolishV196.gd")
@@ -21,6 +24,9 @@ const ScreenUiAssemblyService = preload("res://ScreenUiAssemblyService.gd")
 const MobileLayoutOwner = preload("res://MobileLayoutOwner.gd")
 const RuntimeGuidanceService = preload("res://RuntimeGuidanceService.gd")
 const FinalAlphaConvergenceV200 = preload("res://FinalAlphaConvergenceV200.gd")
+const GameplayVfxService = preload("res://GameplayVfxService.gd")
+const InventoryUiController = preload("res://InventoryUiController.gd")
+const ItemUiPresentation = preload("res://ItemUiPresentation.gd")
 
 const SPIN_SYMBOL_PATHS := [
 	"res://assets/wheel/segments/W101_gold_small.png",
@@ -62,6 +68,7 @@ const SPIN_SYMBOL_PATHS := [
 @onready var view_defense: Control = %View_TowerDefense
 @onready var view_daily: Control = %View_Daily
 @onready var view_quests: Control = %View_Quests
+@onready var gameplay_root: Control = $Safe/VBox/Gameplay
 
 @onready var btn_tap: Button = %Btn_Tap
 @onready var btn_rad: Button = %Btn_Rad
@@ -333,6 +340,7 @@ var spin_symbol_textures: Array[Texture2D] = []
 @onready var reward_modal_text: Label = %RewardModalText
 @onready var reward_modal_close: Button = %RewardModalClose
 @onready var tap_upgrade_button: Button = %TapUpgradeButton
+@onready var crit_upgrade_button: Button = %CritUpgradeButtonP0
 
 @onready var auto_dps_label: Label = %AutoDPSLabel
 @onready var hero_knight: Button = %HeroKnight
@@ -353,6 +361,10 @@ var boss_cycle_count: int = 0
 var core_input_locked: bool = false
 var last_kill_milestone_cycle: int = -1
 var selected_hero_id: String = "knight"
+var inventory_ui: InventoryUiController
+var view_inventory: Control
+var hero_item_weapon_slot: Button
+var hero_item_accessory_slot: Button
 
 var first_session_hint_stage: int = 0
 var first_session_hint_tween: Tween
@@ -367,6 +379,7 @@ func _ready() -> void:
 	_connect_once(PlayerData.stats_changed, _refresh_all)
 	_connect_once(PlayerData.monster_changed, _update_monster_ui)
 	_connect_once(PlayerData.progression_changed, _refresh_all)
+	_connect_once(RegionProgressionSystem.region_progress_changed, func(_rid): _refresh_region_progression_ui(); _apply_region_background())
 	_connect_once(MonsterDefeatService.defeat_committed, _on_monster_defeat_committed_v143)
 	_connect_once(RemoteGameplayService.spin_result_received, _on_remote_spin_result_v181)
 	_connect_once(CombatMomentumSystem.momentum_changed, _on_combat_momentum_changed_v172)
@@ -499,6 +512,8 @@ func _ready() -> void:
 	ranking_claim_p0.pressed.connect(_claim_ranking_reward_p0)
 	_connect_once(LiveOpsRankingSystem.liveops_changed, _refresh_liveops_p0)
 	_connect_once(AfkRewardSystem.afk_changed, _refresh_afk_p0)
+	_connect_once(BossChallengeSystem.challenge_failed, _on_boss_challenge_failed_v204)
+	_connect_once(BossChallengeSystem.challenge_tick, _on_boss_challenge_tick_v204)
 	_connect_once(MetaProgressSystem.meta_changed, _refresh_social_header_p0)
 	_connect_once(P0VillageSystem.village_changed, _refresh_social_header_p0)
 	_connect_once(AccountState.account_changed, _refresh_account_p0)
@@ -510,17 +525,21 @@ func _ready() -> void:
 	no_spins_close.pressed.connect(_close_no_spins_state)
 	# V1.53: legacy hidden TownHallButton kept for source compatibility, but no active upgrade path.
 	tap_upgrade_button.pressed.connect(_on_tap_upgrade_pressed)
+	crit_upgrade_button.pressed.connect(_on_crit_upgrade_pressed)
 
 	SaveGame.load_game()
 	var puzzle_daily_reset := PuzzleSystem.ensure_daily_attempts()
 	selected_hero_id = HeroSystem.get_selected_hero_id()
-	var afk_prepared := AfkRewardSystem.prepare_from_seconds_away(SaveGame.seconds_away_on_last_load)
+	var afk_prepared := false
+	if not P0BootDiagnostics.qa_direct_main_load:
+		afk_prepared = AfkRewardSystem.prepare_from_seconds_away(SaveGame.seconds_away_on_last_load)
 	if not AccountState.is_guest() or puzzle_daily_reset or afk_prepared:
 		SaveGame.save_game()
 	_reset_core_transient_state()
 	call_deferred("_apply_mobile_runtime_polish")
 	_connect_once(get_viewport().size_changed, _on_viewport_size_changed)
 	AudioService.initialize_after_save()
+	P0MonsterVisualSystem.reload_for_region(RegionProgressionSystem.combat_region_id(), true)
 	CoreAcceptanceService.begin_session()
 	CoreAcceptanceService.log_contract_status()
 	_setup_p0_debug_harness()
@@ -534,9 +553,93 @@ func _ready() -> void:
 	if FeatureFlags.SHOW_HEROES or FeatureFlags.SHOW_ATTACK or FeatureFlags.SHOW_DEFENSE:
 		UnlockService.refresh()
 	_switch_view(view_tap)
-	_restore_next_pending_presentation_v154()
+	if not P0BootDiagnostics.qa_direct_main_load:
+		_restore_next_pending_presentation_v154()
 	_refresh_first_session_flow()
 	P0BootDiagnostics.complete_scene_boot(self)
+
+func _ensure_inventory_runtime_v207() -> void:
+	if inventory_ui == null:
+		inventory_ui = InventoryUiController.new()
+		inventory_ui.attach(self, gameplay_root)
+		view_inventory = inventory_ui.get_view()
+		if inventory_ui._close_button != null:
+			_connect_once(inventory_ui._close_button.pressed, _close_inventory_p0)
+	_setup_hero_item_equipment_v207()
+	ScreenUiAssemblyService.ensure_inventory_hub_button(self, Callable(self, "_hub_open_inventory_p0"))
+
+func _setup_hero_item_equipment_v207() -> void:
+	if hero_item_weapon_slot != null:
+		return
+	var row := HBoxContainer.new()
+	row.name = "HeroItemEquipRowP207"
+	row.anchor_left = 0.06
+	row.anchor_right = 0.94
+	row.anchor_top = 1.0
+	row.anchor_bottom = 1.0
+	row.offset_top = -470.0
+	row.offset_bottom = -400.0
+	row.add_theme_constant_override("separation", 10)
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	view_heroes.add_child(row)
+	hero_item_weapon_slot = _make_hero_item_slot_button("HeroItemWeaponSlotP207", "WAFFE")
+	hero_item_accessory_slot = _make_hero_item_slot_button("HeroItemAccessorySlotP207", "ACCESSOIRE")
+	row.add_child(hero_item_weapon_slot)
+	row.add_child(hero_item_accessory_slot)
+	_connect_once(hero_item_weapon_slot.pressed, func(): _open_inventory_p0("weapon"))
+	_connect_once(hero_item_accessory_slot.pressed, func(): _open_inventory_p0("accessory"))
+
+func _make_hero_item_slot_button(node_name: String, label: String) -> Button:
+	var button := Button.new()
+	button.name = node_name
+	button.custom_minimum_size = Vector2(320, 96)
+	button.text = "%s · LEER" % label
+	ProductionUiBinder.apply_backdrop(button, "ui.button.secondary", false, 0.18, true)
+	return button
+
+func _refresh_hero_item_slot_buttons() -> void:
+	if hero_item_weapon_slot == null or hero_item_accessory_slot == null:
+		return
+	_style_hero_item_slot_button(hero_item_weapon_slot, selected_hero_id, "weapon", "WAFFE")
+	_style_hero_item_slot_button(hero_item_accessory_slot, selected_hero_id, "accessory", "ACCESSOIRE")
+
+func _style_hero_item_slot_button(button: Button, hero_id: String, slot: String, label: String) -> void:
+	var equipped := ItemInventoryService.get_equipped_instance(hero_id, slot)
+	if equipped.is_empty():
+		button.text = "%s · LEER\nTIPPEN FÜR INVENTAR" % label
+		ProductionUiBinder.apply_backdrop(button, "ui.frame.slot.1", false, 0.16, true)
+		return
+	var summary := ItemUiPresentation.instance_card_summary(equipped)
+	ItemUiPresentation.apply_rarity_backdrop(button, str(summary.get("rarity", "common")), true)
+	button.text = "%s · %s\n%s" % [
+		label,
+		str(summary.get("name", "")),
+		ItemUiPresentation.rarity_label(str(summary.get("rarity", "common")))
+	]
+
+func _open_inventory_p0(slot_hint: String = "") -> void:
+	if core_input_locked or _core_modal_open():
+		return
+	if inventory_ui == null:
+		_ensure_inventory_runtime_v207()
+	inventory_ui.open(slot_hint)
+	_switch_view(view_inventory)
+	CoreAnalytics.log_event("inventory_open", {"slot_hint": slot_hint, "count": ItemInventoryService.snapshot_instance_count()})
+
+func _close_inventory_p0() -> void:
+	if inventory_ui != null:
+		inventory_ui.close()
+	if FeatureFlags.SHOW_HEROES:
+		_switch_view(view_heroes)
+	else:
+		_switch_view(view_tap)
+
+func _show_inventory_feedback(message: String) -> void:
+	reward_label.text = message
+
+func _hub_open_inventory_p0() -> void:
+	_hub_prepare_navigation_p0()
+	_open_inventory_p0()
 
 func _apply_mobile_runtime_polish() -> void:
 	ResponsiveLayout.apply(self)
@@ -548,7 +651,9 @@ func _apply_mobile_runtime_polish() -> void:
 	ProductionAssetConvergenceV188.apply(self)
 	ProductionAssetConvergenceV189.apply(self)
 	ProductionAssetConvergenceV193.apply(self)
+	ProductionAssetConvergenceV2061.apply(self)
 	ScreenUiAssemblyService.apply(self)
+	_ensure_inventory_runtime_v207()
 	RuntimeGuidanceService.refresh(self)
 	FinalAlphaConvergenceV200.validate_and_reset(self)
 
@@ -616,6 +721,7 @@ func _setup_optional_p1_runtime() -> void:
 		_connect_once(heroes_game_button.pressed, _open_heroes_slice)
 		_connect_once(hero_weapon_button.pressed, func(): _upgrade_hero_equipment("weapon"))
 		_connect_once(hero_charm_button.pressed, func(): _upgrade_hero_equipment("charm"))
+		_connect_once(ItemInventoryService.inventory_changed, _update_hero_ui)
 		_connect_once(hero_upgrade_button_p0.pressed, _upgrade_selected_hero_p0)
 		_connect_once(hero_specialization_button_p0.pressed, _toggle_hero_specialization_v151)
 		_connect_once(hero_mastery_claim_p0.pressed, _claim_hero_mastery_v151)
@@ -653,10 +759,13 @@ func _setup_optional_p1_runtime() -> void:
 		_connect_once(UnlockService.unlocked, _show_unlock_banner)
 
 func _process(delta: float) -> void:
+	if BossChallengeSystem.active and view_tap.visible and not monster_state_locked and not core_input_locked:
+		BossChallengeSystem.tick(delta)
 	monster_idle_clock += delta
 	if not view_tap.visible or monster_reaction_active or monster_state_locked or core_input_locked:
 		return
-	var base_scale := Vector2(1.08,1.08) if P0MonsterVisualSystem.is_boss(PlayerData.monster_level) else Vector2.ONE
+	var scale_factor := P0MonsterVisualSystem.display_scale(PlayerData.monster_level)
+	var base_scale := Vector2(scale_factor, scale_factor)
 	if SettingsService.reduced_motion:
 		monster_button.scale = base_scale
 		monster_button.rotation = 0.0
@@ -682,10 +791,12 @@ func _refresh_all() -> void:
 	_refresh_meta_ui()
 	_refresh_puzzle_ui()
 	_refresh_region_progression_ui()
+	_apply_region_background()
 	_refresh_td_ui()
 	_update_daily_ui()
 	_rebuild_quests()
 	_update_tap_upgrade_ui()
+	_update_crit_upgrade_ui()
 	_refresh_core_synergy_v174()
 
 	_check_level_up_p0()
@@ -714,11 +825,22 @@ func _refresh_spin_ui() -> void:
 			break
 	jackpot_label.text = "JACKPOT · +%d GOLD" % jackpot_amount
 
+func _apply_region_background() -> void:
+	var bg := find_child("Background", true, false) as TextureRect
+	if bg == null:
+		return
+	var path := RegionProgressionSystem.background_asset_path()
+	if path.is_empty() or not ResourceLoader.exists(path):
+		return
+	var tex := load(path) as Texture2D
+	if tex:
+		bg.texture = tex
+
 func _refresh_region_progression_ui() -> void:
 	if region_progress_title == null or region_progress_bar == null or region_progress_text == null:
 		return
 	var next := RegionProgressionSystem.progress_to_next_region()
-	region_progress_title.text = "REGION · GRÜNHAIN"
+	region_progress_title.text = "REGION · %s" % RegionProgressionSystem.active_region_name_upper()
 	if bool(next.get("complete",false)):
 		region_progress_bar.value = 100.0
 		region_progress_text.text = "REGIONS-FORTSCHRITT · AKTUELLER STAND ERREICHT"
@@ -732,6 +854,9 @@ func _refresh_region_progression_ui() -> void:
 		region_progress_text.text = "%s · NOCH %d SPIELERSTUFEN · FREISCHALTUNG STUFE %d" % [
 			str(next.get("name","NÄCHSTE REGION")).to_upper(), remaining, target
 		]
+	var panel := find_child("RegionProgressPanel", true, false) as Control
+	if panel:
+		panel.visible = remaining <= 8 or bool(next.get("complete", false))
 
 func _refresh_td_ui() -> void:
 	if not FeatureFlags.SHOW_TOWER_DEFENSE:
@@ -784,7 +909,7 @@ func _on_td_fight_pressed() -> void:
 	if bool(result.get("completed",false)) or bool(result.get("wave_cleared",false)):
 		LiveOpsRankingSystem.register_td_wave()
 	if bool(result.get("completed",false)):
-		ObjectiveSystem.register_action("td_win",1)
+		GameplayEventService.publish_metric("td_win", 1)
 		td_result_label.text = "VERTEIDIGUNG · STUFE %d GESCHAFFT · +%d GOLD · +%d SPIN" % [
 			int(result.get("stage",0)),
 			int(result.get("gold",0)),
@@ -921,7 +1046,7 @@ func _on_puzzle_cell_pressed(index: int) -> void:
 	if bool(result.get("match",false)):
 		LiveOpsRankingSystem.register_puzzle_match(1)
 	if bool(result.get("completed",false)):
-		ObjectiveSystem.register_action("puzzle_complete",1)
+		GameplayEventService.publish_metric("puzzle_complete", 1)
 		puzzle_result_label.text = "PUZZLE GESCHAFFT · +%d GOLD · +%d SPIN" % [int(result.get("gold",0)),int(result.get("spins",0))]
 		CoreAnalytics.log_event("puzzle_complete", {
 			"completion_id":str(result.get("completion_id","")),
@@ -1093,7 +1218,7 @@ func _on_dice_roll_pressed() -> void:
 		if FeatureFlags.SHOW_REALM_CHEST:
 			MetaProgressSystem.register_journey_lap()
 		LiveOpsRankingSystem.register_journey_lap()
-		ObjectiveSystem.register_action("journey_lap",1)
+		GameplayEventService.publish_metric("journey_lap", 1)
 	CoreAnalytics.log_event("dice_result", {
 		"roll_id":str(result.get("roll_id","")),
 		"roll_seed":int(result.get("roll_seed",0)),
@@ -1204,13 +1329,17 @@ func _update_monster_ui() -> void:
 	_apply_monster_hp_art_v158()
 	monster_hp.max_value = PlayerData.monster_max_hp
 	monster_hp_label.text = "LEBEN %d / %d" % [PlayerData.current_monster_hp, PlayerData.monster_max_hp]
-	var until_boss := 10 - (PlayerData.monster_level % 10)
-	if boss:
-		boss_proximity_p0.text = "BOSS · %s" % P0MonsterVisualSystem.display_name(PlayerData.monster_level).to_upper()
-	elif until_boss <= 3:
+	var until_boss := EncounterProgressService.until_boss(PlayerData.monster_level)
+	if boss and BossChallengeSystem.active:
+		boss_proximity_p0.text = BossChallengeSystem.timer_label()
+	elif boss:
+		boss_proximity_p0.text = EncounterProgressService.boss_proximity_label(PlayerData.monster_level)
+	elif until_boss == 1:
+		boss_proximity_p0.text = "BOSS BEREIT"
+	elif until_boss > 0 and until_boss <= 3:
 		boss_proximity_p0.text = "BOSS IN %d" % until_boss
 	else:
-		boss_proximity_p0.text = ""
+		boss_proximity_p0.text = EncounterProgressService.boss_proximity_label(PlayerData.monster_level)
 
 	ScreenUiAssemblyService.refresh_home_loop_state(
 		self,
@@ -1238,10 +1367,10 @@ func _update_monster_visual() -> void:
 		monster_button.texture_normal = texture
 	monster_level_label.text = _monster_title_text_p0(PlayerData.monster_level)
 	boss_shield_fx_p0.visible = false
-	if P0MonsterVisualSystem.is_boss(PlayerData.monster_level):
-		monster_button.scale = Vector2(1.08,1.08)
-	else:
-		monster_button.scale = Vector2.ONE
+	var scale_factor := P0MonsterVisualSystem.display_scale(PlayerData.monster_level)
+	monster_button.scale = Vector2(scale_factor, scale_factor)
+	var offset := P0MonsterVisualSystem.display_offset(PlayerData.monster_level)
+	monster_button.pivot_offset = monster_button.size * 0.5 + offset
 
 func _update_village_ui() -> void:
 	building_select_glow.visible = view_dorf.visible
@@ -1267,20 +1396,36 @@ func _update_village_ui() -> void:
 
 func _update_tap_upgrade_ui() -> void:
 	var cost := GameConfig.tap_upgrade_cost(PlayerData.tap_level)
-	var effective_damage := CombatMomentumSystem.effective_tap_damage(PlayerData.tap_damage)
+	var preview := CombatDamageResolver.preview_tap(PlayerData.tap_damage)
 	var realm_bonus := int(round(CoreProgressionSynergySystem.tap_bonus_ratio() * 100.0))
-	var flow_suffix := " · EFFEKTIV %d" % effective_damage if effective_damage != PlayerData.tap_damage else ""
 	var realm_suffix := " · REALM +%d%%" % realm_bonus if realm_bonus > 0 else ""
-	tap_upgrade_button.text = "TAP-SCHADEN %d%s%s\nVerbessern +%d · %s Gold" % [
+	tap_upgrade_button.text = "TAP-SCHADEN %d · EFFEKTIV %d%s\nVerbessern +%d · %s Gold" % [
 		PlayerData.tap_damage,
+		int(preview.get("normal", PlayerData.tap_damage)),
 		realm_suffix,
-		flow_suffix,
 		GameConfig.TAP_DAMAGE_GAIN,
 		_compact_number(cost)
 	]
+	tap_upgrade_button.disabled = PlayerData.gold < cost
+
+func _update_crit_upgrade_ui() -> void:
+	if crit_upgrade_button == null:
+		return
+	var cost := GameConfig.crit_upgrade_cost(PlayerData.crit_level)
+	var chance_pct := int(round(GameConfig.effective_crit_chance() * 100.0))
+	var crit_mult := GameConfig.effective_crit_multiplier()
+	crit_upgrade_button.text = "KRIT %d%% · x%.1f\nMeisterschaft · %s Gold" % [
+		chance_pct,
+		crit_mult,
+		_compact_number(cost)
+	]
+	crit_upgrade_button.disabled = PlayerData.gold < cost
 
 func _switch_view(target_view: Control) -> void:
-	for v in [view_tap, view_rad, view_dorf, view_journey, view_meta, view_puzzle, view_tower_defense, view_heroes, view_attack, view_defense, view_daily, view_quests]:
+	var views: Array[Control] = [view_tap, view_rad, view_dorf, view_journey, view_meta, view_puzzle, view_tower_defense, view_heroes, view_attack, view_defense, view_daily, view_quests]
+	if view_inventory != null:
+		views.append(view_inventory)
+	for v in views:
 		v.visible = false
 	target_view.visible = true
 	btn_tap.disabled = target_view == view_tap
@@ -1296,6 +1441,9 @@ func _switch_view(target_view: Control) -> void:
 func _on_monster_pressed() -> void:
 	if core_input_locked or _core_modal_open() or monster_state_locked:
 		return
+	if BossChallengeSystem.failed and P0MonsterVisualSystem.is_boss(PlayerData.monster_level):
+		BossChallengeSystem.prepare_retry(PlayerData.monster_level)
+		reward_label.text = ""
 
 	var encounter_id := P0MonsterVisualSystem.production_asset_id(PlayerData.monster_level)
 	CoreAnalytics.log_event("first_tap", {"encounter_id":encounter_id})
@@ -1303,13 +1451,16 @@ func _on_monster_pressed() -> void:
 	AudioService.play_sfx("tap")
 	HapticsService.light()
 	CombatMomentumSystem.register_tap()
-	var damage := CombatMomentumSystem.effective_tap_damage(PlayerData.tap_damage)
+	var hit := CombatDamageResolver.resolve_tap(PlayerData.tap_damage)
+	var damage := int(hit.get("damage", PlayerData.tap_damage))
+	var critical := bool(hit.get("critical", false))
 	var killed := PlayerData.damage_monster(damage)
-	if FeatureFlags.SHOW_QUESTS:
-		QuestSystem.add_progress("tap_10", 1)
+	GameplayEventService.publish(GameplayEventService.EVENT_TAP_PERFORMED, 1)
+	if critical:
+		GameplayEventService.publish(GameplayEventService.EVENT_CRITICAL_HIT, 1)
 	_show_hit_overlay()
-	TapCombatVisualDirectorV193.hit(self, monster_button, damage, PlayerData.tap_damage, SettingsService.reduced_motion)
-	_show_damage(damage)
+	TapCombatVisualDirectorV193.hit(self, monster_button, damage, PlayerData.tap_damage, SettingsService.reduced_motion, critical)
+	_show_damage(damage, critical)
 	_punch_monster()
 	_show_monster_state("hit",0.12)
 
@@ -1328,9 +1479,11 @@ func _on_monster_pressed() -> void:
 
 func _on_monster_defeat_committed_v143(result: Dictionary) -> void:
 	HeroProgressionSystem.register_monster_defeat(result)
-	ObjectiveSystem.register_action("monster_defeat",1,{"encounter_id":str(result.get("encounter_id",P0MonsterVisualSystem.production_asset_id(int(result.get("defeated_level",1)))))})
-	if bool(result.get("boss",false)):
-		ObjectiveSystem.register_action("boss_defeat",1)
+	GameplayEventService.publish(GameplayEventService.EVENT_MONSTER_DEFEATED, 1, {
+		"encounter_id": str(result.get("encounter_id", P0MonsterVisualSystem.production_asset_id(int(result.get("defeated_level", 1)))))
+	})
+	if bool(result.get("boss", false)):
+		GameplayEventService.publish(GameplayEventService.EVENT_BOSS_DEFEATED, 1)
 		var village_link := VillageProgressionSystem.grant_external_xp(
 			"boss_defeat",
 			CoreProgressionSynergySystem.boss_village_xp()
@@ -1372,10 +1525,14 @@ func _present_monster_defeat_v143(result: Dictionary) -> void:
 	TapCombatVisualDirectorV193.defeat(self, monster_button, boss_defeated, SettingsService.reduced_motion)
 	_show_reward_pulse()
 
+	var granted_items: Array = []
+	var reward_txn: Dictionary = result.get("reward_transaction", {})
+	if typeof(reward_txn) == TYPE_DICTIONARY:
+		granted_items = reward_txn.get("granted_items", [])
 	if boss_defeated:
-		_show_boss_defeat(reward_gold)
+		_show_boss_defeat(reward_gold, granted_items)
 	else:
-		_show_monster_reward(reward_gold)
+		_show_monster_reward(reward_gold, granted_items)
 
 	CoreAnalytics.log_event("monster_defeat_presented", {
 		"defeat_id":str(result.get("defeat_id","")),
@@ -1383,16 +1540,16 @@ func _present_monster_defeat_v143(result: Dictionary) -> void:
 		"boss":boss_defeated
 	})
 
-func _show_damage(amount: int) -> void:
+func _show_damage(amount: int, critical: bool = false) -> void:
 	if not SettingsService.damage_numbers_enabled:
 		return
 	if damage_tween and damage_tween.is_valid():
 		damage_tween.kill()
 
-	damage_label.text = "-%d" % amount
-	damage_label.modulate.a = 1.0
+	damage_label.text = "KRIT! -%d" % amount if critical else "-%d" % amount
+	damage_label.modulate = Color(1.0, 0.92, 0.35, 1.0) if critical else Color(1, 1, 1, 1)
 	var near_finish := PlayerData.current_monster_hp > 0 and PlayerData.current_monster_hp <= maxi(amount * 2, 1)
-	damage_label.scale = Vector2(1.12,1.12) if near_finish and not SettingsService.reduced_motion else Vector2.ONE
+	damage_label.scale = Vector2(1.28, 1.28) if critical else (Vector2(1.12, 1.12) if near_finish and not SettingsService.reduced_motion else Vector2.ONE)
 	damage_feedback_index_p0 = (damage_feedback_index_p0 + 1) % 4
 	var x_offsets := [-28.0, 18.0, -10.0, 30.0]
 	var y_offsets := [0.0, -8.0, 6.0, -4.0]
@@ -1412,7 +1569,8 @@ func _show_damage(amount: int) -> void:
 	damage_tween.tween_property(damage_label,"scale",Vector2(1.08,1.08),0.13)
 
 func _punch_monster() -> void:
-	var base_scale := Vector2(1.08,1.08) if P0MonsterVisualSystem.is_boss(PlayerData.monster_level) else Vector2.ONE
+	var scale_factor := P0MonsterVisualSystem.display_scale(PlayerData.monster_level)
+	var base_scale := Vector2(scale_factor, scale_factor)
 	if SettingsService.reduced_motion:
 		monster_button.scale = base_scale
 		monster_button.rotation = 0.0
@@ -1495,9 +1653,7 @@ func _on_spin_pressed() -> void:
 
 	CoreAnalytics.log_event("spin_request", {"spins_after_cost": PlayerData.spins, "presentation": "three_reel_machine", "config_version":WheelSystem.CONFIG_VERSION})
 	LiveOpsRankingSystem.register_spin()
-	ObjectiveSystem.register_action("spin",1)
-	if FeatureFlags.SHOW_QUESTS:
-		QuestSystem.add_progress("spin_3", 1)
+	GameplayEventService.publish(GameplayEventService.EVENT_SPIN_COMPLETED, 1)
 	CoreAnalytics.log_event("spin_result", {
 		"result_id":str(result.get("result_id","")),
 		"reward_id":str(result.get("reward_id","")),
@@ -1546,9 +1702,7 @@ func _on_remote_spin_result_v181(result: Dictionary) -> void:
 		"authority_revision":int(result.get("authority_revision",0))
 	})
 	LiveOpsRankingSystem.register_spin()
-	ObjectiveSystem.register_action("spin",1)
-	if FeatureFlags.SHOW_QUESTS:
-		QuestSystem.add_progress("spin_3",1)
+	GameplayEventService.publish(GameplayEventService.EVENT_SPIN_COMPLETED, 1)
 	AudioService.play_sfx("wheel_spin")
 	HapticsService.light()
 	wheel_result.text = "WALZEN LAUFEN ..."
@@ -1662,18 +1816,36 @@ func _on_town_hall_pressed() -> void:
 	elif PlayerData.village_level == 5:
 		reward_label.text += " · Schmiede freigeschaltet!"
 	_show_reward_burst()
-	if FeatureFlags.SHOW_QUESTS:
-		QuestSystem.add_progress("upgrade_1", 1)
-		ObjectiveSystem.register_action("village_upgrade",1)
+	GameplayEventService.publish_metric("village_upgrade", 1)
 	SaveGame.save_game()
 
 func _on_tap_upgrade_pressed() -> void:
 	if not PlayerData.increase_tap_damage():
-		print("Nicht genug Gold.")
+		reward_label.text = "Nicht genug Gold für TAP-Upgrade."
 		return
-	reward_label.text = "Tap-Schaden: %d" % PlayerData.tap_damage
-	if FeatureFlags.SHOW_QUESTS:
-		QuestSystem.add_progress("upgrade_1", 1) # tap_upgrade_quest_marker
+	var preview := CombatDamageResolver.preview_tap(PlayerData.tap_damage)
+	reward_label.text = "TAP-UPGRADE · Schaden %d · Effektiv %d" % [PlayerData.tap_damage, int(preview.get("normal", PlayerData.tap_damage))]
+	AudioService.play_sfx("upgrade")
+	HapticsService.success()
+	_show_reward_burst()
+	GameplayEventService.publish(GameplayEventService.EVENT_UPGRADE_PURCHASED, 1)
+	_update_tap_upgrade_ui()
+	_update_crit_upgrade_ui()
+	SaveGame.save_game()
+
+func _on_crit_upgrade_pressed() -> void:
+	if not PlayerData.increase_crit_mastery():
+		reward_label.text = "Nicht genug Gold für KRIT-Meisterschaft."
+		return
+	reward_label.text = "KRIT-MEISTERSCHAFT · %d%% · x%.1f" % [
+		int(round(GameConfig.effective_crit_chance() * 100.0)),
+		GameConfig.effective_crit_multiplier()
+	]
+	AudioService.play_sfx("upgrade")
+	HapticsService.success()
+	_show_reward_burst()
+	_update_tap_upgrade_ui()
+	_update_crit_upgrade_ui()
 	SaveGame.save_game()
 
 func _compact_number(value: int) -> String:
@@ -1690,6 +1862,7 @@ func _refresh_core_synergy_v174() -> void:
 		label.text = CoreProgressionSynergySystem.summary_text()
 		label.visible = CoreProgressionSynergySystem.tap_bonus_ratio() > 0.0
 	_update_tap_upgrade_ui()
+	_update_crit_upgrade_ui()
 
 func _on_combat_momentum_changed_v172(tier: int, multiplier: float) -> void:
 	var label := find_child("TapMomentumLabelV172", true, false) as Label
@@ -1707,6 +1880,7 @@ func _on_combat_momentum_changed_v172(tier: int, multiplier: float) -> void:
 		var tween := create_tween()
 		tween.tween_property(label, "scale", Vector2.ONE, 0.10)
 	_update_tap_upgrade_ui()
+	_update_crit_upgrade_ui()
 func _show_hero_assist_feedback_v172(amount: int) -> void:
 	var label := find_child("HeroAssistLabelV172", true, false) as Label
 	if label == null:
@@ -1734,10 +1908,13 @@ func _update_hero_ui() -> void:
 	var active_hero_id := HeroSystem.get_selected_hero_id()
 	var active_card := HeroSystem.get_card_data(active_hero_id)
 	var active_name := str(active_card.get("name", active_hero_id)).to_upper()
-	auto_dps_label.text = "AUTO-DPS · %d / s · %s · %s" % [
+	var deployed_id := HeroSystem.get_deployed_hero_id()
+	var deployed_card := HeroSystem.get_card_data(deployed_id) if not deployed_id.is_empty() else {}
+	var deployed_name := str(deployed_card.get("name", "—")).to_upper()
+	auto_dps_label.text = "HELD · %s · %.1f DPS · %s" % [
+		deployed_name,
 		HeroSystem.get_total_auto_dps(),
-		active_name,
-		EncounterFeelSystem.hero_role_label(active_hero_id)
+		EncounterFeelSystem.hero_role_label(deployed_id if not deployed_id.is_empty() else active_hero_id)
 	]
 	_refresh_hero_equipment_ui()
 	_refresh_hero_progression_v151()
@@ -1757,14 +1934,20 @@ func _set_hero_button(button: Button, hero_id: String) -> void:
 		return
 	button.disabled = false
 	var selected := hero_id == selected_hero_id
-	button.text = "%s%s\nLv. %d · Stärke %d\nW%d · T%d\n%s" % [
+	var deployed := bool(data.get("deployed", false))
+	var rarity := str(data.get("rarity", "common")).to_upper()
+	var state_line := "AKTIV IM KAMPF" if deployed else ("EINSETZEN" if selected else "AUSWÄHLEN")
+	button.text = "%s%s · %s\nLv. %d · Stärke %d · Item +%d · %.1f DPS\nW%d · T%d · %s" % [
 		"✓ " if selected else "",
 		data.name,
+		rarity,
 		int(data.level),
 		int(data.power),
+		int(data.get("item_equipment_power", 0)),
+		float(data.get("dps", 0.0)),
 		int(data.weapon_tier),
 		int(data.charm_tier),
-		"AUSGEWÄHLT" if selected else "AUSWÄHLEN"
+		state_line
 	]
 
 func _open_heroes_slice() -> void:
@@ -1774,12 +1957,22 @@ func _open_heroes_slice() -> void:
 	CoreAnalytics.log_event("heroes_open", {"auto_dps":HeroSystem.get_total_auto_dps()})
 
 func _select_hero_p0(hero_id: String) -> void:
-	if not HeroSystem.select_hero(hero_id):
+	if not HeroSystem.is_unlocked(hero_id):
 		reward_label.text = "Held noch nicht freigeschaltet"
 		return
-	selected_hero_id = hero_id
-	CoreAnalytics.log_event("hero_selected", {"hero_id":hero_id})
-	ModeGameplayPolishV196.hero_selected(self, hero_id, SettingsService.reduced_motion)
+	if selected_hero_id != hero_id:
+		if not HeroSystem.select_hero(hero_id):
+			return
+		selected_hero_id = hero_id
+		CoreAnalytics.log_event("hero_selected", {"hero_id": hero_id})
+		ModeGameplayPolishV196.hero_selected(self, hero_id, SettingsService.reduced_motion)
+	elif not HeroSystem.is_deployed(hero_id):
+		if HeroSystem.deploy_hero(hero_id):
+			reward_label.text = "%s im Kampf eingesetzt" % str(HeroSystem.get_card_data(hero_id).get("name", hero_id))
+			CoreAnalytics.log_event("hero_deployed", {"hero_id": hero_id})
+			ModeGameplayPolishV196.hero_selected(self, hero_id, SettingsService.reduced_motion)
+	else:
+		reward_label.text = "%s ist bereits aktiv" % str(HeroSystem.get_card_data(hero_id).get("name", hero_id))
 	_update_hero_ui()
 
 func _upgrade_selected_hero_p0() -> void:
@@ -1818,17 +2011,25 @@ func _claim_hero_mastery_v151()->void:
 func _refresh_hero_equipment_ui() -> void:
 	var data := HeroSystem.get_card_data(selected_hero_id)
 	if data.is_empty(): return
-	hero_equipment_hint.text = "AUSRÜSTUNG · %s · +%d STÄRKE" % [str(data.name).to_upper(),int(data.equipment_power)]
+	var breakdown: Dictionary = data.get("power_breakdown", {})
+	hero_equipment_hint.text = "AUSRÜSTUNG · %s · Basis %d · Tier +%d · Item +%d · Kampf %d" % [
+		str(data.name).to_upper(),
+		int(breakdown.get("base_power", data.power)),
+		int(breakdown.get("legacy_tier_power", data.equipment_power)),
+		int(breakdown.get("item_equipment_power", 0)),
+		int(data.get("effective_damage", data.power))
+	]
 	var weapon_cost := HeroSystem.equipment_upgrade_cost(selected_hero_id,"weapon")
 	var charm_cost := HeroSystem.equipment_upgrade_cost(selected_hero_id,"charm")
-	hero_weapon_button.text = "WAFFE · T%d\n%s" % [int(data.weapon_tier), "MAX" if weapon_cost <= 0 else "%s GOLD" % _compact_number(weapon_cost)]
-	hero_charm_button.text = "TALISMAN · T%d\n%s" % [int(data.charm_tier), "MAX" if charm_cost <= 0 else "%s GOLD" % _compact_number(charm_cost)]
+	hero_weapon_button.text = "TIER-WAFFE · T%d\n%s" % [int(data.weapon_tier), "MAX" if weapon_cost <= 0 else "%s GOLD" % _compact_number(weapon_cost)]
+	hero_charm_button.text = "TIER-TALISMAN · T%d\n%s" % [int(data.charm_tier), "MAX" if charm_cost <= 0 else "%s GOLD" % _compact_number(charm_cost)]
 	hero_weapon_button.disabled = not bool(data.unlocked) or weapon_cost <= 0
 	hero_charm_button.disabled = not bool(data.unlocked) or charm_cost <= 0
 	var upgrade_cost := int(data.upgrade_cost)
 	var at_cap := int(data.level) >= GameConfig.HERO_LEVEL_CAP
 	hero_upgrade_button_p0.disabled = not bool(data.unlocked) or at_cap or PlayerData.gold < upgrade_cost
 	hero_upgrade_button_p0.text = "HELD · MAX." if at_cap else "HELD VERBESSERN · %s GOLD" % _compact_number(upgrade_cost)
+	_refresh_hero_item_slot_buttons()
 
 func _upgrade_hero_equipment(slot: String) -> void:
 	var upgraded := HeroSystem.upgrade_equipment(selected_hero_id,slot)
@@ -1958,7 +2159,7 @@ func _on_lane_finished(won: bool, reward: Dictionary) -> void:
 		lane_result.text = "SIEG · STUFE %d · +%d GOLD · +%d XP" % [int(reward.get("stage",0)),int(reward.get("gold",0)),int(reward.get("xp",0))]
 		CoreAnalytics.log_event("lane_battle_complete", {"battle_id":str(reward.get("battle_id","")),"won":true,"stage":int(reward.get("stage",0))})
 		LiveOpsRankingSystem.register_lane_win()
-		ObjectiveSystem.register_action("lane_win",1)
+		GameplayEventService.publish_metric("lane_win", 1)
 		AudioService.play_sfx("coin")
 		HapticsService.success()
 	else:
@@ -2128,17 +2329,20 @@ func _claim_daily_reward() -> void:
 	core_input_locked = true
 	var result := DailyRewards.claim_today()
 	if bool(result.get("ok",false)):
+		var txn: Dictionary = result.get("reward_transaction", {})
 		CoreAnalytics.log_event("daily_claim", {
-			"day_index":int(result.get("day_index",0)),
-			"gold":int(result.get("gold",0)),
-			"spins":int(result.get("spins",0)),
-			"gems":int(result.get("gems",0))
+			"day_index": int(result.get("day_index", 0)),
+			"gold": int(result.get("gold", 0)),
+			"spins": int(result.get("spins", 0)),
+			"gems": int(result.get("gems", 0)),
+			"reward_transaction_id": str(txn.get("transaction_id", ""))
 		})
 		RewardService.present({
-			"title":"Tagesbonus",
-			"gold":int(result.get("gold",0)),
-			"gems":int(result.get("gems",0)),
-			"spins":int(result.get("spins",0))
+			"title": "Tagesbonus",
+			"gold": int(result.get("gold", 0)),
+			"gems": int(result.get("gems", 0)),
+			"spins": int(result.get("spins", 0)),
+			"xp": int(result.get("xp", 0))
 		})
 		AudioService.play_sfx("coin")
 		HapticsService.success()
@@ -2158,7 +2362,7 @@ func _reward_text_v152(reward:Dictionary)->String:
 func _add_objective_header_v152(title:String)->void:
 	var label:=Label.new();label.text=title;label.add_theme_font_size_override("font_size",22)
 	label.custom_minimum_size=Vector2(0,56)
-	var category := "achievements" if title == "ERFOLGE" else ("weekly" if title == "WÖCHENTLICH" else ("daily" if title == "TÄGLICH" else "collection"))
+	var category := "starter" if title == "STARTER" else ("achievements" if title == "ERFOLGE" else ("weekly" if title == "WÖCHENTLICH" else ("daily" if title == "TÄGLICH" else "collection")))
 	ScreenUiAssemblyService.style_objective_header(label, category)
 	quest_list.add_child(label)
 
@@ -2183,23 +2387,85 @@ func _add_objective_row_v152(category:String,row:Dictionary)->void:
 	button.text="ABHOLEN" if bool(row.ready) else ("ERLEDIGT ✓" if bool(row.claimed) else "LÄUFT")
 	button.disabled=not bool(row.ready) or core_input_locked
 	ScreenUiAssemblyService.configure_objective_action(button,row)
-	button.pressed.connect(func(cat=category,oid=str(row.id)):
-		var result:=ObjectiveSystem.claim(cat,oid)
-		if bool(result.get("ok",false)):
-			CoreAnalytics.log_event("objective_claim",{"category":cat,"objective_id":oid})
-			HapticsService.success()
-		_rebuild_quests()
-		_refresh_all()
-	)
+	button.pressed.connect(_on_objective_claim_pressed.bind(category, str(row.id)))
 	box.add_child(button);quest_list.add_child(panel)
 
+func _on_objective_claim_pressed(category: String, objective_id: String) -> void:
+	var result := ObjectiveSystem.claim(category, objective_id)
+	if bool(result.get("ok", false)):
+		var reward: Dictionary = result.get("reward", {})
+		CoreAnalytics.log_event("objective_claim", {
+			"category": category,
+			"objective_id": objective_id,
+			"reward_transaction_id": str(result.get("reward_transaction", {}).get("transaction_id", ""))
+		})
+		RewardService.present({
+			"title": str(result.get("title", "Aufgabe")),
+			"gold": int(reward.get("gold", 0)),
+			"spins": int(reward.get("spins", 0)),
+			"xp": int(reward.get("xp", 0))
+		})
+		HapticsService.success()
+		if ChestRewardSystem.has_pending_chest():
+			reward_label.text = "TRUHE ERHALTEN · ÖFFNEN IN AUFGABEN"
+	_rebuild_quests()
+	_refresh_all()
+
+func _open_pending_chest_v205(chest_id: String) -> void:
+	var result := ChestRewardSystem.open_chest(chest_id)
+	if bool(result.get("ok", false)):
+		var reward: Dictionary = result.get("reward", {})
+		var reward_txn: Dictionary = result.get("reward_transaction", {})
+		RewardService.present({
+			"title": "Truhe geöffnet",
+			"gold": int(reward.get("gold", 0)),
+			"spins": int(reward.get("spins", 0)),
+			"xp": int(reward.get("xp", 0)),
+			"granted_items": reward_txn.get("granted_items", [])
+		})
+		CoreAnalytics.log_event("chest_open", {"chest_id": chest_id, "tier": str(result.get("tier", ""))})
+		HapticsService.success()
+	else:
+		reward_label.text = str(result.get("message", "Truhe bereits geöffnet"))
+	_rebuild_quests()
+	_refresh_all()
+
+func _add_chest_open_row_v205() -> void:
+	var pending := ChestRewardSystem.next_pending()
+	if pending.is_empty():
+		return
+	_add_objective_header_v152("TRUHEN")
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(0, 104)
+	ProductionUiBinder.apply_backdrop(panel, "ui.quest.row.active", true, 0.12, true)
+	var box := HBoxContainer.new()
+	box.custom_minimum_size = Vector2(0, 92)
+	panel.add_child(box)
+	var label := Label.new()
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.text = "OFFENE TRUHE · %s\nTIPPEN ZUM ÖFFNEN" % str(pending.get("tier", "common")).to_upper()
+	label.add_theme_font_size_override("font_size", 20)
+	box.add_child(label)
+	var button := Button.new()
+	button.custom_minimum_size = Vector2(190, 78)
+	button.text = "ÖFFNEN"
+	button.pressed.connect(_open_pending_chest_v205.bind(str(pending.get("chest_id", ""))))
+	box.add_child(button)
+	quest_list.add_child(panel)
+
 func _rebuild_quests() -> void:
-	if not FeatureFlags.SHOW_QUESTS:return
-	for child in quest_list.get_children():child.queue_free()
-	quest_summary_label.text=ObjectiveSystem.summary()
-	for category in ["daily","weekly","achievements"]:
-		_add_objective_header_v152({"daily":"TÄGLICH","weekly":"WÖCHENTLICH","achievements":"ERFOLGE"}[category])
-		for row in ObjectiveSystem.rows(category):_add_objective_row_v152(category,row)
+	if not FeatureFlags.SHOW_QUESTS:
+		return
+	for child in quest_list.get_children():
+		child.queue_free()
+	quest_summary_label.text = ObjectiveSystem.summary()
+	for category in ["starter", "daily", "weekly", "achievements"]:
+		var headers := {"starter": "STARTER", "daily": "TÄGLICH", "weekly": "WÖCHENTLICH", "achievements": "ERFOLGE"}
+		_add_objective_header_v152(headers[category])
+		for row in ObjectiveSystem.rows(category):
+			_add_objective_row_v152(category, row)
+	if ChestRewardSystem.has_pending_chest():
+		_add_chest_open_row_v205()
 	_add_objective_header_v152("SAMMLUNG")
 	var collection:=ObjectiveSystem.collection_state()
 	var panel:=PanelContainer.new();panel.custom_minimum_size=Vector2(0,104)
@@ -2245,6 +2511,7 @@ func _show_reward_modal(payload: Dictionary) -> void:
 		lines.append("+%d Spins" % int(payload.get("spins",0)))
 	if int(payload.get("xp",0)) > 0:
 		lines.append("+%d XP" % int(payload.get("xp",0)))
+	lines.append_array(_format_granted_item_lines(payload.get("granted_items", [])))
 	reward_modal_text.text = "\n".join(lines)
 	ScreenUiAssemblyService.prepare_reward_modal(self, payload)
 	reward_modal.visible = true
@@ -2259,18 +2526,30 @@ func _update_home_core_cta() -> void:
 		home_wheel_cta.text = "KEINE SPINS"
 
 func _update_monster_progress() -> void:
-	var within_cycle := ((PlayerData.monster_level - 1) % 10) + 1
-	if P0MonsterVisualSystem.is_boss(PlayerData.monster_level):
-		monster_progress_label.text = "BOSS · 10 / 10"
-	else:
-		monster_progress_label.text = "%d / 10 BIS BOSS" % within_cycle
+	monster_progress_label.text = EncounterProgressService.progress_label(PlayerData.monster_level)
 
-func _show_monster_reward(gold_amount: int) -> void:
+func _format_granted_item_lines(granted_items: Array) -> Array[String]:
+	var lines: Array[String] = []
+	for entry in granted_items:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		var summary: Dictionary = ItemUiPresentation.instance_card_summary(entry)
+		var source := str(entry.get("acquired_source", "loot"))
+		lines.append("NEU · %s · %s · %s" % [
+			str(summary.get("name", "")),
+			ItemUiPresentation.rarity_label(str(summary.get("rarity", "common"))),
+			source.to_upper()
+		])
+	return lines
+
+func _show_monster_reward(gold_amount: int, granted_items: Array = []) -> void:
 	_reset_combat_flow_v172()
 	boss_reward_chest_p0.visible = false
 	boss_chest_glow_p0.visible = false
 	monster_reward_title.text = "GESCHAFFT!"
-	monster_reward_text.text = "+%d Gold\n+%d XP" % [gold_amount, GameConfig.PLAYER_XP_PER_MONSTER]
+	var lines: Array[String] = ["+%d Gold" % gold_amount, "+%d XP" % GameConfig.PLAYER_XP_PER_MONSTER]
+	lines.append_array(_format_granted_item_lines(granted_items))
+	monster_reward_text.text = "\n".join(lines)
 	monster_reward_continue.text = "ZUM BOSS" if P0MonsterVisualSystem.is_boss(PlayerData.monster_level) else "NÄCHSTES MONSTER"
 	ScreenUiAssemblyService.prepare_boss_reward(self, false)
 	RewardProgressionVisualDirectorV193.reward(self, monster_reward_overlay, "gold", SettingsService.reduced_motion)
@@ -2305,7 +2584,7 @@ func _show_boss_intro() -> void:
 	CoreAnalytics.log_event("boss_start",{"monster_level":PlayerData.monster_level})
 	AudioService.play_sfx("boss_intro")
 	HapticsService.medium()
-	boss_intro_label.text = "%s\nBOSS-KAMPF · EXTRA-BELOHNUNG" % MonsterCatalog.display_name_for_level(PlayerData.monster_level).to_upper()
+	boss_intro_label.text = "%s\nBOSS-KAMPF · EXTRA-BELOHNUNG" % P0MonsterVisualSystem.display_name(PlayerData.monster_level).to_upper()
 	boss_intro_overlay.visible = true
 	boss_intro_overlay.modulate = Color(1,1,1,0)
 	var tween := create_tween()
@@ -2315,8 +2594,32 @@ func _show_boss_intro() -> void:
 	await tween.finished
 	boss_intro_overlay.visible = false
 	await _show_boss_shield_state()
+	BossChallengeSystem.start_challenge(PlayerData.monster_level)
+	_update_monster_ui()
 
-func _show_boss_defeat(gold_amount: int) -> void:
+func _on_boss_challenge_failed_v204(_state: Dictionary) -> void:
+	boss_intro_label.text = "ZEIT ABGELAUFEN!\nBOSS NOCH STARK · TIPPEN FÜR RETRY"
+	boss_intro_overlay.visible = true
+	boss_intro_overlay.modulate = Color(1, 1, 1, 0)
+	var tween := create_tween()
+	tween.tween_property(boss_intro_overlay, "modulate:a", 1.0, 0.16)
+	tween.tween_interval(1.1)
+	tween.tween_property(boss_intro_overlay, "modulate:a", 0.0, 0.20)
+	tween.finished.connect(func() -> void:
+		if is_instance_valid(boss_intro_overlay):
+			boss_intro_overlay.visible = false
+	)
+	reward_label.text = BossChallengeSystem.last_failure_message
+	boss_proximity_p0.text = "BOSS FEHLGESCHLAGEN · RETRY"
+	AudioService.play_sfx("hit_heavy")
+	HapticsService.medium()
+	_update_monster_ui()
+
+func _on_boss_challenge_tick_v204(_state: Dictionary) -> void:
+	if P0MonsterVisualSystem.is_boss(PlayerData.monster_level) and BossChallengeSystem.active:
+		boss_proximity_p0.text = BossChallengeSystem.timer_label()
+
+func _show_boss_defeat(gold_amount: int, granted_items: Array = []) -> void:
 	_reset_combat_flow_v172()
 	boss_defeat_burst.visible = true
 	boss_defeat_burst.modulate = Color(1,1,1,0)
@@ -2327,7 +2630,9 @@ func _show_boss_defeat(gold_amount: int) -> void:
 	tween.tween_property(boss_defeat_burst,"scale",Vector2(1.12,1.12),0.30)
 	await tween.finished
 	monster_reward_title.text = "BOSS BESIEGT!"
-	monster_reward_text.text = "+%d Gold\\n+%d XP\\n+2 Spins" % [gold_amount, GameConfig.PLAYER_XP_PER_MONSTER]
+	var lines: Array[String] = ["+%d Gold" % gold_amount, "+%d XP" % GameConfig.PLAYER_XP_PER_MONSTER, "+2 Spins"]
+	lines.append_array(_format_granted_item_lines(granted_items))
+	monster_reward_text.text = "\n".join(lines)
 	monster_reward_continue.text = "WEITER ZUR JAGD"
 	ScreenUiAssemblyService.prepare_boss_reward(self, true)
 	boss_reward_chest_p0.visible = true
@@ -2488,8 +2793,7 @@ func _upgrade_selected_building() -> void:
 	_refresh_p0_village()
 	await _show_building_upgrade_feedback(selected_building_id, previous_level, P0VillageSystem.get_level(selected_building_id))
 	if FeatureFlags.SHOW_QUESTS:
-		QuestSystem.add_progress("upgrade_1", 1)
-	ObjectiveSystem.register_action("village_upgrade",1)
+		GameplayEventService.publish_metric("village_upgrade", 1)
 	P0VillageSystem.acknowledge_pending_upgrade_result()
 	core_input_locked = false
 	_refresh_p0_village()
@@ -2571,9 +2875,9 @@ func _show_monster_defeat_state_for_level(defeated_level: int, is_boss: bool) ->
 	if SettingsService.reduced_motion:
 		await get_tree().create_timer(0.10).timeout
 	elif is_boss:
-		await get_tree().create_timer(0.46).timeout
+		await get_tree().create_timer(0.52).timeout
 	else:
-		await get_tree().create_timer(0.24).timeout
+		await get_tree().create_timer(0.30).timeout
 
 func _show_reward_pulse() -> void:
 	reward_pulse_p0.visible = true
@@ -2659,7 +2963,10 @@ func _refresh_account_p0() -> void:
 		account_status_p0.text = "%s · LOKALES PROFIL" % AccountState.display_name
 		link_guest_p0.disabled = true
 		link_guest_p0.text = "PROFIL BEREITS ANGELEGT"
-	account_progress_p0.text = "SPIELERSTUFE %d · REGION GRÜNHAIN" % PlayerData.player_level
+	account_progress_p0.text = "SPIELERSTUFE %d · REGION %s" % [
+		PlayerData.player_level,
+		RegionProgressionSystem.active_region_name_upper()
+	]
 	match AccountState.cloud_status:
 		"local_only":
 			cloud_status_p0.text = "ONLINE-SICHERUNG · LOKALES PROFIL · NOCH NICHT VERBUNDEN"
@@ -2924,13 +3231,17 @@ func _claim_afk_reward_p0() -> void:
 		return
 	afk_overlay_p0.visible = false
 	core_input_locked = false
+	var txn: Dictionary = result.get("reward_transaction", {})
 	reward_label.text = "OFFLINE · +%d GOLD" % int(result.get("gold",0))
+	RewardProgressionVisualDirectorV193.reward(self, afk_overlay_p0, "gold", SettingsService.reduced_motion)
 	AudioService.play_sfx("coin")
 	HapticsService.success()
-	CoreAnalytics.log_event("afk_reward_claimed",{
-		"claim_id":str(result.get("claim_id","")),
-		"seconds":int(result.get("seconds",0)),
-		"gold":int(result.get("gold",0))
+	GameplayEventService.publish(GameplayEventService.EVENT_AFK_CLAIMED, 1)
+	CoreAnalytics.log_event("afk_reward_claimed", {
+		"claim_id": str(result.get("claim_id", "")),
+		"seconds": int(result.get("seconds", 0)),
+		"gold": int(result.get("gold", 0)),
+		"reward_transaction_id": str(txn.get("transaction_id", ""))
 	})
 	_refresh_all()
 	_continue_pending_flow_v154()
@@ -3016,6 +3327,9 @@ func _open_core_view(target_view: Control, analytics_event: String) -> void:
 		return
 	if not analytics_event.is_empty():
 		CoreAnalytics.log_event(analytics_event)
+	if SettingsService.reduced_motion:
+		_switch_view(target_view)
+		return
 	core_transitioning = true
 	HomeNavigationRewardPolishV195.transition_out(self, target_view, SettingsService.reduced_motion)
 	core_transition_p0.visible = true
@@ -3051,16 +3365,35 @@ func _core_modal_open() -> bool:
 		or afk_overlay_p0.visible
 	)
 
+func qa_prepare_combat_ready() -> void:
+	_reset_core_transient_state()
+	_switch_view(view_tap)
+
 func _reset_core_transient_state() -> void:
 	core_input_locked = false
 	core_transitioning = false
 	wheel_spinning = false
 	monster_state_locked = false
 	core_transition_p0.visible = false
+	core_transition_p0.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	p0_debug_panel.visible = false
 	wheel_reward_overlay_p0.visible = false
 	monster_reward_overlay.visible = false
+	no_spins_panel.visible = false
 	building_upgrade_overlay_p0.visible = false
 	boss_intro_overlay.visible = false
+	level_up_overlay_p0.visible = false
+	settings_overlay_p0.visible = false
+	account_overlay_p0.visible = false
+	support_overlay_p0.visible = false
+	social_overlay_p0.visible = false
+	feature_hub_overlay_p0.visible = false
+	liveops_overlay_p0.visible = false
+	shop_overlay_p0.visible = false
+	progression_overlay_p0.visible = false
+	afk_overlay_p0.visible = false
+	if reward_modal != null:
+		reward_modal.visible = false
 	boss_defeat_burst.visible = false
 	boss_reward_chest_p0.visible = false
 	boss_chest_glow_p0.visible = false
@@ -3083,10 +3416,6 @@ func _reset_core_transient_state() -> void:
 	spin_button.modulate = Color.WHITE
 	first_session_hint_stage = 0
 	first_session_hint_p0.visible = false
-	liveops_overlay_p0.visible = false
-	shop_overlay_p0.visible = false
-	progression_overlay_p0.visible = false
-	afk_overlay_p0.visible = false
 	boss_proximity_p0.text = ""
 
 func _notification(what: int) -> void:
@@ -3141,7 +3470,7 @@ func _claim_goldmine_p0() -> void:
 		AudioService.play_sfx("coin")
 		HapticsService.light()
 		CoreAnalytics.log_event("goldmine_claim", {"amount":int(result.get("amount",0)),"level":P0VillageSystem.get_level("goldmine")})
-		ObjectiveSystem.register_action("goldmine_claim",1)
+		GameplayEventService.publish_metric("goldmine_claim", 1)
 	_refresh_goldmine_claim_p0()
 	_refresh_all()
 
@@ -3150,7 +3479,7 @@ func _craft_forge_v153()->void:
 	var result:=VillageProgressionSystem.craft_forge_upgrade()
 	if bool(result.get("ok",false)):
 		reward_label.text="SCHMIEDE · +%d TAP-SCHADEN · VEREDLUNG %d" % [int(result.get("tap_damage",0)),int(result.get("craft",0))]
-		ObjectiveSystem.register_action("forge_craft",1)
+		GameplayEventService.publish_metric("forge_craft", 1)
 		AudioService.play_sfx("upgrade");HapticsService.success()
 	else:
 		reward_label.text=str(result.get("message","Schmiede nicht bereit"))
@@ -3161,7 +3490,7 @@ func _claim_temple_blessing_v153()->void:
 	var result:=VillageProgressionSystem.claim_temple_blessing()
 	if bool(result.get("ok",false)):
 		reward_label.text="GLÜCKSTEMPEL · +%d SPINS" % int(result.get("spins",0))
-		ObjectiveSystem.register_action("temple_blessing",1)
+		GameplayEventService.publish_metric("temple_blessing", 1)
 		AudioService.play_sfx("coin");HapticsService.success()
 	else:
 		reward_label.text=str(result.get("message","Segen nicht bereit"))
@@ -3335,6 +3664,8 @@ func _refresh_first_session_flow() -> void:
 	var remaining := 10 - within_cycle
 	if within_cycle == 10:
 		boss_proximity_p0.text = "BOSS IST DA!"
+	elif remaining == 1:
+		boss_proximity_p0.text = "BOSS BEREIT"
 	elif within_cycle >= 7:
 		boss_proximity_p0.text = "BOSS IN %d" % remaining
 	elif within_cycle == 5:

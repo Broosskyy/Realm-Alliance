@@ -1,0 +1,1207 @@
+{
+	"apk": {},
+	"asset_verification": [
+		{
+			"asset": "M001_monster",
+			"node": "MonsterButton",
+			"verified": true
+		},
+		{
+			"asset": "gruenhain_bg",
+			"node": "Background",
+			"verified": true
+		},
+		{
+			"asset": "gold_hud",
+			"node": "GoldPillP0",
+			"verified": true
+		},
+		{
+			"asset": "spin_hud",
+			"node": "SpinPillP0",
+			"verified": true
+		},
+		{
+			"asset": "shield_hud",
+			"node": "ShieldPillP0",
+			"verified": true
+		}
+	],
+	"exit": {
+		"expected_code": 0,
+		"method": "get_tree().quit(code)",
+		"note": "Exit -1 from outer shell timeout/kill is not Godot quit; host uses quit(0|1)"
+	},
+	"fixes_applied": [
+		"V2.02.2 deterministic TAP regression (3 isolated fresh boots)",
+		"Evidence-based PASS/FAIL without flaky overrides",
+		"State metadata linked to screenshots",
+		"Settings overlay close button production styling",
+		"Village grid spacing and label clipping improvements"
+	],
+	"godot": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"inputs_executed": [
+		"boot_guest",
+		"tap_monster",
+		"nav_spin",
+		"spin",
+		"nav_village",
+		"nav_modi"
+	],
+	"milestone": "V2.02.2",
+	"mode": "full",
+	"qa_performance": {
+		"baseline_full_sec": 720.0,
+		"elapsed_sec": 56.6,
+		"mode": "full"
+	},
+	"regression": {
+		"boot": true,
+		"navigation": true,
+		"save": true,
+		"spin": true,
+		"tap": true
+	},
+	"runtime_method": "BootFlow.tscn production flow via autoload VisualRuntimeQa + windows display driver",
+	"screenshots": [
+		{
+			"bright_ratio": 0.746,
+			"dark_ratio": 0.02,
+			"file": "res://docs/v2022_visual_runtime_qa/01_main_1080x2340.png",
+			"filename": "01_main_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "Main gameplay after boot",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 100,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "01_main_1080x2340",
+				"shields": 0,
+				"spins": 10,
+				"step": "main_boot",
+				"timestamp_ms": 20463,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.744,
+			"dark_ratio": 0.02,
+			"file": "res://docs/v2022_visual_runtime_qa/02_tap_hit_1080x2340.png",
+			"filename": "02_tap_hit_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "After TAP hit",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 89,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "02_tap_hit_1080x2340",
+				"shields": 0,
+				"spins": 10,
+				"step": "tap_hit",
+				"timestamp_ms": 22048,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.742,
+			"dark_ratio": 0.019,
+			"file": "res://docs/v2022_visual_runtime_qa/03_defeat_reward_1080x2340.png",
+			"filename": "03_defeat_reward_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "Defeat/reward state",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "03_defeat_reward_1080x2340",
+				"shields": 0,
+				"spins": 10,
+				"step": "defeat_reward",
+				"timestamp_ms": 23883,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.714,
+			"dark_ratio": 0.053,
+			"file": "res://docs/v2022_visual_runtime_qa/04_spin_open_1080x2340.png",
+			"filename": "04_spin_open_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "SPIN open",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_CoinMaster",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "04_spin_open_1080x2340",
+				"shields": 0,
+				"spins": 10,
+				"step": "spin_open",
+				"timestamp_ms": 25433,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.642,
+			"dark_ratio": 0.04,
+			"file": "res://docs/v2022_visual_runtime_qa/05_spin_result_1080x2340.png",
+			"filename": "05_spin_result_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "SPIN result",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_CoinMaster",
+				"core_input_locked": true,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "05_spin_result_1080x2340",
+				"shields": 0,
+				"spins": 11,
+				"step": "spin_result",
+				"timestamp_ms": 26973,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.653,
+			"dark_ratio": 0.055,
+			"file": "res://docs/v2022_visual_runtime_qa/06_village_1080x2340.png",
+			"filename": "06_village_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "Village",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_ClashDorf",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "06_village_1080x2340",
+				"shields": 0,
+				"spins": 11,
+				"step": "village",
+				"timestamp_ms": 28453,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.45,
+			"dark_ratio": 0.223,
+			"file": "res://docs/v2022_visual_runtime_qa/07_modes_1080x2340.png",
+			"filename": "07_modes_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "MODI feature hub",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": true,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "07_modes_1080x2340",
+				"shields": 0,
+				"spins": 11,
+				"step": "modes_hub",
+				"timestamp_ms": 29949,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.475,
+			"dark_ratio": 0.229,
+			"file": "res://docs/v2022_visual_runtime_qa/08_overlay_1080x2340.png",
+			"filename": "08_overlay_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "Settings overlay",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": true,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "08_overlay_1080x2340",
+				"shields": 0,
+				"spins": 11,
+				"step": "settings_overlay",
+				"timestamp_ms": 31024,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.738,
+			"dark_ratio": 0.02,
+			"file": "res://docs/v2022_visual_runtime_qa/09_return_main_1080x2340.png",
+			"filename": "09_return_main_1080x2340",
+			"has_content": true,
+			"height": 2340,
+			"label": "Return to main",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 5,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "09_return_main_1080x2340",
+				"shields": 0,
+				"spins": 11,
+				"step": "return_main",
+				"timestamp_ms": 32176,
+				"viewport": [
+					1080,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.755,
+			"dark_ratio": 0.018,
+			"file": "res://docs/v2022_visual_runtime_qa/01_main_1080x2400.png",
+			"filename": "01_main_1080x2400",
+			"has_content": true,
+			"height": 2400,
+			"label": "Main gameplay viewport matrix",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 100,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "01_main_1080x2400",
+				"shields": 0,
+				"spins": 10,
+				"step": "matrix_main",
+				"timestamp_ms": 39457,
+				"viewport": [
+					1080,
+					2400
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.655,
+			"dark_ratio": 0.042,
+			"file": "res://docs/v2022_visual_runtime_qa/01_main_1080x1920.png",
+			"filename": "01_main_1080x1920",
+			"has_content": true,
+			"height": 1920,
+			"label": "Main gameplay viewport matrix",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 100,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "01_main_1080x1920",
+				"shields": 0,
+				"spins": 10,
+				"step": "matrix_main",
+				"timestamp_ms": 46738,
+				"viewport": [
+					1316,
+					2340
+				],
+				"wheel_spinning": false
+			},
+			"width": 1080
+		},
+		{
+			"bright_ratio": 0.756,
+			"dark_ratio": 0.018,
+			"file": "res://docs/v2022_visual_runtime_qa/01_main_1440x3200.png",
+			"filename": "01_main_1440x3200",
+			"has_content": true,
+			"height": 3200,
+			"label": "Main gameplay viewport matrix",
+			"not_black": true,
+			"ok": true,
+			"size_ok": true,
+			"state": {
+				"active_view": "View_TapHero",
+				"core_input_locked": false,
+				"encounter_id": "M001",
+				"gold": 300,
+				"monster_hp": 100,
+				"monster_id": "M001",
+				"monster_level": 1,
+				"monster_max_hp": 100,
+				"monster_state_locked": false,
+				"screenshot": "01_main_1440x3200",
+				"shields": 0,
+				"spins": 10,
+				"step": "matrix_main",
+				"timestamp_ms": 53665,
+				"viewport": [
+					1080,
+					2400
+				],
+				"wheel_spinning": false
+			},
+			"width": 1440
+		}
+	],
+	"state_evidence": [
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 100,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "01_main_1080x2340",
+			"shields": 0,
+			"spins": 10,
+			"step": "main_boot",
+			"timestamp_ms": 20463,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 89,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "02_tap_hit_1080x2340",
+			"shields": 0,
+			"spins": 10,
+			"step": "tap_hit",
+			"timestamp_ms": 22048,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "03_defeat_reward_1080x2340",
+			"shields": 0,
+			"spins": 10,
+			"step": "defeat_reward",
+			"timestamp_ms": 23883,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_CoinMaster",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "04_spin_open_1080x2340",
+			"shields": 0,
+			"spins": 10,
+			"step": "spin_open",
+			"timestamp_ms": 25433,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_CoinMaster",
+			"core_input_locked": true,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "05_spin_result_1080x2340",
+			"shields": 0,
+			"spins": 11,
+			"step": "spin_result",
+			"timestamp_ms": 26973,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_ClashDorf",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "06_village_1080x2340",
+			"shields": 0,
+			"spins": 11,
+			"step": "village",
+			"timestamp_ms": 28453,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": true,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "07_modes_1080x2340",
+			"shields": 0,
+			"spins": 11,
+			"step": "modes_hub",
+			"timestamp_ms": 29949,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": true,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "08_overlay_1080x2340",
+			"shields": 0,
+			"spins": 11,
+			"step": "settings_overlay",
+			"timestamp_ms": 31024,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 5,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "09_return_main_1080x2340",
+			"shields": 0,
+			"spins": 11,
+			"step": "return_main",
+			"timestamp_ms": 32176,
+			"viewport": [
+				1080,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 100,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "01_main_1080x2400",
+			"shields": 0,
+			"spins": 10,
+			"step": "matrix_main",
+			"timestamp_ms": 39457,
+			"viewport": [
+				1080,
+				2400
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 100,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "01_main_1080x1920",
+			"shields": 0,
+			"spins": 10,
+			"step": "matrix_main",
+			"timestamp_ms": 46738,
+			"viewport": [
+				1316,
+				2340
+			],
+			"wheel_spinning": false
+		},
+		{
+			"active_view": "View_TapHero",
+			"core_input_locked": false,
+			"encounter_id": "M001",
+			"gold": 300,
+			"monster_hp": 100,
+			"monster_id": "M001",
+			"monster_level": 1,
+			"monster_max_hp": 100,
+			"monster_state_locked": false,
+			"screenshot": "01_main_1440x3200",
+			"shields": 0,
+			"spins": 10,
+			"step": "matrix_main",
+			"timestamp_ms": 53665,
+			"viewport": [
+				1080,
+				2400
+			],
+			"wheel_spinning": false
+		}
+	],
+	"status": "PASS",
+	"tap_determinism": {
+		"pass": true,
+		"pass_count": 3,
+		"required": 3,
+		"runs": [
+			{
+				"hp_after": 90,
+				"hp_before": 100,
+				"monster_max_hp": 100,
+				"pass": true,
+				"reason": "",
+				"run": 1
+			},
+			{
+				"hp_after": 90,
+				"hp_before": 100,
+				"monster_max_hp": 100,
+				"pass": true,
+				"reason": "",
+				"run": 2
+			},
+			{
+				"hp_after": 89,
+				"hp_before": 100,
+				"monster_max_hp": 100,
+				"pass": true,
+				"reason": "",
+				"run": 3
+			}
+		]
+	},
+	"viewport_matrix": {
+		"(1080, 1920)": {
+			"issues": [],
+			"shots": [
+				{
+					"bright_ratio": 0.655,
+					"dark_ratio": 0.042,
+					"file": "res://docs/v2022_visual_runtime_qa/01_main_1080x1920.png",
+					"filename": "01_main_1080x1920",
+					"has_content": true,
+					"height": 1920,
+					"label": "Main gameplay viewport matrix",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 100,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "01_main_1080x1920",
+						"shields": 0,
+						"spins": 10,
+						"step": "matrix_main",
+						"timestamp_ms": 46738,
+						"viewport": [
+							1316,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				}
+			],
+			"status": "PASS"
+		},
+		"(1080, 2340)": {
+			"issues": [],
+			"shots": [
+				{
+					"bright_ratio": 0.746,
+					"dark_ratio": 0.02,
+					"file": "res://docs/v2022_visual_runtime_qa/01_main_1080x2340.png",
+					"filename": "01_main_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "Main gameplay after boot",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 100,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "01_main_1080x2340",
+						"shields": 0,
+						"spins": 10,
+						"step": "main_boot",
+						"timestamp_ms": 20463,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.744,
+					"dark_ratio": 0.02,
+					"file": "res://docs/v2022_visual_runtime_qa/02_tap_hit_1080x2340.png",
+					"filename": "02_tap_hit_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "After TAP hit",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 89,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "02_tap_hit_1080x2340",
+						"shields": 0,
+						"spins": 10,
+						"step": "tap_hit",
+						"timestamp_ms": 22048,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.742,
+					"dark_ratio": 0.019,
+					"file": "res://docs/v2022_visual_runtime_qa/03_defeat_reward_1080x2340.png",
+					"filename": "03_defeat_reward_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "Defeat/reward state",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "03_defeat_reward_1080x2340",
+						"shields": 0,
+						"spins": 10,
+						"step": "defeat_reward",
+						"timestamp_ms": 23883,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.714,
+					"dark_ratio": 0.053,
+					"file": "res://docs/v2022_visual_runtime_qa/04_spin_open_1080x2340.png",
+					"filename": "04_spin_open_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "SPIN open",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_CoinMaster",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "04_spin_open_1080x2340",
+						"shields": 0,
+						"spins": 10,
+						"step": "spin_open",
+						"timestamp_ms": 25433,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.642,
+					"dark_ratio": 0.04,
+					"file": "res://docs/v2022_visual_runtime_qa/05_spin_result_1080x2340.png",
+					"filename": "05_spin_result_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "SPIN result",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_CoinMaster",
+						"core_input_locked": true,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "05_spin_result_1080x2340",
+						"shields": 0,
+						"spins": 11,
+						"step": "spin_result",
+						"timestamp_ms": 26973,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.653,
+					"dark_ratio": 0.055,
+					"file": "res://docs/v2022_visual_runtime_qa/06_village_1080x2340.png",
+					"filename": "06_village_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "Village",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_ClashDorf",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "06_village_1080x2340",
+						"shields": 0,
+						"spins": 11,
+						"step": "village",
+						"timestamp_ms": 28453,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.45,
+					"dark_ratio": 0.223,
+					"file": "res://docs/v2022_visual_runtime_qa/07_modes_1080x2340.png",
+					"filename": "07_modes_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "MODI feature hub",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": true,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "07_modes_1080x2340",
+						"shields": 0,
+						"spins": 11,
+						"step": "modes_hub",
+						"timestamp_ms": 29949,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.475,
+					"dark_ratio": 0.229,
+					"file": "res://docs/v2022_visual_runtime_qa/08_overlay_1080x2340.png",
+					"filename": "08_overlay_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "Settings overlay",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": true,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "08_overlay_1080x2340",
+						"shields": 0,
+						"spins": 11,
+						"step": "settings_overlay",
+						"timestamp_ms": 31024,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				},
+				{
+					"bright_ratio": 0.738,
+					"dark_ratio": 0.02,
+					"file": "res://docs/v2022_visual_runtime_qa/09_return_main_1080x2340.png",
+					"filename": "09_return_main_1080x2340",
+					"has_content": true,
+					"height": 2340,
+					"label": "Return to main",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 5,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "09_return_main_1080x2340",
+						"shields": 0,
+						"spins": 11,
+						"step": "return_main",
+						"timestamp_ms": 32176,
+						"viewport": [
+							1080,
+							2340
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				}
+			],
+			"status": "PASS"
+		},
+		"(1080, 2400)": {
+			"issues": [],
+			"shots": [
+				{
+					"bright_ratio": 0.755,
+					"dark_ratio": 0.018,
+					"file": "res://docs/v2022_visual_runtime_qa/01_main_1080x2400.png",
+					"filename": "01_main_1080x2400",
+					"has_content": true,
+					"height": 2400,
+					"label": "Main gameplay viewport matrix",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 100,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "01_main_1080x2400",
+						"shields": 0,
+						"spins": 10,
+						"step": "matrix_main",
+						"timestamp_ms": 39457,
+						"viewport": [
+							1080,
+							2400
+						],
+						"wheel_spinning": false
+					},
+					"width": 1080
+				}
+			],
+			"status": "PASS"
+		},
+		"(1440, 3200)": {
+			"issues": [],
+			"shots": [
+				{
+					"bright_ratio": 0.756,
+					"dark_ratio": 0.018,
+					"file": "res://docs/v2022_visual_runtime_qa/01_main_1440x3200.png",
+					"filename": "01_main_1440x3200",
+					"has_content": true,
+					"height": 3200,
+					"label": "Main gameplay viewport matrix",
+					"not_black": true,
+					"ok": true,
+					"size_ok": true,
+					"state": {
+						"active_view": "View_TapHero",
+						"core_input_locked": false,
+						"encounter_id": "M001",
+						"gold": 300,
+						"monster_hp": 100,
+						"monster_id": "M001",
+						"monster_level": 1,
+						"monster_max_hp": 100,
+						"monster_state_locked": false,
+						"screenshot": "01_main_1440x3200",
+						"shields": 0,
+						"spins": 10,
+						"step": "matrix_main",
+						"timestamp_ms": 53665,
+						"viewport": [
+							1080,
+							2400
+						],
+						"wheel_spinning": false
+					},
+					"width": 1440
+				}
+			],
+			"status": "PASS"
+		}
+	},
+	"visual_issues": []
+}

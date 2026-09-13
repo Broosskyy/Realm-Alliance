@@ -1,0 +1,71 @@
+{
+  "version": "v2.09-loot-02",
+  "sources": {
+    "normal_monster": {
+      "guaranteed": [],
+      "weighted_entries": []
+    },
+    "boss": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "wpn_gruenhain_blade", "weight": 55, "quantity": 1},
+        {"item_id": "wpn_battle_axe", "weight": 25, "quantity": 1},
+        {"item_id": "acc_guardian_pendant", "weight": 20, "quantity": 1}
+      ]
+    },
+    "greenvale_normal": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "acc_silver_ring", "weight": 72, "quantity": 1},
+        {"item_id": "wpn_gruenhain_blade", "weight": 28, "quantity": 1}
+      ]
+    },
+    "greenvale_tough": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "acc_silver_ring", "weight": 62, "quantity": 1},
+        {"item_id": "wpn_gruenhain_blade", "weight": 38, "quantity": 1}
+      ]
+    },
+    "greenvale_elite": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "acc_silver_ring", "weight": 45, "quantity": 1},
+        {"item_id": "wpn_gruenhain_blade", "weight": 35, "quantity": 1},
+        {"item_id": "acc_guardian_pendant", "weight": 20, "quantity": 1}
+      ]
+    },
+    "greenvale_boss": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "wpn_gruenhain_blade", "weight": 50, "quantity": 1},
+        {"item_id": "wpn_battle_axe", "weight": 30, "quantity": 1},
+        {"item_id": "acc_guardian_pendant", "weight": 20, "quantity": 1}
+      ]
+    },
+    "chest_common": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "acc_silver_ring", "weight": 70, "quantity": 1},
+        {"item_id": "wpn_gruenhain_blade", "weight": 30, "quantity": 1}
+      ]
+    },
+    "chest_rare": {
+      "guaranteed": [],
+      "weighted_entries": [
+        {"item_id": "acc_silver_ring", "weight": 40, "quantity": 1},
+        {"item_id": "wpn_battle_axe", "weight": 35, "quantity": 1},
+        {"item_id": "acc_guardian_pendant", "weight": 25, "quantity": 1}
+      ]
+    },
+    "chest_boss": {
+      "guaranteed": [
+        {"item_id": "acc_guardian_pendant", "quantity": 1}
+      ],
+      "weighted_entries": [
+        {"item_id": "wpn_battle_axe", "weight": 60, "quantity": 1},
+        {"item_id": "wpn_gruenhain_blade", "weight": 40, "quantity": 1}
+      ]
+    }
+  }
+}

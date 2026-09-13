@@ -1,11 +1,14 @@
 extends RefCounted
 
+const GameplayVfxService = preload("res://GameplayVfxService.gd")
+
 # Presentation-only TAP feedback. Strength is derived from already-authoritative damage; no damage is modified here.
-static func hit(root: Control, monster: Control, damage: int, base_damage: int, reduced_motion: bool) -> void:
+static func hit(root: Control, monster: Control, damage: int, base_damage: int, reduced_motion: bool, critical: bool = false) -> void:
 	if root == null or monster == null:
 		return
-	var strong := damage >= maxi(base_damage * 2, base_damage + 8)
-	GameplayVfxService.play_overlay(root, monster, "tap_hit_strong" if strong else "tap_hit", reduced_motion, 1.04 if strong else 0.82, 0.28 if strong else 0.22)
+	var strong := critical or damage >= maxi(base_damage * 2, base_damage + 8)
+	var overlay := "tap_crit" if critical else ("tap_hit_strong" if strong else "tap_hit")
+	GameplayVfxService.play_overlay(root, monster, overlay, reduced_motion, 1.18 if critical else (1.04 if strong else 0.82), 0.34 if critical else (0.28 if strong else 0.22))
 	if reduced_motion:
 		return
 	monster.pivot_offset = monster.size * 0.5

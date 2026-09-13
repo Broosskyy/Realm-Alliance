@@ -1,0 +1,67 @@
+{
+  "audit_date": "2026-09-12",
+  "method": "Production asset verification + content matrix roles (runtime render via Phase 2 QA screenshots for activated reserves)",
+  "reserve_monsters": [
+    {
+      "id": "M006",
+      "name": "Blätterkauz",
+      "decision": "SELECTED",
+      "role": "flying_variant",
+      "silhouette": "compact owl / aerial",
+      "scale": 0.97,
+      "overlap_group": "owl_pair",
+      "production_assets": "verified 4-state",
+      "active_slot": "L7"
+    },
+    {
+      "id": "M007",
+      "name": "Mooskauz",
+      "decision": "RESERVE",
+      "role": "flying_variant_b",
+      "silhouette": "owl pair with M006",
+      "overlap_group": "owl_pair",
+      "reason": "Only one owl in compact cycle"
+    },
+    {
+      "id": "M008",
+      "name": "Moosschildkröte",
+      "decision": "SELECTED",
+      "role": "defensive_silhouette",
+      "silhouette": "wide shell / low profile",
+      "scale": 1.04,
+      "production_assets": "verified 4-state",
+      "active_slot": "L9"
+    },
+    {
+      "id": "M011",
+      "name": "Kristallgolem",
+      "decision": "SELECTED",
+      "role": "stone_heavy",
+      "silhouette": "tall crystal block / late mid tough",
+      "scale": 1.06,
+      "production_assets": "verified 4-state",
+      "active_slot": "L10"
+    },
+    {
+      "id": "M013",
+      "name": "Waldwolf",
+      "decision": "SELECTED",
+      "role": "predator",
+      "silhouette": "lean predator quadruped",
+      "scale": 1.03,
+      "production_assets": "verified 4-state",
+      "active_slot": "L8"
+    },
+    {
+      "id": "M014",
+      "name": "Laubkeiler",
+      "decision": "RESERVE",
+      "role": "boar_variant",
+      "silhouette": "boar pair with M003",
+      "overlap_group": "keiler_pair",
+      "reason": "M003 already used L4 + L13; spacing rule"
+    }
+  ],
+  "future_boss": ["B002", "B003"],
+  "deprecated": ["M009 optional blob overlap M001"]
+}

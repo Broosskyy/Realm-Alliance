@@ -1,25 +1,61 @@
 {
+  "version": "v2.09-region-catalog-01",
   "regions": [
     {
       "id": "greenvale",
       "name": "Grünhain",
+      "order": 1,
       "unlock_level": 1,
       "theme": "bright_fantasy_forest",
-      "monsters": [
-        "slime",
-        "goblin",
-        "boar_brute"
-      ],
-      "boss_every": 10
+      "background_asset": "res://assets/world/greenvale/BG001_gruenhain_home_v11.png",
+      "icon_asset": "",
+      "encounter_catalog": "res://data/encounters_greenvale_p0_v1_4.json",
+      "monster_asset_root": "res://assets/monsters/greenvale/states",
+      "boss_every": 15,
+      "boss_ids": ["B001", "B002", "B003"],
+      "loot_sources": {
+        "normal": "greenvale_normal",
+        "tough": "greenvale_tough",
+        "elite": "greenvale_elite",
+        "boss": "greenvale_boss"
+      },
+      "reward_modifiers": {
+        "gold_multiplier": 1.0,
+        "xp_multiplier": 1.0
+      },
+      "visual_theme": {
+        "accent": "#4a8f3f",
+        "label_style": "forest"
+      },
+      "future_event_hooks": []
     },
     {
       "id": "frostmark",
       "name": "Frostmark",
+      "order": 2,
       "unlock_level": 20,
       "theme": "snow_fantasy",
-      "monsters": []
+      "background_asset": "",
+      "icon_asset": "",
+      "encounter_catalog": "",
+      "monster_asset_root": "",
+      "boss_every": 10,
+      "boss_ids": [],
+      "loot_sources": {
+        "normal": "",
+        "elite": "",
+        "boss": ""
+      },
+      "reward_modifiers": {
+        "gold_multiplier": 1.0,
+        "xp_multiplier": 1.0
+      },
+      "visual_theme": {
+        "accent": "#6eb8d4",
+        "label_style": "snow"
+      },
+      "future_event_hooks": [],
+      "preview_only": true
     }
-  ],
-  "version": "v1.33-region-progression-01",
-  "production_note": "Frostmark is progression/preview only until dedicated region art, encounters, village and mode content exist."
+  ]
 }
