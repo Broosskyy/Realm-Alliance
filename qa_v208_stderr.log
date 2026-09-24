@@ -1,8 +1,0 @@
-Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
-Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
-Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
-Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
-SCRIPT ERROR: Parse Error: Static function "set_exit_code()" not found in base "GDScriptNativeClass".
-   at: GDScript::reload (res://V208WorldRuntimeQaHost.gd:34)
-ERROR: Failed to load script "res://V208WorldRuntimeQaHost.gd" with error "Parse error".
-   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
