@@ -9,4 +9,13 @@ essence:{kind:"essence",label:"Essenzriss",hpMultiplier:1.2,attackMultiplier:1.1
 golden:{kind:"golden",label:"Goldwesen",hpMultiplier:1.1,attackMultiplier:1,xpMultiplier:1.1,goldMultiplier:5,essenceMultiplier:1,lootMultiplier:1.4},
 cursed:{kind:"cursed",label:"Verflucht",hpMultiplier:1.65,attackMultiplier:1.5,xpMultiplier:1.6,goldMultiplier:1.8,essenceMultiplier:2,lootMultiplier:2},
 boss:{kind:"boss",label:"Boss",hpMultiplier:1,attackMultiplier:1,xpMultiplier:1,goldMultiplier:1,essenceMultiplier:1,lootMultiplier:2.5}};
-export function encounterForStage(enemyIndex:number):EncounterKind{return enemyIndex===4?"boss":enemyIndex>=2?"tough":"normal"}
+export function encounterForStage(enemyIndex:number,zone=1):EncounterKind{
+ if(enemyIndex===4)return"boss";
+ const seed=(zone*37+enemyIndex*17)%100;
+ if(seed<7)return"treasure";
+ if(seed<14)return"golden";
+ if(seed<21)return"essence";
+ if(seed<29)return"elite";
+ if(seed<35)return"cursed";
+ return enemyIndex>=2?"tough":"normal";
+}
