@@ -1,5 +1,5 @@
 import{worldForZone,worldIndexForZone,worldStageForZone}from"./worlds";
-import{encounterForStage,ENCOUNTERS,type EncounterKind}from"./encounters";
+import{encounterForStage,ENCOUNTERS}from"./encounters";import type{EncounterKind}from"./encounters";
 export type EnemyArchetype="swift"|"brute"|"caster"|"guardian"|"stalker"|"boss";
 export type EnemyDefinition={id:string;name:string;maxHp:number;attack:number;xp:number;gold:number;essence:number;tier:"normal"|"tough"|"boss";family:string;encounter:EncounterKind;lootMultiplier:number;archetype:EnemyArchetype;variant:number;ability:string;abilityText:string};
 export type ItemSlot="weapon"|"armor"|"charm";export type ItemDefinition={id:string;name:string;power:number;rarity:"common"|"uncommon"|"rare"|"epic";slot:ItemSlot;hp?:number;crit?:number};
