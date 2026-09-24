@@ -311,3 +311,62 @@ h1 { margin-bottom: 12px; font-family: Georgia, serif; font-size: clamp(34px, 9v
 .encounter-copy{max-width:75%}
 .encounter-copy span{text-transform:uppercase}
 @media(max-height:760px){.arena{min-height:480px}.monster{margin-top:82px}.player-vitals{top:105px}}
+
+
+/* Mobile viewport lock: core combat must fit without page scrolling */
+html,body,#root{min-height:100%;overscroll-behavior:none}
+body{overflow-x:hidden}
+.game{height:100dvh;min-height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+.topbar{position:relative;min-height:64px;padding:max(10px,env(safe-area-inset-top)) 14px 9px}
+.back-button{width:34px;height:34px;flex:0 0 34px;margin-right:8px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.08);border-radius:12px;color:#dfe5db;background:rgba(255,255,255,.045);font-size:27px;line-height:1}
+.topbar>div:first-of-type{margin-right:auto}
+.arena{min-height:0;height:auto}
+.encounter-copy{top:14px;left:14px}
+.encounter-copy h2{font-size:clamp(24px,6.5vw,34px);margin-top:2px}
+.encounter-copy p{margin-bottom:0}
+.player-vitals{top:88px;left:14px;right:14px;padding:7px 10px}
+.monster{width:clamp(120px,31vw,165px);height:clamp(150px,28vh,195px);margin-top:62px}
+.monster__body{inset:38px 18px 17px}
+.monster__ears{top:26px;font-size:36px;letter-spacing:34px}
+.monster__face{top:82px;left:50%;transform:translateX(-50%)}
+.enemy-hud{left:14px;right:14px;bottom:10px}
+.controls{padding:9px 14px max(10px,env(safe-area-inset-bottom));max-height:43dvh;overflow-y:auto;scrollbar-width:none}
+.controls::-webkit-scrollbar{display:none}
+.message{min-height:20px;margin-bottom:6px;font-size:12px}
+.attack{min-height:56px}
+.victory{padding:9px 12px;border-radius:16px}
+.victory>strong{margin:1px 0 7px;font-size:16px}
+.victory .primary{min-height:44px;padding:10px 16px}
+.loot{margin-top:11px}
+.section-heading h3{font-size:18px}
+.items{gap:6px;margin-top:7px}
+.item{min-height:54px;padding:6px 9px;grid-template-columns:38px 1fr auto;border-radius:13px}
+.item__icon{width:36px;height:36px;border-radius:11px}
+.item small{margin-top:1px;font-size:11px}
+.reset{margin-top:8px;padding:5px;font-size:9px}
+
+@media(max-height:800px){
+ .topbar{min-height:58px}
+ .arena{min-height:0}
+ .encounter-copy p{display:none}
+ .player-vitals{top:72px}
+ .monster{height:150px;margin-top:58px}
+ .monster__body{inset:31px 20px 14px}
+ .monster__ears{top:20px}
+ .monster__face{top:67px}
+ .loot{margin-top:8px}
+ .item{min-height:48px}
+}
+@media(max-height:680px){
+ .encounter-copy{top:8px}.encounter-copy h2{font-size:22px}
+ .player-vitals{top:58px}
+ .monster{height:128px;width:118px;margin-top:48px}
+ .monster__face{top:58px}.monster__ears{font-size:29px}.monster__body{inset:27px 15px 11px}
+ .attack{min-height:48px}.message{display:none}
+ .loot{margin-top:6px}.section-heading .eyebrow{display:none}
+}
+@media(min-width:700px){
+ body{padding:0}
+ .game{min-height:100dvh;height:100dvh;border-radius:0}
+ .arena{min-height:0}
+}
