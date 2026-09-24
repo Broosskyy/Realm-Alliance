@@ -6,40 +6,45 @@ import"./styles/app.css";
 
 function App(){
  const[started,setStarted]=useState(false),[state,setState]=useState<GameState>(()=>loadState());
- const[message,setMessage]=useState("Der Grünhain wartet."),[damagePop,setDamagePop]=useState<number|null>(null);
+ const[message,setMessage]=useState("Bereit"),[damagePop,setDamagePop]=useState<number|null>(null);
+ const[reward,setReward]=useState<{xp:number;gold:number}|null>(null),[flash,setFlash]=useState<"hit"|"attack"|null>(null);
  const enemy=enemies[state.enemyIndex],damage=useMemo(()=>playerDamage(state),[state]);
  useEffect(()=>saveState(state),[state]);
  function strike(){
   if(state.enemyHp<=0)return;
-  setDamagePop(damage); setState(c=>({...c,enemyPose:"hit"}));
-  window.setTimeout(()=>setDamagePop(null),420);
+  setFlash("hit");setDamagePop(damage);navigator.vibrate?.(18);
+  window.setTimeout(()=>setFlash(null),180);window.setTimeout(()=>setDamagePop(null),520);
   window.setTimeout(()=>setState(c=>{
    const hit=playerDamage(c),nextHp=Math.max(0,c.enemyHp-hit);
-   if(nextHp===0){setMessage(`${enemies[c.enemyIndex].name} besiegt · Beute gesichert`);return applyVictory({...c,enemyHp:0,enemyPose:"defeated"});}
-   setMessage(`${hit} Schaden · Gegner kontert für ${enemies[c.enemyIndex].attack}`);
+   if(nextHp===0){setReward({xp:enemies[c.enemyIndex].xp,gold:enemies[c.enemyIndex].gold});setMessage("Sieg");return applyVictory({...c,enemyHp:0,enemyPose:"defeated"});}
+   setMessage(`−${hit} · Konter −${enemies[c.enemyIndex].attack}`);setFlash("attack");navigator.vibrate?.([12,25,12]);
    return applyEnemyHit({...c,enemyHp:nextHp,enemyPose:"attack"});
-  }),120);
-  window.setTimeout(()=>setState(c=>c.enemyHp>0?{...c,enemyPose:"idle"}:c),420);
+  }),150);
+  window.setTimeout(()=>{setFlash(null);setState(c=>c.enemyHp>0?{...c,enemyPose:"idle"}:c)},440);
  }
- function nextEncounter(){setState(c=>advanceEnemy(c));setMessage("Ein neuer Gegner tritt aus dem Grün.");window.scrollTo({top:0,behavior:"smooth"});}
- function equip(id:string){setState(c=>({...c,equipped:c.inventory.find(i=>i.id===id)??null}));}
- function reset(){resetSave();setState(loadState());setStarted(false);setMessage("Der Grünhain wartet.");}
- if(!started)return <main className="splash"><section className="splash__card"><div className="brandmark">RA</div><p className="eyebrow">WEB FIRST · QUICK PLAY</p><h1>REALM<br/>ALLIANCE</h1><p className="lead">Direkt in den Grünhain. Kein Download.<br/>Kein Pflichtkonto vor dem ersten Kampf.</p><button className="primary" onClick={()=>setStarted(true)}>Spielen</button><span className="save-note">Fortschritt wird auf diesem Gerät gespeichert.</span></section></main>;
- const hp=Math.max(0,state.enemyHp/enemy.maxHp*100),php=state.playerHp/state.playerMaxHp*100;
- return <main className="game">
-  <header className="topbar"><button className="back-button" onClick={()=>setStarted(false)} aria-label="Zurück">‹</button><div><span className="eyebrow">GRÜNHAIN</span><strong>Level {state.level}</strong></div><div className="currencies"><span>◈ {state.gold}</span><span>{state.xp}/{state.xpToNext} XP</span></div></header>
-  <section className="arena">
-   <div className="encounter-copy"><span>BEGEGNUNG {state.enemyIndex+1} · {enemy.tier}</span><h2>{enemy.name}</h2><p>{enemy.subtitle}</p></div>
-   <div className="combat-hud player-vitals"><div className="hp-row"><span>DEIN LEBEN</span><strong>{state.playerHp}/{state.playerMaxHp}</strong></div><div className="bar bar--player"><div className="bar__fill" style={{width:`${php}%`}}/></div></div>
-   <button className={`monster monster--${state.enemyPose}`} onClick={strike} disabled={state.enemyHp<=0} aria-label={`${enemy.name} angreifen`}><span className="monster__ears">◆ ◆</span><span className="monster__face"><i/><i/></span><span className="monster__body">✦</span><span className="monster__shadow"/>{damagePop&&<b className="damage-pop">−{damagePop}</b>}</button>
-   <div className="enemy-hud"><div className="hp-row"><span>{enemy.name.toUpperCase()}</span><strong>{state.enemyHp}/{enemy.maxHp}</strong></div><div className="bar"><div className="bar__fill" style={{width:`${hp}%`}}/></div></div>
+ function nextEncounter(){setReward(null);setState(c=>advanceEnemy(c));setMessage("Bereit");}
+ function equip(id:string){setState(c=>({...c,equipped:c.inventory.find(i=>i.id===id)??null}));navigator.vibrate?.(12);}
+ function reset(){resetSave();setState(loadState());setReward(null);setStarted(false);}
+ if(!started)return <main className="splash"><section className="splash__card"><div className="brandmark">RA</div><p className="eyebrow">QUICK PLAY</p><h1>REALM<br/>ALLIANCE</h1><p className="lead">Grünhain wartet.</p><button className="primary" onClick={()=>setStarted(true)}>Spielen</button></section></main>;
+ const ehp=Math.max(0,state.enemyHp/enemy.maxHp*100),php=state.playerHp/state.playerMaxHp*100;
+ return <main className={`game fx--${flash??"none"}`}>
+  <header className="topbar"><button className="back-button" onClick={()=>setStarted(false)}>‹</button><div className="level"><span>GRÜNHAIN</span><strong>Lv. {state.level}</strong></div><div className="currencies"><span>◈ {state.gold}</span><span>{state.xp}/{state.xpToNext} XP</span></div></header>
+  <section className="battle">
+   <div className="battle-title"><span>BEGEGNUNG {state.enemyIndex+1} · {enemy.tier}</span><h2>{enemy.name}</h2></div>
+   <div className="player-hp"><div><span>DU</span><b>{state.playerHp}/{state.playerMaxHp}</b></div><div className="bar"><i style={{width:`${php}%`}}/></div></div>
+   <div className="stage">
+    <div className="ambient ambient--1"/><div className="ambient ambient--2"/><div className="ground"/>
+    <button className={`creature creature--${state.enemyPose}`} onClick={strike} disabled={!state.enemyHp}>
+      <span className="horn horn--l"/><span className="horn horn--r"/><span className="head"><i/><i/><b/></span><span className="body"><i/><i/></span><span className="shadow"/>
+      {damagePop&&<em className="damage-pop">−{damagePop}</em>}
+    </button>
+   </div>
+   <div className="enemy-hp"><div><span>{enemy.name}</span><b>{state.enemyHp}/{enemy.maxHp}</b></div><div className="bar bar--enemy"><i style={{width:`${ehp}%`}}/></div></div>
   </section>
-  <section className="controls"><div className="message">{message}</div>
-   {state.enemyHp>0?<button className="attack" onClick={strike}><span>ANGRIFF</span><small>{damage} Schaden · Tippen</small></button>:<section className="victory"><span className="eyebrow">SIEG</span><strong>+{enemy.xp} XP · +{enemy.gold} Gold</strong><button className="primary" onClick={nextEncounter}>Weiter</button></section>}
-   <details className="loot" open={state.inventory.length>0 && state.inventory.length<=1}><summary><div className="section-heading"><div><span className="eyebrow">AUSRÜSTUNG</span><h3>Gefundene Beute</h3></div><strong>Power +{state.equipped?.power??0}</strong></div></summary>
-   {state.inventory.length===0?<p className="empty">Besiege deinen ersten Gegner, um Beute zu erhalten.</p>:<div className="items">{state.inventory.map(item=><button key={item.id} className={`item item--${item.rarity} ${state.equipped?.id===item.id?"item--equipped":""}`} onClick={()=>equip(item.id)}><span className="item__icon">✦</span><span><strong>{item.name}</strong><small>{item.rarity} · +{item.power} Power</small></span><b>{state.equipped?.id===item.id?"Aktiv":"Anlegen"}</b></button>)}</div>}</details>
-   <button className="reset" onClick={reset}>Entwicklungsstand zurücksetzen</button>
-  </section>
+  <footer className="action-dock">
+   {state.enemyHp>0?<><div className="combat-note">{message}</div><button className="attack" onClick={strike}><span>⚔</span><strong>ANGRIFF</strong><small>{damage} SCHADEN</small></button></>:<div className="reward"><span className="reward__title">SIEG</span><div className="reward__values"><b>+{reward?.xp??enemy.xp}<small> XP</small></b><b>+{reward?.gold??enemy.gold}<small> GOLD</small></b></div><div className="drop">{state.inventory.at(-1)?.name??"Beute gesichert"}</div><button className="next" onClick={nextEncounter}>NÄCHSTER KAMPF ›</button></div>}
+   <details className="inventory"><summary><span>✦ AUSRÜSTUNG</span><b>+{state.equipped?.power??0} Power</b></summary><div className="inventory-sheet">{state.inventory.length?state.inventory.map(item=><button key={item.id} className={state.equipped?.id===item.id?"equipped":""} onClick={()=>equip(item.id)}><i>✦</i><span><b>{item.name}</b><small>{item.rarity} · +{item.power}</small></span><em>{state.equipped?.id===item.id?"AKTIV":"ANLEGEN"}</em></button>):<p>Noch keine Beute.</p>}<button className="dev-reset" onClick={reset}>Spielstand zurücksetzen</button></div></details>
+  </footer>
  </main>
 }
 createRoot(document.getElementById("root")!).render(<React.StrictMode><App/></React.StrictMode>);
