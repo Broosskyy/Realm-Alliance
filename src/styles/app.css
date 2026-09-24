@@ -290,3 +290,24 @@ h1 { margin-bottom: 12px; font-family: Georgia, serif; font-size: clamp(34px, 9v
   .game { min-height: calc(100vh - 48px); border-radius: 28px; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,.35); }
   .arena { min-height: 520px; }
 }
+
+
+/* Greenvale vertical-slice combat polish */
+.player-vitals{position:absolute;z-index:6;top:116px;left:18px;right:18px;padding:10px 12px;border:1px solid rgba(255,255,255,.06);border-radius:14px;background:rgba(5,12,8,.48);backdrop-filter:blur(8px)}
+.player-vitals .hp-row{margin-bottom:6px;font-size:10px;letter-spacing:.08em;color:#c7d4c8}
+.bar--player{height:7px}
+.bar--player .bar__fill{background:linear-gradient(90deg,#6ca85f,#a8c96e)}
+.damage-pop{position:absolute;z-index:9;top:65px;left:50%;transform:translateX(-50%);color:#fff2b3;font-size:28px;text-shadow:0 3px 12px #000;animation:damagePop .42s ease-out forwards;pointer-events:none}
+@keyframes damagePop{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}35%{opacity:1;transform:translate(-50%,-8px) scale(1.15)}100%{opacity:0;transform:translate(-50%,-34px) scale(.95)}}
+.victory{padding:16px;border:1px solid rgba(220,205,126,.22);border-radius:20px;text-align:center;background:linear-gradient(180deg,rgba(221,204,122,.1),rgba(255,255,255,.02))}
+.victory>strong{display:block;margin:3px 0 13px;color:#efe4a5;font-family:Georgia,serif;font-size:18px}
+.victory .primary{min-height:52px}
+.monster--idle{animation:monsterIdle 2.8s ease-in-out infinite}
+@keyframes monsterIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.monster--attack{animation:monsterAttack .3s ease-out}
+@keyframes monsterAttack{0%{transform:translateY(0) scale(1)}45%{transform:translateY(10px) scale(1.07)}100%{transform:translateY(0) scale(1)}}
+.monster--hit{animation:monsterHit .22s ease-out;filter:brightness(1.65)}
+@keyframes monsterHit{0%{transform:translateX(0)}30%{transform:translateX(10px) rotate(3deg)}70%{transform:translateX(-6px) rotate(-2deg)}100%{transform:translateX(0)}}
+.encounter-copy{max-width:75%}
+.encounter-copy span{text-transform:uppercase}
+@media(max-height:760px){.arena{min-height:480px}.monster{margin-top:82px}.player-vitals{top:105px}}
