@@ -24,7 +24,7 @@ export function forgeRelic(s:GameState):GameState{if(s.relicDust<5)return s;retu
 export function salvageItem(s:GameState,uid:string):GameState{const item=s.inventory.find(x=>x.uid===uid);if(!item||item.locked||Object.values(s.equipment).some(x=>x?.uid===uid))return s;return{...s,inventory:s.inventory.filter(x=>x.uid!==uid),salvageDust:s.salvageDust+salvageValue(item)}}
 export function toggleItemLock(s:GameState,uid:string):GameState{return{...s,inventory:s.inventory.map(x=>x.uid===uid?{...x,locked:!x.locked}:x)}}
 
-export function useFury(s:GameState):GameState{if(s.fury<100)return s;const e=enemiesForZone(s.zone)[s.enemyIndex],damage=Math.round(playerDamage(s)*4.2),enemyHp=Math.max(0,s.enemyHp-damage);return{...s,fury:0,enemyHp,enemyPose:enemyHp?"hit":"defeated"}}
+export function useFury(s:GameState):GameState{if(s.fury<100)return s;const damage=Math.round(playerDamage(s)*4.2),enemyHp=Math.max(0,s.enemyHp-damage);return{...s,fury:0,enemyHp,enemyPose:enemyHp?"hit":"defeated"}}
 
 export type Milestone={id:number;title:string;target:number;kind:"kills"|"bosses"|"level"|"legendary";rewardGold:number;rewardEssence:number};
 export const MILESTONES:Milestone[]=[
