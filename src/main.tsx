@@ -36,8 +36,8 @@ function App(){
   </section>
   <section className="controls"><div className="message">{message}</div>
    {state.enemyHp>0?<button className="attack" onClick={strike}><span>ANGRIFF</span><small>{damage} Schaden · Tippen</small></button>:<section className="victory"><span className="eyebrow">SIEG</span><strong>+{enemy.xp} XP · +{enemy.gold} Gold</strong><button className="primary" onClick={nextEncounter}>Weiter</button></section>}
-   <section className="loot"><div className="section-heading"><div><span className="eyebrow">AUSRÜSTUNG</span><h3>Gefundene Beute</h3></div><strong>Power +{state.equipped?.power??0}</strong></div>
-   {state.inventory.length===0?<p className="empty">Besiege deinen ersten Gegner, um Beute zu erhalten.</p>:<div className="items">{state.inventory.map(item=><button key={item.id} className={`item item--${item.rarity} ${state.equipped?.id===item.id?"item--equipped":""}`} onClick={()=>equip(item.id)}><span className="item__icon">✦</span><span><strong>{item.name}</strong><small>{item.rarity} · +{item.power} Power</small></span><b>{state.equipped?.id===item.id?"Aktiv":"Anlegen"}</b></button>)}</div>}</section>
+   <details className="loot" open={state.inventory.length>0 && state.inventory.length<=1}><summary><div className="section-heading"><div><span className="eyebrow">AUSRÜSTUNG</span><h3>Gefundene Beute</h3></div><strong>Power +{state.equipped?.power??0}</strong></div></summary>
+   {state.inventory.length===0?<p className="empty">Besiege deinen ersten Gegner, um Beute zu erhalten.</p>:<div className="items">{state.inventory.map(item=><button key={item.id} className={`item item--${item.rarity} ${state.equipped?.id===item.id?"item--equipped":""}`} onClick={()=>equip(item.id)}><span className="item__icon">✦</span><span><strong>{item.name}</strong><small>{item.rarity} · +{item.power} Power</small></span><b>{state.equipped?.id===item.id?"Aktiv":"Anlegen"}</b></button>)}</div>}</details>
    <button className="reset" onClick={reset}>Entwicklungsstand zurücksetzen</button>
   </section>
  </main>
