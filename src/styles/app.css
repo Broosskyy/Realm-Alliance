@@ -15,3 +15,23 @@
 
 @media(max-height:700px){.game{grid-template-rows:56px minmax(0,1fr) auto}.topbar{padding-top:5px}.battle{grid-template-rows:auto 31px minmax(90px,1fr) 32px;padding-top:5px}.battle-title h2{font-size:22px}.creature{height:115px;width:108px}.attack{height:48px}.reward__values b{font-size:17px}.inventory-sheet{max-height:90px}}
 @media(min-width:700px){.game{width:min(100%,620px);margin:auto;border-left:1px solid #294231;border-right:1px solid #294231}}
+
+
+/* Game-feel pass 04 */
+html,body,#root{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.game{height:100dvh;max-height:100dvh}
+.xp-pill{position:relative;overflow:hidden;isolation:isolate}.xp-pill i{position:absolute;z-index:-1;left:0;bottom:0;top:0;background:linear-gradient(90deg,rgba(205,190,91,.22),rgba(205,190,91,.08));transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.stage:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,210,.035) 48%,transparent 65%);animation:forestLight 7s linear infinite}
+.stage:after{content:"";position:absolute;left:8%;right:8%;bottom:3%;height:22%;border-radius:50%;background:radial-gradient(ellipse,rgba(91,126,60,.18),transparent 65%);filter:blur(4px)}
+@keyframes forestLight{from{transform:translateX(-35%)}to{transform:translateX(35%)}}
+.creature:active{transform:translate(-50%,-45%) scale(.96)}
+.creature--defeated .head{filter:saturate(.5) brightness(.7)}
+.attack{position:relative;overflow:hidden;transition:transform .1s ease,filter .15s ease}.attack:before{content:"";position:absolute;inset:-100% 55% -100% -30%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:attackSheen 2.7s ease-in-out infinite}.attack:active{transform:scale(.975);filter:brightness(1.08)}.attack:disabled{filter:saturate(.55);pointer-events:none}
+@keyframes attackSheen{0%,62%{translate:-150% 0}100%{translate:420% 0}}
+.reward{position:relative;overflow:hidden;box-shadow:0 0 28px rgba(224,205,103,.08)}.reward:before,.reward:after{content:"✦";position:absolute;color:#f1df83;opacity:0;animation:spark 1.25s ease-out}.reward:before{left:12%;top:18%}.reward:after{right:13%;top:25%;animation-delay:.16s}@keyframes spark{0%{opacity:0;transform:scale(.3) rotate(0)}35%{opacity:.8}100%{opacity:0;transform:scale(1.4) rotate(80deg) translateY(-15px)}}
+.reward__values b{display:inline-block;animation:rewardNumber .48s cubic-bezier(.2,1.5,.3,1) both}.reward__values b:nth-child(2){animation-delay:.1s}@keyframes rewardNumber{from{opacity:0;transform:translateY(8px) scale(.72)}to{opacity:1;transform:none}}
+.xp-reward{color:#cce9ff!important}.gold-reward{color:#f5df83!important}
+.drop{width:min(100%,280px);margin:5px auto 7px;display:flex;justify-content:center;align-items:center;gap:8px;padding:6px 10px;border-radius:11px;background:rgba(255,255,255,.045);border:1px solid rgba(229,215,124,.16);animation:dropIn .55s .14s both}.drop>i{font-style:normal;color:#f3df83;font-size:17px}.drop span{text-align:left}.drop small,.drop b{display:block}.drop small{font-size:7px;letter-spacing:.17em;color:#999f91}.drop b{font-size:10px;color:#f2edcf}@keyframes dropIn{from{opacity:0;transform:translateY(10px) scale(.94)}}
+.defeat-panel{text-align:center;border:1px solid rgba(184,78,65,.3);border-radius:17px;padding:9px;background:linear-gradient(135deg,#271512,#171a12);animation:rewardIn .3s ease}.defeat-panel>span{display:block;font-size:9px;letter-spacing:.28em;color:#dc8172}.defeat-panel>strong{display:block;font:700 15px Georgia;margin:3px 0 8px}.defeat-panel .next{background:linear-gradient(#e4d994,#b9ad5c)}
+.enemy-hp .bar,.player-hp .bar{box-shadow:inset 0 1px 2px rgba(0,0,0,.65)}.bar i{position:relative}.bar i:after{content:"";position:absolute;inset:0 0 50%;background:rgba(255,255,255,.18)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
