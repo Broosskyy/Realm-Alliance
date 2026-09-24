@@ -6,5 +6,9 @@ export const WORLDS:WorldDefinition[]=[
 {id:"crystal",name:"Kristallhöhlen",icon:"◇",subtitle:"Leuchtende Tiefen",family:"crystal",material:"Prismakristall",mechanic:"Kristallschild"},
 {id:"sun",name:"Sonnenruinen",icon:"☀",subtitle:"Goldene Ruinen",family:"sun",material:"Sonnenrelikt",mechanic:"Ermächtigung"},
 {id:"void",name:"Leerenriss",icon:"◆",subtitle:"Instabile Sphäre",family:"void",material:"Leerenfragment",mechanic:"Verderbnis"}];
-export function worldForZone(zone:number){return WORLDS[(Math.max(1,zone)-1)%WORLDS.length]}
-export function worldCycle(zone:number){return Math.floor((Math.max(1,zone)-1)/WORLDS.length)+1}
+export const ZONES_PER_WORLD=5;
+export function worldIndexForZone(zone:number){return Math.floor((Math.max(1,zone)-1)/ZONES_PER_WORLD)%WORLDS.length}
+export function worldForZone(zone:number){return WORLDS[worldIndexForZone(zone)]}
+export function worldStageForZone(zone:number){return((Math.max(1,zone)-1)%ZONES_PER_WORLD)+1}
+export function worldCycle(zone:number){return Math.floor((Math.max(1,zone)-1)/(WORLDS.length*ZONES_PER_WORLD))+1}
+export function firstZoneForWorld(index:number,cycle=1){return Math.max(1,(cycle-1)*WORLDS.length*ZONES_PER_WORLD+index*ZONES_PER_WORLD+1)}
