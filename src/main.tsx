@@ -21,13 +21,13 @@ function App(){
   }),120);
   window.setTimeout(()=>setState(c=>c.enemyHp>0?{...c,enemyPose:"idle"}:c),420);
  }
- function nextEncounter(){setState(c=>advanceEnemy(c));setMessage("Ein neuer Gegner tritt aus dem Grün.");}
+ function nextEncounter(){setState(c=>advanceEnemy(c));setMessage("Ein neuer Gegner tritt aus dem Grün.");window.scrollTo({top:0,behavior:"smooth"});}
  function equip(id:string){setState(c=>({...c,equipped:c.inventory.find(i=>i.id===id)??null}));}
  function reset(){resetSave();setState(loadState());setStarted(false);setMessage("Der Grünhain wartet.");}
  if(!started)return <main className="splash"><section className="splash__card"><div className="brandmark">RA</div><p className="eyebrow">WEB FIRST · QUICK PLAY</p><h1>REALM<br/>ALLIANCE</h1><p className="lead">Direkt in den Grünhain. Kein Download.<br/>Kein Pflichtkonto vor dem ersten Kampf.</p><button className="primary" onClick={()=>setStarted(true)}>Spielen</button><span className="save-note">Fortschritt wird auf diesem Gerät gespeichert.</span></section></main>;
  const hp=Math.max(0,state.enemyHp/enemy.maxHp*100),php=state.playerHp/state.playerMaxHp*100;
  return <main className="game">
-  <header className="topbar"><div><span className="eyebrow">GRÜNHAIN</span><strong>Level {state.level}</strong></div><div className="currencies"><span>◈ {state.gold}</span><span>{state.xp}/{state.xpToNext} XP</span></div></header>
+  <header className="topbar"><button className="back-button" onClick={()=>setStarted(false)} aria-label="Zurück">‹</button><div><span className="eyebrow">GRÜNHAIN</span><strong>Level {state.level}</strong></div><div className="currencies"><span>◈ {state.gold}</span><span>{state.xp}/{state.xpToNext} XP</span></div></header>
   <section className="arena">
    <div className="encounter-copy"><span>BEGEGNUNG {state.enemyIndex+1} · {enemy.tier}</span><h2>{enemy.name}</h2><p>{enemy.subtitle}</p></div>
    <div className="combat-hud player-vitals"><div className="hp-row"><span>DEIN LEBEN</span><strong>{state.playerHp}/{state.playerMaxHp}</strong></div><div className="bar bar--player"><div className="bar__fill" style={{width:`${php}%`}}/></div></div>
