@@ -33,3 +33,63 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - Prestige/endgame loops
 - Server-authoritative account/save/economy foundations for multiplayer
 - Full production art replacement for placeholder hero/enemies/pets/world elements
+
+
+## Batch 02 — Combat / Visual Depth Update
+- [x] Enemy intent telegraphs and attack-state feedback
+- [x] Interactive loot inspection and equipped-item comparison
+- [x] Stronger rarity presentation including Legendary reveal
+- [x] Compact mobile More hub for World / Social expansion
+- [x] Save schema V3 and tower-best correction
+- [x] Biome mechanics now affect rewards, sustain, momentum or pressure
+- [x] Companion procs deal real combat damage and scale by pet identity
+- [x] Three-phase biome boss identities with escalating pressure
+- [x] Dungeon room atmosphere for battle / treasure / elite / boss rooms
+- [x] Adventure Power Strike / Finisher now respect retaliation
+- [x] Skill evolution milestones now change mechanics, not only labels
+- [ ] Production hero and monster sprite replacement
+- [~] Boss-specific attack patterns, interrupts and telegraph timing — phase 2/3 reaction dodge window live
+- [x] Adventure skill cooldown integration
+- [x] Rotating daily world merchants and biome-specific shop identity
+- [x] Global six-world monster compendium with discovery and mastery
+- [ ] Component extraction from main.tsx after gameplay batch stabilizes
+
+- [x] World mastery rewards now affect gold, XP and combat
+- [x] Boss seals grant persistent global combat power
+- [x] Monster mastery grants repeat-encounter damage bonuses
+- [x] Six distinct layered biome combat scenes
+- [x] Realm Alliance entry branding replaces PROJECT NULL prototype identity
+- [x] Inventory cards show live equipped-score comparison
+
+- [x] Distinct monster silhouette families (winged / quadruped / orb / armored / serpent / colossus)
+- [x] Monster mastery grants encounter-specific damage bonuses
+- [x] World mastery grants Gold / XP / combat rewards and boss seals grant attack
+- [x] REALM ALLIANCE identity replaces PROJECT NULL splash branding
+- [x] Layered biome scenery for all six combat worlds
+
+- [x] Save schema V4 for daily merchant purchase persistence
+- [x] Tactical Adventure runs now share Risshieb / Leerenstoß cooldown skills with core progression
+- [x] Regional merchant offers rotate daily and preserve one-purchase state
+
+- [x] Relic Sanctuary replaces flat relic forge with five persistent upgrade paths
+- [x] Relics now affect attack, HP, gold, skills and Adventure damage
+- [x] Mid-run Adventure blessing choice adds tactical route decisions
+- [~] Adventure route system foundation live; expand into hazards / branching rooms later
+
+- [x] Persistent Adventure path blessings (damage vs sustain) influence the full run
+- [x] Relic resonance rewards diversified relic collections with attack / crit / economy synergy
+- [x] Daily world-event foundation with progress, rewards and persisted daily state
+
+- [x] Boss skill-interrupt window: phase telegraphs can be countered with active skills for bonus damage / momentum
+- [x] Layered Adventure build: second mid-run choice adds Fury (+damage) or Ward (damage reduction)
+- [x] Secondary Adventure blessings now apply consistently to attacks, power strikes, finishers and skills
+
+- [x] Biome-specific boss phase pressure across all six worlds with readable mechanic messaging
+- [x] Canonical itemScore now drives loot upgrade comparison including utility affixes
+- [x] Equipment build synergies: complete set resonance, Epic harmony and Legendary power
+- [x] Inventory surfaces active loadout synergy instead of hiding build effects in stats
+
+- [x] Explicit hero state language: Idle / Attack / Hit / Skill / Victory / Defeat
+- [x] Main combat timing separates player impact, enemy warning, retaliation and recovery
+- [x] World mechanic copy aligned with live combat/economy effects
+- [x] Crystal world guardian pressure now has a real combat modifier
