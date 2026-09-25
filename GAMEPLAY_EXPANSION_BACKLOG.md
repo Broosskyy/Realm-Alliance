@@ -75,3 +75,7 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Relics now affect attack, HP, gold, skills and Adventure damage
 - [x] Mid-run Adventure blessing choice adds tactical route decisions
 - [~] Adventure route system foundation live; expand into hazards / branching rooms later
+
+- [x] Persistent Adventure path blessings (damage vs sustain) influence the full run
+- [x] Relic resonance rewards diversified relic collections with attack / crit / economy synergy
+- [x] Daily world-event foundation with progress, rewards and persisted daily state
