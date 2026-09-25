@@ -45,6 +45,7 @@ export function offlineReward(s:GameState,now=Date.now()){const seconds=Math.min
 
 export function discoveredMonsters(s:GameState){return Object.keys(s.monsterBook).length}
 export function monsterMastery(s:GameState,id:string){const n=s.monsterBook[id]??0;return n>=25?3:n>=10?2:n>=3?1:0}
+export function monsterMasteryDamage(s:GameState,id:string){return [0,.03,.06,.1][monsterMastery(s,id)]??0}
 export function upgradeEquipped(s:GameState,slot:ItemSlot):GameState{const item=s.equipment[slot],cost=3+s.craftLevel;if(!item||s.salvageDust<cost)return s;const upgraded={...item,itemLevel:item.itemLevel+1,power:item.power+Math.max(1,Math.ceil(item.power*.12)),hp:item.hp?item.hp+Math.max(2,Math.ceil(item.hp*.1)):item.hp,crit:item.crit?item.crit+(item.itemLevel%4===0?1:0):item.crit};return{...s,salvageDust:s.salvageDust-cost,craftLevel:s.craftLevel+1,equipment:{...s.equipment,[slot]:upgraded},inventory:s.inventory.map(x=>x.uid===item.uid?upgraded:x),equipped:slot==="weapon"?upgraded:s.equipped}}
 export function claimDailyGift(s:GameState,now=Date.now()):GameState{const day=Math.floor(now/86400000);if(s.dailyClaimed===day)return s;return{...s,dailyClaimed:day,gold:s.gold+75+s.level*10,essence:s.essence+2,gardenSeeds:s.gardenSeeds+2,chests:s.chests+1}}
 
