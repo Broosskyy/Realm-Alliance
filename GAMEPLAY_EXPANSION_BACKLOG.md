@@ -83,3 +83,8 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Boss skill-interrupt window: phase telegraphs can be countered with active skills for bonus damage / momentum
 - [x] Layered Adventure build: second mid-run choice adds Fury (+damage) or Ward (damage reduction)
 - [x] Secondary Adventure blessings now apply consistently to attacks, power strikes, finishers and skills
+
+- [x] Biome-specific boss phase pressure across all six worlds with readable mechanic messaging
+- [x] Canonical itemScore now drives loot upgrade comparison including utility affixes
+- [x] Equipment build synergies: complete set resonance, Epic harmony and Legendary power
+- [x] Inventory surfaces active loadout synergy instead of hiding build effects in stats
