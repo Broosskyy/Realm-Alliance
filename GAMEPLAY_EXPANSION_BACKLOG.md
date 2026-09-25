@@ -88,3 +88,8 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Canonical itemScore now drives loot upgrade comparison including utility affixes
 - [x] Equipment build synergies: complete set resonance, Epic harmony and Legendary power
 - [x] Inventory surfaces active loadout synergy instead of hiding build effects in stats
+
+- [x] Explicit hero state language: Idle / Attack / Hit / Skill / Victory / Defeat
+- [x] Main combat timing separates player impact, enemy warning, retaliation and recovery
+- [x] World mechanic copy aligned with live combat/economy effects
+- [x] Crystal world guardian pressure now has a real combat modifier
