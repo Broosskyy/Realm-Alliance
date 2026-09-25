@@ -33,3 +33,23 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - Prestige/endgame loops
 - Server-authoritative account/save/economy foundations for multiplayer
 - Full production art replacement for placeholder hero/enemies/pets/world elements
+
+
+## Batch 02 — Combat / Visual Depth Update
+- [x] Enemy intent telegraphs and attack-state feedback
+- [x] Interactive loot inspection and equipped-item comparison
+- [x] Stronger rarity presentation including Legendary reveal
+- [x] Compact mobile More hub for World / Social expansion
+- [x] Save schema V3 and tower-best correction
+- [x] Biome mechanics now affect rewards, sustain, momentum or pressure
+- [x] Companion procs deal real combat damage and scale by pet identity
+- [x] Three-phase biome boss identities with escalating pressure
+- [x] Dungeon room atmosphere for battle / treasure / elite / boss rooms
+- [x] Adventure Power Strike / Finisher now respect retaliation
+- [x] Skill evolution milestones now change mechanics, not only labels
+- [ ] Production hero and monster sprite replacement
+- [ ] Boss-specific attack patterns, interrupts and telegraph timing
+- [ ] Adventure skill cooldown integration
+- [ ] Rotating merchants and world-specific shop stock
+- [ ] Global monster compendium instead of current-zone-only list
+- [ ] Component extraction from main.tsx after gameplay batch stabilizes
