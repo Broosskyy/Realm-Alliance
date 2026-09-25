@@ -79,3 +79,7 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Persistent Adventure path blessings (damage vs sustain) influence the full run
 - [x] Relic resonance rewards diversified relic collections with attack / crit / economy synergy
 - [x] Daily world-event foundation with progress, rewards and persisted daily state
+
+- [x] Boss skill-interrupt window: phase telegraphs can be countered with active skills for bonus damage / momentum
+- [x] Layered Adventure build: second mid-run choice adds Fury (+damage) or Ward (damage reduction)
+- [x] Secondary Adventure blessings now apply consistently to attacks, power strikes, finishers and skills
