@@ -70,3 +70,8 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Save schema V4 for daily merchant purchase persistence
 - [x] Tactical Adventure runs now share Risshieb / Leerenstoß cooldown skills with core progression
 - [x] Regional merchant offers rotate daily and preserve one-purchase state
+
+- [x] Relic Sanctuary replaces flat relic forge with five persistent upgrade paths
+- [x] Relics now affect attack, HP, gold, skills and Adventure damage
+- [x] Mid-run Adventure blessing choice adds tactical route decisions
+- [~] Adventure route system foundation live; expand into hazards / branching rooms later
