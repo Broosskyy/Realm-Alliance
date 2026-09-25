@@ -51,5 +51,12 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [ ] Boss-specific attack patterns, interrupts and telegraph timing
 - [ ] Adventure skill cooldown integration
 - [ ] Rotating merchants and world-specific shop stock
-- [ ] Global monster compendium instead of current-zone-only list
+- [x] Global six-world monster compendium with discovery and mastery
 - [ ] Component extraction from main.tsx after gameplay batch stabilizes
+
+- [x] World mastery rewards now affect gold, XP and combat
+- [x] Boss seals grant persistent global combat power
+- [x] Monster mastery grants repeat-encounter damage bonuses
+- [x] Six distinct layered biome combat scenes
+- [x] Realm Alliance entry branding replaces PROJECT NULL prototype identity
+- [x] Inventory cards show live equipped-score comparison
