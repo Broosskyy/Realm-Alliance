@@ -49,8 +49,8 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Skill evolution milestones now change mechanics, not only labels
 - [ ] Production hero and monster sprite replacement
 - [~] Boss-specific attack patterns, interrupts and telegraph timing — phase 2/3 reaction dodge window live
-- [ ] Adventure skill cooldown integration
-- [ ] Rotating merchants and world-specific shop stock
+- [x] Adventure skill cooldown integration
+- [x] Rotating daily world merchants and biome-specific shop identity
 - [x] Global six-world monster compendium with discovery and mastery
 - [ ] Component extraction from main.tsx after gameplay batch stabilizes
 
@@ -66,3 +66,7 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] World mastery grants Gold / XP / combat rewards and boss seals grant attack
 - [x] REALM ALLIANCE identity replaces PROJECT NULL splash branding
 - [x] Layered biome scenery for all six combat worlds
+
+- [x] Save schema V4 for daily merchant purchase persistence
+- [x] Tactical Adventure runs now share Risshieb / Leerenstoß cooldown skills with core progression
+- [x] Regional merchant offers rotate daily and preserve one-purchase state
