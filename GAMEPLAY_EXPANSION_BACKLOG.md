@@ -48,7 +48,7 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Adventure Power Strike / Finisher now respect retaliation
 - [x] Skill evolution milestones now change mechanics, not only labels
 - [ ] Production hero and monster sprite replacement
-- [ ] Boss-specific attack patterns, interrupts and telegraph timing
+- [~] Boss-specific attack patterns, interrupts and telegraph timing — phase 2/3 reaction dodge window live
 - [ ] Adventure skill cooldown integration
 - [ ] Rotating merchants and world-specific shop stock
 - [x] Global six-world monster compendium with discovery and mastery
@@ -60,3 +60,9 @@ Web-first, instant access, mobile-first. Browser gameplay must feel like a game 
 - [x] Six distinct layered biome combat scenes
 - [x] Realm Alliance entry branding replaces PROJECT NULL prototype identity
 - [x] Inventory cards show live equipped-score comparison
+
+- [x] Distinct monster silhouette families (winged / quadruped / orb / armored / serpent / colossus)
+- [x] Monster mastery grants encounter-specific damage bonuses
+- [x] World mastery grants Gold / XP / combat rewards and boss seals grant attack
+- [x] REALM ALLIANCE identity replaces PROJECT NULL splash branding
+- [x] Layered biome scenery for all six combat worlds
