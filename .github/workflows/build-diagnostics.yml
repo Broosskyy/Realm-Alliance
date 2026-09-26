@@ -13,4 +13,17 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
-      - run: npm run typecheck
+      - name: Capture TypeScript diagnostics
+        shell: bash
+        run: |
+          set +e
+          npm run typecheck > typecheck.txt 2>&1
+          code=$?
+          cat typecheck.txt
+          {
+            echo '## TypeScript diagnostics'
+            echo '~~~'
+            cat typecheck.txt
+            echo '~~~'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $code
