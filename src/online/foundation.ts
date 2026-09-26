@@ -34,9 +34,3 @@ export function arenaOpponents(rating:number,power:number):ArenaOpponent[]{retur
 ]}
 export function halloweenEvent(now=Date.now()):LiveEvent{const year=new Date(now).getUTCFullYear(),startsAt=Date.UTC(year,9,1),endsAt=Date.UTC(year,10,3,23,59,59);return{id:"halloween-"+year,name:"Nacht der Kürbisse",subtitle:"Halloween · Saisonales LiveOps-Event",startsAt,endsAt,currencyName:"Geistersplitter",accent:"#ff8a38",quests:[{id:"h1",label:"Besiege 25 Wesen",target:25,reward:40},{id:"h2",label:"Besiege 3 Bosse",target:3,reward:60},{id:"h3",label:"Öffne 5 Truhen",target:5,reward:35}]}}
 export function eventState(e:LiveEvent,now=Date.now()){return now<e.startsAt?"upcoming":now>e.endsAt?"ended":"active"}
-
-export type LeaderboardMode="power"|"victories"|"bosses";
-export function rankedLeaderboard(me:OnlineSnapshot,mode:LeaderboardMode){const rows=localLeaderboard(me);return rows.sort((a,b)=>mode==="victories"?b.victories-a.victories:mode==="bosses"?b.bossKills-a.bossKills:b.power-a.power)}
-export type ArenaMatch={opponent:ArenaOpponent;playerPower:number;result:"pending"|"victory"|"defeat";ratingDelta:number};
-export function resolveArenaMatch(opponent:ArenaOpponent,playerPower:number,rating:number):ArenaMatch{const advantage=playerPower-opponent.power;const win=advantage>=0||(advantage>-12&&((playerPower+opponent.rating+rating)%3!==0));return{opponent,playerPower,result:win?"victory":"defeat",ratingDelta:win?opponent.reward:-12}}
-export const CLAN_MEMBERS=[{id:"self",name:"Du",role:"Anführer",power:0},{id:"c1",name:"Astra",role:"Offizier",power:84},{id:"c2",name:"Bram",role:"Mitglied",power:69},{id:"c3",name:"Nyra",role:"Mitglied",power:61}];
