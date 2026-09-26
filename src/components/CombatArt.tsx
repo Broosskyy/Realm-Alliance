@@ -84,3 +84,30 @@ export function WorldScenery({world=0}:{world?:number}){
   {world===5&&<><path className="world-prop-art" d="M53 260 Q66 201 90 172 Q83 228 103 260 M320 260 Q341 202 367 177 Q354 228 374 260"/><path className="world-prop2-art" d="M196 248 L210 188 L224 248"/></>}
  </svg>
 }
+
+export function AdventureEnemyPlaceholder({boss=false,room="battle",mode="dungeon"}:{boss?:boolean;room?:string;mode?:string}){
+ return <svg className={"code-art adventure-enemy-art room-art-"+room+" mode-art-"+mode+(boss?" adventure-boss-art":"")} viewBox="0 0 210 190" aria-hidden="true">
+  <ellipse className="art-shadow" cx="105" cy="176" rx="66" ry="9"/>
+  {boss&&<><path className="adv-horn" d="M73 61 L50 16 L88 48Z"/><path className="adv-horn right" d="M137 61 L160 16 L122 48Z"/></>}
+  <path className="adv-cloak" d="M61 85 Q105 49 149 85 L161 165 Q105 187 49 165Z"/>
+  <path className="adv-head" d="M69 58 Q105 30 141 58 L137 104 Q105 125 73 104Z"/>
+  <path className="adv-mask" d="M78 68 Q105 52 132 68 L127 94 Q105 108 83 94Z"/>
+  <path className="adv-eye" d="M87 73 L100 78 L88 84Z"/><path className="adv-eye right" d="M123 73 L110 78 L122 84Z"/>
+  <path className="adv-arm" d="M60 91 Q35 116 44 151 L68 140Z"/><path className="adv-arm right" d="M150 91 Q175 116 166 151 L142 140Z"/>
+  {room==="treasure"?<path className="adv-treasure" d="M76 133 H134 L130 166 H80Z M78 132 Q82 112 105 111 Q128 112 132 132Z"/>:<path className="adv-weapon" d="M151 73 L172 56 L143 139 L132 147Z"/>}
+  <path className="adv-rune" d="M97 122 L105 110 L113 122 L105 135Z"/>
+ </svg>
+}
+export function RelicPlaceholder({kind="warSigil"}:{kind?:string}){
+ const shape=kind==="lifeSeed"?"seed":kind==="fortuneIdol"?"idol":kind==="skillPrism"?"prism":kind==="adventureCrown"?"crown":"sigil";
+ return <svg className={"code-art relic-art relic-"+shape} viewBox="0 0 100 100" aria-hidden="true">
+  <circle className="relic-halo" cx="50" cy="50" r="39"/>
+  {shape==="seed"?<><path className="relic-main" d="M50 16 Q80 42 65 70 Q50 92 35 70 Q20 42 50 16Z"/><path className="relic-detail" d="M50 35 V72 M50 53 Q36 46 31 36 M50 57 Q66 49 71 38"/></>:shape==="idol"?<><path className="relic-main" d="M32 20 H68 L77 42 L68 82 H32 L23 42Z"/><circle className="relic-detail-fill" cx="50" cy="45" r="13"/><path className="relic-detail" d="M38 70 H62"/></>:shape==="prism"?<><path className="relic-main" d="M50 12 L78 38 L66 83 H34 L22 38Z"/><path className="relic-detail" d="M50 13 V82 M23 38 L66 83 M78 38 L34 83"/></>:shape==="crown"?<><path className="relic-main" d="M20 66 L25 31 L43 49 L51 20 L62 49 L79 31 L82 66Z"/><path className="relic-detail" d="M22 67 H81 V79 H22Z"/></>:<><path className="relic-main" d="M50 12 L82 50 L50 88 L18 50Z"/><path className="relic-detail" d="M50 27 L67 50 L50 73 L33 50Z"/></>}
+ </svg>
+}
+export function ShopItemPlaceholder({kind="chest"}:{kind?:string}){
+ return <svg className={"code-art shop-art shop-"+kind} viewBox="0 0 110 100" aria-hidden="true">
+  <ellipse className="art-shadow" cx="55" cy="91" rx="35" ry="6"/>
+  {kind==="key"?<><circle className="shop-key-ring" cx="38" cy="42" r="17"/><path className="shop-key" d="M50 54 L82 82 M67 67 L77 57 M74 74 L85 64"/></>:kind==="potion"?<><path className="shop-bottle" d="M43 20 H67 V35 Q82 49 75 76 Q55 92 35 76 Q28 49 43 35Z"/><path className="shop-liquid" d="M36 58 Q55 48 74 58 L72 75 Q55 85 38 75Z"/></>:kind==="material"?<><path className="shop-crystal" d="M55 11 L82 43 L68 87 H41 L26 43Z"/><path className="shop-detail" d="M55 12 V86 M27 43 L68 87"/></>:<><path className="shop-chest" d="M22 47 H88 L84 84 H26Z"/><path className="shop-chest-lid" d="M25 46 Q29 21 55 20 Q81 21 85 46Z"/><path className="shop-band" d="M49 45 H62 V85 H49Z"/></>}
+ </svg>
+}
