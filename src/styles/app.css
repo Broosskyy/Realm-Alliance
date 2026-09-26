@@ -515,3 +515,20 @@ main>nav{background:linear-gradient(180deg,#111a24f5,#080e14fa)!important;border
  .app{grid-template-rows:50px minmax(0,1fr) calc(var(--realm-nav-h) + var(--realm-safe-bottom))!important}
  main>nav{height:calc(var(--realm-nav-h) + var(--realm-safe-bottom))!important;min-height:calc(var(--realm-nav-h) + var(--realm-safe-bottom))!important}
 }
+
+/* Mobile shell recovery v2 — one geometry for browser + Fullscreen API */
+@media(max-width:600px){
+ html,body,#root{height:100%;min-height:100%;overflow:hidden;background:#070912}
+ .app{box-sizing:border-box!important;width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;max-height:100dvh!important;padding:0!important;grid-template-rows:50px minmax(0,1fr) calc(68px + env(safe-area-inset-bottom,0px))!important;background:#070912!important}
+ .app>header{box-sizing:border-box!important;height:50px!important;min-height:50px!important}
+ .viewport{box-sizing:border-box!important;height:auto!important;min-height:0!important}
+ main>nav{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important;width:100%!important;max-width:none!important;box-sizing:border-box!important;height:calc(68px + env(safe-area-inset-bottom,0px))!important;min-height:calc(68px + env(safe-area-inset-bottom,0px))!important;padding:3px 0 env(safe-area-inset-bottom,0px)!important;margin:0!important;border-radius:0!important;background:#08111dfc!important;backdrop-filter:none!important;box-shadow:0 -1px 0 #ffffff10!important}
+ .viewport:has(>.panel){overflow-y:auto!important;padding:0 0 calc(18px + env(safe-area-inset-bottom,0px))!important}
+ .viewport:has(>.panel)>.panel{padding-bottom:24px!important}
+ .panel>h1{backdrop-filter:none!important;background:#09111df8!important}
+}
+@media(max-width:600px){
+ :fullscreen html,:fullscreen body,:fullscreen #root{width:100%!important;height:100%!important;min-height:100%!important}
+ :fullscreen .app{height:100dvh!important;max-height:100dvh!important;padding:env(safe-area-inset-top,0px) 0 0!important;grid-template-rows:50px minmax(0,1fr) calc(68px + env(safe-area-inset-bottom,0px))!important}
+ :fullscreen main>nav{display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:100!important;height:calc(68px + env(safe-area-inset-bottom,0px))!important;min-height:calc(68px + env(safe-area-inset-bottom,0px))!important}
+}
