@@ -45,3 +45,42 @@ export function MonsterPlaceholder({family,archetype,variant=0,boss=false,pose="
   <path className="monster-mark" d={seed===0?"M143 92 L150 78 L157 92 L150 105Z":seed===1?"M137 91 Q150 77 163 91 Q150 107 137 91Z":"M139 86 L161 86 L150 106Z"}/>
  </svg>
 }
+
+export function PetPlaceholder({kind="wisp",stage=1}:{kind?:string;stage?:number}){
+ const ears=kind==="fox"||kind==="owl", wings=kind==="drake"||kind==="owl";
+ return <svg className={"code-art pet-art pet-"+kind+" pet-evo-"+stage} viewBox="0 0 120 110" aria-hidden="true">
+  <ellipse className="art-shadow" cx="60" cy="99" rx="31" ry="6"/>
+  {wings&&<><path className="pet-wing" d="M39 55 Q10 37 15 70 Q28 65 43 75Z"/><path className="pet-wing right" d="M81 55 Q110 37 105 70 Q92 65 77 75Z"/></>}
+  {ears&&<><path className="pet-ear" d="M39 39 L29 13 L52 33Z"/><path className="pet-ear right" d="M81 39 L91 13 L68 33Z"/></>}
+  <path className="pet-body-art" d="M34 54 Q39 28 60 27 Q82 28 87 54 L83 84 Q61 101 37 84Z"/>
+  <path className="pet-face-art" d="M43 53 Q60 42 77 53 L74 72 Q60 82 46 72Z"/>
+  <circle className="pet-eye-art" cx="51" cy="58" r="4"/><circle className="pet-eye-art" cx="69" cy="58" r="4"/>
+  <path className="pet-mark-art" d="M55 42 L60 34 L65 42 L60 49Z"/>
+  {stage>=2&&<path className="pet-aura-art" d="M24 76 Q10 50 29 28 M96 76 Q110 50 91 28"/>}
+ </svg>
+}
+export function LootPlaceholder({slot="weapon",rarity="common"}:{slot?:string;rarity?:string}){
+ return <svg className={"code-art loot-art loot-"+slot+" rarity-art-"+rarity} viewBox="0 0 100 100" aria-hidden="true">
+  <path className="loot-glow" d="M50 6 L62 24 L84 18 L78 41 L95 53 L76 65 L80 88 L58 80 L43 95 L31 76 L8 79 L17 57 L3 42 L25 34 L27 12Z"/>
+  {slot==="weapon"?<><path className="loot-blade" d="M69 13 L82 18 L47 65 L36 70 L39 58Z"/><path className="loot-guard" d="M29 59 L52 76 L45 84 L22 67Z"/><path className="loot-grip" d="M31 72 L18 88"/></>:slot==="armor"?<><path className="loot-armor" d="M29 25 L42 17 Q50 25 58 17 L72 25 L83 43 L70 50 L68 82 H32 L30 50 L17 43Z"/><path className="loot-crest" d="M42 36 L50 28 L58 36 L50 51Z"/></>:<><circle className="loot-charm" cx="50" cy="55" r="23"/><path className="loot-chain" d="M31 36 Q50 6 69 36"/><path className="loot-crest" d="M43 50 L50 39 L58 50 L50 66Z"/></>}
+ </svg>
+}
+export function ChestPlaceholder({open=false}:{open?:boolean}){
+ return <svg className={"code-art chest-art "+(open?"open":"")} viewBox="0 0 130 105" aria-hidden="true">
+  <ellipse className="art-shadow" cx="65" cy="94" rx="47" ry="7"/><path className="chest-body-art" d="M22 48 H108 L103 89 H27Z"/><path className="chest-band-art" d="M57 47 H73 V91 H57Z"/>
+  <path className="chest-lid-art" d="M24 47 Q27 19 51 15 H80 Q103 20 106 47Z"/><path className="chest-rim-art" d="M20 43 H110 V55 H20Z"/><path className="chest-lock-art" d="M57 48 H73 V68 H57Z"/>
+ </svg>
+}
+export function WorldScenery({world=0}:{world?:number}){
+ return <svg className={"code-art world-art world-art-"+(world+1)} viewBox="0 0 420 330" preserveAspectRatio="none" aria-hidden="true">
+  <path className="world-sky-art" d="M0 0H420V330H0Z"/><circle className="world-sun-art" cx={world===5?330:72} cy="62" r={world===5?28:38}/>
+  <path className="world-back-art" d={world===0?"M0 180 Q55 125 108 171 Q167 99 226 169 Q300 107 420 172 V330H0Z":world===1?"M0 205 L54 115 L103 188 L158 74 L225 194 L292 106 L350 187 L420 129 V330H0Z":world===2?"M0 190 L72 91 L126 164 L193 57 L252 169 L326 84 L420 174 V330H0Z":world===3?"M0 205 L54 135 L84 190 L125 82 L165 188 L224 104 L260 191 L326 61 L365 186 L420 126 V330H0Z":world===4?"M0 195 L50 161 L86 177 L118 117 L154 177 L207 137 L256 177 L302 102 L352 174 L420 142 V330H0Z":"M0 185 Q62 106 112 170 Q178 73 229 166 Q294 91 420 159 V330H0Z"}/>
+  <path className="world-ground-art" d="M0 218 Q96 193 194 222 Q303 191 420 219 V330H0Z"/>
+  {world===0&&<><path className="world-prop-art" d="M28 231 Q55 188 81 231Z M317 229 Q344 179 374 229Z"/><path className="world-prop2-art" d="M116 229 Q151 208 184 229Z"/></>}
+  {world===1&&<><path className="world-prop-art" d="M50 252 L76 206 L96 252 M321 252 L346 199 L370 252"/><path className="world-prop2-art" d="M0 273 Q72 245 130 275 Q188 249 240 276 Q326 242 420 272"/></>}
+  {world===2&&<><path className="world-prop-art" d="M48 250 L69 188 L86 250 M329 250 L349 177 L369 250"/><path className="world-prop2-art" d="M125 249 L145 214 L161 249 M252 250 L271 207 L289 250"/></>}
+  {world===3&&<><path className="world-prop-art" d="M55 256 L75 176 L97 256 M318 256 L343 165 L368 256"/><path className="world-prop2-art" d="M128 256 L145 208 L166 256 M254 256 L272 198 L292 256"/></>}
+  {world===4&&<><path className="world-prop-art" d="M45 258 V196 H64 V258 M351 258 V188 H370 V258"/><path className="world-prop2-art" d="M121 253 L138 202 H159 L176 253 M249 253 L267 211 H288 L305 253"/></>}
+  {world===5&&<><path className="world-prop-art" d="M53 260 Q66 201 90 172 Q83 228 103 260 M320 260 Q341 202 367 177 Q354 228 374 260"/><path className="world-prop2-art" d="M196 248 L210 188 L224 248"/></>}
+ </svg>
+}
