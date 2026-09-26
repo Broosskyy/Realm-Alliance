@@ -448,3 +448,26 @@ main>nav{background:linear-gradient(180deg,#111a24f5,#080e14fa)!important;border
  .reward>.reward-burst{overflow:hidden!important}
  .reward>.loot-pop{overflow:hidden!important}
 }
+
+/* Arena-native combat interaction and rewards */
+.arena{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.arena-reward{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(180deg,#05091322,#050913b8);backdrop-filter:blur(1px);animation:reward-in .25s ease-out}
+.arena-reward>small{letter-spacing:.25em;color:#d8a9ff;font-weight:900}.arena-reward-gains{display:flex;gap:16px;font-size:18px}.arena-reward-gains b{display:flex;align-items:center;gap:5px}.arena-reward-gains .resource-glyph{width:22px;height:22px}
+.arena-loot{display:flex;align-items:center;gap:8px;min-width:210px;max-width:82%;padding:7px 12px;border:1px solid #ffffff24;border-radius:14px;background:#0b1220e8;color:#fff;text-align:left}.arena-loot>.loot-art{width:46px;height:46px;flex:0 0 46px}.arena-loot span{display:flex;flex-direction:column;font-weight:900}.arena-loot small{text-transform:uppercase;font-size:8px;opacity:.7}
+.arena-collect{min-width:132px;padding:9px 18px;border-radius:999px;border:1px solid #c990ff80;background:linear-gradient(135deg,#6d36b5,#9a58e8);color:white;font-weight:950;letter-spacing:.08em}
+.arena-loot-detail{max-width:82%;padding:6px 10px;border-radius:10px;background:#070b14e8;font-size:9px;display:flex;gap:7px}.arena-chest .chest-art{width:60px;height:48px}
+.reward-wait{height:100%;display:grid;place-items:center;opacity:.45;font-size:8px;text-transform:uppercase;letter-spacing:.12em}
+@keyframes reward-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+@media(max-width:600px){
+ .combat-actions{justify-content:center!important;gap:32px!important}
+ .combat-actions>.skill{width:64px!important;height:64px!important;min-width:64px!important;flex-basis:64px!important}
+ .combat-actions>.skill .skill-art{width:52px!important;height:52px!important}
+ .action{flex-basis:88px!important;height:88px!important;min-height:88px!important}
+ .combat-actions{height:70px!important;min-height:70px!important}
+ .reward-wait{display:none!important}
+ .arena-reward{gap:5px!important;padding:8px!important}
+ .arena-reward-gains{font-size:15px!important}
+ .arena-loot{min-width:190px!important;padding:5px 9px!important}
+ .arena-loot>.loot-art{width:40px!important;height:40px!important;flex-basis:40px!important}
+ .arena-collect{padding:7px 15px!important}
+}
