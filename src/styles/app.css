@@ -289,3 +289,28 @@ main>nav{background:linear-gradient(180deg,#111a24f5,#080e14fa)!important;border
  .action{min-height:110px!important}
  .stage-head{padding-block:5px!important}
 }
+
+/* Mobile combat composition v2 — controls stay fully above bottom navigation */
+@media(max-width:600px){
+ .viewport{padding-bottom:0!important}
+ .stage-head{padding:7px 8px 5px!important}
+ .stage-identity{min-height:44px}
+ .arena{min-height:clamp(250px,38dvh,330px)!important;height:clamp(250px,38dvh,330px)!important}
+ .enemybar{padding:4px 14px 6px!important}
+ .combat-readout{margin:2px 8px 3px!important}
+ .combat-meter{margin-block:1px!important}
+ .playerline{margin-block:1px!important}
+ .action{min-height:150px!important;padding:5px 8px 10px!important;overflow:visible!important}
+ .combat-hint{margin:0 0 3px!important;min-height:18px}
+ .combat-actions{width:100%!important;min-height:118px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;padding:0 4px 4px!important;overflow:visible!important}
+ .combat-actions>.attack{width:88px!important;height:88px!important;min-width:88px!important;flex:0 0 88px!important;border-radius:50%!important}
+ .combat-actions>.skill{width:62px!important;height:62px!important;min-width:62px!important;flex:0 0 62px!important;border-radius:50%!important}
+ .combat-actions>.ultimate{position:absolute!important;bottom:5px!important;right:8px!important;z-index:5}
+ main>nav{min-height:72px!important;height:72px!important;padding-top:5px!important}
+}
+@media(max-width:600px) and (max-height:780px){
+ .arena{min-height:225px!important;height:34dvh!important}
+ .stage-head{padding-block:4px!important}
+ .action{min-height:138px!important}
+ .combat-actions{min-height:108px!important}
+}
