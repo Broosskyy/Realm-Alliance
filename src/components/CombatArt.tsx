@@ -128,8 +128,7 @@ export function WorldThumbnail({world=0}:{world?:number}){
  return <svg className={"code-art world-thumb-art wt-art-"+(world+1)} viewBox="0 0 100 100" aria-hidden="true">
   <circle className="wt-sky" cx="50" cy="50" r="46"/><circle className="wt-sun" cx="30" cy="27" r="10"/>
   <path className="wt-back" d={world===1?"M9 70 L29 31 L44 61 L62 22 L91 69 V91 H9Z":world===2?"M8 71 L31 29 L48 58 L66 18 L93 69 V92 H8Z":world===3?"M9 76 L27 43 L39 68 L53 24 L66 68 L81 35 L93 75 V92 H9Z":world===4?"M8 73 L27 58 L38 65 L51 38 L63 66 L78 45 L93 70 V92 H8Z":world===5?"M8 70 Q31 30 48 64 Q68 25 93 62 V92 H8Z":"M8 72 Q29 43 45 65 Q65 31 93 63 V92 H8Z"}/>
-  <path className="wt-ground" d="M7 73 Q50 62 93 73 V93 H7Z"/>
- </svg>
+  <path className="wt-ground" d="M7 73 Q50 62 93 73 V93 H7Z"/>{world===0&&<><path className="wt-island" d="M12 61 Q25 48 37 57 Q46 43 58 56 Q68 51 78 63 Q60 69 43 68 Q25 69 12 61Z"/><path className="wt-fall" d="M40 67 Q46 69 51 67 L49 91 Q46 97 43 90Z"/><path className="wt-ruin" d="M64 72 V53 H70 V47 H76 V53 H82 V72 H77 V61 H69 V72Z"/></>}{world===1&&<><path className="wt-lava" d="M25 88 L34 69 L39 87 M68 90 L75 65 L81 90"/><circle className="wt-ember" cx="73" cy="31" r="2"/></>}{world===2&&<><path className="wt-ice" d="M17 83 L27 58 L34 83 M72 84 L82 52 L88 84"/></>}{world===3&&<><path className="wt-crystal" d="M20 84 L28 57 L36 84 M66 85 L77 49 L87 85"/></>}{world===4&&<><path className="wt-temple" d="M27 79 V59 H35 V51 H43 V79 M65 79 V55 H73 V47 H81 V79"/></>}{world===5&&<><path className="wt-void" d="M23 78 Q31 57 42 66 Q50 49 61 65 Q73 55 82 78Z"/><circle className="wt-rift" cx="72" cy="34" r="9"/></>}</svg>
 }
 
 export function MonsterPortrait({family="cloud",archetype="brute",known=true}:{family?:string;archetype?:EnemyArchetype;known?:boolean}){
