@@ -494,3 +494,24 @@ main>nav{background:linear-gradient(180deg,#111a24f5,#080e14fa)!important;border
 @media(max-width:600px) and (max-height:700px){
  .stage-head{flex-basis:44px!important}.arena-enemy-hud{top:52px!important}.arena-player-hud{bottom:69px!important}.arena-meters{bottom:105px!important}.arena-skills{bottom:6px!important}
 }
+
+/* Unified app shell v1 — scrolling panels never disappear under persistent tabs */
+:root{--realm-nav-h:68px;--realm-safe-bottom:env(safe-area-inset-bottom,0px)}
+.app{overflow:hidden}
+.viewport{min-height:0}
+.panel{box-sizing:border-box}
+@media(max-width:600px){
+ .app{grid-template-rows:50px minmax(0,1fr) var(--realm-nav-h)!important}
+ .viewport{height:auto!important;min-height:0!important}
+ .viewport:has(>.panel){display:block!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;scroll-padding-bottom:24px;padding-bottom:calc(24px + var(--realm-safe-bottom))!important}
+ .viewport:has(>.panel)>.panel{min-height:100%;padding-bottom:calc(28px + var(--realm-safe-bottom))!important}
+ .viewport:has(>.stage-head){display:flex!important;overflow:hidden!important;padding-bottom:0!important}
+ main>nav{position:relative!important;inset:auto!important;z-index:100!important;box-sizing:border-box!important;height:var(--realm-nav-h)!important;min-height:var(--realm-nav-h)!important;padding:3px 0 max(3px,var(--realm-safe-bottom))!important;background:linear-gradient(180deg,#101927f5,#08101afc)!important;box-shadow:0 -10px 28px #02050b99!important}
+ main>nav button{min-width:0!important;height:100%!important}
+ .panel>h1{position:sticky;top:0;z-index:20;margin:0 -14px 12px!important;padding:12px 14px 9px!important;background:linear-gradient(180deg,#09111df7 72%,#09111d00)!important;backdrop-filter:blur(8px)}
+ .reset{margin-bottom:calc(12px + var(--realm-safe-bottom))!important}
+}
+@media(max-width:600px) and (display-mode:fullscreen),(max-width:600px) and (display-mode:standalone){
+ .app{grid-template-rows:50px minmax(0,1fr) calc(var(--realm-nav-h) + var(--realm-safe-bottom))!important}
+ main>nav{height:calc(var(--realm-nav-h) + var(--realm-safe-bottom))!important;min-height:calc(var(--realm-nav-h) + var(--realm-safe-bottom))!important}
+}
