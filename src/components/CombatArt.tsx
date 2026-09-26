@@ -131,3 +131,33 @@ export function WorldThumbnail({world=0}:{world?:number}){
   <path className="wt-ground" d="M7 73 Q50 62 93 73 V93 H7Z"/>
  </svg>
 }
+
+export function MonsterPortrait({family="cloud",archetype="brute",known=true}:{family?:string;archetype?:EnemyArchetype;known?:boolean}){
+ if(!known)return <svg className="code-art portrait-art unknown-portrait" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/><path d="M29 31 Q40 20 51 31 Q53 42 43 47 V54 H36 V43 Q45 40 45 33 Q40 28 35 34Z"/><circle cx="40" cy="62" r="4"/></svg>;
+ const p=palette[family]??palette.cloud;
+ return <svg className={"code-art portrait-art portrait-"+archetype} viewBox="0 0 80 80" style={{"--art-a":p[0],"--art-b":p[1],"--art-c":p[2],"--art-eye":p[3]} as React.CSSProperties}>
+  <circle className="portrait-bg" cx="40" cy="40" r="36"/>
+  {archetype==="brute"&&<><path className="portrait-horn" d="M27 29 L13 10 L33 23Z"/><path className="portrait-horn right" d="M53 29 L67 10 L47 23Z"/></>}
+  {archetype==="stalker"&&<><path className="portrait-horn" d="M28 29 L20 9 L38 24Z"/><path className="portrait-horn right" d="M52 29 L60 9 L42 24Z"/></>}
+  <path className="portrait-head" d="M18 36 Q21 17 40 16 Q59 17 62 36 L60 58 Q40 72 20 58Z"/>
+  <path className="portrait-face" d="M25 40 Q40 30 55 40 L52 57 Q40 65 28 57Z"/>
+  <path className="portrait-eye" d="M28 42 L38 45 L29 49Z"/><path className="portrait-eye right" d="M52 42 L42 45 L51 49Z"/>
+ </svg>
+}
+export function RewardBurst({slot="weapon",rarity="common",boss=false}:{slot?:string;rarity?:string;boss?:boolean}){
+ return <div className={"reward-art-stage rarity-stage-"+rarity+(boss?" boss-reward-stage":"")}><i className="reward-ray r1"/><i className="reward-ray r2"/><i className="reward-ray r3"/><i className="reward-ray r4"/>{boss&&<ChestPlaceholder open/>}<LootPlaceholder slot={slot} rarity={rarity}/></div>
+}
+export function MerchantItemPlaceholder({name=""}:{name?:string}){
+ const n=name.toLowerCase(),kind=n.includes("schlüssel")?"key":n.includes("trank")||n.includes("heil")?"potion":n.includes("truhe")?"chest":"material";
+ return <ShopItemPlaceholder kind={kind}/>
+}
+export function GardenPlaceholder({level=1}:{level?:number}){
+ return <svg className="code-art garden-art" viewBox="0 0 320 150" preserveAspectRatio="none" aria-hidden="true">
+  <path className="garden-sky" d="M0 0H320V150H0Z"/><path className="garden-cloud" d="M15 42 Q28 21 45 38 Q61 18 79 41 Q94 42 96 55 H15Z M222 31 Q237 12 251 29 Q267 11 283 32 Q300 33 302 45 H222Z"/>
+  <path className="garden-ground" d="M0 88 Q79 70 157 90 Q240 70 320 88 V150 H0Z"/>
+  <path className="garden-house" d="M225 72 L260 43 L295 72 V126 H225Z"/><path className="garden-roof" d="M216 74 L260 35 L304 74Z"/><path className="garden-door" d="M253 91 H270 V126 H253Z"/>
+  <path className="garden-tree" d="M54 69 Q32 59 42 40 Q51 20 68 36 Q80 17 94 39 Q107 60 84 70Z"/><path className="garden-trunk" d="M65 66 H76 V119 H65Z"/>
+  {level>2&&<><circle className="garden-flower" cx="133" cy="105" r="6"/><circle className="garden-flower" cx="157" cy="114" r="5"/></>}
+  {level>4&&<path className="garden-bush" d="M171 113 Q171 91 190 96 Q199 79 211 98 Q222 99 221 116Z"/>}
+ </svg>
+}
