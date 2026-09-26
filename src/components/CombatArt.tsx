@@ -161,3 +161,22 @@ export function GardenPlaceholder({level=1}:{level?:number}){
   {level>4&&<path className="garden-bush" d="M171 113 Q171 91 190 96 Q199 79 211 98 Q222 99 221 116Z"/>}
  </svg>
 }
+
+export function UiGlyph({kind="attack"}:{kind?:string}){
+ return <svg className={"code-art ui-glyph ui-glyph-"+kind} viewBox="0 0 64 64" aria-hidden="true">
+  {kind==="attack"?<><path className="uig-metal" d="M14 51 L42 9 L52 13 L26 56Z"/><path className="uig-gold" d="M14 43 L29 54"/></>:
+   kind==="tower"?<><path className="uig-main" d="M16 55 V22 H24 V13 H32 V22 H40 V13 H48 V55Z"/><path className="uig-dark" d="M28 55 V39 H37 V55Z"/></>:
+   kind==="quest"?<><path className="uig-paper" d="M16 9 H45 L51 16 V55 H16Z"/><path className="uig-line" d="M23 24 H43 M23 33 H43 M23 42 H36"/></>:
+   kind==="gift"?<><path className="uig-main" d="M11 28 H53 V55 H11Z"/><path className="uig-gold" d="M28 27 H36 V55 H28Z M8 20 H56 V30 H8Z"/><path className="uig-line" d="M32 20 Q16 18 19 9 Q29 7 32 20 Q48 18 45 9 Q35 7 32 20"/></>:
+   kind==="shield"?<><path className="uig-main" d="M32 7 L51 15 V30 Q48 48 32 57 Q16 48 13 30 V15Z"/><path className="uig-gold" d="M32 17 V45 M20 29 H44"/></>:
+   kind==="world"?<><circle className="uig-main" cx="32" cy="32" r="23"/><path className="uig-line" d="M10 32 H54 M32 9 Q20 32 32 55 M32 9 Q44 32 32 55"/></>:
+   kind==="menu"?<><path className="uig-line thick" d="M13 18 H51 M13 32 H51 M13 46 H51"/></>:
+   <><path className="uig-main" d="M32 7 L53 32 L32 57 L11 32Z"/><path className="uig-gold" d="M32 19 L43 32 L32 45 L21 32Z"/></>}
+ </svg>
+}
+export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
+ return <svg className={"code-art mode-art-card mode-card-"+mode} viewBox="0 0 150 105" aria-hidden="true">
+  <path className="mode-sky" d="M0 0 H150 V105 H0Z"/>
+  {mode==="tower"?<><path className="mode-back" d="M0 73 L29 45 L51 67 L82 31 L111 65 L150 39 V105 H0Z"/><path className="mode-building" d="M54 91 V39 H65 V27 H76 V39 H87 V27 H98 V91Z"/><path className="mode-window" d="M70 50 H80 V61 H70Z M86 50 H94 V61 H86Z"/></>:<><path className="mode-back" d="M0 80 Q31 31 62 65 Q91 25 150 68 V105 H0Z"/><path className="mode-cave" d="M22 105 Q31 42 75 32 Q120 42 130 105Z"/><path className="mode-door" d="M50 105 Q55 62 76 57 Q98 63 103 105Z"/><path className="mode-crystal" d="M28 83 L39 56 L49 83 M110 85 L120 51 L130 85"/></>}
+ </svg>
+}
