@@ -630,3 +630,6 @@ radial-gradient(ellipse at 94% 100%,#275540 0 33%,transparent 34%);filter:drop-s
 /* reduce visual noise on normal encounters; important information remains */
 .encounter-scene-normal .enemy-intent.intent-idle{opacity:.58!important;transform:translateX(-50%) scale(.92)!important}.encounter-scene-normal .enemy-archetype{opacity:.56}.encounter-scene-normal .encounter-badge{display:none}
 @media(max-width:390px){.hero-chest-trim,.hero-knee{stroke-width:1.5}.arena-enemy-hud>div b{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+
+.master-stage-label{position:absolute;z-index:19;top:72px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;background:#0b1420a8;border:1px solid #ffffff12;backdrop-filter:blur(7px);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#aab8c8}.master-stage-label b{color:#f1d477;font-size:7px}.master-stage-label span{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:390px){.master-stage-label{top:68px}}
