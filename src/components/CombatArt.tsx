@@ -111,3 +111,23 @@ export function ShopItemPlaceholder({kind="chest"}:{kind?:string}){
   {kind==="key"?<><circle className="shop-key-ring" cx="38" cy="42" r="17"/><path className="shop-key" d="M50 54 L82 82 M67 67 L77 57 M74 74 L85 64"/></>:kind==="potion"?<><path className="shop-bottle" d="M43 20 H67 V35 Q82 49 75 76 Q55 92 35 76 Q28 49 43 35Z"/><path className="shop-liquid" d="M36 58 Q55 48 74 58 L72 75 Q55 85 38 75Z"/></>:kind==="material"?<><path className="shop-crystal" d="M55 11 L82 43 L68 87 H41 L26 43Z"/><path className="shop-detail" d="M55 12 V86 M27 43 L68 87"/></>:<><path className="shop-chest" d="M22 47 H88 L84 84 H26Z"/><path className="shop-chest-lid" d="M25 46 Q29 21 55 20 Q81 21 85 46Z"/><path className="shop-band" d="M49 45 H62 V85 H49Z"/></>}
  </svg>
 }
+
+export function SkillPlaceholder({kind="slash"}:{kind?:string}){
+ return <svg className={"code-art skill-art skill-art-"+kind} viewBox="0 0 100 100" aria-hidden="true">
+  <circle className="skill-disc" cx="50" cy="50" r="43"/>
+  {kind==="slash"?<><path className="skill-slash-a" d="M20 70 Q43 31 80 19 Q59 48 34 80Z"/><path className="skill-slash-b" d="M27 77 Q52 52 76 44"/></>:<><circle className="skill-core" cx="50" cy="50" r="17"/><path className="skill-orbit" d="M13 50 Q50 13 87 50 Q50 87 13 50Z"/><path className="skill-ray" d="M50 8 V27 M50 73 V92 M8 50 H27 M73 50 H92"/></>}
+ </svg>
+}
+export function WeaponPlaceholder({name=""}:{name?:string}){
+ const axe=name.includes("Axt"),staff=name.includes("Stab")||name.includes("Fokus"),bow=name.includes("Bogen"),dagger=name.includes("Dolche");
+ return <svg className="code-art weapon-art" viewBox="0 0 110 110" aria-hidden="true">
+  {axe?<><path className="weapon-handle" d="M34 94 L72 22"/><path className="weapon-metal" d="M67 19 Q93 13 95 37 Q76 43 62 33Z"/></>:staff?<><path className="weapon-handle" d="M37 96 L66 22"/><circle className="weapon-gem" cx="69" cy="20" r="12"/><path className="weapon-metal" d="M56 29 L47 12 M76 31 L88 17"/></>:bow?<><path className="weapon-bow" d="M29 14 Q91 55 31 96"/><path className="weapon-string" d="M29 14 L55 55 L31 96"/><path className="weapon-arrow" d="M17 55 H89"/></>:dagger?<><path className="weapon-metal" d="M25 75 L55 26 L63 35 L37 82Z"/><path className="weapon-metal" d="M51 80 L76 30 L85 38 L64 87Z"/></>:<><path className="weapon-metal" d="M24 88 L67 18 L80 25 L39 94Z"/><path className="weapon-guard" d="M27 73 L51 90"/></>}
+ </svg>
+}
+export function WorldThumbnail({world=0}:{world?:number}){
+ return <svg className={"code-art world-thumb-art wt-art-"+(world+1)} viewBox="0 0 100 100" aria-hidden="true">
+  <circle className="wt-sky" cx="50" cy="50" r="46"/><circle className="wt-sun" cx="30" cy="27" r="10"/>
+  <path className="wt-back" d={world===1?"M9 70 L29 31 L44 61 L62 22 L91 69 V91 H9Z":world===2?"M8 71 L31 29 L48 58 L66 18 L93 69 V92 H8Z":world===3?"M9 76 L27 43 L39 68 L53 24 L66 68 L81 35 L93 75 V92 H9Z":world===4?"M8 73 L27 58 L38 65 L51 38 L63 66 L78 45 L93 70 V92 H8Z":world===5?"M8 70 Q31 30 48 64 Q68 25 93 62 V92 H8Z":"M8 72 Q29 43 45 65 Q65 31 93 63 V92 H8Z"}/>
+  <path className="wt-ground" d="M7 73 Q50 62 93 73 V93 H7Z"/>
+ </svg>
+}
