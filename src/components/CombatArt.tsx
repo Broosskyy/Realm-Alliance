@@ -180,3 +180,21 @@ export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
   {mode==="tower"?<><path className="mode-back" d="M0 73 L29 45 L51 67 L82 31 L111 65 L150 39 V105 H0Z"/><path className="mode-building" d="M54 91 V39 H65 V27 H76 V39 H87 V27 H98 V91Z"/><path className="mode-window" d="M70 50 H80 V61 H70Z M86 50 H94 V61 H86Z"/></>:<><path className="mode-back" d="M0 80 Q31 31 62 65 Q91 25 150 68 V105 H0Z"/><path className="mode-cave" d="M22 105 Q31 42 75 32 Q120 42 130 105Z"/><path className="mode-door" d="M50 105 Q55 62 76 57 Q98 63 103 105Z"/><path className="mode-crystal" d="M28 83 L39 56 L49 83 M110 85 L120 51 L130 85"/></>}
  </svg>
 }
+
+export function ResourceGlyph({kind="gold"}:{kind?:string}){
+ return <svg className={"code-art resource-glyph resource-"+kind} viewBox="0 0 48 48" aria-hidden="true">
+  {kind==="gold"?<><circle className="res-gold" cx="24" cy="24" r="17"/><circle className="res-line" cx="24" cy="24" r="10"/><path className="res-line" d="M18 24 H30"/></>:
+   kind==="essence"?<><path className="res-essence" d="M24 4 L42 24 L24 44 L6 24Z"/><path className="res-line" d="M24 13 L33 24 L24 35 L15 24Z"/></>:
+   kind==="dust"?<><path className="res-dust" d="M24 5 L30 18 L43 24 L30 30 L24 43 L18 30 L5 24 L18 18Z"/><circle className="res-core" cx="24" cy="24" r="5"/></>:
+   <><path className="res-shard" d="M24 4 L40 16 L35 38 L15 43 L7 23Z"/><path className="res-line" d="M24 5 L22 37 M8 23 L35 38 M40 16 L15 43"/></>}
+ </svg>
+}
+export function StatGlyph({kind="strength"}:{kind?:string}){
+ return <svg className={"code-art stat-glyph stat-"+kind} viewBox="0 0 64 64" aria-hidden="true">
+  <circle className="stat-bg" cx="32" cy="32" r="28"/>
+  {kind==="strength"?<><path className="stat-metal" d="M15 49 L39 13 L49 18 L27 54Z"/><path className="stat-gold" d="M15 42 L30 53"/></>:kind==="endurance"?<path className="stat-heart" d="M32 52 Q8 36 12 21 Q17 8 32 20 Q47 8 52 21 Q56 36 32 52Z"/>:<><circle className="stat-focus" cx="32" cy="32" r="12"/><path className="stat-rays" d="M32 5 V15 M32 49 V59 M5 32 H15 M49 32 H59 M13 13 L20 20 M44 44 L51 51 M51 13 L44 20 M20 44 L13 51"/></>}
+ </svg>
+}
+export function ForgeGlyph(){
+ return <svg className="code-art forge-glyph" viewBox="0 0 72 72" aria-hidden="true"><path className="forge-handle" d="M18 61 L46 30"/><path className="forge-head" d="M31 13 H59 L65 22 L54 34 L38 27 L27 38 L16 27Z"/><path className="forge-spark" d="M58 43 L63 51 M47 49 L47 60 M62 34 L70 35"/></svg>
+}
