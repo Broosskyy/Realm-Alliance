@@ -21,7 +21,7 @@ export function HeroPlaceholder({state="idle"}:{state?:string}){
   <path className="hero-face" d="M91 66 Q109 54 132 67 L129 91 Q110 101 92 89Z"/>
   <path className="hero-eye" d="M97 72h8v5h-8zM119 72h8v5h-8z"/>
   <path className="hero-belt" d="M78 151 Q110 160 139 151 L138 165 Q109 173 78 164Z"/><path className="hero-chest-trim" d="M82 105 L108 119 L136 104 L132 146 L109 155 L84 144Z"/><path className="hero-scarf" d="M83 93 Q109 104 140 92 L135 108 Q110 116 86 106Z"/><path className="hero-scarf-tail" d="M85 103 Q59 119 55 151 Q72 139 91 127Z"/><path className="hero-knee" d="M83 183 L104 183 L99 204 L80 204Z"/><path className="hero-knee" d="M119 183 L139 179 L145 201 L124 204Z"/>
-  <path className="hero-sword" d="M151 49 L164 40 L151 139 L139 151 L143 130Z"/><path className="hero-sword-edge" d="M158 47 L164 40 L151 139 L147 135Z"/>
+  <path className="hero-sword" d="M151 49 L164 40 L151 139 L139 151 L143 130Z"/><path className="hero-armor-panel" d="M91 112 L108 122 L126 112 L130 145 L109 153 L88 144Z"/><path className="hero-armor-rim" d="M91 112 L108 122 L126 112 M88 144 L109 153 L130 145"/><path className="hero-gauntlet" d="M57 142 L73 139 L82 163 L68 174Z"/><path className="hero-gauntlet right" d="M151 139 L165 144 L150 172 L136 160Z"/><path className="hero-rune" d="M103 129 L109 121 L115 129 L109 139Z"/><path className="hero-sword-edge" d="M158 47 L164 40 L151 139 L147 135Z"/>
   <path className="hero-guard" d="M132 139 L159 151 L154 159 L128 147Z"/>
  </svg>
 }
@@ -36,7 +36,7 @@ export function MonsterPlaceholder({family,archetype,variant=0,boss=false,pose="
   {archetype==="brute"&&<><path className="monster-horn" d="M103 82 Q70 35 55 72 L94 106Z"/><path className="monster-horn right" d="M197 82 Q230 35 245 72 L206 106Z"/></>}
   {boss&&<><path className="monster-horn" d="M105 78 L82 22 L132 65Z"/><path className="monster-horn right" d="M195 78 L218 22 L168 65Z"/><path className="boss-crown" d="M112 65 L128 31 L149 57 L171 27 L188 67Z"/></>}
   <path className="monster-body" d={boss?"M78 113 Q89 66 150 61 Q211 66 222 113 L226 190 Q210 235 150 238 Q90 235 74 190Z":"M91 121 Q101 78 150 76 Q199 78 209 121 L211 188 Q198 226 150 230 Q102 226 89 188Z"}/><path className="monster-plate" d="M102 104 Q150 78 198 104 L186 145 Q150 126 114 145Z"/><path className="monster-side-plate" d="M90 142 L111 151 L105 197 L83 184Z"/><path className="monster-side-plate right" d="M210 142 L189 151 L195 197 L217 184Z"/><path className="monster-crack" d="M150 91 L141 116 L153 132 L144 155 L158 174 L150 202"/><circle className="monster-core" cx="150" cy="151" r="9"/>
-  <path className="monster-belly" d="M111 150 Q150 128 189 150 L184 205 Q150 220 116 204Z"/>
+  <path className="monster-belly" d="M111 150 Q150 128 189 150 L184 205 Q150 220 116 204Z"/><path className="monster-crest" d="M126 86 L150 68 L174 86 L164 101 L150 94 L136 101Z"/><path className="monster-armor-line" d="M111 151 Q150 164 189 151 M116 177 Q150 190 184 177"/><circle className="monster-core-ring" cx="150" cy="151" r="16"/>
   <path className="monster-brow" d="M105 119 Q124 105 141 116 L136 126 Q119 119 106 129Z"/><path className="monster-brow right" d="M195 119 Q176 105 159 116 L164 126 Q181 119 194 129Z"/>
   <path className="monster-eye" d="M111 127 Q125 116 138 128 Q126 143 112 134Z"/><path className="monster-eye right" d="M189 127 Q175 116 162 128 Q174 143 188 134Z"/>
   <path className="monster-pupil" d="M122 125 L130 130 L123 136 L117 131Z"/><path className="monster-pupil right" d="M178 125 L170 130 L177 136 L183 131Z"/>
@@ -53,7 +53,7 @@ export function PetPlaceholder({kind="wisp",stage=1}:{kind?:string;stage?:number
   {wings&&<><path className="pet-wing" d="M39 55 Q10 37 15 70 Q28 65 43 75Z"/><path className="pet-wing right" d="M81 55 Q110 37 105 70 Q92 65 77 75Z"/></>}
   {ears&&<><path className="pet-ear" d="M39 39 L29 13 L52 33Z"/><path className="pet-ear right" d="M81 39 L91 13 L68 33Z"/></>}
   <path className="pet-body-art" d="M34 54 Q39 28 60 27 Q82 28 87 54 L83 84 Q61 101 37 84Z"/>
-  <path className="pet-face-art" d="M43 53 Q60 42 77 53 L74 72 Q60 82 46 72Z"/>
+  <path className="pet-face-art" d="M43 53 Q60 42 77 53 L74 72 Q60 82 46 72Z"/><path className="pet-chest-art" d="M45 76 Q60 84 76 76 L72 90 Q60 99 48 89Z"/><path className="pet-tail-art" d="M36 76 Q16 82 23 96 Q35 90 47 84Z"/>
   <circle className="pet-eye-art" cx="51" cy="58" r="4"/><circle className="pet-eye-art" cx="69" cy="58" r="4"/>
   <path className="pet-mark-art" d="M55 42 L60 34 L65 42 L60 49Z"/>
   {stage>=2&&<path className="pet-aura-art" d="M24 76 Q10 50 29 28 M96 76 Q110 50 91 28"/>}
