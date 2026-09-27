@@ -887,3 +887,19 @@ radial-gradient(ellipse at 94% 100%,#275540 0 33%,transparent 34%);filter:drop-s
 .combat-prop-layer:after{content:"";position:absolute;inset:auto 0 0;height:44%;background:linear-gradient(180deg,transparent,#03070570);pointer-events:none}
 @media(max-width:390px){.combat-prop-layer{bottom:148px;height:122px}}
 @media(prefers-reduced-motion:reduce){.hero-state-idle .hero-art,.battle-pet .pet-art,.enemy .monster-art{animation:none!important}}
+
+
+/* Combat Art Production Pass 03 — biome monster identities */
+.monster-art .family-ornament{stroke-linejoin:round;stroke-linecap:round}
+.family-art-cloud .cloud-tuft{fill:#dff8ffcc;stroke:#78cde7;stroke-width:2;filter:drop-shadow(0 0 7px #c9f5ff88)}.family-art-cloud .cloud-ribbon{fill:#75cbe499;stroke:#e5fbff;stroke-width:1.3}
+.family-art-lava .lava-spine{fill:#7a2927;stroke:#ff8c48;stroke-width:2;filter:drop-shadow(0 0 7px #ff5c28)}.family-art-lava .lava-vent{fill:none;stroke:#ffb14d;stroke-width:4;filter:drop-shadow(0 0 6px #ff5529)}
+.family-art-ice .ice-crown,.family-art-ice .ice-spur{fill:#bdeff5cc;stroke:#f3ffff;stroke-width:1.7;filter:drop-shadow(0 0 7px #86e8f4)}
+.family-art-crystal .crystal-crown,.family-art-crystal .crystal-shard{fill:#a985edcc;stroke:#eadfff;stroke-width:1.7;filter:drop-shadow(0 0 8px #a773ee)}
+.family-art-sun .sun-crown{fill:#e0ae54;stroke:#fff0a7;stroke-width:2;filter:drop-shadow(0 0 7px #f6c95b)}.family-art-sun .sun-collar{fill:#80613b;stroke:#e9c66c;stroke-width:1.5}
+.family-art-void .void-horn,.family-art-void .void-tendril{fill:#352342;stroke:#d278e9;stroke-width:2;filter:drop-shadow(0 0 8px #b44bd5)}
+.enemy-archetype-visual-swift .monster-art{transform-origin:50% 80%}.enemy-archetype-visual-swift .monster-body{filter:brightness(1.08)}.enemy-archetype-visual-brute .monster-body{stroke-width:3}.enemy-archetype-visual-brute .monster-foot{transform:scaleX(1.08);transform-origin:center}.enemy-archetype-visual-caster .monster-core-ring{stroke-width:3;filter:drop-shadow(0 0 10px var(--art-eye))}.enemy-archetype-visual-guardian .monster-shield{filter:drop-shadow(0 3px 3px #0007)}.enemy-archetype-visual-stalker .monster-eye{filter:drop-shadow(0 0 6px var(--art-eye))}
+.silhouette-winged .monster-wing{transform-origin:center;animation:wingIdle 1.8s ease-in-out infinite alternate}.silhouette-serpent .monster-tail{filter:drop-shadow(0 4px 3px #0005)}.silhouette-armored .monster-plate{stroke-width:3}.silhouette-orb .monster-core{transform-origin:150px 151px;animation:orbCore 1.4s ease-in-out infinite alternate}
+@keyframes wingIdle{to{transform:translateY(-2px) rotate(2deg)}}@keyframes orbCore{to{transform:scale(1.2);filter:drop-shadow(0 0 12px var(--art-eye))}}
+.enemy.boss .family-ornament{filter:drop-shadow(0 0 10px var(--art-eye))}.enemy.boss .monster-core-ring{stroke-width:3;animation:bossCoreBreath 1.15s ease-in-out infinite alternate}
+@keyframes bossCoreBreath{to{r:19px;opacity:1}}
+@media(prefers-reduced-motion:reduce){.monster-wing,.silhouette-orb .monster-core,.enemy.boss .monster-core-ring{animation:none!important}}
