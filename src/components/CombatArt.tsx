@@ -200,6 +200,16 @@ export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
  </svg>
 }
 
+export function HalloweenArt({kind="portal"}:{kind?:"portal"|"pumpkin"|"relic"}){
+ return <svg className={"code-art halloween-art halloween-"+kind} viewBox="0 0 180 150" aria-hidden="true">
+  <ellipse className="hw-shadow" cx="90" cy="130" rx="62" ry="12"/>
+  {kind==="portal"?<><path className="hw-stone" d="M36 126 Q23 71 48 31 Q90 3 132 31 Q157 71 144 126 L121 126 Q132 77 113 49 Q90 32 67 49 Q48 77 59 126Z"/><ellipse className="hw-rift" cx="90" cy="82" rx="37" ry="49"/><path className="hw-rune" d="M42 69 L53 61 M127 60 L139 69 M52 109 L63 116 M117 116 L129 108"/></>:kind==="pumpkin"?<><path className="hw-stem" d="M85 33 Q88 14 105 13 Q96 22 98 38Z"/><path className="hw-pumpkin" d="M34 82 Q35 42 70 40 Q90 31 110 40 Q145 42 146 82 Q145 124 108 126 Q90 135 72 126 Q35 124 34 82Z"/><path className="hw-face" d="M57 69 L76 62 L70 81Z M123 69 L104 62 L110 81Z M62 99 Q90 118 119 98 L110 116 L99 108 L90 120 L80 108 L69 116Z"/></>:<><path className="hw-relic" d="M90 18 L124 49 L114 111 L90 132 L66 111 L56 49Z"/><path className="hw-relic-core" d="M90 43 L108 65 L100 101 L90 111 L80 101 L72 65Z"/><path className="hw-rune" d="M90 50 V102 M78 70 L102 82 M102 70 L78 82"/></>}
+ </svg>
+}
+export function EvolutionCrest({stage=1,mutation=0}:{stage?:number;mutation?:number}){
+ return <svg className={"code-art evolution-crest crest-"+stage} viewBox="0 0 100 100" aria-hidden="true"><path className="crest-ring" d="M50 5 L78 17 L94 46 L84 77 L50 95 L16 77 L6 46 L22 17Z"/><path className="crest-core" d="M50 19 L68 39 L62 69 L50 81 L38 69 L32 39Z"/>{Array.from({length:Math.min(4,stage)},(_,i)=><circle key={i} className="crest-star" cx={29+i*14} cy="88" r="3"/>)}{mutation>0&&<path className="crest-mutation" d="M50 28 L57 44 L72 50 L57 57 L50 73 L43 57 L28 50 L43 44Z"/>}</svg>
+}
+
 export function NavGlyph({kind="fight"}:{kind?:string}){
  return <svg className={"code-art nav-glyph nav-glyph-"+kind} viewBox="0 0 72 72" aria-hidden="true">
   {kind==="fight"?<><path className="nav-metal" d="M14 57 L45 10 L55 15 L27 62Z"/><path className="nav-gold" d="M15 49 L31 61"/><path className="nav-spark" d="M49 9 L54 3 M58 17 L67 15"/></>:kind==="adventure"?<><path className="nav-main" d="M13 58 V27 H23 V17 H31 V27 H41 V13 H50 V27 H59 V58Z"/><path className="nav-dark" d="M31 58 V43 H42 V58Z"/><path className="nav-gold" d="M10 59 H62"/></>:kind==="being"?<><path className="nav-main" d="M36 7 L56 22 L51 51 L36 64 L21 51 L16 22Z"/><path className="nav-face" d="M25 29 L33 33 L26 38 M47 29 L39 33 L46 38"/><path className="nav-gold" d="M29 48 Q36 53 43 48"/></>:kind==="inventory"?<><path className="nav-main" d="M13 28 H59 V59 H13Z"/><path className="nav-gold" d="M30 27 H42 V59 H30Z M10 20 H62 V31 H10Z"/><path className="nav-line" d="M36 20 Q21 18 24 9 Q33 7 36 20 Q51 18 48 9 Q39 7 36 20"/></>:<><circle className="nav-main" cx="36" cy="36" r="7"/><path className="nav-gear" d="M31 7 H41 L44 17 L52 20 L61 15 L67 24 L59 32 L60 41 L68 47 L62 57 L52 53 L44 58 L42 68 H30 L28 58 L20 54 L10 58 L4 48 L12 41 L12 31 L5 24 L11 15 L21 20 L28 17Z"/></>}
