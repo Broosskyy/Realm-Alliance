@@ -200,6 +200,15 @@ export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
  </svg>
 }
 
+export function NavGlyph({kind="fight"}:{kind?:string}){
+ return <svg className={"code-art nav-glyph nav-glyph-"+kind} viewBox="0 0 72 72" aria-hidden="true">
+  {kind==="fight"?<><path className="nav-metal" d="M14 57 L45 10 L55 15 L27 62Z"/><path className="nav-gold" d="M15 49 L31 61"/><path className="nav-spark" d="M49 9 L54 3 M58 17 L67 15"/></>:kind==="adventure"?<><path className="nav-main" d="M13 58 V27 H23 V17 H31 V27 H41 V13 H50 V27 H59 V58Z"/><path className="nav-dark" d="M31 58 V43 H42 V58Z"/><path className="nav-gold" d="M10 59 H62"/></>:kind==="being"?<><path className="nav-main" d="M36 7 L56 22 L51 51 L36 64 L21 51 L16 22Z"/><path className="nav-face" d="M25 29 L33 33 L26 38 M47 29 L39 33 L46 38"/><path className="nav-gold" d="M29 48 Q36 53 43 48"/></>:kind==="inventory"?<><path className="nav-main" d="M13 28 H59 V59 H13Z"/><path className="nav-gold" d="M30 27 H42 V59 H30Z M10 20 H62 V31 H10Z"/><path className="nav-line" d="M36 20 Q21 18 24 9 Q33 7 36 20 Q51 18 48 9 Q39 7 36 20"/></>:<><circle className="nav-main" cx="36" cy="36" r="7"/><path className="nav-gear" d="M31 7 H41 L44 17 L52 20 L61 15 L67 24 L59 32 L60 41 L68 47 L62 57 L52 53 L44 58 L42 68 H30 L28 58 L20 54 L10 58 L4 48 L12 41 L12 31 L5 24 L11 15 L21 20 L28 17Z"/></>}
+ </svg>
+}
+export function ResourceFrame({kind="gold"}:{kind?:string}){
+ return <svg className={"code-art resource-frame frame-"+kind} viewBox="0 0 120 42" preserveAspectRatio="none" aria-hidden="true"><path className="frame-bg" d="M9 3 H111 L119 21 L111 39 H9 L1 21Z"/><path className="frame-rim" d="M12 6 H108 L115 21 L108 36 H12 L5 21Z"/><path className="frame-shine" d="M16 8 H104"/></svg>
+}
+
 export function ResourceGlyph({kind="gold"}:{kind?:string}){
  return <svg className={"code-art resource-glyph resource-"+kind} viewBox="0 0 48 48" aria-hidden="true">
   {kind==="gold"?<><circle className="res-gold" cx="24" cy="24" r="17"/><circle className="res-line" cx="24" cy="24" r="10"/><path className="res-line" d="M18 24 H30"/></>:
