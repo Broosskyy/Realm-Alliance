@@ -200,6 +200,22 @@ export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
  </svg>
 }
 
+export function HeroEvolutionOverlay({stage=1,mutation=0}:{stage?:number;mutation?:number}){
+ const t=Math.min(4,Math.max(1,stage));
+ return <svg className={"code-art hero-evolution-overlay hero-form-"+t+" hero-mutation-"+Math.min(4,mutation)} viewBox="0 0 220 260" aria-hidden="true">
+  {t>=2&&<><path className="evo-shoulder" d="M48 126 L57 101 L78 97 L73 123Z"/><path className="evo-shoulder right" d="M172 126 L163 101 L142 97 L147 123Z"/><path className="evo-knee" d="M78 185 L104 179 L101 207 L76 209Z"/><path className="evo-knee right" d="M142 185 L117 179 L120 207 L145 209Z"/></>}
+  {t>=3&&<><path className="evo-crown" d="M80 57 L91 33 L104 47 L113 23 L124 48 L139 34 L146 59 L132 53 L111 61 L94 52Z"/><path className="evo-cape-rim" d="M62 119 Q45 166 59 218 Q84 235 104 221 M158 119 Q175 166 160 218 Q137 235 116 221"/></>}
+  {t>=4&&<><path className="evo-wing" d="M70 130 Q26 93 20 135 Q44 129 76 160Z"/><path className="evo-wing right" d="M150 130 Q194 93 200 135 Q176 129 144 160Z"/><path className="evo-halo" d="M74 57 Q110 24 146 57 Q110 75 74 57Z"/></>}
+  {mutation>0&&<><path className="mutation-vein" d="M92 108 L103 124 L96 141 M128 108 L117 124 L124 141"/><circle className="mutation-core" cx="110" cy="132" r={4+Math.min(4,mutation)}/></>}
+ </svg>
+}
+export function LootDropArt({rarity="common",slot="weapon"}:{rarity?:string;slot?:string}){
+ return <svg className={"code-art loot-drop-art rarity-"+rarity} viewBox="0 0 180 180" aria-hidden="true"><path className="drop-beam" d="M67 158 L79 20 H101 L114 158Z"/><ellipse className="drop-ground" cx="90" cy="157" rx="55" ry="12"/><path className="drop-star" d="M90 25 L98 48 L122 50 L103 65 L109 89 L90 76 L71 89 L77 65 L58 50 L82 48Z"/><g transform="translate(48 67) scale(.84)"><LootPlaceholder slot={slot} rarity={rarity}/></g></svg>
+}
+export function UpgradeBurst({kind="power"}:{kind?:string}){
+ return <svg className={"code-art upgrade-burst burst-"+kind} viewBox="0 0 120 120" aria-hidden="true"><circle className="burst-ring" cx="60" cy="60" r="25"/><path className="burst-rays" d="M60 5 V29 M60 91 V115 M5 60 H29 M91 60 H115 M21 21 L38 38 M82 82 L99 99 M99 21 L82 38 M38 82 L21 99"/><path className="burst-core" d="M60 37 L69 51 L84 60 L69 69 L60 84 L51 69 L36 60 L51 51Z"/></svg>
+}
+
 export function EquipmentAura({rarity="common",level=1}:{rarity?:string;level?:number}){
  const tier=Math.min(4,Math.max(1,Math.ceil(level/5)));
  return <svg className={"code-art equipment-aura rarity-"+rarity+" gear-tier-"+tier} viewBox="0 0 220 260" aria-hidden="true"><ellipse className="gear-halo" cx="110" cy="205" rx={58+tier*7} ry={24+tier*3}/>{tier>=2&&<path className="gear-rune-ring" d="M42 204 Q110 156 178 204 Q110 244 42 204Z"/>}{tier>=3&&<><path className="gear-spark" d="M48 142 L53 130 L58 142 L53 153Z"/><path className="gear-spark right" d="M162 126 L168 111 L174 126 L168 140Z"/></>}{tier>=4&&<path className="gear-wings" d="M79 173 Q35 141 27 174 Q52 170 84 195 M141 173 Q185 141 193 174 Q168 170 136 195"/>}</svg>
