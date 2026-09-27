@@ -844,3 +844,28 @@ radial-gradient(ellipse at 94% 100%,#275540 0 33%,transparent 34%);filter:drop-s
  .arena-enemy-hud{grid-template-columns:30px 1fr!important}.enemy-hud-portrait{width:29px!important;height:29px!important}
  .enemy-hud-portrait .monster-art{width:39px!important;height:39px!important}
 }
+
+
+/* Combat Art Production Pass 01 — richer coded master assets */
+.hero-art .hero-armor-panel{fill:#26384b;stroke:#d8b45f;stroke-width:2}.hero-art .hero-armor-rim{fill:none;stroke:#f0d88a;stroke-width:2;opacity:.8}.hero-art .hero-gauntlet{fill:#34495c;stroke:#d3af5d;stroke-width:1.5}.hero-art .hero-rune{fill:#7be6d0;stroke:#d9fff4;stroke-width:1;filter:drop-shadow(0 0 5px #61e4ca)}
+.hero-art .hero-head{filter:drop-shadow(0 3px 2px #0005)}.hero-art .hero-hair{filter:drop-shadow(0 2px 1px #0004)}.hero-art .hero-chest-trim{filter:drop-shadow(0 3px 2px #0005)}
+.hero-art .hero-sword,.hero-art .hero-sword-edge{filter:drop-shadow(0 0 4px #b7dcff55)}
+.hero-state-attack .hero-rune,.hero-state-skill .hero-rune{animation:heroRuneCharge .42s ease-out}
+@keyframes heroRuneCharge{0%{transform:scale(.7);filter:drop-shadow(0 0 2px #61e4ca)}45%{transform:scale(1.4);filter:drop-shadow(0 0 11px #61e4ca)}100%{transform:scale(1)}}
+.monster-art .monster-crest{fill:var(--art-c);stroke:var(--art-b);stroke-width:2}.monster-art .monster-armor-line{fill:none;stroke:var(--art-a);stroke-width:2;opacity:.32}.monster-art .monster-core-ring{fill:none;stroke:var(--art-eye);stroke-width:2;opacity:.72;filter:drop-shadow(0 0 5px var(--art-eye))}
+.monster-art .monster-core{filter:drop-shadow(0 0 8px var(--art-eye))}.monster-art .monster-eye,.monster-art .monster-pupil{filter:drop-shadow(0 0 3px var(--art-eye))}
+.monster-art.pose-attack .monster-core-ring{animation:monsterCorePulse .48s ease-in-out infinite alternate}.monster-art.pose-hit .monster-core-ring{stroke-width:4}
+@keyframes monsterCorePulse{to{transform:scale(1.18);transform-origin:150px 151px;opacity:1}}
+.pet-art .pet-chest-art{fill:#d7f5ef55;stroke:#eafffa88;stroke-width:1}.pet-art .pet-tail-art{fill:#4b7d85;stroke:#a4ebe0;stroke-width:1.3}.pet-art .pet-mark-art{filter:drop-shadow(0 0 5px #8af4e3)}
+.pet-stage-2 .pet-art,.pet-stage-3 .pet-art,.pet-stage-4 .pet-art{filter:drop-shadow(0 7px 7px #0007) drop-shadow(0 0 7px #65dcc73a)!important}
+.pet-stage-3 .pet-art .pet-tail-art,.pet-stage-4 .pet-art .pet-tail-art{transform:scale(1.08);transform-origin:40px 82px}
+.pet-strike .pet-art{animation:petMasterStrike .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes petMasterStrike{0%{transform:translate(0,0) rotate(0)}38%{transform:translate(18px,-10px) rotate(5deg) scale(1.1)}100%{transform:translate(0,0) rotate(0)}}
+.world-art .world-sky-art{filter:saturate(1.12)}.world-art .world-back-art{filter:drop-shadow(0 8px 7px #0003)}.world-art .world-ground-art{filter:drop-shadow(0 -3px 7px #0003)}
+.world-art-1 .world-sun-art{filter:drop-shadow(0 0 18px #e7f7ff88)}.world-art-2 .world-sun-art{filter:drop-shadow(0 0 22px #ffb34d88)}.world-art-3 .world-sun-art{filter:drop-shadow(0 0 20px #dffcff88)}.world-art-4 .world-sun-art{filter:drop-shadow(0 0 20px #ba8cff88)}.world-art-5 .world-sun-art{filter:drop-shadow(0 0 24px #ffe16f99)}.world-art-6 .world-sun-art{filter:drop-shadow(0 0 24px #d563ff99)}
+.world-scenery:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#07111d0a 0 43%,#06100b2e 67%,#03070588 100%);pointer-events:none}
+.encounter-scene-normal .hero-fighter,.encounter-scene-normal .enemy{filter:saturate(1.04)}.encounter-scene-elite .enemy{filter:saturate(1.18) contrast(1.05) drop-shadow(0 13px 11px #0009)!important}.encounter-scene-boss .enemy{filter:saturate(1.22) contrast(1.08) drop-shadow(0 15px 14px #000b)!important}
+.encounter-scene-boss .monster-art .boss-crown{filter:drop-shadow(0 0 8px var(--art-eye))}
+.skill-art{filter:drop-shadow(0 3px 4px #0007)}.arena-skills .skill:not(:disabled) .skill-art{filter:drop-shadow(0 3px 4px #0007) drop-shadow(0 0 5px #8b71ff2e)}
+.arena-ultimate.ready .ui-glyph{animation:ultimateReady 1s ease-in-out infinite alternate}@keyframes ultimateReady{to{filter:brightness(1.3) drop-shadow(0 0 8px #f0b84d);transform:scale(1.06)}}
+@media(prefers-reduced-motion:reduce){.hero-rune,.monster-core-ring,.pet-art,.arena-ultimate.ready .ui-glyph{animation:none!important}}
