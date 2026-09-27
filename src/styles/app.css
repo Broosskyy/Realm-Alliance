@@ -869,3 +869,21 @@ radial-gradient(ellipse at 94% 100%,#275540 0 33%,transparent 34%);filter:drop-s
 .skill-art{filter:drop-shadow(0 3px 4px #0007)}.arena-skills .skill:not(:disabled) .skill-art{filter:drop-shadow(0 3px 4px #0007) drop-shadow(0 0 5px #8b71ff2e)}
 .arena-ultimate.ready .ui-glyph{animation:ultimateReady 1s ease-in-out infinite alternate}@keyframes ultimateReady{to{filter:brightness(1.3) drop-shadow(0 0 8px #f0b84d);transform:scale(1.06)}}
 @media(prefers-reduced-motion:reduce){.hero-rune,.monster-core-ring,.pet-art,.arena-ultimate.ready .ui-glyph{animation:none!important}}
+
+
+/* Combat Art Production Pass 02 — world prop asset kit + silhouette finish */
+.combat-prop-layer{position:absolute;z-index:12;left:0;right:0;bottom:154px;height:132px;pointer-events:none;overflow:hidden}
+.combat-props{width:100%;height:100%;filter:drop-shadow(0 8px 6px #0006)}
+.combat-props .prop-ground{fill:#07100bc7}.combat-props .prop-rock{fill:#31483d;stroke:#77916f;stroke-width:1.5}.combat-props .prop-grass{fill:none;stroke:#79a46e;stroke-width:3;stroke-linecap:round}.combat-props .prop-spire{fill:#321c1b;stroke:#a84e32;stroke-width:1.5}.combat-props .prop-crack{fill:none;stroke:#ff9b3d;stroke-width:3;filter:drop-shadow(0 0 5px #ff6a27)}.combat-props .prop-crystal{fill:#8bdde5aa;stroke:#d8ffff;stroke-width:1.5;filter:drop-shadow(0 0 6px #74dce0)}.props-crystal .prop-crystal{fill:#9d74e8aa;stroke:#e6d9ff;filter:drop-shadow(0 0 7px #9c6eea)}.combat-props .prop-pillar{fill:#7c6846;stroke:#e1c477;stroke-width:1.2}.combat-props .prop-tendril{fill:#291d39;stroke:#9851ba;stroke-width:1.4;filter:drop-shadow(0 0 6px #9d4acb55)}.combat-props .prop-rune{fill:#9d4acb88;stroke:#f2a4ff;stroke-width:1.4;filter:drop-shadow(0 0 7px #d45cf2)}
+.combat-props .right{opacity:.92}
+.hero-art .hero-pauldron-rim{fill:#30475d;stroke:#e0bf68;stroke-width:2}.hero-art .hero-cloak-fold{fill:none;stroke:#172230;stroke-width:2;opacity:.65}.hero-art .hero-gem{fill:#79ead7;stroke:#eafffa;stroke-width:1;filter:drop-shadow(0 0 5px #65e4cf)}
+.hero-art .hero-gauntlet.right,.monster-art .monster-cheek.right{transform-origin:center;transform-box:fill-box}
+.monster-art .monster-plate-rim{fill:none;stroke:var(--art-a);stroke-width:1.6;opacity:.55}.monster-art .monster-cheek{fill:var(--art-c);stroke:var(--art-b);stroke-width:1.3}
+.pet-art .pet-brow-art{fill:none;stroke:#17333a;stroke-width:2;stroke-linecap:round}.pet-art .pet-collar-art{fill:#2d5660;stroke:#8de5d6;stroke-width:1}.pet-art .pet-core-art{fill:#e8fff9;filter:drop-shadow(0 0 5px #6fe6d3)}
+.hero-fighter{filter:drop-shadow(0 13px 10px #0008)}.battle-pet{filter:drop-shadow(0 8px 6px #0007)}
+.hero-state-idle .hero-art{animation:masterHeroIdle 2.8s ease-in-out infinite}.battle-pet:not(.pet-strike) .pet-art{animation:masterPetIdle 2.2s ease-in-out infinite}.enemy .monster-art{animation:masterMonsterIdle 2.5s ease-in-out infinite}
+@keyframes masterHeroIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}@keyframes masterPetIdle{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}@keyframes masterMonsterIdle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.008)}}
+.enemy.boss .monster-art{animation-duration:3.1s}
+.combat-prop-layer:after{content:"";position:absolute;inset:auto 0 0;height:44%;background:linear-gradient(180deg,transparent,#03070570);pointer-events:none}
+@media(max-width:390px){.combat-prop-layer{bottom:148px;height:122px}}
+@media(prefers-reduced-motion:reduce){.hero-state-idle .hero-art,.battle-pet .pet-art,.enemy .monster-art{animation:none!important}}
