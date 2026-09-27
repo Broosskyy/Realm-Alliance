@@ -200,6 +200,11 @@ export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
  </svg>
 }
 
+export function PetEvolutionOverlay({stage=1}:{stage?:number}){
+ const t=Math.min(3,Math.max(1,stage));return <svg className={"code-art pet-evolution-overlay pet-form-"+t} viewBox="0 0 120 120" aria-hidden="true">{t>=2&&<><path className="pet-evo-ear" d="M35 45 L24 19 L48 37Z"/><path className="pet-evo-ear right" d="M85 45 L96 19 L72 37Z"/><path className="pet-evo-armor" d="M37 72 Q60 60 83 72 L76 91 Q60 101 44 91Z"/></>}{t>=3&&<><path className="pet-evo-crown" d="M39 40 L47 21 L58 34 L67 16 L76 35 L87 22 L83 43Z"/><path className="pet-evo-tail" d="M33 78 Q4 67 12 96 Q29 91 45 84Z"/><path className="pet-evo-wing" d="M42 73 Q14 48 13 71 Q28 70 46 87Z"/><path className="pet-evo-wing right" d="M78 73 Q106 48 107 71 Q92 70 74 87Z"/></>}</svg>}
+export function SocialEmblem({kind="clan"}:{kind?:string}){
+ return <svg className={"code-art social-emblem emblem-"+kind} viewBox="0 0 120 120" aria-hidden="true"><path className="emblem-shield" d="M60 7 L101 24 L94 78 Q82 102 60 113 Q38 102 26 78 L19 24Z"/>{kind==="arena"?<><path className="emblem-blade" d="M32 84 L79 27 L89 35 L43 92Z M88 84 L41 27 L31 35 L77 92Z"/></>:kind==="rank"?<><path className="emblem-crown" d="M30 66 L37 37 L55 53 L61 29 L77 53 L91 37 L88 68Z"/><path className="emblem-star" d="M60 71 L66 82 L78 84 L69 92 L71 104 L60 98 L49 104 L51 92 L42 84 L54 82Z"/></>:<><path className="emblem-tower" d="M38 84 V43 H48 V33 H57 V43 H67 V30 H78 V43 H87 V84Z"/><path className="emblem-gate" d="M54 84 V65 Q60 56 66 65 V84Z"/></>}</svg>}
+
 export function HeroEvolutionOverlay({stage=1,mutation=0}:{stage?:number;mutation?:number}){
  const t=Math.min(4,Math.max(1,stage));
  return <svg className={"code-art hero-evolution-overlay hero-form-"+t+" hero-mutation-"+Math.min(4,mutation)} viewBox="0 0 220 260" aria-hidden="true">
