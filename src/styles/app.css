@@ -803,3 +803,44 @@ radial-gradient(ellipse at 94% 100%,#275540 0 33%,transparent 34%);filter:drop-s
  .enemy{top:43%!important;transform:translate(-50%,-50%) scale(.9)!important}
  .combat-objective{display:none!important}
 }
+
+
+/* Combat Master Reconstruction 04 — scene depth, progression rail, hierarchy */
+.combat-depth{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.combat-depth-back{z-index:3}.combat-depth-front{z-index:16}
+.combat-depth-back i{position:absolute;bottom:31%;width:28%;height:22%;border-radius:48% 52% 10% 10%;background:linear-gradient(180deg,#14251d77,#07100ca8);filter:blur(1px);opacity:.52}
+.combat-depth-back i:first-child{left:-10%;transform:skewX(-8deg) rotate(-5deg)}.combat-depth-back i:last-child{right:-11%;transform:skewX(8deg) rotate(5deg)}
+.combat-depth-front i{position:absolute;bottom:-4%;width:24%;height:24%;background:radial-gradient(ellipse at bottom,#020605f0,transparent 68%);filter:blur(3px);opacity:.7}
+.combat-depth-front i:nth-child(1){left:-6%}.combat-depth-front i:nth-child(2){left:39%;bottom:-10%;width:32%}.combat-depth-front i:nth-child(3){right:-7%}
+.combat-stage-ground{position:absolute;z-index:11;left:0;right:0;bottom:174px;height:135px;pointer-events:none}
+.combat-stage-ground>span{position:absolute;left:4%;right:4%;bottom:0;height:2px;background:linear-gradient(90deg,transparent,#c8d7bd1f 15%,#d7e7ce2e 50%,#c8d7bd1f 85%,transparent);box-shadow:0 -8px 30px #77a56a14}
+.combat-stage-ground>i{position:absolute;bottom:-3px;height:25px;border-radius:50%;background:#020604b5;filter:blur(6px)}
+.ground-hero{left:5%;width:39%}.ground-enemy{right:4%;width:36%}
+.combat-stage-progress{position:absolute;z-index:23;top:62px;left:50%;transform:translateX(-50%);width:min(48%,210px);display:grid;justify-items:center;gap:3px;padding:3px 8px 5px;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#07111dd6,#07111da8);border:1px solid #ffffff0d;border-top:0;pointer-events:none}
+.combat-stage-progress>span{display:flex;align-items:center;gap:5px;max-width:100%}.combat-stage-progress small{font-size:5.5px;letter-spacing:.1em;color:#a8b5c4}.combat-stage-progress b{font-size:6px;color:#e4e8ed;white-space:nowrap}
+.combat-stage-progress>i{display:flex;align-items:center;gap:4px}.combat-stage-progress em{width:18px;height:3px;border-radius:5px;background:#26313c}.combat-stage-progress em.done{background:#6fc79c}.combat-stage-progress em.now{background:#e2bd5c;box-shadow:0 0 8px #e2bd5c80}
+.arena-enemy-hud{display:grid!important;grid-template-columns:34px 1fr!important;column-gap:6px!important;align-items:center!important;padding-left:5px!important}
+.enemy-hud-portrait{grid-row:1/3!important;width:32px!important;height:32px!important;border-radius:50%!important;overflow:hidden!important;background:radial-gradient(circle,#303b49,#0a1119 72%)!important;border:1px solid #d9a85b55!important}
+.enemy-hud-portrait .monster-art{width:43px!important;height:43px!important;transform:translate(-5px,-5px)!important}
+.arena-enemy-hud>div:not(.enemy-hud-portrait){grid-column:2!important}.arena-enemy-hud>i{grid-column:2!important}
+.combat-upgrades strong{display:grid!important;grid-template-columns:13px auto!important;align-items:center!important;justify-content:end!important;column-gap:2px!important}
+.combat-upgrades strong>em{grid-column:1/-1;font-size:5px!important;font-style:normal!important;text-align:right!important;color:#7fe2ae!important;letter-spacing:.05em}
+.combat-upgrades button:disabled strong>em{color:#b87979!important}
+.hero-fighter{z-index:14!important}.enemy{z-index:14!important}.battle-pet{z-index:15!important}
+.hero-fighter:before{content:"";position:absolute;z-index:-2;left:8%;bottom:3%;width:80%;height:52%;border-radius:50%;background:radial-gradient(circle,#79cfa516 0%,transparent 68%);filter:blur(4px);pointer-events:none}
+.enemy:before{content:"";position:absolute;z-index:-2;inset:15%;border-radius:50%;background:radial-gradient(circle,#df755016 0%,transparent 70%);filter:blur(5px);pointer-events:none}
+.encounter-scene-boss .enemy:before{background:radial-gradient(circle,#f05c4133 0%,transparent 68%);transform:scale(1.3)}
+.encounter-scene-elite .enemy:before{background:radial-gradient(circle,#a65ad52b 0%,transparent 68%);transform:scale(1.16)}
+.enemy-intent.intent-warning{border-color:#efb45b70!important;background:#261b13e8!important;box-shadow:0 0 18px #e79d4226!important;animation:masterIntentPulse .8s ease-in-out infinite alternate}
+@keyframes masterIntentPulse{to{filter:brightness(1.22);transform:scale(1.02)}}
+.combo{padding:3px 7px!important;border-radius:999px!important;background:#08121dd9!important;border:1px solid #ffffff13!important;font-size:6px!important}.combo b{font-size:9px!important;color:#f3d06b!important}
+.streak{font-size:6px!important;background:#17120ddb!important;border:1px solid #e2a7512c!important}
+.arena-reward{width:min(88%,350px)!important;left:50%!important;transform:translateX(-50%)!important;border-radius:23px!important;background:radial-gradient(circle at 50% 0,#d8a94c20,transparent 34%),linear-gradient(160deg,#182437f5,#09121df7)!important;border:1px solid #e5c16d36!important;box-shadow:0 25px 70px #000c!important}
+.arena-reward>small{letter-spacing:.18em!important;color:#e4c46f!important}.arena-reward-gains{justify-content:center!important}
+.arena-loot{border-radius:15px!important;background:#0b1522!important}.arena-collect{min-height:45px!important;border-radius:13px!important;background:linear-gradient(135deg,#8150c3,#b75de5)!important;box-shadow:0 8px 20px #7e43b632!important}
+@media(max-width:390px){
+ .combat-stage-progress{top:58px!important;width:47%!important}.combat-stage-progress em{width:14px!important}
+ .combat-stage-ground{bottom:166px!important}
+ .arena-enemy-hud{grid-template-columns:30px 1fr!important}.enemy-hud-portrait{width:29px!important;height:29px!important}
+ .enemy-hud-portrait .monster-art{width:39px!important;height:39px!important}
+}
