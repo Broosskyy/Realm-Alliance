@@ -200,6 +200,18 @@ export function AdventureModeArt({mode="dungeon"}:{mode?:string}){
  </svg>
 }
 
+export function EquipmentAura({rarity="common",level=1}:{rarity?:string;level?:number}){
+ const tier=Math.min(4,Math.max(1,Math.ceil(level/5)));
+ return <svg className={"code-art equipment-aura rarity-"+rarity+" gear-tier-"+tier} viewBox="0 0 220 260" aria-hidden="true"><ellipse className="gear-halo" cx="110" cy="205" rx={58+tier*7} ry={24+tier*3}/>{tier>=2&&<path className="gear-rune-ring" d="M42 204 Q110 156 178 204 Q110 244 42 204Z"/>}{tier>=3&&<><path className="gear-spark" d="M48 142 L53 130 L58 142 L53 153Z"/><path className="gear-spark right" d="M162 126 L168 111 L174 126 L168 140Z"/></>}{tier>=4&&<path className="gear-wings" d="M79 173 Q35 141 27 174 Q52 170 84 195 M141 173 Q185 141 193 174 Q168 170 136 195"/>}</svg>
+}
+export function SkillEvolutionArt({kind="slash",level=1}:{kind?:string;level?:number}){
+ const tier=Math.min(4,Math.max(1,Math.ceil(level/4)));
+ return <svg className={"code-art skill-evolution-art skill-"+kind+" skill-tier-"+tier} viewBox="0 0 120 120" aria-hidden="true"><circle className="skill-evo-ring" cx="60" cy="60" r={31+tier*4}/>{kind==="nova"?<><circle className="skill-evo-core" cx="60" cy="60" r={12+tier*2}/><path className="skill-evo-rays" d="M60 7 V31 M60 89 V113 M7 60 H31 M89 60 H113 M23 23 L40 40 M80 80 L97 97 M97 23 L80 40 M40 80 L23 97"/></>:<><path className="skill-evo-blade" d="M84 15 L99 23 L56 85 L38 99 L45 78Z"/><path className="skill-evo-slash" d="M20 81 Q57 39 105 36 M25 96 Q61 57 106 54"/></>}{tier>=3&&<path className="skill-evo-rune" d="M60 18 L68 30 L60 42 L52 30Z"/>}</svg>
+}
+export function PanelOrnament({kind="realm"}:{kind?:string}){
+ return <svg className={"code-art panel-ornament ornament-"+kind} viewBox="0 0 420 44" preserveAspectRatio="none" aria-hidden="true"><path className="ornament-line" d="M0 22 H156 L177 8 H243 L264 22 H420"/><path className="ornament-core" d="M210 5 L226 22 L210 39 L194 22Z"/><path className="ornament-inner" d="M210 12 L219 22 L210 32 L201 22Z"/></svg>
+}
+
 export function HalloweenArt({kind="portal"}:{kind?:"portal"|"pumpkin"|"relic"}){
  return <svg className={"code-art halloween-art halloween-"+kind} viewBox="0 0 180 150" aria-hidden="true">
   <ellipse className="hw-shadow" cx="90" cy="130" rx="62" ry="12"/>
