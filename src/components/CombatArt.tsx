@@ -145,7 +145,7 @@ export function CombatPropSet({world=0}:{world?:number}){
  </svg>
 }
 
-export function CombatPropSetexport function MonsterPortrait({family="cloud",archetype="brute",known=true}:{family?:string;archetype?:EnemyArchetype;known?:boolean}){
+export function MonsterPortrait({family="cloud",archetype="brute",known=true}:{family?:string;archetype?:EnemyArchetype;known?:boolean}){
  if(!known)return <svg className="code-art portrait-art unknown-portrait" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/><path d="M29 31 Q40 20 51 31 Q53 42 43 47 V54 H36 V43 Q45 40 45 33 Q40 28 35 34Z"/><circle cx="40" cy="62" r="4"/></svg>;
  const p=palette[family]??palette.cloud;
  return <svg className={"code-art portrait-art portrait-"+archetype} viewBox="0 0 80 80" style={{"--art-a":p[0],"--art-b":p[1],"--art-c":p[2],"--art-eye":p[3]} as React.CSSProperties}>
