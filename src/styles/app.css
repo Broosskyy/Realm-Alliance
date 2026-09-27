@@ -675,3 +675,57 @@ radial-gradient(ellipse at 94% 100%,#275540 0 33%,transparent 34%);filter:drop-s
 .arena-skills{bottom:5px!important;gap:12px!important;z-index:32!important}.arena-skills .skill{width:58px!important;height:58px!important;border-width:2px!important}.arena-skills .skill small{font-size:7px!important}.arena-ultimate{width:58px!important;height:58px!important}
 .damage{z-index:28!important}.pet-proc-label{z-index:28!important}
 @media(max-width:390px){.viewport:has(.arena) .stage-head{height:64px!important}.master-stage-label{top:58px!important}.arena-enemy-hud{top:78px!important;width:59%!important}.enemy-intent{top:116px!important}.enemy-archetype{top:118px!important}.hero-fighter{left:1%!important;bottom:173px!important;width:178px!important;height:232px!important}.hero-fighter .hero-art{width:158px!important;height:207px!important}.battle-pet{left:100px!important;transform:scale(.92)!important}.enemy{left:75%!important;top:48%!important;width:186px!important;height:186px!important}.enemy.boss{width:216px!important;height:216px!important}.combat-upgrades{bottom:68px!important}.combat-upgrades button{padding-inline:5px!important}.arena-player-hud{bottom:111px!important}.arena-player-hud button{bottom:114px!important}.arena-meters{bottom:147px!important}.arena-skills .skill,.arena-ultimate{width:54px!important;height:54px!important}}
+
+
+/* Combat Master Reconstruction 02 — grounded stage, readable actions, impact polish */
+.viewport:has(.arena){overflow:hidden!important}
+.arena{isolation:isolate!important;overflow:hidden!important;touch-action:manipulation}
+.arena:before{content:"";position:absolute;z-index:10;left:3%;right:3%;bottom:166px;height:74px;border-radius:50%;background:radial-gradient(ellipse at center,#050a0dbd 0%,#07100c7a 42%,transparent 73%);filter:blur(3px);pointer-events:none}
+.hero-fighter:after{content:"";position:absolute;z-index:-1;left:18px;right:15px;bottom:1px;height:18px;border-radius:50%;background:#0206079e;filter:blur(5px);transform:scaleX(1.05)}
+.battle-pet:after{content:"";position:absolute;z-index:-1;left:10%;right:10%;bottom:-2px;height:10px;border-radius:50%;background:#020607a6;filter:blur(4px)}
+.enemy:after{content:"";position:absolute;z-index:-1;left:13%;right:13%;bottom:4px;height:17px;border-radius:50%;background:#020607b5;filter:blur(5px)}
+.hero-fighter,.enemy,.battle-pet{will-change:transform,filter}
+.hero-fighter.strike,.hero-fighter:has(.hero-art.strike){animation:masterHeroStrike .24s cubic-bezier(.2,.8,.2,1)}
+.enemy.hit,.enemy:has(.monster-art.hit){animation:masterEnemyHit .22s ease-out}
+.hero-fighter.victory{animation:masterVictory .58s ease-out}
+@keyframes masterHeroStrike{0%{transform:translate3d(0,0,0)}45%{transform:translate3d(17px,-3px,0) scale(1.025)}100%{transform:translate3d(0,0,0)}}
+@keyframes masterEnemyHit{0%{transform:translate3d(-50%,-50%,0)}32%{transform:translate3d(calc(-50% + 8px),calc(-50% - 2px),0) scale(.965);filter:brightness(1.65)}100%{transform:translate3d(-50%,-50%,0)}}
+@keyframes masterVictory{0%,100%{filter:none}42%{filter:brightness(1.3) drop-shadow(0 0 18px #f2d47780)}}
+.arena-enemy-hud{box-shadow:0 8px 22px #0007,inset 0 1px #ffffff0c!important}
+.arena-enemy-hud>i{overflow:hidden!important;position:relative!important}
+.arena-enemy-hud>i>span{transition:width .2s cubic-bezier(.2,.8,.2,1)!important}
+.arena-enemy-hud>i:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0 72%,#ffffff17);pointer-events:none}
+.combat-objective{transition:opacity .18s,transform .18s!important}
+.arena:active .combat-objective{opacity:.16!important;transform:translateY(-2px)!important}
+.combat-upgrades{filter:drop-shadow(0 8px 16px #0006)}
+.combat-upgrades button{position:relative;overflow:hidden!important;background:linear-gradient(180deg,#111d2bea,#09131eea)!important}
+.combat-upgrades button:not(:disabled):before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 0 62%,#ffffff08 63% 72%,transparent 73%);pointer-events:none}
+.combat-upgrades button:not(:disabled){border-color:#d4aa5240!important}
+.combat-upgrades button:not(:disabled) strong{color:#ffe293!important;text-shadow:0 0 9px #eab84d3d}
+.combat-upgrades button:disabled strong{color:#8e98a5!important}
+.arena-skills{padding:3px 11px 7px!important;border-radius:25px 25px 0 0;background:linear-gradient(180deg,transparent,#050a0dc2 45%,#05090de8)!important}
+.arena-skills .skill,.arena-ultimate{position:relative!important;box-shadow:0 7px 15px #0008,inset 0 1px #ffffff19!important;transition:transform .12s,filter .12s!important}
+.arena-skills .skill:active:not(:disabled),.arena-ultimate:active:not(:disabled){transform:translateY(2px) scale(.94)!important;filter:brightness(1.18)}
+.arena-skills .skill:disabled{filter:saturate(.25) brightness(.72)!important}
+.arena-player-hud{box-shadow:0 7px 18px #0006!important}
+.arena-player-hud button{font-size:8px!important;font-weight:900!important;letter-spacing:.08em!important}
+.arena-player-hud button.on{background:linear-gradient(180deg,#173429,#0b2119)!important}
+.damage{font-size:25px!important;font-weight:950!important;text-shadow:0 2px 2px #000,0 0 12px #fff5!important;animation:masterDamage .55s ease-out forwards!important}
+@keyframes masterDamage{0%{opacity:0;transform:translate(-50%,8px) scale(.72)}22%{opacity:1;transform:translate(-50%,-4px) scale(1.14)}100%{opacity:0;transform:translate(-50%,-34px) scale(.94)}}
+.pet-proc-label{padding:4px 8px!important;border-radius:999px!important;background:#0a1820d9!important;border:1px solid #66e6d04a!important;box-shadow:0 5px 14px #0006!important}
+.encounter-scene-boss .arena{box-shadow:inset 0 0 70px #8d302d1c!important}
+.encounter-scene-elite .arena{box-shadow:inset 0 0 55px #8b4fc41b!important}
+.reward-overlay,.mutation-overlay{backdrop-filter:blur(8px)!important}
+.reward-overlay>*,.mutation-overlay>*{animation:masterRewardIn .32s cubic-bezier(.2,.85,.25,1)}
+@keyframes masterRewardIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+@media(max-width:390px){
+ .arena:before{bottom:158px;height:65px}
+ .combat-upgrades{gap:5px!important}
+ .combat-upgrades button{height:37px!important;grid-template-columns:24px 1fr auto!important}
+ .combat-upgrades small{font-size:5.5px!important}
+ .combat-upgrades b,.combat-upgrades strong{font-size:7px!important}
+ .arena-skills{gap:9px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-fighter,.enemy,.damage,.reward-overlay>*,.mutation-overlay>*{animation:none!important}
+}
