@@ -33,3 +33,17 @@ export function ProductionEnemy({pose="idle",family="",name=""}:{pose?:string;fa
  const file=pose==="defeated"?"defeated":pose==="attack"?"attack":pose==="hit"?"hit":"idle";
  return <ArtImg src={ROOT+"/monsters/"+kind+"/"+file+".png"} className={"production-enemy prod-enemy-"+kind+" prod-enemy-"+file} alt={name}/>;
 }
+
+
+export function ProductionCombatV2({heroState="idle",enemyPose="idle",family="",name="",tier="normal"}:{
+ heroState?:string; enemyPose?:string; family?:string; name?:string; tier?:string;
+}){
+ return <div className="pcv2" aria-label="Production combat actors">
+  <div className={"pcv2-hero pcv2-hero-"+heroState}>
+   <ProductionHero state={heroState}/>
+  </div>
+  <div className={"pcv2-enemy pcv2-enemy-"+tier+" pcv2-enemy-"+enemyPose}>
+   <ProductionEnemy family={family} name={name} pose={enemyPose}/>
+  </div>
+ </div>;
+}
