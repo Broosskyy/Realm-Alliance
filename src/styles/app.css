@@ -1307,3 +1307,21 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
  .pcv2-enemy{left:70%;width:146px;height:166px}
  .pcv2-enemy-boss{left:69%;width:174px;height:190px}
 }
+
+/* Combat Renderer V2 — isolated production actors, no legacy transforms */
+.world-theme-1 .pcv2{position:absolute;inset:0;z-index:9;pointer-events:none}
+.world-theme-1 .pcv2-hero,.world-theme-1 .pcv2-enemy{position:absolute;bottom:20%;display:flex;align-items:flex-end;justify-content:center;transform:none!important;animation:none!important;transition:none!important;overflow:visible}
+.world-theme-1 .pcv2-hero{left:10%;width:29%;height:31%}
+.world-theme-1 .pcv2-enemy{right:6%;width:43%;height:43%}
+.world-theme-1 .pcv2-enemy-boss{right:3%;width:48%;height:48%}
+.world-theme-1 .pcv2 .production-hero,.world-theme-1 .pcv2 .production-enemy{position:static!important;inset:auto!important;width:100%!important;height:100%!important;display:block!important;object-fit:contain!important;object-position:center bottom!important;transform:none!important;animation:none!important;transition:none!important;opacity:1!important;filter:drop-shadow(0 10px 8px #17313d66)}
+.world-theme-1 .pcv2-hero-attack{transform:translateX(5px)!important}.world-theme-1 .pcv2-hero-skill{transform:translate(4px,-3px)!important}.world-theme-1 .pcv2-hero-hit{transform:translateX(-4px)!important}
+.world-theme-1 .pcv2-enemy-attack{transform:translateX(-6px)!important}.world-theme-1 .pcv2-enemy-hit{transform:translateX(5px)!important}.world-theme-1 .pcv2-enemy-defeated{transform:translateY(6px)!important;opacity:.78}
+.world-theme-1 .pcv2-enemy-boss.pcv2-enemy-attack{transform:translateX(-4px)!important}.world-theme-1 .pcv2-enemy-boss.pcv2-enemy-hit{transform:translateX(4px)!important}
+.world-theme-1 .pcv2-hit-fx{position:absolute;z-index:12;right:25%;bottom:36%;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle,#fff 0 8%,#70d8ffbb 10% 18%,transparent 55%);animation:pcv2Flash .22s ease-out forwards;pointer-events:none}
+.world-theme-1 .pcv2-skill-fx{position:absolute;z-index:12;right:20%;bottom:29%;width:110px;height:85px;border-radius:50%;background:radial-gradient(ellipse,#fff9 0 6%,#6fcfff88 16%,transparent 66%);animation:pcv2Flash .32s ease-out forwards;pointer-events:none}
+@keyframes pcv2Flash{0%{opacity:0;transform:scale(.45)}45%{opacity:1;transform:scale(1.08)}100%{opacity:0;transform:scale(1.35)}}
+/* Hard quarantine: none of the old actor/weapon layers may exist visually in Wolkgarten V2. */
+.world-theme-1>.hero-fighter,.world-theme-1>.enemy,.world-theme-1 .hero-weapon,.world-theme-1 .boss-sigil-stage,.world-theme-1 .boss-tag{display:none!important}
+.world-theme-1 .pcv2-pet-shot{z-index:12}
+@media(max-width:390px){.world-theme-1 .pcv2-hero{left:8%;width:31%;height:30%}.world-theme-1 .pcv2-enemy{right:4%;width:45%;height:42%}.world-theme-1 .pcv2-enemy-boss{right:1%;width:50%;height:47%}}
