@@ -1108,3 +1108,13 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
  .world-theme-1 .enemy{left:70%;width:150px;height:170px}.world-theme-1 .enemy.boss{width:170px;height:190px}
  .prod-platform{width:140%;left:-20%}
 }
+
+/* Production art pass 03 — reuse real art beyond combat */
+.hero-master-art>.production-hero{position:absolute;z-index:4;left:50%;bottom:5%;width:74%;height:88%;object-fit:contain;object-position:center bottom;transform:translateX(-50%);filter:drop-shadow(0 15px 14px #0008)}
+.hero-master-art>.hero-art:has(+.production-hero){opacity:0!important}
+.hero-master-art>.production-weapon{position:absolute;z-index:6;right:9%;bottom:18%;width:36%;height:52%;object-fit:contain;transform:rotate(-13deg);filter:drop-shadow(0 0 9px #62bfff88)}
+.hero-master-art>.weapon-art:has(+.production-weapon){opacity:0!important}
+.codex-portrait{position:relative;overflow:hidden}
+.codex-portrait>.production-enemy{position:absolute;z-index:3;inset:5%;width:90%;height:90%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 7px 7px #0008)}
+.codex-portrait>.monster-portrait:has(+.production-enemy){opacity:.08}
+.codex-portrait>.mastery-crest{z-index:5}
