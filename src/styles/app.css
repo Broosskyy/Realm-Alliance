@@ -2385,3 +2385,248 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
   .combat-v2 .skill-orb{width:56px!important;height:56px!important;min-width:56px!important}
   .combat-v2 .skill-orb .skill-art{width:45px!important;height:45px!important}
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 05
+   Screenshot-driven proportion cleanup.
+   Targets the remaining oversized top overlay, missing route dots,
+   actor scale, avatar crop and oversized lower controls.
+   ========================================================= */
+
+/* Kill old scenery pseudo-layers that were still painting a giant dark block. */
+.combat-v2 .world-scenery:before,
+.combat-v2 .world-scenery:after,
+.combat-v2 .production-world:before,
+.combat-v2 .production-world:after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  opacity:0!important;
+}
+
+/* Route progress must stay inside the pill, never absolutely escape it. */
+.viewport>.master-stage-head .nodes{
+  position:static!important;
+  inset:auto!important;
+  left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
+  transform:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  min-width:64px!important;
+  margin:0!important;
+  gap:4px!important;
+}
+.viewport>.master-stage-head .nodes i{
+  flex:0 0 6px!important;
+  width:6px!important;height:6px!important;
+  display:block!important;
+}
+.viewport>.master-stage-head .nodes strong{
+  display:block!important;
+  margin-left:2px!important;
+  font-size:12px!important;
+}
+
+/* Compact enemy HUD: one tight card, no oversized dead panel. */
+.combat-v2 .arena-enemy-hud{
+  top:10px!important;
+  width:min(60%,275px)!important;
+  max-width:275px!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:6px 9px 6px!important;
+  border-radius:13px!important;
+  overflow:visible!important;
+}
+.combat-v2 .enemy-hud-title{
+  min-height:14px!important;
+  grid-template-columns:auto minmax(0,1fr) auto!important;
+  gap:5px!important;
+}
+.combat-v2 .enemy-rank{
+  font-size:5.5px!important;
+  padding:2px 4px!important;
+}
+.combat-v2 .enemy-hud-title b{
+  font-size:12px!important;
+  line-height:1!important;
+}
+.combat-v2 .enemy-level{
+  font-size:7px!important;
+}
+.combat-v2 .enemy-hp-track{
+  height:10px!important;
+  margin-top:4px!important;
+}
+.combat-v2 .enemy-hp-track>i{
+  height:10px!important;
+}
+.combat-v2 .enemy-hp-track>strong{
+  font-size:6.5px!important;
+}
+.combat-v2 .enemy-status-icons{
+  position:static!important;
+  inset:auto!important;
+  transform:none!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  width:auto!important;
+  height:18px!important;
+  min-height:18px!important;
+  margin:4px 0 0!important;
+  padding:0!important;
+  gap:4px!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.combat-v2 .enemy-status-icons em{
+  width:18px!important;height:16px!important;
+  min-width:18px!important;min-height:16px!important;
+  padding:0!important;margin:0!important;
+  border-radius:5px!important;
+  font-size:7px!important;
+}
+
+/* Actor scale now matches the reference more closely. */
+.combat-v2 .pcv2-hero{
+  left:7%!important;
+  bottom:22%!important;
+  width:21%!important;
+  height:24%!important;
+}
+.combat-v2 .pcv2-enemy{
+  right:4%!important;
+  bottom:20%!important;
+  width:42%!important;
+  height:46%!important;
+}
+.combat-v2 .pcv2-enemy-boss{
+  right:1%!important;
+  bottom:19%!important;
+  width:49%!important;
+  height:52%!important;
+}
+
+/* Slightly more open stage between enemy HUD and actors. */
+.combat-v2 .prod-castle{bottom:43%!important;opacity:.92!important}
+.combat-v2 .prod-float{bottom:36%!important;opacity:.90!important}
+.combat-v2 .prod-ruin{bottom:31%!important;opacity:.82!important}
+.combat-v2 .prod-ruins{bottom:18%!important;opacity:.95!important}
+.combat-v2 .prod-platform{bottom:8%!important}
+
+/* Header avatar should read as a portrait, not a tiny full-body sprite. */
+.game-topbar .master-avatar .production-hero{
+  inset:-35% -30% -12% -30%!important;
+  width:160%!important;
+  height:160%!important;
+  object-fit:contain!important;
+  object-position:center 22%!important;
+}
+
+/* Smaller and cleaner lower combat controls to match the mockup. */
+.combat-v2 .combat-bottom-hud{
+  height:122px!important;
+  bottom:7px!important;
+}
+.combat-v2 .combat-vitals{
+  grid-template-columns:1fr 1fr 1fr 44px!important;
+  gap:4px!important;
+}
+.combat-v2 .vital{
+  height:29px!important;
+  grid-template-columns:18px minmax(0,1fr)!important;
+  grid-template-rows:13px 6px!important;
+  padding:3px 5px!important;
+}
+.combat-v2 .vital>span{font-size:13px!important}
+.combat-v2 .vital>strong{font-size:6.5px!important}
+.combat-v2 .combat-auto-orb{
+  width:44px!important;height:44px!important;min-width:44px!important;
+}
+.combat-v2 .combat-auto-orb .ui-glyph{width:20px!important;height:20px!important}
+.combat-v2 .combat-auto-orb b{font-size:7px!important}
+
+.combat-v2 .skill-orb-dock{
+  width:82%!important;
+  bottom:0!important;
+  gap:12px!important;
+}
+.combat-v2 .skill-orb{
+  width:52px!important;height:52px!important;min-width:52px!important;
+  border-width:2px!important;
+}
+.combat-v2 .skill-orb .skill-art{
+  width:42px!important;height:42px!important;
+}
+.combat-v2 .skill-orb>span,
+.combat-v2 .skill-orb>small{
+  min-width:27px!important;
+  font-size:6.5px!important;
+  bottom:-5px!important;
+}
+
+/* Keep AUTO visually separate from the skill row like the master. */
+.combat-v2 .combat-auto-orb{
+  margin-top:-4px!important;
+}
+
+/* Persistent nav a touch more compact so the arena gains height. */
+.game-nav{
+  height:66px!important;
+  min-height:66px!important;
+}
+.game-nav button{
+  padding-top:4px!important;
+  padding-bottom:4px!important;
+}
+.game-nav button i{
+  width:28px!important;height:28px!important;
+}
+.game-nav button span{
+  font-size:8.5px!important;
+}
+
+/* Android portrait hard limits. */
+@media(max-width:420px){
+  .viewport>.master-stage-head{
+    width:min(80%,330px)!important;
+    grid-template-columns:29px auto minmax(74px,1fr) 16px!important;
+  }
+  .viewport>.master-stage-head .nodes{
+    min-width:74px!important;
+    gap:3px!important;
+  }
+  .combat-v2 .arena-enemy-hud{
+    width:64%!important;
+    max-width:260px!important;
+  }
+  .combat-v2 .pcv2-hero{
+    left:5%!important;
+    width:22%!important;
+    height:23%!important;
+  }
+  .combat-v2 .pcv2-enemy{
+    right:2%!important;
+    width:43%!important;
+    height:44%!important;
+  }
+  .combat-v2 .pcv2-enemy-boss{
+    right:-1%!important;
+    width:51%!important;
+    height:50%!important;
+  }
+  .combat-v2 .skill-orb-dock{
+    width:90%!important;
+    gap:7px!important;
+  }
+  .combat-v2 .skill-orb{
+    width:50px!important;height:50px!important;min-width:50px!important;
+  }
+  .combat-v2 .skill-orb .skill-art{
+    width:40px!important;height:40px!important;
+  }
+}
