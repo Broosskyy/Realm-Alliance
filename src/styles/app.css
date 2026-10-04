@@ -1182,3 +1182,34 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
 .world-theme-1 .slashfx,.world-theme-1 .impactfx,.world-theme-1 .combat-shot,.world-theme-1 .skill-cast-fx{z-index:10!important}
 .world-theme-1 .damage{z-index:18!important}.world-theme-1 .battle-pet{z-index:7!important}
 @media(max-width:390px){.world-theme-1 .hero-fighter{left:21%!important;bottom:24%!important;width:88px!important;height:122px!important}.world-theme-1 .enemy{left:70%!important;bottom:23%!important;width:146px!important;height:164px!important}.world-theme-1 .enemy.boss{left:70%!important;width:168px!important;height:188px!important}.world-theme-1 .prod-platform{width:158%!important;left:-29%!important}}
+
+/* Combat Art Integration Fix 03 — clean production-only Wolkgarten */
+.world-theme-1{isolation:isolate;background:linear-gradient(180deg,#74bce5 0%,#b7e0ee 35%,#e6efe3 67%,#8da377 100%)!important}
+.world-theme-1:before,.world-theme-1:after{content:none!important;display:none!important}
+.world-theme-1 .world-scenery.production-active{z-index:0;opacity:1!important;filter:none!important}
+.world-theme-1 .production-world{z-index:0}
+.world-theme-1 .combat-depth,.world-theme-1 .ambient,.world-theme-1 .mist,.world-theme-1 .combat-prop-layer{display:none!important}
+.world-theme-1 .combat-stage-ground.production-ground{display:block;z-index:4;bottom:18%;height:3%;background:none!important;border:0!important;box-shadow:none!important;opacity:1}
+.world-theme-1 .combat-stage-ground.production-ground>span{display:none!important}
+.world-theme-1 .combat-stage-ground.production-ground .ground-hero,.world-theme-1 .combat-stage-ground.production-ground .ground-enemy{display:block!important;position:absolute!important;top:0!important;width:90px!important;height:18px!important;border-radius:50%!important;background:#163e3942!important;filter:blur(5px)!important;box-shadow:none!important;clip-path:none!important}
+.world-theme-1 .combat-stage-ground.production-ground .ground-hero{left:11%!important}.world-theme-1 .combat-stage-ground.production-ground .ground-enemy{right:11%!important}
+.world-theme-1 .prod-sky-glow{z-index:0;background:radial-gradient(ellipse at 50% 15%,#fff 0%,#ffffff99 12%,transparent 42%),linear-gradient(180deg,#5fb5e622,transparent 64%)}
+.world-theme-1 .prod-castle{z-index:1;width:34%;left:-2%;top:7%;opacity:.42;filter:saturate(.78) brightness(1.08)}
+.world-theme-1 .prod-float{z-index:1;width:39%;right:-4%;top:9%;opacity:.36;filter:saturate(.78) brightness(1.08)}
+.world-theme-1 .prod-ruin{z-index:2;width:27%;right:2%;top:28%;opacity:.48}
+.world-theme-1 .prod-ruins{z-index:2;width:58%;left:21%;bottom:29%;opacity:.5}
+.world-theme-1 .prod-platform{z-index:3;width:142%;max-width:none;left:-21%;bottom:3%;opacity:1;filter:saturate(.94) contrast(.98) drop-shadow(0 14px 14px #24462f55)}
+.world-theme-1 .prod-foreground{z-index:7;width:116%;max-width:none;left:-8%;bottom:-15%;opacity:.42;filter:saturate(.88)}
+.world-theme-1 .hero-fighter{left:22%;bottom:19%;width:92px;height:132px;z-index:8!important}
+.world-theme-1 .hero-fighter>.hero-art,.world-theme-1 .hero-fighter>.code-art,.world-theme-1 .hero-fighter>.hero-body{display:none!important}
+.world-theme-1 .hero-fighter>.production-hero{display:block!important;width:100%;height:100%;opacity:1!important}
+.world-theme-1 .hero-aura{opacity:.1!important}
+.world-theme-1 .enemy{left:69%;bottom:18%;top:auto;width:158px;height:178px;z-index:8!important;background:none!important;border:0!important;box-shadow:none!important}
+.world-theme-1 .enemy.boss{left:69%;width:184px;height:204px}
+.world-theme-1 .enemy>.monster-art,.world-theme-1 .enemy>.code-art{display:none!important}
+.world-theme-1 .enemy>.production-enemy{display:block!important;inset:0!important;width:100%!important;height:100%!important;opacity:1!important}
+.world-theme-1 .enemy:before,.world-theme-1 .enemy:after{content:none!important}
+.world-theme-1 .hero-weapon>.weapon-art,.world-theme-1 .hero-weapon>.code-art{display:none!important}
+.world-theme-1 .hero-weapon{right:-8px;bottom:25px;width:48px;height:68px}
+.world-theme-1 .hero-weapon>.production-weapon{display:block!important;width:100%;height:100%;opacity:1!important}
+@media(max-width:390px){.world-theme-1 .prod-castle{width:40%;left:-8%}.world-theme-1 .prod-float{width:46%;right:-10%}.world-theme-1 .prod-ruin{width:31%;right:-5%}.world-theme-1 .prod-ruins{width:66%;left:17%}.world-theme-1 .prod-platform{width:154%;left:-27%;bottom:3%}.world-theme-1 .prod-foreground{width:126%;left:-13%;bottom:-15%}.world-theme-1 .hero-fighter{left:21%;bottom:19%;width:86px;height:124px}.world-theme-1 .enemy{left:70%;bottom:18%;width:146px;height:166px}.world-theme-1 .enemy.boss{width:168px;height:188px}}
