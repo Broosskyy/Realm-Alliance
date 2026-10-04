@@ -4,11 +4,16 @@ const ROOT="/assets/production";
 function ArtImg({src,className,alt=""}:{src:string;className:string;alt?:string}){
  return <img src={src} className={className} alt={alt} draggable={false} onError={e=>{e.currentTarget.style.display="none"}}/>;
 }
+
+/** Wolkgarten uses a deliberately small number of production layers.
+ *  The arena platform is the single visual ground line; all other pieces are scenery.
+ */
 export function WolkgartenProductionStage(){
  return <div className="production-world" aria-hidden="true">
+  <div className="prod-sky-glow"/>
   <ArtImg src={ROOT+"/worlds/wolkgarten/castle-island.png"} className="prod-world prod-castle"/>
-  <ArtImg src={ROOT+"/worlds/wolkgarten/ruin-island.png"} className="prod-world prod-ruin"/>
   <ArtImg src={ROOT+"/worlds/wolkgarten/floating-islands.png"} className="prod-world prod-float"/>
+  <ArtImg src={ROOT+"/worlds/wolkgarten/ruin-island.png"} className="prod-world prod-ruin"/>
   <ArtImg src={ROOT+"/worlds/wolkgarten/ruins-strip.png"} className="prod-world prod-ruins"/>
   <ArtImg src={ROOT+"/worlds/wolkgarten/arena-platform.png"} className="prod-world prod-platform"/>
   <ArtImg src={ROOT+"/worlds/wolkgarten/foliage-rocks.png"} className="prod-world prod-foreground"/>
