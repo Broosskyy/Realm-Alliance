@@ -1048,24 +1048,63 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
 @media(max-width:390px){.combat-compact-progress{min-width:190px!important}.arena-enemy-hud{width:62%!important}.combat-vitals{grid-template-columns:1.2fr .92fr .92fr 48px!important;gap:4px!important}.vital{padding:3px 4px!important;grid-template-columns:22px 1fr!important}.vital>span{font-size:14px!important}.combat-auto-orb{width:47px;height:47px}.skill-orb-dock{left:3%;right:3%;gap:5px}.skill-orb{min-width:55px!important;min-height:55px!important}}
 @media(prefers-reduced-motion:reduce){.fury-orb.ready{animation:none!important}}
 
-/* Production art pass 01 — real raster assets overlay coded fallbacks. */
-.production-world{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.prod-world{position:absolute;display:block;object-fit:contain;filter:saturate(1.03) contrast(1.02);pointer-events:none}
-.prod-castle{width:46%;left:-8%;top:3%;opacity:.72;transform:scale(.92)}
-.prod-ruin{width:40%;right:-7%;top:8%;opacity:.62;transform:scale(.86)}
-.prod-float{width:52%;left:24%;top:0;opacity:.48;transform:scale(.72)}
-.prod-ruins{width:88%;left:6%;bottom:16%;opacity:.72}
-.prod-platform{width:112%;left:-6%;bottom:-7%;z-index:3}
-.prod-foreground{width:110%;left:-5%;bottom:-12%;z-index:4;opacity:.9}
-.hero-fighter>.production-hero{position:absolute!important;left:50%;bottom:0;width:128%;height:128%;object-fit:contain;object-position:center bottom;transform:translateX(-50%);z-index:5;filter:drop-shadow(0 12px 12px #06101daa)}
-.hero-fighter>.code-art.hero-art:has(+.production-hero){opacity:.08}
-.hero-weapon>.production-weapon{position:absolute;inset:-42%;width:184%;height:184%;object-fit:contain;z-index:7;filter:drop-shadow(0 0 9px #50b9ff99)}
-.hero-weapon>.production-weapon~*{opacity:.1}
-.enemy>.production-enemy{position:absolute!important;inset:-8%;width:116%;height:116%;object-fit:contain;object-position:center bottom;z-index:5;filter:drop-shadow(0 15px 15px #06101daa)}
-.enemy>.monster-art:has(+.production-enemy){opacity:.06}
-.world-theme-1 .world-scenery>.world-art{opacity:.12}
+/* Production art pass 02 — master-reference combat composition */
+.world-theme-1{background:linear-gradient(#80c9ee 0%,#b9e5f4 31%,#eaf5ec 62%,#7a966c 100%)}
+.world-theme-1:before,.world-theme-1:after{display:none}
+.world-theme-1>.combat-depth,.world-theme-1>.ambient,.world-theme-1>.mist{opacity:.12}
+.world-theme-1>.combat-prop-layer{display:none}
+.world-scenery.production-active{position:absolute;inset:0;overflow:hidden;z-index:0;opacity:1}
+.production-world{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.prod-sky-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 18%,#fff9 0 9%,transparent 38%),linear-gradient(180deg,#63b7e733,transparent 60%)}
+.prod-world{position:absolute;display:block;object-fit:contain;pointer-events:none;filter:saturate(.98) contrast(.98) drop-shadow(0 8px 10px #35555d2b)}
+.prod-castle{z-index:1;width:40%;left:2%;top:10%;opacity:.64}
+.prod-float{z-index:1;width:44%;right:-5%;top:7%;opacity:.5}
+.prod-ruin{z-index:2;width:34%;right:5%;top:27%;opacity:.62}
+.prod-ruins{z-index:2;width:72%;left:14%;bottom:29%;opacity:.68}
+.prod-platform{z-index:3;width:116%;max-width:none;left:-8%;bottom:7%;opacity:1}
+.prod-foreground{z-index:4;width:110%;max-width:none;left:-5%;bottom:-8%;opacity:.86}
+.world-theme-1 .combat-stage-ground.production-ground{left:0;right:0;bottom:18%;height:7%;opacity:.26;z-index:4}
+.world-theme-1 .combat-stage-ground.production-ground>span{opacity:.15}
+.world-theme-1 .ground-hero,.world-theme-1 .ground-enemy{opacity:.32;filter:blur(2px)}
+
+.world-theme-1 .hero-fighter{left:23%;bottom:19%;width:102px;height:142px;z-index:6;filter:none;transform:none}
+.hero-fighter>.production-hero{position:absolute!important;left:50%;bottom:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;transform:translateX(-50%);z-index:5;filter:drop-shadow(0 10px 7px #17313d66)}
+.world-theme-1 .hero-fighter>.code-art.hero-art{opacity:0!important}
+.world-theme-1 .hero-aura{opacity:.18}
+.hero-weapon{right:-4px;bottom:30px;width:54px;height:72px;z-index:8}
+.hero-weapon>.production-weapon{position:absolute;left:50%;bottom:0;width:100%;height:100%;object-fit:contain;transform:translateX(-50%) rotate(-10deg);transform-origin:50% 85%;z-index:7;filter:drop-shadow(0 0 7px #5ac9ff77)}
+.world-theme-1 .hero-weapon>.weapon-art{opacity:0!important}
+
+.world-theme-1 .enemy{left:68%;top:auto;bottom:18%;width:172px;height:190px;border-radius:0;background:none!important;box-shadow:none!important;filter:none;z-index:6;transform:translateX(-50%);animation:none}
+.world-theme-1 .enemy.boss{left:69%;width:198px;height:216px}
+.enemy>.production-enemy{position:absolute!important;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;z-index:5;filter:drop-shadow(0 12px 9px #17313d77)}
+.world-theme-1 .enemy>.monster-art{opacity:0!important}
+.world-theme-1 .enemy:before,.world-theme-1 .enemy:after{display:none}
+.world-theme-1 .enemy.p-attack{animation:prodEnemyAttack .36s ease-out}
+.world-theme-1 .enemy.p-defeated{animation:prodEnemyDefeat .5s forwards}
+@keyframes prodEnemyAttack{50%{transform:translateX(-62%) scale(1.04)}}
+@keyframes prodEnemyDefeat{to{transform:translateX(-50%) translateY(10px) scale(.92);opacity:.35}}
+
+.world-theme-1 .slashfx{left:46%;top:49%}.world-theme-1 .impactfx{left:68%;top:49%}.world-theme-1 .damage{left:69%;top:32%}
+.world-theme-1 .arena-enemy-hud{z-index:14}.world-theme-1 .combat-bottom-hud{z-index:14}
+.world-theme-1 .battle-pet{transform:scale(.8);transform-origin:bottom left}
+
+/* Routine kills stay in-flow; only Epic/Legendary/Boss rewards take centre stage. */
+.arena-reward.reward-compact{left:50%;top:auto;bottom:118px;transform:translateX(-50%);width:min(86%,330px);min-height:0;padding:8px 10px;display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"title gains collect" "loot loot collect";gap:4px 8px;border-radius:14px;background:#0b1420e8;backdrop-filter:blur(8px);box-shadow:0 8px 24px #0006}
+.arena-reward.reward-compact>small{grid-area:title;font-size:8px}.arena-reward.reward-compact .arena-reward-gains{grid-area:gains;margin:0;display:flex;gap:8px}.arena-reward.reward-compact .arena-reward-gains b{font-size:9px}
+.arena-reward.reward-compact .arena-loot-drop{display:none}.arena-reward.reward-compact .arena-loot{grid-area:loot;min-height:30px;padding:2px 5px}.arena-reward.reward-compact .arena-loot svg{width:26px;height:26px}.arena-reward.reward-compact .arena-loot span{font-size:9px}.arena-reward.reward-compact .arena-loot span small{font-size:7px}
+.arena-reward.reward-compact .arena-collect{grid-area:collect;align-self:stretch;min-width:62px;padding:5px 8px;font-size:8px}.arena-reward.reward-compact .arena-loot-detail{position:absolute;left:8px;right:8px;bottom:100%;margin-bottom:5px}
+.arena-reward.reward-major{max-width:310px}
+.combat-shell-status .mutation{max-width:310px;margin:6px auto;padding:10px 12px}.combat-shell-status .mutation .mutation-burst{transform:scale(.72);margin:-10px auto -12px}.combat-shell-status .mutation p{margin:4px 0}.combat-shell-status .mutation button{padding:9px 22px}
+
 @media(max-width:700px){
- .prod-castle{width:64%;left:-22%;top:5%}.prod-ruin{width:54%;right:-18%;top:10%}.prod-float{width:68%;left:18%;top:2%}
- .prod-ruins{width:120%;left:-10%;bottom:18%}.prod-platform{width:142%;left:-21%;bottom:-5%}.prod-foreground{width:145%;left:-22%;bottom:-11%}
- .hero-fighter>.production-hero{width:138%;height:138%}.enemy>.production-enemy{inset:-13%;width:126%;height:126%}
+ .prod-castle{width:48%;left:-8%;top:12%}.prod-float{width:52%;right:-13%;top:8%}.prod-ruin{width:40%;right:-8%;top:29%}.prod-ruins{width:86%;left:7%;bottom:29%}
+ .prod-platform{width:132%;left:-16%;bottom:7%}.prod-foreground{width:126%;left:-13%;bottom:-7%}
+ .world-theme-1 .hero-fighter{left:22%;bottom:19%;width:94px;height:132px}
+ .world-theme-1 .enemy{left:69%;bottom:18%;width:160px;height:180px}.world-theme-1 .enemy.boss{left:70%;width:182px;height:202px}
+}
+@media(max-width:390px){
+ .world-theme-1 .hero-fighter{left:21%;width:88px;height:124px;transform:none}
+ .world-theme-1 .enemy{left:70%;width:150px;height:170px}.world-theme-1 .enemy.boss{width:170px;height:190px}
+ .prod-platform{width:140%;left:-20%}
 }
