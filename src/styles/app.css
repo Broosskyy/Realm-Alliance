@@ -4264,3 +4264,179 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
     height:44%!important;
   }
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 15
+   User-reported fixes:
+   dismissible level-up, smaller hero, larger enemies, stronger damage.
+   ========================================================= */
+
+@media(max-width:600px){
+  /* Level-up must never block progression. */
+  .combat-v2 .levelup{
+    position:absolute!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:118px!important;
+    top:auto!important;
+    transform:translateX(-50%)!important;
+    width:148px!important;
+    min-width:0!important;
+    max-width:148px!important;
+    height:auto!important;
+    min-height:0!important;
+    padding:8px 10px!important;
+    margin:0!important;
+    border:1px solid #f7c45b55!important;
+    border-radius:14px!important;
+    background:linear-gradient(180deg,#201809f2,#100d08f2)!important;
+    color:#fff!important;
+    box-shadow:0 8px 22px #0009,0 0 22px #ffc43a26!important;
+    z-index:80!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    place-items:center!important;
+    gap:2px!important;
+    pointer-events:auto!important;
+    cursor:pointer!important;
+    overflow:hidden!important;
+  }
+  .combat-v2 .levelup .upgrade-burst,
+  .combat-v2 .levelup>div{
+    display:none!important;
+  }
+  .combat-v2 .levelup>span{
+    font-size:11px!important;
+    line-height:1.05!important;
+    font-weight:950!important;
+    color:#ffd86a!important;
+  }
+  .combat-v2 .levelup>span b{
+    color:#fff!important;
+    font-size:13px!important;
+  }
+  .combat-v2 .levelup>small{
+    display:block!important;
+    font-size:5.5px!important;
+    opacity:.62!important;
+    color:#fff!important;
+  }
+
+  /* Hero still reads too large on device capture: reduce decisively. */
+  .combat-v2 .pcv2-hero{
+    left:7%!important;
+    bottom:20%!important;
+    width:13.5%!important;
+    height:16.5%!important;
+  }
+  .combat-v2 .pcv2-hero>.production-hero{
+    width:100%!important;
+    height:100%!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    transform:none!important;
+  }
+
+  /* Enemies need stronger presence than in the latest capture. */
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
+    right:4%!important;
+    bottom:18%!important;
+    width:35%!important;
+    height:38%!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
+    right:2%!important;
+    bottom:17.5%!important;
+    width:42%!important;
+    height:45%!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
+    right:-1%!important;
+    bottom:17%!important;
+    width:50%!important;
+    height:53%!important;
+  }
+
+  /* Damage numbers: bigger, brighter, closer to the mockup. */
+  .combat-v2 .damage-stack{
+    right:5%!important;
+    top:33%!important;
+  }
+  .combat-v2 .damage-stack .damage-main{
+    font-size:32px!important;
+    font-weight:1000!important;
+    letter-spacing:-.05em!important;
+    color:#ffe334!important;
+    -webkit-text-stroke:1px #2b1900!important;
+    text-shadow:
+      0 3px 0 #3b2200,
+      0 5px 12px #000d,
+      0 0 10px #ffbd31aa!important;
+  }
+  .combat-v2 .damage-stack.is-crit .damage-main{
+    font-size:37px!important;
+    color:#ff4a2f!important;
+    -webkit-text-stroke:1px #4a1000!important;
+    text-shadow:
+      0 3px 0 #4a1000,
+      0 6px 14px #000e,
+      0 0 13px #ff432faa!important;
+  }
+  .combat-v2 .damage-stack .damage-sub{
+    font-size:19px!important;
+    margin-right:12px!important;
+    color:#f7f8ff!important;
+    -webkit-text-stroke:.5px #151515!important;
+  }
+  .combat-v2 .damage-stack .damage-pet{
+    font-size:16px!important;
+    margin-right:4px!important;
+    color:#84f2dc!important;
+  }
+
+  /* Keep hit FX aligned to the now larger enemy silhouette. */
+  .combat-v2 .pcv2-impact-burst{
+    right:21%!important;
+    top:48%!important;
+    transform:scale(1.08)!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-impact-burst{
+    transform:scale(1.16)!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-impact-burst,
+  .combat-v2 .pcv2-encounter-boss .pcv2-impact-burst{
+    transform:scale(1.24)!important;
+  }
+}
+
+@media(max-width:420px){
+  .combat-v2 .pcv2-hero{
+    width:14%!important;
+    height:15.5%!important;
+  }
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
+    width:37%!important;
+    height:36%!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
+    width:44%!important;
+    height:43%!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
+    width:52%!important;
+    height:50%!important;
+  }
+  .combat-v2 .damage-stack .damage-main{
+    font-size:29px!important;
+  }
+  .combat-v2 .damage-stack.is-crit .damage-main{
+    font-size:34px!important;
+  }
+  .combat-v2 .damage-stack .damage-sub{font-size:17px!important}
+  .combat-v2 .damage-stack .damage-pet{font-size:14px!important}
+}
