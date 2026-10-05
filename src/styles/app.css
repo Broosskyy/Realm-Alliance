@@ -1366,3515 +1366,1247 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
 .world-theme-1.combat-v2 .arena-reward.reward-compact{left:50%!important;right:auto!important;bottom:82px!important;transform:translateX(-50%)!important;width:min(90%,320px)!important}
 @media(max-width:390px){.world-theme-1.combat-v2 .arena-enemy-hud{left:5%!important;right:5%!important}.world-theme-1.combat-v2 .prod-platform{width:138%!important;left:-19%!important}.combat-v2-status{bottom:72px!important;width:92%!important}}
 
-
 /* =========================================================
-   MASTER MOCKUP CONVERGENCE 01
-   Combat-first mobile composition based on the locked target:
-   compact global header -> route bar -> dominant arena -> HUD -> 5-tab nav.
+   WOLKGARTEN COMBAT MASTER LOCK 01
+   Canonical mobile combat presentation.
+   Replaces the 17 iterative convergence override blocks.
    ========================================================= */
 
 @media(max-width:600px){
-  .app{
-    max-width:480px!important;
-    grid-template-rows:68px minmax(0,1fr) 74px!important;
-    background:#08111d!important;
-    border-inline:0!important;
+  html,body,#root{
+    width:100%!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+    margin:0!important;
+    padding:0!important;
+    background:#07111d!important;
+  }
+  .app,.app.is-fullscreen{
+    height:100dvh!important;
+    min-height:100dvh!important;
+    max-height:100dvh!important;
+    margin:0!important;
+    padding:0!important;
+    grid-template-rows:60px minmax(0,1fr) 68px!important;
+    background:#07111d!important;
   }
 
+  /* ---------- global header ---------- */
   .game-topbar{
-    height:68px!important;
-    min-height:68px!important;
-    box-sizing:border-box!important;
+    height:60px!important;
+    min-height:60px!important;
     display:grid!important;
-    grid-template-columns:minmax(104px,1.05fr) minmax(188px,1.65fr) auto!important;
+    grid-template-columns:minmax(100px,1.02fr) minmax(182px,1.62fr) auto!important;
     align-items:center!important;
-    gap:6px!important;
-    padding:7px 8px!important;
-    background:linear-gradient(180deg,#07111f 0%,#091726 100%)!important;
-    border-bottom:1px solid #58a7df33!important;
-    box-shadow:0 7px 22px #0007!important;
+    gap:5px!important;
+    padding:5px 8px!important;
+    box-sizing:border-box!important;
+    background:linear-gradient(180deg,#071421f5,#081827ee)!important;
+    border-bottom:1px solid #83c9ff26!important;
+    box-shadow:0 7px 22px #00101d55!important;
     z-index:110!important;
   }
   .game-topbar .player-chip{
     min-width:0!important;
-    display:grid!important;
-    grid-template-columns:46px 1fr!important;
-    align-items:center!important;
-    gap:7px!important;
-    padding:3px 7px 3px 3px!important;
-    border-radius:14px!important;
-    background:#071322d9!important;
-    border:1px solid #76baf52b!important;
-  }
-  .game-topbar .avatar{
-    width:44px!important;height:44px!important;border-radius:11px!important;
-    overflow:hidden!important;border:1px solid #72bfff66!important;
-    background:#14263c!important;
-  }
-  .game-topbar .avatar>*{width:100%!important;height:100%!important}
-  .game-topbar .lvl{min-width:0!important;position:relative!important;margin:0!important}
-  .game-topbar .lvl>b{display:block!important;font-size:12px!important;line-height:1.1!important;color:#fff!important}
-  .game-topbar .lvl>i{width:100%!important;height:6px!important;margin-top:5px!important;background:#17314a!important}
-  .game-topbar .lvl>i span{background:linear-gradient(90deg,#32b6ff,#357dff)!important;box-shadow:0 0 10px #39a7ff88!important}
-  .game-topbar .lvl>small{
-    position:absolute!important;right:0!important;top:1px!important;
-    font-size:7px!important;color:#dcecff!important;letter-spacing:0!important
-  }
-
-  .resource-rail{
-    min-width:0!important;display:grid!important;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important;
-  }
-  .resource-rail>strong{
-    min-width:0!important;height:36px!important;
-    display:grid!important;grid-template-columns:24px 1fr 16px!important;
-    align-items:center!important;gap:2px!important;padding:0 3px!important;
-    border:1px solid #75baff2b!important;border-radius:14px!important;
-    background:linear-gradient(180deg,#0d1d30,#081320)!important;
-    color:#f7fbff!important;box-shadow:inset 0 1px #ffffff0b,0 4px 12px #0004!important;
-    overflow:hidden!important;
-  }
-  .resource-rail>strong .resource-frame{display:none!important}
-  .resource-rail>strong .resource-glyph{width:23px!important;height:23px!important}
-  .resource-rail>strong>span{min-width:0!important;font-size:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-  .resource-rail>strong>em{
-    width:16px!important;height:16px!important;display:grid!important;place-items:center!important;
-    border-radius:50%!important;background:#213651!important;color:#b8d8ff!important;
-    font-style:normal!important;font-size:13px!important;line-height:1!important
-  }
-  .topbar-actions{display:flex!important;gap:5px!important}
-  .topbar-icon{
-    position:relative!important;width:34px!important;height:36px!important;padding:0!important;
-    border:1px solid #72baff2b!important;border-radius:10px!important;
-    background:#0a1726!important;color:#e9f4ff!important;font-size:18px!important;
-    display:grid!important;place-items:center!important
-  }
-  .topbar-icon>i{
-    position:absolute!important;right:3px!important;top:3px!important;width:7px!important;height:7px!important;
-    border-radius:50%!important;background:#ff314d!important;box-shadow:0 0 8px #ff314daa!important
-  }
-
-  .viewport:has(>.master-stage-head){
-    display:flex!important;flex-direction:column!important;overflow:hidden!important;padding:0!important;
-  }
-  .master-stage-head{
-    flex:0 0 52px!important;height:52px!important;min-height:52px!important;
-    box-sizing:border-box!important;
-    display:grid!important;grid-template-columns:34px auto 1fr 24px!important;
-    align-items:center!important;gap:7px!important;
-    margin:0!important;padding:7px 12px!important;
-    background:linear-gradient(180deg,#0e2034,#0b1929)!important;
-    border-bottom:1px solid #6bbdff26!important;text-align:left!important;
-  }
-  .master-stage-head .world-emblem{
-    width:32px!important;height:32px!important;margin:0!important;
-    display:grid!important;place-items:center!important;border-radius:10px!important;
-    background:#132c47!important;font-size:19px!important
-  }
-  .master-stage-head>b{font-size:14px!important;white-space:nowrap!important;color:#f4f8ff!important}
-  .master-stage-head .nodes{
-    min-width:0!important;margin:0!important;justify-content:flex-end!important;gap:5px!important
-  }
-  .master-stage-head .nodes i{
-    width:7px!important;height:7px!important;border:0!important;background:#3c536e!important
-  }
-  .master-stage-head .nodes i.done{background:#4faeff!important}
-  .master-stage-head .nodes i.now{background:#79d4ff!important;box-shadow:0 0 10px #48bfff!important}
-  .master-stage-head .nodes strong{font-size:14px!important;margin-left:2px!important}
-  .master-stage-head .stage-chevron{font-size:27px!important;line-height:1!important;color:#d5e7f8!important;text-align:center!important}
-
-  .world-theme-1.combat-v2{
-    flex:1 1 auto!important;min-height:0!important;height:auto!important;
-    background:linear-gradient(#8fd8f0,#c6ecf1 54%,#b8d8c2)!important;
-  }
-  .world-theme-1.combat-v2 .combat-compact-progress{display:none!important}
-
-  /* Background is scenery, not UI. Keep it bright and deep. */
-  .world-theme-1.combat-v2 .prod-castle{bottom:38%!important;opacity:.58!important;transform:scale(1.06)!important}
-  .world-theme-1.combat-v2 .prod-float{bottom:33%!important;opacity:.64!important}
-  .world-theme-1.combat-v2 .prod-ruin{bottom:28%!important;opacity:.55!important}
-  .world-theme-1.combat-v2 .prod-ruins{bottom:15%!important;opacity:.78!important}
-  .world-theme-1.combat-v2 .prod-platform{bottom:7%!important;width:140%!important;left:-20%!important}
-  .world-theme-1.combat-v2 .prod-foreground{bottom:2%!important;opacity:.5!important}
-
-  /* Master composition: smaller hero, huge enemy. */
-  .world-theme-1.combat-v2 .pcv2-hero{
-    left:2%!important;bottom:20%!important;width:38%!important;height:39%!important;
-    transform:none!important;align-items:flex-end!important;
-  }
-  .world-theme-1.combat-v2 .pcv2-enemy{
-    right:-5%!important;bottom:18%!important;width:62%!important;height:62%!important;
-    transform:none!important;align-items:flex-end!important;
-  }
-  .world-theme-1.combat-v2 .pcv2-enemy-boss{
-    right:-9%!important;bottom:16%!important;width:70%!important;height:68%!important;
-  }
-  .world-theme-1.combat-v2 .pcv2 .production-hero,
-  .world-theme-1.combat-v2 .pcv2 .production-enemy{
-    object-position:center bottom!important;
-    filter:drop-shadow(0 12px 10px #08213466)!important;
-  }
-  .world-theme-1.combat-v2 .pcv2-hero-attack{transform:translate(12px,-3px)!important}
-  .world-theme-1.combat-v2 .pcv2-hero-skill{transform:translate(10px,-5px)!important}
-  .world-theme-1.combat-v2 .pcv2-hero-hit{transform:translateX(-5px)!important}
-  .world-theme-1.combat-v2 .pcv2-enemy-attack{transform:translate(-10px,-2px)!important}
-  .world-theme-1.combat-v2 .pcv2-enemy-hit{transform:translateX(7px)!important}
-
-  /* Central enemy plate like the locked reference. */
-  .world-theme-1.combat-v2 .arena-enemy-hud{
-    top:10px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;
-    width:min(72%,310px)!important;min-height:0!important;padding:7px 10px 8px!important;
-    border-radius:14px!important;background:linear-gradient(180deg,#0b1b2bea,#08131feb)!important;
-    border:1px solid #9cd4ff35!important;box-shadow:0 8px 22px #00101d77!important;
-    backdrop-filter:blur(8px)!important;
-  }
-  .world-theme-1.combat-v2 .enemy-hud-portrait{display:none!important}
-  .world-theme-1.combat-v2 .arena-enemy-hud>div:nth-of-type(2){
-    display:grid!important;grid-template-columns:auto 1fr auto!important;align-items:center!important;gap:6px!important
-  }
-  .world-theme-1.combat-v2 .arena-enemy-hud .enemy-rank{
-    font-size:7px!important;padding:3px 5px!important;border-radius:999px!important
-  }
-  .world-theme-1.combat-v2 .arena-enemy-hud b{
-    font-size:15px!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
-  }
-  .world-theme-1.combat-v2 .arena-enemy-hud>div:nth-of-type(2)>span:last-child{
-    font-size:8px!important;opacity:.85!important;margin:0!important
-  }
-  .world-theme-1.combat-v2 .arena-enemy-hud>i{height:9px!important;margin-top:5px!important;background:#02070c!important}
-  .world-theme-1.combat-v2 .arena-enemy-hud>i>span{
-    background:linear-gradient(90deg,#ff2645,#ff4e5f)!important;box-shadow:0 0 10px #ff334a77!important
-  }
-  .world-theme-1.combat-v2 .enemy-status-icons{
-    position:static!important;display:flex!important;justify-content:center!important;gap:5px!important;margin-top:5px!important
-  }
-  .world-theme-1.combat-v2 .enemy-status-icons em{
-    width:22px!important;height:19px!important;border-radius:6px!important;font-size:9px!important;background:#0a1420e8!important
-  }
-
-  .world-theme-1.combat-v2 .damage{
-    left:auto!important;right:8%!important;top:37%!important;
-    font-size:30px!important;line-height:.9!important;color:#ffe440!important;
-    text-shadow:0 3px 0 #151515,0 5px 12px #000!important;transform:rotate(-7deg)!important
-  }
-  .world-theme-1.combat-v2 .damage.crit{font-size:33px!important;color:#ff4b32!important}
-  .world-theme-1.combat-v2 .combo{right:8px!important;top:31%!important}
-
-  /* Bottom combat HUD is one compact unit over the world. */
-  .world-theme-1.combat-v2 .combat-bottom-hud{
-    position:absolute!important;left:8px!important;right:8px!important;bottom:8px!important;
-    height:154px!important;display:block!important;pointer-events:none!important;
-  }
-  .world-theme-1.combat-v2 .combat-vitals{
-    position:absolute!important;left:0!important;right:0!important;top:0!important;
-    display:grid!important;grid-template-columns:1fr 1fr 1fr 52px!important;gap:5px!important;align-items:center!important;
-    pointer-events:auto!important
-  }
-  .world-theme-1.combat-v2 .vital{
-    min-width:0!important;height:34px!important;display:grid!important;
-    grid-template-columns:25px 1fr!important;grid-template-rows:16px 8px!important;
-    column-gap:4px!important;align-items:center!important;padding:3px 7px!important;
-    border-radius:11px!important;background:#07111cdc!important;border:1px solid #ffffff1f!important;
-    box-shadow:0 5px 14px #0006!important
-  }
-  .world-theme-1.combat-v2 .vital>span{
-    grid-row:1/3!important;font-size:18px!important;display:grid!important;place-items:center!important
-  }
-  .world-theme-1.combat-v2 .vital>strong{
-    grid-column:2!important;grid-row:1!important;font-size:8px!important;text-align:center!important;white-space:nowrap!important
-  }
-  .world-theme-1.combat-v2 .vital>i{
-    grid-column:2!important;grid-row:2!important;height:7px!important;border-radius:8px!important;background:#03070c!important;overflow:hidden!important
-  }
-  .world-theme-1.combat-v2 .vital>i>b{display:block!important;height:100%!important;border-radius:inherit!important}
-  .world-theme-1.combat-v2 .hp-vital>i>b{background:linear-gradient(90deg,#ff294b,#ff4b5f)!important}
-  .world-theme-1.combat-v2 .momentum-vital>i>b{background:linear-gradient(90deg,#893cff,#c049ff)!important}
-  .world-theme-1.combat-v2 .fury-vital>i>b{background:linear-gradient(90deg,#ff9b22,#ff4c22)!important}
-  .world-theme-1.combat-v2 .combat-auto-orb{
-    width:52px!important;height:52px!important;margin-top:-6px!important;border-radius:50%!important;
-    border:2px solid #4bc5ff!important;background:radial-gradient(circle,#173f66,#08182a 70%)!important;
-    box-shadow:0 0 0 3px #2f9cff22,0 0 18px #24b8ff88!important;color:#fff!important;
-    display:grid!important;place-items:center!important;align-content:center!important;pointer-events:auto!important
-  }
-  .world-theme-1.combat-v2 .combat-auto-orb.on{box-shadow:0 0 0 4px #4ce0ff22,0 0 25px #35caffcc!important}
-  .world-theme-1.combat-v2 .combat-auto-orb .ui-glyph{width:24px!important;height:24px!important}
-  .world-theme-1.combat-v2 .combat-auto-orb b{font-size:8px!important;margin-top:-2px!important}
-
-  .world-theme-1.combat-v2 .skill-orb-dock{
-    position:absolute!important;left:50%!important;bottom:0!important;transform:translateX(-50%)!important;
-    width:96%!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;
-    align-items:end!important;gap:10px!important;pointer-events:auto!important
-  }
-  .world-theme-1.combat-v2 .skill-orb{
-    justify-self:center!important;width:68px!important;height:68px!important;border-radius:50%!important;
-    border:2px solid #546b89!important;background:radial-gradient(circle,#233a57,#08111e 72%)!important;
-    box-shadow:0 7px 18px #0008,inset 0 0 0 3px #ffffff0b!important;overflow:visible!important
-  }
-  .world-theme-1.combat-v2 .skill-orb .skill-art{width:56px!important;height:56px!important}
-  .world-theme-1.combat-v2 .slash-orb{border-color:#33aaff!important;box-shadow:0 7px 18px #0008,0 0 16px #168dff55!important}
-  .world-theme-1.combat-v2 .nova-orb{border-color:#a84fff!important;box-shadow:0 7px 18px #0008,0 0 16px #8f3cff55!important}
-  .world-theme-1.combat-v2 .fury-orb{border-color:#ff963c!important;box-shadow:0 7px 18px #0008,0 0 16px #ff6b2755!important}
-  .world-theme-1.combat-v2 .locked-orb{filter:saturate(.25)!important;opacity:.88!important}
-  .world-theme-1.combat-v2 .skill-orb>span,
-  .world-theme-1.combat-v2 .skill-orb>small{
-    position:absolute!important;left:50%!important;bottom:-6px!important;transform:translateX(-50%)!important;
-    min-width:33px!important;padding:2px 5px!important;border-radius:999px!important;
-    background:#050910!important;color:#fff!important;font-size:8px!important;white-space:nowrap!important
-  }
-
-  /* Persistent five-tab foundation. */
-  .game-nav{
-    height:74px!important;min-height:74px!important;
-    grid-template-columns:repeat(5,1fr)!important;
-    background:linear-gradient(180deg,#08111ff7,#050b14)!important;
-    border-top:1px solid #58b6ff30!important;box-shadow:0 -8px 24px #0009!important;
-  }
-  .game-nav button{
-    position:relative!important;gap:2px!important;padding:6px 2px 5px!important;
-    color:#9baac3!important;border-radius:0!important
-  }
-  .game-nav button i{width:29px!important;height:29px!important}
-  .game-nav button span{font-size:9px!important;font-weight:800!important}
-  .game-nav button.on{
-    color:#f1e9ff!important;
-    background:linear-gradient(180deg,#a64cff0a,#7428d444)!important;
-    box-shadow:inset 0 -3px #9b39ff,0 -8px 20px #8b33ff25!important
-  }
-  .game-nav button.on:before{
-    content:""!important;position:absolute!important;top:0!important;left:22%!important;right:22%!important;height:2px!important;
-    background:#c46cff!important;box-shadow:0 0 12px #a54cff!important
-  }
-
-  .combat-v2-status{bottom:168px!important}
-  .world-theme-1.combat-v2 .arena-reward.reward-compact,
-  .world-theme-1.combat-v2 .arena-reward.reward-major{bottom:170px!important}
-}
-
-@media(max-width:390px){
-  .game-topbar{grid-template-columns:minmax(96px,1fr) minmax(168px,1.55fr) auto!important;gap:4px!important;padding-inline:5px!important}
-  .game-topbar .player-chip{grid-template-columns:40px 1fr!important}
-  .game-topbar .avatar{width:39px!important;height:39px!important}
-  .resource-rail>strong{grid-template-columns:21px 1fr 13px!important;height:34px!important}
-  .resource-rail>strong .resource-glyph{width:20px!important;height:20px!important}
-  .resource-rail>strong>span{font-size:9px!important}
-  .resource-rail>strong>em{width:13px!important;height:13px!important;font-size:10px!important}
-  .topbar-icon{width:30px!important;height:34px!important;font-size:16px!important}
-  .master-stage-head{grid-template-columns:31px auto 1fr 20px!important;padding-inline:8px!important}
-  .master-stage-head>b{font-size:12px!important}
-  .world-theme-1.combat-v2 .pcv2-hero{left:0!important;width:40%!important;height:37%!important}
-  .world-theme-1.combat-v2 .pcv2-enemy{right:-7%!important;width:64%!important;height:59%!important}
-  .world-theme-1.combat-v2 .pcv2-enemy-boss{right:-10%!important;width:72%!important;height:65%!important}
-  .world-theme-1.combat-v2 .arena-enemy-hud{width:76%!important}
-  .world-theme-1.combat-v2 .combat-vitals{grid-template-columns:1fr 1fr 1fr 48px!important;gap:3px!important}
-  .world-theme-1.combat-v2 .vital{padding-inline:4px!important;grid-template-columns:21px 1fr!important}
-  .world-theme-1.combat-v2 .vital>span{font-size:15px!important}
-  .world-theme-1.combat-v2 .combat-auto-orb{width:48px!important;height:48px!important}
-  .world-theme-1.combat-v2 .skill-orb-dock{gap:5px!important;width:100%!important}
-  .world-theme-1.combat-v2 .skill-orb{width:62px!important;height:62px!important}
-  .world-theme-1.combat-v2 .skill-orb .skill-art{width:51px!important;height:51px!important}
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 02
-   Screenshot-driven cleanup: remove legacy overlays, restore
-   clear vertical hierarchy, keep both actors fully on stage.
-   Deliberately NOT width-gated so Android/fullscreen CSS
-   viewports cannot fall back into old combat composition.
-   ========================================================= */
-
-.combat-v2{
-  border-radius:0!important;
-  box-shadow:none!important;
-  min-height:0!important;
-  isolation:isolate!important;
-}
-
-/* Only the current V2 HUD is allowed to render in Wolkgarten. */
-.combat-v2 .combat-compact-progress,
-.combat-v2 .combat-stage-progress,
-.combat-v2 .combat-objective,
-.combat-v2 .arena-player-hud,
-.combat-v2 .arena-meters,
-.combat-v2 .arena-skills,
-.combat-v2 .combat-controls,
-.combat-v2 .combat-growth-toggle,
-.combat-v2 .enemybar,
-.combat-v2 .playerline,
-.combat-v2 .action,
-.combat-v2 .enemy-intent,
-.combat-v2 .enemy-archetype{
-  display:none!important;
-}
-
-/* The route bar is a single compact layer above the arena. */
-.viewport>.master-stage-head{
-  position:relative!important;
-  inset:auto!important;
-  left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
-  transform:none!important;
-  flex:0 0 50px!important;
-  width:88%!important;
-  height:50px!important;
-  min-height:50px!important;
-  max-height:50px!important;
-  margin:7px auto 6px!important;
-  padding:6px 11px!important;
-  box-sizing:border-box!important;
-  display:grid!important;
-  grid-template-columns:34px auto minmax(70px,1fr) 20px!important;
-  align-items:center!important;
-  gap:7px!important;
-  border:1px solid #81c8ff30!important;
-  border-radius:22px!important;
-  background:linear-gradient(180deg,#0b1b2ceF,#081522ef)!important;
-  box-shadow:0 8px 24px #00101d55!important;
-  overflow:hidden!important;
-  z-index:50!important;
-}
-.viewport>.master-stage-head:after{display:none!important}
-.viewport>.master-stage-head .world-emblem{
-  width:32px!important;height:32px!important;border-radius:11px!important;
-  display:grid!important;place-items:center!important;margin:0!important;
-  background:#17314c!important;font-size:18px!important
-}
-.viewport>.master-stage-head>b{
-  font-size:13px!important;line-height:1!important;color:#f5f8fd!important;
-  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
-}
-.viewport>.master-stage-head .nodes{
-  margin:0!important;min-width:0!important;justify-content:flex-end!important;gap:5px!important
-}
-.viewport>.master-stage-head .nodes i{
-  width:7px!important;height:7px!important;border:0!important;background:#40536a!important
-}
-.viewport>.master-stage-head .nodes i.done{background:#4c9cff!important}
-.viewport>.master-stage-head .nodes i.now{background:#72ccff!important;box-shadow:0 0 8px #54bdff!important}
-.viewport>.master-stage-head .nodes strong{font-size:13px!important}
-.viewport>.master-stage-head .stage-chevron{font-size:24px!important;color:#d8e9f6!important}
-
-/* Enemy plate is separate from route information. */
-.combat-v2 .arena-enemy-hud{
-  position:absolute!important;
-  top:9px!important;
-  left:50%!important;
-  right:auto!important;
-  bottom:auto!important;
-  transform:translateX(-50%)!important;
-  width:min(67%,300px)!important;
-  height:auto!important;
-  min-height:0!important;
-  max-height:none!important;
-  margin:0!important;
-  padding:7px 10px 7px!important;
-  box-sizing:border-box!important;
-  display:block!important;
-  border:1px solid #8fcfff33!important;
-  border-radius:14px!important;
-  background:linear-gradient(180deg,#0b1a29ed,#07121ded)!important;
-  box-shadow:0 7px 20px #00101d70!important;
-  overflow:visible!important;
-  z-index:40!important;
-}
-.combat-v2 .arena-enemy-hud .enemy-hud-portrait{display:none!important}
-.combat-v2 .arena-enemy-hud>div:nth-of-type(2){
-  display:grid!important;
-  grid-template-columns:auto minmax(0,1fr) auto!important;
-  align-items:center!important;
-  gap:6px!important;
-  min-height:17px!important;
-}
-.combat-v2 .arena-enemy-hud .enemy-rank{
-  font-size:6px!important;line-height:1!important;padding:3px 5px!important;border-radius:999px!important
-}
-.combat-v2 .arena-enemy-hud b{
-  font-size:14px!important;line-height:1.1!important;text-align:center!important;
-  overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important
-}
-.combat-v2 .arena-enemy-hud>div:nth-of-type(2)>span:last-child{
-  margin:0!important;font-size:8px!important;line-height:1!important;opacity:.78!important
-}
-.combat-v2 .arena-enemy-hud>i{
-  display:block!important;height:8px!important;margin-top:5px!important;
-  border-radius:99px!important;background:#02070c!important;overflow:hidden!important
-}
-.combat-v2 .arena-enemy-hud>i>span{
-  display:block!important;height:100%!important;background:linear-gradient(90deg,#ff2847,#ff5364)!important
-}
-.combat-v2 .enemy-status-icons{
-  position:static!important;
-  transform:none!important;
-  display:flex!important;
-  justify-content:center!important;
-  gap:5px!important;
-  margin:5px 0 0!important;
-}
-.combat-v2 .enemy-status-icons em{
-  width:20px!important;height:18px!important;display:grid!important;place-items:center!important;
-  border-radius:6px!important;background:#0a1522!important;font-size:8px!important
-}
-
-/* Production background must fill the visible stage; no giant dead sky band. */
-.combat-v2 .world-scenery,
-.combat-v2 .production-world{
-  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
-  transform:none!important;overflow:hidden!important
-}
-.combat-v2 .prod-castle{bottom:42%!important;opacity:.68!important;transform:scale(1.16)!important}
-.combat-v2 .prod-float{bottom:35%!important;opacity:.74!important;transform:scale(1.11)!important}
-.combat-v2 .prod-ruin{bottom:31%!important;opacity:.65!important;transform:scale(1.08)!important}
-.combat-v2 .prod-ruins{bottom:18%!important;opacity:.86!important;transform:scale(1.06)!important}
-.combat-v2 .prod-platform{bottom:8%!important;left:-17%!important;width:134%!important;opacity:1!important}
-.combat-v2 .prod-foreground{bottom:3%!important;opacity:.55!important}
-
-/* Screenshot correction: both silhouettes remain fully readable. */
-.combat-v2 .pcv2-hero{
-  left:4%!important;right:auto!important;
-  bottom:20%!important;
-  width:30%!important;height:32%!important;
-  transform:none!important;
-}
-.combat-v2 .pcv2-enemy{
-  left:auto!important;right:0!important;
-  bottom:19%!important;
-  width:52%!important;height:51%!important;
-  transform:none!important;
-}
-.combat-v2 .pcv2-enemy-boss{
-  left:auto!important;right:-1%!important;
-  bottom:18%!important;
-  width:59%!important;height:57%!important;
-}
-.combat-v2 .pcv2 .production-hero,
-.combat-v2 .pcv2 .production-enemy{
-  width:100%!important;height:100%!important;
-  object-fit:contain!important;object-position:center bottom!important;
-}
-.combat-v2 .pcv2-hero-attack{transform:translate(9px,-2px)!important}
-.combat-v2 .pcv2-hero-skill{transform:translate(8px,-4px)!important}
-.combat-v2 .pcv2-hero-hit{transform:translateX(-4px)!important}
-.combat-v2 .pcv2-enemy-attack{transform:translate(-8px,-2px)!important}
-.combat-v2 .pcv2-enemy-hit{transform:translateX(5px)!important}
-
-/* Small combat feedback, never a full-width bar. */
-.combat-v2 .combo{
-  position:absolute!important;
-  left:auto!important;right:10px!important;top:31%!important;bottom:auto!important;
-  width:auto!important;height:auto!important;min-width:0!important;
-  transform:none!important;
-  display:block!important;
-  padding:3px 7px!important;margin:0!important;
-  border-radius:999px!important;
-  background:#08131dcc!important;border:1px solid #ffffff18!important;
-  font-size:6px!important;line-height:1!important;letter-spacing:.1em!important;
-  z-index:24!important;
-}
-.combat-v2 .combo b{display:inline!important;margin-left:3px!important;font-size:10px!important;color:#ffd756!important}
-.combat-v2 .streak{
-  position:absolute!important;left:10px!important;right:auto!important;top:19%!important;
-  width:auto!important;transform:none!important;padding:4px 7px!important;
-  border-radius:999px!important;font-size:6px!important;z-index:24!important
-}
-.combat-v2 .streak small{display:none!important}
-
-/* Bottom HUD follows the master: vitals directly over four skills. */
-.combat-v2 .combat-bottom-hud{
-  position:absolute!important;
-  left:8px!important;right:8px!important;bottom:7px!important;
-  width:auto!important;height:142px!important;
-  display:block!important;
-  z-index:42!important;
-  pointer-events:none!important;
-}
-.combat-v2 .combat-vitals{
-  position:absolute!important;left:0!important;right:0!important;top:0!important;
-  display:grid!important;grid-template-columns:1fr 1fr 1fr 50px!important;
-  gap:5px!important;align-items:center!important;pointer-events:auto!important
-}
-.combat-v2 .vital{
-  min-width:0!important;height:32px!important;
-  display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;grid-template-rows:15px 7px!important;
-  column-gap:4px!important;align-items:center!important;
-  padding:3px 6px!important;box-sizing:border-box!important;
-  border-radius:11px!important;background:#07111ddd!important;border:1px solid #ffffff1c!important
-}
-.combat-v2 .vital>span{grid-row:1/3!important;font-size:15px!important;display:grid!important;place-items:center!important}
-.combat-v2 .vital>strong{grid-column:2!important;grid-row:1!important;font-size:7px!important;text-align:center!important;white-space:nowrap!important}
-.combat-v2 .vital>i{grid-column:2!important;grid-row:2!important;height:6px!important;border-radius:99px!important;background:#02060a!important;overflow:hidden!important}
-.combat-v2 .vital>i>b{display:block!important;height:100%!important}
-.combat-v2 .combat-auto-orb{
-  width:50px!important;height:50px!important;min-width:50px!important;margin-top:-5px!important;
-  border-radius:50%!important;border:2px solid #49c7ff!important;
-  background:radial-gradient(circle,#173e64,#071728 72%)!important;
-  box-shadow:0 0 0 3px #2e9fff20,0 0 16px #2ebeff77!important
-}
-.combat-v2 .skill-orb-dock{
-  position:absolute!important;left:50%!important;right:auto!important;bottom:0!important;
-  transform:translateX(-50%)!important;width:96%!important;
-  display:grid!important;grid-template-columns:repeat(4,1fr)!important;
-  gap:8px!important;align-items:end!important;pointer-events:auto!important
-}
-.combat-v2 .skill-orb{
-  justify-self:center!important;
-  width:64px!important;height:64px!important;min-width:64px!important;
-  border-radius:50%!important;overflow:visible!important
-}
-.combat-v2 .skill-orb .skill-art{width:52px!important;height:52px!important}
-.combat-v2 .skill-orb>span,
-.combat-v2 .skill-orb>small{
-  bottom:-5px!important;font-size:7px!important;min-width:30px!important;padding:2px 5px!important
-}
-
-/* Keep progression/reward overlays out of the actors and controls. */
-.combat-v2-status{bottom:154px!important}
-.combat-v2 .arena-reward{bottom:156px!important}
-
-/* Android narrow portrait tuning. */
-@media(max-width:420px){
-  .viewport>.master-stage-head{
-    width:92%!important;
-    grid-template-columns:31px auto minmax(55px,1fr) 18px!important;
-    padding-inline:9px!important
-  }
-  .viewport>.master-stage-head>b{font-size:12px!important}
-  .combat-v2 .arena-enemy-hud{width:72%!important}
-  .combat-v2 .pcv2-hero{left:2%!important;width:31%!important;height:31%!important}
-  .combat-v2 .pcv2-enemy{right:-1%!important;width:53%!important;height:49%!important}
-  .combat-v2 .pcv2-enemy-boss{right:-2%!important;width:61%!important;height:55%!important}
-  .combat-v2 .combat-vitals{grid-template-columns:1fr 1fr 1fr 47px!important;gap:3px!important}
-  .combat-v2 .vital{grid-template-columns:19px minmax(0,1fr)!important;padding-inline:4px!important}
-  .combat-v2 .combat-auto-orb{width:47px!important;height:47px!important;min-width:47px!important}
-  .combat-v2 .skill-orb-dock{gap:4px!important;width:100%!important}
-  .combat-v2 .skill-orb{width:59px!important;height:59px!important;min-width:59px!important}
-  .combat-v2 .skill-orb .skill-art{width:48px!important;height:48px!important}
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 03
-   Fix the remaining screenshot regression:
-   arena was still absolutely filling the viewport, so route
-   and enemy HUD overlapped and legacy pseudo overlays covered
-   the upper half of the battle.
-   ========================================================= */
-
-/* The fight viewport is an actual vertical stack again. */
-.viewport:has(>.master-stage-head){
-  position:relative!important;
-  display:flex!important;
-  flex-direction:column!important;
-  overflow:hidden!important;
-  background:#0a1622!important;
-}
-.viewport>.master-stage-head + .combat-v2{
-  position:relative!important;
-  inset:auto!important;
-  top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;
-  flex:1 1 auto!important;
-  width:100%!important;
-  height:auto!important;
-  min-height:0!important;
-  max-height:none!important;
-  margin:0!important;
-  transform:none!important;
-}
-
-/* Hard kill every historical arena mask / mountain pseudo layer. */
-.viewport>.master-stage-head + .combat-v2:before,
-.viewport>.master-stage-head + .combat-v2:after{
-  content:none!important;
-  display:none!important;
-  width:0!important;height:0!important;
-  background:none!important;
-  clip-path:none!important;
-  opacity:0!important;
-}
-.combat-v2 .arena-hud:before,
-.combat-v2 .arena-hud:after{
-  content:none!important;
-  display:none!important;
-}
-
-/* Clear master hierarchy: route -> enemy HUD -> actors -> vitals -> skills. */
-.combat-v2 .arena-hud{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;height:100%!important;
-  overflow:visible!important;
-  pointer-events:none!important;
-  z-index:20!important;
-}
-.combat-v2 .arena-enemy-hud{
-  top:12px!important;
-  width:min(62%,285px)!important;
-  max-width:285px!important;
-  min-height:0!important;
-  height:auto!important;
-  padding:6px 9px 7px!important;
-  border-radius:13px!important;
-  overflow:visible!important;
-}
-.combat-v2 .arena-enemy-hud>div:nth-of-type(2){min-height:15px!important}
-.combat-v2 .arena-enemy-hud b{font-size:13px!important}
-.combat-v2 .arena-enemy-hud>i{height:7px!important;margin-top:4px!important}
-.combat-v2 .enemy-status-icons{margin-top:4px!important}
-.combat-v2 .enemy-status-icons em{width:19px!important;height:17px!important}
-
-/* Restore the bright high-fantasy depth from the locked master. */
-.combat-v2 .world-scenery{
-  filter:saturate(1.12) brightness(1.10) contrast(1.02)!important;
-}
-.combat-v2 .production-world{
-  background:linear-gradient(180deg,#8ddbf4 0%,#bdebf1 50%,#b4d5b8 100%)!important;
-}
-.combat-v2 .prod-castle{bottom:39%!important;opacity:.82!important;transform:scale(1.08)!important}
-.combat-v2 .prod-float{bottom:34%!important;opacity:.83!important;transform:scale(1.03)!important}
-.combat-v2 .prod-ruin{bottom:29%!important;opacity:.74!important;transform:scale(1.02)!important}
-.combat-v2 .prod-ruins{bottom:17%!important;opacity:.92!important;transform:scale(1.02)!important}
-.combat-v2 .prod-platform{bottom:7%!important;left:-14%!important;width:128%!important}
-.combat-v2 .prod-foreground{bottom:2%!important;opacity:.62!important}
-
-/* Actor scale now mirrors the target instead of filling half the screen. */
-.combat-v2 .pcv2-hero{
-  left:6%!important;
-  bottom:20%!important;
-  width:27%!important;
-  height:31%!important;
-}
-.combat-v2 .pcv2-enemy{
-  right:2%!important;
-  bottom:18%!important;
-  width:49%!important;
-  height:53%!important;
-}
-.combat-v2 .pcv2-enemy-boss{
-  right:-1%!important;
-  bottom:17%!important;
-  width:57%!important;
-  height:60%!important;
-}
-.combat-v2 .pcv2 .production-hero,
-.combat-v2 .pcv2 .production-enemy{
-  filter:drop-shadow(0 10px 10px #071c2866)!important;
-}
-
-/* Damage/combo/toast stay small and float over the scene only. */
-.combat-v2 .combo{
-  top:34%!important;
-  right:10px!important;
-  left:auto!important;
-  max-width:max-content!important;
-}
-.combat-v2 .streak{
-  top:15%!important;
-  left:10px!important;
-  right:auto!important;
-  max-width:max-content!important;
-}
-.combat-v2 .damage{
-  top:36%!important;
-  right:6%!important;
-  left:auto!important;
-}
-
-/* Give the target more breathing room above the controls. */
-.combat-v2 .combat-bottom-hud{
-  left:9px!important;
-  right:9px!important;
-  bottom:8px!important;
-  height:138px!important;
-}
-.combat-v2 .combat-vitals{
-  top:0!important;
-  grid-template-columns:1fr 1fr 1fr 48px!important;
-}
-.combat-v2 .vital{
-  height:31px!important;
-  border-radius:10px!important;
-}
-.combat-v2 .combat-auto-orb{
-  width:48px!important;
-  height:48px!important;
-  min-width:48px!important;
-}
-.combat-v2 .skill-orb-dock{
-  bottom:1px!important;
-  width:92%!important;
-  gap:10px!important;
-}
-.combat-v2 .skill-orb{
-  width:61px!important;
-  height:61px!important;
-  min-width:61px!important;
-}
-.combat-v2 .skill-orb .skill-art{width:49px!important;height:49px!important}
-
-/* Production avatar should read as the same hero as the battle actor. */
-.game-topbar .master-avatar{
-  position:relative!important;
-  overflow:hidden!important;
-}
-.game-topbar .master-avatar .production-hero{
-  position:absolute!important;
-  inset:-8% -10% -10% -10%!important;
-  width:120%!important;
-  height:120%!important;
-  object-fit:contain!important;
-  object-position:center bottom!important;
-  display:block!important;
-  filter:none!important;
-  transform:none!important;
-}
-
-/* On narrow Android portrait, protect route dots and the full actor silhouettes. */
-@media(max-width:420px){
-  .viewport>.master-stage-head{
-    flex-basis:46px!important;
-    height:46px!important;
-    min-height:46px!important;
-    max-height:46px!important;
-    margin:5px auto 5px!important;
-    border-radius:20px!important;
-  }
-  .viewport>.master-stage-head .nodes{gap:4px!important}
-  .viewport>.master-stage-head .nodes i{width:6px!important;height:6px!important}
-  .combat-v2 .arena-enemy-hud{top:9px!important;width:68%!important}
-  .combat-v2 .pcv2-hero{left:4%!important;width:28%!important;height:29%!important}
-  .combat-v2 .pcv2-enemy{right:0!important;width:50%!important;height:50%!important}
-  .combat-v2 .pcv2-enemy-boss{right:-2%!important;width:59%!important;height:57%!important}
-  .combat-v2 .skill-orb-dock{width:98%!important;gap:4px!important}
-  .combat-v2 .skill-orb{width:57px!important;height:57px!important;min-width:57px!important}
-  .combat-v2 .skill-orb .skill-art{width:46px!important;height:46px!important}
-}
-
-/* Do not let old responsive rules re-grow the arena or HUD in fullscreen. */
-@media(max-width:600px), (display-mode:fullscreen), (display-mode:standalone){
-  .viewport>.master-stage-head + .combat-v2{
-    position:relative!important;
-    inset:auto!important;
-    min-height:0!important;
-    height:auto!important;
-    flex:1 1 auto!important;
-  }
-  .viewport>.master-stage-head + .combat-v2:before,
-  .viewport>.master-stage-head + .combat-v2:after{
-    content:none!important;
-    display:none!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 04
-   Tighten proportions to the locked reference:
-   smaller route pill, proper enemy title + HP label,
-   brighter scene, smaller hero, dominant but contained enemy.
-   ========================================================= */
-
-/* Global shell closer to the master proportions. */
-.game-topbar{
-  min-height:62px!important;
-  height:62px!important;
-  padding:6px 10px!important;
-  background:linear-gradient(180deg,#071322 0%,#081827 100%)!important;
-}
-.game-topbar .player-chip{height:46px!important}
-.game-topbar .avatar{width:43px!important;height:43px!important}
-.game-topbar .lvl>b{font-size:13px!important}
-.resource-rail>strong{height:34px!important}
-.topbar-icon{height:36px!important}
-
-/* Route pill: no longer almost full width. */
-.viewport>.master-stage-head{
-  width:min(74%,350px)!important;
-  flex-basis:46px!important;
-  height:46px!important;
-  min-height:46px!important;
-  max-height:46px!important;
-  margin:7px auto 7px!important;
-  padding:5px 10px!important;
-  grid-template-columns:30px auto minmax(56px,1fr) 17px!important;
-  border-radius:23px!important;
-}
-.viewport>.master-stage-head .world-emblem{
-  width:29px!important;height:29px!important;font-size:16px!important;border-radius:10px!important
-}
-.viewport>.master-stage-head>b{font-size:12px!important}
-.viewport>.master-stage-head .stage-chevron{font-size:22px!important}
-.viewport>.master-stage-head .nodes{gap:4px!important}
-.viewport>.master-stage-head .nodes i{width:6px!important;height:6px!important}
-
-/* Exact enemy HUD hierarchy from the mockup. */
-.combat-v2 .arena-enemy-hud{
-  top:11px!important;
-  width:min(58%,270px)!important;
-  max-width:270px!important;
-  padding:6px 9px 7px!important;
-  border-radius:13px!important;
-}
-.combat-v2 .enemy-hud-title{
-  display:grid!important;
-  grid-template-columns:auto minmax(0,1fr) auto!important;
-  align-items:center!important;
-  gap:6px!important;
-}
-.combat-v2 .enemy-hud-title b{
-  min-width:0!important;
-  font-size:13px!important;
-  line-height:1!important;
-  text-align:left!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-  white-space:nowrap!important;
-}
-.combat-v2 .enemy-level{
-  font-size:8px!important;
-  font-weight:800!important;
-  opacity:.92!important;
-  white-space:nowrap!important;
-}
-.combat-v2 .enemy-hp-track{
-  position:relative!important;
-  margin-top:5px!important;
-  height:11px!important;
-}
-.combat-v2 .enemy-hp-track>i{
-  position:absolute!important;
-  inset:0!important;
-  display:block!important;
-  height:11px!important;
-  margin:0!important;
-  border-radius:999px!important;
-  background:#02060a!important;
-  overflow:hidden!important;
-}
-.combat-v2 .enemy-hp-track>i>span{
-  display:block!important;
-  height:100%!important;
-  border-radius:inherit!important;
-  background:linear-gradient(90deg,#ff2340,#ff5464)!important;
-  box-shadow:0 0 10px #ff364e55!important;
-}
-.combat-v2 .enemy-hp-track>strong{
-  position:absolute!important;
-  inset:0!important;
-  display:grid!important;
-  place-items:center!important;
-  z-index:2!important;
-  color:#fff!important;
-  font-size:7px!important;
-  line-height:1!important;
-  text-shadow:0 1px 3px #000,0 0 3px #000!important;
-}
-.combat-v2 .enemy-status-icons{
-  margin-top:5px!important;
-  gap:5px!important;
-}
-.combat-v2 .enemy-status-icons em{
-  width:20px!important;height:18px!important;
-  border:1px solid #ffffff10!important;
-  box-shadow:inset 0 1px #ffffff0b!important;
-}
-
-/* Scene brightness and depth — target is vivid, not murky. */
-.combat-v2{
-  background:linear-gradient(180deg,#9bdff4 0%,#c4edf1 48%,#b9d6b6 100%)!important;
-}
-.combat-v2 .world-scenery{
-  filter:saturate(1.16) brightness(1.16) contrast(1.01)!important;
-}
-.combat-v2 .production-world{filter:none!important}
-.combat-v2 .prod-castle{bottom:41%!important;opacity:.9!important;transform:scale(1.05)!important}
-.combat-v2 .prod-float{bottom:35%!important;opacity:.88!important;transform:scale(1.02)!important}
-.combat-v2 .prod-ruin{bottom:29%!important;opacity:.8!important;transform:scale(1.01)!important}
-.combat-v2 .prod-ruins{bottom:17%!important;opacity:.95!important;transform:scale(1.01)!important}
-.combat-v2 .prod-platform{bottom:7%!important;left:-12%!important;width:124%!important}
-.combat-v2 .prod-foreground{bottom:2%!important;opacity:.5!important}
-
-/* Master actor scale: hero small, enemy large, enough negative space for damage. */
-.combat-v2 .pcv2-hero{
-  left:7%!important;
-  bottom:21%!important;
-  width:24%!important;
-  height:27%!important;
-}
-.combat-v2 .pcv2-enemy{
-  right:3%!important;
-  bottom:19%!important;
-  width:46%!important;
-  height:49%!important;
-}
-.combat-v2 .pcv2-enemy-boss{
-  right:0!important;
-  bottom:18%!important;
-  width:54%!important;
-  height:56%!important;
-}
-
-/* Damage floats beside the enemy like the master. */
-.combat-v2 .damage{
-  top:38%!important;
-  right:8%!important;
-  font-size:27px!important;
-  font-weight:950!important;
-}
-.combat-v2 .damage.crit{font-size:30px!important}
-.combat-v2 .combo{top:34%!important;right:9px!important}
-.combat-v2 .streak{top:14%!important;left:10px!important}
-
-/* Lower HUD: airy enough to read, compact enough to preserve arena. */
-.combat-v2 .combat-bottom-hud{
-  height:132px!important;
-  bottom:7px!important;
-}
-.combat-v2 .combat-vitals{
-  grid-template-columns:1fr 1fr 1fr 46px!important;
-  gap:5px!important;
-}
-.combat-v2 .vital{
-  height:30px!important;
-  grid-template-columns:20px minmax(0,1fr)!important;
-  grid-template-rows:14px 6px!important;
-  padding:3px 5px!important;
-}
-.combat-v2 .vital>span{font-size:14px!important}
-.combat-v2 .vital>strong{font-size:7px!important}
-.combat-v2 .combat-auto-orb{
-  width:46px!important;height:46px!important;min-width:46px!important;
-}
-.combat-v2 .skill-orb-dock{
-  width:88%!important;
-  gap:11px!important;
-}
-.combat-v2 .skill-orb{
-  width:59px!important;height:59px!important;min-width:59px!important;
-}
-.combat-v2 .skill-orb .skill-art{width:48px!important;height:48px!important}
-.combat-v2 .skill-orb>span,
-.combat-v2 .skill-orb>small{
-  min-width:29px!important;
-  font-size:7px!important;
-  bottom:-5px!important;
-}
-
-/* Bottom navigation more closely matches the locked master. */
-.game-nav{
-  min-height:70px!important;
-  height:70px!important;
-  background:linear-gradient(180deg,#081421,#06101a)!important;
-}
-.game-nav button i{width:31px!important;height:31px!important}
-.game-nav button span{font-size:9px!important}
-.game-nav button.on{
-  background:linear-gradient(180deg,#6a21a626,#6d22c052)!important;
-  box-shadow:inset 0 -3px #b33cff,0 -8px 20px #7a2eff22!important;
-}
-.game-nav button.on:before{
-  left:18%!important;right:18%!important;
-  background:#bd55ff!important;
-}
-
-/* Narrow Android portrait: still keep the master proportions. */
-@media(max-width:420px){
-  .viewport>.master-stage-head{width:min(78%,330px)!important}
-  .combat-v2 .arena-enemy-hud{width:62%!important}
-  .combat-v2 .pcv2-hero{left:5%!important;width:25%!important;height:26%!important}
-  .combat-v2 .pcv2-enemy{right:1%!important;width:48%!important;height:47%!important}
-  .combat-v2 .pcv2-enemy-boss{right:-2%!important;width:56%!important;height:54%!important}
-  .combat-v2 .skill-orb-dock{width:96%!important;gap:5px!important}
-  .combat-v2 .skill-orb{width:56px!important;height:56px!important;min-width:56px!important}
-  .combat-v2 .skill-orb .skill-art{width:45px!important;height:45px!important}
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 05
-   Screenshot-driven proportion cleanup.
-   Targets the remaining oversized top overlay, missing route dots,
-   actor scale, avatar crop and oversized lower controls.
-   ========================================================= */
-
-/* Kill old scenery pseudo-layers that were still painting a giant dark block. */
-.combat-v2 .world-scenery:before,
-.combat-v2 .world-scenery:after,
-.combat-v2 .production-world:before,
-.combat-v2 .production-world:after{
-  content:none!important;
-  display:none!important;
-  background:none!important;
-  opacity:0!important;
-}
-
-/* Route progress must stay inside the pill, never absolutely escape it. */
-.viewport>.master-stage-head .nodes{
-  position:static!important;
-  inset:auto!important;
-  left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
-  transform:none!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:flex-end!important;
-  min-width:64px!important;
-  margin:0!important;
-  gap:4px!important;
-}
-.viewport>.master-stage-head .nodes i{
-  flex:0 0 6px!important;
-  width:6px!important;height:6px!important;
-  display:block!important;
-}
-.viewport>.master-stage-head .nodes strong{
-  display:block!important;
-  margin-left:2px!important;
-  font-size:12px!important;
-}
-
-/* Compact enemy HUD: one tight card, no oversized dead panel. */
-.combat-v2 .arena-enemy-hud{
-  top:10px!important;
-  width:min(60%,275px)!important;
-  max-width:275px!important;
-  min-height:0!important;
-  height:auto!important;
-  padding:6px 9px 6px!important;
-  border-radius:13px!important;
-  overflow:visible!important;
-}
-.combat-v2 .enemy-hud-title{
-  min-height:14px!important;
-  grid-template-columns:auto minmax(0,1fr) auto!important;
-  gap:5px!important;
-}
-.combat-v2 .enemy-rank{
-  font-size:5.5px!important;
-  padding:2px 4px!important;
-}
-.combat-v2 .enemy-hud-title b{
-  font-size:12px!important;
-  line-height:1!important;
-}
-.combat-v2 .enemy-level{
-  font-size:7px!important;
-}
-.combat-v2 .enemy-hp-track{
-  height:10px!important;
-  margin-top:4px!important;
-}
-.combat-v2 .enemy-hp-track>i{
-  height:10px!important;
-}
-.combat-v2 .enemy-hp-track>strong{
-  font-size:6.5px!important;
-}
-.combat-v2 .enemy-status-icons{
-  position:static!important;
-  inset:auto!important;
-  transform:none!important;
-  display:flex!important;
-  justify-content:center!important;
-  align-items:center!important;
-  width:auto!important;
-  height:18px!important;
-  min-height:18px!important;
-  margin:4px 0 0!important;
-  padding:0!important;
-  gap:4px!important;
-  background:none!important;
-  border:0!important;
-  box-shadow:none!important;
-}
-.combat-v2 .enemy-status-icons em{
-  width:18px!important;height:16px!important;
-  min-width:18px!important;min-height:16px!important;
-  padding:0!important;margin:0!important;
-  border-radius:5px!important;
-  font-size:7px!important;
-}
-
-/* Actor scale now matches the reference more closely. */
-.combat-v2 .pcv2-hero{
-  left:7%!important;
-  bottom:22%!important;
-  width:21%!important;
-  height:24%!important;
-}
-.combat-v2 .pcv2-enemy{
-  right:4%!important;
-  bottom:20%!important;
-  width:42%!important;
-  height:46%!important;
-}
-.combat-v2 .pcv2-enemy-boss{
-  right:1%!important;
-  bottom:19%!important;
-  width:49%!important;
-  height:52%!important;
-}
-
-/* Slightly more open stage between enemy HUD and actors. */
-.combat-v2 .prod-castle{bottom:43%!important;opacity:.92!important}
-.combat-v2 .prod-float{bottom:36%!important;opacity:.90!important}
-.combat-v2 .prod-ruin{bottom:31%!important;opacity:.82!important}
-.combat-v2 .prod-ruins{bottom:18%!important;opacity:.95!important}
-.combat-v2 .prod-platform{bottom:8%!important}
-
-/* Header avatar should read as a portrait, not a tiny full-body sprite. */
-.game-topbar .master-avatar .production-hero{
-  inset:-35% -30% -12% -30%!important;
-  width:160%!important;
-  height:160%!important;
-  object-fit:contain!important;
-  object-position:center 22%!important;
-}
-
-/* Smaller and cleaner lower combat controls to match the mockup. */
-.combat-v2 .combat-bottom-hud{
-  height:122px!important;
-  bottom:7px!important;
-}
-.combat-v2 .combat-vitals{
-  grid-template-columns:1fr 1fr 1fr 44px!important;
-  gap:4px!important;
-}
-.combat-v2 .vital{
-  height:29px!important;
-  grid-template-columns:18px minmax(0,1fr)!important;
-  grid-template-rows:13px 6px!important;
-  padding:3px 5px!important;
-}
-.combat-v2 .vital>span{font-size:13px!important}
-.combat-v2 .vital>strong{font-size:6.5px!important}
-.combat-v2 .combat-auto-orb{
-  width:44px!important;height:44px!important;min-width:44px!important;
-}
-.combat-v2 .combat-auto-orb .ui-glyph{width:20px!important;height:20px!important}
-.combat-v2 .combat-auto-orb b{font-size:7px!important}
-
-.combat-v2 .skill-orb-dock{
-  width:82%!important;
-  bottom:0!important;
-  gap:12px!important;
-}
-.combat-v2 .skill-orb{
-  width:52px!important;height:52px!important;min-width:52px!important;
-  border-width:2px!important;
-}
-.combat-v2 .skill-orb .skill-art{
-  width:42px!important;height:42px!important;
-}
-.combat-v2 .skill-orb>span,
-.combat-v2 .skill-orb>small{
-  min-width:27px!important;
-  font-size:6.5px!important;
-  bottom:-5px!important;
-}
-
-/* Keep AUTO visually separate from the skill row like the master. */
-.combat-v2 .combat-auto-orb{
-  margin-top:-4px!important;
-}
-
-/* Persistent nav a touch more compact so the arena gains height. */
-.game-nav{
-  height:66px!important;
-  min-height:66px!important;
-}
-.game-nav button{
-  padding-top:4px!important;
-  padding-bottom:4px!important;
-}
-.game-nav button i{
-  width:28px!important;height:28px!important;
-}
-.game-nav button span{
-  font-size:8.5px!important;
-}
-
-/* Android portrait hard limits. */
-@media(max-width:420px){
-  .viewport>.master-stage-head{
-    width:min(80%,330px)!important;
-    grid-template-columns:29px auto minmax(74px,1fr) 16px!important;
-  }
-  .viewport>.master-stage-head .nodes{
-    min-width:74px!important;
-    gap:3px!important;
-  }
-  .combat-v2 .arena-enemy-hud{
-    width:64%!important;
-    max-width:260px!important;
-  }
-  .combat-v2 .pcv2-hero{
-    left:5%!important;
-    width:22%!important;
-    height:23%!important;
-  }
-  .combat-v2 .pcv2-enemy{
-    right:2%!important;
-    width:43%!important;
-    height:44%!important;
-  }
-  .combat-v2 .pcv2-enemy-boss{
-    right:-1%!important;
-    width:51%!important;
-    height:50%!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:90%!important;
-    gap:7px!important;
-  }
-  .combat-v2 .skill-orb{
-    width:50px!important;height:50px!important;min-width:50px!important;
-  }
-  .combat-v2 .skill-orb .skill-art{
-    width:40px!important;height:40px!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 06
-   Live-build verified. Lock fullscreen/browser shell geometry,
-   tighten global header and route, and gain more visible arena.
-   ========================================================= */
-
-/* The master has no dead black strip above the app content. */
-@media(max-width:600px){
-  html,body,#root{
-    margin:0!important;
-    padding:0!important;
-    width:100%!important;
-    height:100dvh!important;
-    min-height:100dvh!important;
-    background:#07111d!important;
-  }
-  .app,
-  .app.is-fullscreen{
-    padding-top:0!important;
-    margin-top:0!important;
-    height:100dvh!important;
-    min-height:100dvh!important;
-    max-height:100dvh!important;
-    grid-template-rows:60px minmax(0,1fr) 66px!important;
-  }
-  :fullscreen .app,
-  :fullscreen .app.is-fullscreen{
-    padding-top:0!important;
-    grid-template-rows:60px minmax(0,1fr) 66px!important;
-  }
-
-  .game-topbar{
-    height:60px!important;
-    min-height:60px!important;
-    padding:5px 8px!important;
-    gap:5px!important;
-    grid-template-columns:minmax(96px,1.05fr) minmax(178px,1.62fr) auto!important;
-  }
-  .game-topbar .player-chip{
+    max-width:none!important;
     height:44px!important;
-    grid-template-columns:42px 1fr!important;
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr)!important;
+    align-items:center!important;
     gap:6px!important;
+    margin:0!important;
     padding:2px 6px 2px 2px!important;
+    border:1px solid #8bcfff31!important;
     border-radius:13px!important;
+    background:linear-gradient(180deg,#0b1b2ce8,#081522e8)!important;
+    box-shadow:inset 0 1px #ffffff0a,0 5px 14px #00101c40!important;
   }
   .game-topbar .avatar{
     width:40px!important;
     height:40px!important;
-    border-radius:10px!important;
-  }
-  .game-topbar .lvl>b{font-size:12px!important}
-  .game-topbar .lvl>i{height:6px!important;margin-top:4px!important}
-  .game-topbar .lvl>small{font-size:6.5px!important}
-
-  .resource-rail{gap:4px!important}
-  .resource-rail>strong{
-    height:32px!important;
-    grid-template-columns:21px 1fr 14px!important;
-    border-radius:13px!important;
-  }
-  .resource-rail>strong .resource-glyph{
-    width:20px!important;height:20px!important
-  }
-  .resource-rail>strong>span{font-size:9px!important}
-  .resource-rail>strong>em{
-    width:14px!important;height:14px!important;font-size:10px!important
-  }
-  .topbar-actions{gap:4px!important}
-  .topbar-icon{
-    width:31px!important;height:32px!important;border-radius:9px!important;font-size:16px!important
-  }
-
-  /* Route pill in the reference is compact and leaves sky visible around it. */
-  .viewport>.master-stage-head{
-    width:min(72%,340px)!important;
-    flex-basis:43px!important;
-    height:43px!important;
-    min-height:43px!important;
-    max-height:43px!important;
-    margin:6px auto 6px!important;
-    padding:4px 9px!important;
-    grid-template-columns:28px auto minmax(68px,1fr) 15px!important;
-    border-radius:22px!important;
-  }
-  .viewport>.master-stage-head .world-emblem{
-    width:27px!important;height:27px!important;font-size:15px!important
-  }
-  .viewport>.master-stage-head>b{font-size:11.5px!important}
-  .viewport>.master-stage-head .nodes{min-width:68px!important;gap:4px!important}
-  .viewport>.master-stage-head .nodes i{width:6px!important;height:6px!important}
-  .viewport>.master-stage-head .nodes strong{font-size:11px!important}
-  .viewport>.master-stage-head .stage-chevron{font-size:20px!important}
-
-  /* Enemy HUD sits close to top of arena and stays intentionally narrow. */
-  .combat-v2 .arena-enemy-hud{
-    top:9px!important;
-    width:min(57%,260px)!important;
-    max-width:260px!important;
-    padding:5px 8px 6px!important;
-    border-radius:12px!important;
-  }
-  .combat-v2 .enemy-hud-title b{font-size:11.5px!important}
-  .combat-v2 .enemy-rank{font-size:5px!important}
-  .combat-v2 .enemy-level{font-size:6.5px!important}
-  .combat-v2 .enemy-hp-track{height:9px!important;margin-top:4px!important}
-  .combat-v2 .enemy-hp-track>i{height:9px!important}
-  .combat-v2 .enemy-hp-track>strong{font-size:6px!important}
-  .combat-v2 .enemy-status-icons{
-    height:16px!important;min-height:16px!important;margin-top:4px!important
-  }
-  .combat-v2 .enemy-status-icons em{
-    width:17px!important;height:15px!important;min-width:17px!important;min-height:15px!important
-  }
-
-  /* Push the fight slightly upward and preserve the clean master silhouette ratio. */
-  .combat-v2 .pcv2-hero{
-    left:7%!important;
-    bottom:20.5%!important;
-    width:20%!important;
-    height:23%!important;
-  }
-  .combat-v2 .pcv2-enemy{
-    right:4%!important;
-    bottom:18.5%!important;
-    width:41%!important;
-    height:45%!important;
-  }
-  .combat-v2 .pcv2-enemy-boss{
-    right:1%!important;
-    bottom:18%!important;
-    width:48%!important;
-    height:51%!important;
-  }
-
-  /* More arena, less control chrome. */
-  .combat-v2 .combat-bottom-hud{
-    height:116px!important;
-    left:8px!important;right:8px!important;bottom:6px!important;
-  }
-  .combat-v2 .combat-vitals{
-    grid-template-columns:1fr 1fr 1fr 42px!important;
-    gap:4px!important;
-  }
-  .combat-v2 .vital{
-    height:28px!important;
-    grid-template-columns:17px minmax(0,1fr)!important;
-    grid-template-rows:13px 5px!important;
-    border-radius:10px!important;
-    padding:3px 4px!important;
-  }
-  .combat-v2 .vital>span{font-size:12px!important}
-  .combat-v2 .vital>strong{font-size:6px!important}
-  .combat-v2 .combat-auto-orb{
-    width:42px!important;height:42px!important;min-width:42px!important;
-  }
-  .combat-v2 .combat-auto-orb .ui-glyph{width:19px!important;height:19px!important}
-  .combat-v2 .combat-auto-orb b{font-size:6.5px!important}
-
-  .combat-v2 .skill-orb-dock{
-    width:79%!important;
-    gap:11px!important;
-  }
-  .combat-v2 .skill-orb{
-    width:49px!important;height:49px!important;min-width:49px!important;
-  }
-  .combat-v2 .skill-orb .skill-art{
-    width:39px!important;height:39px!important;
-  }
-  .combat-v2 .skill-orb>span,
-  .combat-v2 .skill-orb>small{
-    min-width:25px!important;
-    font-size:6px!important;
-    padding:2px 4px!important;
-  }
-
-  /* Nav reads lighter and leaves more height for gameplay. */
-  .game-nav{
-    height:66px!important;
-    min-height:66px!important;
-  }
-  .game-nav button i{
-    width:27px!important;height:27px!important;
-  }
-  .game-nav button span{font-size:8px!important}
-}
-
-/* Very narrow devices: protect the full 5-tab row and route dots. */
-@media(max-width:380px){
-  .game-topbar{
-    grid-template-columns:minmax(90px,1fr) minmax(162px,1.55fr) auto!important;
-    padding-inline:5px!important;
-  }
-  .resource-rail>strong{
-    grid-template-columns:19px 1fr 12px!important;
-    padding-inline:2px!important;
-  }
-  .resource-rail>strong>span{font-size:8px!important}
-  .topbar-icon{width:28px!important}
-  .viewport>.master-stage-head{
-    width:82%!important;
-    grid-template-columns:26px auto minmax(62px,1fr) 14px!important;
-  }
-  .combat-v2 .arena-enemy-hud{width:63%!important}
-  .combat-v2 .skill-orb-dock{width:90%!important;gap:5px!important}
-  .combat-v2 .skill-orb{width:47px!important;height:47px!important;min-width:47px!important}
-  .combat-v2 .skill-orb .skill-art{width:37px!important;height:37px!important}
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 07
-   Final structural shift toward the reference:
-   route pill floats over the artwork instead of reserving a dark band.
-   ========================================================= */
-
-@media(max-width:600px){
-  .viewport:has(>.master-stage-head){
-    position:relative!important;
-    display:block!important;
     overflow:hidden!important;
-    background:#8fd8ef!important;
-  }
-
-  .viewport>.master-stage-head{
-    position:absolute!important;
-    top:8px!important;
-    left:50%!important;
-    right:auto!important;
-    bottom:auto!important;
-    transform:translateX(-50%)!important;
-    z-index:60!important;
-    margin:0!important;
-    width:min(72%,340px)!important;
-    height:43px!important;
-    min-height:43px!important;
-    max-height:43px!important;
-    flex:none!important;
-    backdrop-filter:blur(8px)!important;
-    background:linear-gradient(180deg,#0b1a2be8,#081522e8)!important;
-    box-shadow:0 6px 18px #00101d55!important;
-  }
-
-  .viewport>.master-stage-head + .combat-v2{
-    position:absolute!important;
-    inset:0!important;
-    width:100%!important;
-    height:100%!important;
-    min-height:100%!important;
-    max-height:none!important;
-    margin:0!important;
-    flex:none!important;
-  }
-
-  /* subtle top readability wash, not a solid UI band */
-  .viewport>.master-stage-head + .combat-v2 .world-scenery:after{
-    content:""!important;
-    display:block!important;
-    position:absolute!important;
-    left:0!important;
-    right:0!important;
-    top:0!important;
-    height:118px!important;
-    z-index:3!important;
-    pointer-events:none!important;
-    background:linear-gradient(180deg,#06111c52 0%,#06111c22 48%,transparent 100%)!important;
-    opacity:1!important;
-  }
-
-  .combat-v2 .arena-enemy-hud{
-    top:62px!important;
-    width:min(57%,260px)!important;
-    z-index:50!important;
-  }
-
-  .combat-v2 .streak{
-    top:66px!important;
-    left:9px!important;
-    z-index:49!important;
-  }
-
-  /* actors move slightly lower now that the artwork owns the full viewport */
-  .combat-v2 .pcv2-hero{
-    bottom:19%!important;
-  }
-  .combat-v2 .pcv2-enemy{
-    bottom:17.5%!important;
-  }
-  .combat-v2 .pcv2-enemy-boss{
-    bottom:17%!important;
-  }
-
-  /* preserve enough air between enemy HUD and character silhouettes */
-  .combat-v2 .damage{
-    top:35%!important;
-  }
-  .combat-v2 .combo{
-    top:31%!important;
-  }
-
-  /* master-like bottom grouping: bars close to skill row, no detached gap */
-  .combat-v2 .combat-bottom-hud{
-    height:112px!important;
-    bottom:7px!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    bottom:0!important;
-  }
-}
-
-/* fullscreen path must use the same floating-route composition */
-@media(max-width:600px) and (display-mode:fullscreen),
-       (max-width:600px) and (display-mode:standalone){
-  .viewport:has(>.master-stage-head){
-    position:relative!important;
-    display:block!important;
-  }
-  .viewport>.master-stage-head{
-    position:absolute!important;
-    top:8px!important;
-    left:50%!important;
-    transform:translateX(-50%)!important;
-  }
-  .viewport>.master-stage-head + .combat-v2{
-    position:absolute!important;
-    inset:0!important;
-    height:100%!important;
-    min-height:100%!important;
-  }
-}
-
-@media(max-width:420px){
-  .viewport>.master-stage-head{
-    width:78%!important;
-    top:7px!important;
-  }
-  .combat-v2 .arena-enemy-hud{
-    top:58px!important;
-    width:62%!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 08
-   Reference-driven polish pass:
-   preserve the large illustrated combat stage while making
-   header, enemy plate, skills and bottom nav read like one game UI.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* Header: stronger hierarchy, less flat chrome. */
-  .game-topbar{
-    background:linear-gradient(180deg,#071421f2 0%,#081827e8 100%)!important;
-    border-bottom:1px solid #8fd2ff24!important;
-    box-shadow:0 7px 24px #00101f55!important;
-  }
-  .game-topbar .player-chip{
-    background:linear-gradient(180deg,#0b1b2ce8,#081522e8)!important;
-    border-color:#8bcfff2e!important;
-    box-shadow:inset 0 1px #ffffff0a,0 5px 14px #00101c40!important;
-  }
-  .game-topbar .avatar{
-    border-color:#a4d7ff66!important;
+    border:1px solid #a4d7ff66!important;
+    border-radius:10px!important;
+    background:#14263c!important;
     box-shadow:0 0 0 2px #173652aa,0 4px 10px #0005!important;
   }
-  .game-topbar .lvl>b{
-    font-weight:900!important;
-    letter-spacing:-.02em!important;
+  .game-topbar .master-avatar{
+    position:relative!important;
   }
-  .resource-rail>strong{
-    background:linear-gradient(180deg,#0c1d30e8,#081522eb)!important;
-    border-color:#83c7ff25!important;
-    box-shadow:inset 0 1px #ffffff0b,0 4px 10px #0003!important;
-  }
-
-  /* Route pill: more like the locked mockup, visually tied to header. */
-  .viewport>.master-stage-head{
-    border-color:#8ecfff2d!important;
-    background:linear-gradient(180deg,#0a1929e9,#071420e9)!important;
-    box-shadow:0 7px 20px #00101e66,inset 0 1px #ffffff0b!important;
-  }
-  .viewport>.master-stage-head>b{
-    font-weight:900!important;
-    letter-spacing:-.015em!important;
-  }
-  .viewport>.master-stage-head .nodes i{
-    background:#53657a!important;
-  }
-  .viewport>.master-stage-head .nodes i.done{
-    background:#5caeff!important;
-    box-shadow:0 0 6px #58b6ff55!important;
-  }
-  .viewport>.master-stage-head .nodes i.now{
-    background:#7fe1ff!important;
-    box-shadow:0 0 10px #59c9ff!important;
-  }
-
-  /* Enemy HUD: compact central 'boss plate' treatment. */
-  .combat-v2 .arena-enemy-hud{
-    background:linear-gradient(180deg,#0c1a28ed,#07121ced)!important;
-    border-color:#8dceff36!important;
-    box-shadow:0 8px 22px #00101d75,inset 0 1px #ffffff0b!important;
-    backdrop-filter:blur(8px)!important;
-  }
-  .combat-v2 .enemy-rank{
-    color:#fff!important;
-    background:radial-gradient(circle,#ff475c,#9e1227 72%)!important;
-    border:1px solid #ff8b9970!important;
-    box-shadow:0 0 10px #ff395c55!important;
-    font-weight:950!important;
-    letter-spacing:.04em!important;
-  }
-  .combat-v2 .enemy-hud-title b{
-    color:#fff!important;
-    font-weight:950!important;
-    text-shadow:0 2px 5px #0008!important;
-  }
-  .combat-v2 .enemy-level{
-    color:#f4f8ff!important;
-    opacity:.95!important;
-  }
-  .combat-v2 .enemy-hp-track>i{
-    box-shadow:inset 0 1px 3px #000c!important;
-  }
-  .combat-v2 .enemy-hp-track>i>span{
-    background:linear-gradient(90deg,#ff243d,#ff5360)!important;
-    box-shadow:0 0 12px #ff344a70!important;
-  }
-  .combat-v2 .enemy-hp-track>strong{
-    font-weight:950!important;
-  }
-  .combat-v2 .enemy-status-icons em:nth-child(1){
-    color:#6ee49b!important;
-    background:#0d2d20e8!important;
-    border-color:#4ed88a44!important;
-  }
-  .combat-v2 .enemy-status-icons em:nth-child(2){
-    color:#d5dde7!important;
-    background:#151d27e8!important;
-    border-color:#9fb4c433!important;
-  }
-  .combat-v2 .enemy-status-icons em:nth-child(3){
-    color:#ff7c88!important;
-    background:#32141ae8!important;
-    border-color:#ff697944!important;
-  }
-
-  /* Actors: slight cinematic depth and better ground contact. */
-  .combat-v2 .pcv2-hero .production-hero{
-    filter:drop-shadow(0 11px 8px #06203077) saturate(1.04)!important;
-  }
-  .combat-v2 .pcv2-enemy .production-enemy{
-    filter:drop-shadow(0 15px 13px #06203077) saturate(1.08)!important;
-  }
-  .combat-v2 .pcv2-hero:after,
-  .combat-v2 .pcv2-enemy:after{
-    content:""!important;
-    position:absolute!important;
-    left:18%!important;
-    right:18%!important;
-    bottom:0!important;
-    height:7%!important;
-    border-radius:50%!important;
-    background:#07110f80!important;
-    filter:blur(6px)!important;
-    z-index:-1!important;
-  }
-  .combat-v2 .pcv2-enemy:after{
-    left:12%!important;
-    right:12%!important;
-    height:6%!important;
-  }
-
-  /* Combat feedback: bold numbers without turning into UI cards. */
-  .combat-v2 .damage{
-    font-family:Inter,system-ui,sans-serif!important;
-    font-weight:1000!important;
-    letter-spacing:-.045em!important;
-    color:#ffe230!important;
-    text-shadow:0 3px 0 #321d00,0 5px 11px #000b!important;
-  }
-  .combat-v2 .damage.crit{
-    color:#ff4a31!important;
-    text-shadow:0 3px 0 #421000,0 5px 13px #000c!important;
-  }
-
-  /* Vitals closer to the master: dark glass chips with bright semantic bars. */
-  .combat-v2 .vital{
-    background:linear-gradient(180deg,#0b1721e5,#071019e8)!important;
-    border-color:#ffffff1e!important;
-    box-shadow:0 5px 14px #0005,inset 0 1px #ffffff0a!important;
-  }
-  .combat-v2 .vital>i{
-    background:#010509!important;
-    box-shadow:inset 0 1px 3px #000!important;
-  }
-  .combat-v2 .hp-vital>i>b{
-    background:linear-gradient(90deg,#ff2845,#ff5260)!important;
-    box-shadow:0 0 8px #ff3c5377!important;
-  }
-  .combat-v2 .momentum-vital>i>b{
-    background:linear-gradient(90deg,#7d3cff,#bd50ff)!important;
-    box-shadow:0 0 8px #a444ff66!important;
-  }
-  .combat-v2 .fury-vital>i>b{
-    background:linear-gradient(90deg,#ffad27,#ff5a20)!important;
-    box-shadow:0 0 8px #ff762b66!important;
-  }
-
-  /* Skills should feel like premium skill orbs, not plain buttons. */
-  .combat-v2 .skill-orb{
-    background:radial-gradient(circle at 50% 42%,#16253a,#08111c 74%)!important;
-    box-shadow:0 7px 18px #0008,inset 0 0 0 3px #ffffff08!important;
-  }
-  .combat-v2 .slash-orb{
-    border-color:#43aaff!important;
-    box-shadow:0 7px 18px #0008,0 0 15px #299fff58,inset 0 0 0 3px #ffffff08!important;
-  }
-  .combat-v2 .nova-orb{
-    border-color:#a84fff!important;
-    box-shadow:0 7px 18px #0008,0 0 15px #9c45ff58,inset 0 0 0 3px #ffffff08!important;
-  }
-  .combat-v2 .fury-orb{
-    border-color:#ff913d!important;
-    box-shadow:0 7px 18px #0008,0 0 15px #ff743758,inset 0 0 0 3px #ffffff08!important;
-  }
-  .combat-v2 .locked-orb{
-    border-color:#5b6675!important;
-    background:radial-gradient(circle,#222a33,#090e14 74%)!important;
-    box-shadow:0 7px 18px #0008,inset 0 0 0 3px #ffffff05!important;
-  }
-  .combat-v2 .skill-orb>span,
-  .combat-v2 .skill-orb>small{
-    background:#03070cdd!important;
-    border:1px solid #ffffff12!important;
-    font-weight:900!important;
-  }
-  .combat-v2 .combat-auto-orb{
-    background:radial-gradient(circle,#153d63,#071421 74%)!important;
-    border-color:#52caff!important;
-    box-shadow:0 0 0 3px #39a9ff20,0 0 18px #31bdff88!important;
-  }
-
-  /* Active navigation block more pronounced like the master screenshot. */
-  .game-nav button{
-    transition:none!important;
-  }
-  .game-nav button.on{
-    color:#f4eaff!important;
-    background:linear-gradient(180deg,#7426bd1f,#6d22c65a)!important;
-    box-shadow:inset 0 -3px #bd42ff,0 -9px 22px #8f2fff2b!important;
-  }
-  .game-nav button.on i{
-    transform:scale(1.08)!important;
-    filter:drop-shadow(0 0 7px #a64fff88)!important;
-  }
-  .game-nav button.on span{
-    color:#f7eaff!important;
-    text-shadow:0 0 8px #b45cff88!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 09
-   Master-style enemy status strip + tighter combat composition.
-   ========================================================= */
-@media(max-width:600px){
-  .combat-v2 .arena-enemy-hud{
-    width:min(60%,278px)!important;
-    max-width:278px!important;
-    padding:6px 9px 7px!important;
-  }
-  .combat-v2 .enemy-hud-title{
-    grid-template-columns:22px minmax(0,1fr) auto!important;
-    gap:6px!important;
-  }
-  .combat-v2 .enemy-rank{
-    width:22px!important;
-    height:22px!important;
-    min-width:22px!important;
-    padding:0!important;
-    border-radius:50%!important;
-    display:grid!important;
-    place-items:center!important;
-    font-size:11px!important;
-    line-height:1!important;
-    color:#fff!important;
-  }
-  .combat-v2 .enemy-hud-title b{
-    font-size:12px!important;
-  }
-  .combat-v2 .enemy-level{
-    font-size:7px!important;
-  }
-  .combat-v2 .enemy-hp-track{
-    height:10px!important;
-    margin-top:4px!important;
-  }
-  .combat-v2 .enemy-hp-track>i{
-    height:10px!important;
-  }
-  .combat-v2 .enemy-status-row{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    gap:5px!important;
-    margin-top:4px!important;
-    min-height:17px!important;
-  }
-  .combat-v2 .enemy-status-icons{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    gap:4px!important;
-    margin:0!important;
-    height:17px!important;
-    min-height:17px!important;
-    flex:0 0 auto!important;
-  }
-  .combat-v2 .enemy-status-icons em{
-    width:17px!important;
-    height:15px!important;
-    min-width:17px!important;
-    min-height:15px!important;
-  }
-  .combat-v2 .enemy-affix-label{
-    display:block!important;
-    max-width:88px!important;
-    overflow:hidden!important;
-    text-overflow:ellipsis!important;
-    white-space:nowrap!important;
-    font-size:6.5px!important;
-    font-weight:850!important;
-    color:#d7e5ef!important;
-    opacity:.92!important;
-    letter-spacing:.01em!important;
-  }
-
-  /* Slightly more of the scene and less oversized character mass. */
-  .combat-v2 .pcv2-hero{
-    left:7%!important;
-    bottom:18.5%!important;
-    width:19%!important;
-    height:22%!important;
-  }
-  .combat-v2 .pcv2-enemy{
-    right:4%!important;
-    bottom:17%!important;
-    width:40%!important;
-    height:43%!important;
-  }
-  .combat-v2 .pcv2-enemy-boss{
-    right:1%!important;
-    bottom:16.5%!important;
-    width:47%!important;
-    height:49%!important;
-  }
-
-  /* Damage column sits directly beside the enemy silhouette. */
-  .combat-v2 .damage{
-    right:7%!important;
-    top:36%!important;
-    font-size:26px!important;
-  }
-  .combat-v2 .damage.crit{
-    font-size:29px!important;
-  }
-
-  /* Skill row now mirrors the master spacing more closely. */
-  .combat-v2 .combat-bottom-hud{
-    height:110px!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:76%!important;
-    gap:12px!important;
-  }
-  .combat-v2 .skill-orb{
-    width:48px!important;
-    height:48px!important;
-    min-width:48px!important;
-  }
-  .combat-v2 .skill-orb .skill-art{
-    width:38px!important;
-    height:38px!important;
-  }
-  .combat-v2 .combat-vitals{
-    grid-template-columns:1fr 1fr 1fr 41px!important;
-  }
-  .combat-v2 .combat-auto-orb{
-    width:41px!important;
-    height:41px!important;
-    min-width:41px!important;
-  }
-}
-@media(max-width:420px){
-  .combat-v2 .arena-enemy-hud{
-    width:64%!important;
-    max-width:265px!important;
-  }
-  .combat-v2 .enemy-affix-label{
-    max-width:72px!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:88%!important;
-    gap:6px!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 10
-   Combat motion pass: visible slash/skill trails + impact burst
-   while preserving the clean V2 actor stack.
-   ========================================================= */
-
-.combat-v2 .pcv2{
-  overflow:visible!important;
-}
-
-/* Hero strike trail: isolated visual layer, never a second weapon sprite. */
-.combat-v2 .pcv2-attack-trail{
-  position:absolute!important;
-  left:24%!important;
-  bottom:27%!important;
-  width:31%!important;
-  height:23%!important;
-  z-index:7!important;
-  pointer-events:none!important;
-  transform:rotate(-13deg)!important;
-  transform-origin:left center!important;
-}
-.combat-v2 .pcv2-attack-trail i,
-.combat-v2 .pcv2-attack-trail b{
-  position:absolute!important;
-  left:0!important;
-  top:50%!important;
-  display:block!important;
-  border-radius:999px!important;
-  transform-origin:left center!important;
-}
-.combat-v2 .pcv2-attack-trail i:nth-child(1){
-  width:100%!important;
-  height:7px!important;
-  background:linear-gradient(90deg,#fff0,#fff8 20%,#ffef9e 52%,#ff7a28 82%,#ff3b1600)!important;
-  box-shadow:0 0 8px #fff5,0 0 16px #ff9c3fbb!important;
-  transform:rotate(-5deg)!important;
-  animation:pcv2TrailA .25s ease-out forwards!important;
-}
-.combat-v2 .pcv2-attack-trail i:nth-child(2){
-  width:88%!important;
-  height:4px!important;
-  top:62%!important;
-  background:linear-gradient(90deg,#fff0,#fff 28%,#ffb34b 62%,#ff491a00)!important;
-  box-shadow:0 0 7px #fff7,0 0 13px #ff793ca0!important;
-  transform:rotate(8deg)!important;
-  animation:pcv2TrailB .27s ease-out forwards!important;
-}
-.combat-v2 .pcv2-attack-trail b{
-  left:75%!important;
-  top:46%!important;
-  width:33px!important;
-  height:33px!important;
-  border-radius:50%!important;
-  background:radial-gradient(circle,#fff 0 12%,#ffe57b 13% 30%,#ff6a2b99 31% 58%,transparent 60%)!important;
-  filter:blur(.3px)!important;
-  animation:pcv2TrailSpark .23s ease-out forwards!important;
-}
-.combat-v2 .pcv2-attack-trail.is-skill{
-  filter:hue-rotate(165deg) saturate(1.25) brightness(1.08)!important;
-}
-.combat-v2 .pcv2-attack-trail.is-skill i:nth-child(1){
-  height:9px!important;
-  box-shadow:0 0 11px #bff8ff,0 0 24px #52cfff!important;
-}
-.combat-v2 .pcv2-attack-trail.is-skill i:nth-child(2){
-  height:6px!important;
-  box-shadow:0 0 10px #d6fbff,0 0 19px #7a6cff!important;
-}
-
-@keyframes pcv2TrailA{
-  0%{opacity:0;transform:rotate(-12deg) scaleX(.25)}
-  35%{opacity:1}
-  100%{opacity:0;transform:rotate(4deg) scaleX(1.06)}
-}
-@keyframes pcv2TrailB{
-  0%{opacity:0;transform:rotate(1deg) scaleX(.2)}
-  40%{opacity:.95}
-  100%{opacity:0;transform:rotate(14deg) scaleX(1)}
-}
-@keyframes pcv2TrailSpark{
-  0%{opacity:0;transform:scale(.25)}
-  45%{opacity:1;transform:scale(1.2)}
-  100%{opacity:0;transform:scale(1.65)}
-}
-
-/* Enemy impact burst at contact point. */
-.combat-v2 .pcv2-impact-burst{
-  position:absolute!important;
-  right:25%!important;
-  top:48%!important;
-  width:66px!important;
-  height:66px!important;
-  z-index:8!important;
-  pointer-events:none!important;
-}
-.combat-v2 .pcv2-impact-burst>b{
-  position:absolute!important;
-  inset:18px!important;
-  border-radius:50%!important;
-  background:radial-gradient(circle,#fff 0 12%,#8feaff 16% 30%,#36a5ff99 31% 55%,transparent 58%)!important;
-  box-shadow:0 0 12px #c7f7ff,0 0 26px #43bfff!important;
-  animation:pcv2ImpactCore .28s ease-out forwards!important;
-}
-.combat-v2 .pcv2-impact-burst i{
-  position:absolute!important;
-  left:50%!important;
-  top:50%!important;
-  width:54px!important;
-  height:3px!important;
-  border-radius:999px!important;
-  background:linear-gradient(90deg,transparent,#dffcff,#56cfff,transparent)!important;
-  transform-origin:center!important;
-  animation:pcv2ImpactRay .3s ease-out forwards!important;
-}
-.combat-v2 .pcv2-impact-burst i:nth-child(1){transform:translate(-50%,-50%) rotate(18deg)!important}
-.combat-v2 .pcv2-impact-burst i:nth-child(2){transform:translate(-50%,-50%) rotate(76deg)!important}
-.combat-v2 .pcv2-impact-burst i:nth-child(3){transform:translate(-50%,-50%) rotate(136deg)!important}
-@keyframes pcv2ImpactCore{
-  0%{opacity:0;transform:scale(.2)}
-  38%{opacity:1;transform:scale(1.08)}
-  100%{opacity:0;transform:scale(1.55)}
-}
-@keyframes pcv2ImpactRay{
-  0%{opacity:0;filter:blur(2px)}
-  35%{opacity:1}
-  100%{opacity:0;filter:blur(0);width:72px}
-}
-
-/* Small reactive movement makes the static sprites feel less pasted in. */
-.combat-v2 .pcv2-hero-attack,
-.combat-v2 .pcv2-hero-skill{
-  animation:pcv2HeroLunge .28s cubic-bezier(.2,.82,.2,1)!important;
-}
-.combat-v2 .pcv2-enemy-hit{
-  animation:pcv2EnemyReact .24s ease-out!important;
-}
-@keyframes pcv2HeroLunge{
-  0%{transform:translate3d(0,0,0)}
-  45%{transform:translate3d(12px,-2px,0) scale(1.015)}
-  100%{transform:translate3d(0,0,0)}
-}
-@keyframes pcv2EnemyReact{
-  0%{transform:translate3d(0,0,0);filter:none}
-  38%{transform:translate3d(7px,-1px,0) scale(.985);filter:brightness(1.35)}
-  100%{transform:translate3d(0,0,0);filter:none}
-}
-
-@media(max-width:420px){
-  .combat-v2 .pcv2-attack-trail{
-    left:22%!important;
-    bottom:25%!important;
-    width:34%!important;
-    height:21%!important;
-  }
-  .combat-v2 .pcv2-impact-burst{
-    right:23%!important;
-    top:49%!important;
-    transform:scale(.86)!important;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-  .combat-v2 .pcv2-attack-trail,
-  .combat-v2 .pcv2-impact-burst,
-  .combat-v2 .pcv2-hero-attack,
-  .combat-v2 .pcv2-hero-skill,
-  .combat-v2 .pcv2-enemy-hit{
-    animation:none!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 11
-   Stacked damage numbers + tighter visual hierarchy.
-   ========================================================= */
-
-.combat-v2 .damage-stack{
-  position:absolute!important;
-  right:6%!important;
-  top:34%!important;
-  z-index:32!important;
-  display:grid!important;
-  justify-items:end!important;
-  gap:0!important;
-  width:max-content!important;
-  pointer-events:none!important;
-  transform:rotate(-6deg)!important;
-}
-.combat-v2 .damage-stack .damage{
-  position:static!important;
-  inset:auto!important;
-  transform:none!important;
-  margin:0!important;
-  width:auto!important;
-  animation:none!important;
-  line-height:.9!important;
-  opacity:1!important;
-}
-.combat-v2 .damage-stack .damage-main{
-  font-size:27px!important;
-  font-weight:1000!important;
-  color:#ffe132!important;
-  text-shadow:0 3px 0 #3a2100,0 5px 11px #000c!important;
-  animation:damageMainPop .48s ease-out forwards!important;
-}
-.combat-v2 .damage-stack.is-crit .damage-main{
-  color:#ff4a2f!important;
-  font-size:30px!important;
-  text-shadow:0 3px 0 #4a1000,0 5px 12px #000d!important;
-}
-.combat-v2 .damage-stack .damage-sub{
-  margin-top:1px!important;
-  margin-right:10px!important;
-  font-size:16px!important;
-  color:#f3f5fb!important;
-  text-shadow:0 2px 0 #1a1a1a,0 4px 8px #000c!important;
-  animation:damageSubPop .58s ease-out forwards!important;
-}
-.combat-v2 .damage-stack .damage-pet{
-  margin-top:1px!important;
-  margin-right:2px!important;
-  font-size:14px!important;
-  color:#79e7d2!important;
-  text-shadow:0 2px 0 #073c36,0 4px 8px #000c!important;
-  animation:damagePetPop .64s ease-out forwards!important;
-}
-@keyframes damageMainPop{
-  0%{opacity:0;transform:translateY(10px) scale(.72)}
-  28%{opacity:1;transform:translateY(-2px) scale(1.16)}
-  100%{opacity:0;transform:translateY(-22px) scale(.96)}
-}
-@keyframes damageSubPop{
-  0%{opacity:0;transform:translate(8px,4px) scale(.75)}
-  35%{opacity:.95;transform:translate(0,-2px) scale(1)}
-  100%{opacity:0;transform:translate(-3px,-19px) scale(.9)}
-}
-@keyframes damagePetPop{
-  0%{opacity:0;transform:translate(4px,5px) scale(.75)}
-  38%{opacity:.95;transform:translate(-1px,-1px) scale(1)}
-  100%{opacity:0;transform:translate(4px,-16px) scale(.88)}
-}
-
-/* Make the lower HUD feel less detached from the arena. */
-.combat-v2 .combat-bottom-hud{
-  bottom:5px!important;
-}
-.combat-v2 .combat-vitals{
-  gap:4px!important;
-}
-.combat-v2 .skill-orb-dock{
-  bottom:1px!important;
-}
-
-/* A small scene vignette helps the HUD read without covering the artwork. */
-.combat-v2 .world-scenery:before{
-  content:""!important;
-  display:block!important;
-  position:absolute!important;
-  inset:0!important;
-  z-index:2!important;
-  pointer-events:none!important;
-  background:
-    linear-gradient(180deg,#06111a22 0%,transparent 20%,transparent 72%,#07110d42 100%),
-    radial-gradient(circle at 50% 58%,transparent 58%,#07121a22 100%)!important;
-  opacity:1!important;
-}
-
-/* Reference-like alert dots on secondary nav areas can appear without occupying space. */
-.game-nav button:not(.on){
-  opacity:.94!important;
-}
-.game-nav button:not(.on):active{
-  transform:scale(.98)!important;
-}
-
-@media(max-width:420px){
-  .combat-v2 .damage-stack{
-    right:4%!important;
-    top:35%!important;
-  }
-  .combat-v2 .damage-stack .damage-main{
-    font-size:24px!important;
-  }
-  .combat-v2 .damage-stack.is-crit .damage-main{
-    font-size:27px!important;
-  }
-  .combat-v2 .damage-stack .damage-sub{font-size:14px!important}
-  .combat-v2 .damage-stack .damage-pet{font-size:12px!important}
-}
-
-@media(prefers-reduced-motion:reduce){
-  .combat-v2 .damage-stack .damage{
-    animation:none!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 12
-   Rank-aware actor composition + tighter contact FX.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* Base normal encounter: readable but not oversized. */
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    right:5%!important;
-    bottom:17.5%!important;
-    width:36%!important;
-    height:39%!important;
-  }
-
-  /* Strong/elite enemy gains visual presence without using boss scale. */
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    right:3%!important;
-    bottom:17%!important;
-    width:42%!important;
-    height:45%!important;
-  }
-
-  /* Boss remains the dominant silhouette from the master target. */
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    right:-1%!important;
-    bottom:16%!important;
-    width:50%!important;
-    height:53%!important;
-  }
-
-  /* Hero stays compact across all ranks so the enemy owns the scale hierarchy. */
-  .combat-v2 .pcv2-hero{
-    left:7%!important;
-    bottom:18.5%!important;
-    width:18.5%!important;
-    height:21.5%!important;
-  }
-
-  /* Attack pose moves toward the enemy only during the active strike frame. */
-  .combat-v2 .pcv2-hero-attack,
-  .combat-v2 .pcv2-hero-skill{
-    transform-origin:left bottom!important;
-  }
-  .combat-v2 .pcv2-hero-attack{
-    animation:masterHeroStrike12 .26s cubic-bezier(.18,.84,.18,1)!important;
-  }
-  .combat-v2 .pcv2-hero-skill{
-    animation:masterHeroSkill12 .34s cubic-bezier(.18,.84,.18,1)!important;
-  }
-  @keyframes masterHeroStrike12{
-    0%{transform:translate3d(0,0,0) rotate(0)}
-    42%{transform:translate3d(15px,-2px,0) rotate(-1deg) scale(1.025)}
-    100%{transform:translate3d(0,0,0) rotate(0)}
-  }
-  @keyframes masterHeroSkill12{
-    0%{transform:translate3d(0,0,0) scale(1)}
-    38%{transform:translate3d(18px,-4px,0) scale(1.04)}
-    100%{transform:translate3d(0,0,0) scale(1)}
-  }
-
-  /* Contact FX is anchored closer to the enemy chest/weapon collision point. */
-  .combat-v2 .pcv2-attack-trail{
-    left:23%!important;
-    bottom:25%!important;
-    width:34%!important;
-    height:25%!important;
-    transform:rotate(-12deg)!important;
-  }
-  .combat-v2 .pcv2-impact-burst{
-    right:24%!important;
-    top:49%!important;
-    width:58px!important;
-    height:58px!important;
-  }
-  .combat-v2 .pcv2-impact-burst>b{
-    inset:16px!important;
-  }
-  .combat-v2 .pcv2-impact-burst i{
-    width:48px!important;
-  }
-
-  /* Elite/boss impact gets a touch more energy. */
-  .combat-v2 .pcv2-encounter-elite .pcv2-impact-burst{
-    transform:scale(1.08)!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-impact-burst,
-  .combat-v2 .pcv2-encounter-boss .pcv2-impact-burst{
-    transform:scale(1.18)!important;
-  }
-
-  /* Enemy hit reaction respects rank; bosses recoil less. */
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy-hit{
-    animation:enemyReactNormal12 .23s ease-out!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy-hit{
-    animation:enemyReactElite12 .24s ease-out!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy-hit,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy-hit{
-    animation:enemyReactBoss12 .25s ease-out!important;
-  }
-  @keyframes enemyReactNormal12{
-    0%{transform:translate3d(0,0,0);filter:none}
-    40%{transform:translate3d(8px,-1px,0) scale(.98);filter:brightness(1.35)}
-    100%{transform:translate3d(0,0,0);filter:none}
-  }
-  @keyframes enemyReactElite12{
-    0%{transform:translate3d(0,0,0);filter:none}
-    40%{transform:translate3d(6px,-1px,0) scale(.986);filter:brightness(1.28)}
-    100%{transform:translate3d(0,0,0);filter:none}
-  }
-  @keyframes enemyReactBoss12{
-    0%{transform:translate3d(0,0,0);filter:none}
-    40%{transform:translate3d(3px,0,0) scale(.993);filter:brightness(1.2)}
-    100%{transform:translate3d(0,0,0);filter:none}
-  }
-
-  /* Slightly reduce HUD chrome to keep the stage cinematic. */
-  .combat-v2 .arena-enemy-hud{
-    backdrop-filter:blur(7px)!important;
-  }
-  .combat-v2 .combat-bottom-hud{
-    height:108px!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:74%!important;
-  }
-  .combat-v2 .skill-orb{
-    width:47px!important;
-    height:47px!important;
-    min-width:47px!important;
-  }
-  .combat-v2 .skill-orb .skill-art{
-    width:37px!important;
-    height:37px!important;
-  }
-}
-
-@media(max-width:420px){
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    width:38%!important;
-    height:37%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    width:44%!important;
-    height:43%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    width:52%!important;
-    height:50%!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:86%!important;
-    gap:6px!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 13
-   Video-driven correction: reduce empty sky, shrink enemy card,
-   crop avatar correctly and keep rewards in-flow.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* Fill the middle distance; the video showed too much empty cyan sky. */
-  .combat-v2 .prod-castle{
-    width:56%!important;
-    left:-10%!important;
-    top:12%!important;
-    bottom:auto!important;
-    opacity:.94!important;
-    transform:none!important;
-    filter:saturate(.98) brightness(1.04)!important;
-  }
-  .combat-v2 .prod-float{
-    width:58%!important;
-    right:-13%!important;
-    top:10%!important;
-    bottom:auto!important;
-    opacity:.88!important;
-    transform:none!important;
-    filter:saturate(.98) brightness(1.05)!important;
-  }
-  .combat-v2 .prod-ruin{
-    width:43%!important;
-    right:-7%!important;
-    top:30%!important;
-    bottom:auto!important;
-    opacity:.82!important;
-    transform:none!important;
-  }
-  .combat-v2 .prod-ruins{
-    width:82%!important;
-    left:9%!important;
-    bottom:28%!important;
-    opacity:.94!important;
-    transform:none!important;
-  }
-  .combat-v2 .prod-platform{
-    width:130%!important;
-    left:-15%!important;
-    bottom:6%!important;
-    object-fit:contain!important;
-  }
-  .combat-v2 .prod-foreground{
-    width:118%!important;
-    left:-9%!important;
-    bottom:-4%!important;
-    opacity:.46!important;
-  }
-
-  /* Enemy card in the video was still much taller than the target. */
-  .combat-v2 .arena-enemy-hud{
-    top:60px!important;
-    width:min(55%,252px)!important;
-    max-width:252px!important;
-    max-height:58px!important;
-    padding:5px 8px!important;
-    border-radius:12px!important;
-  }
-  .combat-v2 .enemy-hud-title{
-    min-height:18px!important;
-    grid-template-columns:20px minmax(0,1fr) auto!important;
-    gap:5px!important;
-  }
-  .combat-v2 .enemy-rank{
-    width:20px!important;height:20px!important;min-width:20px!important;
-    font-size:10px!important;
-  }
-  .combat-v2 .enemy-hud-title b{font-size:11px!important}
-  .combat-v2 .enemy-level{font-size:6.5px!important}
-  .combat-v2 .enemy-hp-track{
-    height:9px!important;
-    margin-top:2px!important;
-  }
-  .combat-v2 .enemy-hp-track>i{height:9px!important}
-  .combat-v2 .enemy-status-row{
-    margin-top:2px!important;
-    min-height:14px!important;
-    height:14px!important;
-  }
-  .combat-v2 .enemy-status-icons{
-    height:14px!important;
-    min-height:14px!important;
-  }
-  .combat-v2 .enemy-status-icons em{
-    width:15px!important;height:13px!important;
-    min-width:15px!important;min-height:13px!important;
-    font-size:6px!important;
-  }
-  .combat-v2 .enemy-affix-label{
-    font-size:6px!important;
-    max-width:72px!important;
-  }
-
-  /* Correct the global avatar: show face/upper torso, not a tiny full-body figure. */
   .game-topbar .master-avatar .production-hero{
+    position:absolute!important;
     inset:0!important;
     width:100%!important;
     height:100%!important;
     object-fit:cover!important;
     object-position:50% 18%!important;
-    transform:scale(1.8)!important;
+    transform:scale(1.72)!important;
     transform-origin:50% 20%!important;
+    filter:none!important;
   }
-
-  /* Video showed characters still too large compared with the master. */
-  .combat-v2 .pcv2-hero{
-    left:7%!important;
-    bottom:20%!important;
-    width:16.5%!important;
-    height:19%!important;
-  }
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    right:5%!important;
-    bottom:18.5%!important;
-    width:32%!important;
-    height:35%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    right:3%!important;
-    bottom:18%!important;
-    width:38%!important;
-    height:41%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    right:0!important;
-    bottom:17%!important;
-    width:46%!important;
-    height:49%!important;
-  }
-
-  /* Skills in the mockup are present but do not eat the lower third. */
-  .combat-v2 .combat-bottom-hud{
-    height:100px!important;
-    bottom:5px!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:70%!important;
-    gap:10px!important;
-  }
-  .combat-v2 .skill-orb{
-    width:44px!important;
-    height:44px!important;
-    min-width:44px!important;
-  }
-  .combat-v2 .skill-orb .skill-art{
-    width:35px!important;
-    height:35px!important;
-  }
-  .combat-v2 .combat-vitals{
-    grid-template-columns:1fr 1fr 1fr 40px!important;
-  }
-  .combat-v2 .vital{height:27px!important}
-  .combat-v2 .combat-auto-orb{
-    width:40px!important;height:40px!important;min-width:40px!important;
-  }
-
-  /* Absorb/mutation feedback should stay in the arena instead of becoming a modal. */
-  .combat-v2-status{
-    position:absolute!important;
-    left:50%!important;
-    right:auto!important;
-    bottom:112px!important;
-    width:min(62%,280px)!important;
-    transform:translateX(-50%)!important;
-    z-index:70!important;
-    pointer-events:none!important;
-  }
-  .combat-v2-status .absorb{
-    min-height:0!important;
-    height:auto!important;
-    max-height:none!important;
-    margin:0!important;
-    padding:7px 10px!important;
+  .game-topbar .lvl{
+    position:relative!important;
+    min-width:0!important;
+    height:32px!important;
     display:grid!important;
     grid-template-columns:1fr auto!important;
-    grid-template-rows:auto 5px auto!important;
+    grid-template-rows:16px 7px!important;
     align-items:center!important;
-    gap:3px 8px!important;
-    border-radius:12px!important;
-    background:linear-gradient(180deg,#10162aef,#090f1def)!important;
-    border:1px solid #9d65ff3a!important;
-    box-shadow:0 7px 22px #0008,0 0 18px #783cff22!important;
-    backdrop-filter:blur(7px)!important;
-  }
-  .combat-v2-status .absorb>b{
-    font-size:8px!important;
-    letter-spacing:.08em!important;
-  }
-  .combat-v2-status .absorb>strong{
-    font-size:8px!important;
-    display:flex!important;
-    align-items:center!important;
-    gap:3px!important;
-  }
-  .combat-v2-status .absorb>strong .resource-glyph{
-    width:14px!important;height:14px!important;
-  }
-  .combat-v2-status .absorb>i{
-    grid-column:1/3!important;
-    height:5px!important;
+    column-gap:4px!important;
     margin:0!important;
   }
-  .combat-v2-status .absorb>small{
-    grid-column:1/3!important;
-    font-size:6px!important;
-    opacity:.74!important;
-    text-align:center!important;
-  }
-
-  /* Make mutation a compact event card too; no full-screen takeover. */
-  .combat-v2-status .mutation{
-    pointer-events:auto!important;
-    max-width:240px!important;
-    min-height:0!important;
-    max-height:none!important;
-    margin:0 auto!important;
-    padding:10px 12px!important;
-    border-radius:14px!important;
-    background:linear-gradient(180deg,#16102bed,#0b0d1aef)!important;
-    border:1px solid #9a55ff44!important;
-    box-shadow:0 9px 26px #0009,0 0 20px #8e3cff2b!important;
-  }
-  .combat-v2-status .mutation .mutation-burst{
-    display:none!important;
-  }
-  .combat-v2-status .mutation small{font-size:6px!important}
-  .combat-v2-status .mutation>b{font-size:14px!important}
-  .combat-v2-status .mutation p{
-    margin:4px 0!important;
-    font-size:7px!important;
-  }
-  .combat-v2-status .mutation button{
-    min-height:28px!important;
-    padding:5px 12px!important;
-    font-size:7px!important;
-  }
-}
-
-@media(max-width:420px){
-  .combat-v2 .arena-enemy-hud{
-    width:60%!important;
-    max-width:244px!important;
-  }
-  .combat-v2 .pcv2-hero{
-    width:17.5%!important;
-    height:18%!important;
-  }
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    width:34%!important;
-    height:33%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    width:40%!important;
-    height:39%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    width:48%!important;
-    height:46%!important;
-  }
-  .combat-v2 .skill-orb-dock{
-    width:82%!important;
-    gap:5px!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 14
-   Device-capture correction:
-   separate route/enemy HUD, clamp sprite artwork to actor boxes,
-   and turn mutation into a compact in-flow toast.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* Route and enemy HUD need a real gap; current capture shows overlap. */
-  .viewport>.master-stage-head{
-    top:8px!important;
-    width:min(70%,330px)!important;
-    height:42px!important;
-    min-height:42px!important;
-    max-height:42px!important;
-  }
-  .combat-v2 .arena-enemy-hud{
-    top:58px!important;
-    width:min(52%,238px)!important;
-    max-width:238px!important;
-    max-height:54px!important;
-    padding:5px 7px!important;
-  }
-
-  /* Hard-clamp production sprites to their actor containers.
-     Older production-art rules were allowing the PNGs to visually overgrow. */
-  .combat-v2 .pcv2-hero{
-    left:7%!important;
-    bottom:20%!important;
-    width:15%!important;
-    height:18%!important;
-    overflow:visible!important;
-  }
-  .combat-v2 .pcv2-hero>.production-hero{
-    position:absolute!important;
-    inset:0!important;
-    left:0!important;right:0!important;top:0!important;bottom:0!important;
-    width:100%!important;
-    height:100%!important;
-    max-width:100%!important;
-    max-height:100%!important;
-    object-fit:contain!important;
-    object-position:center bottom!important;
-    transform:none!important;
-    filter:drop-shadow(0 8px 7px #08202c66)!important;
-  }
-
-  .combat-v2 .pcv2-enemy{
-    overflow:visible!important;
-  }
-  .combat-v2 .pcv2-enemy>.production-enemy{
-    position:absolute!important;
-    inset:0!important;
-    left:0!important;right:0!important;top:0!important;bottom:0!important;
-    width:100%!important;
-    height:100%!important;
-    max-width:100%!important;
-    max-height:100%!important;
-    object-fit:contain!important;
-    object-position:center bottom!important;
-    transform:none!important;
-    filter:drop-shadow(0 10px 9px #08202c66)!important;
-  }
-
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    width:30%!important;
-    height:33%!important;
-    right:6%!important;
-    bottom:18.5%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    width:36%!important;
-    height:39%!important;
-    right:4%!important;
-    bottom:18%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    width:43%!important;
-    height:46%!important;
-    right:0!important;
-    bottom:17.5%!important;
-  }
-
-  /* Pull middle scenery down a touch so actors sit on a readable stage. */
-  .combat-v2 .prod-castle{
-    width:50%!important;
-    left:-7%!important;
-    top:14%!important;
-  }
-  .combat-v2 .prod-float{
-    width:52%!important;
-    right:-10%!important;
-    top:12%!important;
-  }
-  .combat-v2 .prod-ruin{
-    width:38%!important;
-    right:-4%!important;
-    top:32%!important;
-  }
-  .combat-v2 .prod-ruins{
-    width:76%!important;
-    left:12%!important;
-    bottom:29%!important;
-  }
-
-  /* Mutation should read like the small master event card, not a modal. */
-  .combat-v2-status{
-    bottom:114px!important;
-    width:auto!important;
-    max-width:none!important;
-    pointer-events:none!important;
-  }
-  .combat-v2-status .mutation{
-    width:156px!important;
-    max-width:156px!important;
-    min-width:0!important;
-    min-height:0!important;
-    height:auto!important;
-    margin:0 auto!important;
-    padding:8px 10px!important;
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    gap:2px!important;
-    text-align:center!important;
-    border-radius:13px!important;
-    pointer-events:auto!important;
-    background:linear-gradient(180deg,#171029f2,#0b0d19f2)!important;
-    border:1px solid #a75dff44!important;
-    box-shadow:0 7px 20px #0008,0 0 18px #8b42ff22!important;
-  }
-  .combat-v2-status .mutation small{
-    display:none!important;
-  }
-  .combat-v2-status .mutation>b{
-    font-size:12px!important;
-    line-height:1.05!important;
-    color:#d98cff!important;
-  }
-  .combat-v2-status .mutation p{
-    margin:1px 0 2px!important;
-    font-size:6.5px!important;
-    line-height:1.2!important;
-    color:#dce3ed!important;
-  }
-  .combat-v2-status .mutation p strong{
-    color:#ffcf61!important;
-  }
-  .combat-v2-status .mutation button{
-    justify-self:center!important;
-    min-width:64px!important;
-    min-height:23px!important;
-    padding:4px 9px!important;
-    border-radius:9px!important;
-    font-size:6.5px!important;
-  }
-
-  /* Ensure the main combat controls remain visible under transient cards. */
-  .combat-v2 .combat-bottom-hud{
-    z-index:60!important;
-  }
-  .combat-v2-status{
-    z-index:58!important;
-  }
-}
-
-@media(max-width:420px){
-  .combat-v2 .arena-enemy-hud{
-    top:56px!important;
-    width:58%!important;
-    max-width:226px!important;
-  }
-  .combat-v2 .pcv2-hero{
-    width:16%!important;
-    height:17%!important;
-  }
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    width:32%!important;
-    height:31%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    width:38%!important;
-    height:37%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    width:45%!important;
-    height:44%!important;
-  }
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 15
-   User-reported fixes:
-   dismissible level-up, smaller hero, larger enemies, stronger damage.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* Level-up must never block progression. */
-  .combat-v2 .levelup{
-    position:absolute!important;
-    left:50%!important;
-    right:auto!important;
-    bottom:118px!important;
-    top:auto!important;
-    transform:translateX(-50%)!important;
-    width:148px!important;
-    min-width:0!important;
-    max-width:148px!important;
-    height:auto!important;
-    min-height:0!important;
-    padding:8px 10px!important;
-    margin:0!important;
-    border:1px solid #f7c45b55!important;
-    border-radius:14px!important;
-    background:linear-gradient(180deg,#201809f2,#100d08f2)!important;
-    color:#fff!important;
-    box-shadow:0 8px 22px #0009,0 0 22px #ffc43a26!important;
-    z-index:80!important;
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    place-items:center!important;
-    gap:2px!important;
-    pointer-events:auto!important;
-    cursor:pointer!important;
-    overflow:hidden!important;
-  }
-  .combat-v2 .levelup .upgrade-burst,
-  .combat-v2 .levelup>div{
-    display:none!important;
-  }
-  .combat-v2 .levelup>span{
-    font-size:11px!important;
-    line-height:1.05!important;
-    font-weight:950!important;
-    color:#ffd86a!important;
-  }
-  .combat-v2 .levelup>span b{
-    color:#fff!important;
-    font-size:13px!important;
-  }
-  .combat-v2 .levelup>small{
-    display:block!important;
-    font-size:5.5px!important;
-    opacity:.62!important;
-    color:#fff!important;
-  }
-
-  /* Hero still reads too large on device capture: reduce decisively. */
-  .combat-v2 .pcv2-hero{
-    left:7%!important;
-    bottom:20%!important;
-    width:13.5%!important;
-    height:16.5%!important;
-  }
-  .combat-v2 .pcv2-hero>.production-hero{
-    width:100%!important;
-    height:100%!important;
-    max-width:100%!important;
-    max-height:100%!important;
-    object-fit:contain!important;
-    object-position:center bottom!important;
-    transform:none!important;
-  }
-
-  /* Enemies need stronger presence than in the latest capture. */
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    right:4%!important;
-    bottom:18%!important;
-    width:35%!important;
-    height:38%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    right:2%!important;
-    bottom:17.5%!important;
-    width:42%!important;
-    height:45%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    right:-1%!important;
-    bottom:17%!important;
-    width:50%!important;
-    height:53%!important;
-  }
-
-  /* Damage numbers: bigger, brighter, closer to the mockup. */
-  .combat-v2 .damage-stack{
-    right:5%!important;
-    top:33%!important;
-  }
-  .combat-v2 .damage-stack .damage-main{
-    font-size:32px!important;
-    font-weight:1000!important;
-    letter-spacing:-.05em!important;
-    color:#ffe334!important;
-    -webkit-text-stroke:1px #2b1900!important;
-    text-shadow:
-      0 3px 0 #3b2200,
-      0 5px 12px #000d,
-      0 0 10px #ffbd31aa!important;
-  }
-  .combat-v2 .damage-stack.is-crit .damage-main{
-    font-size:37px!important;
-    color:#ff4a2f!important;
-    -webkit-text-stroke:1px #4a1000!important;
-    text-shadow:
-      0 3px 0 #4a1000,
-      0 6px 14px #000e,
-      0 0 13px #ff432faa!important;
-  }
-  .combat-v2 .damage-stack .damage-sub{
-    font-size:19px!important;
-    margin-right:12px!important;
-    color:#f7f8ff!important;
-    -webkit-text-stroke:.5px #151515!important;
-  }
-  .combat-v2 .damage-stack .damage-pet{
-    font-size:16px!important;
-    margin-right:4px!important;
-    color:#84f2dc!important;
-  }
-
-  /* Keep hit FX aligned to the now larger enemy silhouette. */
-  .combat-v2 .pcv2-impact-burst{
-    right:21%!important;
-    top:48%!important;
-    transform:scale(1.08)!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-impact-burst{
-    transform:scale(1.16)!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-impact-burst,
-  .combat-v2 .pcv2-encounter-boss .pcv2-impact-burst{
-    transform:scale(1.24)!important;
-  }
-}
-
-@media(max-width:420px){
-  .combat-v2 .pcv2-hero{
-    width:14%!important;
-    height:15.5%!important;
-  }
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    width:37%!important;
-    height:36%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    width:44%!important;
-    height:43%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    width:52%!important;
-    height:50%!important;
-  }
-  .combat-v2 .damage-stack .damage-main{
-    font-size:29px!important;
-  }
-  .combat-v2 .damage-stack.is-crit .damage-main{
-    font-size:34px!important;
-  }
-  .combat-v2 .damage-stack .damage-sub{font-size:17px!important}
-  .combat-v2 .damage-stack .damage-pet{font-size:14px!important}
-}
-
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 16
-   Latest device/video correction:
-   route order, enemy-HUD separation, compact loot flow,
-   stronger damage readability, and final actor hierarchy.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* Lock route content order exactly like the master:
-     icon -> title -> progress -> boss -> chevron. */
-  .viewport>.master-stage-head{
-    top:8px!important;
-    width:min(73%,340px)!important;
-    grid-template-columns:30px auto minmax(78px,1fr) 18px!important;
-    column-gap:7px!important;
-  }
-  .viewport>.master-stage-head>.world-emblem{
+  .game-topbar .lvl>b{
     grid-column:1!important;
     grid-row:1!important;
+    font-size:12px!important;
+    line-height:1!important;
+    font-weight:950!important;
+    color:#fff!important;
   }
-  .viewport>.master-stage-head>b{
+  .game-topbar .lvl>small{
+    position:static!important;
     grid-column:2!important;
     grid-row:1!important;
-    justify-self:start!important;
-  }
-  .viewport>.master-stage-head>.nodes{
-    grid-column:3!important;
-    grid-row:1!important;
-    justify-self:stretch!important;
-    justify-content:flex-end!important;
-    order:0!important;
-  }
-  .viewport>.master-stage-head>.stage-chevron{
-    grid-column:4!important;
-    grid-row:1!important;
-  }
-
-  /* Give enemy HUD a real visual gap below the route.
-     It must never disappear behind the route pill. */
-  .combat-v2 .arena-enemy-hud{
-    top:76px!important;
-    width:min(55%,250px)!important;
-    max-width:250px!important;
-    max-height:none!important;
-    padding:5px 8px 6px!important;
-    z-index:48!important;
-  }
-  .combat-v2 .enemy-hud-title{
-    display:grid!important;
-    grid-template-columns:21px minmax(0,1fr) auto!important;
-    min-height:20px!important;
-  }
-  .combat-v2 .enemy-hud-title b{
-    display:block!important;
-    visibility:visible!important;
-    opacity:1!important;
-    font-size:11.5px!important;
+    font-size:6.5px!important;
     line-height:1!important;
+    color:#dcecff!important;
   }
-  .combat-v2 .enemy-hp-track{
-    margin-top:3px!important;
-  }
-  .combat-v2 .enemy-status-row{
-    margin-top:3px!important;
-  }
-
-  /* Hero remains a secondary silhouette; enemy owns the scene. */
-  .combat-v2 .pcv2-hero{
-    left:6%!important;
-    bottom:20.5%!important;
-    width:12.5%!important;
-    height:15.5%!important;
-  }
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    right:4%!important;
-    bottom:18.5%!important;
-    width:38%!important;
-    height:41%!important;
-  }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    right:1%!important;
-    bottom:18%!important;
-    width:45%!important;
-    height:48%!important;
-  }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    right:-2%!important;
-    bottom:17%!important;
-    width:53%!important;
-    height:56%!important;
-  }
-
-  /* Stronger master-style damage column. */
-  .combat-v2 .damage-stack{
-    right:4%!important;
-    top:34%!important;
-    gap:2px!important;
-  }
-  .combat-v2 .damage-stack .damage-main{
-    font-size:35px!important;
-    line-height:.88!important;
-    -webkit-text-stroke:1.2px #251300!important;
-    text-shadow:
-      0 3px 0 #3d2100,
-      0 6px 13px #000e,
-      0 0 13px #ffbf2fbb!important;
-  }
-  .combat-v2 .damage-stack.is-crit .damage-main{
-    font-size:41px!important;
-    -webkit-text-stroke:1.2px #491000!important;
-    text-shadow:
-      0 3px 0 #501100,
-      0 7px 15px #000e,
-      0 0 15px #ff3c2fbb!important;
-  }
-  .combat-v2 .damage-stack .damage-sub{
-    font-size:21px!important;
-    margin-right:13px!important;
-  }
-  .combat-v2 .damage-stack .damage-pet{
-    font-size:18px!important;
-  }
-
-  /* Reward flow: the mockup keeps drops inside the battle instead of
-     replacing a large part of the arena with a modal. */
-  .combat-v2 .arena-reward,
-  .combat-v2 .arena-reward.reward-compact,
-  .combat-v2 .arena-reward.reward-major{
-    position:absolute!important;
-    inset:auto!important;
-    left:50%!important;
-    right:auto!important;
-    top:auto!important;
-    bottom:112px!important;
-    transform:translateX(-50%)!important;
-    width:min(64%,270px)!important;
-    min-width:0!important;
-    max-width:270px!important;
-    min-height:0!important;
-    height:auto!important;
-    max-height:92px!important;
-    padding:7px 8px!important;
-    display:grid!important;
-    grid-template-columns:36px minmax(0,1fr) 58px!important;
-    grid-template-rows:auto auto!important;
-    grid-template-areas:
-      "drop title collect"
-      "drop loot collect"!important;
-    gap:3px 7px!important;
-    align-items:center!important;
-    justify-items:stretch!important;
-    border-radius:13px!important;
-    background:linear-gradient(180deg,#0c1724ec,#07101aec)!important;
-    border:1px solid #ffffff24!important;
-    box-shadow:0 8px 24px #0008!important;
-    backdrop-filter:blur(8px)!important;
-    overflow:visible!important;
-    z-index:66!important;
-  }
-  .combat-v2 .arena-reward>small{
-    grid-area:title!important;
-    align-self:end!important;
-    margin:0!important;
-    font-size:6px!important;
-    line-height:1!important;
-    letter-spacing:.12em!important;
-    color:#e9d07b!important;
-  }
-  .combat-v2 .arena-reward-gains{
-    display:none!important;
-  }
-  .combat-v2 .arena-chest{
-    display:none!important;
-  }
-  .combat-v2 .arena-loot-drop{
-    grid-area:drop!important;
-    width:36px!important;
-    height:48px!important;
-    min-width:36px!important;
-    min-height:48px!important;
-    margin:0!important;
-    display:grid!important;
-    place-items:center!important;
-    overflow:visible!important;
-  }
-  .combat-v2 .arena-loot-drop .loot-drop-art{
-    width:54px!important;
-    height:54px!important;
-    transform:none!important;
-  }
-  .combat-v2 .arena-loot{
-    grid-area:loot!important;
-    min-width:0!important;
-    max-width:none!important;
+  .game-topbar .lvl>i{
+    grid-column:1/3!important;
+    grid-row:2!important;
     width:100%!important;
-    min-height:28px!important;
-    height:28px!important;
-    padding:2px 4px!important;
+    height:6px!important;
     margin:0!important;
-    gap:4px!important;
-    border-radius:8px!important;
-    background:#0b1420c9!important;
-    border:1px solid #ffffff14!important;
     overflow:hidden!important;
+    border-radius:99px!important;
+    background:#17314a!important;
   }
-  .combat-v2 .arena-loot>.loot-art,
-  .combat-v2 .arena-loot>svg{
-    width:24px!important;
-    height:24px!important;
-    flex:0 0 24px!important;
+  .game-topbar .lvl>i span{
+    display:block!important;
+    height:100%!important;
+    border-radius:inherit!important;
+    background:linear-gradient(90deg,#32b6ff,#357dff)!important;
+    box-shadow:0 0 10px #39a7ff88!important;
   }
-  .combat-v2 .arena-loot span{
+  .resource-rail{
     min-width:0!important;
-    font-size:7px!important;
-    line-height:1!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:4px!important;
+  }
+  .resource-rail>strong{
+    min-width:0!important;
+    height:32px!important;
+    display:grid!important;
+    grid-template-columns:21px minmax(0,1fr) 14px!important;
+    align-items:center!important;
+    gap:2px!important;
+    padding:0 3px!important;
+    overflow:hidden!important;
+    border:1px solid #83c7ff27!important;
+    border-radius:13px!important;
+    background:linear-gradient(180deg,#0c1d30e8,#081522eb)!important;
+    color:#f7fbff!important;
+    box-shadow:inset 0 1px #ffffff0b,0 4px 10px #0003!important;
+  }
+  .resource-rail>strong .resource-frame{display:none!important}
+  .resource-rail>strong .resource-glyph{width:20px!important;height:20px!important}
+  .resource-rail>strong>span{
+    min-width:0!important;
     overflow:hidden!important;
     text-overflow:ellipsis!important;
     white-space:nowrap!important;
-  }
-  .combat-v2 .arena-loot span small{
-    display:block!important;
-    font-size:5.5px!important;
-    margin-top:2px!important;
-  }
-  .combat-v2 .arena-collect{
-    grid-area:collect!important;
-    align-self:stretch!important;
-    width:58px!important;
-    min-width:58px!important;
-    min-height:0!important;
-    height:auto!important;
-    margin:0!important;
-    padding:4px!important;
-    border-radius:9px!important;
-    font-size:6.5px!important;
-    line-height:1!important;
-    background:linear-gradient(180deg,#8b4ddd,#6f35b4)!important;
-    color:#fff!important;
-    box-shadow:0 4px 12px #6c38aa44!important;
-  }
-  .combat-v2 .arena-loot-detail{
-    position:absolute!important;
-    left:8px!important;
-    right:8px!important;
-    bottom:100%!important;
-    margin:0 0 4px!important;
-    max-width:none!important;
-    padding:5px 7px!important;
-    font-size:6px!important;
-    border-radius:8px!important;
-  }
-
-  /* Level-up should be celebratory but tiny and instantly dismissible. */
-  .combat-v2 .levelup{
-    bottom:113px!important;
-    width:128px!important;
-    max-width:128px!important;
-    padding:6px 8px!important;
-  }
-  .combat-v2 .levelup>span{
     font-size:9px!important;
   }
-  .combat-v2 .levelup>span b{
-    font-size:11px!important;
+  .resource-rail>strong>em{
+    width:14px!important;
+    height:14px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:50%!important;
+    background:#213651!important;
+    color:#b8d8ff!important;
+    font-style:normal!important;
+    font-size:10px!important;
   }
-  .combat-v2 .levelup>small{
-    font-size:5px!important;
+  .topbar-actions{display:flex!important;gap:4px!important}
+  .topbar-icon{
+    position:relative!important;
+    width:31px!important;
+    height:32px!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+    border:1px solid #72baff2b!important;
+    border-radius:9px!important;
+    background:#0a1726!important;
+    color:#e9f4ff!important;
+    font-size:16px!important;
   }
-}
+  .topbar-icon>i{
+    position:absolute!important;
+    right:3px!important;
+    top:3px!important;
+    width:7px!important;
+    height:7px!important;
+    border-radius:50%!important;
+    background:#ff314d!important;
+    box-shadow:0 0 8px #ff314daa!important;
+  }
 
-@media(max-width:420px){
+  /* ---------- viewport / route ---------- */
+  .viewport:has(>.master-stage-head){
+    position:relative!important;
+    display:block!important;
+    overflow:hidden!important;
+    padding:0!important;
+    background:#8fd8ef!important;
+  }
   .viewport>.master-stage-head{
-    width:78%!important;
+    position:absolute!important;
+    top:8px!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:translateX(-50%)!important;
+    z-index:60!important;
+    width:min(73%,340px)!important;
+    height:43px!important;
+    min-height:43px!important;
+    max-height:43px!important;
+    margin:0!important;
+    padding:4px 9px!important;
+    box-sizing:border-box!important;
+    display:grid!important;
+    grid-template-columns:29px auto minmax(74px,1fr) 16px!important;
+    align-items:center!important;
+    gap:7px!important;
+    overflow:hidden!important;
+    border:1px solid #8ecfff31!important;
+    border-radius:22px!important;
+    background:linear-gradient(180deg,#0a1929ea,#071420ed)!important;
+    box-shadow:0 7px 20px #00101e66,inset 0 1px #ffffff0b!important;
+    backdrop-filter:blur(8px)!important;
   }
-  .combat-v2 .arena-enemy-hud{
-    top:72px!important;
-    width:59%!important;
-    max-width:238px!important;
+  .master-stage-head .world-emblem{
+    grid-column:1!important;
+    width:28px!important;
+    height:28px!important;
+    margin:0!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:10px!important;
+    background:#17314c!important;
+    font-size:15px!important;
   }
-  .combat-v2 .pcv2-hero{
-    width:13%!important;
-    height:14.5%!important;
+  .master-stage-head>b{
+    grid-column:2!important;
+    justify-self:start!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:11.5px!important;
+    line-height:1!important;
+    font-weight:950!important;
+    color:#f5f8fd!important;
   }
-  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
-    width:40%!important;
-    height:39%!important;
+  .master-stage-head .nodes{
+    position:static!important;
+    grid-column:3!important;
+    min-width:74px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:4px!important;
+    margin:0!important;
+    transform:none!important;
   }
-  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
-    width:47%!important;
-    height:46%!important;
+  .master-stage-head .nodes i{
+    flex:0 0 6px!important;
+    width:6px!important;
+    height:6px!important;
+    border:0!important;
+    border-radius:50%!important;
+    background:#53657a!important;
   }
-  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
-  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
-    width:55%!important;
-    height:53%!important;
+  .master-stage-head .nodes i.done{background:#5caeff!important;box-shadow:0 0 6px #58b6ff55!important}
+  .master-stage-head .nodes i.now{background:#7fe1ff!important;box-shadow:0 0 10px #59c9ff!important}
+  .master-stage-head .nodes strong{margin-left:2px!important;font-size:11px!important}
+  .master-stage-head .stage-chevron{
+    grid-column:4!important;
+    font-size:20px!important;
+    line-height:1!important;
+    color:#d8e9f6!important;
   }
-  .combat-v2 .arena-reward,
-  .combat-v2 .arena-reward.reward-compact,
-  .combat-v2 .arena-reward.reward-major{
-    width:72%!important;
-    max-width:258px!important;
-  }
-  .combat-v2 .damage-stack .damage-main{font-size:32px!important}
-  .combat-v2 .damage-stack.is-crit .damage-main{font-size:38px!important}
-  .combat-v2 .damage-stack .damage-sub{font-size:19px!important}
-}
 
-
-/* =========================================================
-   MASTER MOCKUP CONVERGENCE 17
-   Video-driven correction:
-   remove tap/impact flash completely in Wolkgarten and override
-   older high-specificity actor scaling that kept hero oversized.
-   ========================================================= */
-
-@media(max-width:600px){
-  /* No blue/white whole-screen flash on tap. Impact is local only. */
-  .world-theme-1.combat-v2 .screen-impact{
-    display:none!important;
-    visibility:hidden!important;
-    opacity:0!important;
-    background:none!important;
-    animation:none!important;
+  /* ---------- arena isolation ---------- */
+  .viewport>.master-stage-head + .combat-v2{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:100%!important;
+    max-height:none!important;
+    margin:0!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+    background:linear-gradient(180deg,#99dff3 0%,#c4edf1 49%,#b8d7bc 100%)!important;
+    touch-action:manipulation!important;
+    user-select:none!important;
+    -webkit-user-select:none!important;
+    -webkit-tap-highlight-color:transparent!important;
+    isolation:isolate!important;
   }
   .world-theme-1.combat-v2,
   .world-theme-1.combat-v2 *,
   .world-theme-1.combat-v2 button{
     -webkit-tap-highlight-color:transparent!important;
   }
-  .world-theme-1.combat-v2{
-    user-select:none!important;
-    -webkit-user-select:none!important;
+  .world-theme-1.combat-v2:before,
+  .world-theme-1.combat-v2:after,
+  .world-theme-1.combat-v2 .arena-hud:before,
+  .world-theme-1.combat-v2 .arena-hud:after,
+  .world-theme-1.combat-v2 .production-world:before,
+  .world-theme-1.combat-v2 .production-world:after{
+    content:none!important;
+    display:none!important;
+  }
+  .world-theme-1.combat-v2 .combat-compact-progress,
+  .world-theme-1.combat-v2 .combat-stage-progress,
+  .world-theme-1.combat-v2 .combat-objective,
+  .world-theme-1.combat-v2 .arena-player-hud,
+  .world-theme-1.combat-v2 .arena-meters,
+  .world-theme-1.combat-v2 .arena-skills,
+  .world-theme-1.combat-v2 .combat-controls,
+  .world-theme-1.combat-v2 .combat-growth-toggle,
+  .world-theme-1.combat-v2 .enemybar,
+  .world-theme-1.combat-v2 .playerline,
+  .world-theme-1.combat-v2 .action,
+  .world-theme-1.combat-v2 .enemy-intent,
+  .world-theme-1.combat-v2 .enemy-archetype,
+  .world-theme-1.combat-v2 .encounter-badge,
+  .world-theme-1.combat-v2 .screen-impact{
+    display:none!important;
   }
 
-  /* These selectors intentionally beat legacy world-theme-1 rules. */
-  .world-theme-1.combat-v2 .pcv2 .pcv2-hero{
-    left:6%!important;
-    bottom:20%!important;
-    width:13%!important;
-    height:15.5%!important;
-    transform:none!important;
-  }
-  .world-theme-1.combat-v2 .pcv2 .pcv2-hero>.production-hero{
+  /* ---------- scenery ---------- */
+  .world-theme-1.combat-v2 .world-scenery,
+  .world-theme-1.combat-v2 .production-world{
     position:absolute!important;
     inset:0!important;
     width:100%!important;
     height:100%!important;
-    max-width:100%!important;
-    max-height:100%!important;
-    object-fit:contain!important;
-    object-position:center bottom!important;
+    overflow:hidden!important;
+  }
+  .world-theme-1.combat-v2 .world-scenery{
+    z-index:1!important;
+    filter:saturate(1.12) brightness(1.08) contrast(1.02)!important;
+  }
+  .world-theme-1.combat-v2 .world-scenery:before{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    inset:0!important;
+    z-index:2!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,#06111a2a 0%,transparent 18%,transparent 73%,#07110d45 100%),
+      radial-gradient(circle at 50% 55%,transparent 58%,#07121a20 100%)!important;
+  }
+  .world-theme-1.combat-v2 .prod-sky-glow{display:none!important}
+  .world-theme-1.combat-v2 .prod-castle{
+    width:54%!important;
+    left:-10%!important;
+    top:11%!important;
+    bottom:auto!important;
+    opacity:.94!important;
     transform:none!important;
   }
-
-  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-normal .pcv2-enemy{
-    right:3%!important;
-    left:auto!important;
-    bottom:18%!important;
-    width:40%!important;
-    height:43%!important;
-    transform:none!important;
-  }
-  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-elite .pcv2-enemy{
-    right:1%!important;
-    left:auto!important;
-    bottom:17.5%!important;
-    width:47%!important;
-    height:50%!important;
-    transform:none!important;
-  }
-  .world-theme-1.combat-v2 .pcv2.pcv2-tier-boss .pcv2-enemy,
-  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-boss .pcv2-enemy{
-    right:-2%!important;
-    left:auto!important;
-    bottom:16.5%!important;
+  .world-theme-1.combat-v2 .prod-float{
     width:55%!important;
-    height:58%!important;
+    right:-12%!important;
+    top:9%!important;
+    bottom:auto!important;
+    opacity:.90!important;
     transform:none!important;
   }
-  .world-theme-1.combat-v2 .pcv2 .pcv2-enemy>.production-enemy{
+  .world-theme-1.combat-v2 .prod-ruin{
+    width:40%!important;
+    right:-5%!important;
+    top:29%!important;
+    bottom:auto!important;
+    opacity:.84!important;
+    transform:none!important;
+  }
+  .world-theme-1.combat-v2 .prod-ruins{
+    width:80%!important;
+    left:10%!important;
+    bottom:27%!important;
+    opacity:.96!important;
+    transform:none!important;
+  }
+  .world-theme-1.combat-v2 .prod-platform{
+    width:130%!important;
+    left:-15%!important;
+    bottom:5%!important;
+    opacity:1!important;
+    object-fit:contain!important;
+  }
+  .world-theme-1.combat-v2 .prod-foreground{
+    width:118%!important;
+    left:-9%!important;
+    bottom:-5%!important;
+    opacity:.46!important;
+  }
+
+  /* ---------- canonical actor sizing ---------- */
+  .world-theme-1.combat-v2 .pcv2{
+    --hero-w:25%;
+    --hero-h:29%;
+    --hero-left:4%;
+    --hero-bottom:18.5%;
+    --enemy-w:45%;
+    --enemy-h:47%;
+    --enemy-right:2%;
+    --enemy-bottom:17.5%;
+    position:absolute!important;
+    inset:0!important;
+    z-index:8!important;
+    pointer-events:none!important;
+    overflow:visible!important;
+  }
+  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-normal{
+    --enemy-w:45%;
+    --enemy-h:47%;
+    --enemy-right:2%;
+  }
+  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-elite{
+    --enemy-w:52%;
+    --enemy-h:54%;
+    --enemy-right:-1%;
+    --enemy-bottom:17%;
+  }
+  .world-theme-1.combat-v2 .pcv2.pcv2-tier-boss,
+  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-boss{
+    --enemy-w:60%;
+    --enemy-h:62%;
+    --enemy-right:-5%;
+    --enemy-bottom:16%;
+  }
+  .world-theme-1.combat-v2 .pcv2 .pcv2-hero,
+  .world-theme-1.combat-v2 .pcv2 .pcv2-enemy{
+    position:absolute!important;
+    left:auto!important;
+    top:auto!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:center!important;
+    overflow:visible!important;
+    transition:none!important;
+    will-change:transform,filter!important;
+  }
+  .world-theme-1.combat-v2 .pcv2 .pcv2-hero{
+    left:var(--hero-left)!important;
+    bottom:var(--hero-bottom)!important;
+    width:var(--hero-w)!important;
+    height:var(--hero-h)!important;
+    transform:none!important;
+    transform-origin:left bottom!important;
+  }
+  .world-theme-1.combat-v2 .pcv2 .pcv2-enemy{
+    right:var(--enemy-right)!important;
+    bottom:var(--enemy-bottom)!important;
+    width:var(--enemy-w)!important;
+    height:var(--enemy-h)!important;
+    transform:none!important;
+    transform-origin:right bottom!important;
+  }
+  .world-theme-1.combat-v2 .pcv2 .production-hero,
+  .world-theme-1.combat-v2 .pcv2 .production-enemy{
     position:absolute!important;
     inset:0!important;
     width:100%!important;
     height:100%!important;
     max-width:100%!important;
     max-height:100%!important;
+    display:block!important;
     object-fit:contain!important;
     object-position:center bottom!important;
     transform:none!important;
+    transition:none!important;
+    opacity:1!important;
   }
+  .world-theme-1.combat-v2 .pcv2 .production-hero{
+    filter:drop-shadow(0 10px 8px #08202c66)!important;
+  }
+  .world-theme-1.combat-v2 .pcv2 .production-enemy{
+    filter:drop-shadow(0 15px 13px #06203078)!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-hero:after,
+  .world-theme-1.combat-v2 .pcv2-enemy:after{
+    content:""!important;
+    position:absolute!important;
+    left:18%!important;
+    right:18%!important;
+    bottom:0!important;
+    height:6%!important;
+    border-radius:50%!important;
+    background:#07110f70!important;
+    filter:blur(6px)!important;
+    z-index:-1!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-enemy:after{left:12%!important;right:12%!important}
 
-  /* Local hit feedback only: slash + impact burst + damage numbers. */
-  .world-theme-1.combat-v2 .pcv2-impact-burst{
-    opacity:.9!important;
-    filter:none!important;
+  /* ---------- actor motion ---------- */
+  .world-theme-1.combat-v2 .pcv2-hero-idle{
+    animation:masterHeroIdle 2.6s ease-in-out infinite!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-enemy-idle{
+    animation:masterEnemyIdle 3.2s ease-in-out infinite!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-hero-attack{
+    animation:masterHeroAttack .27s cubic-bezier(.18,.84,.18,1)!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-hero-skill{
+    animation:masterHeroSkill .36s cubic-bezier(.18,.84,.18,1)!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-hero-hit{
+    animation:masterHeroHit .24s ease-out!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-enemy-attack{
+    animation:masterEnemyAttack .30s cubic-bezier(.2,.75,.2,1)!important;
   }
   .world-theme-1.combat-v2 .pcv2-enemy-hit{
-    filter:none!important;
+    animation:masterEnemyHit .24s ease-out!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-enemy-defeated{
+    animation:masterEnemyDefeat .52s ease-out forwards!important;
+  }
+  @keyframes masterHeroIdle{
+    0%,100%{transform:translate3d(0,0,0)}
+    50%{transform:translate3d(0,-2px,0)}
+  }
+  @keyframes masterEnemyIdle{
+    0%,100%{transform:translate3d(0,0,0) scale(1)}
+    50%{transform:translate3d(0,-2px,0) scale(1.008)}
+  }
+  @keyframes masterHeroAttack{
+    0%{transform:translate3d(0,0,0) rotate(0)}
+    45%{transform:translate3d(16px,-2px,0) rotate(-1deg) scale(1.02)}
+    100%{transform:translate3d(0,0,0) rotate(0)}
+  }
+  @keyframes masterHeroSkill{
+    0%{transform:translate3d(0,0,0) scale(1)}
+    42%{transform:translate3d(20px,-5px,0) scale(1.04)}
+    100%{transform:translate3d(0,0,0) scale(1)}
+  }
+  @keyframes masterHeroHit{
+    0%{transform:translate3d(0,0,0)}
+    45%{transform:translate3d(-6px,0,0);filter:brightness(1.25)}
+    100%{transform:translate3d(0,0,0);filter:none}
+  }
+  @keyframes masterEnemyAttack{
+    0%{transform:translate3d(0,0,0)}
+    48%{transform:translate3d(-10px,-1px,0) scale(1.018)}
+    100%{transform:translate3d(0,0,0)}
+  }
+  @keyframes masterEnemyHit{
+    0%{transform:translate3d(0,0,0);filter:none}
+    42%{transform:translate3d(6px,-1px,0) scale(.988);filter:brightness(1.24)}
+    100%{transform:translate3d(0,0,0);filter:none}
+  }
+  @keyframes masterEnemyDefeat{
+    0%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+    100%{opacity:.25;transform:translate3d(0,10px,0) scale(.94)}
   }
 
-  /* Damage closer to reference: large but not covering the monster. */
+  /* ---------- local VFX only ---------- */
+  .world-theme-1.combat-v2 .pcv2-hit-fx{
+    position:absolute!important;
+    z-index:11!important;
+    right:22%!important;
+    top:47%!important;
+    width:54px!important;
+    height:54px!important;
+    border-radius:50%!important;
+    background:radial-gradient(circle,#fff 0 7%,#79dbffcc 10% 18%,#43a8ff55 20% 34%,transparent 58%)!important;
+    box-shadow:0 0 18px #48bfff55!important;
+    animation:masterHitSpark .22s ease-out forwards!important;
+    pointer-events:none!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-skill-fx{
+    position:absolute!important;
+    z-index:11!important;
+    right:18%!important;
+    top:42%!important;
+    width:104px!important;
+    height:80px!important;
+    border-radius:50%!important;
+    background:radial-gradient(ellipse,#fff8 0 5%,#69d5ff88 16%,#835cff45 35%,transparent 68%)!important;
+    animation:masterSkillBurst .34s ease-out forwards!important;
+    pointer-events:none!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-attack-trail{
+    position:absolute!important;
+    left:23%!important;
+    bottom:26%!important;
+    width:34%!important;
+    height:23%!important;
+    z-index:10!important;
+    pointer-events:none!important;
+    transform:rotate(-12deg)!important;
+    transform-origin:left center!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-attack-trail i,
+  .world-theme-1.combat-v2 .pcv2-attack-trail b{
+    position:absolute!important;
+    display:block!important;
+    border-radius:999px!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-attack-trail i:nth-child(1){
+    left:0!important;
+    top:48%!important;
+    width:100%!important;
+    height:7px!important;
+    background:linear-gradient(90deg,#fff0,#fff9 18%,#ffe898 52%,#ff7928 82%,#ff3b1600)!important;
+    box-shadow:0 0 8px #fff6,0 0 16px #ff9c3fbb!important;
+    animation:masterTrailA .26s ease-out forwards!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-attack-trail i:nth-child(2){
+    left:0!important;
+    top:62%!important;
+    width:88%!important;
+    height:4px!important;
+    background:linear-gradient(90deg,#fff0,#fff 28%,#ffb34b 62%,#ff491a00)!important;
+    box-shadow:0 0 7px #fff7,0 0 13px #ff793ca0!important;
+    animation:masterTrailB .28s ease-out forwards!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-attack-trail b{
+    left:75%!important;
+    top:42%!important;
+    width:30px!important;
+    height:30px!important;
+    border-radius:50%!important;
+    background:radial-gradient(circle,#fff 0 12%,#ffe57b 13% 30%,#ff6a2b99 31% 58%,transparent 60%)!important;
+    animation:masterTrailSpark .24s ease-out forwards!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-attack-trail.is-skill{
+    filter:hue-rotate(165deg) saturate(1.22) brightness(1.08)!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-impact-burst{
+    position:absolute!important;
+    right:22%!important;
+    top:48%!important;
+    width:60px!important;
+    height:60px!important;
+    z-index:12!important;
+    pointer-events:none!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-impact-burst>b{
+    position:absolute!important;
+    inset:16px!important;
+    border-radius:50%!important;
+    background:radial-gradient(circle,#fff 0 12%,#8feaff 16% 30%,#36a5ff99 31% 55%,transparent 58%)!important;
+    box-shadow:0 0 12px #c7f7ff,0 0 24px #43bfff!important;
+    animation:masterImpactCore .28s ease-out forwards!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-impact-burst i{
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    width:48px!important;
+    height:3px!important;
+    border-radius:999px!important;
+    background:linear-gradient(90deg,transparent,#dffcff,#56cfff,transparent)!important;
+    transform-origin:center!important;
+    animation:masterImpactRay .3s ease-out forwards!important;
+  }
+  .world-theme-1.combat-v2 .pcv2-impact-burst i:nth-child(1){transform:translate(-50%,-50%) rotate(18deg)!important}
+  .world-theme-1.combat-v2 .pcv2-impact-burst i:nth-child(2){transform:translate(-50%,-50%) rotate(76deg)!important}
+  .world-theme-1.combat-v2 .pcv2-impact-burst i:nth-child(3){transform:translate(-50%,-50%) rotate(136deg)!important}
+  @keyframes masterHitSpark{0%{opacity:0;transform:scale(.35)}45%{opacity:1;transform:scale(1.08)}100%{opacity:0;transform:scale(1.45)}}
+  @keyframes masterSkillBurst{0%{opacity:0;transform:scale(.6)}35%{opacity:1;transform:scale(1.05)}100%{opacity:0;transform:scale(1.35)}}
+  @keyframes masterTrailA{0%{opacity:0;transform:scaleX(.2) rotate(-8deg)}35%{opacity:1}100%{opacity:0;transform:scaleX(1.06) rotate(3deg)}}
+  @keyframes masterTrailB{0%{opacity:0;transform:scaleX(.2)}40%{opacity:.95}100%{opacity:0;transform:scaleX(1) rotate(8deg)}}
+  @keyframes masterTrailSpark{0%{opacity:0;transform:scale(.25)}45%{opacity:1;transform:scale(1.15)}100%{opacity:0;transform:scale(1.55)}}
+  @keyframes masterImpactCore{0%{opacity:0;transform:scale(.2)}38%{opacity:1;transform:scale(1.08)}100%{opacity:0;transform:scale(1.55)}}
+  @keyframes masterImpactRay{0%{opacity:0}35%{opacity:1}100%{opacity:0;width:68px}}
+
+  /* ---------- enemy HUD ---------- */
+  .world-theme-1.combat-v2 .arena-hud{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    z-index:20!important;
+    pointer-events:none!important;
+  }
+  .world-theme-1.combat-v2 .arena-enemy-hud{
+    position:absolute!important;
+    top:66px!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:translateX(-50%)!important;
+    width:min(58%,270px)!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:6px 9px 7px!important;
+    box-sizing:border-box!important;
+    overflow:visible!important;
+    border:1px solid #8dceff36!important;
+    border-radius:13px!important;
+    background:linear-gradient(180deg,#0c1a28ed,#07121ced)!important;
+    box-shadow:0 8px 22px #00101d75,inset 0 1px #ffffff0b!important;
+    backdrop-filter:blur(8px)!important;
+    pointer-events:none!important;
+    z-index:40!important;
+  }
+  .world-theme-1.combat-v2 .enemy-hud-portrait{display:none!important}
+  .enemy-hud-title{
+    display:grid!important;
+    grid-template-columns:22px minmax(0,1fr) auto!important;
+    align-items:center!important;
+    gap:6px!important;
+  }
+  .enemy-rank{
+    width:22px!important;
+    height:22px!important;
+    min-width:22px!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+    border-radius:50%!important;
+    background:radial-gradient(circle,#ff475c,#9e1227 72%)!important;
+    border:1px solid #ff8b9970!important;
+    box-shadow:0 0 10px #ff395c55!important;
+    color:#fff!important;
+    font-size:11px!important;
+    line-height:1!important;
+  }
+  .enemy-hud-title b{
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    color:#fff!important;
+    font-size:12px!important;
+    font-weight:950!important;
+    line-height:1!important;
+  }
+  .enemy-level{
+    white-space:nowrap!important;
+    color:#f4f8ff!important;
+    font-size:7px!important;
+    font-weight:850!important;
+  }
+  .enemy-hp-track{
+    position:relative!important;
+    height:10px!important;
+    margin-top:4px!important;
+  }
+  .enemy-hp-track>i{
+    position:absolute!important;
+    inset:0!important;
+    display:block!important;
+    height:10px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    border-radius:99px!important;
+    background:#02060a!important;
+  }
+  .enemy-hp-track>i>span{
+    display:block!important;
+    height:100%!important;
+    border-radius:inherit!important;
+    background:linear-gradient(90deg,#ff243d,#ff5360)!important;
+    box-shadow:0 0 12px #ff344a70!important;
+  }
+  .enemy-hp-track>strong{
+    position:absolute!important;
+    inset:0!important;
+    z-index:2!important;
+    display:grid!important;
+    place-items:center!important;
+    color:#fff!important;
+    font-size:6.5px!important;
+    font-weight:950!important;
+    text-shadow:0 1px 3px #000,0 0 3px #000!important;
+  }
+  .enemy-status-row{
+    min-height:17px!important;
+    margin-top:4px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:5px!important;
+  }
+  .enemy-status-icons{
+    position:static!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    margin:0!important;
+    transform:none!important;
+  }
+  .enemy-status-icons em{
+    width:17px!important;
+    height:15px!important;
+    min-width:17px!important;
+    min-height:15px!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+    border-radius:5px!important;
+    background:#0a1522e8!important;
+    border:1px solid #ffffff10!important;
+    font-size:7px!important;
+  }
+  .enemy-status-icons em:nth-child(1){color:#6ee49b!important;background:#0d2d20e8!important;border-color:#4ed88a44!important}
+  .enemy-status-icons em:nth-child(2){color:#d5dde7!important;background:#151d27e8!important;border-color:#9fb4c433!important}
+  .enemy-status-icons em:nth-child(3){color:#ff7c88!important;background:#32141ae8!important;border-color:#ff697944!important}
+  .enemy-affix-label{
+    display:block!important;
+    max-width:88px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    color:#d7e5ef!important;
+    font-size:6.5px!important;
+    font-weight:850!important;
+  }
+
+  /* ---------- damage feedback ---------- */
   .world-theme-1.combat-v2 .damage-stack{
-    right:4%!important;
+    position:absolute!important;
+    right:5%!important;
     top:34%!important;
+    z-index:32!important;
+    width:max-content!important;
+    display:grid!important;
+    justify-items:end!important;
+    gap:1px!important;
+    pointer-events:none!important;
+    transform:rotate(-6deg)!important;
   }
-  .world-theme-1.combat-v2 .damage-stack .damage-main{
-    font-size:37px!important;
+  .damage-stack .damage{
+    position:static!important;
+    inset:auto!important;
+    width:auto!important;
+    margin:0!important;
+    line-height:.88!important;
+    opacity:1!important;
+    transform:none!important;
   }
-  .world-theme-1.combat-v2 .damage-stack.is-crit .damage-main{
+  .damage-stack .damage-main{
+    font-size:36px!important;
+    font-weight:1000!important;
+    letter-spacing:-.05em!important;
+    color:#ffe334!important;
+    -webkit-text-stroke:1px #2b1900!important;
+    text-shadow:0 3px 0 #3b2200,0 6px 13px #000e,0 0 12px #ffbd31aa!important;
+    animation:masterDamageMain .48s ease-out forwards!important;
+  }
+  .damage-stack.is-crit .damage-main{
     font-size:43px!important;
+    color:#ff4a2f!important;
+    -webkit-text-stroke:1px #4a1000!important;
+    text-shadow:0 3px 0 #501100,0 7px 15px #000e,0 0 15px #ff3c2fbb!important;
   }
-  .world-theme-1.combat-v2 .damage-stack .damage-sub{
-    font-size:22px!important;
+  .damage-stack .damage-sub{
+    margin-right:12px!important;
+    font-size:21px!important;
+    color:#f7f8ff!important;
+    -webkit-text-stroke:.5px #151515!important;
+    text-shadow:0 2px 0 #1a1a1a,0 4px 8px #000c!important;
+    animation:masterDamageSub .58s ease-out forwards!important;
   }
+  .damage-stack .damage-pet{
+    margin-right:3px!important;
+    font-size:17px!important;
+    color:#84f2dc!important;
+    text-shadow:0 2px 0 #073c36,0 4px 8px #000c!important;
+    animation:masterDamagePet .64s ease-out forwards!important;
+  }
+  @keyframes masterDamageMain{0%{opacity:0;transform:translateY(10px) scale(.72)}28%{opacity:1;transform:translateY(-2px) scale(1.14)}100%{opacity:0;transform:translateY(-22px) scale(.96)}}
+  @keyframes masterDamageSub{0%{opacity:0;transform:translate(8px,4px) scale(.75)}35%{opacity:.95;transform:translate(0,-2px) scale(1)}100%{opacity:0;transform:translate(-3px,-19px) scale(.9)}}
+  @keyframes masterDamagePet{0%{opacity:0;transform:translate(4px,5px) scale(.75)}38%{opacity:.95;transform:translate(-1px,-1px) scale(1)}100%{opacity:0;transform:translate(4px,-16px) scale(.88)}}
+  .world-theme-1.combat-v2 .combo{
+    position:absolute!important;
+    top:31%!important;
+    right:9px!important;
+    left:auto!important;
+    width:auto!important;
+    min-width:0!important;
+    padding:3px 7px!important;
+    border:1px solid #ffffff18!important;
+    border-radius:999px!important;
+    background:#08131dcc!important;
+    font-size:6px!important;
+    letter-spacing:.1em!important;
+    z-index:24!important;
+  }
+  .world-theme-1.combat-v2 .combo b{margin-left:3px!important;font-size:10px!important;color:#ffd756!important}
+  .world-theme-1.combat-v2 .streak{
+    position:absolute!important;
+    top:14%!important;
+    left:9px!important;
+    right:auto!important;
+    width:auto!important;
+    max-width:max-content!important;
+    padding:4px 7px!important;
+    border-radius:999px!important;
+    font-size:6px!important;
+    z-index:24!important;
+  }
+  .world-theme-1.combat-v2 .streak small{display:none!important}
+
+  /* ---------- bottom combat HUD ---------- */
+  .world-theme-1.combat-v2 .combat-bottom-hud{
+    position:absolute!important;
+    left:8px!important;
+    right:8px!important;
+    bottom:7px!important;
+    width:auto!important;
+    height:132px!important;
+    z-index:42!important;
+    pointer-events:none!important;
+  }
+  .combat-vitals{
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr 48px!important;
+    gap:5px!important;
+    align-items:center!important;
+    pointer-events:auto!important;
+  }
+  .vital{
+    min-width:0!important;
+    height:31px!important;
+    display:grid!important;
+    grid-template-columns:20px minmax(0,1fr)!important;
+    grid-template-rows:14px 6px!important;
+    align-items:center!important;
+    column-gap:4px!important;
+    padding:3px 5px!important;
+    box-sizing:border-box!important;
+    border:1px solid #ffffff1e!important;
+    border-radius:10px!important;
+    background:linear-gradient(180deg,#0b1721e5,#071019e8)!important;
+    box-shadow:0 5px 14px #0005,inset 0 1px #ffffff0a!important;
+  }
+  .vital>span{grid-row:1/3!important;display:grid!important;place-items:center!important;font-size:14px!important}
+  .vital>strong{grid-column:2!important;grid-row:1!important;font-size:7px!important;text-align:center!important;white-space:nowrap!important}
+  .vital>i{grid-column:2!important;grid-row:2!important;height:6px!important;overflow:hidden!important;border-radius:99px!important;background:#010509!important}
+  .vital>i>b{display:block!important;height:100%!important;border-radius:inherit!important}
+  .hp-vital>i>b{background:linear-gradient(90deg,#ff2845,#ff5260)!important;box-shadow:0 0 8px #ff3c5377!important}
+  .momentum-vital>i>b{background:linear-gradient(90deg,#7d3cff,#bd50ff)!important;box-shadow:0 0 8px #a444ff66!important}
+  .fury-vital>i>b{background:linear-gradient(90deg,#ffad27,#ff5a20)!important;box-shadow:0 0 8px #ff762b66!important}
+  .combat-auto-orb{
+    width:48px!important;
+    height:48px!important;
+    min-width:48px!important;
+    margin-top:-5px!important;
+    display:grid!important;
+    place-items:center!important;
+    align-content:center!important;
+    padding:0!important;
+    border:2px solid #52caff!important;
+    border-radius:50%!important;
+    background:radial-gradient(circle,#153d63,#071421 74%)!important;
+    color:#fff!important;
+    box-shadow:0 0 0 3px #39a9ff20,0 0 18px #31bdff88!important;
+  }
+  .combat-auto-orb .ui-glyph{width:22px!important;height:22px!important}
+  .combat-auto-orb b{font-size:7px!important;margin-top:-2px!important}
+  .skill-orb-dock{
+    position:absolute!important;
+    left:50%!important;
+    bottom:0!important;
+    transform:translateX(-50%)!important;
+    width:92%!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,1fr)!important;
+    align-items:end!important;
+    gap:9px!important;
+    pointer-events:auto!important;
+  }
+  .skill-orb{
+    position:relative!important;
+    justify-self:center!important;
+    width:58px!important;
+    height:58px!important;
+    min-width:58px!important;
+    padding:0!important;
+    overflow:visible!important;
+    border:2px solid #5b6675!important;
+    border-radius:50%!important;
+    background:radial-gradient(circle at 50% 42%,#16253a,#08111c 74%)!important;
+    box-shadow:0 7px 18px #0008,inset 0 0 0 3px #ffffff08!important;
+  }
+  .skill-orb .skill-art{width:47px!important;height:47px!important}
+  .slash-orb{border-color:#43aaff!important;box-shadow:0 7px 18px #0008,0 0 15px #299fff58,inset 0 0 0 3px #ffffff08!important}
+  .nova-orb{border-color:#a84fff!important;box-shadow:0 7px 18px #0008,0 0 15px #9c45ff58,inset 0 0 0 3px #ffffff08!important}
+  .fury-orb{border-color:#ff913d!important;box-shadow:0 7px 18px #0008,0 0 15px #ff743758,inset 0 0 0 3px #ffffff08!important}
+  .locked-orb{filter:saturate(.25)!important;opacity:.88!important}
+  .skill-orb>span,.skill-orb>small{
+    position:absolute!important;
+    left:50%!important;
+    bottom:-5px!important;
+    transform:translateX(-50%)!important;
+    min-width:29px!important;
+    padding:2px 5px!important;
+    border:1px solid #ffffff12!important;
+    border-radius:999px!important;
+    background:#03070cdd!important;
+    color:#fff!important;
+    font-size:7px!important;
+    font-weight:900!important;
+    white-space:nowrap!important;
+  }
+
+  /* ---------- rewards / progression overlays ---------- */
+  .world-theme-1.combat-v2 .arena-reward,
+  .world-theme-1.combat-v2 .arena-reward.reward-compact,
+  .world-theme-1.combat-v2 .arena-reward.reward-major{
+    position:absolute!important;
+    left:50%!important;
+    right:auto!important;
+    top:auto!important;
+    bottom:145px!important;
+    transform:translateX(-50%)!important;
+    width:min(68%,286px)!important;
+    min-width:0!important;
+    max-width:286px!important;
+    min-height:0!important;
+    max-height:96px!important;
+    padding:7px 8px!important;
+    display:grid!important;
+    grid-template-columns:38px minmax(0,1fr) 60px!important;
+    grid-template-areas:"drop title collect" "drop loot collect"!important;
+    gap:3px 7px!important;
+    align-items:center!important;
+    overflow:visible!important;
+    border:1px solid #ffffff24!important;
+    border-radius:13px!important;
+    background:linear-gradient(180deg,#0c1724ec,#07101aec)!important;
+    box-shadow:0 8px 24px #0008!important;
+    backdrop-filter:blur(8px)!important;
+    z-index:66!important;
+  }
+  .arena-reward>small{grid-area:title!important;margin:0!important;font-size:6px!important;letter-spacing:.12em!important;color:#e9d07b!important}
+  .arena-reward-gains,.arena-chest{display:none!important}
+  .arena-loot-drop{grid-area:drop!important;width:38px!important;height:50px!important;display:grid!important;place-items:center!important}
+  .arena-loot-drop .loot-drop-art{width:54px!important;height:54px!important}
+  .arena-loot{
+    grid-area:loot!important;
+    width:100%!important;
+    min-height:28px!important;
+    height:28px!important;
+    margin:0!important;
+    padding:2px 4px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    overflow:hidden!important;
+    border:1px solid #ffffff14!important;
+    border-radius:8px!important;
+    background:#0b1420c9!important;
+  }
+  .arena-loot>.loot-art,.arena-loot>svg{width:24px!important;height:24px!important;flex:0 0 24px!important}
+  .arena-loot span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:7px!important}
+  .arena-loot span small{display:block!important;margin-top:2px!important;font-size:5.5px!important}
+  .arena-collect{
+    grid-area:collect!important;
+    align-self:stretch!important;
+    width:60px!important;
+    min-width:60px!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:4px!important;
+    border-radius:9px!important;
+    background:linear-gradient(180deg,#8b4ddd,#6f35b4)!important;
+    color:#fff!important;
+    font-size:6.5px!important;
+    box-shadow:0 4px 12px #6c38aa44!important;
+  }
+  .arena-loot-detail{
+    position:absolute!important;
+    left:8px!important;
+    right:8px!important;
+    bottom:100%!important;
+    margin-bottom:4px!important;
+    padding:5px 7px!important;
+    border-radius:8px!important;
+    font-size:6px!important;
+  }
+  .levelup{
+    position:absolute!important;
+    left:50%!important;
+    bottom:145px!important;
+    transform:translateX(-50%)!important;
+    width:132px!important;
+    min-width:0!important;
+    max-width:132px!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:7px 9px!important;
+    display:grid!important;
+    place-items:center!important;
+    gap:2px!important;
+    border:1px solid #f7c45b55!important;
+    border-radius:13px!important;
+    background:linear-gradient(180deg,#201809f2,#100d08f2)!important;
+    color:#fff!important;
+    box-shadow:0 8px 22px #0009,0 0 22px #ffc43a26!important;
+    z-index:80!important;
+  }
+  .levelup .upgrade-burst,.levelup>div{display:none!important}
+  .levelup>span{font-size:9px!important;font-weight:950!important;color:#ffd86a!important}
+  .levelup>span b{font-size:11px!important;color:#fff!important}
+  .levelup>small{font-size:5px!important;opacity:.62!important;color:#fff!important}
+  .combat-v2-status{
+    position:absolute!important;
+    left:50%!important;
+    bottom:145px!important;
+    width:min(62%,280px)!important;
+    transform:translateX(-50%)!important;
+    z-index:58!important;
+    pointer-events:none!important;
+  }
+  .combat-v2-status .absorb{
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:7px 10px!important;
+    display:grid!important;
+    grid-template-columns:1fr auto!important;
+    grid-template-rows:auto 5px auto!important;
+    gap:3px 8px!important;
+    border:1px solid #9d65ff3a!important;
+    border-radius:12px!important;
+    background:linear-gradient(180deg,#10162aef,#090f1def)!important;
+    box-shadow:0 7px 22px #0008,0 0 18px #783cff22!important;
+    backdrop-filter:blur(7px)!important;
+    pointer-events:auto!important;
+  }
+  .combat-v2-status .absorb>b{font-size:8px!important;letter-spacing:.08em!important}
+  .combat-v2-status .absorb>strong{font-size:8px!important}
+  .combat-v2-status .absorb>i{grid-column:1/3!important;height:5px!important;margin:0!important}
+  .combat-v2-status .absorb>small{grid-column:1/3!important;font-size:6px!important;opacity:.74!important;text-align:center!important}
+  .combat-v2-status .mutation{
+    width:158px!important;
+    max-width:158px!important;
+    min-width:0!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0 auto!important;
+    padding:8px 10px!important;
+    display:grid!important;
+    gap:2px!important;
+    text-align:center!important;
+    border:1px solid #a75dff44!important;
+    border-radius:13px!important;
+    background:linear-gradient(180deg,#171029f2,#0b0d19f2)!important;
+    box-shadow:0 7px 20px #0008,0 0 18px #8b42ff22!important;
+    pointer-events:auto!important;
+  }
+  .combat-v2-status .mutation .mutation-burst,.combat-v2-status .mutation small{display:none!important}
+  .combat-v2-status .mutation>b{font-size:12px!important;line-height:1.05!important;color:#d98cff!important}
+  .combat-v2-status .mutation p{margin:1px 0 2px!important;font-size:6.5px!important;line-height:1.2!important;color:#dce3ed!important}
+  .combat-v2-status .mutation p strong{color:#ffcf61!important}
+  .combat-v2-status .mutation button{justify-self:center!important;min-width:66px!important;min-height:24px!important;padding:4px 9px!important;border-radius:9px!important;font-size:6.5px!important}
+
+  /* ---------- bottom nav ---------- */
+  .game-nav{
+    height:68px!important;
+    min-height:68px!important;
+    grid-template-columns:repeat(5,1fr)!important;
+    background:linear-gradient(180deg,#081421,#06101a)!important;
+    border-top:1px solid #58b6ff30!important;
+    box-shadow:0 -8px 24px #0009!important;
+  }
+  .game-nav button{
+    position:relative!important;
+    gap:2px!important;
+    padding:5px 2px 4px!important;
+    color:#9baac3!important;
+    border-radius:0!important;
+  }
+  .game-nav button i{width:29px!important;height:29px!important}
+  .game-nav button span{font-size:8.5px!important;font-weight:850!important}
+  .game-nav button.on{
+    color:#f4eaff!important;
+    background:linear-gradient(180deg,#7426bd1f,#6d22c65a)!important;
+    box-shadow:inset 0 -3px #bd42ff,0 -9px 22px #8f2fff2b!important;
+  }
+  .game-nav button.on:before{
+    content:""!important;
+    position:absolute!important;
+    top:0!important;
+    left:18%!important;
+    right:18%!important;
+    height:2px!important;
+    background:#bd55ff!important;
+    box-shadow:0 0 12px #a54cff!important;
+  }
+  .game-nav button.on i{transform:scale(1.06)!important;filter:drop-shadow(0 0 7px #a64fff88)!important}
+
+  /* Vercel/browser feedback control is external and intentionally untouched. */
 }
 
 @media(max-width:420px){
-  .world-theme-1.combat-v2 .pcv2 .pcv2-hero{
-    width:13.5%!important;
-    height:14.5%!important;
+  .game-topbar{grid-template-columns:minmax(94px,1fr) minmax(168px,1.56fr) auto!important;padding-inline:5px!important}
+  .resource-rail>strong{grid-template-columns:19px minmax(0,1fr) 12px!important;padding-inline:2px!important}
+  .resource-rail>strong>span{font-size:8px!important}
+  .topbar-icon{width:28px!important}
+  .viewport>.master-stage-head{width:80%!important;grid-template-columns:27px auto minmax(64px,1fr) 15px!important}
+  .world-theme-1.combat-v2 .pcv2{
+    --hero-w:26%;
+    --hero-h:28%;
+    --enemy-w:47%;
+    --enemy-h:45%;
   }
-  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-normal .pcv2-enemy{
-    width:42%!important;
-    height:41%!important;
+  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-elite{
+    --enemy-w:54%;
+    --enemy-h:52%;
   }
-  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-elite .pcv2-enemy{
-    width:49%!important;
-    height:48%!important;
+  .world-theme-1.combat-v2 .pcv2.pcv2-tier-boss,
+  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-boss{
+    --enemy-w:61%;
+    --enemy-h:59%;
   }
-  .world-theme-1.combat-v2 .pcv2.pcv2-tier-boss .pcv2-enemy,
-  .world-theme-1.combat-v2 .pcv2.pcv2-encounter-boss .pcv2-enemy{
-    width:57%!important;
-    height:55%!important;
+  .world-theme-1.combat-v2 .arena-enemy-hud{top:64px!important;width:64%!important;max-width:250px!important}
+  .world-theme-1.combat-v2 .damage-stack{right:4%!important;top:35%!important}
+  .damage-stack .damage-main{font-size:32px!important}
+  .damage-stack.is-crit .damage-main{font-size:39px!important}
+  .damage-stack .damage-sub{font-size:19px!important}
+  .combat-vitals{grid-template-columns:1fr 1fr 1fr 46px!important;gap:4px!important}
+  .combat-auto-orb{width:46px!important;height:46px!important;min-width:46px!important}
+  .skill-orb-dock{width:98%!important;gap:4px!important}
+  .skill-orb{width:54px!important;height:54px!important;min-width:54px!important}
+  .skill-orb .skill-art{width:44px!important;height:44px!important}
+  .world-theme-1.combat-v2 .arena-reward,
+  .world-theme-1.combat-v2 .arena-reward.reward-compact,
+  .world-theme-1.combat-v2 .arena-reward.reward-major{width:74%!important;max-width:270px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .world-theme-1.combat-v2 .pcv2-hero,
+  .world-theme-1.combat-v2 .pcv2-enemy,
+  .world-theme-1.combat-v2 .pcv2-attack-trail *,
+  .world-theme-1.combat-v2 .pcv2-impact-burst *,
+  .world-theme-1.combat-v2 .damage-stack .damage,
+  .world-theme-1.combat-v2 .pcv2-hit-fx,
+  .world-theme-1.combat-v2 .pcv2-skill-fx{
+    animation:none!important;
   }
 }
