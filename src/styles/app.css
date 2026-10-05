@@ -2839,3 +2839,136 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
   .combat-v2 .skill-orb{width:47px!important;height:47px!important;min-width:47px!important}
   .combat-v2 .skill-orb .skill-art{width:37px!important;height:37px!important}
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 07
+   Final structural shift toward the reference:
+   route pill floats over the artwork instead of reserving a dark band.
+   ========================================================= */
+
+@media(max-width:600px){
+  .viewport:has(>.master-stage-head){
+    position:relative!important;
+    display:block!important;
+    overflow:hidden!important;
+    background:#8fd8ef!important;
+  }
+
+  .viewport>.master-stage-head{
+    position:absolute!important;
+    top:8px!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:translateX(-50%)!important;
+    z-index:60!important;
+    margin:0!important;
+    width:min(72%,340px)!important;
+    height:43px!important;
+    min-height:43px!important;
+    max-height:43px!important;
+    flex:none!important;
+    backdrop-filter:blur(8px)!important;
+    background:linear-gradient(180deg,#0b1a2be8,#081522e8)!important;
+    box-shadow:0 6px 18px #00101d55!important;
+  }
+
+  .viewport>.master-stage-head + .combat-v2{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:100%!important;
+    max-height:none!important;
+    margin:0!important;
+    flex:none!important;
+  }
+
+  /* subtle top readability wash, not a solid UI band */
+  .viewport>.master-stage-head + .combat-v2 .world-scenery:after{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    height:118px!important;
+    z-index:3!important;
+    pointer-events:none!important;
+    background:linear-gradient(180deg,#06111c52 0%,#06111c22 48%,transparent 100%)!important;
+    opacity:1!important;
+  }
+
+  .combat-v2 .arena-enemy-hud{
+    top:62px!important;
+    width:min(57%,260px)!important;
+    z-index:50!important;
+  }
+
+  .combat-v2 .streak{
+    top:66px!important;
+    left:9px!important;
+    z-index:49!important;
+  }
+
+  /* actors move slightly lower now that the artwork owns the full viewport */
+  .combat-v2 .pcv2-hero{
+    bottom:19%!important;
+  }
+  .combat-v2 .pcv2-enemy{
+    bottom:17.5%!important;
+  }
+  .combat-v2 .pcv2-enemy-boss{
+    bottom:17%!important;
+  }
+
+  /* preserve enough air between enemy HUD and character silhouettes */
+  .combat-v2 .damage{
+    top:35%!important;
+  }
+  .combat-v2 .combo{
+    top:31%!important;
+  }
+
+  /* master-like bottom grouping: bars close to skill row, no detached gap */
+  .combat-v2 .combat-bottom-hud{
+    height:112px!important;
+    bottom:7px!important;
+  }
+  .combat-v2 .skill-orb-dock{
+    bottom:0!important;
+  }
+}
+
+/* fullscreen path must use the same floating-route composition */
+@media(max-width:600px) and (display-mode:fullscreen),
+       (max-width:600px) and (display-mode:standalone){
+  .viewport:has(>.master-stage-head){
+    position:relative!important;
+    display:block!important;
+  }
+  .viewport>.master-stage-head{
+    position:absolute!important;
+    top:8px!important;
+    left:50%!important;
+    transform:translateX(-50%)!important;
+  }
+  .viewport>.master-stage-head + .combat-v2{
+    position:absolute!important;
+    inset:0!important;
+    height:100%!important;
+    min-height:100%!important;
+  }
+}
+
+@media(max-width:420px){
+  .viewport>.master-stage-head{
+    width:78%!important;
+    top:7px!important;
+  }
+  .combat-v2 .arena-enemy-hud{
+    top:58px!important;
+    width:62%!important;
+  }
+}
