@@ -2972,3 +2972,224 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
     width:62%!important;
   }
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 08
+   Reference-driven polish pass:
+   preserve the large illustrated combat stage while making
+   header, enemy plate, skills and bottom nav read like one game UI.
+   ========================================================= */
+
+@media(max-width:600px){
+  /* Header: stronger hierarchy, less flat chrome. */
+  .game-topbar{
+    background:linear-gradient(180deg,#071421f2 0%,#081827e8 100%)!important;
+    border-bottom:1px solid #8fd2ff24!important;
+    box-shadow:0 7px 24px #00101f55!important;
+  }
+  .game-topbar .player-chip{
+    background:linear-gradient(180deg,#0b1b2ce8,#081522e8)!important;
+    border-color:#8bcfff2e!important;
+    box-shadow:inset 0 1px #ffffff0a,0 5px 14px #00101c40!important;
+  }
+  .game-topbar .avatar{
+    border-color:#a4d7ff66!important;
+    box-shadow:0 0 0 2px #173652aa,0 4px 10px #0005!important;
+  }
+  .game-topbar .lvl>b{
+    font-weight:900!important;
+    letter-spacing:-.02em!important;
+  }
+  .resource-rail>strong{
+    background:linear-gradient(180deg,#0c1d30e8,#081522eb)!important;
+    border-color:#83c7ff25!important;
+    box-shadow:inset 0 1px #ffffff0b,0 4px 10px #0003!important;
+  }
+
+  /* Route pill: more like the locked mockup, visually tied to header. */
+  .viewport>.master-stage-head{
+    border-color:#8ecfff2d!important;
+    background:linear-gradient(180deg,#0a1929e9,#071420e9)!important;
+    box-shadow:0 7px 20px #00101e66,inset 0 1px #ffffff0b!important;
+  }
+  .viewport>.master-stage-head>b{
+    font-weight:900!important;
+    letter-spacing:-.015em!important;
+  }
+  .viewport>.master-stage-head .nodes i{
+    background:#53657a!important;
+  }
+  .viewport>.master-stage-head .nodes i.done{
+    background:#5caeff!important;
+    box-shadow:0 0 6px #58b6ff55!important;
+  }
+  .viewport>.master-stage-head .nodes i.now{
+    background:#7fe1ff!important;
+    box-shadow:0 0 10px #59c9ff!important;
+  }
+
+  /* Enemy HUD: compact central 'boss plate' treatment. */
+  .combat-v2 .arena-enemy-hud{
+    background:linear-gradient(180deg,#0c1a28ed,#07121ced)!important;
+    border-color:#8dceff36!important;
+    box-shadow:0 8px 22px #00101d75,inset 0 1px #ffffff0b!important;
+    backdrop-filter:blur(8px)!important;
+  }
+  .combat-v2 .enemy-rank{
+    color:#fff!important;
+    background:radial-gradient(circle,#ff475c,#9e1227 72%)!important;
+    border:1px solid #ff8b9970!important;
+    box-shadow:0 0 10px #ff395c55!important;
+    font-weight:950!important;
+    letter-spacing:.04em!important;
+  }
+  .combat-v2 .enemy-hud-title b{
+    color:#fff!important;
+    font-weight:950!important;
+    text-shadow:0 2px 5px #0008!important;
+  }
+  .combat-v2 .enemy-level{
+    color:#f4f8ff!important;
+    opacity:.95!important;
+  }
+  .combat-v2 .enemy-hp-track>i{
+    box-shadow:inset 0 1px 3px #000c!important;
+  }
+  .combat-v2 .enemy-hp-track>i>span{
+    background:linear-gradient(90deg,#ff243d,#ff5360)!important;
+    box-shadow:0 0 12px #ff344a70!important;
+  }
+  .combat-v2 .enemy-hp-track>strong{
+    font-weight:950!important;
+  }
+  .combat-v2 .enemy-status-icons em:nth-child(1){
+    color:#6ee49b!important;
+    background:#0d2d20e8!important;
+    border-color:#4ed88a44!important;
+  }
+  .combat-v2 .enemy-status-icons em:nth-child(2){
+    color:#d5dde7!important;
+    background:#151d27e8!important;
+    border-color:#9fb4c433!important;
+  }
+  .combat-v2 .enemy-status-icons em:nth-child(3){
+    color:#ff7c88!important;
+    background:#32141ae8!important;
+    border-color:#ff697944!important;
+  }
+
+  /* Actors: slight cinematic depth and better ground contact. */
+  .combat-v2 .pcv2-hero .production-hero{
+    filter:drop-shadow(0 11px 8px #06203077) saturate(1.04)!important;
+  }
+  .combat-v2 .pcv2-enemy .production-enemy{
+    filter:drop-shadow(0 15px 13px #06203077) saturate(1.08)!important;
+  }
+  .combat-v2 .pcv2-hero:after,
+  .combat-v2 .pcv2-enemy:after{
+    content:""!important;
+    position:absolute!important;
+    left:18%!important;
+    right:18%!important;
+    bottom:0!important;
+    height:7%!important;
+    border-radius:50%!important;
+    background:#07110f80!important;
+    filter:blur(6px)!important;
+    z-index:-1!important;
+  }
+  .combat-v2 .pcv2-enemy:after{
+    left:12%!important;
+    right:12%!important;
+    height:6%!important;
+  }
+
+  /* Combat feedback: bold numbers without turning into UI cards. */
+  .combat-v2 .damage{
+    font-family:Inter,system-ui,sans-serif!important;
+    font-weight:1000!important;
+    letter-spacing:-.045em!important;
+    color:#ffe230!important;
+    text-shadow:0 3px 0 #321d00,0 5px 11px #000b!important;
+  }
+  .combat-v2 .damage.crit{
+    color:#ff4a31!important;
+    text-shadow:0 3px 0 #421000,0 5px 13px #000c!important;
+  }
+
+  /* Vitals closer to the master: dark glass chips with bright semantic bars. */
+  .combat-v2 .vital{
+    background:linear-gradient(180deg,#0b1721e5,#071019e8)!important;
+    border-color:#ffffff1e!important;
+    box-shadow:0 5px 14px #0005,inset 0 1px #ffffff0a!important;
+  }
+  .combat-v2 .vital>i{
+    background:#010509!important;
+    box-shadow:inset 0 1px 3px #000!important;
+  }
+  .combat-v2 .hp-vital>i>b{
+    background:linear-gradient(90deg,#ff2845,#ff5260)!important;
+    box-shadow:0 0 8px #ff3c5377!important;
+  }
+  .combat-v2 .momentum-vital>i>b{
+    background:linear-gradient(90deg,#7d3cff,#bd50ff)!important;
+    box-shadow:0 0 8px #a444ff66!important;
+  }
+  .combat-v2 .fury-vital>i>b{
+    background:linear-gradient(90deg,#ffad27,#ff5a20)!important;
+    box-shadow:0 0 8px #ff762b66!important;
+  }
+
+  /* Skills should feel like premium skill orbs, not plain buttons. */
+  .combat-v2 .skill-orb{
+    background:radial-gradient(circle at 50% 42%,#16253a,#08111c 74%)!important;
+    box-shadow:0 7px 18px #0008,inset 0 0 0 3px #ffffff08!important;
+  }
+  .combat-v2 .slash-orb{
+    border-color:#43aaff!important;
+    box-shadow:0 7px 18px #0008,0 0 15px #299fff58,inset 0 0 0 3px #ffffff08!important;
+  }
+  .combat-v2 .nova-orb{
+    border-color:#a84fff!important;
+    box-shadow:0 7px 18px #0008,0 0 15px #9c45ff58,inset 0 0 0 3px #ffffff08!important;
+  }
+  .combat-v2 .fury-orb{
+    border-color:#ff913d!important;
+    box-shadow:0 7px 18px #0008,0 0 15px #ff743758,inset 0 0 0 3px #ffffff08!important;
+  }
+  .combat-v2 .locked-orb{
+    border-color:#5b6675!important;
+    background:radial-gradient(circle,#222a33,#090e14 74%)!important;
+    box-shadow:0 7px 18px #0008,inset 0 0 0 3px #ffffff05!important;
+  }
+  .combat-v2 .skill-orb>span,
+  .combat-v2 .skill-orb>small{
+    background:#03070cdd!important;
+    border:1px solid #ffffff12!important;
+    font-weight:900!important;
+  }
+  .combat-v2 .combat-auto-orb{
+    background:radial-gradient(circle,#153d63,#071421 74%)!important;
+    border-color:#52caff!important;
+    box-shadow:0 0 0 3px #39a9ff20,0 0 18px #31bdff88!important;
+  }
+
+  /* Active navigation block more pronounced like the master screenshot. */
+  .game-nav button{
+    transition:none!important;
+  }
+  .game-nav button.on{
+    color:#f4eaff!important;
+    background:linear-gradient(180deg,#7426bd1f,#6d22c65a)!important;
+    box-shadow:inset 0 -3px #bd42ff,0 -9px 22px #8f2fff2b!important;
+  }
+  .game-nav button.on i{
+    transform:scale(1.08)!important;
+    filter:drop-shadow(0 0 7px #a64fff88)!important;
+  }
+  .game-nav button.on span{
+    color:#f7eaff!important;
+    text-shadow:0 0 8px #b45cff88!important;
+  }
+}
