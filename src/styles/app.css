@@ -3639,3 +3639,163 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
     animation:none!important;
   }
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 12
+   Rank-aware actor composition + tighter contact FX.
+   ========================================================= */
+
+@media(max-width:600px){
+  /* Base normal encounter: readable but not oversized. */
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
+    right:5%!important;
+    bottom:17.5%!important;
+    width:36%!important;
+    height:39%!important;
+  }
+
+  /* Strong/elite enemy gains visual presence without using boss scale. */
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
+    right:3%!important;
+    bottom:17%!important;
+    width:42%!important;
+    height:45%!important;
+  }
+
+  /* Boss remains the dominant silhouette from the master target. */
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
+    right:-1%!important;
+    bottom:16%!important;
+    width:50%!important;
+    height:53%!important;
+  }
+
+  /* Hero stays compact across all ranks so the enemy owns the scale hierarchy. */
+  .combat-v2 .pcv2-hero{
+    left:7%!important;
+    bottom:18.5%!important;
+    width:18.5%!important;
+    height:21.5%!important;
+  }
+
+  /* Attack pose moves toward the enemy only during the active strike frame. */
+  .combat-v2 .pcv2-hero-attack,
+  .combat-v2 .pcv2-hero-skill{
+    transform-origin:left bottom!important;
+  }
+  .combat-v2 .pcv2-hero-attack{
+    animation:masterHeroStrike12 .26s cubic-bezier(.18,.84,.18,1)!important;
+  }
+  .combat-v2 .pcv2-hero-skill{
+    animation:masterHeroSkill12 .34s cubic-bezier(.18,.84,.18,1)!important;
+  }
+  @keyframes masterHeroStrike12{
+    0%{transform:translate3d(0,0,0) rotate(0)}
+    42%{transform:translate3d(15px,-2px,0) rotate(-1deg) scale(1.025)}
+    100%{transform:translate3d(0,0,0) rotate(0)}
+  }
+  @keyframes masterHeroSkill12{
+    0%{transform:translate3d(0,0,0) scale(1)}
+    38%{transform:translate3d(18px,-4px,0) scale(1.04)}
+    100%{transform:translate3d(0,0,0) scale(1)}
+  }
+
+  /* Contact FX is anchored closer to the enemy chest/weapon collision point. */
+  .combat-v2 .pcv2-attack-trail{
+    left:23%!important;
+    bottom:25%!important;
+    width:34%!important;
+    height:25%!important;
+    transform:rotate(-12deg)!important;
+  }
+  .combat-v2 .pcv2-impact-burst{
+    right:24%!important;
+    top:49%!important;
+    width:58px!important;
+    height:58px!important;
+  }
+  .combat-v2 .pcv2-impact-burst>b{
+    inset:16px!important;
+  }
+  .combat-v2 .pcv2-impact-burst i{
+    width:48px!important;
+  }
+
+  /* Elite/boss impact gets a touch more energy. */
+  .combat-v2 .pcv2-encounter-elite .pcv2-impact-burst{
+    transform:scale(1.08)!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-impact-burst,
+  .combat-v2 .pcv2-encounter-boss .pcv2-impact-burst{
+    transform:scale(1.18)!important;
+  }
+
+  /* Enemy hit reaction respects rank; bosses recoil less. */
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy-hit{
+    animation:enemyReactNormal12 .23s ease-out!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy-hit{
+    animation:enemyReactElite12 .24s ease-out!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy-hit,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy-hit{
+    animation:enemyReactBoss12 .25s ease-out!important;
+  }
+  @keyframes enemyReactNormal12{
+    0%{transform:translate3d(0,0,0);filter:none}
+    40%{transform:translate3d(8px,-1px,0) scale(.98);filter:brightness(1.35)}
+    100%{transform:translate3d(0,0,0);filter:none}
+  }
+  @keyframes enemyReactElite12{
+    0%{transform:translate3d(0,0,0);filter:none}
+    40%{transform:translate3d(6px,-1px,0) scale(.986);filter:brightness(1.28)}
+    100%{transform:translate3d(0,0,0);filter:none}
+  }
+  @keyframes enemyReactBoss12{
+    0%{transform:translate3d(0,0,0);filter:none}
+    40%{transform:translate3d(3px,0,0) scale(.993);filter:brightness(1.2)}
+    100%{transform:translate3d(0,0,0);filter:none}
+  }
+
+  /* Slightly reduce HUD chrome to keep the stage cinematic. */
+  .combat-v2 .arena-enemy-hud{
+    backdrop-filter:blur(7px)!important;
+  }
+  .combat-v2 .combat-bottom-hud{
+    height:108px!important;
+  }
+  .combat-v2 .skill-orb-dock{
+    width:74%!important;
+  }
+  .combat-v2 .skill-orb{
+    width:47px!important;
+    height:47px!important;
+    min-width:47px!important;
+  }
+  .combat-v2 .skill-orb .skill-art{
+    width:37px!important;
+    height:37px!important;
+  }
+}
+
+@media(max-width:420px){
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
+    width:38%!important;
+    height:37%!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
+    width:44%!important;
+    height:43%!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
+    width:52%!important;
+    height:50%!important;
+  }
+  .combat-v2 .skill-orb-dock{
+    width:86%!important;
+    gap:6px!important;
+  }
+}
