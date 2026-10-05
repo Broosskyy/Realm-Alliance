@@ -3340,3 +3340,176 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
     gap:6px!important;
   }
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 10
+   Combat motion pass: visible slash/skill trails + impact burst
+   while preserving the clean V2 actor stack.
+   ========================================================= */
+
+.combat-v2 .pcv2{
+  overflow:visible!important;
+}
+
+/* Hero strike trail: isolated visual layer, never a second weapon sprite. */
+.combat-v2 .pcv2-attack-trail{
+  position:absolute!important;
+  left:24%!important;
+  bottom:27%!important;
+  width:31%!important;
+  height:23%!important;
+  z-index:7!important;
+  pointer-events:none!important;
+  transform:rotate(-13deg)!important;
+  transform-origin:left center!important;
+}
+.combat-v2 .pcv2-attack-trail i,
+.combat-v2 .pcv2-attack-trail b{
+  position:absolute!important;
+  left:0!important;
+  top:50%!important;
+  display:block!important;
+  border-radius:999px!important;
+  transform-origin:left center!important;
+}
+.combat-v2 .pcv2-attack-trail i:nth-child(1){
+  width:100%!important;
+  height:7px!important;
+  background:linear-gradient(90deg,#fff0,#fff8 20%,#ffef9e 52%,#ff7a28 82%,#ff3b1600)!important;
+  box-shadow:0 0 8px #fff5,0 0 16px #ff9c3fbb!important;
+  transform:rotate(-5deg)!important;
+  animation:pcv2TrailA .25s ease-out forwards!important;
+}
+.combat-v2 .pcv2-attack-trail i:nth-child(2){
+  width:88%!important;
+  height:4px!important;
+  top:62%!important;
+  background:linear-gradient(90deg,#fff0,#fff 28%,#ffb34b 62%,#ff491a00)!important;
+  box-shadow:0 0 7px #fff7,0 0 13px #ff793ca0!important;
+  transform:rotate(8deg)!important;
+  animation:pcv2TrailB .27s ease-out forwards!important;
+}
+.combat-v2 .pcv2-attack-trail b{
+  left:75%!important;
+  top:46%!important;
+  width:33px!important;
+  height:33px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,#fff 0 12%,#ffe57b 13% 30%,#ff6a2b99 31% 58%,transparent 60%)!important;
+  filter:blur(.3px)!important;
+  animation:pcv2TrailSpark .23s ease-out forwards!important;
+}
+.combat-v2 .pcv2-attack-trail.is-skill{
+  filter:hue-rotate(165deg) saturate(1.25) brightness(1.08)!important;
+}
+.combat-v2 .pcv2-attack-trail.is-skill i:nth-child(1){
+  height:9px!important;
+  box-shadow:0 0 11px #bff8ff,0 0 24px #52cfff!important;
+}
+.combat-v2 .pcv2-attack-trail.is-skill i:nth-child(2){
+  height:6px!important;
+  box-shadow:0 0 10px #d6fbff,0 0 19px #7a6cff!important;
+}
+
+@keyframes pcv2TrailA{
+  0%{opacity:0;transform:rotate(-12deg) scaleX(.25)}
+  35%{opacity:1}
+  100%{opacity:0;transform:rotate(4deg) scaleX(1.06)}
+}
+@keyframes pcv2TrailB{
+  0%{opacity:0;transform:rotate(1deg) scaleX(.2)}
+  40%{opacity:.95}
+  100%{opacity:0;transform:rotate(14deg) scaleX(1)}
+}
+@keyframes pcv2TrailSpark{
+  0%{opacity:0;transform:scale(.25)}
+  45%{opacity:1;transform:scale(1.2)}
+  100%{opacity:0;transform:scale(1.65)}
+}
+
+/* Enemy impact burst at contact point. */
+.combat-v2 .pcv2-impact-burst{
+  position:absolute!important;
+  right:25%!important;
+  top:48%!important;
+  width:66px!important;
+  height:66px!important;
+  z-index:8!important;
+  pointer-events:none!important;
+}
+.combat-v2 .pcv2-impact-burst>b{
+  position:absolute!important;
+  inset:18px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,#fff 0 12%,#8feaff 16% 30%,#36a5ff99 31% 55%,transparent 58%)!important;
+  box-shadow:0 0 12px #c7f7ff,0 0 26px #43bfff!important;
+  animation:pcv2ImpactCore .28s ease-out forwards!important;
+}
+.combat-v2 .pcv2-impact-burst i{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:54px!important;
+  height:3px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,transparent,#dffcff,#56cfff,transparent)!important;
+  transform-origin:center!important;
+  animation:pcv2ImpactRay .3s ease-out forwards!important;
+}
+.combat-v2 .pcv2-impact-burst i:nth-child(1){transform:translate(-50%,-50%) rotate(18deg)!important}
+.combat-v2 .pcv2-impact-burst i:nth-child(2){transform:translate(-50%,-50%) rotate(76deg)!important}
+.combat-v2 .pcv2-impact-burst i:nth-child(3){transform:translate(-50%,-50%) rotate(136deg)!important}
+@keyframes pcv2ImpactCore{
+  0%{opacity:0;transform:scale(.2)}
+  38%{opacity:1;transform:scale(1.08)}
+  100%{opacity:0;transform:scale(1.55)}
+}
+@keyframes pcv2ImpactRay{
+  0%{opacity:0;filter:blur(2px)}
+  35%{opacity:1}
+  100%{opacity:0;filter:blur(0);width:72px}
+}
+
+/* Small reactive movement makes the static sprites feel less pasted in. */
+.combat-v2 .pcv2-hero-attack,
+.combat-v2 .pcv2-hero-skill{
+  animation:pcv2HeroLunge .28s cubic-bezier(.2,.82,.2,1)!important;
+}
+.combat-v2 .pcv2-enemy-hit{
+  animation:pcv2EnemyReact .24s ease-out!important;
+}
+@keyframes pcv2HeroLunge{
+  0%{transform:translate3d(0,0,0)}
+  45%{transform:translate3d(12px,-2px,0) scale(1.015)}
+  100%{transform:translate3d(0,0,0)}
+}
+@keyframes pcv2EnemyReact{
+  0%{transform:translate3d(0,0,0);filter:none}
+  38%{transform:translate3d(7px,-1px,0) scale(.985);filter:brightness(1.35)}
+  100%{transform:translate3d(0,0,0);filter:none}
+}
+
+@media(max-width:420px){
+  .combat-v2 .pcv2-attack-trail{
+    left:22%!important;
+    bottom:25%!important;
+    width:34%!important;
+    height:21%!important;
+  }
+  .combat-v2 .pcv2-impact-burst{
+    right:23%!important;
+    top:49%!important;
+    transform:scale(.86)!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .combat-v2 .pcv2-attack-trail,
+  .combat-v2 .pcv2-impact-burst,
+  .combat-v2 .pcv2-hero-attack,
+  .combat-v2 .pcv2-hero-skill,
+  .combat-v2 .pcv2-enemy-hit{
+    animation:none!important;
+  }
+}
