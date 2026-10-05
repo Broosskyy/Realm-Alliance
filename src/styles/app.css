@@ -4072,3 +4072,195 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
     gap:5px!important;
   }
 }
+
+
+/* =========================================================
+   MASTER MOCKUP CONVERGENCE 14
+   Device-capture correction:
+   separate route/enemy HUD, clamp sprite artwork to actor boxes,
+   and turn mutation into a compact in-flow toast.
+   ========================================================= */
+
+@media(max-width:600px){
+  /* Route and enemy HUD need a real gap; current capture shows overlap. */
+  .viewport>.master-stage-head{
+    top:8px!important;
+    width:min(70%,330px)!important;
+    height:42px!important;
+    min-height:42px!important;
+    max-height:42px!important;
+  }
+  .combat-v2 .arena-enemy-hud{
+    top:58px!important;
+    width:min(52%,238px)!important;
+    max-width:238px!important;
+    max-height:54px!important;
+    padding:5px 7px!important;
+  }
+
+  /* Hard-clamp production sprites to their actor containers.
+     Older production-art rules were allowing the PNGs to visually overgrow. */
+  .combat-v2 .pcv2-hero{
+    left:7%!important;
+    bottom:20%!important;
+    width:15%!important;
+    height:18%!important;
+    overflow:visible!important;
+  }
+  .combat-v2 .pcv2-hero>.production-hero{
+    position:absolute!important;
+    inset:0!important;
+    left:0!important;right:0!important;top:0!important;bottom:0!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    transform:none!important;
+    filter:drop-shadow(0 8px 7px #08202c66)!important;
+  }
+
+  .combat-v2 .pcv2-enemy{
+    overflow:visible!important;
+  }
+  .combat-v2 .pcv2-enemy>.production-enemy{
+    position:absolute!important;
+    inset:0!important;
+    left:0!important;right:0!important;top:0!important;bottom:0!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    transform:none!important;
+    filter:drop-shadow(0 10px 9px #08202c66)!important;
+  }
+
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
+    width:30%!important;
+    height:33%!important;
+    right:6%!important;
+    bottom:18.5%!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
+    width:36%!important;
+    height:39%!important;
+    right:4%!important;
+    bottom:18%!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
+    width:43%!important;
+    height:46%!important;
+    right:0!important;
+    bottom:17.5%!important;
+  }
+
+  /* Pull middle scenery down a touch so actors sit on a readable stage. */
+  .combat-v2 .prod-castle{
+    width:50%!important;
+    left:-7%!important;
+    top:14%!important;
+  }
+  .combat-v2 .prod-float{
+    width:52%!important;
+    right:-10%!important;
+    top:12%!important;
+  }
+  .combat-v2 .prod-ruin{
+    width:38%!important;
+    right:-4%!important;
+    top:32%!important;
+  }
+  .combat-v2 .prod-ruins{
+    width:76%!important;
+    left:12%!important;
+    bottom:29%!important;
+  }
+
+  /* Mutation should read like the small master event card, not a modal. */
+  .combat-v2-status{
+    bottom:114px!important;
+    width:auto!important;
+    max-width:none!important;
+    pointer-events:none!important;
+  }
+  .combat-v2-status .mutation{
+    width:156px!important;
+    max-width:156px!important;
+    min-width:0!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0 auto!important;
+    padding:8px 10px!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:2px!important;
+    text-align:center!important;
+    border-radius:13px!important;
+    pointer-events:auto!important;
+    background:linear-gradient(180deg,#171029f2,#0b0d19f2)!important;
+    border:1px solid #a75dff44!important;
+    box-shadow:0 7px 20px #0008,0 0 18px #8b42ff22!important;
+  }
+  .combat-v2-status .mutation small{
+    display:none!important;
+  }
+  .combat-v2-status .mutation>b{
+    font-size:12px!important;
+    line-height:1.05!important;
+    color:#d98cff!important;
+  }
+  .combat-v2-status .mutation p{
+    margin:1px 0 2px!important;
+    font-size:6.5px!important;
+    line-height:1.2!important;
+    color:#dce3ed!important;
+  }
+  .combat-v2-status .mutation p strong{
+    color:#ffcf61!important;
+  }
+  .combat-v2-status .mutation button{
+    justify-self:center!important;
+    min-width:64px!important;
+    min-height:23px!important;
+    padding:4px 9px!important;
+    border-radius:9px!important;
+    font-size:6.5px!important;
+  }
+
+  /* Ensure the main combat controls remain visible under transient cards. */
+  .combat-v2 .combat-bottom-hud{
+    z-index:60!important;
+  }
+  .combat-v2-status{
+    z-index:58!important;
+  }
+}
+
+@media(max-width:420px){
+  .combat-v2 .arena-enemy-hud{
+    top:56px!important;
+    width:58%!important;
+    max-width:226px!important;
+  }
+  .combat-v2 .pcv2-hero{
+    width:16%!important;
+    height:17%!important;
+  }
+  .combat-v2 .pcv2-encounter-normal .pcv2-enemy{
+    width:32%!important;
+    height:31%!important;
+  }
+  .combat-v2 .pcv2-encounter-elite .pcv2-enemy{
+    width:38%!important;
+    height:37%!important;
+  }
+  .combat-v2 .pcv2-tier-boss .pcv2-enemy,
+  .combat-v2 .pcv2-encounter-boss .pcv2-enemy{
+    width:45%!important;
+    height:44%!important;
+  }
+}
