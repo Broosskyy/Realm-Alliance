@@ -38,10 +38,14 @@ export function ProductionEnemy({pose="idle",family="",name=""}:{pose?:string;fa
 export function ProductionCombatV2({heroState="idle",enemyPose="idle",family="",name="",tier="normal"}:{
  heroState?:string; enemyPose?:string; family?:string; name?:string; tier?:string;
 }){
- return <div className="pcv2" aria-label="Production combat actors">
+ const attacking=heroState==="attack"||heroState==="skill";
+ const enemyHit=enemyPose==="hit";
+ return <div className={"pcv2 pcv2-state-"+heroState} aria-label="Production combat actors">
   <div className={"pcv2-hero pcv2-hero-"+heroState}>
    <ProductionHero state={heroState}/>
   </div>
+  {attacking&&<div className={"pcv2-attack-trail "+(heroState==="skill"?"is-skill":"is-basic")} aria-hidden="true"><i/><i/><b/></div>}
+  {enemyHit&&<div className="pcv2-impact-burst" aria-hidden="true"><i/><i/><i/><b/></div>}
   <div className={"pcv2-enemy pcv2-enemy-"+tier+" pcv2-enemy-"+enemyPose}>
    <ProductionEnemy family={family} name={name} pose={enemyPose}/>
   </div>
