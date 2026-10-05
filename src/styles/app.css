@@ -1841,31 +1841,6 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
   }
 
   /* ---------- local VFX only ---------- */
-  .world-theme-1.combat-v2 .pcv2-hit-fx{
-    position:absolute!important;
-    z-index:11!important;
-    right:22%!important;
-    top:47%!important;
-    width:54px!important;
-    height:54px!important;
-    border-radius:50%!important;
-    background:radial-gradient(circle,#fff 0 7%,#79dbffcc 10% 18%,#43a8ff55 20% 34%,transparent 58%)!important;
-    box-shadow:0 0 18px #48bfff55!important;
-    animation:masterHitSpark .22s ease-out forwards!important;
-    pointer-events:none!important;
-  }
-  .world-theme-1.combat-v2 .pcv2-skill-fx{
-    position:absolute!important;
-    z-index:11!important;
-    right:18%!important;
-    top:42%!important;
-    width:104px!important;
-    height:80px!important;
-    border-radius:50%!important;
-    background:radial-gradient(ellipse,#fff8 0 5%,#69d5ff88 16%,#835cff45 35%,transparent 68%)!important;
-    animation:masterSkillBurst .34s ease-out forwards!important;
-    pointer-events:none!important;
-  }
   .world-theme-1.combat-v2 .pcv2-attack-trail{
     position:absolute!important;
     left:23%!important;
@@ -2521,9 +2496,7 @@ body:has(.arena) .game-topbar{height:54px!important;min-height:54px!important;pa
   .world-theme-1.combat-v2 .pcv2-enemy,
   .world-theme-1.combat-v2 .pcv2-attack-trail *,
   .world-theme-1.combat-v2 .pcv2-impact-burst *,
-  .world-theme-1.combat-v2 .damage-stack .damage,
-  .world-theme-1.combat-v2 .pcv2-hit-fx,
-  .world-theme-1.combat-v2 .pcv2-skill-fx{
+  .world-theme-1.combat-v2 .damage-stack .damage{
     animation:none!important;
   }
 }
