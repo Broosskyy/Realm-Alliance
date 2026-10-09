@@ -25,7 +25,10 @@ jobs:
       - name: Prepare Godot export templates
         run: |
           set -eux
-          mkdir -p "$HOME/.local/share/godot/export_templates" "$HOME/.config"\n          if [ -d /root/.config/godot ] && [ "$HOME" != "/root" ]; then\n            cp -a /root/.config/godot "$HOME/.config/"\n          fi
+          mkdir -p "$HOME/.local/share/godot/export_templates" "$HOME/.config"
+          if [ -d /root/.config/godot ] && [ "$HOME" != "/root" ]; then
+            cp -a /root/.config/godot "$HOME/.config/"
+          fi
           if [ -d /root/.local/share/godot/export_templates/4.6.3.stable ]; then
             cp -a /root/.local/share/godot/export_templates/4.6.3.stable "$HOME/.local/share/godot/export_templates/"
           fi
