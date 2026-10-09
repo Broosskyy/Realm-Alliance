@@ -25,7 +25,7 @@ jobs:
       - name: Prepare Godot export templates
         run: |
           set -eux
-          mkdir -p "$HOME/.local/share/godot/export_templates"
+          mkdir -p "$HOME/.local/share/godot/export_templates" "$HOME/.config"\n          if [ -d /root/.config/godot ] && [ "$HOME" != "/root" ]; then\n            cp -a /root/.config/godot "$HOME/.config/"\n          fi
           if [ -d /root/.local/share/godot/export_templates/4.6.3.stable ]; then
             cp -a /root/.local/share/godot/export_templates/4.6.3.stable "$HOME/.local/share/godot/export_templates/"
           fi
@@ -43,4 +43,20 @@ jobs:
         with:
           name: realm-alliance-godot-web-poc
           path: build/godot-web/
+          if-no-files-found: error
+      - name: Build Android ARM64 debug APK
+        run: |
+          mkdir -p ../../build/godot-android "$HOME/.android"
+          if [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkey -noprompt -keystore "$HOME/.android/debug.keystore" -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
+          fi
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PATH="$HOME/.android/debug.keystore"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_USER="androiddebugkey"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD="android"
+          godot --headless --path . --export-debug "Android Debug" ../../build/godot-android/realm-alliance-debug.apk
+      - name: Upload Android debug artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-alliance-godot-android-poc
+          path: build/godot-android/*.apk
           if-no-files-found: error
