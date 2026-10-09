@@ -43,5 +43,5 @@ func _initialize() -> void:
     _check(restored.weapon_index == model.weapon_index, "save restores equipment")
     _check(restored.gold == model.gold, "save restores gold")
     _check(restored.enemy_hp == restored.enemy_max_hp, "resume begins at wave checkpoint")
-    print("Combat model: ", 16 - failures, "/16 checks passed.")
+    print("Combat model: ", 20 - failures, "/20 checks passed.")
     quit(1 if failures > 0 else 0)
