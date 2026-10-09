@@ -37,6 +37,13 @@ jobs:
         run: godot --headless --path . --import
       - name: Model regression tests
         run: godot --headless --path . --script res://tests/test_combat.gd
+      - name: Start real combat scene (headless smoke)
+        run: |
+          godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
+          cat scene-smoke.log
+          if grep -E "SCRIPT ERROR|Parse Error|Invalid call|Cannot call method" scene-smoke.log; then
+            exit 1
+          fi
       - name: Build Web debug artifact
         run: |
           mkdir -p ../../build/godot-web
