@@ -39,7 +39,7 @@ func _initialize() -> void:
 
     var saved: Dictionary = model.snapshot()
     var restored = CombatModel.new(saved)
-    _check(restored.wave == model.wave, "save restores wave")
+    _check(restored.wave == model.wave + 1, "lethal-hit save resumes next wave")
     _check(restored.weapon_index == model.weapon_index, "save restores equipment")
     _check(restored.gold == model.gold, "save restores gold")
     _check(restored.enemy_hp == restored.enemy_max_hp, "resume begins at wave checkpoint")
