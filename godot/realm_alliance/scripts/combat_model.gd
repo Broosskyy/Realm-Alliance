@@ -68,10 +68,10 @@ func advance_wave() -> bool:
     return true
 
 func snapshot() -> Dictionary:
-    # Atomic checkpoint at the start of the current wave, not transient attack state.
+    # Persist the NEXT wave on lethal hit to prevent double rewards after a reload.
     return {
         "version": SAVE_VERSION,
-        "wave": wave,
+        "wave": wave + (1 if enemy_hp <= 0 else 0),
         "gold": gold,
         "upgrade_level": upgrade_level,
         "weapon_index": weapon_index,
