@@ -1,0 +1,78 @@
+name: REALM Godot Combat Foundation
+
+on:
+  push:
+    branches:
+      - feature/godot-combat-foundation-01
+    paths:
+      - 'godot/realm_alliance/**'
+      - '.github/workflows/godot-combat-foundation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-and-web:
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:4.7.2
+    defaults:
+      run:
+        working-directory: godot/realm_alliance
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare Godot export templates
+        run: |
+          set -eux
+          mkdir -p "$HOME/.local/share/godot/export_templates" "$HOME/.config"
+          if [ -d /root/.config/godot ] && [ "$HOME" != "/root" ]; then
+            cp -a /root/.config/godot "$HOME/.config/"
+          fi
+          if [ -d /root/.local/share/godot/export_templates/4.7.2.stable ]; then
+            cp -a /root/.local/share/godot/export_templates/4.7.2.stable "$HOME/.local/share/godot/export_templates/"
+          fi
+          godot --version
+      - name: Import project
+        run: godot --headless --path . --import
+      - name: Model regression tests
+        run: godot --headless --path . --script res://tests/test_combat.gd
+      - name: Responsive layout regression tests
+        run: godot --headless --path . --script res://tests/test_layout.gd
+      - name: Hero and enemy visual-contract tests
+        run: godot --headless --path . --script res://tests/test_visual_contract.gd
+      - name: Imported Bramble art preview regression tests
+        run: godot --headless --path . --script res://tests/test_art_preview.gd
+      - name: Start real combat scene (headless smoke)
+        run: |
+          godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
+          cat scene-smoke.log
+          if grep -E "SCRIPT ERROR|Parse Error|Invalid call|Cannot call method" scene-smoke.log; then
+            exit 1
+          fi
+      - name: Build Web debug artifact
+        run: |
+          mkdir -p ../../build/godot-web
+          godot --headless --path . --export-debug "Web" ../../build/godot-web/index.html
+      - name: Upload isolated Web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-alliance-godot-web-poc
+          path: build/godot-web/
+          if-no-files-found: error
+      - name: Build Android ARM64 debug APK
+        run: |
+          mkdir -p ../../build/godot-android "$HOME/.android"
+          if [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkey -noprompt -keystore "$HOME/.android/debug.keystore" -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
+          fi
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PATH="$HOME/.android/debug.keystore"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_USER="androiddebugkey"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD="android"
+          godot --headless --path . --export-debug "Android Debug" ../../build/godot-android/realm-alliance-debug.apk
+      - name: Upload Android debug artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-alliance-godot-android-poc
+          path: build/godot-android/*.apk
+          if-no-files-found: error
