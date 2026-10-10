@@ -79,7 +79,11 @@ func play_hit() -> void:
     _motion.tween_property(self, "position:x", _base_position.x + 9.0, 0.08)
     _motion.tween_property(self, "position:x", _base_position.x, 0.12)
     _motion.parallel().tween_property(_sprite, "modulate", Color.WHITE, 0.12)
-    _motion.tween_callback(func(): if not _dying: _sprite.texture = IDLE)
+    _motion.tween_callback(_restore_idle)
+
+func _restore_idle() -> void:
+    if not _dying and _sprite != null:
+        _sprite.texture = IDLE
 
 func play_death() -> void:
     if _motion != null and _motion.is_running():
