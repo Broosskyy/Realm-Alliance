@@ -7,6 +7,12 @@ const EnemyVisual = preload("res://scripts/enemy_visual.gd")
 const StageArt = preload("res://scripts/stage_art.gd")
 const CombatLayout = preload("res://scripts/combat_layout.gd")
 const ImpactFX = preload("res://scripts/impact_fx.gd")
+const BramblePreviewHero = preload("res://scripts/bramble_preview_hero.gd")
+const BramblePreviewEnemy = preload("res://scripts/bramble_preview_enemy.gd")
+const BramblePreviewSlash = preload("res://scripts/bramble_preview_slash.gd")
+
+# The shared art preview is reversible. Original procedural HeroRig/EnemyVisual survive.
+const USE_SHARED_ART_PREVIEW: bool = true
 
 var model
 var hero
@@ -65,15 +71,26 @@ func _build_arena() -> void:
     stage.name = "FixedCombatStage"
     add_child(stage)
     stage.add_child(StageArt.new())
-    hero = HeroRig.new()
-    hero.name = "Realmwaechter"
+    if USE_SHARED_ART_PREVIEW:
+        var stump := Sprite2D.new()
+        stump.name = "SharedStyleSceneryPreview"
+        stump.texture = preload("res://assets/preview/bramble/stage/glow_stump.png")
+        stump.position = Vector2(-273.0, -115.0)
+        stump.scale = Vector2.ONE * 0.41
+        stump.modulate = Color(0.83, 0.95, 0.91, 0.62)
+        stump.z_index = 1
+        stage.add_child(stump)
+    hero = BramblePreviewHero.new() if USE_SHARED_ART_PREVIEW else HeroRig.new()
+    hero.name = "ArtPreviewHero" if USE_SHARED_ART_PREVIEW else "Realmwaechter"
     hero.position = Vector2(-170, 118)
-    hero.scale = Vector2(1.77, 1.77)
+    hero.scale = Vector2.ONE * (0.73 if USE_SHARED_ART_PREVIEW else 1.77)
+    hero.z_index = 3
     stage.add_child(hero)
-    enemy = EnemyVisual.new()
-    enemy.name = "Enemy"
+    enemy = BramblePreviewEnemy.new() if USE_SHARED_ART_PREVIEW else EnemyVisual.new()
+    enemy.name = "ArtPreviewEnemy" if USE_SHARED_ART_PREVIEW else "Enemy"
     enemy.position = Vector2(163, 118)
-    enemy.scale = Vector2(1.58, 1.58)
+    enemy.scale = Vector2.ONE * (0.82 if USE_SHARED_ART_PREVIEW else 1.58)
+    enemy.z_index = 3
     stage.add_child(enemy)
     touch_zone = Control.new()
     touch_zone.name = "CombatTouchZone"
@@ -118,7 +135,7 @@ func _build_hud() -> void:
     header = _make_label("REALM ALLIANCE", 36, Color("#e3c78f"))
     wave_info = _make_label("", 25, Color("#edf1f5"))
     hp_info = _make_label("", 23, Color("#b9d8d7"))
-    help_text = _make_label("KAMPF   •   TAP ODER AUTO", 19, Color("#d4c6a4"))
+    help_text = _make_label("SHARED ART PREVIEW  •  NICHT FINAL" if USE_SHARED_ART_PREVIEW else "KAMPF   •   TAP ODER AUTO", 19, Color("#d4c6a4"))
     bottom_panel = PanelContainer.new()
     var frame := StyleBoxFlat.new()
     frame.bg_color = Color("#111f32",0.96)
@@ -259,11 +276,18 @@ func _advance_wave() -> void:
         _refresh()
 
 func _impact_burst(is_skill: bool) -> void:
-    var flash: RAImpactFX = ImpactFX.new()
-    flash.configure(is_skill)
-    flash.position = enemy.position + Vector2(-27.0, -75.0)
-    flash.z_index = 12
-    stage.add_child(flash)
+    if USE_SHARED_ART_PREVIEW:
+        var slash: RABramblePreviewSlash = BramblePreviewSlash.new()
+        slash.configure(is_skill)
+        slash.position = enemy.position + Vector2(-35.0, -165.0)
+        slash.z_index = 12
+        stage.add_child(slash)
+    else:
+        var flash: RAImpactFX = ImpactFX.new()
+        flash.configure(is_skill)
+        flash.position = enemy.position + Vector2(-27.0, -75.0)
+        flash.z_index = 12
+        stage.add_child(flash)
     var shake: Tween = create_tween()
     stage.position = _stage_home + Vector2(-7.0 if is_skill else -3.0, 1.5) * stage.scale.x
     shake.tween_property(stage, "position", _stage_home, 0.13)
