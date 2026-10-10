@@ -4,11 +4,34 @@ class_name RAEnemyVisual
 var wave: int = 1
 var health_ratio: float = 1.0
 var _motion: Tween
+var _base_scale: Vector2 = Vector2.ONE
+var _display_scale: Vector2 = Vector2.ONE
+var _base_position: Vector2 = Vector2.ZERO
+var _idle_time: float = 0.0
+var _dying: bool = false
+
+func _ready() -> void:
+    _base_scale = scale
+    _display_scale = scale
+    _base_position = position
+
+func _process(delta: float) -> void:
+    if _dying or (_motion != null and _motion.is_running()):
+        return
+    _idle_time += delta
+    scale = _display_scale * (1.0 + sin(_idle_time * 2.0) * 0.014)
+    position.y = _base_position.y + sin(_idle_time * 2.4) * 2.4
 
 func show_wave(number: int) -> void:
+    if _motion != null and _motion.is_running():
+        _motion.kill()
     wave = number
     health_ratio = 1.0
-    scale = Vector2.ONE
+    _dying = false
+    # Never reset to Vector2.ONE: it used to silently cancel the combat scale.
+    _display_scale = _base_scale * (1.08 if wave % 5 == 0 else 1.0)
+    scale = _display_scale
+    position = _base_position
     modulate = Color.WHITE
     queue_redraw()
 
@@ -46,16 +69,26 @@ func _draw() -> void:
     draw_rect(Rect2(-73, -204, 146, 18), frame_color, false, 2.0)
 
 func play_hit() -> void:
-    if _motion and _motion.is_running():
+    if _dying:
+        return
+    if _motion != null and _motion.is_running():
         _motion.kill()
-    modulate = Color("#fff1cc")
+    scale = _display_scale
+    position = _base_position
+    modulate = Color("#fff0c1")
     _motion = create_tween()
-    _motion.tween_property(self,"modulate",Color.WHITE,0.16)
+    _motion.set_trans(Tween.TRANS_SINE)
+    _motion.tween_property(self, "position:x", _base_position.x + 11.0, 0.07)
+    _motion.tween_property(self, "position:x", _base_position.x, 0.12)
+    _motion.parallel().tween_property(self, "modulate", Color.WHITE, 0.15)
 
 func play_death() -> void:
-    if _motion and _motion.is_running():
+    if _motion != null and _motion.is_running():
         _motion.kill()
+    _dying = true
     _motion = create_tween()
+    _motion.set_trans(Tween.TRANS_QUAD)
     _motion.set_parallel(true)
-    _motion.tween_property(self,"scale",Vector2(0.76,0.76),0.27)
-    _motion.tween_property(self,"modulate:a",0.0,0.27)
+    _motion.tween_property(self, "scale", _display_scale * 0.76, 0.27)
+    _motion.tween_property(self, "position:y", _base_position.y + 18.0, 0.27)
+    _motion.tween_property(self, "modulate:a", 0.0, 0.27)
