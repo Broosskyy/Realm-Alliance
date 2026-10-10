@@ -68,12 +68,12 @@ func _build_arena() -> void:
     hero = HeroRig.new()
     hero.name = "Realmwaechter"
     hero.position = Vector2(-170, 118)
-    hero.scale = Vector2(1.65, 1.65)
+    hero.scale = Vector2(1.77, 1.77)
     stage.add_child(hero)
     enemy = EnemyVisual.new()
     enemy.name = "Enemy"
     enemy.position = Vector2(163, 118)
-    enemy.scale = Vector2(1.48, 1.48)
+    enemy.scale = Vector2(1.58, 1.58)
     stage.add_child(enemy)
     touch_zone = Control.new()
     touch_zone.name = "CombatTouchZone"
@@ -95,7 +95,7 @@ func _make_button(text: String, parent: HBoxContainer) -> Button:
     var button := Button.new()
     button.text = text
     button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    button.custom_minimum_size = Vector2(0, 58)
+    button.custom_minimum_size = Vector2(0, 64)
     button.add_theme_font_size_override("font_size", 19)
     button.add_theme_color_override("font_color", Color("#f6ead7"))
     var normal := StyleBoxFlat.new()
@@ -129,7 +129,7 @@ func _build_hud() -> void:
     bottom_panel.add_theme_stylebox_override("panel", frame)
     add_child(bottom_panel)
     var stack := VBoxContainer.new()
-    stack.add_theme_constant_override("separation", 10)
+    stack.add_theme_constant_override("separation", 8)
     bottom_panel.add_child(stack)
     var row1 := HBoxContainer.new()
     row1.add_theme_constant_override("separation", 8)
