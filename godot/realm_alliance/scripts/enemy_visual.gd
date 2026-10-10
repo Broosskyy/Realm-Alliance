@@ -2,12 +2,18 @@ extends Node2D
 class_name RAEnemyVisual
 
 var wave: int = 1
+var health_ratio: float = 1.0
 var _motion: Tween
 
 func show_wave(number: int) -> void:
     wave = number
+    health_ratio = 1.0
     scale = Vector2.ONE
     modulate = Color.WHITE
+    queue_redraw()
+
+func set_health(current_hp: int, maximum_hp: int) -> void:
+    health_ratio = clampf(float(current_hp) / float(maxi(1, maximum_hp)), 0.0, 1.0)
     queue_redraw()
 
 func _draw() -> void:
@@ -30,6 +36,14 @@ func _draw() -> void:
     draw_rect(Rect2(-24,-37,48,10),Color("#2c3d48"))
     draw_line(Vector2(-36,-16),Vector2(-54,0),Color("#293c4f"),9.0)
     draw_line(Vector2(36,-16),Vector2(54,0),Color("#293c4f"),9.0)
+    # A grounded health bar immediately above the enemy, even in the POC.
+    var boss := wave % 5 == 0
+    var frame_color := Color("#c8a56b") if boss else Color("#8797aa")
+    var hp_color := Color("#ef9965") if boss else Color("#76c6a6")
+    draw_rect(Rect2(-73, -204, 146, 18), Color("#0a1521"))
+    draw_rect(Rect2(-69, -200, 138, 10), Color("#384150"))
+    draw_rect(Rect2(-69, -200, 138.0 * health_ratio, 10), hp_color)
+    draw_rect(Rect2(-73, -204, 146, 18), frame_color, false, 2.0)
 
 func play_hit() -> void:
     if _motion and _motion.is_running():
