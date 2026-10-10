@@ -1,6 +1,6 @@
 # REALM ALLIANCE — Godot Combat Foundation 01
 
-Isolated **Godot 4.6 GDScript** vertical slice. The existing React/Vite web prototype in the repository root stays untouched. No existing save is migrated, overwritten or reset.
+Isolated **Godot 4.7.2 GDScript** vertical slice. The existing React/Vite web prototype in the repository root stays untouched. No existing save is migrated, overwritten or reset.
 
 ## Goal
 
@@ -8,7 +8,7 @@ Prove that a native Godot scene can drive fixed-stage portrait Tap/Auto combat, 
 
 ## Import / run
 
-Open the folder `godot/realm_alliance` (not the repository root) in **Godot 4.6 Standard** and press F5. Requires no downloaded assets, paid tools, C# or third-party plugins.
+Open the folder `godot/realm_alliance` (not the repository root) in **Godot 4.7.2 Standard** and press F5. Requires no downloaded assets, paid tools, C# or third-party plugins.
 
 - TAP / tap the arena: player attack with short impact delay.
 - AUTO toggle: periodic auto-attacks.
@@ -25,15 +25,15 @@ This is **not a multiplayer system**. Browser storage is not authoritative and m
 godot --headless --path godot/realm_alliance --script res://tests/test_combat.gd
 ```
 
-The test covers one-time reward, wave progression, upgrades, weapon cycle and save shape. Run it before any engine integrations.
+The test covers one-time reward, wave progression, upgrades, weapon cycle and save shape. GitHub Actions also imports the project, starts the main scene in headless mode, and exports Web plus an Android ARM64 debug APK.
 
 ## Web
 
-Use **Compatibility** renderer and a default *single-threaded* Godot 4.6 Web export. Create a Web export preset in Project > Export, install matching export templates and export to `dist/web/index.html`; serve the files over HTTP(S), not `file://`. Check Android Chrome, tap input, sound unlock, frame pacing, saves, viewport and reload. Exported Web artifacts should not be committed.
+Use **Compatibility** renderer and a default *single-threaded* Godot 4.7.2 Web export. Create a Web export preset in Project > Export, install matching export templates and export to `dist/web/index.html`; serve the files over HTTP(S), not `file://`. Check Android Chrome, tap input, sound unlock, frame pacing, saves, viewport and reload. Exported Web artifacts should not be committed.
 
 ## Android
 
-In Project > Export, install the Android build templates. Set the Android SDK and JDK paths and create an Android debug preset. Use the portrait project setting. Export an APK and verify physical-device touch input and save/reload. Native APKs and web deployments have not been built in this environment.
+In Project > Export, install the Android build templates. Set the Android SDK and JDK paths and create an Android debug preset. Use the portrait project setting. Export an APK and verify physical-device touch input and save/reload. Web and Android ARM64 debug export artifacts are produced by GitHub Actions; a successful export is not proof of device compatibility. Check the latest Godot CI workflow before distribution.
 
 ## Production boundaries
 
