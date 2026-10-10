@@ -64,12 +64,12 @@ func _build_arena() -> void:
     hero = HeroRig.new()
     hero.name = "Realmwaechter"
     hero.position = Vector2(-170, 118)
-    hero.scale = Vector2(1.40, 1.40)
+    hero.scale = Vector2(1.65, 1.65)
     stage.add_child(hero)
     enemy = EnemyVisual.new()
     enemy.name = "Enemy"
     enemy.position = Vector2(163, 118)
-    enemy.scale = Vector2(1.25, 1.25)
+    enemy.scale = Vector2(1.48, 1.48)
     stage.add_child(enemy)
     touch_zone = Button.new()
     touch_zone.flat = true
@@ -230,7 +230,7 @@ func _advance_wave() -> void:
 func _damage_popup(amount: int) -> void:
     var popup := Label.new()
     popup.text = str(amount)
-    popup.add_theme_font_size_override("font_size", 33)
+    popup.add_theme_font_size_override("font_size", 42)
     popup.add_theme_color_override("font_color", Color("#ffdb81"))
     popup.add_theme_color_override("font_shadow_color", Color("#191927"))
     popup.add_theme_constant_override("shadow_offset_x", 2)
@@ -239,13 +239,14 @@ func _damage_popup(amount: int) -> void:
     popup.position = stage.position + enemy.position * stage.scale.x + Vector2(-20, -170) * stage.scale.x
     var fly := create_tween()
     fly.set_parallel(true)
-    fly.tween_property(popup, "position:y", popup.position.y - 65.0, 0.50)
+    fly.tween_property(popup, "position:y", popup.position.y - 82.0, 0.50)
     fly.tween_property(popup, "modulate:a", 0.0, 0.50)
     fly.finished.connect(popup.queue_free)
 
 func _refresh() -> void:
     wave_info.text = "WELLE %d  •  GOLD %d  •  KILLS %d" % [model.wave, model.gold, model.total_kills]
     hp_info.text = "GEGNER %d / %d HP   |   DMG %d" % [model.enemy_hp, model.enemy_max_hp, model.hero_damage()]
+    enemy.set_health(model.enemy_hp, model.enemy_max_hp)
     auto_button.text = "AUTO: AN" if auto_enabled else "AUTO: AUS"
     weapon_button.text = "WAFFE: %s" % CombatModel.WEAPON_IDS[model.weapon_index].to_upper()
     upgrade_button.text = "UPGRADE: %d G" % model.upgrade_cost()
