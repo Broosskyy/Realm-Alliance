@@ -41,6 +41,8 @@ jobs:
         run: godot --headless --path . --script res://tests/test_layout.gd
       - name: Hero and enemy visual-contract tests
         run: godot --headless --path . --script res://tests/test_visual_contract.gd
+      - name: Imported Bramble art preview regression tests
+        run: godot --headless --path . --script res://tests/test_art_preview.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
