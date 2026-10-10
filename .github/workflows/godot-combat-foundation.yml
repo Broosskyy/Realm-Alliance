@@ -37,6 +37,8 @@ jobs:
         run: godot --headless --path . --import
       - name: Model regression tests
         run: godot --headless --path . --script res://tests/test_combat.gd
+      - name: Responsive layout regression tests
+        run: godot --headless --path . --script res://tests/test_layout.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
