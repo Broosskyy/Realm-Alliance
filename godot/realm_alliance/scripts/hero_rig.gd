@@ -137,15 +137,33 @@ func play_attack(is_skill: bool = false) -> bool:
     if _busy:
         return false
     _busy = true
-    var animation := create_tween()
-    animation.set_trans(Tween.TRANS_QUAD)
-    animation.tween_property(_arm, "rotation_degrees", -70.0 if is_skill else -45.0, 0.12)
-    animation.tween_property(_arm, "rotation_degrees", 83.0, 0.10)
+    # Three intentional beats: anticipation, strike and recovery.
+    # The weapon socket is parented to the hand pivot throughout.
+    _visual.position = Vector2.ZERO
+    _visual.rotation_degrees = 0.0
+    var animation: Tween = create_tween()
+    animation.set_trans(Tween.TRANS_SINE)
+    animation.set_ease(Tween.EASE_OUT)
+    animation.set_parallel(true)
+    animation.tween_property(_arm, "rotation_degrees", -84.0 if is_skill else -56.0, 0.13)
+    animation.tween_property(_visual, "position:x", -15.0 if is_skill else -9.0, 0.13)
+    animation.tween_property(_visual, "rotation_degrees", -6.0 if is_skill else -3.0, 0.13)
+    animation.set_parallel(false)
+    animation.tween_property(_arm, "rotation_degrees", 106.0 if is_skill else 83.0, 0.13)
+    animation.parallel().tween_property(_visual, "position:x", 36.0 if is_skill else 24.0, 0.13)
+    animation.parallel().tween_property(_visual, "rotation_degrees", 7.0 if is_skill else 4.0, 0.13)
     animation.tween_callback(func(): impact.emit())
-    animation.tween_property(_arm, "rotation_degrees", 0.0, 0.19)
+    animation.set_parallel(true)
+    animation.tween_property(_arm, "rotation_degrees", 0.0, 0.20)
+    animation.tween_property(_visual, "position", Vector2.ZERO, 0.24)
+    animation.tween_property(_visual, "rotation_degrees", 0.0, 0.24)
+    animation.set_parallel(false)
     animation.tween_callback(_finish_attack)
     return true
 
 func _finish_attack() -> void:
+    _arm.rotation_degrees = 0.0
+    _visual.rotation_degrees = 0.0
+    _visual.position = Vector2.ZERO
     _busy = false
     action_finished.emit()
