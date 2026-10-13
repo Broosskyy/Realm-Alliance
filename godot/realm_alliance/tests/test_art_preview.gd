@@ -37,6 +37,12 @@ func _run() -> void:
         verify(image.get_width() > 0 and image.get_height() > 0, "image decodes: " + relative)
         verify(image.get_pixel(0, 0).a < 0.10, "transparent corner: " + relative)
 
+    # Report true transparent bounds for calibrating legacy non-uniform source canvases.
+    for relative in ["hero/idle.png", "hero/ready.png", "hero/windup.png", "hero/contact.png", "hero/recovery.png", "weapon/longsword.png", "enemy/idle.png", "enemy/hit.png", "enemy/defeated.png"]:
+        var source_texture: Texture2D = load("res://assets/preview/bramble/" + relative)
+        var source_image: Image = source_texture.get_image()
+        print("ART_BOUNDS ", relative, " canvas=", source_image.get_size(), " opaque=", source_image.get_used_rect())
+
     var parent := Node2D.new()
     root.add_child(parent)
     var hero: RABramblePreviewHero = PreviewHero.new()
