@@ -8,6 +8,10 @@ const ATTACK = preload("res://assets/preview/bramble/enemy/attack.png")
 const HIT = preload("res://assets/preview/bramble/enemy/hit.png")
 const DEFEATED = preload("res://assets/preview/bramble/enemy/defeated.png")
 
+# Godot alpha-bound audit: idle, hit, defeated each have exactly 30px
+# transparent padding below their artwork despite different canvas heights.
+const TRANSPARENT_FOOT_MARGIN: float = 30.0
+
 var wave: int = 1
 var health_ratio: float = 1.0
 var _base_scale: Vector2 = Vector2.ONE
@@ -28,9 +32,17 @@ func _ready() -> void:
     _sprite.name = "CreatureSprite"
     _sprite.texture = IDLE
     # Sprite feet stay on the character's local ground y=0.
-    _sprite.position = Vector2(0.0, -float(IDLE.get_height()) * 0.5)
+    _set_creature_texture(IDLE)
     _bar_y = -float(IDLE.get_height()) - 18.0
     add_child(_sprite)
+
+func _set_creature_texture(texture: Texture2D) -> void:
+    if _sprite == null:
+        return
+    _sprite.texture = texture
+    # Centered Sprite2D: bottom of visible nontransparent pixels is at y = 0.
+    # This avoids a vertical jump when differently-sized action frames are swapped.
+    _sprite.position.y = -float(texture.get_height()) * 0.5 + TRANSPARENT_FOOT_MARGIN
 
 func show_wave(number: int) -> void:
     if _motion != null and _motion.is_running():
@@ -43,8 +55,7 @@ func show_wave(number: int) -> void:
     position = _base_position
     modulate = Color.WHITE
     if _sprite != null:
-        _sprite.texture = IDLE
-        _sprite.position.y = -float(IDLE.get_height()) * 0.5
+        _set_creature_texture(IDLE)
         _sprite.modulate = Color.WHITE
     queue_redraw()
 
@@ -56,7 +67,7 @@ func _process(delta: float) -> void:
     if _sprite == null or _dying or (_motion != null and _motion.is_running()):
         return
     _clock += delta
-    _sprite.position.y = -float(IDLE.get_height()) * 0.5 + sin(_clock * 2.1) * 3.0
+    _sprite.position.y = -float(IDLE.get_height()) * 0.5 + TRANSPARENT_FOOT_MARGIN + sin(_clock * 2.1) * 3.0
     scale = _display_scale * (1.0 + sin(_clock * 1.7) * 0.009)
 
 func _draw() -> void:
@@ -73,7 +84,7 @@ func play_hit() -> void:
         return
     if _motion != null and _motion.is_running():
         _motion.kill()
-    _sprite.texture = HIT
+    _set_creature_texture(HIT)
     _sprite.modulate = Color("#ffedcc")
     _motion = create_tween()
     _motion.tween_property(self, "position:x", _base_position.x + 9.0, 0.08)
@@ -83,13 +94,13 @@ func play_hit() -> void:
 
 func _restore_idle() -> void:
     if not _dying and _sprite != null:
-        _sprite.texture = IDLE
+        _set_creature_texture(IDLE)
 
 func play_death() -> void:
     if _motion != null and _motion.is_running():
         _motion.kill()
     _dying = true
-    _sprite.texture = DEFEATED
+    _set_creature_texture(DEFEATED)
     _sprite.modulate = Color.WHITE
     _motion = create_tween()
     _motion.set_parallel(true)
