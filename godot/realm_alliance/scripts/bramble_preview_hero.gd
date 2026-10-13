@@ -14,16 +14,19 @@ const RECOVERY = preload("res://assets/preview/bramble/hero/recovery.png")
 const SWORD = preload("res://assets/preview/bramble/weapon/longsword.png")
 
 # Source frames have a shared 384x512 canvas with the soles near y=464.
-# These hand points are provisional visual-review coordinates, not certified pose metadata.
+# These hand points were visually calibrated against source keyposes, but remain
+# review coordinates (not production-certified per-pose hand metadata).
+# The sword anchor is at the wrapped grip, not at the bottom pommel.
+const SWORD_GRIP_PIXEL := Vector2(112.0, 382.0)
 const GROUND_PIXEL := Vector2(192.0, 464.0)
 const GRIP_COORDS := {
-    "idle": Vector2(282, 344),
+    "idle": Vector2(229, 352),
     "ready": Vector2(256, 322),
     "windup": Vector2(167, 250),
     "contact": Vector2(340, 302),
-    "recovery": Vector2(250, 338)
+    "recovery": Vector2(259, 352)
 }
-const ROTATIONS := {"idle": 6.0, "ready": -3.0, "windup": -102.0, "contact": 52.0, "recovery": 17.0}
+const ROTATIONS := {"idle": 23.0, "ready": -3.0, "windup": -102.0, "contact": 52.0, "recovery": 17.0}
 const POSES := {"idle": IDLE, "ready": READY, "windup": WINDUP, "contact": CONTACT, "recovery": RECOVERY}
 
 var _visual: Node2D
@@ -56,8 +59,9 @@ func _ready() -> void:
     _sword.texture = SWORD
     _sword.centered = false
     _sword.scale = Vector2.ONE * 0.57
-    # Source sword pixels: grip near (58, 468). Sprite stays separate from body.
-    _sword.position = Vector2(-58.0, -468.0) * _sword.scale
+    # The wrapped handle is held at the hand. Anchoring to the pommel instead
+    # leaves an obvious floating gap and makes every attack pose look detached.
+    _sword.position = -SWORD_GRIP_PIXEL * _sword.scale
     _socket.add_child(_sword)
     _set_pose("idle")
     equip_weapon(_weapon_index)
