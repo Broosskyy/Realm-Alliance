@@ -12,7 +12,12 @@ static func solve(viewport_size: Vector2) -> Dictionary:
     var controls_top: float = h - controls_height - 16.0
     var arena_height: float = maxf(260.0, controls_top - hud_bottom)
     var scale_factor: float = minf(w / 720.0, arena_height / 720.0)
-    var scene_origin := Vector2(w * 0.5, hud_bottom + arena_height * 0.55)
+    # Place the actors closer to the action HUD instead of leaving a deep
+    # empty strip under the combat floor on tall portrait phones.
+    # Clamp by the touch-zone's bottom edge to preserve interactive separation.
+    var desired_y: float = hud_bottom + arena_height * 0.64
+    var max_y: float = controls_top - 304.0 * scale_factor
+    var scene_origin := Vector2(w * 0.5, minf(desired_y, max_y))
     var tap_origin := scene_origin + Vector2(-348.0, -306.0) * scale_factor
     var tap_size := Vector2(696.0, 610.0) * scale_factor
     return {
