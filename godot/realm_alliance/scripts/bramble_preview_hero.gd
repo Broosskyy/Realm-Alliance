@@ -13,12 +13,21 @@ const CONTACT = preload("res://assets/preview/bramble/hero/contact.png")
 const RECOVERY = preload("res://assets/preview/bramble/hero/recovery.png")
 const SWORD = preload("res://assets/preview/bramble/weapon/longsword.png")
 
-# Source frames have a shared 384x512 canvas with the soles near y=464.
+# Source files are NOT on one canvas: idle = 306x524, melee keyposes = 512x512.
+# All image opaque bounds were measured with Godot Image.get_used_rect().
+# Their true alpha-contact lines are y=494 (idle) and y=464 (action poses).
+# Explicit pose pivots preserve a stable world-ground point across transitions.
+const GROUND_PIXELS := {
+    "idle": Vector2(153.0, 494.0),
+    "ready": Vector2(256.0, 464.0),
+    "windup": Vector2(256.0, 464.0),
+    "contact": Vector2(256.0, 464.0),
+    "recovery": Vector2(256.0, 464.0)
+}
 # These hand points were visually calibrated against source keyposes, but remain
 # review coordinates (not production-certified per-pose hand metadata).
 # The sword anchor is at the wrapped grip, not at the bottom pommel.
 const SWORD_GRIP_PIXEL := Vector2(112.0, 382.0)
-const GROUND_PIXEL := Vector2(192.0, 464.0)
 const GRIP_COORDS := {
     "idle": Vector2(229, 352),
     "ready": Vector2(256, 322),
@@ -47,7 +56,7 @@ func _ready() -> void:
     _body = Sprite2D.new()
     _body.name = "BodySprite"
     _body.centered = false
-    _body.position = -GROUND_PIXEL
+    _body.position = -GROUND_PIXELS["idle"]
     _body.texture = IDLE
     _visual.add_child(_body)
 
@@ -71,7 +80,8 @@ func _set_pose(id: String) -> void:
         return
     _active_pose = id
     _body.texture = POSES[id]
-    _socket.position = GRIP_COORDS[id] - GROUND_PIXEL
+    _body.position = -GROUND_PIXELS[id]
+    _socket.position = GRIP_COORDS[id] - GROUND_PIXELS[id]
     _socket.rotation_degrees = ROTATIONS[id]
     _socket.z_index = -1 if id == "windup" else 8
 
