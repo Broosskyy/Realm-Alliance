@@ -49,10 +49,17 @@ func _run() -> void:
     parent.add_child(hero)
     verify(hero.socket_is_separate(), "weapon is a separate sprite parented to hand")
     verify(hero.preview_pose() == "idle", "authored body starts idle")
+    var body: Sprite2D = hero.get_node("ArtRoot/BodySprite")
+    var grip_node: Node2D = hero.get_node("ArtRoot/RightHandSocket")
+    var sword_sprite: Sprite2D = hero.get_node("ArtRoot/RightHandSocket/SeparateSwordSprite")
+    verify(body.position.distance_to(-PreviewHero.GROUND_PIXELS["idle"]) < 0.1, "idle pivot uses real 306x524 sprite ground")
+    verify(grip_node.position.x < 80.0, "idle hand uses the visible right fist instead of empty right margin")
+    verify((sword_sprite.position + PreviewHero.SWORD_GRIP_PIXEL * sword_sprite.scale).length() < 0.1, "sword is anchored by wrapped handle rather than pommel")
     hero.equip_weapon(2)
     verify(hero.play_attack(), "authored attack starts")
     await create_timer(0.29).timeout
     verify(hero.preview_pose() == "contact" or hero.preview_pose() == "recovery", "authored keyposes advance")
+    verify(body.position.distance_to(-PreviewHero.GROUND_PIXELS[hero.preview_pose()]) < 0.1, "attack pose preserves invariant foot pivot")
     await create_timer(0.45).timeout
     verify(hero.preview_pose() == "idle", "authored attack finishes and restores idle")
 
@@ -61,6 +68,12 @@ func _run() -> void:
     parent.add_child(enemy)
     enemy.show_wave(5)
     verify(enemy.scale.x > 0.82, "boss scales relative to original artwork")
+    var creature: Sprite2D = enemy.get_node("CreatureSprite")
+    var idle_floor: float = creature.position.y + float(creature.texture.get_height()) * 0.5
+    verify(absf(idle_floor - 30.0) < 0.1, "enemy idle aligns visible sole to ground despite transparent padding")
+    enemy.play_hit()
+    var hit_floor: float = creature.position.y + float(creature.texture.get_height()) * 0.5
+    verify(absf(hit_floor - idle_floor) < 0.1, "enemy hit frame preserves the same ground pivot")
     enemy.set_health(3, 10)
     verify(absf(enemy.health_ratio - 0.3) < 0.001, "art-backed enemy HP updates")
     verify(enemy.preview_has_four_states(), "monster preview imports four states")
