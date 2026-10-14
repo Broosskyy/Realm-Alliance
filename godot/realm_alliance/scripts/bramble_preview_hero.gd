@@ -83,7 +83,7 @@ func _set_pose(id: String) -> void:
     _body.position = -GROUND_PIXELS[id]
     _socket.position = GRIP_COORDS[id] - GROUND_PIXELS[id]
     _socket.rotation_degrees = ROTATIONS[id]
-    _socket.z_index = -1 if id == "windup" else 8
+    _socket.z_index = -1 if id in ["idle", "ready", "windup"] else 8
 
 func _process(delta: float) -> void:
     if _busy or _visual == null:
