@@ -83,13 +83,13 @@ func _build_arena() -> void:
     hero = BramblePreviewHero.new() if USE_SHARED_ART_PREVIEW else HeroRig.new()
     hero.name = "ArtPreviewHero" if USE_SHARED_ART_PREVIEW else "Realmwaechter"
     hero.position = Vector2(-170, 118)
-    hero.scale = Vector2.ONE * (0.73 if USE_SHARED_ART_PREVIEW else 1.77)
+    hero.scale = Vector2.ONE * (0.82 if USE_SHARED_ART_PREVIEW else 1.77)
     hero.z_index = 3
     stage.add_child(hero)
     enemy = BramblePreviewEnemy.new() if USE_SHARED_ART_PREVIEW else EnemyVisual.new()
     enemy.name = "ArtPreviewEnemy" if USE_SHARED_ART_PREVIEW else "Enemy"
     enemy.position = Vector2(163, 118)
-    enemy.scale = Vector2.ONE * (0.82 if USE_SHARED_ART_PREVIEW else 1.58)
+    enemy.scale = Vector2.ONE * (0.91 if USE_SHARED_ART_PREVIEW else 1.58)
     enemy.z_index = 3
     stage.add_child(enemy)
     touch_zone = Control.new()
