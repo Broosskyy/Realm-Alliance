@@ -55,6 +55,7 @@ func _run() -> void:
     verify(body.position.distance_to(-PreviewHero.GROUND_PIXELS["idle"]) < 0.1, "idle pivot uses real 306x524 sprite ground")
     verify(grip_node.position.x < 80.0, "idle hand uses the visible right fist instead of empty right margin")
     verify((sword_sprite.position + PreviewHero.SWORD_GRIP_PIXEL * sword_sprite.scale).length() < 0.1, "sword is anchored by wrapped handle rather than pommel")
+    verify(grip_node.z_index < body.z_index, "idle sword draws behind gripping hand")
     hero.equip_weapon(2)
     verify(hero.play_attack(), "authored attack starts")
     await create_timer(0.29).timeout
@@ -81,5 +82,6 @@ func _run() -> void:
     slash.configure(false)
     parent.add_child(slash)
     verify(slash.preview_frame_count() == 8, "eight source-authored slash VFX frames are available")
+    verify(slash.scale.x <= 0.45, "basic slash stays within readable enemy silhouette size")
     print("Shared art preview: %d/%d checks passed." % [checks - failures, checks])
     quit(1 if failures > 0 else 0)
