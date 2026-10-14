@@ -18,7 +18,7 @@ var _elapsed: float = 0.0
 var _frame_time: float = 0.047
 
 func configure(is_skill: bool) -> void:
-    scale = Vector2.ONE * (0.66 if is_skill else 0.51)
+    scale = Vector2.ONE * (0.56 if is_skill else 0.43)
     _frame_time = 0.055 if is_skill else 0.046
 
 func _ready() -> void:
