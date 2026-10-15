@@ -80,6 +80,24 @@ func _build_arena() -> void:
         stump.modulate = Color(0.83, 0.95, 0.91, 0.62)
         stump.z_index = 1
         stage.add_child(stump)
+        # Shared-style forest props remain isolated preview assets.
+        # Their silhouettes occupy the formerly bare upper battle backdrop.
+        var willow := Sprite2D.new()
+        willow.name = "SharedStyleWillowPreview"
+        willow.texture = preload("res://assets/preview/bramble/stage/swamp_willow.png")
+        willow.position = Vector2(252.0, -282.0)
+        willow.scale = Vector2.ONE * 0.65
+        willow.modulate = Color(0.70, 0.82, 0.88, 0.54)
+        willow.z_index = 1
+        stage.add_child(willow)
+        var lantern := Sprite2D.new()
+        lantern.name = "SharedStyleLanternPreview"
+        lantern.texture = preload("res://assets/preview/bramble/stage/lantern_post.png")
+        lantern.position = Vector2(-267.0, -220.0)
+        lantern.scale = Vector2.ONE * 0.62
+        lantern.modulate = Color(0.95, 0.89, 0.79, 0.70)
+        lantern.z_index = 1
+        stage.add_child(lantern)
     hero = BramblePreviewHero.new() if USE_SHARED_ART_PREVIEW else HeroRig.new()
     hero.name = "ArtPreviewHero" if USE_SHARED_ART_PREVIEW else "Realmwaechter"
     hero.position = Vector2(-170, 118)
