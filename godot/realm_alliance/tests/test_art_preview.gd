@@ -22,7 +22,7 @@ func _initialize() -> void:
 func _run() -> void:
     var files: Array[String] = [
         "hero/idle.png", "hero/ready.png", "hero/windup.png", "hero/contact.png", "hero/recovery.png",
-        "weapon/longsword.png", "stage/glow_stump.png",
+        "weapon/longsword.png", "stage/glow_stump.png", "stage/swamp_willow.png", "stage/lantern_post.png",
         "enemy/idle.png", "enemy/attack.png", "enemy/hit.png", "enemy/defeated.png",
         "vfx/00_glint.png", "vfx/01_arc_start.png", "vfx/02_arc_grow.png", "vfx/03_slash_peak.png",
         "vfx/04_impact_peak.png", "vfx/05_burst.png", "vfx/06_arc_fade.png", "vfx/07_motes_fade.png"
