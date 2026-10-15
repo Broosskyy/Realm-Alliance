@@ -45,10 +45,14 @@ func _draw() -> void:
         Vector2(120, -45), Vector2(360, 100), Vector2(360, 250), Vector2(-360, 250)
     ]), Color("#233a46"))
     draw_rect(Rect2(-360, 115, 720, 180), Color("#26343a"))
-    draw_rect(Rect2(-360, 295, 720, 355), Color("#182630"))
+    # Extend stone paving behind the lower screen gap instead of dropping to
+    # an untextured dark rectangle between the combat floor and action HUD.
+    draw_rect(Rect2(-360, 295, 720, 820), Color("#182630"))
     # Shallow atmospheric strokes keep the tall viewport visually connected.
     draw_line(Vector2(-360, 425), Vector2(360, 425), Color("#8a9c83", 0.08), 2)
     draw_line(Vector2(-360, 555), Vector2(360, 555), Color("#8a9c83", 0.04), 2)
+    draw_line(Vector2(-360, 720), Vector2(360, 720), Color("#8a9c83", 0.035), 2)
+    draw_line(Vector2(-360, 890), Vector2(360, 890), Color("#8a9c83", 0.025), 2)
     draw_rect(Rect2(-360, 116, 720, 7), Color("#b49c67", 0.8))
     draw_line(Vector2(-350, 200), Vector2(350, 200), Color("#121d29"), 3)
     for n in range(13):
