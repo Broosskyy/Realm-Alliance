@@ -2,7 +2,7 @@
 
 The source-backed Godot 4.7.2 project uses a **single, optional ZIP bundle** to avoid manually uploading 16 PNG files.
 
-Upload the file **`realm_canonical_batch_v2.zip`** (8.7 MB, SHA-256 `615197d0e0ddbbe0173bc9b61ae32e51c28b91f196251e9b27299b8074adf31c`) **into this exact directory** on the branch `feature/godot-combat-foundation-01`.
+Upload the file **`realm_canonical_batch_v2.zip`** (8.7 MB, SHA-256 `d1a96e6c9fa984947e4210f0f131fcadee5779280d858acd58ecfc9f94dde547`) **into this exact directory** on the branch `feature/godot-combat-foundation-01`.
 
 GitHub Actions unpacks it automatically into `res://assets/production/` **before** the Godot project imports resources. The main scene then switches to the canonical **white-haired masked hero, separately equipped sword, stone Golem and Wolkgarten background**.
 
