@@ -10,17 +10,19 @@ const Gate = preload("res://scripts/production_art_gate.gd")
 const PIVOT: Vector2 = Vector2(320.0, 488.0)
 const BLADE_GRIP: Vector2 = Vector2(188.0, 193.0)
 const BLADE_SCALE: float = 0.33
+# Approximate fist centers reviewed against the 640x512 canonical cutouts.
+# These replace the earlier out-of-body values; final grip-angle QA needs phone video.
 const HANDS := {
-    "idle": Vector2(497.0, 345.0),
-    "ready": Vector2(508.0, 335.0),
-    "windup": Vector2(431.0, 280.0),
-    "attack_contact": Vector2(535.0, 332.0),
-    "recovery": Vector2(471.0, 330.0),
-    "hit": Vector2(432.0, 338.0)
+    "idle": Vector2(443.0, 303.0),
+    "ready": Vector2(397.0, 307.0),
+    "windup": Vector2(408.0, 139.0),
+    "attack_contact": Vector2(412.0, 224.0),
+    "recovery": Vector2(466.0, 178.0),
+    "hit": Vector2(433.0, 206.0)
 }
 const ANGLES := {
-    "idle": 53.0, "ready": -14.0, "windup": -75.0,
-    "attack_contact": 16.0, "recovery": 42.0, "hit": 78.0
+    "idle": 43.0, "ready": -8.0, "windup": -90.0,
+    "attack_contact": 18.0, "recovery": 18.0, "hit": 65.0
 }
 
 var _art: Node2D
