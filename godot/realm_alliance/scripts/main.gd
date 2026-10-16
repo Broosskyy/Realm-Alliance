@@ -10,6 +10,9 @@ const ImpactFX = preload("res://scripts/impact_fx.gd")
 const BramblePreviewHero = preload("res://scripts/bramble_preview_hero.gd")
 const BramblePreviewEnemy = preload("res://scripts/bramble_preview_enemy.gd")
 const BramblePreviewSlash = preload("res://scripts/bramble_preview_slash.gd")
+const ProductionArtGate = preload("res://scripts/production_art_gate.gd")
+const ProductionHero = preload("res://scripts/production_hero.gd")
+const ProductionEnemy = preload("res://scripts/production_enemy.gd")
 
 # The shared art preview is reversible. Original procedural HeroRig/EnemyVisual survive.
 const USE_SHARED_ART_PREVIEW: bool = true
@@ -38,9 +41,15 @@ var skill_ready_at: int = 0
 var ui_accumulator: float = 0.0
 var _stage_home: Vector2 = Vector2.ZERO
 var _last_stage_tap_ms: int = -1000
+var _production_enabled: bool = false
 
 func _ready() -> void:
     model = CombatModel.new(SaveStore.load_state())
+    _production_enabled = ProductionArtGate.available()
+    if _production_enabled:
+        print("REALM: canonical hero, weapons, Golem and world art loaded")
+    else:
+        print("REALM: art pack not installed, using safe Bramble preview fallback")
     _build_arena()
     _build_hud()
     hero.impact.connect(_on_hero_impact)
@@ -67,11 +76,21 @@ func _build_arena() -> void:
     background.set_anchors_preset(Control.PRESET_FULL_RECT)
     background.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(background)
+    if _production_enabled:
+        var world := TextureRect.new()
+        world.name = "WolkgartenProductionWorld"
+        world.texture = load(ProductionArtGate.ROOT + "world/wolkgarten_battle_plate.png")
+        world.set_anchors_preset(Control.PRESET_FULL_RECT)
+        world.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+        world.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+        world.mouse_filter = Control.MOUSE_FILTER_IGNORE
+        add_child(world)
     stage = Node2D.new()
     stage.name = "FixedCombatStage"
     add_child(stage)
-    stage.add_child(StageArt.new())
-    if USE_SHARED_ART_PREVIEW:
+    if not _production_enabled:
+        stage.add_child(StageArt.new())
+    if USE_SHARED_ART_PREVIEW and not _production_enabled:
         var stump := Sprite2D.new()
         stump.name = "SharedStyleSceneryPreview"
         stump.texture = preload("res://assets/preview/bramble/stage/glow_stump.png")
@@ -98,16 +117,22 @@ func _build_arena() -> void:
         lantern.modulate = Color(0.95, 0.89, 0.79, 0.70)
         lantern.z_index = 1
         stage.add_child(lantern)
-    hero = BramblePreviewHero.new() if USE_SHARED_ART_PREVIEW else HeroRig.new()
-    hero.name = "ArtPreviewHero" if USE_SHARED_ART_PREVIEW else "Realmwaechter"
+    if _production_enabled:
+        hero = ProductionHero.new()
+    else:
+        hero = BramblePreviewHero.new() if USE_SHARED_ART_PREVIEW else HeroRig.new()
+    hero.name = "CanonicalRealmwaechter" if _production_enabled else ("ArtPreviewHero" if USE_SHARED_ART_PREVIEW else "Realmwaechter")
     hero.position = Vector2(-170, 118)
-    hero.scale = Vector2.ONE * (0.82 if USE_SHARED_ART_PREVIEW else 1.77)
+    hero.scale = Vector2.ONE * (0.78 if _production_enabled else (0.82 if USE_SHARED_ART_PREVIEW else 1.77))
     hero.z_index = 3
     stage.add_child(hero)
-    enemy = BramblePreviewEnemy.new() if USE_SHARED_ART_PREVIEW else EnemyVisual.new()
-    enemy.name = "ArtPreviewEnemy" if USE_SHARED_ART_PREVIEW else "Enemy"
+    if _production_enabled:
+        enemy = ProductionEnemy.new()
+    else:
+        enemy = BramblePreviewEnemy.new() if USE_SHARED_ART_PREVIEW else EnemyVisual.new()
+    enemy.name = "ProductionGolem" if _production_enabled else ("ArtPreviewEnemy" if USE_SHARED_ART_PREVIEW else "Enemy")
     enemy.position = Vector2(163, 118)
-    enemy.scale = Vector2.ONE * (0.91 if USE_SHARED_ART_PREVIEW else 1.58)
+    enemy.scale = Vector2.ONE * (0.78 if _production_enabled else (0.91 if USE_SHARED_ART_PREVIEW else 1.58))
     enemy.z_index = 3
     stage.add_child(enemy)
     touch_zone = Control.new()
@@ -153,7 +178,8 @@ func _build_hud() -> void:
     header = _make_label("REALM ALLIANCE", 36, Color("#e3c78f"))
     wave_info = _make_label("", 25, Color("#edf1f5"))
     hp_info = _make_label("", 23, Color("#b9d8d7"))
-    help_text = _make_label("SHARED ART PREVIEW  •  NICHT FINAL" if USE_SHARED_ART_PREVIEW else "KAMPF   •   TAP ODER AUTO", 19, Color("#d4c6a4"))
+    var combat_hint: String = "REALM ART BATCH 01  •  PROTOTYP" if _production_enabled else ("SHARED ART PREVIEW  •  NICHT FINAL" if USE_SHARED_ART_PREVIEW else "KAMPF   •   TAP ODER AUTO")
+    help_text = _make_label(combat_hint, 19, Color("#d4c6a4"))
     bottom_panel = PanelContainer.new()
     var frame := StyleBoxFlat.new()
     frame.bg_color = Color("#111f32",0.96)
@@ -294,7 +320,7 @@ func _advance_wave() -> void:
         _refresh()
 
 func _impact_burst(is_skill: bool) -> void:
-    if USE_SHARED_ART_PREVIEW:
+    if USE_SHARED_ART_PREVIEW and not _production_enabled:
         var slash: RABramblePreviewSlash = BramblePreviewSlash.new()
         slash.configure(is_skill)
         slash.position = enemy.position + Vector2(-35.0, -165.0)
