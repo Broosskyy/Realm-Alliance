@@ -33,6 +33,19 @@ jobs:
             cp -a /root/.local/share/godot/export_templates/4.7.2.stable "$HOME/.local/share/godot/export_templates/"
           fi
           godot --version
+      - name: Unpack optional REALM canonical art bundle
+        run: |
+          if [ -f assets/packs/realm_canonical_batch_v2.zip ]; then
+            mkdir -p assets/production
+            unzip -o assets/packs/realm_canonical_batch_v2.zip -d assets/production
+            test -f assets/production/hero/idle.png
+            test -f assets/production/weapons/steel.png
+            test -f assets/production/enemy/golem_idle_ready.png
+            test -f assets/production/world/wolkgarten_battle_plate.png
+            echo "Canonical production sprites unpacked"
+          else
+            echo "Canonical asset bundle not committed; Bramble preview remains active"
+          fi
       - name: Import project
         run: godot --headless --path . --import
       - name: Model regression tests
@@ -43,6 +56,8 @@ jobs:
         run: godot --headless --path . --script res://tests/test_visual_contract.gd
       - name: Imported Bramble art preview regression tests
         run: godot --headless --path . --script res://tests/test_art_preview.gd
+      - name: Production art and weapon-socket tests
+        run: godot --headless --path . --script res://tests/test_production_art.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
