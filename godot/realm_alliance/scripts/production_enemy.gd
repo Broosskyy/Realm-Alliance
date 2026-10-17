@@ -5,6 +5,9 @@ const ROOT: String = "res://assets/production/enemy/"
 const GROUND: Vector2 = Vector2(368.0, 704.0)
 
 var show_local_health: bool = true
+var _ground: Vector2 = GROUND
+var _visual: String = "golem"
+var _kind: String = "normal"
 var wave: int = 1
 var health_ratio: float = 1.0
 var _sprite: Sprite2D
@@ -24,7 +27,7 @@ func _ready() -> void:
     _sprite = Sprite2D.new()
     _sprite.name = "GolemSprite"
     _sprite.centered = false
-    _sprite.position = -GROUND
+    _sprite.position = -_ground
     add_child(_sprite)
     _frames = {
         "idle": load(ROOT + "golem_idle_ready.png"),
@@ -37,11 +40,37 @@ func _ready() -> void:
 func _set_pose(state: String) -> void:
     if _sprite != null:
         _sprite.texture = _frames[state]
-        _sprite.position = -GROUND
+        _sprite.position = -_ground
+
+func configure_enemy(d: Dictionary) -> void:
+    _visual = str(d.visual)
+    _kind = str(d.kind)
+    _ground = Vector2(320,488) if _visual == "slime" else GROUND
+    if _visual == "slime":
+        for state in ["idle","attack","hit","defeated"]:
+            _frames[state] = load("res://assets/expansion/slime/"+state+".png")
+    else:
+        _frames = {"idle":load(ROOT+"golem_idle_ready.png"),"attack":load(ROOT+"golem_attack.png"),"hit":load(ROOT+"golem_hit_damage.png"),"defeated":load(ROOT+"golem_defeated.png")}
+    _set_pose("idle")
+
+func play_telegraph() -> void:
+    if not _dying:
+        _sprite.modulate = Color("#ffce94")
+
+func play_attack() -> void:
+    if _dying:
+        return
+    if _animation and _animation.is_running(): _animation.kill()
+    _set_pose("attack")
+    _sprite.modulate=Color.WHITE
+    _animation=create_tween()
+    _animation.tween_property(self,"position:x",_base_pos.x-24,0.14)
+    _animation.tween_property(self,"position:x",_base_pos.x,0.21)
+    _animation.tween_callback(_return_idle)
 
 func set_layout_scale(value: float) -> void:
     _base_scale = Vector2.ONE * value
-    _display_scale = _base_scale * (1.09 if wave % 5 == 0 else 1.0)
+    _display_scale = _base_scale * (1.09 if _kind == "boss" or wave % 5 == 0 else 1.0)
     if not _dying:
         scale = _display_scale
 
@@ -51,10 +80,11 @@ func show_wave(number: int) -> void:
     wave = number
     _dying = false
     health_ratio = 1.0
-    _display_scale = _base_scale * (1.09 if wave % 5 == 0 else 1.0)
+    _display_scale = _base_scale * (1.09 if _kind == "boss" or wave % 5 == 0 else 1.0)
     scale = _display_scale
     position = _base_pos
     modulate = Color.WHITE
+    _sprite.modulate = Color.WHITE
     _set_pose("idle")
     queue_redraw()
 

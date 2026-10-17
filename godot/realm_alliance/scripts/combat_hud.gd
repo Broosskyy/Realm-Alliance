@@ -15,6 +15,11 @@ var bold: Font = preload("res://assets/ui/work61/fonts/DejaVuSans-Bold.ttf")
 var icons: Dictionary = {}
 var orbs: Array[Texture2D] = []
 var buttons: Dictionary = {}
+const Progress = preload("res://scripts/systems/player_progress.gd")
+const Equipment = preload("res://scripts/systems/equipment.gd")
+const HeroPreview = preload("res://scripts/production_hero.gd")
+var preview
+var hit_flash: float = 0.0
 var model
 var auto_enabled = true
 var active_tab = "Kampf"
@@ -47,7 +52,7 @@ func _ready() -> void:
         portrait.region = Rect2(310, 25, 230, 220)
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet"]:
         var b = Button.new()
         b.name = "Action_" + id
         b.text = ""
@@ -64,10 +69,19 @@ func _ready() -> void:
         b.pressed.connect(func(): action.emit(id))
         buttons[id] = b
         add_child(b)
+    if hero_texture:
+        preview = HeroPreview.new()
+        preview.name = "EquippedHeroPreview"
+        preview.z_index = 20
+        preview.position = Vector2(300,589)
+        preview.scale = Vector2.ONE * 0.66
+        preview.visible = false
+        add_child(preview)
     configure(1280.0)
+    toast_until = Time.get_ticks_msec()+3500
 
 func _tooltip(id: String) -> String:
-    return {"auto":"Automatischen Standardangriff umschalten", "skill0":"Himmelsklinge · 2,8× Schaden", "skill1":"Arkaner Blick · 25 Momentum", "skill2":"Zornesflamme · 40 Zorn", "locked":"Fähigkeit noch nicht verfügbar", "weapon":"Separates Schwert wechseln", "upgrade":"Angriff mit Gold aufwerten", "return":"Zurück zum Kampf", "mail":"Posteingang", "settings":"Einstellungen", "quests":"Aufgaben", "events":"Events"}.get(id, id)
+    return {"auto":"Automatischen Standardangriff umschalten", "skill0":"Himmelsklinge · 2,8× Schaden", "skill1":"Arkanblick · 25 Momentum · 5s Markierung (+35% Schaden)", "skill2":"Zornesflamme · 40 Zorn · 4s Brennen", "locked":"Wächterwall · Ab Level 2 · 20 Momentum", "weapon":"Separates Schwert wechseln", "upgrade":"Angriff mit Gold aufwerten", "return":"Zurück zum Kampf", "mail":"Posteingang", "settings":"Einstellungen", "quests":"Aufgaben", "events":"Events"}.get(id, id)
 
 func _fade(a: Color, b: Color) -> GradientTexture2D:
     var g = Gradient.new()
@@ -93,6 +107,11 @@ func configure(height: float) -> void:
         _place(ids[i], Rect2(34 + i * 174, controls_top + 82, 130, 142))
     for i in 5:
         _place(["Kampf", "Abenteuer", "Wesen", "Beute", "Mehr"][i], Rect2(i * 144 + 4, height - 94, 136, 88))
+    _place("restart", Rect2(170, 570, 380, 62))
+    _place("look", Rect2(38, 733, 310, 58))
+    _place("aura", Rect2(368, 733, 314, 58))
+    for i in 5:
+        _place("equip_"+Equipment.IDS[i], Rect2(38+(i%2)*332, 813+floori(i/2.0)*76, 312, 66))
     _place("weapon", Rect2(38, 644, 310, 64))
     _place("upgrade", Rect2(368, 644, 314, 64))
     _place("return", Rect2(38, height - 188, 644, 62))
@@ -106,23 +125,43 @@ func _place(id: String, r: Rect2) -> void:
     buttons[id].size = r.size
 
 func update_buttons() -> void:
-    if buttons.is_empty():
+    if buttons.is_empty() or model == null:
         return
     var in_combat = active_tab == "Kampf"
+    if preview:
+        preview.visible = active_tab == "Wesen"
+        preview.equip_weapon(model.weapon_index)
+        preview.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
     for id in ["auto", "skill0", "skill1", "locked", "skill2"]:
         buttons[id].visible = in_combat
-    for id in ["weapon", "upgrade"]:
+    for id in ["weapon", "upgrade", "look", "aura"]:
         buttons[id].visible = active_tab == "Wesen"
     for id in ["quests", "events"]:
         buttons[id].visible = active_tab == "Mehr"
     buttons["return"].visible = not in_combat
-    if model == null:
-        return
-    var now = Time.get_ticks_msec()
-    buttons["skill0"].disabled = now < int(cooldowns[0]) or model.enemy_hp <= 0
-    buttons["skill1"].disabled = now < int(cooldowns[1]) or momentum < 25 or model.enemy_hp <= 0
-    buttons["skill2"].disabled = now < int(cooldowns[2]) or rage < 40 or model.enemy_hp <= 0
-    buttons["upgrade"].disabled = model.gold < model.upgrade_cost() or model.upgrade_level >= 500
+    buttons["restart"].visible = in_combat and model.outcome in ["victory","defeat"]
+    var ids=["sky_blade","arcane_eye","rage_flame","guardian_wall"]
+    var controls=["skill0","skill1","skill2","locked"]
+    for i in 4:
+        buttons[controls[i]].disabled = model.outcome!="fighting" or not model.skills.can_cast(ids[i],model.clock,model.level,{"momentum":model.momentum,"rage":model.rage})
+    # Locked defense remains tappable to explain the actual level requirement.
+    if model.level<2: buttons["locked"].disabled=false
+    buttons["upgrade"].disabled = model.gold < model.upgrade_cost() or model.upgrade_level>=19 or (model.upgrade_level>=2 and model.profile.shards<1)
+    for id in Equipment.IDS:
+        var b: Button=buttons["equip_"+id]
+        b.visible=active_tab=="Wesen"
+        b.disabled=not model.profile.inventory.has(id)
+        b.tooltip_text=Equipment.definition(id).description
+        if active_tab=="Wesen":
+            var i=Equipment.IDS.find(id)
+            _place("equip_"+id,Rect2(38+(i%2)*332,813+floori(i/2.0)*76,312,66))
+        elif active_tab=="Beute":
+            for i in mini(7,model.profile.loot.size()):
+                var item:Dictionary=model.profile.loot[i]
+                if item.kind=="weapon" and item.id==id:
+                    b.visible=true
+                    b.disabled=false
+                    _place("equip_"+id,Rect2(38,270+i*86,644,74))
 
 func notify(title: String, detail: String, seconds: float = 3.0) -> void:
     toast_title = title
@@ -131,6 +170,7 @@ func notify(title: String, detail: String, seconds: float = 3.0) -> void:
     queue_redraw()
 
 func _process(delta: float) -> void:
+    hit_flash=maxf(0,hit_flash-delta)
     _redraw_clock += delta
     if _redraw_clock >= 0.1:
         _redraw_clock = 0.0
@@ -180,16 +220,21 @@ func _draw() -> void:
     else:
         _draw_shell()
     _draw_nav()
+    if hit_flash>0 and active_tab=="Kampf":
+        draw_rect(Rect2(0,0,7,logical_height-96),Color(1,0.12,0.1,hit_flash*2))
+        draw_rect(Rect2(713,0,7,logical_height-96),Color(1,0.12,0.1,hit_flash*2))
+    if model.outcome in ["victory","defeat"] and active_tab=="Kampf":
+        _draw_result()
 
 func _draw_header() -> void:
     _panel(Rect2(12, 12, 225, 68), Color(0.015,0.055,0.12,0.91))
     _panel(Rect2(15, 14, 64, 64), Color("#142840"), GOLD.darkened(0.3), 17)
     if portrait:
         draw_texture_rect(portrait, Rect2(16, 13, 63, 63), false)
-    var level = 1 + model.total_kills / 10
+    var level = model.level
     _text("Lv. %d" % level, Vector2(89, 40), 22, INK, true)
-    _bar(Rect2(89, 51, 101, 11), float(model.total_kills % 10) / 10.0, CYAN)
-    _text("%d%%" % ((model.total_kills % 10) * 10), Vector2(195, 61), 13, MUTED)
+    _bar(Rect2(89, 51, 101, 11), float(Progress.xp_in_level(int(model.profile.xp))) / Progress.required(level), CYAN)
+    _text("%d%%" % int(100.0*Progress.xp_in_level(int(model.profile.xp))/Progress.required(level)), Vector2(195, 61), 13, MUTED)
     for i in 3:
         var x = 249 + i * 118
         _panel(Rect2(x, 24, 110, 43), Color(0.01,0.035,0.08,0.94), Color(0.2,0.44,0.63,0.7), 22)
@@ -218,28 +263,39 @@ func _draw_combat() -> void:
             draw_line(p, p + Vector2(28, 0), Color("#39516d"), 3, true)
         draw_circle(p, 6 if i != node else 8, CYAN if i <= node else Color("#536680"))
     _icon("crown", Rect2(554, 108, 29, 29), GOLD if node == 4 else MUTED)
-    var boss = model.wave % 5 == 0
+    var boss = model.enemy_definition.kind == "boss"
+    var elite = model.enemy_definition.kind == "elite"
     _panel(Rect2(240, 168, 458, 106), Color(0.01,0.035,0.075,0.94), Color(0.55,0.25,0.3,0.8) if boss else Color(0.28,0.52,0.71,0.55))
     _icon("crown" if boss else "rock", Rect2(254, 180, 33, 33), GOLD if boss else Color.WHITE)
-    _text("Steingolem", Vector2(296, 202), 25, INK, true)
+    _text(model.enemy_definition.name, Vector2(296, 202), 23, INK, true)
     _text("Lv. %d" % model.wave, Vector2(615, 201), 18, MUTED)
     _bar(Rect2(255, 217, 428, 24), float(model.enemy_hp) / model.enemy_max_hp, Color("#f23754"))
     _center("%d / %d" % [model.enemy_hp, model.enemy_max_hp], Rect2(255, 216, 428, 24), 16, INK, true)
-    _text("BOSS" if boss else "NORMAL", Vector2(257, 261), 12, GOLD if boss else MUTED, true)
-    for i in 3:
-        _icon(["flame", "shield", "rock"][i], Rect2(365 + i * 28, 247, 21, 21))
-    _text("Erdpanzer", Vector2(461, 263), 14, MUTED)
+    _text("BOSS" if boss else ("ELITE" if elite else "NORMAL"), Vector2(257, 261), 12, GOLD if boss else (PURPLE if elite else MUTED), true)
+    var statuses=[]
+    if model.enemy_status.has("mark",model.clock): statuses.append(["eye","%.1fs"%model.enemy_status.remaining("mark",model.clock)])
+    if model.enemy_status.has("burn",model.clock): statuses.append(["flame","%.1fs"%model.enemy_status.remaining("burn",model.clock)])
+    if statuses.is_empty():
+        _text("%d / 5 · Streifzug"%(model.encounter+1),Vector2(375,263),14,MUTED)
+    else:
+        for i in statuses.size():
+            _icon(statuses[i][0],Rect2(363+i*105,247,21,21))
+            _text(statuses[i][1],Vector2(389+i*105,263),13,INK)
+    if model.behavior.state=="windup" and model.outcome=="fighting":
+        _panel(Rect2(293,282,355,32),Color(0.22,0.035,0.035,0.92),Color("#e98f65"),12)
+        var cue="Doppelschlag" if model.enemy_definition.pattern=="double" else ("Wuchtschlag" if boss else "Angriff")
+        _center("%s in %.1fs"%[cue,maxf(0,model.behavior.deadline-model.clock)],Rect2(293,282,355,32),16,Color("#ffca9b"),true)
     if toast_until > Time.get_ticks_msec() or toast_until == 0:
         _panel(Rect2(18, 169, 207, 91), Color(0.02,0.04,0.07,0.87), Color(0.66,0.46,0.15,0.62))
-        _icon("flame", Rect2(29, 184, 31, 40))
+        _icon("flame", Rect2(28, 184, 20, 27))
         var title = toast_title if toast_until != 0 else "Wolkgarten"
-        _text(title, Vector2(66, 197), 15, GOLD, true, 150)
+        _text(title, Vector2(54, 196), 13, GOLD, true, 166)
         _text(toast_detail if toast_until != 0 else "Tippen zum Angriff", Vector2(30, 242), 12, MUTED, false, 186)
     draw_texture_rect(_bottom_fade, Rect2(0, controls_top - 90, 720, 330 + 90), false)
     var y = controls_top + 8
-    _resource(Rect2(18, y, 248, 58), "heart", "100 / 100", 1.0, Color("#36df73"))
-    _resource(Rect2(278, y, 165, 58), "eye", "%d%%" % momentum, momentum / 100.0, PURPLE)
-    _resource(Rect2(455, y, 155, 58), "flame", "%d%%" % rage, rage / 100.0, Color("#ff8a22"))
+    _resource(Rect2(18, y, 248, 58), "heart", "%d / %d"%[model.player_hp,model.player_max_hp], float(model.player_hp)/model.player_max_hp, Color("#36df73"))
+    _resource(Rect2(278, y, 165, 58), "eye", "%d" % model.momentum, model.momentum / 100.0, PURPLE)
+    _resource(Rect2(455, y, 155, 58), "flame", "%d" % model.rage, model.rage / 100.0, Color("#ff8a22"))
     var ac = Vector2(663, controls_top + 37)
     draw_circle(ac, 36, Color(0.05,0.6,1,0.12) if auto_enabled else Color(0.1,0.15,0.2,0.8))
     draw_circle(ac, 32, Color("#061528"))
@@ -257,26 +313,41 @@ func _resource(r: Rect2, icon: String, value: String, ratio: float, color: Color
     _bar(Rect2(r.position + Vector2(46, 32), Vector2(r.size.x - 58, 14)), ratio, color)
 
 func _skill(i: int, center: Vector2) -> void:
-    var locked = i == 2
-    var index = i if i < 2 else 2
-    var cd = 0.0 if locked else maxf(0, (float(cooldowns[index]) - Time.get_ticks_msec()) / 1000.0)
-    var unaffordable = (i == 1 and momentum < 25) or (i == 3 and rage < 40)
-    var r = Rect2(center - Vector2(66,66), Vector2(132,132))
-    draw_texture_rect(orbs[i], r, false, Color(0.64,0.69,0.78) if unaffordable else Color.WHITE)
-    if cd > 0:
-        var polygon = PackedVector2Array([center])
-        var ratio = cd / float(durations[index])
+    var skill_index=[0,1,3,2][i]
+    var id=["sky_blade","arcane_eye","guardian_wall","rage_flame"][i]
+    var d:Dictionary=model.skills.definitions[id]
+    var locked=model.level<int(d.unlock_level)
+    var cd=model.skills.remaining(id,model.clock)
+    var cost_resource=model.momentum if d.cost_type=="momentum" else model.rage
+    var unaffordable=d.cost_type!="none" and cost_resource<float(d.cost)
+    var r=Rect2(center-Vector2(66,66),Vector2(132,132))
+    draw_texture_rect(orbs[i],r,false,Color(0.57,0.63,0.73) if locked or unaffordable else Color.WHITE)
+    if i==2 and not locked:
+        draw_circle(center,37,Color("#112b50"))
+        _icon("shield",Rect2(center-Vector2(26,29),Vector2(52,58)))
+    if cd>0:
+        var polygon=PackedVector2Array([center])
+        var ratio=clampf(cd/float(d.cooldown),0,1)
         for j in range(33):
-            var angle = -PI / 2 + TAU * ratio * j / 32.0
-            polygon.append(center + Vector2(cos(angle), sin(angle)) * 55)
-        draw_colored_polygon(polygon, Color(0.0,0.015,0.06,0.72))
-        draw_arc(center, 58, -PI/2, -PI/2 + TAU * ratio, 64, Color(0.8,0.94,1,0.8), 2, true)
-        _center("%.1f" % cd, Rect2(center - Vector2(45, 20), Vector2(90, 40)), 28, INK, true)
-    var label = ["Klinge", "Arkanblick", "Gesperrt", "Zornesflamme"][i]
-    _center(label, Rect2(center.x - 80, center.y + 66, 160, 22), 14, MUTED if locked else INK, true)
-    if not locked and cd <= 0:
-        _panel(Rect2(center.x - 43, center.y + 39, 86, 23), Color("#061122"), Color(0.4,0.55,0.7,0.7), 10)
-        _center("25 M" if i == 1 else ("40 Z" if i == 3 else "BEREIT"), Rect2(center.x - 43, center.y + 39, 86, 23), 12, MUTED if unaffordable else CYAN, true)
+            var angle=-PI/2+TAU*ratio*j/32.0
+            polygon.append(center+Vector2(cos(angle),sin(angle))*55)
+        draw_colored_polygon(polygon,Color(0,0.015,0.06,0.72))
+        draw_arc(center,58,-PI/2,-PI/2+TAU*ratio,64,Color(0.8,0.94,1,0.8),2,true)
+        _center("%.1f"%cd,Rect2(center-Vector2(45,20),Vector2(90,40)),28,INK,true)
+    _center(["Klinge","Arkanblick","Wächterwall","Zornesflamme"][i],Rect2(center.x-80,center.y+66,160,22),14,MUTED if locked else INK,true)
+    if cd<=0:
+        _panel(Rect2(center.x-43,center.y+39,86,23),Color("#061122"),Color(0.4,0.55,0.7,0.7),10)
+        var label="Lv. %d"%d.unlock_level if locked else ("BEREIT" if d.cost_type=="none" else "%d %s"%[d.cost,"M" if d.cost_type=="momentum" else "Z"])
+        _center(label,Rect2(center.x-43,center.y+39,86,23),12,MUTED if locked or unaffordable else CYAN,true)
+
+func _draw_result() -> void:
+    draw_rect(Rect2(0,96,720,logical_height-192),Color(0.01,0.025,0.055,0.68))
+    _panel(Rect2(112,365,496,300),Color("#091a30"),GOLD if model.outcome=="victory" else Color("#ff6b72"),22)
+    _icon("crown" if model.outcome=="victory" else "heart",Rect2(327,385,66,66))
+    _center("STREIFZUG GESCHAFFT" if model.outcome=="victory" else "BESIEGT",Rect2(120,461,480,42),25,GOLD if model.outcome=="victory" else INK,true)
+    _center("Gold, XP und Beute bleiben erhalten.",Rect2(120,512,480,32),17,MUTED)
+    _panel(Rect2(170,570,380,62),Color("#133d5c"),CYAN)
+    _center("Nächster Streifzug" if model.outcome=="victory" else "Erneut versuchen",Rect2(170,570,380,62),20,INK,true)
 
 func _draw_nav() -> void:
     var y = logical_height - 96
@@ -292,6 +363,9 @@ func _draw_nav() -> void:
         _icon(["swords", "map", "paw", "chest", "grid"][i], Rect2(x + 53, y + 13, 38, 38), INK if active else MUTED)
         _center(tab, Rect2(x, y + 57, 144, 26), 17, INK if active else MUTED, active)
 
+func _rarity(id: String) -> String:
+    return {"common":"Gewöhnlich","rare":"Selten","epic":"Episch"}.get(id,id)
+
 func _draw_shell() -> void:
     _center(active_tab, Rect2(0, 105, 720, 48), 31, INK, true)
     match active_tab:
@@ -306,28 +380,48 @@ func _draw_shell() -> void:
                 if i == 0:
                     _icon("star", Rect2(615, y + 24, 29, 29), GOLD)
         "Wesen":
-            _panel(Rect2(38, 177, 644, 440), Color(0.015,0.055,0.11,0.92))
-            _center("Realmwächter", Rect2(38, 191, 644, 38), 26, INK, true)
-            _center("Ausrüstung", Rect2(38, 232, 644, 26), 16, MUTED)
-            if hero_texture:
-                draw_texture_rect(hero_texture, Rect2(98, 265, 440, 352), false)
-            if weapon_texture:
-                draw_set_transform(Vector2(553, 442), -0.9)
-                draw_texture_rect(weapon_texture, Rect2(-55, -35, 210, 70), false)
-                draw_set_transform(Vector2.ZERO)
-            _text("Angriff %d" % model.hero_damage(), Vector2(61, 595), 19, GOLD, true)
-            _text("Aufwertung +%d" % model.upgrade_level, Vector2(445, 595), 18, MUTED)
-            _panel(Rect2(38, 644, 310, 64), Color("#11334f"), CYAN.darkened(0.3))
-            _panel(Rect2(368, 644, 314, 64), Color("#3c2851"), PURPLE.darkened(0.2))
-            _center("Schwert wechseln", Rect2(38, 644, 310, 64), 20, INK, true)
-            _center("Aufwerten · %d G" % model.upgrade_cost(), Rect2(368, 644, 314, 64), 18, MUTED if model.gold < model.upgrade_cost() else GOLD, true)
-            _center("Wähle dein Schwert und verstärke deinen Angriff.", Rect2(38, 727, 644, 30), 16, MUTED)
+            _panel(Rect2(38,177,644,440),Color(0.015,0.055,0.11,0.92))
+            _center("Realmwächter · Lv. %d"%model.level,Rect2(38,191,644,38),25,INK,true)
+            _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
+            _center(Equipment.definition(model.profile.equipped).description,Rect2(50,269,620,30),15,MUTED)
+            _text("Angriff %d"%model.hero_damage(),Vector2(61,595),19,GOLD,true)
+            _text("HP %d · Kraft %d"%[model.player_max_hp,model.hero_damage()*10+model.player_max_hp],Vector2(426,595),16,MUTED)
+            _panel(Rect2(38,644,310,64),Color("#11334f"),CYAN.darkened(0.3))
+            _panel(Rect2(368,644,314,64),Color("#3c2851"),PURPLE.darkened(0.2))
+            _center("Waffe wechseln",Rect2(38,644,310,64),20,INK,true)
+            _center("Aufwerten · %d G%s"%[model.upgrade_cost()," +1 Splitter" if model.upgrade_level>=2 else ""],Rect2(368,644,314,64),15,MUTED if buttons.upgrade.disabled else GOLD,true)
+            _panel(Rect2(38,733,310,58),Color("#123b3a"),CYAN.darkened(0.3))
+            _panel(Rect2(368,733,314,58),Color("#18233b"),PURPLE.darkened(0.4))
+            _center("Umhang: %s"%("Smaragd" if model.profile.look=="emerald" else "Original"),Rect2(38,733,310,58),17,INK,true)
+            _center("Aura: %s"%("Lv. 3" if model.level<3 else ("An" if model.profile.aura else "Aus")),Rect2(368,733,314,58),17,MUTED if model.level<3 else CYAN,true)
+            for i in 5:
+                var id:String=Equipment.IDS[i]
+                var owned=model.profile.inventory.has(id)
+                var d=Equipment.definition(id)
+                var r=Rect2(38+(i%2)*332,813+floori(i/2.0)*76,312,66)
+                var color=GOLD if id==model.profile.equipped else (PURPLE if d.rarity=="epic" else CYAN)
+                _panel(r,Color(0.025,0.07,0.13,0.95),color if owned else Color("#33445b"))
+                _icon("swords" if owned else "lock",Rect2(r.position+Vector2(12,17),Vector2(29,29)),color if owned else MUTED)
+                _text(d.name, r.position+Vector2(50,27),16,INK if owned else MUTED,true)
+                _text("Lv. %d · %s"%[model.profile.inventory[id].level,_rarity(d.rarity)] if owned else "Im Streifzug finden",r.position+Vector2(50,50),13,color if owned else MUTED)
         "Beute":
-            _panel(Rect2(38, 190, 644, 237))
-            _icon("chest", Rect2(308, 206, 104, 104))
-            _center("%d Gold gesammelt" % model.gold, Rect2(38, 318, 644, 40), 29, GOLD, true)
-            _center("%d Gegner besiegt" % model.total_kills, Rect2(38, 367, 644, 30), 18, MUTED)
-            _center("Ausrüstungsbeute folgt in einem späteren Ausbau.", Rect2(38, 470, 644, 40), 18, MUTED)
+            _panel(Rect2(38,178,644,68))
+            _icon("gold",Rect2(56,194,33,33))
+            _text(str(model.gold),Vector2(101,220),22,GOLD,true)
+            _icon("shard",Rect2(288,194,33,33))
+            _text("%d Splitter"%model.profile.shards,Vector2(335,220),20,CYAN,true)
+            _text("%d Waffen"%model.profile.inventory.size(),Vector2(537,220),17,MUTED)
+            if model.profile.loot.is_empty():
+                _center("Beute erscheint hier nach dem ersten Sieg.",Rect2(38,290,644,80),20,MUTED)
+            for i in mini(7,model.profile.loot.size()):
+                var item:Dictionary=model.profile.loot[i]
+                var r=Rect2(38,270+i*86,644,74)
+                var color=PURPLE if item.rarity=="epic" else (CYAN if item.rarity=="rare" else MUTED)
+                _panel(r,Color(0.02,0.055,0.11,0.94),color)
+                _icon("swords" if item.kind=="weapon" else "shard",Rect2(r.position+Vector2(17,19),Vector2(35,35)),color)
+                _text(item.name,r.position+Vector2(71,29),19,INK,true)
+                _text(_rarity(item.rarity),r.position+Vector2(71,54),14,color)
+                _text("Anlegen" if item.kind=="weapon" else "×%d"%item.count,r.position+Vector2(520,43),17,GOLD if item.kind=="weapon" else MUTED,true)
         "Mehr":
             for i in 2:
                 var x = 38 + i * 332
@@ -336,11 +430,17 @@ func _draw_shell() -> void:
                 _text("Aufgaben" if i == 0 else "Events", Vector2(x + 80, 253), 22, INK, true)
             _panel(Rect2(38, 320, 644, 180))
             _text("REALM ALLIANCE", Vector2(61, 361), 24, INK, true)
-            _text("Wolkgarten · Combat UI 0.6.1", Vector2(61, 402), 18, MUTED)
+            _text("Wolkgarten · Combat 0.6.2", Vector2(61, 402), 18, MUTED)
             _text("Spielstand wird lokal gespeichert.", Vector2(61, 447), 18, MUTED)
             _text("Weitere Bereiche werden nach und nach geöffnet.", Vector2(61, 479), 17, MUTED)
+            if model.read_only:
+                _panel(Rect2(38,527,644,150),Color("#362032"),Color("#ffb580"))
+                _text("Spielstand geschützt",Vector2(61,566),23,GOLD,true)
+                _text("Die Originaldatei bleibt unverändert.",Vector2(61,607),18,INK)
+                _text("Diese Sitzung wird nicht gespeichert.",Vector2(61,642),18,MUTED)
     if toast_until > Time.get_ticks_msec():
-        _panel(Rect2(38, logical_height - 265, 644, 52), Color("#102139"), CYAN.darkened(0.5))
-        _center(toast_title + " · " + toast_detail, Rect2(48, logical_height - 265, 624, 52), 16, INK)
+        var toast_y=maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265
+        _panel(Rect2(38,toast_y,644,40),Color("#102139"),CYAN.darkened(0.5))
+        _center(toast_title+" · "+toast_detail,Rect2(48,toast_y,624,40),14,INK)
     _panel(Rect2(38, logical_height - 188, 644, 62), Color("#13314c"), CYAN.darkened(0.4))
     _center("Zurück zum Kampf", Rect2(38, logical_height - 188, 644, 62), 20, INK, true)

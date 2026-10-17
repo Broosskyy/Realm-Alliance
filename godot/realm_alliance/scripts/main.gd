@@ -1,70 +1,49 @@
 extends Control
-
-const CombatModel = preload("res://scripts/combat_model.gd")
+const CombatModel = preload("res://scripts/systems/combat_session.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
 const HeroRig = preload("res://scripts/hero_rig.gd")
 const EnemyVisual = preload("res://scripts/enemy_visual.gd")
 const StageArt = preload("res://scripts/stage_art.gd")
 const CombatLayout = preload("res://scripts/combat_layout.gd")
 const CombatHUD = preload("res://scripts/combat_hud.gd")
-const ImpactFX = preload("res://scripts/impact_fx.gd")
+const Feedback = preload("res://scripts/combat_feedback.gd")
 const BramblePreviewHero = preload("res://scripts/bramble_preview_hero.gd")
 const BramblePreviewEnemy = preload("res://scripts/bramble_preview_enemy.gd")
-const BramblePreviewSlash = preload("res://scripts/bramble_preview_slash.gd")
 const ProductionArtGate = preload("res://scripts/production_art_gate.gd")
 const ProductionHero = preload("res://scripts/production_hero.gd")
 const ProductionEnemy = preload("res://scripts/production_enemy.gd")
-
-# The shared art preview is reversible. Original procedural HeroRig/EnemyVisual survive.
-const USE_SHARED_ART_PREVIEW: bool = true
-
+const USE_SHARED_ART_PREVIEW = true
 var model
 var hero
 var enemy
 var stage: Node2D
 var touch_zone: Control
-var hud: RACombatHUD
-var skill_cooldowns: Array = [0, 0, 0]
-var momentum: float = 0.0
-var rage: float = 0.0
-var active_tab: String = "Kampf"
-var auto_timer: Timer
-var wave_timer: Timer
-
+var hud
 var auto_enabled: bool = true
-var attack_locked: bool = false
-var queued_multiplier: float = 1.0
-var queued_skill_index: int = -1
-var _stage_home: Vector2 = Vector2.ZERO
-var _last_stage_tap_ms: int = -1000
+var active_tab: String = "Kampf"
 var _production_enabled: bool = false
+var _stage_home: Vector2
+var _last_stage_tap_ms = -1000
+var _auto_clock = 0.0
+var _save_clock = 0.0
+var _save_failed = false
+var _last_visual_key = ""
+var _ui_clock = 0.0
 
 func _ready() -> void:
     model = CombatModel.new(SaveStore.load_state())
     _production_enabled = ProductionArtGate.available()
-    if _production_enabled:
-        print("REALM: canonical hero, weapons, Golem and world art loaded")
-    else:
-        print("REALM: art pack not installed, using safe Bramble preview fallback")
     _build_arena()
     _build_hud()
-    hero.impact.connect(_on_hero_impact)
-    hero.action_finished.connect(_on_hero_action_finished)
-    hero.equip_weapon(model.weapon_index)
-    hero.set_upgrade_tier(model.upgrade_level)
-    enemy.show_wave(model.wave)
-    auto_timer = Timer.new()
-    auto_timer.wait_time = 0.72
-    auto_timer.autostart = true
-    add_child(auto_timer)
-    auto_timer.timeout.connect(_on_auto_tick)
-    wave_timer = Timer.new()
-    wave_timer.one_shot = true
-    add_child(wave_timer)
-    wave_timer.timeout.connect(_advance_wave)
+    _show_encounter()
+    _sync_hero()
     get_viewport().size_changed.connect(_layout)
     _layout()
     _refresh()
+    if model.load_error != "":
+        hud.notify("Spielstand",model.load_error,12)
+        if model.read_only: _on_hud_action("Mehr")
+    print("REALM 6.2: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -142,10 +121,28 @@ func _build_arena() -> void:
 
 func _build_hud() -> void:
     hud = CombatHUD.new()
-    hud.name = "CombatHUD"
-    hud.model = model
+    hud.name="CombatHUD"
+    hud.z_index=100
+    hud.model=model
     add_child(hud)
     hud.action.connect(_on_hud_action)
+
+func _show_encounter() -> void:
+    if _production_enabled:
+        enemy.configure_enemy(model.enemy_definition)
+    enemy.show_wave(model.wave)
+    _layout()
+
+func _sync_hero() -> void:
+    var key="%s:%d:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura)]
+    if key!=_last_visual_key:
+        _last_visual_key=key
+        hero.equip_weapon(model.weapon_index)
+        hero.set_upgrade_tier(model.upgrade_level)
+        if _production_enabled: hero.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
+    if _production_enabled:
+        var shield=model.hero_status.active.get("shield",{})
+        hero.set_shield(model.hero_status.has("shield",model.clock),clampf(float(shield.get("amount",0))/maxf(1,model.player_max_hp*0.35),0,1))
 
 func _layout() -> void:
     if stage == null or hud == null:
@@ -171,204 +168,180 @@ func _layout() -> void:
     hud.configure(metrics["logical_height"])
     if _production_enabled:
         var tall = clampf((float(metrics["logical_height"]) - 1280.0) / 280.0, 0.0, 1.0)
-        hero.scale = Vector2.ONE * lerpf(0.62, 0.72, tall)
-        enemy.set_layout_scale(lerpf(0.74, 0.94, tall))
+        hero.scale = Vector2.ONE * lerpf(0.62, 0.70, tall)
+        enemy.set_layout_scale(lerpf(0.74, 0.87, tall) if model.enemy_definition.visual == "golem" else 0.90)
 
 func _on_hud_action(id: String) -> void:
-    match id:
-        "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr":
-            active_tab = id
-            hud.active_tab = id
-            stage.visible = id == "Kampf"
-            touch_zone.visible = id == "Kampf"
-            hud.update_buttons()
-            _refresh()
-        "return":
-            _on_hud_action("Kampf")
-        "auto":
-            _toggle_auto()
-        "skill0":
-            _on_skill(0)
-        "skill1":
-            _on_skill(1)
-        "skill2":
-            _on_skill(2)
-        "locked":
-            hud.notify("Noch gesperrt", "Diese Fähigkeit folgt später")
-        "weapon":
-            _cycle_weapon()
-        "upgrade":
-            _buy_upgrade()
-        "mail", "settings":
-            _on_hud_action("Mehr")
-            hud.notify("Posteingang" if id == "mail" else "Einstellungen", "Dieser Bereich folgt später")
-        "quests", "events":
-            hud.notify("Aufgaben" if id == "quests" else "Events", "Dieser Bereich folgt später")
+    if id in ["Kampf","Abenteuer","Wesen","Beute","Mehr","return"]:
+        active_tab="Kampf" if id=="return" else id
+        hud.active_tab=active_tab
+        stage.visible=active_tab=="Kampf"
+        touch_zone.visible=active_tab=="Kampf" and model.outcome=="fighting"
+    elif id=="auto":
+        auto_enabled=not auto_enabled
+    elif id.begins_with("skill"):
+        _on_skill(int(id.trim_prefix("skill")))
+    elif id=="locked":
+        if not _on_skill(3): hud.notify("Wächterwall","Ab Heldenlevel 2 · 20 Momentum")
+    elif id=="restart":
+        if model.restart():
+            if _production_enabled: hero.revive()
+            _consume_events()
+            _persist()
+    elif id=="weapon":
+        model.cycle_weapon();_sync_hero();_persist()
+    elif id.begins_with("equip_"):
+        var item=id.trim_prefix("equip_")
+        if model.equip(item):
+            _sync_hero();_persist()
+            hud.notify("Angelegt",model.Equipment.definition(item).name)
+        else: hud.notify("Noch nicht gefunden","Waffe im Streifzug erbeuten")
+    elif id=="upgrade":
+        if model.try_upgrade():
+            _sync_hero();_persist();hud.notify("Waffe aufgewertet","Level %d · Angriff %d"%[model.upgrade_level+1,model.hero_damage()])
+    elif id=="look":
+        model.set_look("emerald" if model.profile.look=="canonical" else "canonical")
+        _sync_hero();_persist()
+    elif id=="aura":
+        if model.toggle_aura(): _sync_hero();_persist()
+        else: hud.notify("Evolutionsaura","Freischaltung auf Heldenlevel 3")
+    else:
+        active_tab="Mehr";hud.active_tab=active_tab;stage.visible=false;touch_zone.visible=false
+        hud.notify("Noch nicht geöffnet","Dieser Bereich folgt später")
+    _refresh()
 
 func _on_stage_input(event: InputEvent) -> void:
-    # Deduplicate emulated mouse events originating from the same mobile tap.
-    var pressed: bool = false
-    if event is InputEventScreenTouch:
-        pressed = event.pressed
-    elif event is InputEventMouseButton:
-        pressed = event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+    var pressed=false
+    if event is InputEventScreenTouch: pressed=event.pressed
+    elif event is InputEventMouseButton: pressed=event.pressed and event.button_index==MOUSE_BUTTON_LEFT
     if pressed:
-        var now: int = Time.get_ticks_msec()
-        if now - _last_stage_tap_ms > 80:
-            _last_stage_tap_ms = now
+        var now=Time.get_ticks_msec()
+        if now-_last_stage_tap_ms>80:
+            _last_stage_tap_ms=now
             _on_tap()
         touch_zone.accept_event()
 
-func _on_tap() -> void:
-    _try_attack(1.0, false)
+func _on_tap() -> bool:
+    if active_tab!="Kampf": return false
+    var ok=model.request_action("basic")
+    _consume_events()
+    return ok
 
-func _try_attack(multiplier: float, is_skill: bool) -> bool:
-    if active_tab != "Kampf" or attack_locked or model.enemy_hp <= 0:
-        return false
-    attack_locked = true
-    queued_multiplier = multiplier
-    if not is_skill:
-        queued_skill_index = -1
-    if not hero.play_attack(is_skill):
-        attack_locked = false
-        return false
-    return true
-
-func _on_hero_impact() -> void:
-    var result: Dictionary = model.attack(queued_multiplier)
-    if not result.get("valid", false):
-        return
-    momentum = minf(100.0, momentum + 9.0)
-    rage = minf(100.0, rage + 6.0)
-    enemy.play_hit()
-    var empowered: bool = queued_multiplier > 1.0
-    _impact_burst(empowered)
-    _damage_popup(int(result["damage"]), empowered)
-    if bool(result["killed"]):
-        enemy.play_death()
-        _reward_popup(int(result["gold_gain"]))
-        hud.notify("%d Siege in Folge" % model.total_kills, "+%d Gold · +1 Fortschritt" % result["gold_gain"])
-        wave_timer.start(0.66)
-    _persist()
+func _on_skill(index: int = 0) -> bool:
+    if active_tab!="Kampf" or index<0 or index>=4: return false
+    var ok=model.request_action(CombatModel.SKILL_IDS[index])
+    _consume_events()
     _refresh()
+    return ok
 
-func _on_hero_action_finished() -> void:
-    attack_locked = false
-
-func _on_auto_tick() -> void:
-    if auto_enabled:
-        _try_attack(1.0, false)
-
-func _on_skill(index: int = 0) -> void:
-    if index < 0 or index > 2 or Time.get_ticks_msec() < int(skill_cooldowns[index]):
-        return
-    if (index == 1 and momentum < 25) or (index == 2 and rage < 40):
-        return
-    if _try_attack([2.8, 2.0, 4.0][index], true):
-        queued_skill_index = index
-        skill_cooldowns[index] = Time.get_ticks_msec() + int([5500, 8000, 15000][index])
-        if index == 1:
-            momentum -= 25
-        if index == 2:
-            rage -= 40
+func _process(delta: float) -> void:
+    if model==null or active_tab!="Kampf": return
+    model.tick(delta)
+    _auto_clock+=delta
+    if auto_enabled and _auto_clock>=0.72:
+        _auto_clock=0
+        model.request_action("basic")
+    _consume_events()
+    _ui_clock+=delta
+    if _ui_clock>=0.1:
+        _ui_clock=0
         _refresh()
-
-func _toggle_auto() -> void:
-    auto_enabled = not auto_enabled
-    _refresh()
-
-func _cycle_weapon() -> void:
-    model.cycle_weapon()
-    hero.equip_weapon(model.weapon_index)
-    hud.notify("Waffe gewechselt", CombatModel.WEAPON_IDS[model.weapon_index].capitalize())
-    _persist()
-    _refresh()
-
-func _buy_upgrade() -> void:
-    if model.try_upgrade():
-        hero.set_upgrade_tier(model.upgrade_level)
-        hud.notify("Angriff aufgewertet", "+%d · %d Schaden" % [model.upgrade_level, model.hero_damage()])
+    _save_clock+=delta
+    if _save_clock>=2:
+        _save_clock=0
         _persist()
-        _refresh()
 
-func _advance_wave() -> void:
-    if model.advance_wave():
-        enemy.show_wave(model.wave)
-        _persist()
-        _refresh()
+func _consume_events() -> void:
+    for e in model.drain_events():
+        match e.type:
+            "hero_action":
+                if _production_enabled:
+                    hero.play_action(e.id)
+                else: hero.play_attack(e.id!="basic")
+            "telegraph":
+                if model.outcome!="fighting": continue
+                if _production_enabled: enemy.play_telegraph()
+                _fx("telegraph",enemy.position,float(e.duration))
+            "damage":
+                enemy.play_hit()
+                _fx(e.source,enemy.position+Vector2(-60,-200))
+                _popup(str(e.amount),Vector2(80,-340),Color("#ffb03d") if e.critical else (Color("#ffa44e") if e.source=="burn" else Color("#fff0b8")),"KRIT!" if e.critical else ("BRENNEN" if e.source=="burn" else ("KONTER" if e.source=="counter" else "")))
+            "hero_hit":
+                if _production_enabled:
+                    enemy.play_attack()
+                    hero.play_hit(int(e.blocked)>0)
+                var message="-%d"%e.amount if int(e.amount)>0 else "BLOCK"
+                _popup(message,Vector2(-270,-230),Color("#ff9898") if int(e.amount)>0 else Color("#74dfff"),"-%d Schild"%e.blocked if int(e.blocked)>0 else "")
+                hud.hit_flash=0.18 if int(e.amount)>0 else 0.0
+            "shield":
+                _fx("shield",hero.position+Vector2(25,-140))
+            "status":
+                _fx("mark" if e.id=="mark" else "fire",enemy.position+Vector2(-50,-200))
+            "heal":
+                _popup("+%d"%e.amount,Vector2(-250,-240),Color("#74ffb1"))
+            "enemy_defeated":
+                enemy.play_death()
+                _persist()
+            "reward":
+                var r=e.reward
+                hud.notify("+%d Gold · +%d XP"%[r.gold,r.xp],r.item.name)
+                _popup("+%d G · +%d XP"%[r.gold,r.xp],Vector2(40,-85),Color("#ffd56d"))
+            "level_up":
+                hud.notify("Level %d"%e.level,"Wächterwall bereit" if int(e.level)==2 else "Neue Kraft freigeschaltet")
+            "spawn":
+                _show_encounter()
+            "defeat":
+                if _production_enabled: hero.play_death()
+                _persist()
+            "victory":
+                _persist()
+    _sync_hero()
 
-func _impact_burst(is_skill: bool) -> void:
-    if USE_SHARED_ART_PREVIEW and not _production_enabled:
-        var slash: RABramblePreviewSlash = BramblePreviewSlash.new()
-        slash.configure(is_skill)
-        slash.position = enemy.position + Vector2(-35.0, -165.0)
-        slash.z_index = 12
-        stage.add_child(slash)
-    else:
-        var flash: RAImpactFX = ImpactFX.new()
-        flash.configure(is_skill, queued_skill_index)
-        flash.position = enemy.position + Vector2(-35.0, -240.0)
-        flash.z_index = 12
-        stage.add_child(flash)
-    var shake: Tween = create_tween()
-    stage.position = _stage_home + Vector2(-7.0 if is_skill else -3.0, 1.5) * stage.scale.x
-    shake.tween_property(stage, "position", _stage_home, 0.13)
+func _fx(kind: String, at: Vector2, duration: float = 0.48) -> void:
+    if kind=="telegraph":
+        for child in stage.get_children():
+            if child is RACombatFeedback and child.kind=="telegraph": child.queue_free()
+    var fx=Feedback.new()
+    fx.configure(kind,duration)
+    fx.position=at
+    fx.z_index=10
+    stage.add_child(fx)
 
-func _damage_popup(amount: int, is_skill: bool = false) -> void:
-    var popup := Label.new()
-    popup.text = ("SKILL!\n" if is_skill else "") + str(amount)
-    popup.add_theme_font_override("font", hud.bold)
-    popup.add_theme_font_size_override("font_size", 58 if is_skill else 44)
-    popup.add_theme_constant_override("outline_size", 9)
-    popup.add_theme_color_override("font_outline_color", Color("#071120"))
-    popup.add_theme_color_override("font_color", Color("#ffc17b") if is_skill else Color("#ffe5a4"))
-    popup.add_theme_color_override("font_shadow_color", Color("#211626"))
-    popup.add_theme_constant_override("shadow_offset_x", 3)
-    popup.add_theme_constant_override("shadow_offset_y", 4)
-    popup.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    popup.z_index = 18
-    stage.add_child(popup)
-    popup.position = Vector2(30.0 + randf_range(-20, 20), enemy.position.y - enemy.scale.y * 500.0)
-    popup.size = Vector2(260, 150)
-    popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    popup.scale = Vector2(0.84, 0.84)
-    var fly := create_tween()
-    fly.set_parallel(true)
-    fly.tween_property(popup, "position:y", popup.position.y - 92.0, 0.52)
-    fly.tween_property(popup, "scale", Vector2(1.17, 1.17), 0.24)
-    fly.tween_property(popup, "modulate:a", 0.0, 0.52).set_delay(0.14)
-    fly.finished.connect(popup.queue_free)
-
-func _reward_popup(gained: int) -> void:
-    var popup := Label.new()
-    popup.text = "+%d GOLD" % gained
-    popup.add_theme_font_size_override("font_size", 27)
-    popup.add_theme_color_override("font_color", Color("#f5c46e"))
-    popup.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    popup.z_index = 17
-    stage.add_child(popup)
-    popup.position = enemy.position + Vector2(-53.0, -40.0)
-    var fly := create_tween()
-    fly.set_parallel(true)
-    fly.tween_property(popup, "position:y", popup.position.y - 52.0, 0.63)
-    fly.tween_property(popup, "modulate:a", 0.0, 0.63).set_delay(0.10)
-    fly.finished.connect(popup.queue_free)
+func _popup(text: String, at: Vector2, color: Color, caption: String = "") -> void:
+    var label=Label.new()
+    label.text=(caption+"\n" if caption!="" else "")+text
+    label.add_theme_font_override("font",hud.bold)
+    label.add_theme_font_size_override("font_size",35 if caption!="" else 30)
+    label.add_theme_color_override("font_color",color)
+    label.add_theme_color_override("font_outline_color",Color("#081221"))
+    label.add_theme_constant_override("outline_size",6)
+    label.mouse_filter=Control.MOUSE_FILTER_IGNORE
+    label.position=at
+    label.size=Vector2(210,80)
+    label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+    label.z_index=15
+    stage.add_child(label)
+    var t=create_tween().set_parallel(true)
+    t.tween_property(label,"position:y",at.y-55,0.6)
+    t.tween_property(label,"modulate:a",0.0,0.3).set_delay(0.4)
+    t.finished.connect(label.queue_free)
 
 func _refresh() -> void:
-    enemy.set_health(model.enemy_hp, model.enemy_max_hp)
-    hud.auto_enabled = auto_enabled
-    hud.cooldowns = skill_cooldowns
-    hud.momentum = momentum
-    hud.rage = rage
-    if _production_enabled:
-        hud.weapon_texture = load(ProductionArtGate.ROOT + "weapons/" + ProductionArtGate.WEAPONS[model.weapon_index] + ".png")
+    if hud==null: return
+    enemy.set_health(model.enemy_hp,model.enemy_max_hp)
+    hud.auto_enabled=auto_enabled
+    touch_zone.visible=active_tab=="Kampf" and model.outcome=="fighting"
     hud.update_buttons()
     hud.queue_redraw()
 
 func _persist() -> void:
-    SaveStore.save_state(model.snapshot())
+    if model!=null and not model.read_only:
+        if not SaveStore.save_state(model.snapshot()) and not _save_failed:
+            _save_failed=true
+            if hud: hud.notify("Speichern fehlgeschlagen","Fortschritt bleibt nur in dieser Sitzung",8)
+
+func _notification(what: int) -> void:
+    if what==NOTIFICATION_APPLICATION_PAUSED: _persist()
 
 func _exit_tree() -> void:
-    if model != null:
-        _persist()
-
+    _persist()
