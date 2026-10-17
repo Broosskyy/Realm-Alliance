@@ -1,29 +1,70 @@
 extends RefCounted
 class_name RASaveStore
+const SAVE_PATH = "user://realm_alliance_combat_v2.json"
+const LEGACY_PATH = "user://realm_alliance_combat_v1.json"
+static var write_blocked: bool = false
 
-const SAVE_PATH: String = "user://realm_alliance_combat_v1.json"
+static func _read(path: String) -> Dictionary:
+    var parser=JSON.new()
+    if parser.parse(FileAccess.get_file_as_string(path)) != OK:
+        return {}
+    return parser.data if parser.data is Dictionary else {}
 
 static func load_state() -> Dictionary:
-    if not FileAccess.file_exists(SAVE_PATH):
-        return {}
-    var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
-    if file == null:
-        push_warning("Could not read save. Using fresh session.")
-        return {}
-    var parsed: Variant = JSON.parse_string(file.get_as_text())
-    if typeof(parsed) != TYPE_DICTIONARY:
-        push_warning("Invalid save structure. Using fresh session.")
-        return {}
-    if int(parsed.get("version", -1)) != 1:
-        push_warning("Unknown save version. Using fresh session.")
-        return {}
-    return parsed
+    write_blocked = false
+    if FileAccess.file_exists(SAVE_PATH):
+        var d = _read(SAVE_PATH)
+        if int(d.get("version",0)) > 2:
+            write_blocked = true
+            return {"load_error":"Neuerer Spielstand: Laden und Speichern gesperrt.","read_only":true}
+        if _valid(d):
+            return d
+        if FileAccess.file_exists(SAVE_PATH+".bak"):
+            d = _read(SAVE_PATH+".bak")
+            if _valid(d):
+                d.load_error = "Sicherung wiederhergestellt; beschädigte Datei bleibt erhalten."
+                DirAccess.copy_absolute(SAVE_PATH,SAVE_PATH+".damaged")
+                return d
+        write_blocked = true
+        return {"load_error":"Spielstand beschädigt. Original bleibt unverändert; Speichern gesperrt.","read_only":true}
+    if FileAccess.file_exists(LEGACY_PATH):
+        var d = _read(LEGACY_PATH)
+        if int(d.get("version",0)) == 1:
+            return d
+        write_blocked = true
+        return {"load_error":"Alter Spielstand nicht lesbar. Original bleibt unverändert.","read_only":true}
+    return {}
+
+static func _valid(d: Dictionary) -> bool:
+    if int(d.get("version",0)) != 2 or not d.get("profile") is Dictionary or not d.get("checkpoint") is Dictionary:
+        return false
+    var p:Dictionary=d.profile
+    for key in ["gold","xp","kills","shards","run_serial","best_wave"]:
+        if not p.has(key) or not (p[key] is int or p[key] is float):
+            return false
+    if not p.get("inventory") is Dictionary or not p.inventory.has(str(p.get("equipped",""))) or not p.get("claims") is Dictionary or not p.get("loot") is Array:
+        return false
+    for item in p.inventory.values():
+        if not item is Dictionary or not item.has("level") or int(item.level)<1:
+            return false
+    return p.get("look") is String and p.get("aura") is bool
+
 
 static func save_state(data: Dictionary) -> bool:
-    var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-    if file == null:
-        push_warning("Failed to open save file for writing.")
+    if write_blocked or not _valid(data):
         return false
-    file.store_string(JSON.stringify(data))
-    file.flush()
-    return file.get_error() == OK
+    var temp = SAVE_PATH+".tmp"
+    var f = FileAccess.open(temp,FileAccess.WRITE)
+    if f == null:
+        return false
+    f.store_string(JSON.stringify(data))
+    f.flush()
+    var ok = f.get_error() == OK
+    f.close()
+    if not ok or not _valid(_read(temp)):
+        return false
+    if FileAccess.file_exists(SAVE_PATH):
+        if _valid(_read(SAVE_PATH)):
+            if DirAccess.copy_absolute(SAVE_PATH,SAVE_PATH+".bak") != OK:
+                return false
+    return DirAccess.rename_absolute(temp,SAVE_PATH) == OK
