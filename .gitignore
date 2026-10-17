@@ -1,0 +1,8 @@
+# Godot import cache and reconstructed canonical art (the committed ZIP is canonical)
+**/.godot/
+**/*.import
+**/*.uid
+/godot/realm_alliance/assets/production/
+/build/
+/node_modules/
+/dist/
