@@ -68,3 +68,15 @@ static func save_state(data: Dictionary) -> bool:
             if DirAccess.copy_absolute(SAVE_PATH,SAVE_PATH+".bak") != OK:
                 return false
     return DirAccess.rename_absolute(temp,SAVE_PATH) == OK
+
+static func install_import(data: Dictionary) -> bool:
+    # This path is reached only after the player confirms a validated import.
+    if not _valid(data): return false
+    if FileAccess.file_exists(SAVE_PATH):
+        var backup=SAVE_PATH+".before-import-"+str(Time.get_ticks_usec())
+        if DirAccess.copy_absolute(SAVE_PATH,backup)!=OK: return false
+    var blocked=write_blocked
+    write_blocked=false
+    if save_state(data): return true
+    write_blocked=blocked
+    return false

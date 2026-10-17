@@ -1,5 +1,6 @@
 extends SceneTree
 const Store=preload("res://scripts/save_store.gd")
+const Transfer=preload("res://scripts/save_transfer.gd")
 const Session=preload("res://scripts/systems/combat_session.gd")
 var failures=0
 var checks=0
@@ -39,6 +40,22 @@ func _initialize() -> void:
     write(Store.SAVE_PATH,'{"version":2,"profile":{"gold":5}}')
     check(Store.load_state().read_only,"invalid nested data rejected without reset write")
     check(not Store.save_state(s.snapshot()),"corrupt no-backup profile protected")
+    check(not Transfer.parse_import(bytes).is_empty(),"legacy JSON import validates")
+    check(not Transfer.parse_import(JSON.stringify(s.snapshot())).is_empty(),"v2 JSON import validates")
+    check(Transfer.parse_import('{"version":99}').is_empty(),"import rejects future schema")
+    check(Transfer.parse_import('broken').is_empty(),"import rejects invalid JSON")
+    check(Transfer.parse_import('{"version":1}').is_empty(),"import rejects incomplete legacy data")
+    check(not Store.install_import({}),"invalid import cannot overwrite files")
+    var original=FileAccess.get_file_as_string(Store.SAVE_PATH)
+    check(Store.install_import(s.snapshot()),"explicit confirmed import can repair blocked session")
+    check(not Store.write_blocked and int(Store.load_state().profile.gold)==654,"imported profile persisted")
+    var found_backup=false
+    var dir=DirAccess.open("user://")
+    for name in dir.get_files():
+        if name.contains(".before-import-"):
+            if FileAccess.get_file_as_string("user://"+name)==original:found_backup=true
+            DirAccess.remove_absolute("user://"+name)
+    check(found_backup,"explicit import keeps previous bytes in independent recovery backup")
     for path in [Store.SAVE_PATH,Store.SAVE_PATH+".bak",Store.SAVE_PATH+".tmp",Store.SAVE_PATH+".damaged",Store.LEGACY_PATH]:
         if FileAccess.file_exists(path):DirAccess.remove_absolute(path)
     print("Save 6.2: %d/%d checks"%[checks-failures,checks]);quit(1 if failures else 0)

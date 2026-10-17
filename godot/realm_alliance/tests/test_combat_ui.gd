@@ -96,6 +96,13 @@ func _run() -> void:
     await snap("defeat")
     scene.hud.buttons.restart.pressed.emit()
     check(scene.model.player_hp==scene.model.player_max_hp,"defeat restart restores health")
+    scene._on_hud_action("Mehr")
+    check(scene.hud.buttons.save_export.visible and scene.hud.buttons.save_import.visible,"save transfer actions visible in More")
+    scene._pending_import={"version":1,"wave":3,"gold":777,"weapon_index":1,"upgrade_level":2,"total_kills":2}
+    check(scene._apply_import(),"confirmed legacy import loads into actual scene")
+    check(scene.model.gold==777 and scene.model.weapon_index==1 and scene.model.wave==3,"imported legacy state is actually playable")
+    scene.auto_enabled=false
+    scene._on_hud_action("Kampf")
     for v in [Vector2i(720,1560),Vector2i(360,800),Vector2i(1280,720)]:
         root.size=v;await process_frame;scene._layout();scene._refresh()
         var m=Layout.solve(v)

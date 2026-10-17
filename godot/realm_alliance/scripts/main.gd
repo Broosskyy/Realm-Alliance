@@ -1,6 +1,9 @@
 extends Control
 const CombatModel = preload("res://scripts/systems/combat_session.gd")
 const SaveStore = preload("res://scripts/save_store.gd")
+const SaveTransfer=preload("res://scripts/save_transfer.gd")
+var save_transfer
+var _pending_import: Dictionary = {}
 const HeroRig = preload("res://scripts/hero_rig.gd")
 const EnemyVisual = preload("res://scripts/enemy_visual.gd")
 const StageArt = preload("res://scripts/stage_art.gd")
@@ -35,11 +38,17 @@ func _ready() -> void:
     _production_enabled = ProductionArtGate.available()
     _build_arena()
     _build_hud()
+    save_transfer=SaveTransfer.new()
+    add_child(save_transfer)
+    save_transfer.notice.connect(func(title,detail): hud.notify(title,detail,5))
+    save_transfer.import_ready.connect(_confirm_import)
     _show_encounter()
     _sync_hero()
     get_viewport().size_changed.connect(_layout)
     _layout()
     _refresh()
+    if model.outcome=="defeat" and _production_enabled: hero.play_death()
+    if model.enemy_hp<=0: enemy.play_death()
     if model.load_error != "":
         hud.notify("Spielstand",model.load_error,12)
         if model.read_only: _on_hud_action("Mehr")
@@ -196,6 +205,10 @@ func _on_hud_action(id: String) -> void:
             _sync_hero();_persist()
             hud.notify("Angelegt",model.Equipment.definition(item).name)
         else: hud.notify("Noch nicht gefunden","Waffe im Streifzug erbeuten")
+    elif id=="save_export":
+        save_transfer.export_save(model.snapshot())
+    elif id=="save_import":
+        save_transfer.import_save()
     elif id=="upgrade":
         if model.try_upgrade():
             _sync_hero();_persist();hud.notify("Waffe aufgewertet","Level %d · Angriff %d"%[model.upgrade_level+1,model.hero_damage()])
@@ -345,3 +358,38 @@ func _notification(what: int) -> void:
 
 func _exit_tree() -> void:
     _persist()
+
+func _confirm_import(data: Dictionary) -> void:
+    _pending_import=data
+    var candidate=CombatModel.new(data)
+    var dialog=ConfirmationDialog.new()
+    dialog.title="Spielstand übernehmen?"
+    dialog.dialog_text="Geladen: Level %d · %d Gold.\nDein vorheriger Stand wird vor dem Import gesichert."%[candidate.level,candidate.gold]
+    dialog.ok_button_text="Übernehmen"
+    dialog.cancel_button_text="Abbrechen"
+    dialog.confirmed.connect(func():
+        _apply_import()
+        dialog.queue_free())
+    dialog.canceled.connect(func():
+        _pending_import={}
+        dialog.queue_free())
+    add_child(dialog)
+    dialog.popup_centered(Vector2i(580,220))
+
+func _apply_import() -> bool:
+    if _pending_import.is_empty(): return false
+    var candidate=CombatModel.new(_pending_import)
+    _pending_import={}
+    if not SaveStore.install_import(candidate.snapshot()):
+        hud.notify("Import fehlgeschlagen","Der bisherige Stand bleibt erhalten",8)
+        return false
+    model=candidate
+    hud.model=model
+    _last_visual_key=""
+    if _production_enabled: hero.revive()
+    _show_encounter();_sync_hero()
+    if model.outcome=="defeat" and _production_enabled:hero.play_death()
+    if model.enemy_hp<=0:enemy.play_death()
+    _on_hud_action("Kampf")
+    hud.notify("Spielstand übernommen","Level %d · %d Gold"%[model.level,model.gold])
+    return true

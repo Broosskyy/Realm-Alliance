@@ -8,6 +8,7 @@ on:
     paths:
       - 'godot/realm_alliance/**'
       - '.github/workflows/godot-combat-foundation.yml'
+      - 'development/realm-preview-debug.keystore'
   workflow_dispatch:
 
 permissions:
@@ -101,10 +102,8 @@ jobs:
       - name: Build Android ARM64 debug APK
         run: |
           mkdir -p ../../build/godot-android "$HOME/.android"
-          if [ ! -f "$HOME/.android/debug.keystore" ]; then
-            keytool -genkey -noprompt -keystore "$HOME/.android/debug.keystore" -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
-          fi
-          export GODOT_ANDROID_KEYSTORE_DEBUG_PATH="$HOME/.android/debug.keystore"
+          cp ../../development/realm-preview-debug.keystore "$HOME/.android/realm-preview-debug.keystore"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PATH="$HOME/.android/realm-preview-debug.keystore"
           export GODOT_ANDROID_KEYSTORE_DEBUG_USER="androiddebugkey"
           export GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD="android"
           godot --headless --path . --export-debug "Android Debug" ../../build/godot-android/realm-alliance-debug.apk
