@@ -35,16 +35,32 @@ jobs:
           godot --version
       - name: Unpack optional REALM canonical art bundle
         run: |
-          if [ -f assets/packs/realm_canonical_batch_v2.zip ]; then
+          set -eu
+          if [ -f REALM_ALLIANCE_CANONICAL_GODOT_INTEGRATION_AND_WEB_PREVIEW.zip ]; then
+            ZIP="REALM_ALLIANCE_CANONICAL_GODOT_INTEGRATION_AND_WEB_PREVIEW.zip"
+            TMP_DIR="$(mktemp -d)"
+            unzip -t "$ZIP" >/dev/null
+            unzip -oq "$ZIP" 'godot/realm_alliance/assets/production/*' -d "$TMP_DIR"
+            mkdir -p assets/production
+            cp -a "$TMP_DIR/godot/realm_alliance/assets/production/." assets/production/
+            rm -rf "$TMP_DIR"
+            echo "Canonical production art extracted from the uploaded integration ZIP"
+          elif [ -f assets/packs/realm_canonical_batch_v2.zip ]; then
             mkdir -p assets/production
             unzip -o assets/packs/realm_canonical_batch_v2.zip -d assets/production
-            test -f assets/production/hero/idle.png
-            test -f assets/production/weapons/steel.png
-            test -f assets/production/enemy/golem_idle_ready.png
-            test -f assets/production/world/wolkgarten_battle_plate.png
-            echo "Canonical production sprites unpacked"
+            echo "Canonical production art extracted from compact asset pack"
           else
             echo "Canonical asset bundle not committed; Bramble preview remains active"
+          fi
+          if [ -d assets/production/hero ]; then
+            for asset in \
+              hero/idle.png hero/ready.png hero/windup.png hero/attack_contact.png hero/recovery.png hero/hit.png \
+              weapons/steel.png weapons/crystal.png weapons/ember.png weapons/rune_gold.png weapons/shadow_violet.png \
+              enemy/golem_idle_ready.png enemy/golem_attack.png enemy/golem_hit_damage.png enemy/golem_defeated.png \
+              world/wolkgarten_battle_plate.png; do
+              test -s "assets/production/$asset"
+            done
+            echo "All 16 required canonical art files found; production-art tests will run"
           fi
       - name: Import project
         run: godot --headless --path . --import
