@@ -32,7 +32,8 @@ func _initialize() -> void:
         check(tap.end.y <= top + 0.01, name + ": tap does not cover controls")
         check(origin.y > m["hud_bottom"] and origin.y < top, name + ": stage in arena")
         check(tap.end.y <= top + 0.01, name + ": lowered stage still fits below controls")
-        check(float(m["controls_height"]) <= 180.0, name + ": control panel stays compact")
+        check(float(m["controls_height"]) / v.y <= 0.30, name + ": controls reserve at most 30 percent of height")
         check(top + float(m["controls_height"]) <= v.y, name + ": panel fits screen")
     print("Combat layout: %d/%d checks." % [checks - failures, checks])
     quit(1 if failures > 0 else 0)
+

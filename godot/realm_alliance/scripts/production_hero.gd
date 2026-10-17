@@ -21,7 +21,7 @@ const HANDS := {
     "hit": Vector2(474.0, 355.0)
 }
 const ANGLES := {
-    "idle": 38.0, "ready": -25.0, "windup": -74.0,
+    "idle": -28.0, "ready": -34.0, "windup": -74.0,
     "attack_contact": -8.0, "recovery": 43.0, "hit": 70.0
 }
 
@@ -117,3 +117,4 @@ func current_pose() -> String:
 
 func weapon_is_modular() -> bool:
     return _weapon != null and _weapon.get_parent() == _socket and _body.get_parent() == _art
+

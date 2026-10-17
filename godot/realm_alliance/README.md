@@ -55,3 +55,7 @@ scripts/save_store.gd      Versioned local save
 scripts/main.gd            UI, combat timing, state orchestration
 tests/test_combat.gd       Model regression smoke tests
 ```
+
+## Work 6.1 — Combat UI convergence
+
+The native HUD now includes the global header, Wolkgarten progression, central enemy HUD, transient rewards, resource strip, illustrated skills/AUTO and persistent five-tab navigation. Weapon switching and upgrades are available under **Wesen**. See [WORK_6_1_REPORT.md](WORK_6_1_REPORT.md) for validation and the deliberately unimplemented systems. Build version: **0.6.1 (61)**.

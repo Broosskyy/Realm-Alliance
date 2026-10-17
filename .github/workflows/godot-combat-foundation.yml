@@ -74,6 +74,8 @@ jobs:
         run: godot --headless --path . --script res://tests/test_art_preview.gd
       - name: Production art and weapon-socket tests
         run: godot --headless --path . --script res://tests/test_production_art.gd
+      - name: Combat UI, navigation and skill interaction tests
+        run: godot --headless --path . --script res://tests/test_combat_ui.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
@@ -107,3 +109,4 @@ jobs:
           name: realm-alliance-godot-android-poc
           path: build/godot-android/*.apk
           if-no-files-found: error
+

@@ -6,6 +6,7 @@ const HeroRig = preload("res://scripts/hero_rig.gd")
 const EnemyVisual = preload("res://scripts/enemy_visual.gd")
 const StageArt = preload("res://scripts/stage_art.gd")
 const CombatLayout = preload("res://scripts/combat_layout.gd")
+const CombatHUD = preload("res://scripts/combat_hud.gd")
 const ImpactFX = preload("res://scripts/impact_fx.gd")
 const BramblePreviewHero = preload("res://scripts/bramble_preview_hero.gd")
 const BramblePreviewEnemy = preload("res://scripts/bramble_preview_enemy.gd")
@@ -22,23 +23,18 @@ var hero
 var enemy
 var stage: Node2D
 var touch_zone: Control
-var header: Label
-var wave_info: Label
-var hp_info: Label
-var help_text: Label
-var bottom_panel: PanelContainer
-var auto_button: Button
-var skill_button: Button
-var weapon_button: Button
-var upgrade_button: Button
+var hud: RACombatHUD
+var skill_cooldowns: Array = [0, 0, 0]
+var momentum: float = 0.0
+var rage: float = 0.0
+var active_tab: String = "Kampf"
 var auto_timer: Timer
 var wave_timer: Timer
 
 var auto_enabled: bool = true
 var attack_locked: bool = false
 var queued_multiplier: float = 1.0
-var skill_ready_at: int = 0
-var ui_accumulator: float = 0.0
+var queued_skill_index: int = -1
 var _stage_home: Vector2 = Vector2.ZERO
 var _last_stage_tap_ms: int = -1000
 var _production_enabled: bool = false
@@ -122,17 +118,19 @@ func _build_arena() -> void:
     else:
         hero = BramblePreviewHero.new() if USE_SHARED_ART_PREVIEW else HeroRig.new()
     hero.name = "CanonicalRealmwaechter" if _production_enabled else ("ArtPreviewHero" if USE_SHARED_ART_PREVIEW else "Realmwaechter")
-    hero.position = Vector2(-170, 118)
-    hero.scale = Vector2.ONE * (0.78 if _production_enabled else (0.82 if USE_SHARED_ART_PREVIEW else 1.77))
-    hero.z_index = 3
+    hero.position = Vector2(-185, 0)
+    hero.scale = Vector2.ONE * (0.56 if _production_enabled else (0.82 if USE_SHARED_ART_PREVIEW else 1.77))
+    hero.z_index = 4
     stage.add_child(hero)
     if _production_enabled:
         enemy = ProductionEnemy.new()
     else:
         enemy = BramblePreviewEnemy.new() if USE_SHARED_ART_PREVIEW else EnemyVisual.new()
+    if _production_enabled:
+        enemy.show_local_health = false
     enemy.name = "ProductionGolem" if _production_enabled else ("ArtPreviewEnemy" if USE_SHARED_ART_PREVIEW else "Enemy")
-    enemy.position = Vector2(163, 118)
-    enemy.scale = Vector2.ONE * (0.78 if _production_enabled else (0.91 if USE_SHARED_ART_PREVIEW else 1.58))
+    enemy.position = Vector2(188, 0)
+    enemy.scale = Vector2.ONE * (0.61 if _production_enabled else (0.91 if USE_SHARED_ART_PREVIEW else 1.58))
     enemy.z_index = 3
     stage.add_child(enemy)
     touch_zone = Control.new()
@@ -142,104 +140,70 @@ func _build_arena() -> void:
     touch_zone.gui_input.connect(_on_stage_input)
     add_child(touch_zone)
 
-func _make_label(value: String, size: int, color: Color) -> Label:
-    var node := Label.new()
-    node.text = value
-    node.add_theme_font_size_override("font_size", size)
-    node.add_theme_color_override("font_color", color)
-    node.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    add_child(node)
-    return node
-
-func _make_button(text: String, parent: HBoxContainer) -> Button:
-    var button := Button.new()
-    button.text = text
-    button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    button.custom_minimum_size = Vector2(0, 64)
-    button.add_theme_font_size_override("font_size", 19)
-    button.add_theme_color_override("font_color", Color("#f6ead7"))
-    var normal := StyleBoxFlat.new()
-    normal.bg_color = Color("#273a51")
-    normal.set_corner_radius_all(12)
-    normal.set_border_width_all(2)
-    normal.border_color = Color("#627184")
-    button.add_theme_stylebox_override("normal",normal)
-    var down := normal.duplicate() as StyleBoxFlat
-    down.bg_color = Color("#465e77")
-    button.add_theme_stylebox_override("pressed", down)
-    var hover := normal.duplicate() as StyleBoxFlat
-    hover.bg_color = Color("#354c67")
-    button.add_theme_stylebox_override("hover", hover)
-    button.focus_mode = Control.FOCUS_NONE
-    parent.add_child(button)
-    return button
-
 func _build_hud() -> void:
-    header = _make_label("REALM ALLIANCE", 36, Color("#e3c78f"))
-    wave_info = _make_label("", 25, Color("#edf1f5"))
-    hp_info = _make_label("", 23, Color("#b9d8d7"))
-    var combat_hint: String = "REALM ART BATCH 01  •  PROTOTYP" if _production_enabled else ("SHARED ART PREVIEW  •  NICHT FINAL" if USE_SHARED_ART_PREVIEW else "KAMPF   •   TAP ODER AUTO")
-    help_text = _make_label(combat_hint, 19, Color("#d4c6a4"))
-    bottom_panel = PanelContainer.new()
-    var frame := StyleBoxFlat.new()
-    frame.bg_color = Color("#111f32",0.96)
-    frame.border_color = Color("#9c8865")
-    frame.set_border_width_all(2)
-    frame.set_corner_radius_all(20)
-    frame.set_content_margin_all(12)
-    bottom_panel.add_theme_stylebox_override("panel", frame)
-    add_child(bottom_panel)
-    var stack := VBoxContainer.new()
-    stack.add_theme_constant_override("separation", 8)
-    bottom_panel.add_child(stack)
-    var row1 := HBoxContainer.new()
-    row1.add_theme_constant_override("separation", 8)
-    stack.add_child(row1)
-    var tap_button := _make_button("TAP", row1)
-    tap_button.pressed.connect(_on_tap)
-    auto_button = _make_button("AUTO: AN", row1)
-    auto_button.pressed.connect(_toggle_auto)
-    skill_button = _make_button("SKILL", row1)
-    skill_button.pressed.connect(_on_skill)
-    var row2 := HBoxContainer.new()
-    row2.add_theme_constant_override("separation", 8)
-    stack.add_child(row2)
-    weapon_button = _make_button("SCHWERT", row2)
-    weapon_button.pressed.connect(_cycle_weapon)
-    upgrade_button = _make_button("UPGRADE", row2)
-    upgrade_button.pressed.connect(_buy_upgrade)
+    hud = CombatHUD.new()
+    hud.name = "CombatHUD"
+    hud.model = model
+    add_child(hud)
+    hud.action.connect(_on_hud_action)
 
 func _layout() -> void:
-    if stage == null:
+    if stage == null or hud == null:
         return
-    var metrics: Dictionary = CombatLayout.solve(get_viewport_rect().size)
-    var viewport_size: Vector2 = metrics["viewport"]
-    var width: float = viewport_size.x
-    var pad: float = metrics["padding"]
-    var scale_factor: float = metrics["stage_scale"]
-    var font_scale: float = metrics["font_scale"]
-    var zone: Rect2 = metrics["tap_rect"]
-    stage.scale = Vector2.ONE * scale_factor
+    var viewport_size = get_viewport_rect().size
+    var safe_top = 0.0
+    var safe_bottom = 0.0
+    if OS.has_feature("android") or OS.has_feature("ios"):
+        var safe = DisplayServer.get_display_safe_area()
+        var screen = DisplayServer.screen_get_size()
+        var units = viewport_size.y / maxf(1.0, screen.y)
+        safe_top = safe.position.y * units
+        safe_bottom = maxf(0, screen.y - safe.end.y) * units
+    var metrics: Dictionary = CombatLayout.solve(viewport_size, safe_top, safe_bottom)
+    stage.scale = Vector2.ONE * float(metrics["stage_scale"])
     _stage_home = metrics["stage_origin"]
     stage.position = _stage_home
+    var zone: Rect2 = metrics["tap_rect"]
     touch_zone.position = zone.position
     touch_zone.size = zone.size
-    header.position = Vector2(pad, 20)
-    header.size = Vector2(width - pad * 2.0, 48)
-    wave_info.position = Vector2(pad, 75)
-    wave_info.size = Vector2(width - pad * 2.0, 38)
-    hp_info.position = Vector2(pad, 113)
-    hp_info.size = Vector2(width - pad * 2.0, 35)
-    help_text.position = Vector2(pad, float(metrics["controls_top"]) - 34.0)
-    help_text.size = Vector2(width - pad * 2.0, 30)
-    bottom_panel.position = Vector2(pad, metrics["controls_top"])
-    bottom_panel.size = Vector2(width - pad * 2.0, metrics["controls_height"])
-    header.add_theme_font_size_override("font_size", int(36.0 * font_scale))
-    wave_info.add_theme_font_size_override("font_size", int(25.0 * font_scale))
-    hp_info.add_theme_font_size_override("font_size", int(23.0 * font_scale))
-    help_text.add_theme_font_size_override("font_size", int(19.0 * font_scale))
-    for button in [auto_button, skill_button, weapon_button, upgrade_button]:
-        button.add_theme_font_size_override("font_size", int(19.0 * font_scale))
+    hud.position = Vector2(metrics["ui_left"], safe_top)
+    hud.scale = Vector2.ONE * float(metrics["ui_scale"])
+    hud.configure(metrics["logical_height"])
+    if _production_enabled:
+        var tall = clampf((float(metrics["logical_height"]) - 1280.0) / 280.0, 0.0, 1.0)
+        hero.scale = Vector2.ONE * lerpf(0.62, 0.72, tall)
+        enemy.set_layout_scale(lerpf(0.74, 0.94, tall))
+
+func _on_hud_action(id: String) -> void:
+    match id:
+        "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr":
+            active_tab = id
+            hud.active_tab = id
+            stage.visible = id == "Kampf"
+            touch_zone.visible = id == "Kampf"
+            hud.update_buttons()
+            _refresh()
+        "return":
+            _on_hud_action("Kampf")
+        "auto":
+            _toggle_auto()
+        "skill0":
+            _on_skill(0)
+        "skill1":
+            _on_skill(1)
+        "skill2":
+            _on_skill(2)
+        "locked":
+            hud.notify("Noch gesperrt", "Diese Fähigkeit folgt später")
+        "weapon":
+            _cycle_weapon()
+        "upgrade":
+            _buy_upgrade()
+        "mail", "settings":
+            _on_hud_action("Mehr")
+            hud.notify("Posteingang" if id == "mail" else "Einstellungen", "Dieser Bereich folgt später")
+        "quests", "events":
+            hud.notify("Aufgaben" if id == "quests" else "Events", "Dieser Bereich folgt später")
 
 func _on_stage_input(event: InputEvent) -> void:
     # Deduplicate emulated mouse events originating from the same mobile tap.
@@ -259,10 +223,12 @@ func _on_tap() -> void:
     _try_attack(1.0, false)
 
 func _try_attack(multiplier: float, is_skill: bool) -> bool:
-    if attack_locked or model.enemy_hp <= 0:
+    if active_tab != "Kampf" or attack_locked or model.enemy_hp <= 0:
         return false
     attack_locked = true
     queued_multiplier = multiplier
+    if not is_skill:
+        queued_skill_index = -1
     if not hero.play_attack(is_skill):
         attack_locked = false
         return false
@@ -272,6 +238,8 @@ func _on_hero_impact() -> void:
     var result: Dictionary = model.attack(queued_multiplier)
     if not result.get("valid", false):
         return
+    momentum = minf(100.0, momentum + 9.0)
+    rage = minf(100.0, rage + 6.0)
     enemy.play_hit()
     var empowered: bool = queued_multiplier > 1.0
     _impact_burst(empowered)
@@ -279,6 +247,7 @@ func _on_hero_impact() -> void:
     if bool(result["killed"]):
         enemy.play_death()
         _reward_popup(int(result["gold_gain"]))
+        hud.notify("%d Siege in Folge" % model.total_kills, "+%d Gold · +1 Fortschritt" % result["gold_gain"])
         wave_timer.start(0.66)
     _persist()
     _refresh()
@@ -290,11 +259,18 @@ func _on_auto_tick() -> void:
     if auto_enabled:
         _try_attack(1.0, false)
 
-func _on_skill() -> void:
-    if Time.get_ticks_msec() < skill_ready_at:
+func _on_skill(index: int = 0) -> void:
+    if index < 0 or index > 2 or Time.get_ticks_msec() < int(skill_cooldowns[index]):
         return
-    if _try_attack(2.8, true):
-        skill_ready_at = Time.get_ticks_msec() + 5500
+    if (index == 1 and momentum < 25) or (index == 2 and rage < 40):
+        return
+    if _try_attack([2.8, 2.0, 4.0][index], true):
+        queued_skill_index = index
+        skill_cooldowns[index] = Time.get_ticks_msec() + int([5500, 8000, 15000][index])
+        if index == 1:
+            momentum -= 25
+        if index == 2:
+            rage -= 40
         _refresh()
 
 func _toggle_auto() -> void:
@@ -304,12 +280,14 @@ func _toggle_auto() -> void:
 func _cycle_weapon() -> void:
     model.cycle_weapon()
     hero.equip_weapon(model.weapon_index)
+    hud.notify("Waffe gewechselt", CombatModel.WEAPON_IDS[model.weapon_index].capitalize())
     _persist()
     _refresh()
 
 func _buy_upgrade() -> void:
     if model.try_upgrade():
         hero.set_upgrade_tier(model.upgrade_level)
+        hud.notify("Angriff aufgewertet", "+%d · %d Schaden" % [model.upgrade_level, model.hero_damage()])
         _persist()
         _refresh()
 
@@ -328,8 +306,8 @@ func _impact_burst(is_skill: bool) -> void:
         stage.add_child(slash)
     else:
         var flash: RAImpactFX = ImpactFX.new()
-        flash.configure(is_skill)
-        flash.position = enemy.position + Vector2(-27.0, -75.0)
+        flash.configure(is_skill, queued_skill_index)
+        flash.position = enemy.position + Vector2(-35.0, -240.0)
         flash.z_index = 12
         stage.add_child(flash)
     var shake: Tween = create_tween()
@@ -338,8 +316,11 @@ func _impact_burst(is_skill: bool) -> void:
 
 func _damage_popup(amount: int, is_skill: bool = false) -> void:
     var popup := Label.new()
-    popup.text = str(amount)
-    popup.add_theme_font_size_override("font_size", 54 if is_skill else 45)
+    popup.text = ("SKILL!\n" if is_skill else "") + str(amount)
+    popup.add_theme_font_override("font", hud.bold)
+    popup.add_theme_font_size_override("font_size", 58 if is_skill else 44)
+    popup.add_theme_constant_override("outline_size", 9)
+    popup.add_theme_color_override("font_outline_color", Color("#071120"))
     popup.add_theme_color_override("font_color", Color("#ffc17b") if is_skill else Color("#ffe5a4"))
     popup.add_theme_color_override("font_shadow_color", Color("#211626"))
     popup.add_theme_constant_override("shadow_offset_x", 3)
@@ -347,7 +328,9 @@ func _damage_popup(amount: int, is_skill: bool = false) -> void:
     popup.mouse_filter = Control.MOUSE_FILTER_IGNORE
     popup.z_index = 18
     stage.add_child(popup)
-    popup.position = enemy.position + Vector2(-34.0, -182.0)
+    popup.position = Vector2(30.0 + randf_range(-20, 20), enemy.position.y - enemy.scale.y * 500.0)
+    popup.size = Vector2(260, 150)
+    popup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     popup.scale = Vector2(0.84, 0.84)
     var fly := create_tween()
     fly.set_parallel(true)
@@ -372,25 +355,15 @@ func _reward_popup(gained: int) -> void:
     fly.finished.connect(popup.queue_free)
 
 func _refresh() -> void:
-    wave_info.text = "WELLE %d  •  GOLD %d  •  KILLS %d" % [model.wave, model.gold, model.total_kills]
-    hp_info.text = "GEGNER %d / %d HP   |   DMG %d" % [model.enemy_hp, model.enemy_max_hp, model.hero_damage()]
     enemy.set_health(model.enemy_hp, model.enemy_max_hp)
-    auto_button.text = "AUTO: AN" if auto_enabled else "AUTO: AUS"
-    weapon_button.text = "WAFFE: %s" % CombatModel.WEAPON_IDS[model.weapon_index].to_upper()
-    upgrade_button.text = "UPGRADE: %d G" % model.upgrade_cost()
-    upgrade_button.disabled = model.gold < model.upgrade_cost()
-    _update_skill_label()
-
-func _update_skill_label() -> void:
-    var seconds := maxi(0, int(ceil(float(skill_ready_at - Time.get_ticks_msec()) / 1000.0)))
-    skill_button.disabled = seconds > 0
-    skill_button.text = "SKILL %ds" % seconds if seconds > 0 else "SKILL"
-
-func _process(delta: float) -> void:
-    ui_accumulator += delta
-    if ui_accumulator >= 0.25 and skill_button != null:
-        ui_accumulator = 0.0
-        _update_skill_label()
+    hud.auto_enabled = auto_enabled
+    hud.cooldowns = skill_cooldowns
+    hud.momentum = momentum
+    hud.rage = rage
+    if _production_enabled:
+        hud.weapon_texture = load(ProductionArtGate.ROOT + "weapons/" + ProductionArtGate.WEAPONS[model.weapon_index] + ".png")
+    hud.update_buttons()
+    hud.queue_redraw()
 
 func _persist() -> void:
     SaveStore.save_state(model.snapshot())
@@ -398,3 +371,4 @@ func _persist() -> void:
 func _exit_tree() -> void:
     if model != null:
         _persist()
+

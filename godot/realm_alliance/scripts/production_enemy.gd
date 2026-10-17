@@ -4,6 +4,7 @@ class_name RAProductionEnemy
 const ROOT: String = "res://assets/production/enemy/"
 const GROUND: Vector2 = Vector2(368.0, 704.0)
 
+var show_local_health: bool = true
 var wave: int = 1
 var health_ratio: float = 1.0
 var _sprite: Sprite2D
@@ -38,6 +39,12 @@ func _set_pose(state: String) -> void:
         _sprite.texture = _frames[state]
         _sprite.position = -GROUND
 
+func set_layout_scale(value: float) -> void:
+    _base_scale = Vector2.ONE * value
+    _display_scale = _base_scale * (1.09 if wave % 5 == 0 else 1.0)
+    if not _dying:
+        scale = _display_scale
+
 func show_wave(number: int) -> void:
     if _animation != null and _animation.is_running():
         _animation.kill()
@@ -62,6 +69,8 @@ func _process(delta: float) -> void:
     scale = _display_scale * (1.0 + sin(_clock * 2.0) * 0.008)
 
 func _draw() -> void:
+    if not show_local_health:
+        return
     var y: float = -666.0
     var width: float = 224.0
     var x: float = -width * 0.5
@@ -98,3 +107,4 @@ func play_death() -> void:
     _animation.set_parallel(true)
     _animation.tween_property(self, "scale", _display_scale * 0.94, 0.40)
     _animation.tween_property(self, "modulate:a", 0.0, 0.50).set_delay(0.13)
+
