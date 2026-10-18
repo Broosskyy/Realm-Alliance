@@ -1,5 +1,6 @@
 extends Node2D
 class_name RASkillVFX
+var model_deadline: float=-1
 var texture: Texture2D
 var secondary: Texture2D
 var kind: String = "impact"
@@ -12,6 +13,7 @@ var follow_node: Node2D
 var follow_offset: Vector2=Vector2(60,0)
 var origin: Vector2 = Vector2.ZERO
 func _process(delta: float) -> void:
+    if model_deadline>=0:return
     if is_instance_valid(follow_node):global_position=follow_node.to_global(follow_offset)
     age+=delta
     if age>=duration:queue_free()
@@ -27,6 +29,11 @@ func _draw() -> void:
         position=origin.lerp(target,smoothstep(0,1,t));size=diameter*(0.65+sin(t*PI)*0.35);angle=t*0.7
     elif kind=="slash":
         size=diameter*lerpf(0.75,1.15,t);angle=lerpf(-0.22,0.12,t)
+    elif kind=="eruption_warning":
+        draw_set_transform(Vector2.ZERO,0,Vector2(1,.26))
+        draw_circle(Vector2.ZERO,diameter*.5,Color(1,.25,.04,(.10+.12*t)*intensity))
+        draw_arc(Vector2.ZERO,diameter*.5,-PI/2,-PI/2+TAU*t,48,Color(1,.55,.12,.75*intensity),5,true)
+        return
     elif kind=="spawn":
         size=diameter*lerpf(0.3,1.3,t);alpha=sin(t*PI)*intensity
     draw_set_transform(Vector2.ZERO,angle)

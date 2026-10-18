@@ -2,6 +2,7 @@ extends Node2D
 class_name RAProductionEnemy
 
 const ROOT: String = "res://assets/production/enemy/"
+const BOAR_FRAMES={"idle":preload("res://assets/enemies/ember_boar/idle.png"),"attack":preload("res://assets/enemies/ember_boar/attack.png"),"hit":preload("res://assets/enemies/ember_boar/hit.png"),"defeated":preload("res://assets/enemies/ember_boar/defeated.png")}
 const GROUND: Vector2 = Vector2(368.0, 704.0)
 
 var show_local_health: bool = true
@@ -49,8 +50,13 @@ func _set_pose(state: String) -> void:
 func configure_enemy(d: Dictionary) -> void:
     _visual = str(d.visual)
     _kind = str(d.kind)
-    _ground = Vector2(320,488) if _visual == "slime" else GROUND
-    if _visual == "slime":
+    _ground = Vector2(256,480) if _visual=="boar" else (Vector2(320,488) if _visual == "slime" else GROUND)
+    _sprite.material=null
+    if d.get("palette","")=="ember":
+        var palette=ShaderMaterial.new();palette.shader=preload("res://assets/world65/ember_palette.gdshader");_sprite.material=palette
+    if _visual == "boar":
+        _frames=BOAR_FRAMES.duplicate()
+    elif _visual == "slime":
         for state in ["idle","attack","hit","defeated"]:
             _frames[state] = load("res://assets/expansion/slime/"+state+".png")
     else:
@@ -61,7 +67,7 @@ func play_telegraph(duration: float=0.85, pattern: String="single") -> void:
     if _dying:return
     if _animation and _animation.is_running():_animation.kill()
     _attacking=true
-    _sprite.modulate=Color("#ff9487") if pattern=="heavy" else Color("#ffce94")
+    _sprite.modulate=Color("#ff9487") if pattern in ["heavy","eruption","aftershock"] else Color("#ffce94")
     _animation=create_tween()
     _animation.tween_property(self,"_motion",Vector2(12,0),duration*0.65).set_trans(Tween.TRANS_SINE)
     _animation.tween_callback(func():_set_pose("attack"))

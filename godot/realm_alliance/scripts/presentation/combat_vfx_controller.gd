@@ -22,6 +22,10 @@ func emit_effect(id: String, at: Vector2, diameter: float=240, lifetime: float=0
     if active.size()>=MAX_EFFECTS:active[0].queue_free()
     var fx=Effect.new();fx.texture=TEX[id];fx.position=at;fx.diameter=diameter;fx.duration=lifetime;fx.kind=kind;fx.intensity=intensity;fx.z_index=layer;add_child(fx)
     return fx
+func enemy_warning(model,pattern: String,duration: float,ground: Vector2) -> void:
+    if pattern not in ["eruption","aftershock"]:return
+    var fx=emit_effect("fire_impact",ground,250 if pattern=="eruption" else 190,duration,"eruption_warning",7)
+    if fx:fx.model_deadline=model.clock+duration
 func action(e: Dictionary, weapon_socket: Node2D=null) -> void:
     var id=str(e.id);var duration=maxf(0.08,float(e.get("windup",0.28)))
     match id:
@@ -51,6 +55,11 @@ func impact(source: String, critical: bool=false) -> void:
         _:emit_effect("sky_impact",enemy_at,105,0.25)
     if critical:emit_effect("reward",enemy_at,280,0.5)
 func sync(model, hero_pos: Vector2, enemy_pos: Vector2) -> void:
+    for child in get_children():
+        if child is RASkillVFX and child.model_deadline>=0:
+            child.age=maxf(0,child.duration-child.model_deadline+model.clock)
+            if child.age>=child.duration:child.queue_free()
+            else:child.queue_redraw()
     hero_at=hero_pos+Vector2(40,-140);enemy_at=enemy_pos+Vector2(-40,-155)
     if status==null:return
     status.hero_at=hero_at;status.enemy_at=enemy_at;status.intensity=intensity

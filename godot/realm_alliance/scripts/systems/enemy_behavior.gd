@@ -20,16 +20,16 @@ func update(now: float) -> Array:
     if state == "idle":
         state = "windup"
         deadline = now + float(definition.windup)
-        var heavy_next=definition.pattern=="heavy" and (strikes+1)%2==0
-        events.append({"type":"telegraph", "duration":definition.windup,"pattern":"heavy" if heavy_next else ("single" if definition.pattern=="heavy" else definition.pattern)})
+        var heavy_next=(definition.pattern=="heavy" and (strikes+1)%2==0) or definition.pattern=="eruption"
+        events.append({"type":"telegraph", "duration":definition.windup,"pattern":"eruption" if definition.pattern=="eruption" else ("heavy" if heavy_next else ("single" if definition.pattern=="heavy" else definition.pattern))})
     elif state == "windup":
         strikes += 1
-        var heavy = definition.pattern == "heavy" and strikes % 2 == 0
+        var heavy = (definition.pattern == "heavy" and strikes % 2 == 0) or (definition.pattern=="eruption" and not second)
         events.append({"type":"enemy_strike", "multiplier":1.65 if heavy else (0.7 if second else 1.0),"heavy":heavy})
-        if definition.pattern == "double" and not second:
+        if definition.pattern in ["double","eruption"] and not second:
             second = true
-            deadline = now + 0.5
-            events.append({"type":"telegraph", "duration":0.5,"pattern":"followup"})
+            deadline = now + (0.8 if definition.pattern=="eruption" else 0.5)
+            events.append({"type":"telegraph", "duration":0.8 if definition.pattern=="eruption" else 0.5,"pattern":"aftershock" if definition.pattern=="eruption" else "followup"})
         else:
             second = false
             state = "idle"

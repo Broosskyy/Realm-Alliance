@@ -11,6 +11,10 @@ const Evolution=preload("res://scripts/systems/hero_evolution.gd")
 const Progress = preload("res://scripts/systems/player_progress.gd")
 const Rewards = preload("res://scripts/systems/reward_system.gd")
 const Migration = preload("res://scripts/systems/save_migration.gd")
+const World=preload("res://scripts/systems/world_progress.gd")
+const Advancement=preload("res://scripts/systems/skill_progress.gd")
+const Quests=preload("res://scripts/systems/quest_system.gd")
+const Chests=preload("res://scripts/systems/chest_rewards.gd")
 const STEP: float = 1.0 / 60.0
 const SKILL_IDS = ["sky_blade", "arcane_eye", "rage_flame", "guardian_wall"]
 const WEAPON_IDS = Equipment.IDS
@@ -23,6 +27,7 @@ var behavior = Behavior.new()
 var enemy_definition: Dictionary = {}
 var clock: float = 0.0
 var accumulator: float = 0.0
+var region: String = "wolkgarten"
 var tier: int = 0
 var encounter: int = 0
 var run_id: String = "run-1"
@@ -53,7 +58,7 @@ var total_kills: int:
 var level: int:
     get: return Progress.level(int(profile.xp))
 var player_max_hp: int:
-    get: return 150 + (level - 1) * 12 + int(HeroEquipment.stats(profile).hp) + int(Evolution.bonuses(profile).hp)
+    get: return 150 + (level - 1) * 12 + int(HeroEquipment.stats(profile).hp) + int(Evolution.bonuses(profile).hp) + int(Advancement.bonuses(profile).hp)
 var defense: int:
     get: return int(HeroEquipment.stats(profile).defense)
 var power: int:
@@ -71,6 +76,14 @@ func _init(data: Dictionary = {}) -> void:
         read_only=true
         load_error="Evolutionsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
     var checkpoint: Dictionary = normalized.get("checkpoint", {})
+    for domain in [World,Advancement,Quests,Chests]:
+        var valid=domain.ensure(profile,checkpoint) if domain==World else domain.ensure(profile)
+        if not valid:
+            read_only=true;load_error="Fortschrittsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
+    region=str(checkpoint.get("region","wolkgarten"))
+    if region not in World.IDS or not World.unlocked(profile,region):
+        region="wolkgarten";read_only=true;load_error="Region nicht kompatibel; Speichern gesperrt."
+    _refresh_skill_definitions()
     tier = clampi(int(checkpoint.get("tier",0)),0,100)
     encounter = clampi(int(checkpoint.get("encounter",0)),0,4)
     run_id = str(checkpoint.get("run_id", "run-1"))
@@ -97,13 +110,45 @@ func _init(data: Dictionary = {}) -> void:
     events.clear()
 
 func hero_damage() -> int:
-    return Equipment.damage(profile) + 2 * (level - 1) + int(Evolution.bonuses(profile).attack)
+    return Equipment.damage(profile) + 2 * (level - 1) + int(Evolution.bonuses(profile).attack) + int(Advancement.bonuses(profile).attack)
 
 func upgrade_cost() -> int:
     return Equipment.upgrade_cost(profile)
 
 func try_upgrade() -> bool:
-    return Equipment.upgrade(profile)
+    if read_only or not Equipment.upgrade(profile):return false
+    Quests.record(profile,"upgrades");return true
+
+func upgrade_weapon(id: String) -> bool:
+    if read_only or not Equipment.upgrade_item(profile,id):return false
+    Quests.record(profile,"upgrades");return true
+
+func _refresh_skill_definitions() -> void:
+    for id in SKILL_IDS:skills.definitions[id]=Advancement.definition(profile,id)
+
+func upgrade_skill(id: String) -> bool:
+    if read_only or not Advancement.upgrade(profile,id):return false
+    _refresh_skill_definitions();return true
+
+func train_talent(id: String) -> bool:
+    var before=player_max_hp
+    if read_only or not Advancement.talent(profile,id):return false
+    if player_hp>0:player_hp=clampi(player_hp+player_max_hp-before,1,player_max_hp)
+    return true
+
+func claim_quest(id: String) -> bool:
+    return not read_only and Quests.claim(profile,id)
+
+func open_chest() -> Dictionary:
+    if read_only:return {}
+    return Chests.open(profile)
+
+func start_stage(region_id: String,index: int=0) -> bool:
+    if read_only or not World.can_enter(profile,region_id,index):return false
+    region=region_id
+    tier=0
+    _reset_run(index)
+    return true
 
 func equip(id: String) -> bool:
     if not profile.inventory.has(id):
@@ -160,6 +205,7 @@ func request_action(id: String = "basic") -> bool:
         if not skills.can_cast(id, clock, level, {"momentum":momentum,"rage":rage}):
             return false
         d = skills.commit(id, clock)
+        Quests.record(profile,"skills")
         if d.cost_type == "momentum":
             momentum -= float(d.cost)
         elif d.cost_type == "rage":
@@ -270,6 +316,11 @@ func _damage_enemy(amount: int, source: String, critical: bool) -> void:
         var old_level = level
         var reward = Rewards.grant(profile,run_id+":"+str(encounter),enemy_definition,tier)
         if reward.granted:
+            var stars=World.clear_stage(profile,region,encounter,float(player_hp)/player_max_hp)
+            events.append({"type":"stage_clear","stars":stars,"region":region,"stage":encounter})
+            if enemy_definition.kind=="boss":
+                Quests.record(profile,"bosses")
+                Chests.grant(profile,run_id+":"+region+":boss")
             events.append({"type":"reward","reward":reward})
         if level > old_level:
             events.append({"type":"level_up","level":level})
@@ -309,7 +360,7 @@ func _enemy_strike(multiplier: float, heavy: bool) -> void:
         _damage_enemy(counter,"counter",false)
 
 func _spawn() -> void:
-    enemy_definition = Definitions.catalog().encounters[encounter].duplicate(true)
+    enemy_definition = World.encounter(region,encounter)
     enemy_max_hp = int(round(float(enemy_definition.hp)*(1.0 + tier * 0.12)))
     enemy_hp = enemy_max_hp
     outcome = "fighting"
@@ -322,12 +373,16 @@ func restart() -> bool:
     if outcome not in ["victory", "defeat"]:
         return false
     var won = outcome == "victory"
+    if won:
+        tier = mini(100,tier+1)
+    _reset_run(0)
+    return true
+
+func _reset_run(start: int) -> void:
     profile.run_serial = int(profile.run_serial)+1
     run_id = "run-%d" % int(profile.run_serial)
     profile.claims = {}
-    if won:
-        tier = mini(100,tier+1)
-    encounter = 0
+    encounter = start
     clock = 0
     accumulator = 0
     skills.ready_at.clear()
@@ -339,7 +394,6 @@ func restart() -> bool:
     player_hp = player_max_hp
     events.clear()
     events.append({"type":"spawn","id":enemy_definition.id})
-    return true
 
 func drain_events() -> Array:
     var result = events
@@ -347,4 +401,4 @@ func drain_events() -> Array:
     return result
 
 func snapshot() -> Dictionary:
-    return {"version":2,"profile":profile.duplicate(true),"checkpoint":{"tier":tier,"encounter":encounter,"run_id":run_id,"clock":clock,"player_hp":player_hp,"enemy_hp":enemy_hp,"momentum":momentum,"rage":rage,"outcome":outcome,"busy_until":busy_until,"transition_at":transition_at,"hit_count":hit_count,"pending":pending.duplicate(true),"cooldowns":skills.snapshot(),"hero_status":hero_status.active.duplicate(true),"enemy_status":enemy_status.active.duplicate(true),"behavior":behavior.snapshot()}}
+    return {"version":2,"profile":profile.duplicate(true),"checkpoint":{"region":region,"tier":tier,"encounter":encounter,"run_id":run_id,"clock":clock,"player_hp":player_hp,"enemy_hp":enemy_hp,"momentum":momentum,"rage":rage,"outcome":outcome,"busy_until":busy_until,"transition_at":transition_at,"hit_count":hit_count,"pending":pending.duplicate(true),"cooldowns":skills.snapshot(),"hero_status":hero_status.active.duplicate(true),"enemy_status":enemy_status.active.duplicate(true),"behavior":behavior.snapshot()}}

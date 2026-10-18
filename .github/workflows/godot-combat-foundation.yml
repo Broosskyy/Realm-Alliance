@@ -96,6 +96,10 @@ jobs:
       - name: Manual skill buffering during AUTO attacks
         # Manual skill intent must survive an AUTO attack without early costs.
         run: XDG_DATA_HOME=/tmp/realm64-test-input godot --headless --path . --script res://tests/test_combat_input64.gd
+      - name: World, inventory, quest, skill progression and second region
+        run: XDG_DATA_HOME=/tmp/realm62-test-rpg65 godot --headless --path . --script res://tests/test_rpg65.gd
+      - name: Native RPG pages, inventory dialogs and responsive content
+        run: XDG_DATA_HOME=/tmp/realm62-test-rpg-ui65 godot --headless --path . --script res://tests/test_rpg_ui65.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
@@ -110,7 +114,7 @@ jobs:
       - name: Upload isolated Web artifact
         uses: actions/upload-artifact@v4
         with:
-          name: realm-alliance-work64-web
+          name: realm-alliance-work65-web
           path: build/godot-web/
           if-no-files-found: error
       - name: Build Android ARM64 debug APK
@@ -124,7 +128,7 @@ jobs:
       - name: Upload Android debug artifact
         uses: actions/upload-artifact@v4
         with:
-          name: realm-alliance-work64-android
+          name: realm-alliance-work65-android
           path: build/godot-android/*.apk
           if-no-files-found: error
 

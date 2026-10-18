@@ -26,6 +26,7 @@ const HeroEquipment=preload("res://scripts/systems/hero_equipment.gd")
 const Evolution=preload("res://scripts/systems/hero_evolution.gd")
 const HeroPreview = preload("res://scripts/production_hero.gd")
 var preview
+var rpg_pages
 var toast
 var sound_enabled: bool = true
 var effect_level: int = 0
@@ -62,7 +63,7 @@ func _ready() -> void:
         portrait.region = Rect2(310, 25, 230, 220)
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents"]:
         var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id=="evolve" else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
@@ -87,6 +88,7 @@ func _ready() -> void:
         preview.scale = Vector2.ONE * 0.62
         preview.visible = false
         add_child(preview)
+    rpg_pages=preload("res://scripts/ui/rpg_pages.gd").new();rpg_pages.name="RPGPages";rpg_pages.z_index=40;add_child(rpg_pages);rpg_pages.action.connect(func(id):action.emit(id))
     toast=preload("res://scripts/ui/notification_toast.gd").new()
     toast.name="NotificationToast"
     add_child(toast)
@@ -145,6 +147,7 @@ func update_buttons() -> void:
     if buttons.is_empty() or model == null:
         return
     var in_combat = active_tab == "Kampf"
+    if rpg_pages:rpg_pages.refresh(active_tab,model,logical_height)
     if toast:
         toast.visible=toast_until>Time.get_ticks_msec()
         toast.position=Vector2(18,169) if in_combat else Vector2(38,maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265)
@@ -167,6 +170,11 @@ func update_buttons() -> void:
         b.tooltip_text=d.name+" · Details / anlegen / aufwerten"
         b.position=Vector2(62,345+index*104) if index<2 else Vector2(566,300+(index-2)*104)
         b.size=Vector2(92,92)
+    buttons.talents.visible=active_tab=="Wesen"
+    _place("talents",Rect2(62,508,92,92))
+    buttons.talents.tooltip_text="Talente · %d Punkte"%model.Advancement.available_points(model.profile)
+    buttons.talents.text="Talent"
+    buttons.talents.add_theme_font_size_override("font_size",18)
     var evolution_button=buttons.evolve
     evolution_button.visible=active_tab=="Wesen";evolution_button.compact=true
     evolution_button.z_index=30
@@ -207,13 +215,6 @@ func update_buttons() -> void:
             var tint=GOLD if id==model.profile.equipped else (PURPLE if d.rarity=="epic" else CYAN)
             var icon=load("res://assets/production/weapons/"+id+".png") if ResourceLoader.exists("res://assets/production/weapons/"+id+".png") else null
             b.set_item(["Stahl","Kristall","Glut","Rune","Schatten"][i],"Lv. %d · %s"%[model.profile.inventory[id].level,_rarity(d.rarity)] if owned else "Im Streifzug finden",tint,id==model.profile.equipped,owned,icon)
-        elif active_tab=="Beute":
-            for i in mini(7,model.profile.loot.size()):
-                var item:Dictionary=model.profile.loot[i]
-                if item.kind=="weapon" and item.id==id:
-                    b.visible=true
-                    b.disabled=false
-                    _place("equip_"+id,Rect2(38,270+i*86,644,74))
 
 func notify(title: String, detail: String, seconds: float = 3.0) -> void:
     toast_title = title
@@ -295,9 +296,9 @@ func _amount(n: int) -> String:
 func _draw_combat() -> void:
     _panel(Rect2(115, 98, 490, 48), Color(0.015,0.05,0.105,0.94), Color(0.23,0.51,0.72,0.65), 24)
     _icon("mountain", Rect2(131, 107, 31, 30))
-    var chapter = 1 + (model.wave - 1) / 5
+    var chapter = model.World.IDS.find(model.region)+1
     var node = (model.wave - 1) % 5
-    _text("Wolkgarten %d-%d" % [chapter, node + 1], Vector2(174, 128), 21, INK, true)
+    _text("%s %d-%d" % [model.World.NAMES[model.region], chapter, node + 1], Vector2(174, 128), 21, INK, true)
     for i in 5:
         var p = Vector2(423 + i * 28, 122)
         if i < 4:
@@ -384,15 +385,7 @@ func _draw_shell() -> void:
     _center(active_tab, Rect2(0, 105, 720, 48), 31, INK, true)
     match active_tab:
         "Abenteuer":
-            var names = ["Wolkgarten", "Glutkern", "Frosthain", "Kristallhöhlen", "Sonnenruinen"]
-            for i in 5:
-                var y = 192 + i * 98
-                _panel(Rect2(38, y, 644, 80), Color(0.02,0.07,0.13,0.9))
-                _icon("mountain" if i == 0 else "lock", Rect2(57, y + 20, 38, 38), CYAN if i == 0 else MUTED)
-                _text(names[i], Vector2(117, y + 34), 22, INK if i == 0 else MUTED, true)
-                _text("Aktuell · Welle %d" % model.wave if i == 0 else "Noch nicht verfügbar", Vector2(117, y + 59), 16, MUTED)
-                if i == 0:
-                    _icon("star", Rect2(615, y + 24, 29, 29), GOLD)
+            pass
         "Wesen":
             _panel(Rect2(38,177,644,440),Color.WHITE,Color.WHITE,16,"hero_ornate")
             _center("Realmwächter · Lv. %d"%model.level,Rect2(38,191,644,38),25,INK,true)
@@ -414,7 +407,7 @@ func _draw_shell() -> void:
                 _panel(r)
                 var texture=icons.shield if i==3 and model.level>=2 else orbs[[0,1,3,2][i]]
                 draw_texture_rect(texture,Rect2(r.position+Vector2(51,5),Vector2(44,44)),false)
-                var d:Dictionary=model.Definitions.all()[model.SKILL_IDS[i]]
+                var d:Dictionary=model.skills.definitions[model.SKILL_IDS[i]]
                 _center(["Himmelsklinge","Arkanblick","Zornesflamme","Wächterwall"][i],Rect2(r.position+Vector2(0,49),Vector2(146,20)),14,INK,true)
                 var cost="frei" if d.cost_type=="none" else "%d %s"%[d.cost,{"momentum":"M","rage":"Z"}[d.cost_type]]
                 _center("%.1f s · %s"%[d.cooldown,cost],Rect2(r.position+Vector2(0,68),Vector2(146,18)),13,MUTED)
@@ -430,34 +423,18 @@ func _draw_shell() -> void:
                 _text("Ausrüstung: +%d HP · +%d Verteidigung"%[bonuses.hp,bonuses.defense],Vector2(60,1160),17,MUTED)
                 _text("Erwachen: +%d HP · +%d Angriff"%[Evolution.HP,Evolution.ATTACK] if Evolution.unlocked(model.profile) else "Erwachen freischalten ab Heldenlevel %d"%Evolution.UNLOCK_LEVEL,Vector2(60,1201),17,GOLD)
         "Beute":
-            _panel(Rect2(38,178,644,68))
-            _icon("gold",Rect2(56,194,33,33))
-            _text(str(model.gold),Vector2(101,220),22,GOLD,true)
-            _icon("shard",Rect2(288,194,33,33))
-            _text("%d Splitter"%model.profile.shards,Vector2(335,220),20,CYAN,true)
-            _text("%d Waffen"%model.profile.inventory.size(),Vector2(537,220),17,MUTED)
-            if model.profile.loot.is_empty():
-                _center("Beute erscheint hier nach dem ersten Sieg.",Rect2(38,290,644,80),20,MUTED)
-            for i in mini(7,model.profile.loot.size()):
-                var item:Dictionary=model.profile.loot[i]
-                var r=Rect2(38,270+i*86,644,74)
-                var color=PURPLE if item.rarity=="epic" else (CYAN if item.rarity=="rare" else MUTED)
-                _panel(r,Color(0.02,0.055,0.11,0.94),color)
-                _icon("swords" if item.kind=="weapon" else "shard",Rect2(r.position+Vector2(17,19),Vector2(35,35)),color)
-                _text(item.name,r.position+Vector2(71,29),19,INK,true)
-                _text(_rarity(item.rarity),r.position+Vector2(71,54),14,color)
-                _text("Anlegen" if item.kind=="weapon" else "×%d"%item.count,r.position+Vector2(520,43),17,GOLD if item.kind=="weapon" else MUTED,true)
+            pass
         "Mehr":
             for i in 2:
                 var x = 38 + i * 332
                 _panel(Rect2(x, 204, 312, 88))
                 _icon("map" if i == 0 else "flame", Rect2(x + 18, 225, 43, 43))
-                _text("Aufgaben" if i == 0 else "Events", Vector2(x + 80, 253), 22, INK, true)
+                _text("Aufgaben" if i == 0 else "Erfolge", Vector2(x + 80, 253), 22, INK, true)
             _panel(Rect2(38, 320, 644, 180))
             _text("REALM ALLIANCE", Vector2(61, 361), 24, INK, true)
-            _text("Wolkgarten · Combat 0.6.4", Vector2(61, 402), 18, MUTED)
+            _text("Realm Alliance · 0.6.5", Vector2(61, 402), 18, MUTED)
             _text("Spielstand wird lokal gespeichert.", Vector2(61, 447), 18, MUTED)
-            _text("Weitere Bereiche werden nach und nach geöffnet.", Vector2(61, 479), 17, MUTED)
+            _text("Aufgaben und Erfolge geben echte Belohnungen.", Vector2(61, 479), 17, MUTED)
             for i in 2:
                 var r=Rect2(38+i*332,715,312,62)
                 _panel(r,Color("#13314b"),CYAN.darkened(0.4))

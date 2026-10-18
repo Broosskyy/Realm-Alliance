@@ -1,0 +1,7 @@
+[
+ {"id":"ember_boar","name":"Glutkeiler","kind":"normal","visual":"boar","hp":190,"damage":14,"interval":4.1,"windup":1.0,"pattern":"single","xp":36,"gold":25,"drop":""},
+ {"id":"basalt_sentry","name":"Basaltwächter","kind":"normal","visual":"golem","palette":"ember","hp":220,"damage":15,"interval":4.0,"windup":1.0,"pattern":"single","xp":40,"gold":28,"drop":"crystal"},
+ {"id":"tusk_champion","name":"Aschenhauer","kind":"elite","visual":"boar","hp":290,"damage":17,"interval":4.2,"windup":1.1,"pattern":"double","xp":60,"gold":45,"drop":"ember"},
+ {"id":"ember_boar_veteran","name":"Glutkeiler","kind":"normal","visual":"boar","hp":240,"damage":16,"interval":3.9,"windup":0.95,"pattern":"single","xp":42,"gold":32,"drop":"rune_gold"},
+ {"id":"cinder_colossus","name":"Aschenkoloss","kind":"boss","visual":"golem","palette":"ember","hp":510,"damage":24,"interval":4.3,"windup":1.5,"pattern":"eruption","xp":140,"gold":120,"drop":"shadow_violet"}
+]

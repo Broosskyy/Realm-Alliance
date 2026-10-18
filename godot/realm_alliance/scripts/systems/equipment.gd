@@ -13,15 +13,22 @@ static func definition(id: String) -> Dictionary:
 
 static func damage(profile: Dictionary) -> int:
     var id: String = profile.equipped
-    var item: Dictionary = profile.inventory[id]
+    return item_damage(profile,id)
+
+static func item_damage(profile: Dictionary,id: String) -> int:
+    var item: Dictionary = profile.inventory.get(id,{"level":1})
     return int(definition(id).base_damage) + 6 * (int(item.level) - 1)
 
 static func upgrade_cost(profile: Dictionary) -> int:
     return 20 + (int(profile.inventory[profile.equipped].level) - 1) * 17
 
 static func upgrade(profile: Dictionary) -> bool:
-    var item: Dictionary = profile.inventory[profile.equipped]
-    var cost = upgrade_cost(profile)
+    return upgrade_item(profile,str(profile.equipped))
+
+static func upgrade_item(profile: Dictionary,id: String) -> bool:
+    if id not in IDS or not profile.inventory.has(id):return false
+    var item: Dictionary = profile.inventory[id]
+    var cost = 20 + (int(item.level)-1)*17
     var shard_cost = 1 if int(item.level) >= 3 else 0
     if int(item.level) >= 20 or profile.gold < cost or profile.shards < shard_cost:
         return false

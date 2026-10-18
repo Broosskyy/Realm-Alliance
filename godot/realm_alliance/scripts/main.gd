@@ -1,4 +1,5 @@
 extends Control
+const GLUTKERN_BACKDROP=preload("res://assets/world65/glutkern.webp")
 const CombatModel = preload("res://scripts/systems/combat_session.gd")
 const ManualInput = preload("res://scripts/combat_input_buffer.gd")
 var manual_input = ManualInput.new()
@@ -29,6 +30,7 @@ const USE_SHARED_ART_PREVIEW = true
 var model
 var hero
 var enemy
+var world_backdrop: TextureRect
 var stage: Node2D
 var touch_zone: Control
 var hud
@@ -70,7 +72,7 @@ func _ready() -> void:
         var d:Dictionary=model.pending.definition
         hero.play_action(str(d.id),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup))
         hero.sync_clock(model.clock)
-    print("REALM 6.4: canonical hero, weapons and survival systems loaded")
+    print("REALM 6.5: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -80,6 +82,7 @@ func _build_arena() -> void:
     add_child(background)
     if _production_enabled:
         var world := TextureRect.new()
+        world_backdrop=world
         world.name = "WolkgartenProductionWorld"
         world.texture = load(ProductionArtGate.ROOT + "world/wolkgarten_battle_plate.png")
         world.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -156,6 +159,8 @@ func _build_hud() -> void:
 
 func _show_encounter() -> void:
     manual_input.clear()
+    if world_backdrop:
+        world_backdrop.texture=GLUTKERN_BACKDROP if model.region=="glutkern" else load(ProductionArtGate.ROOT+"world/wolkgarten_battle_plate.png")
     if _production_enabled:
         enemy.configure_enemy(model.enemy_definition)
     enemy.show_wave(model.wave)
@@ -203,7 +208,7 @@ func _layout() -> void:
     if _production_enabled:
         var tall = clampf((float(metrics["logical_height"]) - 1280.0) / 280.0, 0.0, 1.0)
         hero.scale = Vector2.ONE * lerpf(0.64, 0.82, tall)
-        enemy.set_layout_scale(lerpf(0.72, 0.93, tall) if model.enemy_definition.visual == "golem" else 0.90)
+        enemy.set_layout_scale(0.75 if model.enemy_definition.visual=="boar" else (lerpf(0.72, 0.93, tall) if model.enemy_definition.visual == "golem" else 0.90))
 
 func _on_hud_action(id: String) -> void:
     if id=="sound":
@@ -219,6 +224,14 @@ func _on_hud_action(id: String) -> void:
         stage.visible=active_tab=="Kampf"
         stage.process_mode=Node.PROCESS_MODE_INHERIT if active_tab=="Kampf" else Node.PROCESS_MODE_DISABLED
         touch_zone.visible=active_tab=="Kampf" and model.outcome=="fighting"
+    elif id.begins_with("stage:"):
+        _confirm_stage(id)
+    elif id.begins_with("item:"):
+        _open_inventory_item(id)
+    elif id in ["quests","events"]:
+        _open_quests(id=="events")
+    elif id=="talents":
+        _open_talents()
     elif id=="auto":
         auto_enabled=not auto_enabled
     elif id.begins_with("skill"):
@@ -265,7 +278,7 @@ func _on_hud_action(id: String) -> void:
     _refresh()
 
 func _open_gear(id: String) -> void:
-    if active_tab!="Wesen" or not model.HeroEquipment.CATALOG.has(id):return
+    if active_tab not in ["Wesen","Beute"] or not model.HeroEquipment.CATALOG.has(id):return
     if model.read_only:
         hud.notify("Ausrüstung gesperrt","Spielstand bleibt unverändert.");return
     var dialog=preload("res://scripts/ui/hero_equipment_dialog.gd").new()
@@ -289,7 +302,7 @@ func _open_evolution() -> void:
 
 func _open_skill_info(index: int) -> void:
     if active_tab!="Wesen" or index not in range(4):return
-    var d:Dictionary=model.Definitions.all()[model.SKILL_IDS[index]]
+    var d:Dictionary=model.skills.definitions[model.SKILL_IDS[index]]
     var detail=""
     match d.effect:
         "direct":detail="Konzentrierter Schwertschlag: %.1f× Angriff."%d.multiplier
@@ -299,15 +312,80 @@ func _open_skill_info(index: int) -> void:
     var dialog=preload("res://scripts/ui/modal_dialog.gd").new()
     var cost_text="Kostenfrei" if d.cost_type=="none" else "Kosten: %d %s"%[d.cost,{"momentum":"Momentum","rage":"Zorn"}[d.cost_type]]
     dialog.title=d.name;dialog.dialog_text="%s\n\nAb Heldenlevel %d · %.1f s Abklingzeit\n%s\nAUTO nutzt nur normale Angriffe."%[detail,d.unlock_level,d.cooldown,cost_text]
+    var skill_id:String=model.SKILL_IDS[index]
+    var rank=model.Advancement.rank(model.profile,skill_id)
+    var upgrade=model.Advancement.cost(model.profile,skill_id)
+    dialog.dialog_text+="\n\nSkillstufe %d/5 · Aufwertung: %d Gold +2 Splitter\nAb Heldenlevel %d · Wirkung steigt, Kosten/CD bleiben."%[rank,upgrade.gold,upgrade.level]
+    var improve=dialog.add_button("Skill +1",true,"upgrade");improve.custom_minimum_size.y=88;improve.disabled=model.read_only or not model.Advancement.can_upgrade(model.profile,skill_id)
+    dialog.custom_action.connect(func(action):
+        if action=="upgrade":
+            if model.upgrade_skill(skill_id):_persist();_refresh();hud.notify("Skill aufgewertet",d.name)
+            dialog.queue_free())
     dialog.ok_button_text="Schließen";dialog.cancel_button_text="Zurück"
     dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free)
     add_child(dialog);dialog.popup_centered(Vector2i(620,380))
 
+func _confirm_stage(id: String) -> void:
+    var parts=id.split(":")
+    if parts.size()!=3:return
+    var region_id=parts[1];var index=int(parts[2])
+    if not model.World.can_enter(model.profile,region_id,index):return
+    var dialog=preload("res://scripts/ui/modal_dialog.gd").new()
+    dialog.title="Stage betreten";dialog.dialog_text="%s · %d-%d\nDer aktuelle Lauf wird beendet. Ausrüstung und Fortschritt bleiben erhalten.\nEin neuer Lauf beginnt mit vollen HP."%[model.World.NAMES[region_id],model.World.IDS.find(region_id)+1,index+1];dialog.ok_button_text="Betreten";dialog.cancel_button_text="Zurück"
+    dialog.confirmed.connect(func():
+        if model.start_stage(region_id,index):
+            hero.revive();_consume_events();_persist();_on_hud_action("Kampf");hud.notify(model.World.NAMES[region_id],model.enemy_definition.name,2)
+        dialog.queue_free())
+    dialog.canceled.connect(dialog.queue_free);add_child(dialog);dialog.popup_centered(Vector2i(620,350))
+
+func _open_inventory_item(id: String) -> void:
+    var parts=id.split(":")
+    if parts.size()!=3:return
+    var kind=parts[1];var item=parts[2]
+    if kind=="gear":_open_gear(item);return
+    if kind=="weapon" and model.profile.inventory.has(item):
+        var dialog=preload("res://scripts/ui/weapon_dialog.gd").new();add_child(dialog);dialog.configure(model,item)
+        dialog.operation.connect(func(weapon,operation):
+            var ok=model.upgrade_weapon(weapon) if operation=="upgrade" else (not model.read_only and model.equip(weapon))
+            if ok:_sync_hero();_persist();_refresh();hud.notify("Ausrüstung aktualisiert",model.Equipment.definition(weapon).name))
+        dialog.popup_centered(Vector2i(620,380));return
+    var info=preload("res://scripts/ui/modal_dialog.gd").new();add_child(info)
+    info.title="Wächtertruhe" if kind=="chest" else "Himmelssplitter"
+    info.dialog_text="Eine echte Bossbelohnung. Enthält Gold, Splitter und ein Ausrüstungsteil; ein Duplikat ergibt zusätzliche Splitter." if kind=="chest" else "Aufwertungsmaterial aus Kämpfen, Aufgaben und Truhen. Bestand: %d"%model.profile.shards
+    info.ok_button_text="Öffnen" if kind=="chest" else "Schließen";info.cancel_button_text="Zurück";info.get_ok_button().disabled=model.read_only and kind=="chest"
+    info.confirmed.connect(func():
+        if kind=="chest":
+            var reward=model.open_chest()
+            if not reward.is_empty():
+                _persist();_refresh();audio.play("reward");hud.notify("Truhe geöffnet",reward.item.name,3)
+                var reveal=preload("res://scripts/ui/reward_dialog.gd").new();add_child(reveal);reveal.configure(reward,[1.0,.4,0.0][preferences.effects]);reveal.popup_centered(Vector2i(620,460))
+        info.queue_free())
+    info.canceled.connect(info.queue_free);info.popup_centered(Vector2i(620,360))
+
+func _open_quests(achievements: bool) -> void:
+    if not model.Quests.ensure(model.profile):hud.notify("Daten geschützt","Aufgaben sind nicht kompatibel.");return
+    var dialog=preload("res://scripts/ui/quest_dialog.gd").new();add_child(dialog);dialog.configure(model,achievements)
+    dialog.claim_requested.connect(func(id):
+        if model.claim_quest(id):_persist();_refresh();audio.play("reward");hud.notify("Belohnung erhalten",model.Quests.definition(id).name))
+    dialog.popup_centered(Vector2i(620,650))
+
+func _open_talents() -> void:
+    var dialog=preload("res://scripts/ui/modal_dialog.gd").new();add_child(dialog)
+    var talents=model.profile.skill_progress.get("talents",{}) if model.Advancement.ensure(model.profile) else {}
+    dialog.title="Wächtertalente";dialog.dialog_text="Freie Punkte: %d\nEin Punkt alle 3 Heldenlevel, maximal 6.\nStärke %d/3 · +2 Angriff je Rang\nVitalität %d/3 · +8 HP je Rang"%[model.Advancement.available_points(model.profile),talents.get("might",0),talents.get("vitality",0)]
+    dialog.ok_button_text="Schließen";dialog.cancel_button_text="Zurück"
+    for id in model.Advancement.TALENTS:
+        var b=dialog.add_button("Stärke +1" if id=="might" else "Vitalität +1",false,id);b.custom_minimum_size.y=88;b.disabled=model.read_only or model.Advancement.available_points(model.profile)<=0 or int(talents.get(id,0))>=3
+    dialog.custom_action.connect(func(id):
+        if model.train_talent(id):_sync_hero();_persist();_refresh();hud.notify("Talent gelernt",id)
+        dialog.queue_free())
+    dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free);dialog.popup_centered(Vector2i(680,400))
+
 func _apply_preferences() -> void:
     if audio:audio.enabled=preferences.sound
-    if vfx:vfx.intensity=preferences.intensity()
-    if _production_enabled and hero.aura:hero.aura.fx_intensity=preferences.intensity()
-    camera_feedback.intensity=preferences.intensity()
+    if vfx:vfx.intensity=[1.0,.4,0.0][preferences.effects]
+    if _production_enabled and hero.aura:hero.aura.fx_intensity=[1.0,.4,0.0][preferences.effects]
+    camera_feedback.intensity=[1.0,.4,0.0][preferences.effects]
     hud.sound_enabled=preferences.sound;hud.effect_level=preferences.effects
     hud.queue_redraw()
 
@@ -362,6 +440,8 @@ func _process(delta: float) -> void:
 func _consume_events() -> void:
     for e in model.drain_events():
         match e.type:
+            "stage_clear":
+                hud.notify("Stage geschafft", "%s · %s"%[model.World.NAMES[e.region],"★".repeat(int(e.stars))],1.2)
             "hero_action":
                 if _production_enabled:
                     hero.play_action(e.id,float(e.get("windup",0.28)),float(e.get("recovery",0.35)),float(e.get("started_at",model.clock)))
@@ -373,6 +453,7 @@ func _consume_events() -> void:
                 if model.outcome!="fighting": continue
                 if _production_enabled: enemy.play_telegraph(float(e.duration),str(e.pattern))
                 _fx("telegraph",enemy.position,float(e.duration))
+                vfx.enemy_warning(model,str(e.pattern),float(e.duration),hero.position+Vector2(0,-4))
             "damage":
                 enemy.play_hit()
                 vfx.impact(str(e.source),bool(e.critical))
@@ -385,6 +466,7 @@ func _consume_events() -> void:
                     hero.play_hit(int(e.blocked)>0)
                 vfx.emit_effect("shield" if int(e.blocked)>0 else "fire_impact",hero.position+Vector2(25,-130),180,0.35)
                 camera_feedback.impact(4 if e.heavy else 2,0.045)
+                if model.enemy_definition.pattern=="eruption":vfx.emit_effect("fire_impact",hero.position+Vector2(0,-55),220 if e.heavy else 150,.42,"impact",16)
                 audio.play("shield" if int(e.blocked)>0 else "impact")
                 var message="-%d"%e.amount if int(e.amount)>0 else "BLOCK"
                 _popup(message,Vector2(-270,-230),Color("#ff9898") if int(e.amount)>0 else Color("#74dfff"),"-%d Schild"%e.blocked if int(e.blocked)>0 else "")
@@ -414,6 +496,7 @@ func _consume_events() -> void:
                 if _production_enabled: hero.play_death()
                 _persist()
             "victory":
+                hud.notify("Boss besiegt","Wächtertruhe in Beute verfügbar",4)
                 _persist()
     _sync_hero()
     if _production_enabled:hero.sync_clock(model.clock)

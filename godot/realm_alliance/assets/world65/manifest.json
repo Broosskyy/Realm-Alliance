@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "generator": "built-in imagegen",
+  "enemy_source": "exec-9ec2e8b6-486e-473a-a060-4e2bcad508b3.png",
+  "enemy_source_sha256": "5f12a9a90726cef2b84672413ae3a0a2092057c4eaaf220cb3616acfa043cff7",
+  "processing": "Technical cell extraction, alpha-aware bounding boxes, one common uniform scale, feet alignment. Source alpha preserved. Environment export downsampled and WebP compressed. No VFX baked into sprites.",
+  "purpose": "Glutkern normal boar, double-strike elite, basalt golem and eruption boss; two-region stage map and actual combat backdrop.",
+  "assets": [
+    {
+      "file": "assets/enemies/ember_boar/idle.png",
+      "source_cell": 0,
+      "source_bbox": [
+        11,
+        96,
+        599,
+        563
+      ],
+      "uniform_scale": 0.7142857142857143,
+      "feet_pivot": [
+        256,
+        480
+      ],
+      "sha256": "8849f50175af6e6144e6c169ad665f1304a554e1bd819853ffe3e217534d52ab"
+    },
+    {
+      "file": "assets/enemies/ember_boar/attack.png",
+      "source_cell": 1,
+      "source_bbox": [
+        1,
+        173,
+        617,
+        573
+      ],
+      "uniform_scale": 0.7142857142857143,
+      "feet_pivot": [
+        256,
+        480
+      ],
+      "sha256": "5fa37b83d4e735f410689b2b4a1124b327c806eba5c0f792ecd3bb943379f0f3"
+    },
+    {
+      "file": "assets/enemies/ember_boar/hit.png",
+      "source_cell": 2,
+      "source_bbox": [
+        68,
+        29,
+        595,
+        530
+      ],
+      "uniform_scale": 0.7142857142857143,
+      "feet_pivot": [
+        256,
+        480
+      ],
+      "sha256": "5d85260fb34778901cd2b2ba2e46e16003832423bc9b1a94893760af2f4d5d10"
+    },
+    {
+      "file": "assets/enemies/ember_boar/defeated.png",
+      "source_cell": 3,
+      "source_bbox": [
+        14,
+        259,
+        611,
+        541
+      ],
+      "uniform_scale": 0.7142857142857143,
+      "feet_pivot": [
+        256,
+        480
+      ],
+      "sha256": "4edf26edd68da8df5350110a8ce3d3187df24b500ea342f0e026fe253394096a"
+    },
+    {
+      "file": "assets/world65/glutkern.webp",
+      "source": "exec-44b1d5d8-33af-445c-98fa-852388518bf3.png",
+      "source_sha256": "98f8c96dfadc7d575dce87cea456eb0e11e5204717e9c94cae80bda46602bd68",
+      "sha256": "ccf71e2d46346d23bc1280d4c71b8e26dee867013987bac3f530470e1a43763f"
+    },
+    {
+      "file": "assets/world65/world_map.webp",
+      "source": "exec-727954dc-e8a4-4582-b91e-a6c77477fd4a.png",
+      "source_sha256": "b8927abc51ca2d28c86a850d83a918bf3d2596f46b3c092d1635b0d9ee479856",
+      "sha256": "23f12111477c4802d69934012532af2655157939d4a8a241af3798301a911891"
+    }
+  ]
+}
