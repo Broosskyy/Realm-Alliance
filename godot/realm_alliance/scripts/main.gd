@@ -370,16 +370,10 @@ func _open_quests(achievements: bool) -> void:
     dialog.popup_centered(Vector2i(620,650))
 
 func _open_talents() -> void:
-    var dialog=preload("res://scripts/ui/modal_dialog.gd").new();add_child(dialog)
-    var talents=model.profile.skill_progress.get("talents",{}) if model.Advancement.ensure(model.profile) else {}
-    dialog.title="Wächtertalente";dialog.dialog_text="Freie Punkte: %d\nEin Punkt alle 3 Heldenlevel, maximal 6.\nStärke %d/3 · +2 Angriff je Rang\nVitalität %d/3 · +8 HP je Rang"%[model.Advancement.available_points(model.profile),talents.get("might",0),talents.get("vitality",0)]
-    dialog.ok_button_text="Schließen";dialog.cancel_button_text="Zurück"
-    for id in model.Advancement.TALENTS:
-        var b=dialog.add_button("Stärke +1" if id=="might" else "Vitalität +1",false,id);b.custom_minimum_size.y=88;b.disabled=model.read_only or model.Advancement.available_points(model.profile)<=0 or int(talents.get(id,0))>=3
-    dialog.custom_action.connect(func(id):
-        if model.train_talent(id):_sync_hero();_persist();_refresh();hud.notify("Talent gelernt",id)
-        dialog.queue_free())
-    dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free);dialog.popup_centered(Vector2i(680,400))
+    var dialog=preload("res://scripts/ui/talent_dialog.gd").new();add_child(dialog);dialog.configure(model)
+    dialog.train_requested.connect(func(id):
+        if model.train_talent(id):_sync_hero();_persist();_refresh();hud.notify("Talent gelernt","Stärke" if id=="might" else "Vitalität"))
+    dialog.popup_centered(Vector2i(620,500))
 
 func _apply_preferences() -> void:
     if audio:audio.enabled=preferences.sound

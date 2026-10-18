@@ -75,8 +75,8 @@ func run() -> void:
     else:quit(1);return
     await process_frame
     check(scene.model.Advancement.rank(scene.model.profile,"sky_blade")==2 and scene.model.gold==gold-30,"native skill upgrade changes saved runtime definition")
-    scene.hud.buttons.talents.pressed.emit();var talents=dialog_of(scene,"modal_dialog")
-    var hp=scene.model.player_max_hp;button(talents,"Vitalität +1").pressed.emit();await process_frame
+    scene.hud.buttons.talents.pressed.emit();var talents=dialog_of(scene,"talent_dialog")
+    var hp=scene.model.player_max_hp;talents.find_child("Train_vitality",true,false).pressed.emit();await process_frame
     check(scene.model.player_max_hp==hp+8,"native talent changes real HP")
     scene.model.Chests.grant(scene.model.profile,"ui-boss-proof")
     scene._on_hud_action("Beute");scene._open_inventory_item("item:chest:boss_chest")
@@ -95,6 +95,15 @@ func run() -> void:
             for c in descendants(pages):
                 if c is Button:check(c.size.x*scale>=44 and c.size.y*scale>=44,"RPG target >=44 physical pixels "+str(v)+str(c.name))
         check(not scene._on_tap(),"RPG menus cannot cause combat hits "+str(v))
+        scene._open_talents();var talent_window=dialog_of(scene,"talent_dialog");await process_frame
+        var available=root.get_visible_rect().size
+        check(talent_window.size.x<=available.x and talent_window.size.y<=available.y,"talent dialog stays within visible viewport "+str(v))
+        talent_window.get_ok_button().pressed.emit();await process_frame
+        var reward_window=load("res://scripts/ui/reward_dialog.gd").new();scene.add_child(reward_window)
+        reward_window.configure({"item":{"id":"sky_shard","kind":"material","name":"Himmelssplitter","rarity":"common"},"gold":44,"shards":5},0)
+        reward_window.popup_centered(Vector2i(620,460));await process_frame;await process_frame
+        check(reward_window.size.x<=available.x and reward_window.size.y<=available.y,"reward dialog stays within visible viewport "+str(v))
+        reward_window.get_ok_button().pressed.emit();await process_frame
     scene._on_hud_action("Kampf");scene.vfx.clear()
     var catalog=scene.model.enemy_definition
     scene.model.enemy_definition=scene.model.World.encounter("glutkern",4);scene.model.behavior.second=false
