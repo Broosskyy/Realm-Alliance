@@ -18,16 +18,20 @@ func _build(selected:int) -> void:
         var scroll=ScrollContainer.new();scroll.name=kind;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;tabs.add_child(scroll)
         var list=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",18);scroll.add_child(list)
         _label(list,"Helden und Begleiter sofort wechseln – ohne Stage-Neustart. Gegner-HP, Beute und Fortschritt bleiben erhalten. Helden trainieren eigene Level; Talente und Skillränge gelten kontoweit.",true)
-        var catalog:Dictionary=model.Roster.catalog() if kind=="Helden" else model.Companions.catalog()
+        if kind=="Helden":
+            _label(list,"Der maskierte Realmwächter ist dein Hauptheld. Andere Helden erscheinen erst, wenn eigene vollständige Kampfassets in unserem kanonischen Stil bereitstehen.",true)
+            _label(list,"Kaela bleibt als zukünftige Runenhüterin-NPC in unserem Art-/Story-Katalog erhalten. Früherer Kaela-Fortschritt wurde archiviert.",true)
+        var catalog:Dictionary=model.Roster.playable_catalog() if kind=="Helden" else model.Companions.catalog()
         for id in catalog:
             var d:Dictionary=catalog[id];var owned=model.profile.hero_roster.owned.has(id) if kind=="Helden" else model.profile.companions.owned.has(id)
             var card=PanelContainer.new();card.add_theme_stylebox_override("panel",Kit.box("panel"));list.add_child(card);var content=VBoxContainer.new();content.add_theme_constant_override("separation",8);card.add_child(content)
             var row=HBoxContainer.new();content.add_child(row)
             var icon=TextureRect.new();icon.custom_minimum_size=Vector2(100,100);icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;row.add_child(icon)
             if kind=="Helden":
-                if id=="kaela":icon.texture=load("res://assets/roster67/kaela/portrait.png")
-                else:
-                    var portrait=AtlasTexture.new();portrait.atlas=load("res://assets/production/hero/idle.png");portrait.region=Rect2(310,25,230,220);icon.texture=portrait
+                var portrait=AtlasTexture.new()
+                portrait.atlas=load("res://assets/production/hero/idle.png")
+                portrait.region=Rect2(310,25,230,220)
+                icon.texture=portrait
             else:icon.texture=load("res://assets/roster67/"+id+("/evolved_idle.png" if owned and int(model.profile.companions.owned[id].evolution)>0 else "/base_idle.png"))
             var info=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(info)
             var rank=model.Roster.level(model.profile,id) if kind=="Helden" else model.Companions.level(model.profile,id)
