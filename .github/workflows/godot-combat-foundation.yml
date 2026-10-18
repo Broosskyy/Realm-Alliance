@@ -109,6 +109,8 @@ jobs:
         run: XDG_DATA_HOME=/tmp/realm66-test-tap godot --headless --path . --script res://tests/test_tap66.gd
       - name: Hero roster, companion actions, training and migration
         run: XDG_DATA_HOME=/tmp/realm67-test-roster godot --headless --path . --script res://tests/test_roster67.gd
+      - name: Developer QA sandbox, roster previews and save isolation
+        run: XDG_DATA_HOME=/tmp/realm67-test-admin-qa godot --headless --path . --script res://tests/test_admin_qa.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
