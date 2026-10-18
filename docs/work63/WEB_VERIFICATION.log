@@ -1,0 +1,19 @@
+REALM 6.3: canonical hero, weapons and survival systems loaded
+REALM 6.3: canonical hero, weapons and survival systems loaded
+PASS rapid reload 0 777
+REALM 6.3: canonical hero, weapons and survival systems loaded
+PASS rapid reload 1 778
+REALM 6.3: canonical hero, weapons and survival systems loaded
+PASS rapid reload 2 779
+Run 0 fighting 1
+Run 1 fighting 1
+Run 2 fighting 2
+Run 3 breathe 2
+Run 4 fighting 3
+Run 5 fighting 4
+Run 6 fighting 4
+Run 7 fighting 4
+Run 8 victory 4
+REALM 6.3: canonical hero, weapons and survival systems loaded
+Software-rendered browser rAF {"frames":246,"seconds":10.05370000000014,"median_ms":33.399999999999636,"p95_ms":50.100000000000364}
+PASS full browser gate

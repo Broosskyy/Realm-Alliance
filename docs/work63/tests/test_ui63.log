@@ -1,0 +1,274 @@
+WorkerThreadPool: 9 threads, 2 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+SDL: Init OK!
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tests/test_ui63.gd remapped: res://tests/test_ui63.gd
+Loading resource: res://scenes/main.tscn remapped: res://scenes/main.tscn
+Loading resource: res://scripts/main.gd remapped: res://scripts/main.gd
+Loading resource: res://assets/preview/bramble/stage/glow_stump.png remapped: res://assets/preview/bramble/stage/glow_stump.png
+Loading resource: res://.godot/imported/glow_stump.png-c85622529f45d1b3ccbafd7b79852537.ctex remapped: res://.godot/imported/glow_stump.png-c85622529f45d1b3ccbafd7b79852537.ctex
+Completed load for: 'res://assets/preview/bramble/stage/glow_stump.png' remapped 'res://assets/preview/bramble/stage/glow_stump.png' at thread -1
+Loading resource: res://assets/preview/bramble/stage/swamp_willow.png remapped: res://assets/preview/bramble/stage/swamp_willow.png
+Loading resource: res://.godot/imported/swamp_willow.png-e89853ece2b0f8f0b0f896e118a58740.ctex remapped: res://.godot/imported/swamp_willow.png-e89853ece2b0f8f0b0f896e118a58740.ctex
+Completed load for: 'res://assets/preview/bramble/stage/swamp_willow.png' remapped 'res://assets/preview/bramble/stage/swamp_willow.png' at thread -1
+Loading resource: res://assets/preview/bramble/stage/lantern_post.png remapped: res://assets/preview/bramble/stage/lantern_post.png
+Loading resource: res://.godot/imported/lantern_post.png-a0cefa4f86557f1f4ed6ea93550f5801.ctex remapped: res://.godot/imported/lantern_post.png-a0cefa4f86557f1f4ed6ea93550f5801.ctex
+Completed load for: 'res://assets/preview/bramble/stage/lantern_post.png' remapped 'res://assets/preview/bramble/stage/lantern_post.png' at thread -1
+Loading resource: res://assets/ui/work61/fonts/DejaVuSans.ttf remapped: res://assets/ui/work61/fonts/DejaVuSans.ttf
+Loading resource: res://.godot/imported/DejaVuSans.ttf-0cadb7d0e998185bfbf36366ddad6d05.fontdata remapped: res://.godot/imported/DejaVuSans.ttf-0cadb7d0e998185bfbf36366ddad6d05.fontdata
+Completed load for: 'res://assets/ui/work61/fonts/DejaVuSans.ttf' remapped 'res://assets/ui/work61/fonts/DejaVuSans.ttf' at thread -1
+Loading resource: res://assets/ui/work61/fonts/DejaVuSans-Bold.ttf remapped: res://assets/ui/work61/fonts/DejaVuSans-Bold.ttf
+Loading resource: res://.godot/imported/DejaVuSans-Bold.ttf-bb6e2a442251e773a6e6f15fe093b26e.fontdata remapped: res://.godot/imported/DejaVuSans-Bold.ttf-bb6e2a442251e773a6e6f15fe093b26e.fontdata
+Completed load for: 'res://assets/ui/work61/fonts/DejaVuSans-Bold.ttf' remapped 'res://assets/ui/work61/fonts/DejaVuSans-Bold.ttf' at thread -1
+Loading resource: res://assets/ui/work63/hero.png remapped: res://assets/ui/work63/hero.png
+Loading resource: res://.godot/imported/hero.png-88b4a6e55f941b2ef3daa0762c99ba2d.ctex remapped: res://.godot/imported/hero.png-88b4a6e55f941b2ef3daa0762c99ba2d.ctex
+Completed load for: 'res://assets/ui/work63/hero.png' remapped 'res://assets/ui/work63/hero.png' at thread -1
+Loading resource: res://assets/ui/work63/boss.png remapped: res://assets/ui/work63/boss.png
+Loading resource: res://.godot/imported/boss.png-83312c14df6b46b5cb6672124d21c925.ctex remapped: res://.godot/imported/boss.png-83312c14df6b46b5cb6672124d21c925.ctex
+Completed load for: 'res://assets/ui/work63/boss.png' remapped 'res://assets/ui/work63/boss.png' at thread -1
+Loading resource: res://assets/ui/work63/panel_compact.svg remapped: res://assets/ui/work63/panel_compact.svg
+Loading resource: res://.godot/imported/panel_compact.svg-5131969a89cca2dd5ec65fecb6860a32.ctex remapped: res://.godot/imported/panel_compact.svg-5131969a89cca2dd5ec65fecb6860a32.ctex
+Completed load for: 'res://assets/ui/work63/panel_compact.svg' remapped 'res://assets/ui/work63/panel_compact.svg' at thread -1
+Loading resource: res://assets/ui/work63/boss_compact.svg remapped: res://assets/ui/work63/boss_compact.svg
+Loading resource: res://.godot/imported/boss_compact.svg-c79a9c0a4421434f681d57671c1b2690.ctex remapped: res://.godot/imported/boss_compact.svg-c79a9c0a4421434f681d57671c1b2690.ctex
+Completed load for: 'res://assets/ui/work63/boss_compact.svg' remapped 'res://assets/ui/work63/boss_compact.svg' at thread -1
+Loading resource: res://assets/ui/work63/hero_compact.svg remapped: res://assets/ui/work63/hero_compact.svg
+Loading resource: res://.godot/imported/hero_compact.svg-fea8966936dd2b7968e20ff3f68c3864.ctex remapped: res://.godot/imported/hero_compact.svg-fea8966936dd2b7968e20ff3f68c3864.ctex
+Completed load for: 'res://assets/ui/work63/hero_compact.svg' remapped 'res://assets/ui/work63/hero_compact.svg' at thread -1
+Loading resource: res://assets/ui/work63/primary.png remapped: res://assets/ui/work63/primary.png
+Loading resource: res://.godot/imported/primary.png-b16d6f3fdf6135bc0791fedfb30a62d9.ctex remapped: res://.godot/imported/primary.png-b16d6f3fdf6135bc0791fedfb30a62d9.ctex
+Completed load for: 'res://assets/ui/work63/primary.png' remapped 'res://assets/ui/work63/primary.png' at thread -1
+Loading resource: res://assets/ui/work63/secondary.png remapped: res://assets/ui/work63/secondary.png
+Loading resource: res://.godot/imported/secondary.png-5eedf9ca6919d41e385ec8ca59da636f.ctex remapped: res://.godot/imported/secondary.png-5eedf9ca6919d41e385ec8ca59da636f.ctex
+Completed load for: 'res://assets/ui/work63/secondary.png' remapped 'res://assets/ui/work63/secondary.png' at thread -1
+Loading resource: res://assets/ui/work63/slot.png remapped: res://assets/ui/work63/slot.png
+Loading resource: res://.godot/imported/slot.png-f50bf5771b7eb9072c35a1f3933c876e.ctex remapped: res://.godot/imported/slot.png-f50bf5771b7eb9072c35a1f3933c876e.ctex
+Completed load for: 'res://assets/ui/work63/slot.png' remapped 'res://assets/ui/work63/slot.png' at thread -1
+Loading resource: res://assets/ui/work61/shield.svg remapped: res://assets/ui/work61/shield.svg
+Loading resource: res://.godot/imported/shield.svg-e96b1513b29bdc2034b2c9a7d9d785b6.ctex remapped: res://.godot/imported/shield.svg-e96b1513b29bdc2034b2c9a7d9d785b6.ctex
+Completed load for: 'res://assets/ui/work61/shield.svg' remapped 'res://assets/ui/work61/shield.svg' at thread -1
+Loading resource: res://assets/ui/work63/bar_back.svg remapped: res://assets/ui/work63/bar_back.svg
+Loading resource: res://.godot/imported/bar_back.svg-9f887494ccf7b14e15202fa4e09e26f0.ctex remapped: res://.godot/imported/bar_back.svg-9f887494ccf7b14e15202fa4e09e26f0.ctex
+Completed load for: 'res://assets/ui/work63/bar_back.svg' remapped 'res://assets/ui/work63/bar_back.svg' at thread -1
+Loading resource: res://assets/ui/work63/bar_fill.svg remapped: res://assets/ui/work63/bar_fill.svg
+Loading resource: res://.godot/imported/bar_fill.svg-d458eb86c75c0a730b8fd8682699eaf8.ctex remapped: res://.godot/imported/bar_fill.svg-d458eb86c75c0a730b8fd8682699eaf8.ctex
+Completed load for: 'res://assets/ui/work63/bar_fill.svg' remapped 'res://assets/ui/work63/bar_fill.svg' at thread -1
+Loading resource: res://assets/hero/cape_palette.gdshader remapped: res://assets/hero/cape_palette.gdshader
+Completed load for: 'res://assets/hero/cape_palette.gdshader' remapped 'res://assets/hero/cape_palette.gdshader' at thread -1
+Loading resource: res://assets/vfx/sky_slash.png remapped: res://assets/vfx/sky_slash.png
+Loading resource: res://.godot/imported/sky_slash.png-63732ef911ca8cb79d4593c9c858c97a.ctex remapped: res://.godot/imported/sky_slash.png-63732ef911ca8cb79d4593c9c858c97a.ctex
+Completed load for: 'res://assets/vfx/sky_slash.png' remapped 'res://assets/vfx/sky_slash.png' at thread -1
+Loading resource: res://assets/vfx/sky_impact.png remapped: res://assets/vfx/sky_impact.png
+Loading resource: res://.godot/imported/sky_impact.png-424cf89364a45c36b5cab891a31cd092.ctex remapped: res://.godot/imported/sky_impact.png-424cf89364a45c36b5cab891a31cd092.ctex
+Completed load for: 'res://assets/vfx/sky_impact.png' remapped 'res://assets/vfx/sky_impact.png' at thread -1
+Loading resource: res://assets/vfx/arcane_eye.png remapped: res://assets/vfx/arcane_eye.png
+Loading resource: res://.godot/imported/arcane_eye.png-7bc960cd3f223097636b0160ca450caa.ctex remapped: res://.godot/imported/arcane_eye.png-7bc960cd3f223097636b0160ca450caa.ctex
+Completed load for: 'res://assets/vfx/arcane_eye.png' remapped 'res://assets/vfx/arcane_eye.png' at thread -1
+Loading resource: res://assets/vfx/arcane_seal.png remapped: res://assets/vfx/arcane_seal.png
+Loading resource: res://.godot/imported/arcane_seal.png-33bbac86c18f090f455cddda9f9d1d3a.ctex remapped: res://.godot/imported/arcane_seal.png-33bbac86c18f090f455cddda9f9d1d3a.ctex
+Completed load for: 'res://assets/vfx/arcane_seal.png' remapped 'res://assets/vfx/arcane_seal.png' at thread -1
+Loading resource: res://assets/vfx/fire_slash.png remapped: res://assets/vfx/fire_slash.png
+Loading resource: res://.godot/imported/fire_slash.png-e454921ebaddb9d63a736efcd02e752d.ctex remapped: res://.godot/imported/fire_slash.png-e454921ebaddb9d63a736efcd02e752d.ctex
+Completed load for: 'res://assets/vfx/fire_slash.png' remapped 'res://assets/vfx/fire_slash.png' at thread -1
+Loading resource: res://assets/vfx/fire_impact.png remapped: res://assets/vfx/fire_impact.png
+Loading resource: res://.godot/imported/fire_impact.png-e8e199bc48af07fa864342d94b976fb5.ctex remapped: res://.godot/imported/fire_impact.png-e8e199bc48af07fa864342d94b976fb5.ctex
+Completed load for: 'res://assets/vfx/fire_impact.png' remapped 'res://assets/vfx/fire_impact.png' at thread -1
+Loading resource: res://assets/vfx/shield.png remapped: res://assets/vfx/shield.png
+Loading resource: res://.godot/imported/shield.png-9abbcd2135b0523287b7a7dbc6a0282a.ctex remapped: res://.godot/imported/shield.png-9abbcd2135b0523287b7a7dbc6a0282a.ctex
+Completed load for: 'res://assets/vfx/shield.png' remapped 'res://assets/vfx/shield.png' at thread -1
+Loading resource: res://assets/vfx/reward.png remapped: res://assets/vfx/reward.png
+Loading resource: res://.godot/imported/reward.png-66aeaff26366f0cd23758deb91ebca50.ctex remapped: res://.godot/imported/reward.png-66aeaff26366f0cd23758deb91ebca50.ctex
+Completed load for: 'res://assets/vfx/reward.png' remapped 'res://assets/vfx/reward.png' at thread -1
+Loading resource: res://assets/preview/bramble/hero/idle.png remapped: res://assets/preview/bramble/hero/idle.png
+Loading resource: res://.godot/imported/idle.png-f9519b5a17a2c48b7538f7fdb21468fa.ctex remapped: res://.godot/imported/idle.png-f9519b5a17a2c48b7538f7fdb21468fa.ctex
+Completed load for: 'res://assets/preview/bramble/hero/idle.png' remapped 'res://assets/preview/bramble/hero/idle.png' at thread -1
+Loading resource: res://assets/preview/bramble/hero/ready.png remapped: res://assets/preview/bramble/hero/ready.png
+Loading resource: res://.godot/imported/ready.png-c123fc7271712b7230cfbc3d6e0d0c56.ctex remapped: res://.godot/imported/ready.png-c123fc7271712b7230cfbc3d6e0d0c56.ctex
+Completed load for: 'res://assets/preview/bramble/hero/ready.png' remapped 'res://assets/preview/bramble/hero/ready.png' at thread -1
+Loading resource: res://assets/preview/bramble/hero/windup.png remapped: res://assets/preview/bramble/hero/windup.png
+Loading resource: res://.godot/imported/windup.png-3b65b4d6e0508b9ec6119cd8c03529b2.ctex remapped: res://.godot/imported/windup.png-3b65b4d6e0508b9ec6119cd8c03529b2.ctex
+Completed load for: 'res://assets/preview/bramble/hero/windup.png' remapped 'res://assets/preview/bramble/hero/windup.png' at thread -1
+Loading resource: res://assets/preview/bramble/hero/contact.png remapped: res://assets/preview/bramble/hero/contact.png
+Loading resource: res://.godot/imported/contact.png-fb2b4456cf3abd06224d6a4401998d28.ctex remapped: res://.godot/imported/contact.png-fb2b4456cf3abd06224d6a4401998d28.ctex
+Completed load for: 'res://assets/preview/bramble/hero/contact.png' remapped 'res://assets/preview/bramble/hero/contact.png' at thread -1
+Loading resource: res://assets/preview/bramble/hero/recovery.png remapped: res://assets/preview/bramble/hero/recovery.png
+Loading resource: res://.godot/imported/recovery.png-cc33f8684ecf09ae347b4b1c05ee9206.ctex remapped: res://.godot/imported/recovery.png-cc33f8684ecf09ae347b4b1c05ee9206.ctex
+Completed load for: 'res://assets/preview/bramble/hero/recovery.png' remapped 'res://assets/preview/bramble/hero/recovery.png' at thread -1
+Loading resource: res://assets/preview/bramble/weapon/longsword.png remapped: res://assets/preview/bramble/weapon/longsword.png
+Loading resource: res://.godot/imported/longsword.png-157fbdcceecf44c680ba44cee85d238b.ctex remapped: res://.godot/imported/longsword.png-157fbdcceecf44c680ba44cee85d238b.ctex
+Completed load for: 'res://assets/preview/bramble/weapon/longsword.png' remapped 'res://assets/preview/bramble/weapon/longsword.png' at thread -1
+Loading resource: res://assets/preview/bramble/enemy/idle.png remapped: res://assets/preview/bramble/enemy/idle.png
+Loading resource: res://.godot/imported/idle.png-771fffb41d019047bd9a74fbb02f6830.ctex remapped: res://.godot/imported/idle.png-771fffb41d019047bd9a74fbb02f6830.ctex
+Completed load for: 'res://assets/preview/bramble/enemy/idle.png' remapped 'res://assets/preview/bramble/enemy/idle.png' at thread -1
+Loading resource: res://assets/preview/bramble/enemy/attack.png remapped: res://assets/preview/bramble/enemy/attack.png
+Loading resource: res://.godot/imported/attack.png-8756e5f0db6e2543dc4f7b2047c603e3.ctex remapped: res://.godot/imported/attack.png-8756e5f0db6e2543dc4f7b2047c603e3.ctex
+Completed load for: 'res://assets/preview/bramble/enemy/attack.png' remapped 'res://assets/preview/bramble/enemy/attack.png' at thread -1
+Loading resource: res://assets/preview/bramble/enemy/hit.png remapped: res://assets/preview/bramble/enemy/hit.png
+Loading resource: res://.godot/imported/hit.png-4c396fc1620a3970cc18578941d889bc.ctex remapped: res://.godot/imported/hit.png-4c396fc1620a3970cc18578941d889bc.ctex
+Completed load for: 'res://assets/preview/bramble/enemy/hit.png' remapped 'res://assets/preview/bramble/enemy/hit.png' at thread -1
+Loading resource: res://assets/preview/bramble/enemy/defeated.png remapped: res://assets/preview/bramble/enemy/defeated.png
+Loading resource: res://.godot/imported/defeated.png-b61051d2ca1d1bf7c99e74a409c16a53.ctex remapped: res://.godot/imported/defeated.png-b61051d2ca1d1bf7c99e74a409c16a53.ctex
+Completed load for: 'res://assets/preview/bramble/enemy/defeated.png' remapped 'res://assets/preview/bramble/enemy/defeated.png' at thread -1
+Completed load for: 'res://scripts/main.gd' remapped 'res://scripts/main.gd' at thread -1
+Completed load for: 'res://scenes/main.tscn' remapped 'res://scenes/main.tscn' at thread -1
+Completed load for: 'res://tests/test_ui63.gd' remapped 'res://tests/test_ui63.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://assets/production/world/wolkgarten_battle_plate.png remapped: res://assets/production/world/wolkgarten_battle_plate.png
+Loading resource: res://.godot/imported/wolkgarten_battle_plate.png-dc961198ad3d11473f843fa63dff583d.ctex remapped: res://.godot/imported/wolkgarten_battle_plate.png-dc961198ad3d11473f843fa63dff583d.ctex
+Completed load for: 'res://assets/production/world/wolkgarten_battle_plate.png' remapped 'res://assets/production/world/wolkgarten_battle_plate.png' at thread -1
+Loading resource: res://assets/production/hero/idle.png remapped: res://assets/production/hero/idle.png
+Loading resource: res://.godot/imported/idle.png-08c64399c1fe646c0b96e4750b37594a.ctex remapped: res://.godot/imported/idle.png-08c64399c1fe646c0b96e4750b37594a.ctex
+Completed load for: 'res://assets/production/hero/idle.png' remapped 'res://assets/production/hero/idle.png' at thread -1
+Loading resource: res://assets/production/hero/ready.png remapped: res://assets/production/hero/ready.png
+Loading resource: res://.godot/imported/ready.png-9b2fa822599a6ff3cf1b385fd3aab0f4.ctex remapped: res://.godot/imported/ready.png-9b2fa822599a6ff3cf1b385fd3aab0f4.ctex
+Completed load for: 'res://assets/production/hero/ready.png' remapped 'res://assets/production/hero/ready.png' at thread -1
+Loading resource: res://assets/production/hero/windup.png remapped: res://assets/production/hero/windup.png
+Loading resource: res://.godot/imported/windup.png-87996cab4fba24a5f4cf7b2ccedab3b0.ctex remapped: res://.godot/imported/windup.png-87996cab4fba24a5f4cf7b2ccedab3b0.ctex
+Completed load for: 'res://assets/production/hero/windup.png' remapped 'res://assets/production/hero/windup.png' at thread -1
+Loading resource: res://assets/production/hero/attack_contact.png remapped: res://assets/production/hero/attack_contact.png
+Loading resource: res://.godot/imported/attack_contact.png-f13cfd553bf1e3ed6655313dd7611d75.ctex remapped: res://.godot/imported/attack_contact.png-f13cfd553bf1e3ed6655313dd7611d75.ctex
+Completed load for: 'res://assets/production/hero/attack_contact.png' remapped 'res://assets/production/hero/attack_contact.png' at thread -1
+Loading resource: res://assets/production/hero/recovery.png remapped: res://assets/production/hero/recovery.png
+Loading resource: res://.godot/imported/recovery.png-1afbfd2cf5d75afe5a6f4c50264b2032.ctex remapped: res://.godot/imported/recovery.png-1afbfd2cf5d75afe5a6f4c50264b2032.ctex
+Completed load for: 'res://assets/production/hero/recovery.png' remapped 'res://assets/production/hero/recovery.png' at thread -1
+Loading resource: res://assets/production/hero/hit.png remapped: res://assets/production/hero/hit.png
+Loading resource: res://.godot/imported/hit.png-66718bc4cf5bfa6a0816e723715e221d.ctex remapped: res://.godot/imported/hit.png-66718bc4cf5bfa6a0816e723715e221d.ctex
+Completed load for: 'res://assets/production/hero/hit.png' remapped 'res://assets/production/hero/hit.png' at thread -1
+Loading resource: res://assets/production/weapons/steel.png remapped: res://assets/production/weapons/steel.png
+Loading resource: res://.godot/imported/steel.png-eb6d40d5e02c6694813f7f6ea86db00b.ctex remapped: res://.godot/imported/steel.png-eb6d40d5e02c6694813f7f6ea86db00b.ctex
+Completed load for: 'res://assets/production/weapons/steel.png' remapped 'res://assets/production/weapons/steel.png' at thread -1
+Loading resource: res://assets/production/weapons/crystal.png remapped: res://assets/production/weapons/crystal.png
+Loading resource: res://.godot/imported/crystal.png-00f5c3ca12413eede07668d7b3487fc3.ctex remapped: res://.godot/imported/crystal.png-00f5c3ca12413eede07668d7b3487fc3.ctex
+Completed load for: 'res://assets/production/weapons/crystal.png' remapped 'res://assets/production/weapons/crystal.png' at thread -1
+Loading resource: res://assets/production/weapons/ember.png remapped: res://assets/production/weapons/ember.png
+Loading resource: res://.godot/imported/ember.png-b22570466bebe24ff8d657de6d4da716.ctex remapped: res://.godot/imported/ember.png-b22570466bebe24ff8d657de6d4da716.ctex
+Completed load for: 'res://assets/production/weapons/ember.png' remapped 'res://assets/production/weapons/ember.png' at thread -1
+Loading resource: res://assets/production/weapons/rune_gold.png remapped: res://assets/production/weapons/rune_gold.png
+Loading resource: res://.godot/imported/rune_gold.png-a30efa304569ba3f85034ded68aac9bc.ctex remapped: res://.godot/imported/rune_gold.png-a30efa304569ba3f85034ded68aac9bc.ctex
+Completed load for: 'res://assets/production/weapons/rune_gold.png' remapped 'res://assets/production/weapons/rune_gold.png' at thread -1
+Loading resource: res://assets/production/weapons/shadow_violet.png remapped: res://assets/production/weapons/shadow_violet.png
+Loading resource: res://.godot/imported/shadow_violet.png-7f7c6bcb7576dd18f61b0034279c12c4.ctex remapped: res://.godot/imported/shadow_violet.png-7f7c6bcb7576dd18f61b0034279c12c4.ctex
+Completed load for: 'res://assets/production/weapons/shadow_violet.png' remapped 'res://assets/production/weapons/shadow_violet.png' at thread -1
+Loading resource: res://assets/production/enemy/golem_idle_ready.png remapped: res://assets/production/enemy/golem_idle_ready.png
+Loading resource: res://.godot/imported/golem_idle_ready.png-1ea1662b9372377bbcb7135fb65af1df.ctex remapped: res://.godot/imported/golem_idle_ready.png-1ea1662b9372377bbcb7135fb65af1df.ctex
+Completed load for: 'res://assets/production/enemy/golem_idle_ready.png' remapped 'res://assets/production/enemy/golem_idle_ready.png' at thread -1
+Loading resource: res://assets/production/enemy/golem_attack.png remapped: res://assets/production/enemy/golem_attack.png
+Loading resource: res://.godot/imported/golem_attack.png-ef84a12f5753a74354164c84bad510e9.ctex remapped: res://.godot/imported/golem_attack.png-ef84a12f5753a74354164c84bad510e9.ctex
+Completed load for: 'res://assets/production/enemy/golem_attack.png' remapped 'res://assets/production/enemy/golem_attack.png' at thread -1
+Loading resource: res://assets/production/enemy/golem_hit_damage.png remapped: res://assets/production/enemy/golem_hit_damage.png
+Loading resource: res://.godot/imported/golem_hit_damage.png-1fede6c3012306ec8eecddc4902d0f98.ctex remapped: res://.godot/imported/golem_hit_damage.png-1fede6c3012306ec8eecddc4902d0f98.ctex
+Completed load for: 'res://assets/production/enemy/golem_hit_damage.png' remapped 'res://assets/production/enemy/golem_hit_damage.png' at thread -1
+Loading resource: res://assets/production/enemy/golem_defeated.png remapped: res://assets/production/enemy/golem_defeated.png
+Loading resource: res://.godot/imported/golem_defeated.png-cfc4a3216aa536c57e4634e7ad2599cd.ctex remapped: res://.godot/imported/golem_defeated.png-cfc4a3216aa536c57e4634e7ad2599cd.ctex
+Completed load for: 'res://assets/production/enemy/golem_defeated.png' remapped 'res://assets/production/enemy/golem_defeated.png' at thread -1
+Loading resource: res://assets/ui/work61/gold.svg remapped: res://assets/ui/work61/gold.svg
+Loading resource: res://.godot/imported/gold.svg-be2196a27f3bf4a2595fb6849ed66449.ctex remapped: res://.godot/imported/gold.svg-be2196a27f3bf4a2595fb6849ed66449.ctex
+Completed load for: 'res://assets/ui/work61/gold.svg' remapped 'res://assets/ui/work61/gold.svg' at thread -1
+Loading resource: res://assets/ui/work61/gem.svg remapped: res://assets/ui/work61/gem.svg
+Loading resource: res://.godot/imported/gem.svg-0364e60b64c5552b8189809cf3ace4ae.ctex remapped: res://.godot/imported/gem.svg-0364e60b64c5552b8189809cf3ace4ae.ctex
+Completed load for: 'res://assets/ui/work61/gem.svg' remapped 'res://assets/ui/work61/gem.svg' at thread -1
+Loading resource: res://assets/ui/work61/shard.svg remapped: res://assets/ui/work61/shard.svg
+Loading resource: res://.godot/imported/shard.svg-78aab770fbbd69d21a4906f7a4c15785.ctex remapped: res://.godot/imported/shard.svg-78aab770fbbd69d21a4906f7a4c15785.ctex
+Completed load for: 'res://assets/ui/work61/shard.svg' remapped 'res://assets/ui/work61/shard.svg' at thread -1
+Loading resource: res://assets/ui/work61/mountain.svg remapped: res://assets/ui/work61/mountain.svg
+Loading resource: res://.godot/imported/mountain.svg-7b54d0d8579df65ecca80917f658d698.ctex remapped: res://.godot/imported/mountain.svg-7b54d0d8579df65ecca80917f658d698.ctex
+Completed load for: 'res://assets/ui/work61/mountain.svg' remapped 'res://assets/ui/work61/mountain.svg' at thread -1
+Loading resource: res://assets/ui/work61/swords.svg remapped: res://assets/ui/work61/swords.svg
+Loading resource: res://.godot/imported/swords.svg-b3c78738869b5b0c6c287bcc7700388b.ctex remapped: res://.godot/imported/swords.svg-b3c78738869b5b0c6c287bcc7700388b.ctex
+Completed load for: 'res://assets/ui/work61/swords.svg' remapped 'res://assets/ui/work61/swords.svg' at thread -1
+Loading resource: res://assets/ui/work61/map.svg remapped: res://assets/ui/work61/map.svg
+Loading resource: res://.godot/imported/map.svg-1bfc809567493c80faae0b32be0be757.ctex remapped: res://.godot/imported/map.svg-1bfc809567493c80faae0b32be0be757.ctex
+Completed load for: 'res://assets/ui/work61/map.svg' remapped 'res://assets/ui/work61/map.svg' at thread -1
+Loading resource: res://assets/ui/work61/paw.svg remapped: res://assets/ui/work61/paw.svg
+Loading resource: res://.godot/imported/paw.svg-6d112c119e442f0c1ea5c3261a96a683.ctex remapped: res://.godot/imported/paw.svg-6d112c119e442f0c1ea5c3261a96a683.ctex
+Completed load for: 'res://assets/ui/work61/paw.svg' remapped 'res://assets/ui/work61/paw.svg' at thread -1
+Loading resource: res://assets/ui/work61/chest.svg remapped: res://assets/ui/work61/chest.svg
+Loading resource: res://.godot/imported/chest.svg-1d9b5aeb4f4a5ba2c5bf151fd4e56b32.ctex remapped: res://.godot/imported/chest.svg-1d9b5aeb4f4a5ba2c5bf151fd4e56b32.ctex
+Completed load for: 'res://assets/ui/work61/chest.svg' remapped 'res://assets/ui/work61/chest.svg' at thread -1
+Loading resource: res://assets/ui/work61/grid.svg remapped: res://assets/ui/work61/grid.svg
+Loading resource: res://.godot/imported/grid.svg-280b38deb766cb3e933e1e3461818444.ctex remapped: res://.godot/imported/grid.svg-280b38deb766cb3e933e1e3461818444.ctex
+Completed load for: 'res://assets/ui/work61/grid.svg' remapped 'res://assets/ui/work61/grid.svg' at thread -1
+Loading resource: res://assets/ui/work61/gear.svg remapped: res://assets/ui/work61/gear.svg
+Loading resource: res://.godot/imported/gear.svg-18d41792cb86ccd0c3ed56790c423d59.ctex remapped: res://.godot/imported/gear.svg-18d41792cb86ccd0c3ed56790c423d59.ctex
+Completed load for: 'res://assets/ui/work61/gear.svg' remapped 'res://assets/ui/work61/gear.svg' at thread -1
+Loading resource: res://assets/ui/work61/mail.svg remapped: res://assets/ui/work61/mail.svg
+Loading resource: res://.godot/imported/mail.svg-f43e2e93d4323c2606b08bcf13e681e0.ctex remapped: res://.godot/imported/mail.svg-f43e2e93d4323c2606b08bcf13e681e0.ctex
+Completed load for: 'res://assets/ui/work61/mail.svg' remapped 'res://assets/ui/work61/mail.svg' at thread -1
+Loading resource: res://assets/ui/work61/flame.svg remapped: res://assets/ui/work61/flame.svg
+Loading resource: res://.godot/imported/flame.svg-e59af0e0787df19473ee877cb75e035e.ctex remapped: res://.godot/imported/flame.svg-e59af0e0787df19473ee877cb75e035e.ctex
+Completed load for: 'res://assets/ui/work61/flame.svg' remapped 'res://assets/ui/work61/flame.svg' at thread -1
+Loading resource: res://assets/ui/work61/rock.svg remapped: res://assets/ui/work61/rock.svg
+Loading resource: res://.godot/imported/rock.svg-de31c401399e70fc0a7aa6fc3d4d7b20.ctex remapped: res://.godot/imported/rock.svg-de31c401399e70fc0a7aa6fc3d4d7b20.ctex
+Completed load for: 'res://assets/ui/work61/rock.svg' remapped 'res://assets/ui/work61/rock.svg' at thread -1
+Loading resource: res://assets/ui/work61/lock.svg remapped: res://assets/ui/work61/lock.svg
+Loading resource: res://.godot/imported/lock.svg-c381da9f759d72c3437d35b5d167008a.ctex remapped: res://.godot/imported/lock.svg-c381da9f759d72c3437d35b5d167008a.ctex
+Completed load for: 'res://assets/ui/work61/lock.svg' remapped 'res://assets/ui/work61/lock.svg' at thread -1
+Loading resource: res://assets/ui/work61/star.svg remapped: res://assets/ui/work61/star.svg
+Loading resource: res://.godot/imported/star.svg-43ead61a2523f0200a540aa9f2566b12.ctex remapped: res://.godot/imported/star.svg-43ead61a2523f0200a540aa9f2566b12.ctex
+Completed load for: 'res://assets/ui/work61/star.svg' remapped 'res://assets/ui/work61/star.svg' at thread -1
+Loading resource: res://assets/ui/work61/arrow.svg remapped: res://assets/ui/work61/arrow.svg
+Loading resource: res://.godot/imported/arrow.svg-32062db13c522483994bb876430c43d9.ctex remapped: res://.godot/imported/arrow.svg-32062db13c522483994bb876430c43d9.ctex
+Completed load for: 'res://assets/ui/work61/arrow.svg' remapped 'res://assets/ui/work61/arrow.svg' at thread -1
+Loading resource: res://assets/ui/work61/heart.svg remapped: res://assets/ui/work61/heart.svg
+Loading resource: res://.godot/imported/heart.svg-ec74da082f4b432307d994f9b9e14f12.ctex remapped: res://.godot/imported/heart.svg-ec74da082f4b432307d994f9b9e14f12.ctex
+Completed load for: 'res://assets/ui/work61/heart.svg' remapped 'res://assets/ui/work61/heart.svg' at thread -1
+Loading resource: res://assets/ui/work61/eye.svg remapped: res://assets/ui/work61/eye.svg
+Loading resource: res://.godot/imported/eye.svg-acc13aa41b3dda502ea3192249dcfacf.ctex remapped: res://.godot/imported/eye.svg-acc13aa41b3dda502ea3192249dcfacf.ctex
+Completed load for: 'res://assets/ui/work61/eye.svg' remapped 'res://assets/ui/work61/eye.svg' at thread -1
+Loading resource: res://assets/ui/work61/crown.svg remapped: res://assets/ui/work61/crown.svg
+Loading resource: res://.godot/imported/crown.svg-571f324370b63049a92ec2db840885ed.ctex remapped: res://.godot/imported/crown.svg-571f324370b63049a92ec2db840885ed.ctex
+Completed load for: 'res://assets/ui/work61/crown.svg' remapped 'res://assets/ui/work61/crown.svg' at thread -1
+Loading resource: res://assets/ui/work61/skill_slash.png remapped: res://assets/ui/work61/skill_slash.png
+Loading resource: res://.godot/imported/skill_slash.png-4c6a7d1b1465eef752c49d8ee2599512.ctex remapped: res://.godot/imported/skill_slash.png-4c6a7d1b1465eef752c49d8ee2599512.ctex
+Completed load for: 'res://assets/ui/work61/skill_slash.png' remapped 'res://assets/ui/work61/skill_slash.png' at thread -1
+Loading resource: res://assets/ui/work61/skill_eye.png remapped: res://assets/ui/work61/skill_eye.png
+Loading resource: res://.godot/imported/skill_eye.png-687fb4e94ce52fe664bb428aba619ccf.ctex remapped: res://.godot/imported/skill_eye.png-687fb4e94ce52fe664bb428aba619ccf.ctex
+Completed load for: 'res://assets/ui/work61/skill_eye.png' remapped 'res://assets/ui/work61/skill_eye.png' at thread -1
+Loading resource: res://assets/ui/work61/skill_locked.png remapped: res://assets/ui/work61/skill_locked.png
+Loading resource: res://.godot/imported/skill_locked.png-b62acc2fa1ddca38cbd2f3af668dddf8.ctex remapped: res://.godot/imported/skill_locked.png-b62acc2fa1ddca38cbd2f3af668dddf8.ctex
+Completed load for: 'res://assets/ui/work61/skill_locked.png' remapped 'res://assets/ui/work61/skill_locked.png' at thread -1
+Loading resource: res://assets/ui/work61/skill_rage.png remapped: res://assets/ui/work61/skill_rage.png
+Loading resource: res://.godot/imported/skill_rage.png-f314b7daf82fb0d8b366b93c97ec3b3f.ctex remapped: res://.godot/imported/skill_rage.png-f314b7daf82fb0d8b366b93c97ec3b3f.ctex
+Completed load for: 'res://assets/ui/work61/skill_rage.png' remapped 'res://assets/ui/work61/skill_rage.png' at thread -1
+Loading resource: res://assets/audio/swing.wav remapped: res://assets/audio/swing.wav
+Loading resource: res://.godot/imported/swing.wav-794de6e16fd48d414e484bd2479a4c9c.sample remapped: res://.godot/imported/swing.wav-794de6e16fd48d414e484bd2479a4c9c.sample
+Completed load for: 'res://assets/audio/swing.wav' remapped 'res://assets/audio/swing.wav' at thread -1
+Loading resource: res://assets/audio/impact.wav remapped: res://assets/audio/impact.wav
+Loading resource: res://.godot/imported/impact.wav-69c408f3f3e73daf7c3030beaa0507af.sample remapped: res://.godot/imported/impact.wav-69c408f3f3e73daf7c3030beaa0507af.sample
+Completed load for: 'res://assets/audio/impact.wav' remapped 'res://assets/audio/impact.wav' at thread -1
+Loading resource: res://assets/audio/fire.wav remapped: res://assets/audio/fire.wav
+Loading resource: res://.godot/imported/fire.wav-db81e8e0e860cb4dd4a93b1ef835abf8.sample remapped: res://.godot/imported/fire.wav-db81e8e0e860cb4dd4a93b1ef835abf8.sample
+Completed load for: 'res://assets/audio/fire.wav' remapped 'res://assets/audio/fire.wav' at thread -1
+Loading resource: res://assets/audio/arcane.wav remapped: res://assets/audio/arcane.wav
+Loading resource: res://.godot/imported/arcane.wav-86b12f6e2bb7046c1a8bc365e3b7c84e.sample remapped: res://.godot/imported/arcane.wav-86b12f6e2bb7046c1a8bc365e3b7c84e.sample
+Completed load for: 'res://assets/audio/arcane.wav' remapped 'res://assets/audio/arcane.wav' at thread -1
+Loading resource: res://assets/audio/shield.wav remapped: res://assets/audio/shield.wav
+Loading resource: res://.godot/imported/shield.wav-28ce60ec10352f989ad5bbdcaa2a9611.sample remapped: res://.godot/imported/shield.wav-28ce60ec10352f989ad5bbdcaa2a9611.sample
+Completed load for: 'res://assets/audio/shield.wav' remapped 'res://assets/audio/shield.wav' at thread -1
+Loading resource: res://assets/audio/reward.wav remapped: res://assets/audio/reward.wav
+Loading resource: res://.godot/imported/reward.wav-3cc43db6eddc88900bb65eddb009ce91.sample remapped: res://.godot/imported/reward.wav-3cc43db6eddc88900bb65eddb009ce91.sample
+Completed load for: 'res://assets/audio/reward.wav' remapped 'res://assets/audio/reward.wav' at thread -1
+Loading resource: res://assets/expansion/slime/idle.png remapped: res://assets/expansion/slime/idle.png
+Loading resource: res://.godot/imported/idle.png-ff90534d588eb5eff96357bcf91e5b10.ctex remapped: res://.godot/imported/idle.png-ff90534d588eb5eff96357bcf91e5b10.ctex
+Completed load for: 'res://assets/expansion/slime/idle.png' remapped 'res://assets/expansion/slime/idle.png' at thread -1
+Loading resource: res://assets/expansion/slime/attack.png remapped: res://assets/expansion/slime/attack.png
+Loading resource: res://.godot/imported/attack.png-fe13068e04c43185615c496ea69380bd.ctex remapped: res://.godot/imported/attack.png-fe13068e04c43185615c496ea69380bd.ctex
+Completed load for: 'res://assets/expansion/slime/attack.png' remapped 'res://assets/expansion/slime/attack.png' at thread -1
+Loading resource: res://assets/expansion/slime/hit.png remapped: res://assets/expansion/slime/hit.png
+Loading resource: res://.godot/imported/hit.png-1f05e91b557dfc273e8063559018b9ec.ctex remapped: res://.godot/imported/hit.png-1f05e91b557dfc273e8063559018b9ec.ctex
+Completed load for: 'res://assets/expansion/slime/hit.png' remapped 'res://assets/expansion/slime/hit.png' at thread -1
+Loading resource: res://assets/expansion/slime/defeated.png remapped: res://assets/expansion/slime/defeated.png
+Loading resource: res://.godot/imported/defeated.png-8cd0b70d1bcc08efffc38e2f09844d96.ctex remapped: res://.godot/imported/defeated.png-8cd0b70d1bcc08efffc38e2f09844d96.ctex
+Completed load for: 'res://assets/expansion/slime/defeated.png' remapped 'res://assets/expansion/slime/defeated.png' at thread -1
+REALM 6.3: canonical hero, weapons and survival systems loaded
+UI 6.3: 49/49 checks
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"

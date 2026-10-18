@@ -1,0 +1,58 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: source texture imported: hero/idle.png
+PASS: source texture imported: hero/ready.png
+PASS: source texture imported: hero/windup.png
+PASS: source texture imported: hero/contact.png
+PASS: source texture imported: hero/recovery.png
+PASS: source texture imported: weapon/longsword.png
+PASS: source texture imported: stage/glow_stump.png
+PASS: source texture imported: stage/swamp_willow.png
+PASS: source texture imported: stage/lantern_post.png
+PASS: source texture imported: enemy/idle.png
+PASS: source texture imported: enemy/attack.png
+PASS: source texture imported: enemy/hit.png
+PASS: source texture imported: enemy/defeated.png
+PASS: source texture imported: vfx/00_glint.png
+PASS: source texture imported: vfx/01_arc_start.png
+PASS: source texture imported: vfx/02_arc_grow.png
+PASS: source texture imported: vfx/03_slash_peak.png
+PASS: source texture imported: vfx/04_impact_peak.png
+PASS: source texture imported: vfx/05_burst.png
+PASS: source texture imported: vfx/06_arc_fade.png
+PASS: source texture imported: vfx/07_motes_fade.png
+PASS: image decodes: hero/idle.png
+PASS: transparent corner: hero/idle.png
+PASS: image decodes: weapon/longsword.png
+PASS: transparent corner: weapon/longsword.png
+PASS: image decodes: enemy/idle.png
+PASS: transparent corner: enemy/idle.png
+PASS: image decodes: vfx/03_slash_peak.png
+PASS: transparent corner: vfx/03_slash_peak.png
+ART_BOUNDS hero/idle.png canvas=(306, 524) opaque=[P: (30, 30), S: (246, 464)]
+ART_BOUNDS hero/ready.png canvas=(512, 512) opaque=[P: (130, 54), S: (253, 410)]
+ART_BOUNDS hero/windup.png canvas=(512, 512) opaque=[P: (133, 44), S: (247, 420)]
+ART_BOUNDS hero/contact.png canvas=(512, 512) opaque=[P: (118, 63), S: (277, 401)]
+ART_BOUNDS hero/recovery.png canvas=(512, 512) opaque=[P: (143, 57), S: (227, 407)]
+ART_BOUNDS weapon/longsword.png canvas=(404, 518) opaque=[P: (24, 24), S: (356, 470)]
+ART_BOUNDS enemy/idle.png canvas=(407, 421) opaque=[P: (30, 30), S: (347, 361)]
+ART_BOUNDS enemy/hit.png canvas=(383, 390) opaque=[P: (30, 30), S: (323, 330)]
+ART_BOUNDS enemy/defeated.png canvas=(437, 296) opaque=[P: (30, 30), S: (377, 236)]
+PASS: weapon is a separate sprite parented to hand
+PASS: authored body starts idle
+PASS: idle pivot uses real 306x524 sprite ground
+PASS: idle hand uses the visible right fist instead of empty right margin
+PASS: sword is anchored by wrapped handle rather than pommel
+PASS: idle sword draws behind gripping hand
+PASS: authored attack starts
+PASS: authored keyposes advance
+PASS: attack pose preserves invariant foot pivot
+PASS: authored attack finishes and restores idle
+PASS: boss scales relative to original artwork
+PASS: enemy idle aligns visible sole to ground despite transparent padding
+PASS: enemy hit frame preserves the same ground pivot
+PASS: art-backed enemy HP updates
+PASS: monster preview imports four states
+PASS: eight source-authored slash VFX frames are available
+PASS: basic slash stays within readable enemy silhouette size
+Shared art preview: 46/46 checks passed.

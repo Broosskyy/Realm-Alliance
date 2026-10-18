@@ -1,0 +1,25 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS weapon sprite is separate from body
+PASS hero starts in idle
+PASS common ground pivot
+PASS wrapped sword handle attaches to socket
+PASS weapon swaps independently
+PASS idle: grounded body texture
+PASS idle: calibrated hand
+PASS ready: grounded body texture
+PASS ready: calibrated hand
+PASS windup: grounded body texture
+PASS windup: calibrated hand
+PASS attack_contact: grounded body texture
+PASS attack_contact: calibrated hand
+PASS recovery: grounded body texture
+PASS recovery: calibrated hand
+PASS hit: grounded body texture
+PASS hit: calibrated hand
+PASS attack can start
+PASS attack recovers
+PASS boss scale
+PASS golem hit grounded
+PASS golem defeated grounded
+Production art: 22/22 checks
