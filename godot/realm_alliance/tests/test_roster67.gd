@@ -37,6 +37,8 @@ func run():
     check(m.hero_level==1 and m.profile.xp==xp and m.hero_damage()<old_damage and m.player_max_hp>=188 and m.defense>=3,"independent training and actual tank stats")
     check(m.skills.definitions.sky_blade.name=="Runenstoß" and m.skills.definitions.guardian_wall.cooldown==7.5,"distinct real skill definitions")
     m.player_hp=80;m.momentum=100;m.behavior.deadline=10000
+    check(not m.request_action("guardian_wall"),"new hero must train own level before defense unlock")
+    m.profile.hero_roster.owned.kaela.xp=80
     check(m.request_action("guardian_wall"),"rune bastion cast")
     m.tick(.02);var hp=m.player_hp;m._enemy_strike(1,false);var e=m.drain_events()
     check(m.player_hp>hp and count(e,"heal")==1,"true shield block heals Kaela")

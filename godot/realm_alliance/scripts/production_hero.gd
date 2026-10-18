@@ -201,8 +201,8 @@ func set_upgrade_tier(_level: int) -> void:
 func set_look(id: String, evolution: bool = false) -> void:
     _look = id
     if _palette:
-        _palette.set_shader_parameter("emerald",id == "emerald")
-        _palette.set_shader_parameter("astral",id == "astral")
+        _palette.set_shader_parameter("emerald",id == "emerald" and hero_id=="realmwachter")
+        _palette.set_shader_parameter("astral",id == "astral" and hero_id=="realmwachter")
     if aura:
         aura.evolution = evolution
     if cape:cape.sync(self,_pose)

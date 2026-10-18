@@ -227,6 +227,7 @@ func update_buttons() -> void:
         preview.fx_intensity=[1.0,.4,0.0][effect_level];preview.set_upgrade_tier(model.upgrade_level)
     for id in ["auto", "skill0", "skill1", "locked", "skill2"]:
         buttons[id].visible = in_combat
+    buttons.look.disabled=model.hero_id!="realmwachter"
     for id in ["weapon", "upgrade", "look", "aura"]:
         buttons[id].visible = active_tab == "Wesen"
     for id in ["quests", "events", "save_export", "save_import", "sound", "effects"]:
@@ -239,9 +240,9 @@ func update_buttons() -> void:
         var definition:Dictionary=model.skills.definitions[ids[i]]
         var rank=model.Advancement.rank(model.profile,ids[i])
         buttons[controls[i]].tooltip_text="%s · Stufe %d · %.1f s Abklingzeit"%[definition.name,rank,definition.cooldown]
-        buttons[controls[i]].disabled = model.outcome!="fighting" or not model.skills.can_cast(ids[i],model.clock,model.level,{"momentum":model.momentum,"rage":model.rage})
+        buttons[controls[i]].disabled = model.outcome!="fighting" or not model.skills.can_cast(ids[i],model.clock,model.hero_level,{"momentum":model.momentum,"rage":model.rage})
     # Locked defense remains tappable to explain the actual level requirement.
-    if model.level<2: buttons["locked"].disabled=false
+    if model.hero_level<2: buttons["locked"].disabled=false
     buttons["upgrade"].disabled = model.gold < model.upgrade_cost() or model.upgrade_level>=19 or (model.upgrade_level>=2 and model.profile.shards<1)
     for id in Equipment.IDS:
         var b: Button=buttons["equip_"+id]
@@ -422,7 +423,7 @@ func _skill(i: int, _center: Vector2) -> void:
     var d:Dictionary=model.skills.definitions[id]
     var button=buttons[["skill0","skill1","locked","skill2"][i]]
     var resource=model.momentum if d.cost_type=="momentum" else model.rage
-    button.configure(orbs[i],d,model.skills.remaining(id,model.clock),model.level<int(d.unlock_level),d.cost_type=="none" or resource>=float(d.cost),["Klinge","Arkanblick","Wächterwall","Zornesflamme"][i])
+    button.configure(orbs[i],d,model.skills.remaining(id,model.clock),model.hero_level<int(d.unlock_level),d.cost_type=="none" or resource>=float(d.cost),(["Runenstoß","Siegel","Bastion","Esse"] if model.hero_id=="kaela" else ["Klinge","Arkanblick","Wächterwall","Zornesflamme"])[i])
 
 func _draw_result() -> void:
     draw_rect(Rect2(0,96,720,logical_height-192),Color(0.01,0.025,0.055,0.68))
@@ -458,7 +459,7 @@ func _draw_shell() -> void:
         "Wesen":
             draw_ellipse_platform()
             _panel(Rect2(170,589,380,38))
-            _center("%s · Lv. %d  ▾"%[model.hero_name,model.hero_level],Rect2(38,191,644,38),25,INK,true)
+            _center("%s · Lv. %d · Sammlung"%[model.hero_name,model.hero_level],Rect2(38,191,644,38),25,INK,true)
             _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
             _center(Equipment.definition(model.profile.equipped).description,Rect2(50,249,620,25),15,MUTED)
             _center("Kraft %d · %s"%[model.power,"Erwacht" if Evolution.active(model.profile) else "Basisform"],Rect2(180,278,360,24),16,GOLD)
@@ -469,12 +470,12 @@ func _draw_shell() -> void:
             _center("Aufwerten · %d G%s"%[model.upgrade_cost()," +1 Splitter" if model.upgrade_level>=2 else ""],Rect2(368,644,314,64),15,MUTED if buttons.upgrade.disabled else GOLD,true)
             _panel(Rect2(38,733,310,58),Color("#123b3a"),CYAN.darkened(0.3))
             _panel(Rect2(368,733,314,58),Color("#18233b"),PURPLE.darkened(0.4))
-            _center("Umhang: %s"%{"canonical":"Original","emerald":"Smaragd","astral":"Astral"}.get(model.profile.look,"Original"),Rect2(38,733,310,58),17,INK,true)
+            _center("Outfit: Runenhüterin" if model.hero_id=="kaela" else "Umhang: %s"%{"canonical":"Original","emerald":"Smaragd","astral":"Astral"}.get(model.profile.look,"Original"),Rect2(38,733,310,58),17,INK,true)
             _center("Aura: %s"%("Lv. 3" if model.level<3 else ("An" if model.profile.aura else "Aus")),Rect2(368,733,314,58),17,MUTED if model.level<3 else CYAN,true)
             for i in 4:
                 var r=Rect2(38+i*166,947,146,88)
                 _panel(r)
-                var texture=icons.shield if i==3 and model.level>=2 else orbs[[0,1,3,2][i]]
+                var texture=icons.shield if i==3 and model.hero_level>=2 else orbs[[0,1,3,2][i]]
                 draw_texture_rect(texture,Rect2(r.position+Vector2(51,5),Vector2(44,44)),false)
                 var d:Dictionary=model.skills.definitions[model.SKILL_IDS[i]]
                 _center(str(d.name),Rect2(r.position+Vector2(0,49),Vector2(146,20)),14,INK,true)

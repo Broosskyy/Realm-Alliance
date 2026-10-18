@@ -272,7 +272,7 @@ func request_action(id: String = "basic", options: Dictionary={}) -> bool:
     elif id == "basic":
         d = {"id":"basic","effect":"direct","multiplier":1.0,"windup":0.28,"recovery":0.35,"vfx":"basic"}
     else:
-        if not skills.can_cast(id, clock, level, {"momentum":momentum,"rage":rage}):
+        if not skills.can_cast(id, clock, hero_level, {"momentum":momentum,"rage":rage}):
             return false
         d = skills.commit(id, clock)
         Quests.record(profile,"skills")

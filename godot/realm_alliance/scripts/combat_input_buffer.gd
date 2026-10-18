@@ -44,7 +44,7 @@ func request_tap(model) -> int:
 
 func _available(model,id: String) -> bool:
     if id=="ultimate":return model.Tap.ultimate_unlocked(model.profile) and model.tap.charge>=100 and model.clock>=model.tap.ultimate_at
-    return model.skills.can_cast(id,model.clock,model.level,{"momentum":model.momentum,"rage":model.rage})
+    return model.skills.can_cast(id,model.clock,model.hero_level,{"momentum":model.momentum,"rage":model.rage})
 func request_ultimate(model) -> int:
     if model.outcome!="fighting" or not _available(model,"ultimate"):return REJECTED
     if model.request_action("ultimate"):clear();return CAST

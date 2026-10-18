@@ -17,11 +17,11 @@ func _build(selected:int) -> void:
     for kind in ["Helden","Begleiter"]:
         var scroll=ScrollContainer.new();scroll.name=kind;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;tabs.add_child(scroll)
         var list=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",18);scroll.add_child(list)
-        _label(list,"Ein Wechsel beginnt die aktuelle Region neu.\nWaffen, Ausrüstung und Kontofortschritt bleiben erhalten.",true)
+        _label(list,"Ein Wechsel beginnt die aktuelle Region neu.\nWaffen und Kontofortschritt bleiben erhalten. Helden trainieren eigene Level; Skillränge und Talente gelten kontoweit.",true)
         var catalog:Dictionary=model.Roster.catalog() if kind=="Helden" else model.Companions.catalog()
         for id in catalog:
             var d:Dictionary=catalog[id];var owned=model.profile.hero_roster.owned.has(id) if kind=="Helden" else model.profile.companions.owned.has(id)
-            var card=PanelContainer.new();list.add_child(card);var content=VBoxContainer.new();content.add_theme_constant_override("separation",8);card.add_child(content)
+            var card=PanelContainer.new();card.add_theme_stylebox_override("panel",Kit.box("panel"));list.add_child(card);var content=VBoxContainer.new();content.add_theme_constant_override("separation",8);card.add_child(content)
             var row=HBoxContainer.new();content.add_child(row)
             var icon=TextureRect.new();icon.custom_minimum_size=Vector2(100,100);icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;row.add_child(icon)
             if kind=="Helden":
@@ -31,10 +31,10 @@ func _build(selected:int) -> void:
             else:icon.texture=load("res://assets/roster67/"+id+("/evolved_idle.png" if owned and int(model.profile.companions.owned[id].evolution)>0 else "/base_idle.png"))
             var info=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(info)
             var rank=model.Roster.level(model.profile,id) if kind=="Helden" else model.Companions.level(model.profile,id)
-            _label(info,d.name+(" · Lv. %d"%rank if owned else " · Gesperrt"));_label(info,d.role,true);_label(content,d.description,true)
+            _label(info,d.name+(" · Lv. %d"%rank if owned else " · Gesperrt"));_label(info,d.role,true);_label(info,{"rare":"Selten","epic":"Episch","legendary":"Legendär"}.get(d.get("rarity","rare"),"Selten"),true);_label(content,d.description,true)
             if owned:
                 var xp=model.Roster.xp(model.profile,id) if kind=="Helden" else int(model.profile.companions.owned[id].xp)
-                _label(content,"%d Kampf-XP · %s"%[xp,"★ ★ · Entwickelt" if kind=="Begleiter" and int(model.profile.companions.owned[id].evolution)>0 else "★"],true)
+                _label(content,"%d Kampf-XP · %s"%[xp,"Rang 2 · Entwickelt" if kind=="Begleiter" and int(model.profile.companions.owned[id].evolution)>0 else "Rang 1"],true)
                 var active=id==model.hero_id if kind=="Helden" else id==str(model.profile.companions.active)
                 _button(content,"Aktiv" if active else "Mit "+str(d.name)+" starten",not active,func():_confirm_start(kind,id))
                 if kind=="Begleiter":
@@ -42,7 +42,7 @@ func _build(selected:int) -> void:
                     _button(content,"Entwickelt" if done else "Evolution · Lv.3 + Gartenkoloss\n100 G / 6 Splitter",model.Companions.can_evolve(model.profile,id),func():
                         if model.evolve_companion(id):progression_changed.emit(d.name+" entwickelt");_build(1))
             else:
-                _label(content,"Kontolevel %d%s"%[d.unlock_level," · "+str(d.stage) if d.stage!="" else ""],true)
+                _label(content,"Kontolevel %d%s"%[d.unlock_level," · "+model.World.NAMES[str(d.stage).split(":")[0]]+" Stage "+str(int(str(d.stage).split(":")[1])+1) if d.stage!="" else ""],true)
                 var can=model.Roster.can_unlock(model.profile,id) if kind=="Helden" else model.Companions.can_acquire(model.profile,id)
                 _button(content,"Freischalten · %d G / %d Splitter"%[d.gold,d.shards],can,func():
                     var ok=model.unlock_hero(id) if kind=="Helden" else model.acquire_companion(id)

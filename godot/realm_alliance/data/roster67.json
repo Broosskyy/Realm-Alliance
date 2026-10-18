@@ -11,7 +11,8 @@
       "unlock_level": 1,
       "stage": "",
       "description": "Kanonischer Wächter mit hohem Schwertschaden.",
-      "skills": {}
+      "skills": {},
+      "rarity": "legendary"
     },
     "kaela": {
       "name": "Kaela",
@@ -41,7 +42,8 @@
           "absorb_fraction": 0.5,
           "cooldown": 7.5
         }
-      }
+      },
+      "rarity": "epic"
     }
   },
   "pets": {
@@ -56,7 +58,8 @@
       "windup": 0.32,
       "attack_scale": 0.32,
       "heal_fraction": 0.0,
-      "description": "Arkane Salve alle 2,8 s. Keine zusätzlichen Combo- oder Ressourcenboni."
+      "description": "Arkane Salve alle 2,8 s. Keine zusätzlichen Combo- oder Ressourcenboni.",
+      "rarity": "rare"
     },
     "sunbird": {
       "name": "Morgenphönix",
@@ -69,7 +72,8 @@
       "windup": 0.45,
       "attack_scale": 0.0,
       "heal_fraction": 0.08,
-      "description": "Heilt alle 6 s bis zu 8% der maximalen HP. Wartet bei vollen HP; keine Wiederbelebung."
+      "description": "Heilt alle 6 s bis zu 8% der maximalen HP. Wartet bei vollen HP; keine Wiederbelebung.",
+      "rarity": "epic"
     }
   }
 }
