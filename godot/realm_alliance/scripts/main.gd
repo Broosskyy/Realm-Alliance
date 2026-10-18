@@ -211,6 +211,7 @@ func _on_hud_action(id: String) -> void:
         active_tab="Kampf" if id=="return" else id
         hud.active_tab=active_tab
         stage.visible=active_tab=="Kampf"
+        stage.process_mode=Node.PROCESS_MODE_INHERIT if active_tab=="Kampf" else Node.PROCESS_MODE_DISABLED
         touch_zone.visible=active_tab=="Kampf" and model.outcome=="fighting"
     elif id=="auto":
         auto_enabled=not auto_enabled

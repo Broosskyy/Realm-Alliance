@@ -12,8 +12,9 @@ func step(delta: float) -> float:
     clock+=delta
     shake=move_toward(shake,0,delta*34)
     if hold>0:
-        hold=maxf(0,hold-delta)
-        return 0
+        var consumed=minf(hold,delta)
+        hold-=consumed
+        return delta-consumed
     return delta
 func offset() -> Vector2:
     return Vector2(sin(clock*139),cos(clock*113))*shake

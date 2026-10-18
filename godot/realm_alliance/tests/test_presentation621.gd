@@ -23,6 +23,7 @@ func run() -> void:
             check(hero._socket.z_index>scene.enemy.z_index,"blade in foreground: %d %s"%[index,pose])
             check((hero._weapon.position+Hero.BLADE_GRIP*hero._weapon.scale).length()<0.01,"grip invariant")
     scene._on_hud_action("Wesen")
+    check(scene.stage.process_mode==Node.PROCESS_MODE_DISABLED,"menu pauses actor and VFX clocks")
     check(scene.hud.preview._socket.z_index>scene.hud.z_index+scene.hud.preview.z_index,"preview weapon remains above UI backing")
     await snap("hero-rig")
     scene._on_hud_action("Kampf")
@@ -64,6 +65,8 @@ func run() -> void:
     check(scene.vfx.emit_effect("fire_impact",Vector2.ZERO)==null,"optional VFX can be disabled")
     scene.camera_feedback.intensity=0;scene.camera_feedback.reset();scene.camera_feedback.impact(7,0.1)
     check(scene.camera_feedback.hold==0 and scene.camera_feedback.offset()==Vector2.ZERO,"reduced effects remove hitstop and shake")
+    scene.camera_feedback.intensity=1;scene.camera_feedback.impact(4,0.035)
+    check(absf(scene.camera_feedback.step(0.1)-0.065)<0.0001,"hitstop consumes only its duration on slow frames")
     for texture in scene.vfx.TEX.values():
         var im=texture.get_image()
         check(im.get_size()==Vector2i(512,512) and im.get_pixel(0,0).a==0,"VFX alpha and common canvas")

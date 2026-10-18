@@ -13,7 +13,7 @@ func run() -> void:
             scene.model=Session.new();scene.model.profile.xp=180;scene.model.player_hp=scene.model.player_max_hp
             scene.model.encounter=4;scene.model._spawn();scene.model.momentum=100;scene.model.rage=100
             scene.hud.model=scene.model;scene._last_visual_key="";scene._show_encounter();scene._sync_hero();scene._refresh()
-            await process_frame
+            await create_timer(0.5).timeout
             scene._on_skill(index)
             await create_timer(float(scene.model.Definitions.all()[Session.SKILL_IDS[index]].windup)+0.12).timeout
             await RenderingServer.frame_post_draw
