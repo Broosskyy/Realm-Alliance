@@ -132,7 +132,7 @@ func configure(height: float) -> void:
     _place("hit_mode",Rect2(18,controls_top-100,160,88))
     _place("ultimate",Rect2(538,controls_top-100,160,88))
     _place("combat_options",Rect2(38,943,644,88))
-    _place("admin",Rect2(368,631,314,61))
+    _place("admin",Rect2(368,622,314,88))
     _place("mail", Rect2(612, 18, 44, 52))
     _place("settings", Rect2(664, 18, 44, 52))
     _place("auto", Rect2(628, controls_top + 3, 70, 70))
@@ -514,8 +514,8 @@ func _draw_shell() -> void:
                 _center("Aufgaben" if i==0 else "Erfolge",Rect2(x,529,312,32),24,INK,true)
                 _center("Ziele & Belohnungen" if i==0 else "Deine Meilensteine",Rect2(x,568,312,26),18,MUTED)
             if OS.is_debug_build():
-                _panel(Rect2(368,631,314,61),Color.WHITE,Color.WHITE,16,"primary")
-                _center("QA-Testlabor öffnen",Rect2(368,631,314,61),19,GOLD,true)
+                _panel(Rect2(368,622,314,88),Color.WHITE,Color.WHITE,16,"primary")
+                _center("QA-Testlabor öffnen",Rect2(368,622,314,88),19,GOLD,true)
             _text("SPIELSTAND",Vector2(40,699),18,MUTED,true)
             for i in 2:
                 var r=Rect2(38+i*332,715,312,62)
