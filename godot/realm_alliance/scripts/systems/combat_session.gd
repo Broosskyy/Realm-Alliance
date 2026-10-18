@@ -139,11 +139,24 @@ func hero_damage() -> int:
 func unlock_hero(id:String) -> bool:return not read_only and Roster.unlock(profile,id)
 func select_hero(id:String) -> bool:
     if read_only or not Roster.ensure(profile) or not profile.hero_roster.owned.has(id) or id==hero_id:return false
-    profile.hero_roster.active=id;_refresh_skill_definitions();tier=0;_reset_run(0);return true
+    # A roster change is NOT a new dungeon run: keep checkpoint, enemy health,
+    # reward claim IDs, run serial, status effects on the enemy and time.
+    # Cancel only the outgoing hero's action and defensive effects.
+    profile.hero_roster.active=id
+    _refresh_skill_definitions()
+    pending.clear()
+    busy_until=clock
+    hero_status.active.clear()
+    tap.reset_chain()
+    player_hp=clampi(player_hp,0,player_max_hp) # Never heal by switching heroes.
+    return true
 func acquire_companion(id:String) -> bool:return not read_only and Companions.acquire(profile,id)
 func select_companion(id:String) -> bool:
-    if read_only or id==str(profile.companions.active) or not Companions.equip(profile,id):return false
-    tier=0;_reset_run(0);return true
+    if read_only or not Companions.ensure(profile) or id==str(profile.companions.active) or not Companions.equip(profile,id):return false
+    # In-flight attacks of a removed companion must never land as the new pet.
+    companion.pending.clear()
+    companion.ready_at=maxf(companion.ready_at,clock+0.35)
+    return true
 func evolve_companion(id:String) -> bool:return not read_only and Companions.evolve(profile,id)
 
 func upgrade_cost() -> int:
