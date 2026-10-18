@@ -3,8 +3,8 @@
     "realmwachter": {
       "name": "Realmwächter",
       "role": "Klinge · Licht",
-      "attack_scale": 1.0,
-      "hp_scale": 1.0,
+      "attack_scale": 1,
+      "hp_scale": 1,
       "defense": 0,
       "gold": 0,
       "shards": 0,
@@ -12,7 +12,8 @@
       "stage": "",
       "description": "Kanonischer Wächter mit hohem Schwertschaden.",
       "skills": {},
-      "rarity": "legendary"
+      "rarity": "legendary",
+      "playable": true
     },
     "kaela": {
       "name": "Kaela",
@@ -24,7 +25,7 @@
       "shards": 8,
       "unlock_level": 6,
       "stage": "glutkern:4",
-      "description": "Standhafte Runenhüterin. Ein echter Schildblock heilt 3% der maximalen HP.",
+      "description": "Ehemaliger Testheld; zukünftig Runenhüterin-NPC. Historische Spielstände bleiben erhalten.",
       "skills": {
         "sky_blade": {
           "name": "Runenstoß",
@@ -32,7 +33,7 @@
         },
         "arcane_eye": {
           "name": "Runensiegel",
-          "duration": 6.0
+          "duration": 6
         },
         "rage_flame": {
           "name": "Esse der Hüterin"
@@ -43,7 +44,9 @@
           "cooldown": 7.5
         }
       },
-      "rarity": "epic"
+      "rarity": "epic",
+      "playable": false,
+      "npc_id": "npc_kaela_runenhueterin"
     }
   },
   "pets": {
@@ -57,7 +60,7 @@
       "interval": 2.8,
       "windup": 0.32,
       "attack_scale": 0.32,
-      "heal_fraction": 0.0,
+      "heal_fraction": 0,
       "description": "Arkane Salve alle 2,8 s. Keine zusätzlichen Combo- oder Ressourcenboni.",
       "rarity": "rare"
     },
@@ -68,12 +71,23 @@
       "shards": 4,
       "unlock_level": 5,
       "stage": "glutkern:2",
-      "interval": 6.0,
+      "interval": 6,
       "windup": 0.45,
-      "attack_scale": 0.0,
+      "attack_scale": 0,
       "heal_fraction": 0.08,
       "description": "Heilt alle 6 s bis zu 8% der maximalen HP. Wartet bei vollen HP; keine Wiederbelebung.",
       "rarity": "epic"
+    }
+  },
+  "npcs": {
+    "npc_kaela_runenhueterin": {
+      "name": "Kaela",
+      "role": "Runenhüterin",
+      "zone": "glutkern",
+      "status": "archived_for_future_open_world",
+      "portrait": "res://assets/roster67/kaela/portrait.png",
+      "poses": "res://assets/roster67/kaela/",
+      "description": "Eigenständige Weltenfigur für spätere Quests und Dungeon-Einführungen; derzeit kein spielbarer Hero."
     }
   }
 }
