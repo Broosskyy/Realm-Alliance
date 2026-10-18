@@ -73,7 +73,7 @@ func _ready() -> void:
         hero.play_action(str(d.get("animation",d.id)),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup)-int(model.pending.get("contact",0))*float(d.get("spacing",0)))
         hero.sync_clock(model.clock)
     if model.profile.kills>0 and model.load_error=="":hud.notify("Willkommen zurück",model.Tap.next_goal(model.profile),3)
-    print("REALM 6.6: canonical hero, weapons and survival systems loaded")
+    print("REALM 6.7: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -132,6 +132,7 @@ func _build_arena() -> void:
     hero.scale = Vector2.ONE * (0.56 if _production_enabled else (0.82 if USE_SHARED_ART_PREVIEW else 1.77))
     hero.z_index = 4
     stage.add_child(hero)
+    companion_visual=preload("res://scripts/presentation/companion_visual.gd").new();companion_visual.name="ActiveCompanion";companion_visual.position=Vector2(-235,-4);companion_visual.scale=Vector2.ONE*.23;companion_visual.z_index=5;stage.add_child(companion_visual)
     if _production_enabled:
         enemy = ProductionEnemy.new()
     else:
@@ -171,17 +172,20 @@ func _show_encounter() -> void:
         vfx.emit_effect("arcane_seal" if model.enemy_definition.kind=="normal" else "reward",enemy.position+Vector2(0,-70),230 if model.enemy_definition.kind=="normal" else 340,0.65,"spawn",7)
     camera_feedback.reset()
 
+var companion_visual
 func _sync_hero() -> void:
-    var key="%s:%d:%s:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),JSON.stringify(model.profile.hero_equipment),JSON.stringify(model.profile.hero_evolution)]
+    var key="%s:%d:%s:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),model.hero_id+JSON.stringify(model.profile.hero_equipment),JSON.stringify(model.profile.hero_evolution)]
     if key!=_last_visual_key:
         _last_visual_key=key
         hero.equip_weapon(model.weapon_index)
         hero.set_upgrade_tier(model.upgrade_level)
         if _production_enabled:
+            hero.set_hero(model.hero_id)
             hero.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
             hero.set_gear(model.profile)
     if _production_enabled:
         var shield=model.hero_status.active.get("shield",{})
+        if companion_visual:companion_visual.sync(model.profile,model.clock)
         hero.set_shield(model.hero_status.has("shield",model.clock),clampf(float(shield.get("amount",0))/maxf(1,model.player_max_hp*0.35),0,1))
 
 func _layout() -> void:
@@ -212,7 +216,13 @@ func _layout() -> void:
         enemy.set_layout_scale(0.75 if model.enemy_definition.visual=="boar" else (lerpf(0.82, 1.12, tall) if model.enemy_definition.visual == "golem" else 0.90))
 
 func _on_hud_action(id: String) -> void:
-    if id=="hit_mode":
+    if id=="roster":
+        if active_tab!="Wesen":return
+        var dialog=preload("res://scripts/ui/roster_dialog.gd").new();add_child(dialog);dialog.configure(model)
+        dialog.progression_changed.connect(func(message):_sync_hero();_persist();_refresh();audio.play("reward");hud.notify(message,"Helden & Begleiter"))
+        dialog.run_started.connect(func():manual_input.clear();hero.revive();_consume_events();_on_hud_action("Kampf"))
+        dialog.popup_centered(Vector2i(620,850))
+    elif id=="hit_mode":
         var modes=[1,2,4];var current=model.Tap.mode(model.profile);var next=current
         for offset in range(1,4):
             var candidate=modes[(modes.find(current)+offset)%3]
@@ -452,6 +462,17 @@ func _consume_events() -> void:
     var consumed_events=model.drain_events()
     for e in consumed_events:
         match e.type:
+            "companion_action":
+                if companion_visual:companion_visual.sync(model.profile,model.clock);companion_visual.cast(float(e.windup))
+                var from=companion_visual.position+Vector2(0,-55)
+                var to=enemy.position+Vector2(0,-150) if e.id=="skyfox" else hero.position+Vector2(0,-120)
+                var effect=vfx.emit_effect("arcane_eye" if e.id=="skyfox" else "shield",from,80,float(e.windup),"projectile",15)
+                if effect:effect.origin=from;effect.target=to;effect.model_deadline=model.clock+float(e.windup)
+            "companion_impact":
+                vfx.emit_effect("arcane_eye" if e.id=="skyfox" else "shield",enemy.position+Vector2(0,-150) if e.id=="skyfox" else hero.position+Vector2(0,-120),130,.3)
+            "hero_level_up", "pet_level_up":
+                hud.notify((model.hero_name if e.type=="hero_level_up" else str(model.Companions.catalog()[e.id].name))+" · Level %d"%e.level,"Durch Kampf-XP gewachsen")
+                vfx.emit_effect("reward",hero.position+Vector2(0,-110),180,.55,"spawn",18)
             "combat_unlock":
                 hud.notify("NEU: "+("Sternenfall" if e.id=="ultimate" else e.id+" Treffer"),"Dein Fortschritt hat eine neue Angriffskraft freigeschaltet",4)
                 audio.play("reward");vfx.emit_effect("reward",hero.position+Vector2(30,-150),220,.7,"spawn",18)
@@ -484,9 +505,9 @@ func _consume_events() -> void:
                 vfx.enemy_warning(model,str(e.pattern),float(e.duration),hero.position+Vector2(0,-4))
             "damage":
                 enemy.play_hit()
-                if not bool(e.get("subhit",false)):vfx.impact(str(e.source),bool(e.critical),int(e.get("skill_rank",1)))
+                if not bool(e.get("subhit",false)) and e.source!="pet":vfx.impact(str(e.source),bool(e.critical),int(e.get("skill_rank",1)))
                 audio.play("fire" if e.source in ["fire","burn"] else "impact")
-                if e.source not in ["burn","chain"]:camera_feedback.impact(6 if e.critical or e.source in ["sky","fire","counter"] else 1.6,0.055 if e.critical else 0.035)
+                if e.source not in ["burn","chain","pet"]:camera_feedback.impact(6 if e.critical or e.source in ["sky","fire","counter"] else 1.6,0.055 if e.critical else 0.035)
                 _popup(str(e.amount),Vector2(70+(model.tap.combo%3)*34,-300-(model.tap.combo%3)*38),Color("#ffb03d") if e.critical else (Color("#ffa44e") if e.source=="burn" else Color("#fff0b8")),"KRIT!" if e.critical else ("BRENNEN" if e.source=="burn" else ("KONTER" if e.source=="counter" else "")))
             "hero_hit":
                 if _production_enabled:
@@ -511,6 +532,7 @@ func _consume_events() -> void:
                 _persist()
             "reward":
                 var r=e.reward
+                if companion_visual:companion_visual.reward()
                 audio.play("reward")
                 vfx.emit_effect("reward",enemy.position+Vector2(-15,-70),190,0.65,"spawn",18)
                 hud.notify("+%d Gold · +%d XP"%[r.gold,r.xp],r.item.name)

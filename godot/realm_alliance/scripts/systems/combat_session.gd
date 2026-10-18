@@ -17,6 +17,10 @@ const Quests=preload("res://scripts/systems/quest_system.gd")
 const Chests=preload("res://scripts/systems/chest_rewards.gd")
 const Tap=preload("res://scripts/systems/tap_combat.gd")
 const Boss=preload("res://scripts/systems/boss_phase.gd")
+const Roster=preload("res://scripts/systems/hero_roster.gd")
+const Companions=preload("res://scripts/systems/companion_progress.gd")
+const PetRuntime=preload("res://scripts/systems/companion_runtime.gd")
+var companion=PetRuntime.new()
 var tap=Tap.new()
 var boss=Boss.new()
 var action_sequence=0
@@ -63,10 +67,18 @@ var total_kills: int:
     get: return int(profile.kills)
 var level: int:
     get: return Progress.level(int(profile.xp))
+var hero_id:String:
+    get:return Roster.active(profile)
+var hero_name:String:
+    get:return str(Roster.definition(profile).name)
+var hero_level:int:
+    get:return Roster.level(profile)
+var actor_id:String:
+    get:return "hero:"+hero_id+":local"
 var player_max_hp: int:
-    get: return 150 + (level - 1) * 12 + int(HeroEquipment.stats(profile).hp) + int(Evolution.bonuses(profile).hp) + int(Advancement.bonuses(profile).hp)
+    get: return int(round((150+(hero_level-1)*12)*float(Roster.definition(profile).hp_scale)))+int(HeroEquipment.stats(profile).hp)+int(Evolution.bonuses(profile).hp)+int(Advancement.bonuses(profile).hp)
 var defense: int:
-    get: return int(HeroEquipment.stats(profile).defense)
+    get: return int(HeroEquipment.stats(profile).defense)+int(Roster.definition(profile).defense)
 var power: int:
     get: return hero_damage()*10+player_max_hp+defense*12
 
@@ -82,7 +94,7 @@ func _init(data: Dictionary = {}) -> void:
         read_only=true
         load_error="Evolutionsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
     var checkpoint: Dictionary = normalized.get("checkpoint", {})
-    for domain in [World,Advancement,Quests,Chests,Tap]:
+    for domain in [World,Advancement,Quests,Chests,Tap,Roster,Companions]:
         var valid=domain.ensure(profile,checkpoint) if domain==World else domain.ensure(profile)
         if not valid:
             read_only=true;load_error="Fortschrittsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
@@ -114,14 +126,25 @@ func _init(data: Dictionary = {}) -> void:
         action_sequence=maxi(0,int(checkpoint.get("action_sequence",0)))
         var tap_state=checkpoint.get("tap_combat",{})
         var boss_state=checkpoint.get("boss_phase",{})
-        if not tap_state is Dictionary or not boss_state is Dictionary or not tap.restore(tap_state) or not boss.restore(boss_state):
+        var pet_state=checkpoint.get("companion_runtime",{})
+        if not pet_state is Dictionary or not companion.restore(pet_state) or not tap_state is Dictionary or not boss_state is Dictionary or not tap.restore(tap_state) or not boss.restore(boss_state):
             read_only=true;load_error="Kampfdaten nicht kompatibel; Original bleibt geschützt."
     else:
         player_hp = player_max_hp
     events.clear()
 
 func hero_damage() -> int:
-    return Equipment.damage(profile) + 2 * (level - 1) + int(Evolution.bonuses(profile).attack) + int(Advancement.bonuses(profile).attack)
+    return maxi(1,int(round((Equipment.damage(profile)+2*(hero_level-1)+int(Evolution.bonuses(profile).attack)+int(Advancement.bonuses(profile).attack))*float(Roster.definition(profile).attack_scale))))
+
+func unlock_hero(id:String) -> bool:return not read_only and Roster.unlock(profile,id)
+func select_hero(id:String) -> bool:
+    if read_only or not Roster.ensure(profile) or not profile.hero_roster.owned.has(id) or id==hero_id:return false
+    profile.hero_roster.active=id;_refresh_skill_definitions();tier=0;_reset_run(0);return true
+func acquire_companion(id:String) -> bool:return not read_only and Companions.acquire(profile,id)
+func select_companion(id:String) -> bool:
+    if read_only or id==str(profile.companions.active) or not Companions.equip(profile,id):return false
+    tier=0;_reset_run(0);return true
+func evolve_companion(id:String) -> bool:return not read_only and Companions.evolve(profile,id)
 
 func upgrade_cost() -> int:
     return Equipment.upgrade_cost(profile)
@@ -135,7 +158,15 @@ func upgrade_weapon(id: String) -> bool:
     Quests.record(profile,"upgrades");return true
 
 func _refresh_skill_definitions() -> void:
-    for id in SKILL_IDS:skills.definitions[id]=Advancement.definition(profile,id)
+    for id in SKILL_IDS:
+        var d=Advancement.definition(profile,id)
+        var changes:Dictionary=Roster.definition(profile).skills.get(id,{})
+        var rank=Advancement.rank(profile,id)-1
+        for key in changes:
+            d[key]=changes[key]
+            if key=="multiplier":d[key]=float(d[key])*(1+.1*rank)
+            elif key=="absorb_fraction":d[key]=float(d[key])+.025*rank
+        skills.definitions[id]=d
 
 func upgrade_skill(id: String) -> bool:
     if read_only or not Advancement.upgrade(profile,id):return false
@@ -252,14 +283,14 @@ func request_action(id: String = "basic", options: Dictionary={}) -> bool:
     if id=="basic" and bool(options.get("tap_chain",false)):
         d=tap.plan(profile,clock);tap.accepted(d,clock)
     action_sequence+=1
-    d.action_id=run_id+":"+ACTOR_ID+":"+str(action_sequence)
-    d.actor_id=ACTOR_ID;d.target_id=run_id+":"+region+":"+str(encounter)
+    d.action_id=run_id+":"+actor_id+":"+str(action_sequence)
+    d.actor_id=actor_id;d.target_id=run_id+":"+region+":"+str(encounter)
     d.rank=Advancement.rank(profile,id) if id in SKILL_IDS else 1
     d.base_damage = hero_damage()
     d.weapon_trait = Equipment.definition(profile.equipped).trait
     pending = {"definition":d,"hit_at":clock + float(d.windup)}
     busy_until = clock + float(d.windup) + float(d.recovery)
-    events.append({"type":"hero_action","id":id,"started_at":clock,"windup":d.windup,"recovery":d.recovery,"animation":d.get("animation",id),"action_id":d.action_id,"actor_id":ACTOR_ID,"target_id":d.target_id,"contacts":d.get("contacts",1)})
+    events.append({"type":"hero_action","id":id,"started_at":clock,"windup":d.windup,"recovery":d.recovery,"animation":d.get("animation",id),"action_id":d.action_id,"actor_id":actor_id,"target_id":d.target_id,"contacts":d.get("contacts",1)})
     if d.effect == "shield":
         hero_status.apply("shield", clock, float(d.duration), {"amount":int(player_max_hp * float(d.absorb_fraction)),"counter":true,"counter_damage":int(hero_damage() * float(d.counter_multiplier))})
         pending.clear()
@@ -299,6 +330,8 @@ func _step() -> void:
             return
     enemy_status.expire(clock)
     hero_status.expire(clock)
+    _update_companion()
+    if outcome!="fighting":return
     if enemy_definition.kind=="boss":
         if clock<boss.break_until:return
         if not boss.enraged and enemy_hp<=enemy_max_hp*.5:
@@ -391,8 +424,8 @@ func _damage_enemy(amount: int, source: String, critical: bool, context: Diction
     if enemy_definition.kind=="boss" and clock<boss.break_until:amount=int(round(amount*1.25))
     var actual = mini(enemy_hp,maxi(1,amount))
     enemy_hp -= actual
-    events.append({"type":"damage","amount":actual,"source":source,"critical":critical,"action_id":context.get("action_id",""),"actor_id":ACTOR_ID,"target_id":run_id+":"+region+":"+str(encounter),"subhit":source=="chain","skill_rank":context.get("rank",1)})
-    if enemy_hp>0 and enemy_definition.kind=="boss" and not context.is_empty() and source not in ["burn","counter"]:
+    events.append({"type":"damage","amount":actual,"source":source,"critical":critical,"action_id":context.get("action_id",""),"actor_id":context.get("actor_id",actor_id),"target_id":run_id+":"+region+":"+str(encounter),"subhit":source=="chain","skill_rank":context.get("rank",1)})
+    if enemy_hp>0 and enemy_definition.kind=="boss" and not context.is_empty() and source not in ["burn","counter","pet"]:
         if boss.contact(clock,1 if source=="chain" else 3):
             behavior.state="idle";behavior.second=false;behavior.deadline=boss.break_until+float(enemy_definition.interval)
             events.append({"type":"boss_phase","id":"break"})
@@ -401,14 +434,20 @@ func _damage_enemy(amount: int, source: String, critical: bool, context: Diction
         enemy_status.active.clear()
         var before_unlocks=[Tap.unlocked(profile,2),Tap.unlocked(profile,4),Tap.ultimate_unlocked(profile)]
         var old_level = level
+        var old_hero_level=hero_level
+        var pet_id=str(profile.companions.active)
+        var old_pet_level=Companions.level(profile,pet_id)
         var reward = Rewards.grant(profile,run_id+":"+str(encounter),enemy_definition,tier)
         if reward.granted:
+            Roster.gain(profile,int(reward.xp));Companions.gain(profile,int(reward.xp))
             var stars=World.clear_stage(profile,region,encounter,float(player_hp)/player_max_hp)
             events.append({"type":"stage_clear","stars":stars,"region":region,"stage":encounter})
             if enemy_definition.kind=="boss":
                 Quests.record(profile,"bosses")
                 Chests.grant(profile,run_id+":"+region+":boss")
             events.append({"type":"reward","reward":reward})
+            if hero_level>old_hero_level and hero_id!="realmwachter":events.append({"type":"hero_level_up","id":hero_id,"level":hero_level})
+            if pet_id!="" and Companions.level(profile,pet_id)>old_pet_level:events.append({"type":"pet_level_up","id":pet_id,"level":Companions.level(profile,pet_id)})
             var after_unlocks=[Tap.unlocked(profile,2),Tap.unlocked(profile,4),Tap.ultimate_unlocked(profile)]
             for i in 3:
                 if after_unlocks[i] and not before_unlocks[i]:events.append({"type":"combat_unlock","id":["x2","x4","ultimate"][i]})
@@ -447,11 +486,35 @@ func _enemy_strike(multiplier: float, heavy: bool) -> void:
         tap.reset_chain()
         hero_status.active.clear()
         events.append({"type":"defeat"})
-    elif counter > 0:
-        _damage_enemy(counter,"counter",false)
+    else:
+        if hero_id=="kaela" and blocked>0:
+            var healing=mini(player_max_hp-player_hp,maxi(1,int(round(player_max_hp*.03))))
+            if healing>0:player_hp+=healing;events.append({"type":"heal","amount":healing,"source":"rune_guard"})
+        if counter>0:_damage_enemy(counter,"counter",false)
+
+func _update_companion() -> void:
+    if not Companions.ensure(profile):return
+    var id=str(profile.companions.active)
+    if id=="":return
+    var d:Dictionary=Companions.catalog()[id]
+    if not companion.pending.is_empty():
+        if clock+.00001<float(companion.pending.hit_at):return
+        var action=companion.pending.duplicate(true);companion.pending.clear()
+        if id!=action.id:return
+        if float(d.heal_fraction)>0:
+            var amount=mini(player_max_hp-player_hp,int(action.amount))
+            if amount>0:player_hp+=amount;events.append({"type":"heal","amount":amount,"source":"companion"})
+        else:_damage_enemy(int(action.amount),"pet",false,{"action_id":action.action_id,"actor_id":"companion:"+id+":local"})
+        events.append({"type":"companion_impact","id":id,"action_id":action.action_id});return
+    if clock<companion.ready_at or (float(d.heal_fraction)>0 and player_hp>=player_max_hp):return
+    companion.sequence+=1
+    var amount=maxi(1,int(round((player_max_hp*float(d.heal_fraction) if float(d.heal_fraction)>0 else hero_damage()*float(d.attack_scale))*Companions.strength(profile,id))))
+    var uid=run_id+":companion:"+id+":"+str(companion.sequence)
+    companion.pending={"id":id,"hit_at":clock+float(d.windup),"amount":amount,"action_id":uid};companion.ready_at=clock+float(d.interval)
+    events.append({"type":"companion_action","id":id,"windup":d.windup,"action_id":uid})
 
 func _spawn() -> void:
-    tap.reset_chain();boss.reset()
+    tap.reset_chain();boss.reset();companion.pending.clear()
     enemy_definition = World.encounter(region,encounter)
     enemy_max_hp = int(round(float(enemy_definition.hp)*(1.0 + tier * 0.12)))
     enemy_hp = enemy_max_hp
@@ -478,7 +541,7 @@ func _reset_run(start: int) -> void:
     clock = 0
     accumulator = 0
     skills.ready_at.clear()
-    tap=Tap.new();boss.reset();action_sequence=0
+    tap=Tap.new();boss.reset();companion.reset();action_sequence=0
     hero_status.active.clear()
     momentum = 25
     rage = 0
@@ -494,4 +557,4 @@ func drain_events() -> Array:
     return result
 
 func snapshot() -> Dictionary:
-    return {"version":2,"profile":profile.duplicate(true),"checkpoint":{"region":region,"tier":tier,"encounter":encounter,"run_id":run_id,"clock":clock,"player_hp":player_hp,"enemy_hp":enemy_hp,"momentum":momentum,"rage":rage,"outcome":outcome,"busy_until":busy_until,"transition_at":transition_at,"hit_count":hit_count,"pending":pending.duplicate(true),"cooldowns":skills.snapshot(),"hero_status":hero_status.active.duplicate(true),"enemy_status":enemy_status.active.duplicate(true),"behavior":behavior.snapshot(),"tap_combat":tap.snapshot(),"boss_phase":boss.snapshot(),"action_sequence":action_sequence}}
+    return {"version":2,"profile":profile.duplicate(true),"checkpoint":{"region":region,"tier":tier,"encounter":encounter,"run_id":run_id,"clock":clock,"player_hp":player_hp,"enemy_hp":enemy_hp,"momentum":momentum,"rage":rage,"outcome":outcome,"busy_until":busy_until,"transition_at":transition_at,"hit_count":hit_count,"pending":pending.duplicate(true),"cooldowns":skills.snapshot(),"hero_status":hero_status.active.duplicate(true),"enemy_status":enemy_status.active.duplicate(true),"behavior":behavior.snapshot(),"tap_combat":tap.snapshot(),"boss_phase":boss.snapshot(),"action_sequence":action_sequence,"companion_runtime":companion.snapshot()}}

@@ -53,9 +53,14 @@ func apply(hero,profile: Dictionary) -> void:
     sync_pose(hero,hero._pose)
 func sync_pose(hero,pose: String) -> void:
     if plate==null:return
-    var d:Dictionary=POSES[pose]
+    var d:Dictionary=POSES.get(pose,POSES.hit)
+    if hero.hero_id=="kaela":d={"angle":0.0,"arm":hero.Alternate.ARMS.get(pose,hero.Alternate.ARMS.hit)}
+    plate.scale=Vector2.ONE*(.32 if hero.hero_id=="kaela" else .40)
+    head_mount.position=Vector2(15,-8) if hero.hero_id=="kaela" else Vector2(44,-8)
+    head.scale=Vector2.ONE*(.38 if hero.hero_id=="kaela" else .50)
+    head.position=-Vector2(258.687,85.907)*head.scale
     plate.rotation_degrees=float(d.angle)
-    head_mount.rotation_degrees={"idle":0,"ready":-2,"windup":-5,"attack_contact":15,"recovery":8,"hit":8}[pose]
+    head_mount.rotation_degrees={"idle":0,"ready":-2,"windup":-5,"attack_contact":15,"recovery":8,"hit":8}.get(pose,8)
     wing_mount.rotation_degrees=float(d.angle)*.5
     foreground_arm.visible=plate.visible
     foreground_arm.texture=hero._body.texture

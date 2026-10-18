@@ -17,10 +17,13 @@ func attach(hero) -> void:
     material=ShaderMaterial.new();material.shader=hero._palette.shader;material.set_shader_parameter("cape_pass",true)
     cloth.material=material;hero._art.add_child(cloth)
 func set_folded(hero,value: bool) -> void:
+    value=value and hero.hero_id=="realmwachter"
     folded=value;hero._palette.set_shader_parameter("split_cape",value);cloth.visible=value
     material.set_shader_parameter("split_cape",value)
     sync(hero,hero._pose)
 func sync(hero,pose: String) -> void:
+    if hero.hero_id!="realmwachter":
+        hero._palette.set_shader_parameter("split_cape",false);cloth.visible=false;return
     var polygon=PackedVector2Array()
     for point in SHAPES[pose]:polygon.append(point/Vector2(640,512))
     hero._palette.set_shader_parameter("cape_polygon",polygon)

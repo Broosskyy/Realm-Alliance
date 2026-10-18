@@ -1,0 +1,75 @@
+{
+  "heroes": {
+    "realmwachter": {
+      "name": "Realmwächter",
+      "role": "Klinge · Licht",
+      "attack_scale": 1.0,
+      "hp_scale": 1.0,
+      "defense": 0,
+      "gold": 0,
+      "shards": 0,
+      "unlock_level": 1,
+      "stage": "",
+      "description": "Kanonischer Wächter mit hohem Schwertschaden.",
+      "skills": {}
+    },
+    "kaela": {
+      "name": "Kaela",
+      "role": "Runenhüterin · Erde",
+      "attack_scale": 0.85,
+      "hp_scale": 1.25,
+      "defense": 3,
+      "gold": 150,
+      "shards": 8,
+      "unlock_level": 6,
+      "stage": "glutkern:4",
+      "description": "Standhafte Runenhüterin. Ein echter Schildblock heilt 3% der maximalen HP.",
+      "skills": {
+        "sky_blade": {
+          "name": "Runenstoß",
+          "multiplier": 2.2
+        },
+        "arcane_eye": {
+          "name": "Runensiegel",
+          "duration": 6.0
+        },
+        "rage_flame": {
+          "name": "Esse der Hüterin"
+        },
+        "guardian_wall": {
+          "name": "Runenbastion",
+          "absorb_fraction": 0.5,
+          "cooldown": 7.5
+        }
+      }
+    }
+  },
+  "pets": {
+    "skyfox": {
+      "name": "Himmelsfuchs",
+      "role": "Angriff · Arkane Salve",
+      "gold": 40,
+      "shards": 2,
+      "unlock_level": 3,
+      "stage": "wolkgarten:2",
+      "interval": 2.8,
+      "windup": 0.32,
+      "attack_scale": 0.32,
+      "heal_fraction": 0.0,
+      "description": "Arkane Salve alle 2,8 s. Keine zusätzlichen Combo- oder Ressourcenboni."
+    },
+    "sunbird": {
+      "name": "Morgenphönix",
+      "role": "Heilung · Morgenlicht",
+      "gold": 80,
+      "shards": 4,
+      "unlock_level": 5,
+      "stage": "glutkern:2",
+      "interval": 6.0,
+      "windup": 0.45,
+      "attack_scale": 0.0,
+      "heal_fraction": 0.08,
+      "description": "Heilt alle 6 s bis zu 8% der maximalen HP. Wartet bei vollen HP; keine Wiederbelebung."
+    }
+  }
+}

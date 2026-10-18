@@ -45,7 +45,9 @@ var momentum = 0.0
 var rage = 0.0
 var hero_texture: Texture2D
 var weapon_texture: Texture2D
-var portrait: AtlasTexture
+var portrait: Texture2D
+var guardian_portrait:Texture2D
+var companion_preview
 var _top_fade: GradientTexture2D
 var _bottom_fade: GradientTexture2D
 var _redraw_clock = 0.0
@@ -70,9 +72,10 @@ func _ready() -> void:
         portrait = AtlasTexture.new()
         portrait.atlas = hero_texture
         portrait.region = Rect2(310, 25, 230, 220)
+        guardian_portrait=portrait
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options", "roster"]:
         var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id in ["evolve","talents"] else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
@@ -97,6 +100,7 @@ func _ready() -> void:
         preview.scale = Vector2.ONE * 0.62
         preview.visible = false
         add_child(preview)
+    companion_preview=preload("res://scripts/presentation/companion_visual.gd").new();companion_preview.position=Vector2(485,589);companion_preview.scale=Vector2.ONE*.22;companion_preview.z_index=21;add_child(companion_preview)
     rpg_pages=preload("res://scripts/ui/rpg_pages.gd").new();rpg_pages.name="RPGPages";rpg_pages.z_index=40;add_child(rpg_pages);rpg_pages.action.connect(func(id):action.emit(id))
     toast=preload("res://scripts/ui/notification_toast.gd").new()
     toast.name="NotificationToast"
@@ -179,11 +183,16 @@ func update_buttons() -> void:
         toast.position=Vector2(176,286) if in_combat else Vector2(38,maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265)
         toast.size=Vector2(368,54) if in_combat else Vector2(644,40)
         toast.display(toast_title,toast_detail,in_combat)
+    buttons.roster.visible=active_tab=="Wesen";buttons.roster.tooltip_text="Helden & Begleiter öffnen";_place("roster",Rect2(38,171,644,100))
+    portrait=_texture("res://assets/roster67/kaela/portrait.png") if model.hero_id=="kaela" else guardian_portrait
+    if companion_preview:
+        companion_preview.sync(model.profile,Time.get_ticks_msec()/1000.0);companion_preview.visible=active_tab=="Wesen" and str(model.profile.companions.active)!=""
     if preview:
         preview.visible = active_tab == "Wesen"
-        var visual_key=str(model.weapon_index)+str(model.upgrade_level)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
+        var visual_key=model.hero_id+str(model.weapon_index)+str(model.upgrade_level)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
         if preview.visible and visual_key!=_preview_key:
             _preview_key=visual_key
+            preview.set_hero(model.hero_id)
             preview.equip_weapon(model.weapon_index)
             preview.set_upgrade_tier(model.upgrade_level)
             preview.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
@@ -449,7 +458,7 @@ func _draw_shell() -> void:
         "Wesen":
             draw_ellipse_platform()
             _panel(Rect2(170,589,380,38))
-            _center("Realmwächter · Lv. %d"%model.level,Rect2(38,191,644,38),25,INK,true)
+            _center("%s · Lv. %d  ▾"%[model.hero_name,model.hero_level],Rect2(38,191,644,38),25,INK,true)
             _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
             _center(Equipment.definition(model.profile.equipped).description,Rect2(50,249,620,25),15,MUTED)
             _center("Kraft %d · %s"%[model.power,"Erwacht" if Evolution.active(model.profile) else "Basisform"],Rect2(180,278,360,24),16,GOLD)
@@ -468,15 +477,15 @@ func _draw_shell() -> void:
                 var texture=icons.shield if i==3 and model.level>=2 else orbs[[0,1,3,2][i]]
                 draw_texture_rect(texture,Rect2(r.position+Vector2(51,5),Vector2(44,44)),false)
                 var d:Dictionary=model.skills.definitions[model.SKILL_IDS[i]]
-                _center(["Himmelsklinge","Arkanblick","Zornesflamme","Wächterwall"][i],Rect2(r.position+Vector2(0,49),Vector2(146,20)),14,INK,true)
+                _center(str(d.name),Rect2(r.position+Vector2(0,49),Vector2(146,20)),14,INK,true)
                 var cost="frei" if d.cost_type=="none" else "%d %s"%[d.cost,{"momentum":"M","rage":"Z"}[d.cost_type]]
                 _center("%.1f s · %s"%[d.cooldown,cost],Rect2(r.position+Vector2(0,68),Vector2(146,18)),13,MUTED)
             if logical_height>=1450:
                 var progress_rect=Rect2(38,1055,644,194)
                 _panel(progress_rect)
                 _text("Heldenfortschritt",Vector2(60,1088),21,INK,true)
-                var within=Progress.xp_in_level(model.profile.xp)
-                var needed=Progress.required(model.level)
+                var within=Progress.xp_in_level(model.Roster.xp(model.profile))
+                var needed=Progress.required(model.hero_level)
                 _text("%d / %d XP"%[within,needed] if model.level<100 else "Maximallevel",Vector2(473,1088),16,CYAN)
                 _bar(Rect2(60,1108,600,16),float(within)/needed if model.level<100 else 1.0,CYAN)
                 var bonuses=HeroEquipment.stats(model.profile)
@@ -487,7 +496,7 @@ func _draw_shell() -> void:
         "Mehr":
             _panel(Rect2(38,177,644,235))
             if portrait:draw_texture_rect(portrait,Rect2(60,199,140,140),false)
-            _text("Realmwächter",Vector2(226,225),28,INK,true)
+            _text(model.hero_name,Vector2(226,225),28,INK,true)
             _text("Level %d · Kraft %d"%[model.level,model.power],Vector2(226,264),22,GOLD)
             _bar(Rect2(226,283,424,18),float(Progress.xp_in_level(model.profile.xp))/Progress.required(model.level),CYAN)
             _text("%d / %d XP"%[Progress.xp_in_level(model.profile.xp),Progress.required(model.level)],Vector2(226,330),18,MUTED)

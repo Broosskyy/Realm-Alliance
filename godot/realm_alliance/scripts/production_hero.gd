@@ -27,6 +27,9 @@ const ANGLES := {
     "attack_contact": -8.0, "recovery": -25.0, "hit": -45.0
 }
 
+const Alternate=preload("res://scripts/presentation/hero_visual_catalog.gd")
+var hero_id="realmwachter"
+var hero_sets:Dictionary={}
 var _art: Node2D
 var _body: Sprite2D
 var _socket: Node2D
@@ -106,6 +109,9 @@ func _ready() -> void:
     weapon_glow=preload("res://scripts/presentation/weapon_upgrade_vfx.gd").new();weapon_glow.z_index=1;_weapon.add_child(weapon_glow)
     for state in Gate.HERO_STATES:
         _poses[state] = load(Gate.ROOT + "hero/" + state + ".png")
+    hero_sets["realmwachter"]=_poses.duplicate()
+    hero_sets["kaela"]={}
+    for state in Gate.HERO_STATES+["defeated"]:hero_sets.kaela[state]=load("res://assets/roster67/kaela/"+state+".png")
     for name in Gate.WEAPONS:
         _weapons.append(load(Gate.ROOT + "weapons/" + name + ".png"))
     _grip=Sprite2D.new()
@@ -122,22 +128,28 @@ func _ready() -> void:
     equip_weapon(_selected)
     set_look(_look, false)
 
+func set_hero(id:String) -> void:
+    if id==hero_id or not hero_sets.has(id):return
+    hero_id=id;_poses=hero_sets[id];revive()
+func hand(pose:String) -> Vector2:return Alternate.HANDS.get(pose,Alternate.HANDS.hit) if hero_id=="kaela" else HANDS.get(pose,HANDS.hit)
+func angle(pose:String) -> float:return float(Alternate.ANGLES.get(pose,-45)) if hero_id=="kaela" else float(ANGLES.get(pose,-45))
+func sockets(pose:String) -> Dictionary:return Alternate.SOCKETS.get(pose,Alternate.SOCKETS.hit) if hero_id=="kaela" else VISUAL_SOCKETS.get(pose,VISUAL_SOCKETS.hit)
 func _set_pose(name: String) -> void:
     _pose = name
     if _body == null:
         return
     _body.texture = _poses.get(name)
     _body.position = -PIVOT
-    _socket.position = HANDS[name] - PIVOT
-    _socket.rotation_degrees = ANGLES[name]
+    _socket.position = hand(name) - PIVOT
+    _socket.rotation_degrees = angle(name)
     _socket.z_index = _world_layer()+8
     if _grip:
         _grip.z_index=_world_layer()+9
         _grip.texture=_body.texture
-        _grip.region_rect=Rect2(HANDS[name]-Vector2(10,10),Vector2(20,20))
-        _grip.position=HANDS[name]-PIVOT
+        _grip.region_rect=Rect2(hand(name)-Vector2(10,10),Vector2(20,20))
+        _grip.position=hand(name)-PIVOT
     for id in layer_sockets:
-        var anchor: Vector2 = VISUAL_SOCKETS[name].get(id,VISUAL_SOCKETS[name].get("back",PIVOT))
+        var anchor: Vector2 = sockets(name).get(id,sockets(name).get("back",PIVOT))
         layer_sockets[id].position = anchor - PIVOT
     if attachments:attachments.sync_pose(self,name)
     if cape:cape.sync(self,name)
@@ -171,8 +183,8 @@ func _sample_action() -> void:
     if frame.pose!=_pose:_set_pose(frame.pose)
     _art.position=frame.offset+_recoil
     _art.rotation=float(frame.get("art_rotation",0))
-    if frame.has("weapon_angle"):_socket.rotation_degrees=ANGLES[_pose]+float(frame.weapon_angle)
-    if _pose=="windup":_socket.rotation_degrees=ANGLES[_pose]-12*(1-clampf(_action_elapsed/maxf(_windup,0.01),0,1))
+    if frame.has("weapon_angle"):_socket.rotation_degrees=angle(_pose)+float(frame.weapon_angle)
+    if _pose=="windup":_socket.rotation_degrees=angle(_pose)-12*(1-clampf(_action_elapsed/maxf(_windup,0.01),0,1))
     if not _impacted and _action_elapsed>=_windup:
         _impacted=true;impact.emit()
     if frame.done:_finish_attack()
@@ -237,7 +249,7 @@ func play_death() -> void:
     _busy = false
     if _action and _action.is_running():
         _action.kill()
-    _set_pose("hit")
+    _set_pose("defeated" if hero_id=="kaela" else "hit")
     _art.position = Vector2.ZERO
     var t=create_tween()
     t.tween_property(_art,"rotation_degrees",-25,0.4)
