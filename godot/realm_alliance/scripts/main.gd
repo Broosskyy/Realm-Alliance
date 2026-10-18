@@ -229,7 +229,16 @@ func _on_hud_action(id: String) -> void:
         if active_tab!="Wesen":return
         var dialog=preload("res://scripts/ui/roster_dialog.gd").new();add_child(dialog);dialog.configure(model)
         dialog.progression_changed.connect(func(message):_sync_hero();_persist();_refresh();audio.play("reward");hud.notify(message,"Helden & Begleiter"))
-        dialog.run_started.connect(func():manual_input.clear();hero.revive();_consume_events();_on_hud_action("Kampf"))
+        dialog.selection_changed.connect(func():
+            manual_input.clear()
+            # Visual handoff only: never respawn the enemy or reset the dungeon.
+            if vfx:vfx.clear()
+            _last_visual_key=""
+            if _production_enabled:hero.revive()
+            _sync_hero()
+            _persist()
+            _refresh()
+            hud.notify("Besetzung gewechselt","Gleiche Stage · gleicher Kampf",2))
         dialog.popup_centered(Vector2i(620,850))
     elif id=="hit_mode":
         var modes=[1,2,4];var current=model.Tap.mode(model.profile);var next=current
