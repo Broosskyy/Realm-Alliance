@@ -186,7 +186,7 @@ func update_buttons() -> void:
         toast.position=Vector2(176,286) if in_combat else Vector2(38,maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265)
         toast.size=Vector2(368,54) if in_combat else Vector2(644,40)
         toast.display(toast_title,toast_detail,in_combat)
-    buttons.roster.visible=active_tab=="Wesen";buttons.roster.tooltip_text="Helden & Begleiter öffnen";_place("roster",Rect2(38,171,644,100))
+    buttons.roster.visible=active_tab=="Wesen";buttons.roster.tooltip_text="Helden & Begleiter anzeigen und ohne Neustart wechseln";_place("roster",Rect2(38,160,644,74))
     portrait=_texture("res://assets/roster67/kaela/portrait.png") if model.hero_id=="kaela" else guardian_portrait
     if companion_preview:
         companion_preview.sync(model.profile,Time.get_ticks_msec()/1000.0);companion_preview.visible=active_tab=="Wesen" and str(model.profile.companions.active)!=""
@@ -463,10 +463,15 @@ func _draw_shell() -> void:
         "Wesen":
             draw_ellipse_platform()
             _panel(Rect2(170,589,380,38))
-            _center("%s · Lv. %d · Sammlung"%[model.hero_name,model.hero_level],Rect2(38,191,644,38),25,INK,true)
-            _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
-            _center(Equipment.definition(model.profile.equipped).description,Rect2(50,249,620,25),15,MUTED)
-            _center("Kraft %d · %s"%[model.power,"Erwacht" if Evolution.active(model.profile) else "Basisform"],Rect2(180,278,360,24),16,GOLD)
+            # This is a real Button hit area in update_buttons, not an invisible
+            # region covering the hero heading as in the earlier APK.
+            _panel(Rect2(38,160,644,74),Color.WHITE,Color.WHITE,16,"primary")
+            _icon("paw",Rect2(60,178,39,39),CYAN)
+            _center("HELDEN & BEGLEITER",Rect2(115,165,530,34),24,INK,true)
+            _center("Sammlung öffnen · jederzeit wechseln",Rect2(115,200,530,25),17,MUTED)
+            _center("%s · Lv. %d"%[model.hero_name,model.hero_level],Rect2(38,240,644,32),24,INK,true)
+            _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,272,644,26),17,GOLD)
+            _center("Kraft %d · %s"%[model.power,"Erwacht" if Evolution.active(model.profile) else "Basisform"],Rect2(180,300,360,23),16,GOLD)
             _center("Angriff %d · HP %d · DEF %d"%[model.hero_damage(),model.player_max_hp,model.defense],Rect2(170,590,380,36),17,GOLD,true)
             _panel(Rect2(38,644,310,64),Color("#11334f"),CYAN.darkened(0.3))
             _panel(Rect2(368,644,314,64),Color("#3c2851"),PURPLE.darkened(0.2))
