@@ -152,10 +152,14 @@ func select_hero(id:String) -> bool:
     return true
 func acquire_companion(id:String) -> bool:return not read_only and Companions.acquire(profile,id)
 func select_companion(id:String) -> bool:
-    if read_only or not Companions.ensure(profile) or id==str(profile.companions.active) or not Companions.equip(profile,id):return false
+    if read_only or not Companions.ensure(profile) or id==str(profile.companions.active):return false
+    var previous_id=str(profile.companions.active)
+    if not Companions.equip(profile,id):return false
     # In-flight attacks of a removed companion must never land as the new pet.
     companion.pending.clear()
-    companion.ready_at=maxf(companion.ready_at,clock+0.35)
+    # First pet equip should feel immediate; repeated mid-combat swaps must not
+    # be used to bypass the existing companion attack cooldown.
+    if previous_id!="":companion.ready_at=maxf(companion.ready_at,clock+0.35)
     return true
 func evolve_companion(id:String) -> bool:return not read_only and Companions.evolve(profile,id)
 
