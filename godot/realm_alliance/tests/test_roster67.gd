@@ -50,6 +50,8 @@ func run():
     var again=Session.new(JSON.parse_string(JSON.stringify(remapped.snapshot())))
     check(not again.read_only and again.gold==960 and int(again.profile.shards)==29,"migration does not grant Kaela compensation twice")
     check(not again.select_hero("kaela") and again.Roster.catalog().has("kaela"),"Kaela art/data retained for future NPC but cannot return as hero")
+    var hp:int=0
+    var e:Array=[]
     m=prepared();check(m.acquire_companion("skyfox") and m.gold==960 and m.profile.shards==98,"real companion cost")
     var pet_run=m.run_id;var pet_wave=m.wave;var pet_enemy=m.enemy_hp
     check(not m.acquire_companion("skyfox") and m.select_companion("skyfox"),"single purchase and owned selection")
