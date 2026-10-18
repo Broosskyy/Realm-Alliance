@@ -1,7 +1,7 @@
 extends "res://scripts/ui/modal_dialog.gd"
 class_name RARosterDialog
 signal progression_changed(message:String)
-signal run_started
+signal selection_changed
 var model
 var tabs:TabContainer
 func configure(value) -> void:
@@ -17,7 +17,7 @@ func _build(selected:int) -> void:
     for kind in ["Helden","Begleiter"]:
         var scroll=ScrollContainer.new();scroll.name=kind;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;tabs.add_child(scroll)
         var list=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",18);scroll.add_child(list)
-        _label(list,"Ein Wechsel beginnt die aktuelle Region neu.\nWaffen und Kontofortschritt bleiben erhalten. Helden trainieren eigene Level; Skillränge und Talente gelten kontoweit.",true)
+        _label(list,"Helden und Begleiter sofort wechseln – ohne Stage-Neustart. Gegner-HP, Beute und Fortschritt bleiben erhalten. Helden trainieren eigene Level; Talente und Skillränge gelten kontoweit.",true)
         var catalog:Dictionary=model.Roster.catalog() if kind=="Helden" else model.Companions.catalog()
         for id in catalog:
             var d:Dictionary=catalog[id];var owned=model.profile.hero_roster.owned.has(id) if kind=="Helden" else model.profile.companions.owned.has(id)
@@ -36,7 +36,7 @@ func _build(selected:int) -> void:
                 var xp=model.Roster.xp(model.profile,id) if kind=="Helden" else int(model.profile.companions.owned[id].xp)
                 _label(content,"%d Kampf-XP · %s"%[xp,"Rang 2 · Entwickelt" if kind=="Begleiter" and int(model.profile.companions.owned[id].evolution)>0 else "Rang 1"],true)
                 var active=id==model.hero_id if kind=="Helden" else id==str(model.profile.companions.active)
-                _button(content,"Aktiv" if active else "Mit "+str(d.name)+" starten",not active,func():_confirm_start(kind,id))
+                _button(content,"Aktiv" if active else "Jetzt auswählen: "+str(d.name),not active,func():_switch(kind,id))
                 if kind=="Begleiter":
                     var done=int(model.profile.companions.owned[id].evolution)>0
                     _button(content,"Entwickelt" if done else "Evolution · Lv.3 + Gartenkoloss\n100 G / 6 Splitter",model.Companions.can_evolve(model.profile,id),func():
@@ -47,13 +47,11 @@ func _build(selected:int) -> void:
                 _button(content,"Freischalten · %d G / %d Splitter"%[d.gold,d.shards],can,func():
                     var ok=model.unlock_hero(id) if kind=="Helden" else model.acquire_companion(id)
                     if ok:progression_changed.emit(d.name+" freigeschaltet");_build(0 if kind=="Helden" else 1))
-        if kind=="Begleiter":_button(list,"Ohne Begleiter starten",str(model.profile.companions.active)!="",func():_confirm_start("Begleiter",""))
+        if kind=="Begleiter":_button(list,"Begleiter ablegen",str(model.profile.companions.active)!="",func():_switch("Begleiter",""))
     tabs.current_tab=selected
-func _confirm_start(kind:String,id:String) -> void:
-    var dialog=preload("res://scripts/ui/modal_dialog.gd").new();add_child(dialog)
-    dialog.title="Neuen Run beginnen?";dialog.dialog_text="Die Region beginnt bei Stage 1.\nDer laufende Kampf wird beendet. Fortschritt und Beute bleiben erhalten.";dialog.ok_button_text="Starten"
-    dialog.confirmed.connect(func():
-        var ok=model.select_hero(id) if kind=="Helden" else model.select_companion(id)
-        if ok:progression_changed.emit("Neuer Run gestartet");run_started.emit();queue_free()
-        dialog.queue_free())
-    dialog.canceled.connect(dialog.queue_free);dialog.popup_centered(Vector2i(560,260))
+func _switch(kind:String,id:String) -> void:
+    if model.read_only:return
+    var ok=model.select_hero(id) if kind=="Helden" else model.select_companion(id)
+    if not ok:return
+    selection_changed.emit()
+    _build(0 if kind=="Helden" else 1)
