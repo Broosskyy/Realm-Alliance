@@ -93,6 +93,9 @@ jobs:
         run: XDG_DATA_HOME=/tmp/realm64-test-visual godot --headless --path . --script res://tests/test_hero_visual64.gd
       - name: Head and wing sockets, evolution and expanded mobile hero UI
         run: XDG_DATA_HOME=/tmp/realm64-test-extensions godot --headless --path . --script res://tests/test_hero_extensions64.gd
+      - name: Manual skill buffering during AUTO attacks
+        # Manual skill intent must survive an AUTO attack without early costs.
+        run: XDG_DATA_HOME=/tmp/realm64-test-input godot --headless --path . --script res://tests/test_combat_input64.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1

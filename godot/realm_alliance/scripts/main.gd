@@ -1,5 +1,7 @@
 extends Control
 const CombatModel = preload("res://scripts/systems/combat_session.gd")
+const ManualInput = preload("res://scripts/combat_input_buffer.gd")
+var manual_input = ManualInput.new()
 const SaveStore = preload("res://scripts/save_store.gd")
 const SaveTransfer=preload("res://scripts/save_transfer.gd")
 var save_transfer
@@ -153,6 +155,7 @@ func _build_hud() -> void:
     hud.action.connect(_on_hud_action)
 
 func _show_encounter() -> void:
+    manual_input.clear()
     if _production_enabled:
         enemy.configure_enemy(model.enemy_definition)
     enemy.show_wave(model.wave)
@@ -210,6 +213,7 @@ func _on_hud_action(id: String) -> void:
     elif id=="settings":
         _on_hud_action("Mehr")
     elif id in ["Kampf","Abenteuer","Wesen","Beute","Mehr","return"]:
+        manual_input.clear()
         active_tab="Kampf" if id=="return" else id
         hud.active_tab=active_tab
         stage.visible=active_tab=="Kampf"
@@ -326,18 +330,21 @@ func _on_tap() -> bool:
 
 func _on_skill(index: int = 0) -> bool:
     if active_tab!="Kampf" or index<0 or index>=4: return false
-    var ok=model.request_action(CombatModel.SKILL_IDS[index])
+    var result=manual_input.request(model,index)
+    if result==ManualInput.QUEUED:
+        hud.notify("Skill vorgemerkt",str(model.skills.definitions[CombatModel.SKILL_IDS[index]].name),0.8)
     _consume_events()
     _refresh()
-    return ok
+    return result!=ManualInput.REJECTED
 
 func _process(delta: float) -> void:
     if model==null or active_tab!="Kampf": return
     var simulation_delta=camera_feedback.step(delta)
     model.tick(simulation_delta)
+    manual_input.drain(model)
     _auto_clock+=simulation_delta
     stage.position=_stage_home+camera_feedback.offset()*stage.scale.x
-    if auto_enabled and _auto_clock>=0.72:
+    if auto_enabled and manual_input.skill=="" and _auto_clock>=0.72:
         _auto_clock=0
         model.request_action("basic")
     _consume_events()

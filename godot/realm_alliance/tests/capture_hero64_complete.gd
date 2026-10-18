@@ -23,6 +23,9 @@ func run() -> void:
     scene._open_evolution();await create_timer(.2).timeout;await snap("evolution-dialog")
     for child in scene.get_children():
         if child is Window:child.queue_free()
+    await process_frame;scene._open_gear("sky_wings");await create_timer(.2).timeout;await snap("wing-upgrade-dialog")
+    for child in scene.get_children():
+        if child is Window:child.queue_free()
     await process_frame;scene._on_hud_action("Kampf")
     scene.model.encounter=4;scene.model._spawn();scene._show_encounter();scene._sync_hero();scene._refresh()
     await create_timer(.2).timeout;scene._on_skill(0);scene.model.tick(.42);scene._consume_events();scene._refresh();await create_timer(.05).timeout;await snap("equipped-combat-skill")
