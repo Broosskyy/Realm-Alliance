@@ -138,7 +138,7 @@ func hero_damage() -> int:
 
 func unlock_hero(id:String) -> bool:return not read_only and Roster.unlock(profile,id)
 func select_hero(id:String) -> bool:
-    if read_only or not Roster.ensure(profile) or not profile.hero_roster.owned.has(id) or id==hero_id:return false
+    if read_only or not Roster.ensure(profile) or not Roster.can_play(id) or not profile.hero_roster.owned.has(id) or id==hero_id:return false
     # A roster change is NOT a new dungeon run: keep checkpoint, enemy health,
     # reward claim IDs, run serial, status effects on the enemy and time.
     # Cancel only the outgoing hero's action and defensive effects.
