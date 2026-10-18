@@ -4,6 +4,11 @@ class_name RACombatHUD
 # Authored at 720 logical pixels; main.gd scales this native Godot UI once.
 # All input regions are real Buttons, kept separate from paint and arena input.
 signal action(id: String)
+const Kit=preload("res://scripts/ui/fantasy_theme.gd")
+const FantasyButton=preload("res://scripts/ui/fantasy_button.gd")
+const SkillOrb=preload("res://scripts/ui/skill_orb.gd")
+const EquipmentSlot=preload("res://scripts/ui/equipment_slot.gd")
+const ResourceBar=preload("res://scripts/ui/resource_bar.gd")
 const ROOT = "res://assets/ui/work61/"
 const INK = Color("#eaf3ff")
 const MUTED = Color("#9fbbd8")
@@ -19,6 +24,7 @@ const Progress = preload("res://scripts/systems/player_progress.gd")
 const Equipment = preload("res://scripts/systems/equipment.gd")
 const HeroPreview = preload("res://scripts/production_hero.gd")
 var preview
+var toast
 var sound_enabled: bool = true
 var effect_level: int = 0
 var hit_flash: float = 0.0
@@ -55,7 +61,7 @@ func _ready() -> void:
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
     for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet"]:
-        var b = Button.new()
+        var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
         b.tooltip_text = _tooltip(id)
@@ -79,6 +85,9 @@ func _ready() -> void:
         preview.scale = Vector2.ONE * 0.66
         preview.visible = false
         add_child(preview)
+    toast=preload("res://scripts/ui/notification_toast.gd").new()
+    toast.name="NotificationToast"
+    add_child(toast)
     configure(1280.0)
     toast_until = Time.get_ticks_msec()+3500
 
@@ -134,6 +143,11 @@ func update_buttons() -> void:
     if buttons.is_empty() or model == null:
         return
     var in_combat = active_tab == "Kampf"
+    if toast:
+        toast.visible=toast_until>Time.get_ticks_msec()
+        toast.position=Vector2(18,169) if in_combat else Vector2(38,maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265)
+        toast.size=Vector2(207,91) if in_combat else Vector2(644,40)
+        toast.display(toast_title,toast_detail,in_combat)
     if preview:
         preview.visible = active_tab == "Wesen"
         preview.equip_weapon(model.weapon_index)
@@ -155,12 +169,18 @@ func update_buttons() -> void:
     buttons["upgrade"].disabled = model.gold < model.upgrade_cost() or model.upgrade_level>=19 or (model.upgrade_level>=2 and model.profile.shards<1)
     for id in Equipment.IDS:
         var b: Button=buttons["equip_"+id]
+        b.paint_card=active_tab=="Wesen"
         b.visible=active_tab=="Wesen"
         b.disabled=not model.profile.inventory.has(id)
         b.tooltip_text=Equipment.definition(id).description
         if active_tab=="Wesen":
             var i=Equipment.IDS.find(id)
             _place("equip_"+id,Rect2(38+(i%2)*332,813+floori(i/2.0)*76,312,66))
+            var d=Equipment.definition(id)
+            var owned=model.profile.inventory.has(id)
+            var tint=GOLD if id==model.profile.equipped else (PURPLE if d.rarity=="epic" else CYAN)
+            var icon=load("res://assets/production/weapons/"+id+".png") if ResourceLoader.exists("res://assets/production/weapons/"+id+".png") else null
+            b.set_item(d.name,"Lv. %d · %s"%[model.profile.inventory[id].level,_rarity(d.rarity)] if owned else "Im Streifzug finden",tint,id==model.profile.equipped,owned,icon)
         elif active_tab=="Beute":
             for i in mini(7,model.profile.loot.size()):
                 var item:Dictionary=model.profile.loot[i]
@@ -183,14 +203,8 @@ func _process(delta: float) -> void:
         update_buttons()
         queue_redraw()
 
-func _panel(r: Rect2, color: Color = Color(0.015, 0.045, 0.09, 0.9), edge: Color = Color(0.28, 0.52, 0.71, 0.45), radius: int = 16) -> void:
-    var s = StyleBoxFlat.new()
-    s.bg_color = color
-    s.border_color = edge
-    s.set_border_width_all(1)
-    s.set_corner_radius_all(radius)
-    s.anti_aliasing = true
-    draw_style_box(s, r)
+func _panel(r: Rect2, _color: Color=Color.WHITE, _edge: Color=Color.WHITE, _radius: int=16, role: String="panel") -> void:
+    draw_style_box(Kit.box(role),r)
 
 func _text(value: String, p: Vector2, sz: int = 20, color: Color = INK, heavy: bool = false, width: float = -1) -> void:
     draw_string(bold if heavy else font, p + Vector2(0, 1), value, HORIZONTAL_ALIGNMENT_LEFT, width, sz, Color(0,0,0,0.8))
@@ -206,12 +220,7 @@ func _icon(id: String, r: Rect2, color: Color = Color.WHITE) -> void:
         draw_texture_rect(icons[id], r, false, color)
 
 func _bar(r: Rect2, ratio: float, color: Color) -> void:
-    _panel(r, Color("#050c17"), Color(0.37,0.52,0.65,0.35), 7)
-    var fill = r.grow(-3)
-    fill.size.x *= clampf(ratio, 0, 1)
-    if fill.size.x > 1:
-        _panel(fill, color.darkened(0.15), color.lightened(0.15), 5)
-        draw_line(fill.position + Vector2(5, 3), fill.position + Vector2(maxf(5, fill.size.x - 5), 3), Color(1,1,1,0.25), 2, true)
+    ResourceBar.paint(self,r,ratio,color)
 
 func _draw() -> void:
     if model == null or _top_fade == null:
@@ -271,7 +280,7 @@ func _draw_combat() -> void:
     _icon("crown", Rect2(554, 108, 29, 29), GOLD if node == 4 else MUTED)
     var boss = model.enemy_definition.kind == "boss"
     var elite = model.enemy_definition.kind == "elite"
-    _panel(Rect2(240, 168, 458, 106), Color(0.01,0.035,0.075,0.94), Color(0.55,0.25,0.3,0.8) if boss else Color(0.28,0.52,0.71,0.55))
+    _panel(Rect2(240, 168, 458, 106), Color(0.01,0.035,0.075,0.94), Color.WHITE,16,"boss" if boss else "panel")
     _icon("crown" if boss else "rock", Rect2(254, 180, 33, 33), GOLD if boss else Color.WHITE)
     _text(model.enemy_definition.name, Vector2(296, 202), 23, INK, true)
     _text("Lv. %d" % model.wave, Vector2(615, 201), 18, MUTED)
@@ -291,12 +300,6 @@ func _draw_combat() -> void:
         _panel(Rect2(293,282,355,32),Color(0.22,0.035,0.035,0.92),Color("#e98f65"),12)
         var cue="Doppelschlag" if model.enemy_definition.pattern=="double" else ("Wuchtschlag" if boss else "Angriff")
         _center("%s in %.1fs"%[cue,maxf(0,model.behavior.deadline-model.clock)],Rect2(293,282,355,32),16,Color("#ffca9b"),true)
-    if toast_until > Time.get_ticks_msec() or toast_until == 0:
-        _panel(Rect2(18, 169, 207, 91), Color(0.02,0.04,0.07,0.87), Color(0.66,0.46,0.15,0.62))
-        _icon("flame", Rect2(28, 184, 20, 27))
-        var title = toast_title if toast_until != 0 else "Wolkgarten"
-        _text(title, Vector2(54, 196), 13, GOLD, true, 166)
-        _text(toast_detail if toast_until != 0 else "Tippen zum Angriff", Vector2(30, 242), 12, MUTED, false, 186)
     draw_texture_rect(_bottom_fade, Rect2(0, controls_top - 90, 720, 330 + 90), false)
     var y = controls_top + 8
     _resource(Rect2(18, y, 248, 58), "heart", "%d / %d"%[model.player_hp,model.player_max_hp], float(model.player_hp)/model.player_max_hp, Color("#36df73"))
@@ -318,41 +321,20 @@ func _resource(r: Rect2, icon: String, value: String, ratio: float, color: Color
     _center(value, Rect2(r.position + Vector2(46, 4), Vector2(r.size.x - 57, 23)), 16, INK, true)
     _bar(Rect2(r.position + Vector2(46, 32), Vector2(r.size.x - 58, 14)), ratio, color)
 
-func _skill(i: int, center: Vector2) -> void:
-    var skill_index=[0,1,3,2][i]
+func _skill(i: int, _center: Vector2) -> void:
     var id=["sky_blade","arcane_eye","guardian_wall","rage_flame"][i]
     var d:Dictionary=model.skills.definitions[id]
-    var locked=model.level<int(d.unlock_level)
-    var cd=model.skills.remaining(id,model.clock)
-    var cost_resource=model.momentum if d.cost_type=="momentum" else model.rage
-    var unaffordable=d.cost_type!="none" and cost_resource<float(d.cost)
-    var r=Rect2(center-Vector2(66,66),Vector2(132,132))
-    draw_texture_rect(orbs[i],r,false,Color(0.57,0.63,0.73) if locked or unaffordable else Color.WHITE)
-    if i==2 and not locked:
-        draw_circle(center,37,Color("#112b50"))
-        _icon("shield",Rect2(center-Vector2(26,29),Vector2(52,58)))
-    if cd>0:
-        var polygon=PackedVector2Array([center])
-        var ratio=clampf(cd/float(d.cooldown),0,1)
-        for j in range(33):
-            var angle=-PI/2+TAU*ratio*j/32.0
-            polygon.append(center+Vector2(cos(angle),sin(angle))*55)
-        draw_colored_polygon(polygon,Color(0,0.015,0.06,0.72))
-        draw_arc(center,58,-PI/2,-PI/2+TAU*ratio,64,Color(0.8,0.94,1,0.8),2,true)
-        _center("%.1f"%cd,Rect2(center-Vector2(45,20),Vector2(90,40)),28,INK,true)
-    _center(["Klinge","Arkanblick","Wächterwall","Zornesflamme"][i],Rect2(center.x-80,center.y+66,160,22),14,MUTED if locked else INK,true)
-    if cd<=0:
-        _panel(Rect2(center.x-43,center.y+39,86,23),Color("#061122"),Color(0.4,0.55,0.7,0.7),10)
-        var label="Lv. %d"%d.unlock_level if locked else ("BEREIT" if d.cost_type=="none" else "%d %s"%[d.cost,"M" if d.cost_type=="momentum" else "Z"])
-        _center(label,Rect2(center.x-43,center.y+39,86,23),12,MUTED if locked or unaffordable else CYAN,true)
+    var button=buttons[["skill0","skill1","locked","skill2"][i]]
+    var resource=model.momentum if d.cost_type=="momentum" else model.rage
+    button.configure(orbs[i],d,model.skills.remaining(id,model.clock),model.level<int(d.unlock_level),d.cost_type=="none" or resource>=float(d.cost),["Klinge","Arkanblick","Wächterwall","Zornesflamme"][i])
 
 func _draw_result() -> void:
     draw_rect(Rect2(0,96,720,logical_height-192),Color(0.01,0.025,0.055,0.68))
-    _panel(Rect2(112,365,496,300),Color("#091a30"),GOLD if model.outcome=="victory" else Color("#ff6b72"),22)
+    _panel(Rect2(112,365,496,300),Color("#091a30"),GOLD if model.outcome=="victory" else Color("#ff6b72"),22,"boss_ornate")
     _icon("crown" if model.outcome=="victory" else "heart",Rect2(327,385,66,66))
     _center("STREIFZUG GESCHAFFT" if model.outcome=="victory" else "BESIEGT",Rect2(120,461,480,42),25,GOLD if model.outcome=="victory" else INK,true)
     _center("Gold, XP und Beute bleiben erhalten.",Rect2(120,512,480,32),17,MUTED)
-    _panel(Rect2(170,570,380,62),Color("#133d5c"),CYAN)
+    _panel(Rect2(170,570,380,62),Color.WHITE,CYAN,16,"primary")
     _center("Nächster Streifzug" if model.outcome=="victory" else "Erneut versuchen",Rect2(170,570,380,62),20,INK,true)
 
 func _draw_nav() -> void:
@@ -364,7 +346,7 @@ func _draw_nav() -> void:
         var active = tab == active_tab
         var x = i * 144
         if active:
-            _panel(Rect2(x + 6, y + 1, 132, 89), Color(0.30,0.075,0.55,0.48), Color(0.65,0.3,1,0.95), 14)
+            _panel(Rect2(x + 6, y + 1, 132, 89), Color(0.30,0.075,0.55,0.48), Color(0.65,0.3,1,0.95), 14,"hero")
             draw_line(Vector2(x + 28,y + 1), Vector2(x + 116,y + 1), PURPLE, 3, true)
         _icon(["swords", "map", "paw", "chest", "grid"][i], Rect2(x + 53, y + 13, 38, 38), INK if active else MUTED)
         _center(tab, Rect2(x, y + 57, 144, 26), 17, INK if active else MUTED, active)
@@ -386,7 +368,7 @@ func _draw_shell() -> void:
                 if i == 0:
                     _icon("star", Rect2(615, y + 24, 29, 29), GOLD)
         "Wesen":
-            _panel(Rect2(38,177,644,440),Color(0.015,0.055,0.11,0.92))
+            _panel(Rect2(38,177,644,440),Color.WHITE,Color.WHITE,16,"hero_ornate")
             _center("Realmwächter · Lv. %d"%model.level,Rect2(38,191,644,38),25,INK,true)
             _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
             _center(Equipment.definition(model.profile.equipped).description,Rect2(50,269,620,30),15,MUTED)
@@ -400,16 +382,6 @@ func _draw_shell() -> void:
             _panel(Rect2(368,733,314,58),Color("#18233b"),PURPLE.darkened(0.4))
             _center("Umhang: %s"%("Smaragd" if model.profile.look=="emerald" else "Original"),Rect2(38,733,310,58),17,INK,true)
             _center("Aura: %s"%("Lv. 3" if model.level<3 else ("An" if model.profile.aura else "Aus")),Rect2(368,733,314,58),17,MUTED if model.level<3 else CYAN,true)
-            for i in 5:
-                var id:String=Equipment.IDS[i]
-                var owned=model.profile.inventory.has(id)
-                var d=Equipment.definition(id)
-                var r=Rect2(38+(i%2)*332,813+floori(i/2.0)*76,312,66)
-                var color=GOLD if id==model.profile.equipped else (PURPLE if d.rarity=="epic" else CYAN)
-                _panel(r,Color(0.025,0.07,0.13,0.95),color if owned else Color("#33445b"))
-                _icon("swords" if owned else "lock",Rect2(r.position+Vector2(12,17),Vector2(29,29)),color if owned else MUTED)
-                _text(d.name, r.position+Vector2(50,27),16,INK if owned else MUTED,true)
-                _text("Lv. %d · %s"%[model.profile.inventory[id].level,_rarity(d.rarity)] if owned else "Im Streifzug finden",r.position+Vector2(50,50),13,color if owned else MUTED)
         "Beute":
             _panel(Rect2(38,178,644,68))
             _icon("gold",Rect2(56,194,33,33))
@@ -436,7 +408,7 @@ func _draw_shell() -> void:
                 _text("Aufgaben" if i == 0 else "Events", Vector2(x + 80, 253), 22, INK, true)
             _panel(Rect2(38, 320, 644, 180))
             _text("REALM ALLIANCE", Vector2(61, 361), 24, INK, true)
-            _text("Wolkgarten · Combat 0.6.2.1", Vector2(61, 402), 18, MUTED)
+            _text("Wolkgarten · Combat 0.6.3", Vector2(61, 402), 18, MUTED)
             _text("Spielstand wird lokal gespeichert.", Vector2(61, 447), 18, MUTED)
             _text("Weitere Bereiche werden nach und nach geöffnet.", Vector2(61, 479), 17, MUTED)
             for i in 2:
@@ -453,9 +425,5 @@ func _draw_shell() -> void:
                 _text("Spielstand geschützt",Vector2(61,566),23,GOLD,true)
                 _text("Die Originaldatei bleibt unverändert.",Vector2(61,607),18,INK)
                 _text("Diese Sitzung wird nicht gespeichert.",Vector2(61,642),18,MUTED)
-    if toast_until > Time.get_ticks_msec():
-        var toast_y=maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265
-        _panel(Rect2(38,toast_y,644,40),Color("#102139"),CYAN.darkened(0.5))
-        _center(toast_title+" · "+toast_detail,Rect2(48,toast_y,624,40),14,INK)
     _panel(Rect2(38, logical_height - 188, 644, 62), Color("#13314c"), CYAN.darkened(0.4))
     _center("Zurück zum Kampf", Rect2(38, logical_height - 188, 644, 62), 20, INK, true)

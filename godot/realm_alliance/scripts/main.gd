@@ -68,7 +68,7 @@ func _ready() -> void:
         var d:Dictionary=model.pending.definition
         hero.play_action(str(d.id),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup))
         hero.sync_clock(model.clock)
-    print("REALM 6.2.1: canonical hero, weapons and survival systems loaded")
+    print("REALM 6.3: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -197,8 +197,8 @@ func _layout() -> void:
     hud.configure(metrics["logical_height"])
     if _production_enabled:
         var tall = clampf((float(metrics["logical_height"]) - 1280.0) / 280.0, 0.0, 1.0)
-        hero.scale = Vector2.ONE * lerpf(0.62, 0.70, tall)
-        enemy.set_layout_scale(lerpf(0.74, 0.87, tall) if model.enemy_definition.visual == "golem" else 0.90)
+        hero.scale = Vector2.ONE * lerpf(0.64, 0.82, tall)
+        enemy.set_layout_scale(lerpf(0.72, 0.93, tall) if model.enemy_definition.visual == "golem" else 0.90)
 
 func _on_hud_action(id: String) -> void:
     if id=="sound":
@@ -310,7 +310,7 @@ func _consume_events() -> void:
                 if _production_enabled:
                     hero.play_action(e.id,float(e.get("windup",0.28)),float(e.get("recovery",0.35)),float(e.get("started_at",model.clock)))
                     vfx.sync(model,hero.position,enemy.position)
-                    vfx.action(e)
+                    vfx.action(e,hero._socket if _production_enabled else null)
                     audio.play({"arcane_eye":"arcane","rage_flame":"fire","guardian_wall":"shield"}.get(e.id,"swing"))
                 else: hero.play_attack(e.id!="basic")
             "telegraph":
@@ -415,7 +415,7 @@ func _exit_tree() -> void:
 func _confirm_import(data: Dictionary) -> void:
     _pending_import=data
     var candidate=CombatModel.new(data)
-    var dialog=ConfirmationDialog.new()
+    var dialog=preload("res://scripts/ui/modal_dialog.gd").new()
     dialog.title="Spielstand übernehmen?"
     dialog.dialog_text="Geladen: Level %d · %d Gold.\nDein vorheriger Stand wird vor dem Import gesichert."%[candidate.level,candidate.gold]
     dialog.ok_button_text="Übernehmen"

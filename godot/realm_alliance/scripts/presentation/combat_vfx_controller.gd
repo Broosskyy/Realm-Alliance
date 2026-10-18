@@ -22,15 +22,19 @@ func emit_effect(id: String, at: Vector2, diameter: float=240, lifetime: float=0
     if active.size()>=MAX_EFFECTS:active[0].queue_free()
     var fx=Effect.new();fx.texture=TEX[id];fx.position=at;fx.diameter=diameter;fx.duration=lifetime;fx.kind=kind;fx.intensity=intensity;fx.z_index=layer;add_child(fx)
     return fx
-func action(e: Dictionary) -> void:
+func action(e: Dictionary, weapon_socket: Node2D=null) -> void:
     var id=str(e.id);var duration=maxf(0.08,float(e.get("windup",0.28)))
     match id:
-        "sky_blade":emit_effect("sky_impact",hero_at+Vector2(60,-40),140,duration,"charge",11)
+        "sky_blade":
+            var fx=emit_effect("sky_impact",hero_at+Vector2(60,-40),140,duration,"charge",11)
+            if fx:fx.follow_node=weapon_socket
         "arcane_eye":
             emit_effect("arcane_seal",hero_at,190,duration,"charge",7)
             var fx=emit_effect("arcane_eye",hero_at,95,duration,"projectile",15)
             if fx:fx.origin=hero_at;fx.target=enemy_at
-        "rage_flame":emit_effect("fire_impact",hero_at+Vector2(60,-20),180,duration,"charge",11)
+        "rage_flame":
+            var fx=emit_effect("fire_impact",hero_at+Vector2(60,-20),180,duration,"charge",11)
+            if fx:fx.follow_node=weapon_socket
         "guardian_wall":emit_effect("shield",hero_at,270,0.4,"spawn",17)
         _:emit_effect("sky_slash",hero_at+Vector2(90,0),95,duration,"charge",11)
 func impact(source: String, critical: bool=false) -> void:

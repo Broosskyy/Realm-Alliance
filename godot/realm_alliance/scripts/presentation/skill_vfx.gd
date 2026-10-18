@@ -8,8 +8,11 @@ var duration: float = 0.5
 var diameter: float = 240
 var intensity: float = 1
 var target: Vector2 = Vector2.ZERO
+var follow_node: Node2D
+var follow_offset: Vector2=Vector2(60,0)
 var origin: Vector2 = Vector2.ZERO
 func _process(delta: float) -> void:
+    if is_instance_valid(follow_node):global_position=follow_node.to_global(follow_offset)
     age+=delta
     if age>=duration:queue_free()
     else:queue_redraw()

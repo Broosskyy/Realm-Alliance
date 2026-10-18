@@ -5,6 +5,10 @@ var enabled: bool = true
 var voices: Array[AudioStreamPlayer] = []
 var sounds: Dictionary = {}
 var cursor: int = 0
+func _exit_tree() -> void:
+    for voice in voices:
+        voice.stop()
+        voice.stream=null
 func _ready() -> void:
     for id in ["swing","impact","fire","arcane","shield","reward"]:
         sounds[id]=load("res://assets/audio/"+id+".wav")
