@@ -88,6 +88,16 @@ func run() -> void:
     await process_frame
     for v in [Vector2i(360,800),Vector2i(720,1280),Vector2i(720,1560),Vector2i(1280,720)]:
         root.size=v;await process_frame;scene._layout()
+        scene._on_hud_action("Wesen");scene._refresh();await process_frame
+        var physical_scale=root.get_final_transform().get_scale().x*scene.hud.scale.x
+        check(scene.hud.buttons.talents.size.x*physical_scale>=44 and scene.hud.buttons.talents.size.y*physical_scale>=44,"talent target remains mobile-sized "+str(v))
+        var slots=["gear_astral_plate","gear_eclipse_plate","gear_sentinel_circlet","gear_sky_wings","evolve","talents"]
+        var overlap=false
+        for i in slots.size():
+            for j in range(i+1,slots.size()):
+                var a=scene.hud.buttons[slots[i]];var b=scene.hud.buttons[slots[j]]
+                if Rect2(a.position,a.size).intersects(Rect2(b.position,b.size)):overlap=true
+        check(not overlap,"hero equipment and talent controls cannot overlap "+str(v))
         for tab in ["Abenteuer","Beute"]:
             scene._on_hud_action(tab);scene._refresh();await process_frame
             var scale=root.get_final_transform().get_scale().x*scene.hud.scale.x

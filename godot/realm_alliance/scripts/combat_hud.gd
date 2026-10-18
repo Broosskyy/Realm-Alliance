@@ -64,7 +64,7 @@ func _ready() -> void:
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
     for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents"]:
-        var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id=="evolve" else FantasyButton.new())
+        var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id in ["evolve","talents"] else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
         b.tooltip_text = _tooltip(id)
@@ -168,13 +168,13 @@ func update_buttons() -> void:
         var owned=data.owned.has(id)
         b.set_item(["Stern","Eklipse","Diadem","Flügel"][index],"",PURPLE if d.rarity=="epic" else CYAN,str(data.equipped.get(d.slot,""))==id,owned,load("res://assets/equipment/"+id+".png"))
         b.tooltip_text=d.name+" · Details / anlegen / aufwerten"
-        b.position=Vector2(62,345+index*104) if index<2 else Vector2(566,300+(index-2)*104)
+        b.position=Vector2(62,300+index*104) if index<2 else Vector2(566,300+(index-2)*104)
         b.size=Vector2(92,92)
     buttons.talents.visible=active_tab=="Wesen"
     _place("talents",Rect2(62,508,92,92))
     buttons.talents.tooltip_text="Talente · %d Punkte"%model.Advancement.available_points(model.profile)
-    buttons.talents.text="Talent"
-    buttons.talents.add_theme_font_size_override("font_size",18)
+    buttons.talents.compact=true;buttons.talents.z_index=30
+    buttons.talents.set_item("Talent","",CYAN,model.Advancement.available_points(model.profile)>0,true,icons.star)
     var evolution_button=buttons.evolve
     evolution_button.visible=active_tab=="Wesen";evolution_button.compact=true
     evolution_button.z_index=30
