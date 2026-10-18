@@ -1,25 +1,44 @@
-# Work 6.2.1 — Combat presentation
+# REALM ALLIANCE — Work 6.2.1
 
-Base: c8377a2 (Work 6.2). New branch: feature/work-6-2-1-full-game-experience. No main or Game Factory writes.
+Meilenstein A abgeschlossen; bereit zur visuellen Prüfung auf Android. Runtime: `35fad2e44c2ab466bce89097e50bd23c719450b8`. Branch: `feature/work-6-2-1-full-game-experience`. Keine Änderungen an main oder Game Factory.
 
-Implemented: absolute blade/finger draw layers with hierarchy-aware UI preview layers; all five blades retain the same authored grip pivot across six canonical poses. AnimationTimeline samples actual action start/windup/recovery values from CombatSession; impacts remain gameplay-driven. Recoil animates motion offsets, preserving layout anchors. Enemy windup precedes the gameplay impact; hit reactions no longer cancel telegraph timing. Heavy boss windups are distinguishable from normal strikes.
+## Implementiert
+- Alle fünf separaten Schwerter nutzen poseabhängige Hand-Sockets und feste Welt-Layer. Finger verdecken den Griff; der gesamte Gegner verdeckt die Waffe beim Schlag nicht mehr. Charaktervorschau berücksichtigt ihren eigenen UI-Layer.
+- AnimationTimeline verwendet Start, Windup und Recovery der echten CombatSession-Aktion. Vier unterscheidbare Skill-Sequenzen mit Aufladen/Casting, Übertragung/Slash, Einschlag und Nachglühen. Die sechs vorhandenen kanonischen Body-Posen bleiben die Bildbasis; es wird kein neues Skelett-Rig behauptet.
+- Acht neue transparente VFX-Texturen, einzeln katalogisiert. Markierung, Brennen und Schild folgen echten Zuständen. Crit-, Tick- und Kontereffekte folgen ausschließlich ihren Gameplay-Ereignissen. Spawn, Tod, Boss-Auftritt, Level-up und Rewards erhalten eigenes Feedback.
+- Gegner holen vor dem berechneten Treffer aus. Hit-Reaktionen verändern keine Layout-Anker und brechen die Vorwarnung nicht mehr ab. Schwere Boss-Vorwarnungen sind gesondert markiert.
+- Kurzer Hitstop und kontrollierter Shake; maximal 24 transiente Effekte. Sechs erste synthetische Kurzsounds, vier gepoolte Audiostimmen. Klang und Effektintensität unter Mehr einstellbar. Menüs pausieren Gameplay und gebundene Darstellung.
+- Web-Speicherung schützt nun auch schnelle Neuladungen: synchron bestätigtes lokales Journal plus bestehende atomare Dateien/Backups. Neuester unabhängig validierter lokaler Commit wird geladen. Journal- und Dateisicherungen vor Import; neuere Save-Versionen bleiben geschützt. Diese lokale Reihenfolge ist keine Serverautorität.
 
-CombatVFXController uses eight new transparent, separately catalogued textures. Four skills have charge/cast/transfer/impact/recovery presentations. Mark, burn and shield track actual model states; burn tick/counter/crit effects only follow corresponding events. Spawn, death, reward and level-up effects included. Capacity: 24 transient effects plus one persistent status renderer. Optional effects can be reduced or disabled. Audio has four pooled voices and six project-authored short PCM sounds; sound can be disabled. Preferences are separate from gameplay saves.
+## Prüfung
+[CI 39111488584](https://github.com/Broosskyy/Realm-Alliance/actions/runs/39111488584): **387/387 Prüfungen**, Web und Android erfolgreich exportiert.
 
-Validation so far: existing 283 checks pass; new presentation suite 99/99 passes, including native Godot OpenGL/Mesa rendering. Web/Android CI run 39103254247 passed for runtime 47201f7. Final browser pass and follow-up menu-pause/hitstop export pending. Native captures cover 360x800, 720x1280, 720x1560 and 1280x720; controlled level-3 boss fixtures use the actual catalog HP (330) and model events, not painted damage. Screenshots are lossless WebP engine captures.
+| Suite | Prüfungen |
+|---|---:|
+| Combat / Layout / Visual Contract | 20 / 32 / 11 |
+| Fallback-/Produktionsassets | 46 / 22 |
+| Gameplay-Systeme | 63 |
+| Save / Migration / Journal-Auswahl | 26 |
+| Tatsächliche Combat-Szene / Navigation | 67 |
+| Waffen-Layer / Animation / VFX | 100 |
 
-Assets: assets/vfx/manifest.json and assets/audio/manifest.json. VFX generated with built-in OpenAI image generation using the supplied combat master as style reference; equal-cell extraction and common transparent padding. Source prompt: create eight isolated blue slash/impact, purple eye/seal, orange slash/impact, cyan shield and gold reward textures on genuine alpha, no characters/text/UI baked in. Audio is deterministic project-authored PCM, seed 621; no third-party recordings.
+Finaler Web-Gate bestanden: drei aufeinanderfolgende V1-Importe mit schneller Neuladung behalten Gold, Waffe und Upgrade; kompletter Fünf-Gegner-Run bis Boss-Sieg; fünf Waffen; Loot anlegen; Umhang/Aura; Einstellungen; Touch und Desktop-Pointer; keine erkannten Script-/Page-Fehler. Frühere Reload-Fehler sind dokumentiert und wurden vor Übergabe behoben.
 
-Scope: A is combat presentation. Premium shared UI/layout is B, expanded authored armor/head/back/evolution is C, world/inventory/quests/content is D. Those milestones must pass their own gates before completion is claimed. Native Android device performance and touch validation require a real device and are not inferred from exports.
+Echte Godot-Aufnahmen: 360x800, 720x1280, 720x1560, 1280x720. Kontrollierte Level-3-Boss-Fixtures verwenden Katalog-HP und echte Modellereignisse; kein gemaltes Trefferfeedback. Screenshots sind verlustfreie WebP-Aufnahmen.
 
-Menu navigation now pauses bound actor tweens and VFX processing together with simulation. Hitstop consumes exactly its duration rather than discarding an entire slow frame.
+Performance: Chromium 151/SwiftShader auf gehostetem Linux, 10,03 s nach dem Run: 200 rAF-Frames, Median 50 ms, p95 83,3 ms. Diese UI-Messung im Software-Renderer ist kein belastbarer Combat- oder Android-Gerätebenchmark. 60 FPS auf geeigneten Smartphones bleiben zu messen. Neues APK noch nicht auf einem physischen Gerät geprüft.
 
-![Blue impact](screenshots/720x1560-sky_blade.webp)
-![Fire impact](screenshots/720x1560-rage_flame.webp)
-![Arcane cast](screenshots/720x1560-arcane_eye.webp)
-![Defense](screenshots/720x1560-guardian_wall.webp)
+## Assets und Builds
+`assets/vfx/manifest.json`: acht mit eingebauter OpenAI-Bilderzeugung erstellte und als Alpha-Einzeltexturen extrahierte Effekte. Prompt: isolierte blaue Slashes/Impacts, violettes Auge/Siegel, feurige Slashes/Impacts, cyanfarbener Schild, goldenes Belohnungslicht; echter Alpha, keine Figuren, Texte oder eingebrannte UI. Combat-Master nur als Stilreferenz.
 
-## Browser regression found during final gate
-The full five-encounter Web run, all five drops, equipment/cosmetics and import succeeded. A rapid reload after import could restore the previous IndexedDB save. The atomic temp-file close could schedule persistence before the subsequent rename. SaveStore now requests JavaScriptBridge.force_fs_sync() after successful atomic rename, preserving the existing backup/migration scheme. Final repeated rapid-reload test is required on the new export; the earlier browser gate is not claimed fully green. Defensive shield presentation also retains its brace during its immediate cast/recovery.
+`assets/audio/manifest.json`: deterministisch projektseitig erzeugtes PCM, Seed 621; keine fremden Aufnahmen.
 
-Repeated rapid-reload regression showed force_fs_sync alone was insufficient (one of three imports reloaded an older value). Web saves therefore also use a synchronous localStorage journal, acknowledged on commit. The most recent independently validated local revision wins over an older IndexedDB file; this local ordering is not online authority. Original journal data is independently backed up before explicit import; future schema versions in either store block automatic writes. Storage denial/quota failures are reported as save failures. Native saves keep their existing atomic file path.
+APK 0.6.2.1 / Code 621, `com.avenor.realmalliance.preview`, gleiche stabile Entwicklungssignatur wie Work 6.2 Preview. Aktualisiert diese Preview; alte separate Nicht-Preview-App installiert lassen. Web-ZIP über HTTP(S) bereitstellen.
+
+## Nächste Meilensteine
+B / Work 6.3: Premium-UI-Kit, wiederverwendbare Komponenten und Komposition. C / 6.4: zusätzliche Outfit-/Equipment-/Evolution-Assets und Charakterseite. D / 6.5: Weltkarte, Inventar, Quests, Regionen und Gegner. Diese Erweiterungen sind hier noch nicht als fertig gemeldet. Große Leerflächen und die bestehende Panelgestaltung gehören zu B.
+
+![Himmelsklinge](screenshots/720x1560-sky_blade.webp)
+![Zornesflamme](screenshots/720x1560-rage_flame.webp)
+![Arkanblick](screenshots/720x1560-arcane_eye.webp)
+![Wächterwall](screenshots/720x1560-guardian_wall.webp)

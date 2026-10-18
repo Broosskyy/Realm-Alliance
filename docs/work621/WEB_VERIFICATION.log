@@ -1,0 +1,19 @@
+REALM 6.2.1: canonical hero, weapons and survival systems loaded
+REALM 6.2.1: canonical hero, weapons and survival systems loaded
+PASS rapid reload 0 777
+REALM 6.2.1: canonical hero, weapons and survival systems loaded
+PASS rapid reload 1 778
+REALM 6.2.1: canonical hero, weapons and survival systems loaded
+PASS rapid reload 2 779
+Run 0 { modal: false, border: [ 245, 240, 172 ] }
+Run 1 { modal: false, border: [ 245, 240, 172 ] }
+Run 2 { modal: false, border: [ 245, 240, 172 ] }
+Run 3 { modal: false, border: [ 245, 240, 172 ] }
+Run 4 { modal: false, border: [ 245, 240, 172 ] }
+Run 5 { modal: false, border: [ 245, 240, 172 ] }
+Run 6 { modal: false, border: [ 245, 240, 172 ] }
+Run 7 { modal: false, border: [ 245, 240, 172 ] }
+Run 8 { modal: true, border: [ 255, 209, 107 ] }
+REALM 6.2.1: canonical hero, weapons and survival systems loaded
+Software-rendered browser rAF {"frames":200,"seconds":10.02939999999993,"median_ms":50,"p95_ms":83.30000000000018}
+PASS full browser gate
