@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "browser_version": "155.0.8059.84",
+  "fresh_regions": 2,
+  "kills": 10,
+  "opened_chests": 1,
+  "skill_rank": 2,
+  "rapid_legacy_reloads": 3,
+  "vitality_rank": 1,
+  "starter": "New V2 profile containing only level-1 steel; zero gold/XP/shards/kills",
+  "environment": "Hosted Linux SwiftShader; actual exported Godot Web runtime; touch and desktop inputs. Physical Android not tested."
+}
