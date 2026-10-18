@@ -17,6 +17,10 @@ var _display_scale: Vector2 = Vector2.ONE
 var _base_pos: Vector2 = Vector2.ZERO
 var _animation: Tween
 var _clock: float = 0.0
+var _recoil: Vector2 = Vector2.ZERO
+var _motion: Vector2 = Vector2.ZERO
+var _reaction: Tween
+var _attacking: bool = false
 var _dying: bool = false
 
 func _ready() -> void:
@@ -53,20 +57,27 @@ func configure_enemy(d: Dictionary) -> void:
         _frames = {"idle":load(ROOT+"golem_idle_ready.png"),"attack":load(ROOT+"golem_attack.png"),"hit":load(ROOT+"golem_hit_damage.png"),"defeated":load(ROOT+"golem_defeated.png")}
     _set_pose("idle")
 
-func play_telegraph() -> void:
-    if not _dying:
-        _sprite.modulate = Color("#ffce94")
+func play_telegraph(duration: float=0.85, pattern: String="single") -> void:
+    if _dying:return
+    if _animation and _animation.is_running():_animation.kill()
+    _attacking=true
+    _sprite.modulate=Color("#ff9487") if pattern=="heavy" else Color("#ffce94")
+    _animation=create_tween()
+    _animation.tween_property(self,"_motion",Vector2(12,0),duration*0.65).set_trans(Tween.TRANS_SINE)
+    _animation.tween_callback(func():_set_pose("attack"))
+    _animation.tween_property(self,"_motion",Vector2(-28,0),duration*0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 func play_attack() -> void:
-    if _dying:
-        return
-    if _animation and _animation.is_running(): _animation.kill()
+    if _dying:return
+    if _animation and _animation.is_running():_animation.kill()
+    _attacking=true
     _set_pose("attack")
     _sprite.modulate=Color.WHITE
+    _motion=Vector2(-28,0)
     _animation=create_tween()
-    _animation.tween_property(self,"position:x",_base_pos.x-24,0.14)
-    _animation.tween_property(self,"position:x",_base_pos.x,0.21)
-    _animation.tween_callback(_return_idle)
+    _animation.tween_interval(0.06)
+    _animation.tween_property(self,"_motion",Vector2.ZERO,0.24).set_trans(Tween.TRANS_SINE)
+    _animation.tween_callback(func():_attacking=false;_return_idle())
 
 func set_layout_scale(value: float) -> void:
     _base_scale = Vector2.ONE * value
@@ -79,6 +90,10 @@ func show_wave(number: int) -> void:
         _animation.kill()
     wave = number
     _dying = false
+    _attacking=false
+    _motion=Vector2.ZERO
+    _recoil=Vector2.ZERO
+    if _reaction and _reaction.is_running():_reaction.kill()
     health_ratio = 1.0
     _display_scale = _base_scale * (1.09 if _kind == "boss" or wave % 5 == 0 else 1.0)
     scale = _display_scale
@@ -93,6 +108,7 @@ func set_health(current_hp: int, maximum_hp: int) -> void:
     queue_redraw()
 
 func _process(delta: float) -> void:
+    if _sprite:_sprite.position=-_ground+_motion+_recoil
     if _dying or (_animation != null and _animation.is_running()):
         return
     _clock += delta
@@ -111,26 +127,26 @@ func _draw() -> void:
     draw_rect(Rect2(x - 5.0, y - 5.0, width + 10.0, 21.0), Color("#d5a870") if boss else Color("#aec2c0"), false, 2.0)
 
 func play_hit() -> void:
-    if _dying or _sprite == null:
-        return
-    if _animation != null and _animation.is_running():
-        _animation.kill()
-    _set_pose("hit")
-    _sprite.modulate = Color("#fff1d7")
-    _animation = create_tween()
-    _animation.tween_property(self, "position:x", _base_pos.x + 10.0, 0.08)
-    _animation.tween_property(self, "position:x", _base_pos.x, 0.13)
-    _animation.parallel().tween_property(_sprite, "modulate", Color.WHITE, 0.15)
-    _animation.tween_callback(_return_idle)
+    if _dying or _sprite==null:return
+    if _reaction and _reaction.is_running():_reaction.kill()
+    if not _attacking:_set_pose("hit")
+    _sprite.modulate=Color("#fff1d7")
+    _reaction=create_tween()
+    _reaction.tween_property(self,"_recoil",Vector2(12,0),0.04)
+    _reaction.tween_property(self,"_recoil",Vector2.ZERO,0.16)
+    _reaction.parallel().tween_property(_sprite,"modulate",Color.WHITE,0.15)
+    _reaction.tween_callback(_return_idle)
 
 func _return_idle() -> void:
-    if not _dying:
+    if not _dying and not _attacking:
         _set_pose("idle")
 
 func play_death() -> void:
     if _animation != null and _animation.is_running():
         _animation.kill()
     _dying = true
+    _attacking=false
+    if _reaction and _reaction.is_running():_reaction.kill()
     _set_pose("defeated")
     _sprite.modulate = Color.WHITE
     _animation = create_tween()

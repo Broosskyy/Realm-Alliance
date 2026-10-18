@@ -137,7 +137,7 @@ func request_action(id: String = "basic") -> bool:
     d.weapon_trait = Equipment.definition(profile.equipped).trait
     pending = {"definition":d,"hit_at":clock + float(d.windup)}
     busy_until = clock + float(d.windup) + float(d.recovery)
-    events.append({"type":"hero_action","id":id})
+    events.append({"type":"hero_action","id":id,"started_at":clock,"windup":d.windup,"recovery":d.recovery})
     if d.effect == "shield":
         hero_status.apply("shield", clock, float(d.duration), {"amount":int(player_max_hp * float(d.absorb_fraction)),"counter":true,"counter_damage":int(hero_damage() * float(d.counter_multiplier))})
         pending.clear()

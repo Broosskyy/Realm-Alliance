@@ -19,6 +19,8 @@ const Progress = preload("res://scripts/systems/player_progress.gd")
 const Equipment = preload("res://scripts/systems/equipment.gd")
 const HeroPreview = preload("res://scripts/production_hero.gd")
 var preview
+var sound_enabled: bool = true
+var effect_level: int = 0
 var hit_flash: float = 0.0
 var model
 var auto_enabled = true
@@ -52,7 +54,7 @@ func _ready() -> void:
         portrait.region = Rect2(310, 25, 230, 220)
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet"]:
         var b = Button.new()
         b.name = "Action_" + id
         b.text = ""
@@ -107,6 +109,8 @@ func configure(height: float) -> void:
         _place(ids[i], Rect2(34 + i * 174, controls_top + 82, 130, 142))
     for i in 5:
         _place(["Kampf", "Abenteuer", "Wesen", "Beute", "Mehr"][i], Rect2(i * 144 + 4, height - 94, 136, 88))
+    _place("sound",Rect2(38,845,312,62))
+    _place("effects",Rect2(370,845,312,62))
     _place("save_export",Rect2(38,715,312,62))
     _place("save_import",Rect2(370,715,312,62))
     _place("restart", Rect2(170, 570, 380, 62))
@@ -138,7 +142,7 @@ func update_buttons() -> void:
         buttons[id].visible = in_combat
     for id in ["weapon", "upgrade", "look", "aura"]:
         buttons[id].visible = active_tab == "Wesen"
-    for id in ["quests", "events", "save_export", "save_import"]:
+    for id in ["quests", "events", "save_export", "save_import", "sound", "effects"]:
         buttons[id].visible = active_tab == "Mehr"
     buttons["return"].visible = not in_combat
     buttons["restart"].visible = in_combat and model.outcome in ["victory","defeat"]
@@ -432,7 +436,7 @@ func _draw_shell() -> void:
                 _text("Aufgaben" if i == 0 else "Events", Vector2(x + 80, 253), 22, INK, true)
             _panel(Rect2(38, 320, 644, 180))
             _text("REALM ALLIANCE", Vector2(61, 361), 24, INK, true)
-            _text("Wolkgarten · Combat 0.6.2", Vector2(61, 402), 18, MUTED)
+            _text("Wolkgarten · Combat 0.6.2.1", Vector2(61, 402), 18, MUTED)
             _text("Spielstand wird lokal gespeichert.", Vector2(61, 447), 18, MUTED)
             _text("Weitere Bereiche werden nach und nach geöffnet.", Vector2(61, 479), 17, MUTED)
             for i in 2:
@@ -440,6 +444,10 @@ func _draw_shell() -> void:
                 _panel(r,Color("#13314b"),CYAN.darkened(0.4))
                 _center("Stand exportieren" if i==0 else "Stand importieren",r,18,INK,true)
             _center("Android-Preview: separater Spielstand",Rect2(38,790,644,30),16,MUTED)
+            for i in 2:
+                var r=Rect2(38+i*332,845,312,62)
+                _panel(r,Color("#13314b"),CYAN.darkened(0.4))
+                _center(("Klang: "+("An" if sound_enabled else "Aus")) if i==0 else ("Effekte: "+["Voll","Reduziert","Aus"][effect_level]),r,18,INK,true)
             if model.read_only:
                 _panel(Rect2(38,527,644,150),Color("#362032"),Color("#ffb580"))
                 _text("Spielstand geschützt",Vector2(61,566),23,GOLD,true)

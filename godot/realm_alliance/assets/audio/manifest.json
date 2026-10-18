@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "source": "project-authored procedural PCM, deterministic seed 621, no third-party recording",
+  "assets": [
+    {
+      "id": "swing",
+      "path": "swing.wav",
+      "sha256": "557bf53d4bdba654d99dc6919f06260ebf375f4965b03b8e0960c7dfce155169"
+    },
+    {
+      "id": "impact",
+      "path": "impact.wav",
+      "sha256": "8ff0b0a176ff5cdd520db39591eac4d50818a79377c530490b5df788ec035c37"
+    },
+    {
+      "id": "fire",
+      "path": "fire.wav",
+      "sha256": "27ef6b3d472793ab9796b641c2d48b28656715da1cb670ea58a6aa597ed65795"
+    },
+    {
+      "id": "arcane",
+      "path": "arcane.wav",
+      "sha256": "d387af76cd9119a1e4e681daf65569c0b088c57a8551e8f1b70e2795e7f559a6"
+    },
+    {
+      "id": "shield",
+      "path": "shield.wav",
+      "sha256": "507b5826103ec39a07f21cbb9ac048566686ea5c8026821e94613eca9d657f78"
+    },
+    {
+      "id": "reward",
+      "path": "reward.wav",
+      "sha256": "02b57fe27c65bc4623942f8d172becebb3a0447ac399bee44842343a632e01ac"
+    }
+  ]
+}

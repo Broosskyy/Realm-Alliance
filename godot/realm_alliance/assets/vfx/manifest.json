@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "source": "OpenAI built-in image generation; master combat image as style reference only",
+  "source_sha256": "165c0e27491c4ed25a8c5de73658922c364f39b85adf9100c27d623a4d49661c",
+  "processing": "equal grid extraction, common 448px inner size with 32px transparent margin; preserve alpha",
+  "assets": [
+    {
+      "id": "sky_slash",
+      "path": "sky_slash.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        0,
+        0,
+        443,
+        443
+      ],
+      "sha256": "f65748c94b50b1a792fc6c28fc2586c47cd597e861495289fa68d62e61d77d67"
+    },
+    {
+      "id": "sky_impact",
+      "path": "sky_impact.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        443,
+        0,
+        887,
+        443
+      ],
+      "sha256": "8356fb1cefcf8b638aa5a070d0d504be56e9574e12825470e61c2d08a1c0718d"
+    },
+    {
+      "id": "arcane_eye",
+      "path": "arcane_eye.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        887,
+        0,
+        1330,
+        443
+      ],
+      "sha256": "e87d59a8a363cb7d9e6d97bfc91e98f57a3909cae6ce51c1ef552128cc1d4255"
+    },
+    {
+      "id": "arcane_seal",
+      "path": "arcane_seal.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        1330,
+        0,
+        1774,
+        443
+      ],
+      "sha256": "9d06d3fe7b85fda8aaef6cac2514aa0d2f20f97c14959ac7a1ccc6a715d8322b"
+    },
+    {
+      "id": "fire_slash",
+      "path": "fire_slash.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        0,
+        443,
+        443,
+        887
+      ],
+      "sha256": "847e8395bffdf070666171123d6e1e43407bc8fa417f8f465a1e6df0b3f9fa65"
+    },
+    {
+      "id": "fire_impact",
+      "path": "fire_impact.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        443,
+        443,
+        887,
+        887
+      ],
+      "sha256": "ba0995d55bee56e24f05eb9e2cdf78322cc34b9733b0cbc2319a5c2809e0ba18"
+    },
+    {
+      "id": "shield",
+      "path": "shield.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        887,
+        443,
+        1330,
+        887
+      ],
+      "sha256": "5f43968f455d8a4861dfc929657395b1d0d17d4e6e21b5cab6dd8bbe70e219b4"
+    },
+    {
+      "id": "reward",
+      "path": "reward.png",
+      "size": [
+        512,
+        512
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "source_cell": [
+        1330,
+        443,
+        1774,
+        887
+      ],
+      "sha256": "33f48bfccd36e9f99bad4799e2bba371f69e6f0fd018e3d372cfc3a438a6ddcb"
+    }
+  ]
+}

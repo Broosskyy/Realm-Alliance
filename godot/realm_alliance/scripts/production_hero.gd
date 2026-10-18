@@ -6,6 +6,8 @@ class_name RAProductionHero
 signal impact
 signal action_finished
 
+const Timeline = preload("res://scripts/presentation/animation_timeline.gd")
+const Definitions = preload("res://scripts/systems/skill_definition.gd")
 const Gate = preload("res://scripts/production_art_gate.gd")
 const PIVOT: Vector2 = Vector2(320.0, 488.0)
 const BLADE_GRIP: Vector2 = Vector2(188.0, 193.0)
@@ -41,6 +43,15 @@ var _dead: bool = false
 var _look: String = "canonical"
 var _palette: ShaderMaterial
 var aura
+var external_clock: bool = false
+var _action_id: String = "basic"
+var _action_elapsed: float = 0
+var _action_start: float = 0
+var _windup: float = 0.28
+var _recovery: float = 0.35
+var _impacted: bool = false
+var _recoil: Vector2 = Vector2.ZERO
+var _grip: Sprite2D
 const Aura = preload("res://scripts/hero_aura.gd")
 const VISUAL_SOCKETS = {
     "idle": {"chest":Vector2(427,296),"head":Vector2(424,182),"back":Vector2(349,266)},
@@ -76,6 +87,10 @@ func _ready() -> void:
     _art.add_child(aura)
     _socket = Node2D.new()
     _socket.name = "RightHandSocket"
+    # Absolute world layers: enemy 3, hero 4, blade 12, fingers 13, impact 16.
+    # The hand can cover its grip while the sword stays in front of an overlapping enemy.
+    _socket.z_as_relative = false
+    _socket.z_index = 12
     _art.add_child(_socket)
     _weapon = Sprite2D.new()
     _weapon.name = "ReplaceableSword"
@@ -87,6 +102,13 @@ func _ready() -> void:
         _poses[state] = load(Gate.ROOT + "hero/" + state + ".png")
     for name in Gate.WEAPONS:
         _weapons.append(load(Gate.ROOT + "weapons/" + name + ".png"))
+    _grip=Sprite2D.new()
+    _grip.name="GripOccluder"
+    _grip.region_enabled=true
+    _grip.z_as_relative=false
+    _grip.z_index=13
+    _grip.material=_palette
+    _art.add_child(_grip)
     _set_pose("idle")
     equip_weapon(_selected)
     set_look(_look, false)
@@ -99,16 +121,48 @@ func _set_pose(name: String) -> void:
     _body.position = -PIVOT
     _socket.position = HANDS[name] - PIVOT
     _socket.rotation_degrees = ANGLES[name]
-    _socket.z_index = -1 if name in ["idle", "ready", "windup"] else 3
+    _socket.z_index = _world_layer()+8
+    if _grip:
+        _grip.z_index=_world_layer()+9
+        _grip.texture=_body.texture
+        _grip.region_rect=Rect2(HANDS[name]-Vector2(10,10),Vector2(20,20))
+        _grip.position=HANDS[name]-PIVOT
     for id in layer_sockets:
         var anchor: Vector2 = VISUAL_SOCKETS[name].get(id,VISUAL_SOCKETS[name].get("back",PIVOT))
         layer_sockets[id].position = anchor - PIVOT
 
+func _world_layer() -> int:
+    var value=0
+    var item:CanvasItem=self
+    while item!=null:
+        value+=item.z_index
+        if not item.z_as_relative:break
+        item=item.get_parent() as CanvasItem
+    return value
+
 func _process(delta: float) -> void:
-    if _busy or _dead or _art == null:
-        return
-    _clock += delta
-    _art.position.y = sin(_clock * 2.6) * 2.0
+    if _dead or _art == null:return
+    _clock+=delta
+    if _busy:
+        if not external_clock:
+            _action_elapsed+=delta
+            _sample_action()
+    else:
+        _art.position=_recoil+Vector2(0,sin(_clock*2.6)*2)
+
+func sync_clock(value: float) -> void:
+    if _busy:
+        _action_elapsed=maxf(0,value-_action_start)
+        _sample_action()
+
+func _sample_action() -> void:
+    var frame=Timeline.sample(_action_id,_action_elapsed,_windup,_recovery)
+    if frame.pose!=_pose:_set_pose(frame.pose)
+    _art.position=frame.offset+_recoil
+    if _pose=="windup":_socket.rotation_degrees=ANGLES[_pose]-12*(1-clampf(_action_elapsed/maxf(_windup,0.01),0,1))
+    if not _impacted and _action_elapsed>=_windup:
+        _impacted=true;impact.emit()
+    if frame.done:_finish_attack()
 
 func equip_weapon(index: int) -> void:
     _selected = clampi(index, 0, _weapons.size() - 1)
@@ -134,38 +188,15 @@ func set_shield(active: bool, ratio: float = 1.0) -> void:
 func play_attack(is_skill: bool = false) -> bool:
     return play_action("sky_blade" if is_skill else "basic")
 
-func play_action(id: String) -> bool:
-    if _busy or _dead or _art == null:
-        return false
-    _busy = true
-    _art.position = Vector2.ZERO
-    _set_pose("ready")
-    _action = create_tween()
-    match id:
-        "arcane_eye", "guardian_wall":
-            _action.tween_property(_art,"position:y",-8.0,0.14)
-            _action.tween_interval(0.10 if id == "arcane_eye" else 0.01)
-            _action.tween_callback(func(): impact.emit())
-            _action.tween_property(_art,"position",Vector2.ZERO,0.27 if id == "arcane_eye" else 0.01)
-        "rage_flame":
-            _set_pose("windup")
-            _action.tween_property(_art,"position",Vector2(-8,-12),0.28)
-            _action.tween_callback(func(): _set_pose("attack_contact"))
-            _action.tween_property(_art,"position",Vector2(24,0),0.14)
-            _action.tween_callback(func(): impact.emit())
-            _action.tween_callback(func(): _set_pose("recovery"))
-            _action.tween_property(_art,"position",Vector2.ZERO,0.32)
-        _:
-            _action.tween_interval(0.04)
-            _action.tween_callback(func(): _set_pose("windup"))
-            _action.tween_property(_art,"position:x",-14.0,0.12)
-            _action.tween_callback(func(): _set_pose("attack_contact"))
-            _action.tween_property(_art,"position:x",46.0 if id == "sky_blade" else 24.0,0.12)
-            _action.tween_callback(func(): impact.emit())
-            _action.tween_interval(0.04)
-            _action.tween_callback(func(): _set_pose("recovery"))
-            _action.tween_property(_art,"position",Vector2.ZERO,0.28)
-    _action.tween_callback(_finish_attack)
+func play_action(id: String, windup: float=-1, recovery: float=-1, started_at: float=-1) -> bool:
+    if _dead or _art==null:return false
+    if _busy and (started_at<0 or started_at<_action_start+_windup+_recovery-0.001):return false
+    var d:Dictionary=Definitions.all().get(id,{}) if id!="basic" else {"windup":0.28,"recovery":0.35}
+    _action_id=id;_action_elapsed=0;_action_start=maxf(0,started_at)
+    _windup=float(d.get("windup",0.28)) if windup<0 else windup
+    _recovery=float(d.get("recovery",0.35)) if recovery<0 else recovery
+    _busy=true;_impacted=false
+    _sample_action()
     return true
 
 func play_hit(blocked: bool = false) -> void:
@@ -176,10 +207,9 @@ func play_hit(blocked: bool = false) -> void:
     # Reaction on the rig root leaves the scheduled weapon animation intact.
     _reaction = create_tween()
     modulate = Color("#a9e5ff") if blocked else Color("#ffb8ac")
-    position.x = -193 if blocked else -202
-    if not _busy:
-        _set_pose("hit")
-    _reaction.tween_property(self,"position:x",-185,0.18)
+    _recoil=Vector2(-8 if blocked else -18,0)
+    if not _busy:_set_pose("hit")
+    _reaction.tween_property(self,"_recoil",Vector2.ZERO,0.18)
     _reaction.parallel().tween_property(self,"modulate",Color.WHITE,0.24)
     _reaction.tween_callback(func():
         if not _busy: _set_pose("idle"))
@@ -200,7 +230,7 @@ func revive() -> void:
     if _reaction and _reaction.is_running(): _reaction.kill()
     _dead = false
     _busy = false
-    position.x = -185
+    _recoil=Vector2.ZERO
     _art.rotation = 0
     _art.position = Vector2.ZERO
     modulate = Color.WHITE

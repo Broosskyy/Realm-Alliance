@@ -20,7 +20,8 @@ func update(now: float) -> Array:
     if state == "idle":
         state = "windup"
         deadline = now + float(definition.windup)
-        events.append({"type":"telegraph", "duration":definition.windup,"pattern":definition.pattern})
+        var heavy_next=definition.pattern=="heavy" and (strikes+1)%2==0
+        events.append({"type":"telegraph", "duration":definition.windup,"pattern":"heavy" if heavy_next else ("single" if definition.pattern=="heavy" else definition.pattern)})
     elif state == "windup":
         strikes += 1
         var heavy = definition.pattern == "heavy" and strikes % 2 == 0
