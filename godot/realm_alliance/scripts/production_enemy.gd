@@ -160,3 +160,9 @@ func play_death() -> void:
     _animation.tween_property(self, "scale", _display_scale * 0.94, 0.40)
     _animation.tween_property(self, "modulate:a", 0.0, 0.50).set_delay(0.13)
 
+
+func interrupt_telegraph() -> void:
+    if _animation and _animation.is_running():_animation.kill()
+    _attacking=false;_motion=Vector2.ZERO
+    if _sprite:_sprite.modulate=Color.WHITE
+    if not _dying:_set_pose("hit")

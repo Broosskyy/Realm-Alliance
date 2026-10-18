@@ -15,6 +15,12 @@ const World=preload("res://scripts/systems/world_progress.gd")
 const Advancement=preload("res://scripts/systems/skill_progress.gd")
 const Quests=preload("res://scripts/systems/quest_system.gd")
 const Chests=preload("res://scripts/systems/chest_rewards.gd")
+const Tap=preload("res://scripts/systems/tap_combat.gd")
+const Boss=preload("res://scripts/systems/boss_phase.gd")
+var tap=Tap.new()
+var boss=Boss.new()
+var action_sequence=0
+const ACTOR_ID="hero:realmwachter:local"
 const STEP: float = 1.0 / 60.0
 const SKILL_IDS = ["sky_blade", "arcane_eye", "rage_flame", "guardian_wall"]
 const WEAPON_IDS = Equipment.IDS
@@ -76,7 +82,7 @@ func _init(data: Dictionary = {}) -> void:
         read_only=true
         load_error="Evolutionsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
     var checkpoint: Dictionary = normalized.get("checkpoint", {})
-    for domain in [World,Advancement,Quests,Chests]:
+    for domain in [World,Advancement,Quests,Chests,Tap]:
         var valid=domain.ensure(profile,checkpoint) if domain==World else domain.ensure(profile)
         if not valid:
             read_only=true;load_error="Fortschrittsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
@@ -105,6 +111,11 @@ func _init(data: Dictionary = {}) -> void:
         enemy_status.active = checkpoint.get("enemy_status",{}).duplicate(true)
         hero_status.active = checkpoint.get("hero_status",{}).duplicate(true)
         behavior.restore(checkpoint.get("behavior",{}))
+        action_sequence=maxi(0,int(checkpoint.get("action_sequence",0)))
+        var tap_state=checkpoint.get("tap_combat",{})
+        var boss_state=checkpoint.get("boss_phase",{})
+        if not tap_state is Dictionary or not boss_state is Dictionary or not tap.restore(tap_state) or not boss.restore(boss_state):
+            read_only=true;load_error="Kampfdaten nicht kompatibel; Original bleibt geschützt."
     else:
         player_hp = player_max_hp
     events.clear()
@@ -195,11 +206,39 @@ func toggle_aura() -> bool:
     profile.aura = not bool(profile.aura)
     return true
 
-func request_action(id: String = "basic") -> bool:
+func select_hit_mode(value: int) -> bool:
+    return not read_only and Tap.select(profile,value)
+
+func request_basic(source: String="manual") -> bool:
+    return request_action("basic",{"tap_chain":true,"input_source":source})
+
+func configure_auto_skills(enabled: bool,selected: Array) -> bool:
+    if read_only or not Tap.ensure(profile):return false
+    var candidate={"schema":1,"mode":profile.combat_mastery.mode,"auto_enabled":enabled,"auto_skills":selected.duplicate()}
+    if not Tap.ensure({"combat_mastery":candidate}):return false
+    profile.combat_mastery=candidate;return true
+
+func request_auto_skill() -> bool:
+    if not Tap.ensure(profile) or not profile.combat_mastery.auto_enabled:return false
+    for id in profile.combat_mastery.auto_skills:
+        var d:Dictionary=skills.definitions[id]
+        if d.cost_type=="momentum" and momentum<maxf(60,float(d.cost)):continue
+        if d.cost_type=="rage" and rage<maxf(80,float(d.cost)):continue
+        if id=="guardian_wall" and (player_hp>player_max_hp*.55 or hero_status.has("shield",clock)):continue
+        if id=="arcane_eye" and enemy_status.has("mark",clock):continue
+        if id=="rage_flame" and enemy_status.has("burn",clock):continue
+        if request_action(id):return true
+    return false
+
+func request_action(id: String = "basic", options: Dictionary={}) -> bool:
     if outcome != "fighting" or player_hp <= 0 or enemy_hp <= 0 or not pending.is_empty() or clock < busy_until - 0.00001:
         return false
     var d: Dictionary
-    if id == "basic":
+    if id=="ultimate":
+        if not Tap.ultimate_unlocked(profile) or tap.charge<100 or clock<tap.ultimate_at:return false
+        d={"id":"ultimate","effect":"direct","multiplier":4.8,"windup":.55,"recovery":.42,"vfx":"ultimate"}
+        tap.charge=0;tap.ultimate_at=clock+16
+    elif id == "basic":
         d = {"id":"basic","effect":"direct","multiplier":1.0,"windup":0.28,"recovery":0.35,"vfx":"basic"}
     else:
         if not skills.can_cast(id, clock, level, {"momentum":momentum,"rage":rage}):
@@ -210,11 +249,17 @@ func request_action(id: String = "basic") -> bool:
             momentum -= float(d.cost)
         elif d.cost_type == "rage":
             rage -= float(d.cost)
+    if id=="basic" and bool(options.get("tap_chain",false)):
+        d=tap.plan(profile,clock);tap.accepted(d,clock)
+    action_sequence+=1
+    d.action_id=run_id+":"+ACTOR_ID+":"+str(action_sequence)
+    d.actor_id=ACTOR_ID;d.target_id=run_id+":"+region+":"+str(encounter)
+    d.rank=Advancement.rank(profile,id) if id in SKILL_IDS else 1
     d.base_damage = hero_damage()
     d.weapon_trait = Equipment.definition(profile.equipped).trait
     pending = {"definition":d,"hit_at":clock + float(d.windup)}
     busy_until = clock + float(d.windup) + float(d.recovery)
-    events.append({"type":"hero_action","id":id,"started_at":clock,"windup":d.windup,"recovery":d.recovery})
+    events.append({"type":"hero_action","id":id,"started_at":clock,"windup":d.windup,"recovery":d.recovery,"animation":d.get("animation",id),"action_id":d.action_id,"actor_id":ACTOR_ID,"target_id":d.target_id,"contacts":d.get("contacts",1)})
     if d.effect == "shield":
         hero_status.apply("shield", clock, float(d.duration), {"amount":int(player_max_hp * float(d.absorb_fraction)),"counter":true,"counter_damage":int(hero_damage() * float(d.counter_multiplier))})
         pending.clear()
@@ -242,8 +287,10 @@ func _step() -> void:
         return
     if not pending.is_empty() and clock + 0.00001 >= float(pending.hit_at):
         var d: Dictionary = pending.definition
-        pending = {}
-        _resolve(d)
+        if d.effect=="chain":_resolve_chain_contact()
+        else:
+            pending = {}
+            _resolve(d)
     if outcome != "fighting":
         return
     for damage in enemy_status.take_ticks("burn",clock):
@@ -252,13 +299,46 @@ func _step() -> void:
             return
     enemy_status.expire(clock)
     hero_status.expire(clock)
+    if enemy_definition.kind=="boss":
+        if clock<boss.break_until:return
+        if not boss.enraged and enemy_hp<=enemy_max_hp*.5:
+            boss.enraged=true;events.append({"type":"boss_phase","id":"enrage"})
     for event in behavior.update(clock):
         if event.type == "telegraph":
             events.append(event)
         else:
-            _enemy_strike(float(event.multiplier), bool(event.heavy))
+            _enemy_strike(float(event.multiplier)*(1.2 if boss.enraged else 1.0), bool(event.heavy))
         if outcome != "fighting":
             break
+
+func _resolve_chain_contact() -> void:
+    var d:Dictionary=pending.definition
+    var index=int(pending.get("contact",0))
+    if not d.has("parts"):
+        hit_count+=1
+        d.critical=d.weapon_trait=="critical" and hit_count%4==0
+        var multiplier=float(d.multiplier)*(1.6 if d.critical else 1.0)
+        if enemy_status.has("mark",clock):multiplier*=float(enemy_status.active.mark.get("amplify",1.35))
+        d.parts=Tap.split_damage(maxi(int(d.contacts),int(round(int(d.base_damage)*multiplier))),int(d.contacts))
+        d.actual_total=0
+    var before=enemy_hp
+    _damage_enemy(int(d.parts[index]),"chain",bool(d.critical),d)
+    d.actual_total+=before-enemy_hp
+    var finished=index+1>=int(d.contacts) or outcome!="fighting"
+    tap.contact(clock,finished)
+    events.append({"type":"chain_contact","step":d.chain_step,"index":index,"contacts":d.contacts,"critical":d.critical,"action_id":d.action_id})
+    if finished:
+        pending.clear()
+        momentum=minf(100,momentum+9+(5 if d.weapon_trait=="momentum" else 0));rage=minf(100,rage+7)
+        if d.weapon_trait=="lifesteal":
+            var healed=mini(player_max_hp-player_hp,maxi(1,int(int(d.actual_total)*.12)))
+            player_hp+=healed
+            if healed>0:events.append({"type":"heal","amount":healed})
+        if outcome=="fighting":
+            if d.weapon_trait=="burn" and not enemy_status.has("burn",clock):_burn(2,1,maxi(1,int(int(d.base_damage)*.18)))
+            if d.weapon_trait=="guard" and not hero_status.has("shield",clock):hero_status.apply("guard",clock,5,{"amount":mini(15,int(hero_status.active.get("guard",{}).get("amount",0))+3)})
+    else:
+        pending={"definition":d,"contact":index+1,"hit_at":float(pending.hit_at)+float(d.spacing)}
 
 func _resolve(d: Dictionary) -> void:
     if player_hp <= 0 or enemy_hp <= 0:
@@ -274,7 +354,8 @@ func _resolve(d: Dictionary) -> void:
         multiplier *= float(enemy_status.active.mark.get("amplify",1.35))
     var damage = maxi(1,int(round(base_damage * multiplier)))
     var actual_damage = mini(enemy_hp,damage)
-    _damage_enemy(damage,str(d.vfx),critical)
+    _damage_enemy(damage,str(d.vfx),critical,d)
+    if d.id!="ultimate":tap.charge=mini(100,tap.charge+8)
     momentum = minf(100,momentum + 9 + (5 if weapon_trait == "momentum" else 0))
     rage = minf(100,rage + 7)
     if weapon_trait == "lifesteal":
@@ -304,15 +385,21 @@ func _burn(duration: float, interval: float, damage: int) -> void:
     enemy_status.apply("burn",clock,duration,{"interval":interval,"next_tick":next_tick,"damage":damage})
     events.append({"type":"status","id":"burn"})
 
-func _damage_enemy(amount: int, source: String, critical: bool) -> void:
+func _damage_enemy(amount: int, source: String, critical: bool, context: Dictionary={}) -> void:
     if enemy_hp <= 0 or outcome != "fighting":
         return
+    if enemy_definition.kind=="boss" and clock<boss.break_until:amount=int(round(amount*1.25))
     var actual = mini(enemy_hp,maxi(1,amount))
     enemy_hp -= actual
-    events.append({"type":"damage","amount":actual,"source":source,"critical":critical})
+    events.append({"type":"damage","amount":actual,"source":source,"critical":critical,"action_id":context.get("action_id",""),"actor_id":ACTOR_ID,"target_id":run_id+":"+region+":"+str(encounter),"subhit":source=="chain","skill_rank":context.get("rank",1)})
+    if enemy_hp>0 and enemy_definition.kind=="boss" and not context.is_empty() and source not in ["burn","counter"]:
+        if boss.contact(clock,1 if source=="chain" else 3):
+            behavior.state="idle";behavior.second=false;behavior.deadline=boss.break_until+float(enemy_definition.interval)
+            events.append({"type":"boss_phase","id":"break"})
     if enemy_hp == 0:
         pending.clear()
         enemy_status.active.clear()
+        var before_unlocks=[Tap.unlocked(profile,2),Tap.unlocked(profile,4),Tap.ultimate_unlocked(profile)]
         var old_level = level
         var reward = Rewards.grant(profile,run_id+":"+str(encounter),enemy_definition,tier)
         if reward.granted:
@@ -322,6 +409,9 @@ func _damage_enemy(amount: int, source: String, critical: bool) -> void:
                 Quests.record(profile,"bosses")
                 Chests.grant(profile,run_id+":"+region+":boss")
             events.append({"type":"reward","reward":reward})
+            var after_unlocks=[Tap.unlocked(profile,2),Tap.unlocked(profile,4),Tap.ultimate_unlocked(profile)]
+            for i in 3:
+                if after_unlocks[i] and not before_unlocks[i]:events.append({"type":"combat_unlock","id":["x2","x4","ultimate"][i]})
         if level > old_level:
             events.append({"type":"level_up","level":level})
         profile.best_wave = maxi(int(profile.best_wave),wave + 1)
@@ -354,12 +444,14 @@ func _enemy_strike(multiplier: float, heavy: bool) -> void:
     if player_hp <= 0:
         outcome = "defeat"
         pending.clear()
+        tap.reset_chain()
         hero_status.active.clear()
         events.append({"type":"defeat"})
     elif counter > 0:
         _damage_enemy(counter,"counter",false)
 
 func _spawn() -> void:
+    tap.reset_chain();boss.reset()
     enemy_definition = World.encounter(region,encounter)
     enemy_max_hp = int(round(float(enemy_definition.hp)*(1.0 + tier * 0.12)))
     enemy_hp = enemy_max_hp
@@ -386,6 +478,7 @@ func _reset_run(start: int) -> void:
     clock = 0
     accumulator = 0
     skills.ready_at.clear()
+    tap=Tap.new();boss.reset();action_sequence=0
     hero_status.active.clear()
     momentum = 25
     rage = 0
@@ -401,4 +494,4 @@ func drain_events() -> Array:
     return result
 
 func snapshot() -> Dictionary:
-    return {"version":2,"profile":profile.duplicate(true),"checkpoint":{"region":region,"tier":tier,"encounter":encounter,"run_id":run_id,"clock":clock,"player_hp":player_hp,"enemy_hp":enemy_hp,"momentum":momentum,"rage":rage,"outcome":outcome,"busy_until":busy_until,"transition_at":transition_at,"hit_count":hit_count,"pending":pending.duplicate(true),"cooldowns":skills.snapshot(),"hero_status":hero_status.active.duplicate(true),"enemy_status":enemy_status.active.duplicate(true),"behavior":behavior.snapshot()}}
+    return {"version":2,"profile":profile.duplicate(true),"checkpoint":{"region":region,"tier":tier,"encounter":encounter,"run_id":run_id,"clock":clock,"player_hp":player_hp,"enemy_hp":enemy_hp,"momentum":momentum,"rage":rage,"outcome":outcome,"busy_until":busy_until,"transition_at":transition_at,"hit_count":hit_count,"pending":pending.duplicate(true),"cooldowns":skills.snapshot(),"hero_status":hero_status.active.duplicate(true),"enemy_status":enemy_status.active.duplicate(true),"behavior":behavior.snapshot(),"tap_combat":tap.snapshot(),"boss_phase":boss.snapshot(),"action_sequence":action_sequence}}

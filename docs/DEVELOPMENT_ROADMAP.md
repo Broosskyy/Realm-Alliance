@@ -61,3 +61,10 @@ Gate: connected systems let a player earn rewards, become visibly stronger and u
 ## Beyond 7.0
 
 Guilds, friends/chat, cooperative dungeons, synchronized raids, PvP/arena/rankings/guild bosses, safe trade, new classes/regions/seasons/endgame remain product direction. None implies current online readiness. Infrastructure, authority, account security and validated economy must exist before those features are represented as online systems.
+
+
+## Binding online continuation (2026-10-18)
+
+Families/guilds, visible co-op dungeon heroes, legendary titles and arena/PvP are four mandatory main systems. Local 6.6–7.0 is completed first. 7.1: accounts, identity, database, cloud saves and server authority. 7.2: friends, parties, invites, presence, reconnect and first real shared dungeon, with individually visible equipped heroes and shared enemy/wave state. 7.3: families/guild names, crests, ranks, members, chat, levels, quests, shared progression/bosses and later halls. 7.4: real shared World Bosses, raids and group mechanics. 7.5: separately balanced 1v1 PvP, later teams, matchmaking, ranks, seasons, rewards and legendary achievement titles. 7.6+: shared worlds, guild wars, cooperative events and endgame.
+
+Titles have stable IDs, actual unlock conditions and selected display across hero/profile/lobby/arena; no unearned prestige or fictional guild membership. Multiplayer dungeons must support several actor IDs, individual commands/skills/equipment, bounded readable VFX and individual idempotent rewards. The authoritative server later owns damage, HP, drops, currencies, activity progress and PvP results. Web/Android and later iOS share that authority for true crossplay. Local simulation is explicitly offline; no fabricated online features.

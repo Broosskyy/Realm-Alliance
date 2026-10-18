@@ -29,6 +29,10 @@ func enemy_warning(model,pattern: String,duration: float,ground: Vector2) -> voi
 func action(e: Dictionary, weapon_socket: Node2D=null) -> void:
     var id=str(e.id);var duration=maxf(0.08,float(e.get("windup",0.28)))
     match id:
+        "ultimate":
+            emit_effect("arcane_seal",hero_at+Vector2(0,80),260,duration,"charge",7)
+            var fx=emit_effect("sky_impact",hero_at,220,duration,"charge",11)
+            if fx:fx.follow_node=weapon_socket
         "sky_blade":
             var fx=emit_effect("sky_impact",hero_at+Vector2(60,-40),140,duration,"charge",11)
             if fx:fx.follow_node=weapon_socket
@@ -41,14 +45,18 @@ func action(e: Dictionary, weapon_socket: Node2D=null) -> void:
             if fx:fx.follow_node=weapon_socket
         "guardian_wall":emit_effect("shield",hero_at,270,0.4,"spawn",17)
         _:emit_effect("sky_slash",hero_at+Vector2(90,0),95,duration,"charge",11)
-func impact(source: String, critical: bool=false) -> void:
+func impact(source: String, critical: bool=false, rank: int=1) -> void:
     match source:
         "sky":
             emit_effect("sky_slash",hero_at.lerp(enemy_at,0.56),390,0.48,"slash")
-            emit_effect("sky_impact",enemy_at,240,0.42)
+            emit_effect("sky_impact",enemy_at,240+mini(4,rank-1)*15,0.42)
+        "ultimate":
+            emit_effect("sky_slash",hero_at.lerp(enemy_at,.5),460,.55,"slash")
+            emit_effect("sky_impact",enemy_at,330,.55)
+            emit_effect("reward",enemy_at,270,.45)
         "fire":
             emit_effect("fire_slash",hero_at.lerp(enemy_at,0.6),420,0.55,"slash")
-            emit_effect("fire_impact",enemy_at,270,0.6)
+            emit_effect("fire_impact",enemy_at,270+mini(4,rank-1)*15,0.6)
         "arcane":emit_effect("arcane_eye",enemy_at,200,0.55)
         "burn":emit_effect("fire_impact",enemy_at+Vector2(0,30),110,0.35)
         "counter":emit_effect("shield",enemy_at,220,0.38)
@@ -74,3 +82,13 @@ func clear() -> void:
     for child in get_children():
         if child!=status:child.queue_free()
     if status:status.mark=false;status.burn=false;status.shielded=false;status.queue_redraw()
+
+func chain_contact(step: int,index: int,contacts: int,critical: bool=false) -> void:
+    var fx=emit_effect("sky_slash",hero_at.lerp(enemy_at,.6),190+step*45, .20,"slash")
+    if fx:fx.rotation=(-.65 if step==1 else .18)+(index%2)*.3
+    emit_effect("sky_impact",enemy_at,90+step*22,.18)
+    if critical and index==0:emit_effect("reward",enemy_at,210,.35)
+
+func cancel_enemy_warnings() -> void:
+    for child in get_children():
+        if child is RASkillVFX and child.kind=="eruption_warning":child.queue_free()

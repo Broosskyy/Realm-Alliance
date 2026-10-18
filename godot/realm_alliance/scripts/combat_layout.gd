@@ -11,7 +11,7 @@ static func solve(viewport_size: Vector2, safe_top: float = 0, safe_bottom: floa
     var left = (w - 720.0 * s) / 2.0
     var hud_bottom = safe_top + 284.0 * s
     var controls_top = safe_top + (logical_h - 330.0) * s
-    var origin = Vector2(w / 2.0, hud_bottom + (controls_top - hud_bottom) * 0.88)
+    var origin = Vector2(w / 2.0, hud_bottom + (controls_top - hud_bottom) * 0.84)
     return {
         "viewport": Vector2(w, h), "padding": 18.0 * s,
         "ui_left": left, "ui_scale": s, "logical_height": logical_h,

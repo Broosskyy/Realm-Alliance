@@ -70,9 +70,10 @@ func _ready() -> void:
         if model.read_only: _on_hud_action("Mehr")
     if _production_enabled and not model.pending.is_empty():
         var d:Dictionary=model.pending.definition
-        hero.play_action(str(d.id),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup))
+        hero.play_action(str(d.get("animation",d.id)),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup)-int(model.pending.get("contact",0))*float(d.get("spacing",0)))
         hero.sync_clock(model.clock)
-    print("REALM 6.5.1: canonical hero, weapons and survival systems loaded")
+    if model.profile.kills>0 and model.load_error=="":hud.notify("Willkommen zurück",model.Tap.next_goal(model.profile),3)
+    print("REALM 6.6: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -211,7 +212,17 @@ func _layout() -> void:
         enemy.set_layout_scale(0.75 if model.enemy_definition.visual=="boar" else (lerpf(0.82, 1.12, tall) if model.enemy_definition.visual == "golem" else 0.90))
 
 func _on_hud_action(id: String) -> void:
-    if id=="sound":
+    if id=="hit_mode":
+        var modes=[1,2,4];var current=model.Tap.mode(model.profile);var next=current
+        for offset in range(1,4):
+            var candidate=modes[(modes.find(current)+offset)%3]
+            if model.Tap.unlocked(model.profile,candidate):next=candidate;break
+        if model.select_hit_mode(next):_persist();hud.notify("Angriffsfolge x%d"%next,"x2: Lv.3 + Elite · x4: Lv.6 + Gartenkoloss")
+    elif id=="ultimate":
+        if active_tab=="Kampf" and model.request_action("ultimate"):_consume_events();_refresh()
+    elif id=="combat_options":
+        var dialog=preload("res://scripts/ui/combat_options_dialog.gd").new();add_child(dialog);dialog.configure(model);dialog.policy_changed.connect(func():_persist();_refresh());dialog.popup_centered(Vector2i(620,760))
+    elif id=="sound":
         preferences.sound=not preferences.sound;preferences.save_settings();_apply_preferences()
     elif id=="effects":
         preferences.effects=(preferences.effects+1)%3;preferences.save_settings();_apply_preferences()
@@ -378,7 +389,9 @@ func _open_talents() -> void:
 func _apply_preferences() -> void:
     if audio:audio.enabled=preferences.sound
     if vfx:vfx.intensity=[1.0,.4,0.0][preferences.effects]
-    if _production_enabled and hero.aura:hero.aura.fx_intensity=[1.0,.4,0.0][preferences.effects]
+    if _production_enabled and hero.aura:
+        hero.aura.fx_intensity=[1.0,.4,0.0][preferences.effects]
+        hero.fx_intensity=[1.0,.4,0.0][preferences.effects];hero.set_upgrade_tier(model.upgrade_level)
     camera_feedback.intensity=[1.0,.4,0.0][preferences.effects]
     hud.sound_enabled=preferences.sound;hud.effect_level=preferences.effects
     hud.queue_redraw()
@@ -396,9 +409,10 @@ func _on_stage_input(event: InputEvent) -> void:
 
 func _on_tap() -> bool:
     if active_tab!="Kampf": return false
-    var ok=model.request_action("basic")
+    var result=manual_input.request_tap(model)
+    if result==ManualInput.QUEUED:hud.notify("Angriff vorgemerkt","Nächster Schlag folgt direkt",.45)
     _consume_events()
-    return ok
+    return result!=ManualInput.REJECTED
 
 func _on_skill(index: int = 0) -> bool:
     if active_tab!="Kampf" or index<0 or index>=4: return false
@@ -416,9 +430,9 @@ func _process(delta: float) -> void:
     manual_input.drain(model)
     _auto_clock+=simulation_delta
     stage.position=_stage_home+camera_feedback.offset()*stage.scale.x
-    if auto_enabled and manual_input.skill=="" and _auto_clock>=0.72:
-        _auto_clock=0
-        model.request_action("basic")
+    if auto_enabled and manual_input.is_empty() and model.clock>=model.busy_until:
+        if model.request_auto_skill():_auto_clock=0
+        elif _auto_clock>=.46 and model.request_basic("auto"):_auto_clock=0
     _consume_events()
     if _production_enabled:hero.sync_clock(model.clock)
     vfx.sync(model,hero.position,enemy.position)
@@ -432,17 +446,34 @@ func _process(delta: float) -> void:
         _persist()
 
 func _consume_events() -> void:
-    for e in model.drain_events():
+    var consumed_events=model.drain_events()
+    for e in consumed_events:
         match e.type:
+            "combat_unlock":
+                hud.notify("NEU: "+("Sternenfall" if e.id=="ultimate" else e.id+" Treffer"),"Dein Fortschritt hat eine neue Angriffskraft freigeschaltet",4)
+                audio.play("reward");vfx.emit_effect("reward",hero.position+Vector2(30,-150),220,.7,"spawn",18)
             "stage_clear":
                 hud.notify("Stage geschafft", "%s · %s"%[model.World.NAMES[e.region],"★".repeat(int(e.stars))],1.2)
             "hero_action":
                 if _production_enabled:
-                    hero.play_action(e.id,float(e.get("windup",0.28)),float(e.get("recovery",0.35)),float(e.get("started_at",model.clock)))
+                    hero.play_action(str(e.get("animation",e.id)),float(e.get("windup",0.28)),float(e.get("recovery",0.35)),float(e.get("started_at",model.clock)))
                     vfx.sync(model,hero.position,enemy.position)
                     vfx.action(e,hero._socket if _production_enabled else null)
                     audio.play({"arcane_eye":"arcane","rage_flame":"fire","guardian_wall":"shield"}.get(e.id,"swing"))
                 else: hero.play_attack(e.id!="basic")
+            "chain_contact":
+                vfx.chain_contact(int(e.step),int(e.index),int(e.contacts),bool(e.critical))
+                if int(e.index)==0 and (int(e.step)==2 or bool(e.critical)):camera_feedback.impact(3,.035)
+            "boss_phase":
+                if e.id=="break":
+                    if _production_enabled:enemy.interrupt_telegraph()
+                    vfx.cancel_enemy_warnings()
+                    for child in stage.get_children():
+                        if child is RACombatFeedback and child.kind=="telegraph":child.queue_free()
+                if _production_enabled:enemy.play_hit()
+                hud.notify("RÜSTUNGSBRUCH" if e.id=="break" else "BOSS: RASEREI","1,6 s · +25% Schaden" if e.id=="break" else "+20% Angriff · Telegraphe beachten",1.6)
+                vfx.emit_effect("sky_impact" if e.id=="break" else "fire_impact",enemy.position+Vector2(-40,-190),260,.5)
+                if e.id=="break":camera_feedback.impact(5,.06)
             "telegraph":
                 if model.outcome!="fighting": continue
                 if _production_enabled: enemy.play_telegraph(float(e.duration),str(e.pattern))
@@ -450,10 +481,10 @@ func _consume_events() -> void:
                 vfx.enemy_warning(model,str(e.pattern),float(e.duration),hero.position+Vector2(0,-4))
             "damage":
                 enemy.play_hit()
-                vfx.impact(str(e.source),bool(e.critical))
+                if not bool(e.get("subhit",false)):vfx.impact(str(e.source),bool(e.critical),int(e.get("skill_rank",1)))
                 audio.play("fire" if e.source in ["fire","burn"] else "impact")
-                if e.source!="burn":camera_feedback.impact(6 if e.critical or e.source in ["sky","fire","counter"] else 1.6,0.055 if e.critical else 0.035)
-                _popup(str(e.amount),Vector2(80,-340),Color("#ffb03d") if e.critical else (Color("#ffa44e") if e.source=="burn" else Color("#fff0b8")),"KRIT!" if e.critical else ("BRENNEN" if e.source=="burn" else ("KONTER" if e.source=="counter" else "")))
+                if e.source not in ["burn","chain"]:camera_feedback.impact(6 if e.critical or e.source in ["sky","fire","counter"] else 1.6,0.055 if e.critical else 0.035)
+                _popup(str(e.amount),Vector2(70+(model.tap.combo%3)*34,-300-(model.tap.combo%3)*38),Color("#ffb03d") if e.critical else (Color("#ffa44e") if e.source=="burn" else Color("#fff0b8")),"KRIT!" if e.critical else ("BRENNEN" if e.source=="burn" else ("KONTER" if e.source=="counter" else "")))
             "hero_hit":
                 if _production_enabled:
                     enemy.play_attack()
@@ -493,6 +524,7 @@ func _consume_events() -> void:
                 hud.notify("Boss besiegt","Wächtertruhe in Beute verfügbar",4)
                 _persist()
     _sync_hero()
+    if not consumed_events.is_empty():hud.queue_redraw()
     if _production_enabled:hero.sync_clock(model.clock)
     if vfx:vfx.sync(model,hero.position,enemy.position)
 
@@ -507,6 +539,10 @@ func _fx(kind: String, at: Vector2, duration: float = 0.48) -> void:
     stage.add_child(fx)
 
 func _popup(text: String, at: Vector2, color: Color, caption: String = "") -> void:
+    var existing=[]
+    for child in stage.get_children():
+        if child is Label and not child.is_queued_for_deletion():existing.append(child)
+    if existing.size()>=10:existing[0].queue_free()
     var label=Label.new()
     label.text=(caption+"\n" if caption!="" else "")+text
     label.add_theme_font_override("font",hud.bold)

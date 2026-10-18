@@ -72,7 +72,7 @@ func _ready() -> void:
         portrait.region = Rect2(310, 25, 230, 220)
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options"]:
         var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id in ["evolve","talents"] else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
@@ -124,6 +124,9 @@ func configure(height: float) -> void:
     size = Vector2(720, height)
     if buttons.is_empty():
         return
+    _place("hit_mode",Rect2(18,controls_top-100,160,88))
+    _place("ultimate",Rect2(538,controls_top-100,160,88))
+    _place("combat_options",Rect2(38,943,644,88))
     _place("mail", Rect2(612, 18, 44, 52))
     _place("settings", Rect2(664, 18, 44, 52))
     _place("auto", Rect2(628, controls_top + 3, 70, 70))
@@ -158,6 +161,11 @@ func update_buttons() -> void:
     if buttons.is_empty() or model == null:
         return
     var in_combat = active_tab == "Kampf"
+    buttons.hit_mode.visible=in_combat;buttons.ultimate.visible=in_combat
+    buttons.combat_options.visible=active_tab=="Mehr"
+    buttons.ultimate.disabled=not model.Tap.ultimate_unlocked(model.profile) or model.tap.charge<100 or model.clock<model.tap.ultimate_at or model.clock<model.busy_until or model.outcome!="fighting"
+    buttons.ultimate.tooltip_text="Sternenfall · 4,8× Schaden · 100 Ladung · 16 s Abklingzeit"
+    buttons.hit_mode.tooltip_text="x2: Level 3 + Elite · x4: Level 6 + Gartenkoloss · mehrere echte Treffer"
     if _last_tab!=active_tab:
         if _menu_transition:_menu_transition.kill()
         if _veil:
@@ -173,10 +181,11 @@ func update_buttons() -> void:
         toast.display(toast_title,toast_detail,in_combat)
     if preview:
         preview.visible = active_tab == "Wesen"
-        var visual_key=str(model.weapon_index)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
+        var visual_key=str(model.weapon_index)+str(model.upgrade_level)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
         if preview.visible and visual_key!=_preview_key:
             _preview_key=visual_key
             preview.equip_weapon(model.weapon_index)
+            preview.set_upgrade_tier(model.upgrade_level)
             preview.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
             preview.set_gear(model.profile)
     for index in 4:
@@ -204,7 +213,9 @@ func update_buttons() -> void:
     for i in 4:
         buttons["hero_skill_"+str(i)].visible=active_tab=="Wesen"
         _place("hero_skill_"+str(i),Rect2(38+i*166,947,146,88))
-    if preview:preview.aura.fx_intensity=[1.0,.4,0.0][effect_level]
+    if preview:
+        preview.aura.fx_intensity=[1.0,.4,0.0][effect_level]
+        preview.fx_intensity=[1.0,.4,0.0][effect_level];preview.set_upgrade_tier(model.upgrade_level)
     for id in ["auto", "skill0", "skill1", "locked", "skill2"]:
         buttons[id].visible = in_combat
     for id in ["weapon", "upgrade", "look", "aura"]:
@@ -370,7 +381,20 @@ func _draw_combat() -> void:
     _center("AUTO" if auto_enabled else "AUS", Rect2(ac.x - 30, ac.y + 5, 60, 20), 13, INK, true)
     for i in 4:
         _skill(i, Vector2(99 + i * 174, controls_top + 143))
-    _center("Arena antippen zum Angreifen", Rect2(0, controls_top - 22, 720, 20), 13, Color(0.88,0.96,1,0.7))
+    _panel(Rect2(18,controls_top-100,160,88),Color.WHITE,Color.WHITE,16,"secondary")
+    _center("x%d TREFFER"%model.Tap.mode(model.profile),Rect2(18,controls_top-97,160,42),19,CYAN,true)
+    _center("Wechseln",Rect2(18,controls_top-57,160,30),15,MUTED)
+    var combo=model.tap.combo if model.clock<=model.tap.combo_until else 0
+    _center("%d COMBO"%combo if combo>1 else "TAP · KOMBOKETTE",Rect2(188,controls_top-96,340,38),22,GOLD if combo>1 else INK,true)
+    _center("Schnitt · Aufwärtshieb · Finisher",Rect2(188,controls_top-53,340,25),14,MUTED)
+    _panel(Rect2(538,controls_top-100,160,88),Color.WHITE,Color.WHITE,16,"hero")
+    var unlocked=model.Tap.ultimate_unlocked(model.profile)
+    _center("ULTIMATE",Rect2(538,controls_top-96,160,36),18,INK,true)
+    _bar(Rect2(552,controls_top-52,132,10),model.tap.charge/100.0,GOLD)
+    _center(("%d%%"%model.tap.charge if model.clock>=model.tap.ultimate_at else "%.1fs"%(model.tap.ultimate_at-model.clock)) if unlocked else "Lv.4 + Boss",Rect2(538,controls_top-40,160,25),14,GOLD)
+    if boss:
+        _bar(Rect2(250,250,180,9),float(model.boss.meter)/model.boss.LIMIT,CYAN)
+        _text("BRUCH" if model.clock<model.boss.break_until else ("RASEREI" if model.boss.enraged else "RÜSTUNG"),Vector2(444,261),12,CYAN if not model.boss.enraged else GOLD,true)
 
 func _resource(r: Rect2, icon: String, value: String, ratio: float, color: Color) -> void:
     _panel(r, Color(0.015,0.025,0.04,0.9), Color(0.4,0.5,0.6,0.45), 15)
@@ -457,7 +481,7 @@ func _draw_shell() -> void:
                 _bar(Rect2(60,1108,600,16),float(within)/needed if model.level<100 else 1.0,CYAN)
                 var bonuses=HeroEquipment.stats(model.profile)
                 _text("Ausrüstung: +%d HP · +%d Verteidigung"%[bonuses.hp,bonuses.defense],Vector2(60,1160),17,MUTED)
-                _text("Erwachen: +%d HP · +%d Angriff"%[Evolution.HP,Evolution.ATTACK] if Evolution.unlocked(model.profile) else "Erwachen freischalten ab Heldenlevel %d"%Evolution.UNLOCK_LEVEL,Vector2(60,1201),17,GOLD)
+                _text(model.Tap.next_goal(model.profile),Vector2(60,1201),17,GOLD)
         "Beute":
             pass
         "Mehr":
@@ -485,7 +509,9 @@ func _draw_shell() -> void:
                 var r=Rect2(38+i*332,845,312,62)
                 _panel(r)
                 _center(("Klang: "+("An" if sound_enabled else "Aus")) if i==0 else ("Effekte: "+["Voll","Reduziert","Aus"][effect_level]),r,18,INK,true)
-            _center("REALM ALLIANCE · 0.6.5.1 · Offline-Abenteuer",Rect2(38,943,644,30),17,MUTED)
+            _panel(Rect2(38,943,644,88))
+            _center("AUTO-Skills konfigurieren",Rect2(38,943,644,88),22,INK,true)
+            _center("REALM ALLIANCE · 0.6.6 · Offline-Abenteuer",Rect2(38,1045,644,30),17,MUTED)
             if model.read_only:
                 _center("Spielstand geschützt · Diese Sitzung wird nicht gespeichert",Rect2(38,986,644,34),18,GOLD,true)
     _panel(Rect2(38, logical_height - 188, 644, 62), Color("#13314c"), CYAN.darkened(0.4))

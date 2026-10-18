@@ -6,23 +6,38 @@ const REJECTED=0
 const CAST=1
 const QUEUED=2
 const WINDOW=1.0
+var tap_pending=false
+var tap_expires=0.0
 var skill: String=""
 var expires_at: float=0
 func clear() -> void:
-    skill="";expires_at=0
+    skill="";expires_at=0;tap_pending=false;tap_expires=0.0
 func request(model,index: int) -> int:
     if index not in range(4) or model.outcome!="fighting":return REJECTED
     var id: String=model.SKILL_IDS[index]
     if model.request_action(id):clear();return CAST
     if not model.skills.can_cast(id,model.clock,model.level,{"momentum":model.momentum,"rage":model.rage}):return REJECTED
     if model.pending.is_empty() and model.clock>=model.busy_until:return REJECTED
-    skill=id;expires_at=model.clock+WINDOW
+    skill=id;expires_at=model.clock+WINDOW;tap_pending=false
     return QUEUED
 func drain(model) -> bool:
-    if skill=="":return false
+    if skill=="":
+        if not tap_pending:return false
+        if model.outcome!="fighting" or model.clock>tap_expires:clear();return false
+        if model.request_basic():tap_pending=false;return true
+        return false
     if model.outcome!="fighting" or model.clock>expires_at:
         clear();return false
     if not model.skills.can_cast(skill,model.clock,model.level,{"momentum":model.momentum,"rage":model.rage}):
         clear();return false
     if model.request_action(skill):clear();return true
     return false
+
+func is_empty() -> bool:
+    return skill=="" and not tap_pending
+func request_tap(model) -> int:
+    if model.outcome!="fighting" or model.player_hp<=0:return REJECTED
+    if skill!="":return REJECTED
+    if model.request_basic():tap_pending=false;return CAST
+    if tap_pending:return REJECTED
+    tap_pending=true;tap_expires=model.clock+.85;return QUEUED

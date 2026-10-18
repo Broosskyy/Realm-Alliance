@@ -63,6 +63,10 @@ const VISUAL_SOCKETS = {
 }
 var layer_sockets: Dictionary = {}
 var attachments
+var cape
+var weapon_glow
+var _upgrade_level=0
+var fx_intensity=1.0
 
 func _ready() -> void:
     texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -99,6 +103,7 @@ func _ready() -> void:
     _weapon.scale = Vector2.ONE * BLADE_SCALE
     _weapon.position = -BLADE_GRIP * BLADE_SCALE
     _socket.add_child(_weapon)
+    weapon_glow=preload("res://scripts/presentation/weapon_upgrade_vfx.gd").new();weapon_glow.z_index=1;_weapon.add_child(weapon_glow)
     for state in Gate.HERO_STATES:
         _poses[state] = load(Gate.ROOT + "hero/" + state + ".png")
     for name in Gate.WEAPONS:
@@ -110,6 +115,7 @@ func _ready() -> void:
     _grip.z_index=13
     _grip.material=_palette
     _art.add_child(_grip)
+    cape=preload("res://scripts/hero_cape.gd").new();cape.attach(self)
     attachments=preload("res://scripts/hero_attachments.gd").new()
     attachments.attach(self)
     _set_pose("idle")
@@ -134,6 +140,7 @@ func _set_pose(name: String) -> void:
         var anchor: Vector2 = VISUAL_SOCKETS[name].get(id,VISUAL_SOCKETS[name].get("back",PIVOT))
         layer_sockets[id].position = anchor - PIVOT
     if attachments:attachments.sync_pose(self,name)
+    if cape:cape.sync(self,name)
 
 func _world_layer() -> int:
     var value=0
@@ -163,6 +170,8 @@ func _sample_action() -> void:
     var frame=Timeline.sample(_action_id,_action_elapsed,_windup,_recovery)
     if frame.pose!=_pose:_set_pose(frame.pose)
     _art.position=frame.offset+_recoil
+    _art.rotation=float(frame.get("art_rotation",0))
+    if frame.has("weapon_angle"):_socket.rotation_degrees=ANGLES[_pose]+float(frame.weapon_angle)
     if _pose=="windup":_socket.rotation_degrees=ANGLES[_pose]-12*(1-clampf(_action_elapsed/maxf(_windup,0.01),0,1))
     if not _impacted and _action_elapsed>=_windup:
         _impacted=true;impact.emit()
@@ -174,8 +183,8 @@ func equip_weapon(index: int) -> void:
         _weapon.texture = _weapons[_selected]
 
 func set_upgrade_tier(_level: int) -> void:
-    # True equipable armor layers need additional authored source art.
-    pass
+    _upgrade_level=clampi(_level,0,19)
+    if weapon_glow:weapon_glow.configure(_upgrade_level,fx_intensity)
 
 func set_look(id: String, evolution: bool = false) -> void:
     _look = id
@@ -184,6 +193,7 @@ func set_look(id: String, evolution: bool = false) -> void:
         _palette.set_shader_parameter("astral",id == "astral")
     if aura:
         aura.evolution = evolution
+    if cape:cape.sync(self,_pose)
 
 func set_gear(profile: Dictionary) -> void:
     if attachments:attachments.apply(self,profile)
@@ -246,6 +256,7 @@ func revive() -> void:
 
 func _finish_attack() -> void:
     _art.position = Vector2.ZERO
+    _art.rotation=0
     if not _dead:
         _set_pose("idle")
     _busy = false

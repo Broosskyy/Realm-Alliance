@@ -41,7 +41,7 @@ func run() -> void:
     for v in [Vector2(360,800),Vector2(720,1280),Vector2(720,1560),Vector2(1280,720)]:
         var m=Layout.solve(v)
         var ratio=(m.stage_origin.y-m.hud_bottom)/(m.controls_top-m.hud_bottom)
-        check(absf(ratio-.88)<.001,"locked shared ground line: "+str(v))
+        check(absf(ratio-.84)<.001,"locked shared ground line: "+str(v))
         for id in ["skill0","skill1","locked","skill2"]:
             var b=scene.hud.buttons[id]
             check(b.size.x*m.ui_scale>=44,"skill touch target at "+str(v))

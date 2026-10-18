@@ -34,10 +34,10 @@ func attach(hero) -> void:
     head.scale=Vector2.ONE*.50
     head.position=-Vector2(258.687,85.907)*.50
     head_mount.add_child(head)
-    wing_mount=Node2D.new();wing_mount.name="BackClaspPivot";wing_mount.z_index=-1
+    wing_mount=Node2D.new();wing_mount.name="BackClaspPivot";wing_mount.z_index=-2
     hero.layer_sockets.wings.add_child(wing_mount)
     wings=Sprite2D.new();wings.name="ReplaceableWings";wings.centered=false
-    wings.scale=Vector2.ONE*.56;wings.position=-Vector2(403.357,261.561)*.56
+    wings.scale=Vector2.ONE*.76;wings.position=-Vector2(403.357,261.561)*.76
     wing_mount.add_child(wings)
     apply(hero,{})
 func apply(hero,profile: Dictionary) -> void:
@@ -48,6 +48,7 @@ func apply(hero,profile: Dictionary) -> void:
     for slot in Gear.SLOTS:visible_items[slot]=Gear.visible_id(profile,slot) if profile.has("hero_equipment") else ""
     head.texture=TEXTURES.get(visible_items.head);head.visible=head.texture!=null
     wings.texture=TEXTURES.get(visible_items.wings);wings.visible=wings.texture!=null
+    if hero.cape:hero.cape.set_folded(hero,wings.visible)
     if hero.aura:hero.aura.awakened=Evolution.active(profile) if profile.has("hero_evolution") else false
     sync_pose(hero,hero._pose)
 func sync_pose(hero,pose: String) -> void:

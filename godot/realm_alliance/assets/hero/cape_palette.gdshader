@@ -1,6 +1,9 @@
 shader_type canvas_item;
 uniform bool emerald = false;
 uniform bool astral = false;
+uniform bool split_cape = false;
+uniform bool cape_pass = false;
+uniform vec2 cape_polygon[8];
 varying vec4 sprite_modulate;
 void vertex() {
     sprite_modulate = COLOR;
@@ -19,6 +22,15 @@ void fragment() {
     if (astral) {
         vec3 tint = vec3(tex.b * 0.18, tex.b * 0.84, tex.b);
         tex.rgb = mix(tex.rgb, tint, mask);
+    }
+    if (split_cape) {
+        bool inside = false;
+        for (int i = 0; i < 8; i++) {
+            vec2 a = cape_polygon[i];
+            vec2 b = cape_polygon[(i + 7) % 8];
+            if (((a.y > UV.y) != (b.y > UV.y)) && (UV.x < (b.x-a.x)*(UV.y-a.y)/(b.y-a.y+0.000001)+a.x)) { inside = !inside; }
+        }
+        tex.a *= cape_pass ? float(inside) : 1.0-float(inside);
     }
     COLOR = tex * sprite_modulate;
 }
