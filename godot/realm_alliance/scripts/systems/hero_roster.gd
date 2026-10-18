@@ -2,6 +2,8 @@ extends RefCounted
 class_name RAHeroRoster
 const Validate=preload("res://scripts/systems/domain_validation.gd")
 const Progress=preload("res://scripts/systems/player_progress.gd")
+# Add IDs only after full pose/socket/weapon art integration and scene tests.
+const VISUALLY_APPROVED=["realmwachter"]
 static var _data:Dictionary={}
 static func catalog() -> Dictionary:
     if _data.is_empty():_data=JSON.parse_string(FileAccess.get_file_as_string("res://data/roster67.json")).heroes
@@ -9,7 +11,7 @@ static func catalog() -> Dictionary:
 static func playable_catalog() -> Dictionary:
     var result={}
     for id in catalog():
-        if bool(catalog()[id].get("playable",true)):
+        if id in VISUALLY_APPROVED and bool(catalog()[id].get("playable",false)):
             result[id]=catalog()[id]
     return result
 
