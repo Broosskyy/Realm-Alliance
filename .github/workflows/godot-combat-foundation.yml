@@ -6,6 +6,7 @@ on:
       - feature/godot-combat-foundation-01
       - feature/work-6-2-combat-progression
       - feature/work-6-2-1-full-game-experience
+      - feature/work-6-5-1-master-ui
     paths:
       - 'godot/realm_alliance/**'
       - '.github/workflows/godot-combat-foundation.yml'
@@ -100,6 +101,8 @@ jobs:
         run: XDG_DATA_HOME=/tmp/realm62-test-rpg65 godot --headless --path . --script res://tests/test_rpg65.gd
       - name: Native RPG pages, inventory dialogs and responsive content
         run: XDG_DATA_HOME=/tmp/realm62-test-rpg-ui65 godot --headless --path . --script res://tests/test_rpg_ui65.gd
+      - name: Master UI, live map and inventory contracts
+        run: XDG_DATA_HOME=/tmp/realm651-test-ui godot --headless --path . --script res://tests/test_ui651.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
@@ -114,7 +117,7 @@ jobs:
       - name: Upload isolated Web artifact
         uses: actions/upload-artifact@v4
         with:
-          name: realm-alliance-work65-web
+          name: realm-alliance-work651-web
           path: build/godot-web/
           if-no-files-found: error
       - name: Build Android ARM64 debug APK
@@ -128,7 +131,7 @@ jobs:
       - name: Upload Android debug artifact
         uses: actions/upload-artifact@v4
         with:
-          name: realm-alliance-work65-android
+          name: realm-alliance-work651-android
           path: build/godot-android/*.apk
           if-no-files-found: error
 

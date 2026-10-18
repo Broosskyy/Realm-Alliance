@@ -49,6 +49,15 @@ var portrait: AtlasTexture
 var _top_fade: GradientTexture2D
 var _bottom_fade: GradientTexture2D
 var _redraw_clock = 0.0
+var _preview_key=""
+var _textures: Dictionary={}
+var _last_tab=""
+var _menu_transition: Tween
+var _veil: ColorRect
+
+func _texture(path: String) -> Texture2D:
+    if not _textures.has(path):_textures[path]=load(path)
+    return _textures[path]
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -92,11 +101,12 @@ func _ready() -> void:
     toast=preload("res://scripts/ui/notification_toast.gd").new()
     toast.name="NotificationToast"
     add_child(toast)
+    _veil=ColorRect.new();_veil.name="MenuTransition";_veil.color=Color("#06213d");_veil.mouse_filter=Control.MOUSE_FILTER_IGNORE;_veil.z_index=90;_veil.modulate.a=0;add_child(_veil)
     configure(1280.0)
     toast_until = Time.get_ticks_msec()+3500
 
 func _tooltip(id: String) -> String:
-    return {"auto":"Automatischen Standardangriff umschalten", "skill0":"Himmelsklinge · 2,8× Schaden", "skill1":"Arkanblick · 25 Momentum · 5s Markierung (+35% Schaden)", "skill2":"Zornesflamme · 40 Zorn · 4s Brennen", "locked":"Wächterwall · Ab Level 2 · 20 Momentum", "weapon":"Separates Schwert wechseln", "upgrade":"Angriff mit Gold aufwerten", "return":"Zurück zum Kampf", "mail":"Posteingang", "settings":"Einstellungen", "quests":"Aufgaben", "events":"Events"}.get(id, id)
+    return {"auto":"Automatischen Standardangriff umschalten", "skill0":"Himmelsklinge · 2,8× Schaden", "skill1":"Arkanblick · 25 Momentum · 5s Markierung (+35% Schaden)", "skill2":"Zornesflamme · 40 Zorn · 4s Brennen", "locked":"Wächterwall · Ab Level 2 · 20 Momentum", "weapon":"Separates Schwert wechseln", "upgrade":"Angriff mit Gold aufwerten", "return":"Zurück zum Kampf", "mail":"Aufgaben und Belohnungen", "settings":"Einstellungen", "quests":"Aufgaben", "events":"Events"}.get(id, id)
 
 func _fade(a: Color, b: Color) -> GradientTexture2D:
     var g = Gradient.new()
@@ -136,6 +146,7 @@ func configure(height: float) -> void:
     _place("return", Rect2(38, height - 188, 644, 62))
     _place("quests", Rect2(38, 204, 312, 88))
     _place("events", Rect2(370, 204, 312, 88))
+    if _veil:_veil.position=Vector2(0,96);_veil.size=Vector2(720,height-192)
     update_buttons()
     queue_redraw()
 
@@ -147,17 +158,27 @@ func update_buttons() -> void:
     if buttons.is_empty() or model == null:
         return
     var in_combat = active_tab == "Kampf"
+    if _last_tab!=active_tab:
+        if _menu_transition:_menu_transition.kill()
+        if _veil:
+            _veil.modulate.a=.18 if effect_level==0 and _last_tab!="" else 0
+            if _veil.modulate.a>0:
+                _menu_transition=create_tween();_menu_transition.tween_property(_veil,"modulate:a",0.0,.18)
+        _last_tab=active_tab
     if rpg_pages:rpg_pages.refresh(active_tab,model,logical_height)
     if toast:
         toast.visible=toast_until>Time.get_ticks_msec()
-        toast.position=Vector2(18,169) if in_combat else Vector2(38,maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265)
-        toast.size=Vector2(207,91) if in_combat else Vector2(644,40)
+        toast.position=Vector2(176,286) if in_combat else Vector2(38,maxf(1040,logical_height-265) if active_tab=="Wesen" else logical_height-265)
+        toast.size=Vector2(368,54) if in_combat else Vector2(644,40)
         toast.display(toast_title,toast_detail,in_combat)
     if preview:
         preview.visible = active_tab == "Wesen"
-        preview.equip_weapon(model.weapon_index)
-        preview.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
-        preview.set_gear(model.profile)
+        var visual_key=str(model.weapon_index)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
+        if preview.visible and visual_key!=_preview_key:
+            _preview_key=visual_key
+            preview.equip_weapon(model.weapon_index)
+            preview.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
+            preview.set_gear(model.profile)
     for index in 4:
         var id=HeroEquipment.IDS[index]
         var b=buttons["gear_"+id]
@@ -166,7 +187,7 @@ func update_buttons() -> void:
         var d:Dictionary=HeroEquipment.CATALOG[id]
         var data=model.profile.hero_equipment if HeroEquipment.ensure(model.profile) else {"owned":{},"equipped":{}}
         var owned=data.owned.has(id)
-        b.set_item(["Stern","Eklipse","Diadem","Flügel"][index],"",PURPLE if d.rarity=="epic" else CYAN,str(data.equipped.get(d.slot,""))==id,owned,load("res://assets/equipment/"+id+".png"))
+        b.set_item(["Stern","Eklipse","Diadem","Flügel"][index],"",PURPLE if d.rarity=="epic" else CYAN,str(data.equipped.get(d.slot,""))==id,owned,_texture("res://assets/equipment/"+id+".png"))
         b.tooltip_text=d.name+" · Details / anlegen / aufwerten"
         b.position=Vector2(62,300+index*104) if index<2 else Vector2(566,300+(index-2)*104)
         b.size=Vector2(92,92)
@@ -216,7 +237,7 @@ func update_buttons() -> void:
             var d=Equipment.definition(id)
             var owned=model.profile.inventory.has(id)
             var tint=GOLD if id==model.profile.equipped else (PURPLE if d.rarity=="epic" else CYAN)
-            var icon=load("res://assets/production/weapons/"+id+".png") if ResourceLoader.exists("res://assets/production/weapons/"+id+".png") else null
+            var icon=_texture("res://assets/production/weapons/"+id+".png") if ResourceLoader.exists("res://assets/production/weapons/"+id+".png") else null
             b.set_item(["Stahl","Kristall","Glut","Rune","Schatten"][i],"Lv. %d · %s"%[model.profile.inventory[id].level,_rarity(d.rarity)] if owned else "Im Streifzug finden",tint,id==model.profile.equipped,owned,icon)
 
 func notify(title: String, detail: String, seconds: float = 3.0) -> void:
@@ -257,7 +278,7 @@ func _draw() -> void:
         return
     var h = logical_height
     if active_tab != "Kampf":
-        draw_rect(Rect2(0, 0, 720, h), Color(0.015,0.035,0.075,0.91))
+        draw_rect(Rect2(0, 0, 720, h), Color(0.015,0.035,0.075,0.45 if active_tab=="Wesen" else .91))
     draw_texture_rect(_top_fade, Rect2(0, 0, 720, 190), false)
     _draw_header()
     if active_tab == "Kampf":
@@ -283,11 +304,17 @@ func _draw_header() -> void:
     for i in 3:
         var x = 249 + i * 118
         _panel(Rect2(x, 24, 110, 43), Color(0.01,0.035,0.08,0.94), Color(0.2,0.44,0.63,0.7), 22)
-        _icon(["gold", "gem", "shard"][i], Rect2(x + 6, 31, 28, 28))
-        _text(_amount(model.gold) if i == 0 else "—", Vector2(x + 39, 53), 19, INK, true)
+        _icon(["gold", "shard", "star"][i], Rect2(x + 6, 31, 28, 28))
+        _text(_amount(model.gold) if i == 0 else (_amount(model.profile.shards) if i==1 else str(_world_stars())), Vector2(x + 39, 53), 19, INK, true)
     for i in 2:
         _panel(Rect2(612 + i * 52, 18, 44, 52), Color(0.01,0.035,0.08,0.91))
-        _icon("mail" if i == 0 else "gear", Rect2(621 + i * 52, 30, 26, 26))
+        _icon("map" if i == 0 else "gear", Rect2(621 + i * 52, 30, 26, 26))
+
+func _world_stars() -> int:
+    var total=0
+    for region in model.World.IDS:
+        for i in 5:total+=model.World.stars(model.profile,region,i)
+    return total
 
 func _amount(n: int) -> String:
     if n >= 1000000:
@@ -310,26 +337,26 @@ func _draw_combat() -> void:
     _icon("crown", Rect2(554, 108, 29, 29), GOLD if node == 4 else MUTED)
     var boss = model.enemy_definition.kind == "boss"
     var elite = model.enemy_definition.kind == "elite"
-    _panel(Rect2(240, 168, 458, 106), Color(0.01,0.035,0.075,0.94), Color.WHITE,16,"boss" if boss else "panel")
-    _icon("crown" if boss else "rock", Rect2(254, 180, 33, 33), GOLD if boss else Color.WHITE)
-    _text(model.enemy_definition.name, Vector2(296, 202), 23, INK, true)
-    _text("Lv. %d" % model.wave, Vector2(615, 201), 18, MUTED)
-    _bar(Rect2(255, 217, 428, 24), float(model.enemy_hp) / model.enemy_max_hp, Color("#f23754"))
-    _center("%d / %d" % [model.enemy_hp, model.enemy_max_hp], Rect2(255, 216, 428, 24), 16, INK, true)
-    _text("BOSS" if boss else ("ELITE" if elite else "NORMAL"), Vector2(257, 261), 12, GOLD if boss else (PURPLE if elite else MUTED), true)
+    _panel(Rect2(120, 166, 480, 106), Color(0.01,0.035,0.075,0.94), Color.WHITE,16,"boss" if boss else "panel")
+    _icon("crown" if boss else "rock", Rect2(137, 178, 33, 33), GOLD if boss else Color.WHITE)
+    _text(model.enemy_definition.name, Vector2(181, 202), 23, INK, true)
+    _text("Lv. %d" % model.wave, Vector2(516, 201), 18, MUTED)
+    _bar(Rect2(137, 217, 446, 24), float(model.enemy_hp) / model.enemy_max_hp, Color("#f23754"))
+    _center("%d / %d" % [model.enemy_hp, model.enemy_max_hp], Rect2(137, 216, 446, 24), 16, INK, true)
+    _text("BOSS" if boss else ("ELITE" if elite else "NORMAL"), Vector2(139, 261), 12, GOLD if boss else (PURPLE if elite else MUTED), true)
     var statuses=[]
     if model.enemy_status.has("mark",model.clock): statuses.append(["eye","%.1fs"%model.enemy_status.remaining("mark",model.clock)])
     if model.enemy_status.has("burn",model.clock): statuses.append(["flame","%.1fs"%model.enemy_status.remaining("burn",model.clock)])
     if statuses.is_empty():
-        _text("%d / 5 · Streifzug"%(model.encounter+1),Vector2(375,263),14,MUTED)
+        _text("%d / 5 · Streifzug"%(model.encounter+1),Vector2(288,263),14,MUTED)
     else:
         for i in statuses.size():
-            _icon(statuses[i][0],Rect2(363+i*105,247,21,21))
-            _text(statuses[i][1],Vector2(389+i*105,263),13,INK)
+            _icon(statuses[i][0],Rect2(285+i*120,247,21,21))
+            _text(statuses[i][1],Vector2(311+i*120,263),13,INK)
     if model.behavior.state=="windup" and model.outcome=="fighting":
-        _panel(Rect2(293,282,355,32),Color(0.22,0.035,0.035,0.92),Color("#e98f65"),12)
+        _panel(Rect2(183,346,355,38),Color(0.22,0.035,0.035,0.92),Color("#e98f65"),12)
         var cue=enemy_attack_cue()
-        _center("%s in %.1fs"%[cue,maxf(0,model.behavior.deadline-model.clock)],Rect2(293,282,355,32),16,Color("#ffca9b"),true)
+        _center("%s in %.1fs"%[cue,maxf(0,model.behavior.deadline-model.clock)],Rect2(183,346,355,38),16,Color("#ffca9b"),true)
     draw_texture_rect(_bottom_fade, Rect2(0, controls_top - 90, 720, 330 + 90), false)
     var y = controls_top + 8
     _resource(Rect2(18, y, 248, 58), "heart", "%d / %d"%[model.player_hp,model.player_max_hp], float(model.player_hp)/model.player_max_hp, Color("#36df73"))
@@ -396,12 +423,13 @@ func _draw_shell() -> void:
         "Abenteuer":
             pass
         "Wesen":
-            _panel(Rect2(38,177,644,440),Color.WHITE,Color.WHITE,16,"hero_ornate")
+            draw_ellipse_platform()
+            _panel(Rect2(170,589,380,38))
             _center("Realmwächter · Lv. %d"%model.level,Rect2(38,191,644,38),25,INK,true)
             _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
-            _center(Equipment.definition(model.profile.equipped).description,Rect2(50,269,620,30),15,MUTED)
-            _center("Kraft %d · %s"%[model.power,"Erwacht" if Evolution.active(model.profile) else "Basisform"],Rect2(180,299,360,24),16,GOLD)
-            _center("Angriff %d · HP %d · DEF %d"%[model.hero_damage(),model.player_max_hp,model.defense],Rect2(170,586,380,28),17,GOLD,true)
+            _center(Equipment.definition(model.profile.equipped).description,Rect2(50,249,620,25),15,MUTED)
+            _center("Kraft %d · %s"%[model.power,"Erwacht" if Evolution.active(model.profile) else "Basisform"],Rect2(180,278,360,24),16,GOLD)
+            _center("Angriff %d · HP %d · DEF %d"%[model.hero_damage(),model.player_max_hp,model.defense],Rect2(170,590,380,36),17,GOLD,true)
             _panel(Rect2(38,644,310,64),Color("#11334f"),CYAN.darkened(0.3))
             _panel(Rect2(368,644,314,64),Color("#3c2851"),PURPLE.darkened(0.2))
             _center("Waffe wechseln",Rect2(38,644,310,64),20,INK,true)
@@ -433,29 +461,40 @@ func _draw_shell() -> void:
         "Beute":
             pass
         "Mehr":
+            _panel(Rect2(38,177,644,235))
+            if portrait:draw_texture_rect(portrait,Rect2(60,199,140,140),false)
+            _text("Realmwächter",Vector2(226,225),28,INK,true)
+            _text("Level %d · Kraft %d"%[model.level,model.power],Vector2(226,264),22,GOLD)
+            _bar(Rect2(226,283,424,18),float(Progress.xp_in_level(model.profile.xp))/Progress.required(model.level),CYAN)
+            _text("%d / %d XP"%[Progress.xp_in_level(model.profile.xp),Progress.required(model.level)],Vector2(226,330),18,MUTED)
+            _text("Lokales Profil · Fortschritt automatisch gespeichert",Vector2(60,384),19,MUTED)
             for i in 2:
-                var x = 38 + i * 332
-                _panel(Rect2(x, 204, 312, 88))
-                _icon("map" if i == 0 else "flame", Rect2(x + 18, 225, 43, 43))
-                _text("Aufgaben" if i == 0 else "Erfolge", Vector2(x + 80, 253), 22, INK, true)
-            _panel(Rect2(38, 320, 644, 180))
-            _text("REALM ALLIANCE", Vector2(61, 361), 24, INK, true)
-            _text("Realm Alliance · 0.6.5", Vector2(61, 402), 18, MUTED)
-            _text("Spielstand wird lokal gespeichert.", Vector2(61, 447), 18, MUTED)
-            _text("Aufgaben und Erfolge geben echte Belohnungen.", Vector2(61, 479), 17, MUTED)
+                var x=38+i*332
+                _place("quests" if i==0 else "events",Rect2(x,440,312,176))
+                _panel(Rect2(x,440,312,176))
+                _icon("map" if i==0 else "crown",Rect2(x+126,459,60,60),GOLD)
+                _center("Aufgaben" if i==0 else "Erfolge",Rect2(x,529,312,32),24,INK,true)
+                _center("Ziele & Belohnungen" if i==0 else "Deine Meilensteine",Rect2(x,568,312,26),18,MUTED)
+            _text("SPIELSTAND",Vector2(40,684),18,MUTED,true)
             for i in 2:
                 var r=Rect2(38+i*332,715,312,62)
-                _panel(r,Color("#13314b"),CYAN.darkened(0.4))
+                _panel(r,Color.WHITE,Color.WHITE,16,"secondary")
                 _center("Stand exportieren" if i==0 else "Stand importieren",r,18,INK,true)
-            _center("Android-Preview: separater Spielstand",Rect2(38,790,644,30),16,MUTED)
+            _text("EINSTELLUNGEN",Vector2(40,823),18,MUTED,true)
             for i in 2:
                 var r=Rect2(38+i*332,845,312,62)
-                _panel(r,Color("#13314b"),CYAN.darkened(0.4))
+                _panel(r)
                 _center(("Klang: "+("An" if sound_enabled else "Aus")) if i==0 else ("Effekte: "+["Voll","Reduziert","Aus"][effect_level]),r,18,INK,true)
+            _center("REALM ALLIANCE · 0.6.5.1 · Offline-Abenteuer",Rect2(38,943,644,30),17,MUTED)
             if model.read_only:
-                _panel(Rect2(38,527,644,150),Color("#362032"),Color("#ffb580"))
-                _text("Spielstand geschützt",Vector2(61,566),23,GOLD,true)
-                _text("Die Originaldatei bleibt unverändert.",Vector2(61,607),18,INK)
-                _text("Diese Sitzung wird nicht gespeichert.",Vector2(61,642),18,MUTED)
+                _center("Spielstand geschützt · Diese Sitzung wird nicht gespeichert",Rect2(38,986,644,34),18,GOLD,true)
     _panel(Rect2(38, logical_height - 188, 644, 62), Color("#13314c"), CYAN.darkened(0.4))
     _center("Zurück zum Kampf", Rect2(38, logical_height - 188, 644, 62), 20, INK, true)
+
+func draw_ellipse_platform() -> void:
+    # Open showcase; a native geometric pedestal keeps body/equipment independent.
+    draw_set_transform(Vector2(360,570),0,Vector2(1,.20))
+    draw_circle(Vector2.ZERO,175,Color(.01,.05,.12,.7))
+    draw_arc(Vector2.ZERO,171,0,TAU,80,Color(.35,.62,.8,.8),3,true)
+    draw_arc(Vector2.ZERO,150,0,TAU,80,Color(.2,.7,1,.35),2,true)
+    draw_set_transform(Vector2.ZERO)

@@ -15,9 +15,9 @@ func _ready() -> void:
 func display(title: String,detail: String,compact: bool) -> void:
     if title_label==null:return
     title_label.text=title if compact else title+" · "+detail
-    title_label.position=Vector2(16,13 if compact else 7)
+    title_label.position=Vector2(16,4 if compact else 7)
     title_label.size=Vector2(size.x-32,26)
-    title_label.add_theme_font_size_override("font_size",13 if compact else 14)
-    detail_label.text=detail;detail_label.position=Vector2(16,51);detail_label.size=Vector2(size.x-32,27)
-    detail_label.add_theme_font_size_override("font_size",12);detail_label.visible=compact
+    title_label.add_theme_font_size_override("font_size",16 if compact else 16)
+    detail_label.text=detail;detail_label.position=Vector2(16,27);detail_label.size=Vector2(size.x-32,27)
+    detail_label.add_theme_font_size_override("font_size",14);detail_label.visible=compact
     tooltip_text=title+" · "+detail

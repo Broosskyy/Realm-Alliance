@@ -28,18 +28,17 @@ func _label(value: String,color: Color=Kit.INK) -> Label:
 func _button(parent: Node,label: String,callback: Callable,disabled: bool=false) -> Button:
     var b=Button.new();b.text=label;b.custom_minimum_size.y=88;b.size_flags_horizontal=Control.SIZE_EXPAND_FILL;b.disabled=disabled;b.pressed.connect(callback);parent.add_child(b);return b
 func _world() -> void:
-    var map=TextureRect.new();map.texture=preload("res://assets/world65/world_map.webp");map.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;map.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;map.custom_minimum_size.y=258;content.add_child(map)
-    var tabs=HBoxContainer.new();content.add_child(tabs)
+    var tabs=HBoxContainer.new();tabs.add_theme_constant_override("separation",12);content.add_child(tabs)
     for id in model.World.IDS:
-        _button(tabs,("◆ " if id==selected_region else "")+model.World.NAMES[id],func():selected_region=id;_key="";refresh("Abenteuer",model,size.y+390))
-    _label("Tempel über den Wolken. Bezwinge den Gartenkoloss, um Glutkern zu öffnen." if selected_region=="wolkgarten" else "Basalt, Glutkeiler und der Aschenkoloss. Achte auf Einschlag und Nachbeben.")
-    for i in 5:
-        var d=model.World.encounter(selected_region,i)
-        var stars=model.World.stars(model.profile,selected_region,i)
-        var label="%d-%d · %s · %s\n%s"%[model.World.IDS.find(selected_region)+1,i+1,d.name,{"normal":"Normal","elite":"Elite","boss":"Boss"}[d.kind],"★".repeat(stars)+"☆".repeat(3-stars)]
-        var b=_button(content,label,func():action.emit("stage:"+selected_region+":"+str(i)),not model.World.can_enter(model.profile,selected_region,i) or model.read_only)
-        b.name="Stage_"+selected_region+"_"+str(i);b.add_theme_font_size_override("font_size",22)
-    _label("Sterne: Sieg · mindestens 50% HP · mindestens 85% HP. Betreten startet einen neuen Lauf ab der gewählten Stage.",Color("#9fbbd8"))
+        var b=_button(tabs,("◆ " if id==selected_region else "")+model.World.NAMES[id],func():selected_region=id;_key="";refresh("Abenteuer",model,size.y+390))
+        b.add_theme_stylebox_override("normal",Kit.box("primary" if id==selected_region else "panel"))
+    var map=preload("res://scripts/ui/world_map.gd").new()
+    map.configure(model,selected_region)
+    map.stage_selected.connect(func(i):action.emit("stage:"+selected_region+":"+str(i)))
+    content.add_child(map)
+    _label("Wolkgarten · Himmelsinseln" if selected_region=="wolkgarten" else "Glutkern · Aschenpfade",Color("#ffd16b"))
+    _label("Bezwinge den Gartenkoloss, um Glutkern zu öffnen." if selected_region=="wolkgarten" else "Glutkeiler und Aschenkoloss: Achte auf Einschlag und Nachbeben.")
+    _label("Stage antippen zum Betreten. Sterne: Sieg · 50% HP · 85% HP. Gesperrte Etappen werden im Kampf freigeschaltet.",Color("#9fbbd8"))
 func _inventory() -> void:
     _label("%d Gold · %d Himmelssplitter"%[model.gold,model.profile.shards],Color("#ffd16b"))
     var row=HBoxContainer.new();content.add_child(row)
@@ -48,7 +47,7 @@ func _inventory() -> void:
         var id=ids[i]
         var b=_button(row,["Alles","Waffen","Rüstung","Material"][i],func():filter=id;_key="";refresh("Beute",model,size.y+390));b.add_theme_font_size_override("font_size",20)
     var sort_button=_button(content,"Sortierung: "+("Seltenheit" if rarity_sort else "Name"),func():rarity_sort=not rarity_sort;_key="";refresh("Beute",model,size.y+390));sort_button.add_theme_font_size_override("font_size",22)
-    var grid=GridContainer.new();grid.columns=3;grid.add_theme_constant_override("h_separation",10);grid.add_theme_constant_override("v_separation",10);content.add_child(grid)
+    var grid=GridContainer.new();grid.columns=4;grid.add_theme_constant_override("h_separation",10);grid.add_theme_constant_override("v_separation",10);content.add_child(grid)
     var items=Inventory.items(model.profile,filter,rarity_sort)
     for item in items:
         var b=Card.new();b.configure(item);b.size_flags_horizontal=Control.SIZE_EXPAND_FILL;grid.add_child(b);b.pressed.connect(func():action.emit("item:"+item.kind+":"+item.id))

@@ -72,7 +72,7 @@ func _ready() -> void:
         var d:Dictionary=model.pending.definition
         hero.play_action(str(d.id),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup))
         hero.sync_clock(model.clock)
-    print("REALM 6.5: canonical hero, weapons and survival systems loaded")
+    print("REALM 6.5.1: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -207,8 +207,8 @@ func _layout() -> void:
     hud.configure(metrics["logical_height"])
     if _production_enabled:
         var tall = clampf((float(metrics["logical_height"]) - 1280.0) / 280.0, 0.0, 1.0)
-        hero.scale = Vector2.ONE * lerpf(0.64, 0.82, tall)
-        enemy.set_layout_scale(0.75 if model.enemy_definition.visual=="boar" else (lerpf(0.72, 0.93, tall) if model.enemy_definition.visual == "golem" else 0.90))
+        hero.scale = Vector2.ONE * lerpf(0.67, 0.86, tall)
+        enemy.set_layout_scale(0.75 if model.enemy_definition.visual=="boar" else (lerpf(0.82, 1.12, tall) if model.enemy_definition.visual == "golem" else 0.90))
 
 func _on_hud_action(id: String) -> void:
     if id=="sound":
@@ -228,7 +228,7 @@ func _on_hud_action(id: String) -> void:
         _confirm_stage(id)
     elif id.begins_with("item:"):
         _open_inventory_item(id)
-    elif id in ["quests","events"]:
+    elif id in ["quests","events","mail"]:
         _open_quests(id=="events")
     elif id=="talents":
         _open_talents()
