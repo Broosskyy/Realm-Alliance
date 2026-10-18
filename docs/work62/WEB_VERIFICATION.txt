@@ -1,0 +1,5 @@
+REALM 6.2: canonical hero, weapons and survival systems loaded
+PASS: V2 complete-run restore and equipment/cosmetics
+PASS: V1 confirmed import preserves gold/equipped/upgrade/original snapshot
+REALM 6.2: canonical hero, weapons and survival systems loaded
+PASS: persistence across reload and no runtime errors.

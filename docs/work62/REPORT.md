@@ -34,7 +34,9 @@ Coverage includes costs/rejections, cooldowns, mark amplification/expiry, exactl
 
 Native rendering and actual scene integration were inspected with Godot OpenGL/Mesa at 720x1280, 720x1560, 360x800 and 1280x720. Captures below are real Godot scenes, not concept mockups. They show combat/mark/boss, victory/defeat, loot and mounted equipment/cosmetics.
 
-Final exported-browser smoke/transfer verification: pending the final delivery check; results will be appended. Physical Android device testing remains open.
+Final exported-browser verification **passed** on 2026-10-18 in Chromium 151 at 720x1560 with mobile touch input and WebGL software rendering: five-encounter run reached boss victory (5 kills, 191 gold, 234 XP, all five swords), loot selection equipped shadow_violet, emerald cape and aura toggled, V2 JSON downloaded/restored, V1 JSON explicitly confirmed and migrated (777 gold, crystal weapon level 3, original legacy snapshot), then browser reload retained the imported save. No detected script/page errors in the transfer/reload pass. The first full-run harness subsequently timed out waiting for a download after import had switched back to Combat; the corrected transfer pass returned to More and passed. This was a test-navigation error; no runtime patch was required.
+
+Physical Android device testing remains open.
 
 ## Builds and save safety
 Download CI artifacts `realm-alliance-work62-web` and `realm-alliance-work62-android` from the successful run. Serve the extracted Web build over HTTP(S), rather than opening index.html as a local file.
