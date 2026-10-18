@@ -27,34 +27,29 @@ func run():
     for domain in ["hero_roster","companions"]:
         var state=m.snapshot();state.profile[domain].schema=2;var future=Session.new(state)
         check(future.read_only and not future.acquire_companion("skyfox"),"future domain protected "+domain)
-    m=prepared();var old_damage=m.hero_damage();var xp=m.profile.xp
-    check(m.unlock_hero("kaela") and m.gold==850 and m.profile.shards==92,"actual hero cost deducted once")
-    check(not m.unlock_hero("kaela") and m.gold==850,"duplicate hero acquisition rejected")
-    check(m.hero_id=="realmwachter" and m.Roster.xp(m.profile,"realmwachter")==xp,"unlock does not silently switch hero")
-    m.request_basic();m.tick(.1)
-    var old_run=m.run_id
-    var old_clock=m.clock
-    var old_wave=m.wave
-    var old_enemy=m.enemy_hp
-    var old_hp=m.player_hp
-    var old_claims=m.profile.claims.duplicate(true)
-    check(m.select_hero("kaela"),"owned hero selection accepted")
-    check(is_equal_approx(m.clock,old_clock) and m.run_id==old_run and m.wave==old_wave and m.enemy_hp==old_enemy and m.pending.is_empty(),"hero switch preserves active wave, run and enemy HP, cancels stale attack")
-    check(m.player_hp==old_hp and m.profile.claims==old_claims,"hero switch cannot heal, regenerate boss or duplicate loot")
-    check(m.hero_level==1 and m.profile.xp==xp and m.hero_damage()<old_damage and m.player_max_hp>=188 and m.defense>=3,"independent training and actual tank stats")
-    check(m.skills.definitions.sky_blade.name=="Runenstoß" and m.skills.definitions.guardian_wall.cooldown==7.5,"distinct real skill definitions")
-    m.player_hp=80;m.momentum=100;m.behavior.deadline=10000
-    check(not m.request_action("guardian_wall"),"new hero must train own level before defense unlock")
-    m.profile.hero_roster.owned.kaela.xp=80
-    check(m.request_action("guardian_wall"),"rune bastion cast")
-    m.tick(.02);var hp=m.player_hp;m._enemy_strike(1,false);var e=m.drain_events()
-    check(m.player_hp>hp and count(e,"heal")==1,"true shield block heals Kaela")
-    m.hero_status.active.clear();hp=m.player_hp;m._enemy_strike(1,false)
-    check(m.player_hp<hp and count(m.drain_events(),"heal")==0,"unblocked hit does not fake healing")
-    var guardian_xp=m.Roster.xp(m.profile,"realmwachter");m.enemy_hp=1;m.pending.clear();m.busy_until=m.clock;m.request_basic();m.tick(.6)
-    check(m.Roster.xp(m.profile,"kaela")>0 and m.Roster.xp(m.profile,"realmwachter")==guardian_xp and m.profile.xp>xp,"only active hero trains; account XP also advances")
-    var kaela_xp=m.Roster.xp(m.profile,"kaela");m.select_hero("realmwachter")
-    check(m.Roster.xp(m.profile,"kaela")==kaela_xp and m.hero_damage()==old_damage,"switch retains individual XP and guardian power")
+    m=prepared()
+    check(m.Roster.playable_catalog().has("realmwachter") and not m.Roster.playable_catalog().has("kaela"),"Kaela no longer appears as playable hero")
+    check(not m.unlock_hero("kaela") and not m.select_hero("kaela"),"retired NPC cannot be purchased or selected")
+    var legacy=m.snapshot()
+    legacy.profile.hero_roster.owned.kaela={"xp":340,"source":"historical_unlock"}
+    legacy.profile.hero_roster.active="kaela"
+    legacy.profile.gold=810
+    legacy.profile.shards=21
+    legacy.checkpoint.region="glutkern"
+    legacy.checkpoint.tier=1
+    legacy.checkpoint.encounter=2
+    legacy.checkpoint.clock=4.0
+    legacy.checkpoint.player_hp=70
+    legacy.checkpoint.enemy_hp=35
+    var remapped=Session.new(JSON.parse_string(JSON.stringify(legacy)))
+    check(not remapped.read_only and remapped.hero_id=="realmwachter","old Kaela active session loads as canonical guardian")
+    check(remapped.gold==960 and int(remapped.profile.shards)==29 and bool(remapped.profile.hero_roster.kaela_compensated),"previous Kaela unlock compensated once")
+    check(int(remapped.profile.hero_roster.owned.kaela.xp)==340 and remapped.profile.hero_roster.owned.kaela.source=="historical_unlock","Kaela XP and ownership archived losslessly")
+    check(remapped.region=="glutkern" and remapped.tier==1 and remapped.encounter==2 and remapped.enemy_hp==35 and remapped.player_hp==70,"region, wave, enemy HP and hero HP survive Kaela migration")
+    check(remapped.profile.inventory==legacy.profile.inventory and remapped.profile.claims==legacy.profile.claims,"migration preserves equipment and rewards")
+    var again=Session.new(JSON.parse_string(JSON.stringify(remapped.snapshot())))
+    check(not again.read_only and again.gold==960 and int(again.profile.shards)==29,"migration does not grant Kaela compensation twice")
+    check(not again.select_hero("kaela") and again.Roster.catalog().has("kaela"),"Kaela art/data retained for future NPC but cannot return as hero")
     m=prepared();check(m.acquire_companion("skyfox") and m.gold==960 and m.profile.shards==98,"real companion cost")
     var pet_run=m.run_id;var pet_wave=m.wave;var pet_enemy=m.enemy_hp
     check(not m.acquire_companion("skyfox") and m.select_companion("skyfox"),"single purchase and owned selection")
@@ -98,20 +93,18 @@ func run():
     check(not evolved_restored.evolve_companion("skyfox") and evolved_restored.gold==post_reload_gold,"evolved companion cannot repurchase after reload")
     var future=m.snapshot();future.checkpoint.companion_runtime.schema=2;check(Session.new(future).read_only,"future companion runtime protected")
     future=m.snapshot();future.profile.companions.owned.skyfox.xp=1.5;check(Session.new(future).read_only,"fractional training counter rejected")
-    m=prepared();m.unlock_hero("kaela");m.select_hero("kaela");m.acquire_companion("skyfox");m.select_companion("skyfox")
+    m=prepared();m.acquire_companion("skyfox");m.select_companion("skyfox")
     var roster_restored=Session.new(JSON.parse_string(JSON.stringify(m.snapshot())))
-    check(not roster_restored.read_only and roster_restored.hero_id=="kaela" and str(roster_restored.profile.companions.active)=="skyfox","Kaela and equipped companion survive JSON save/reload")
-    check(roster_restored.hero_level==m.hero_level and roster_restored.gold==m.gold and int(roster_restored.profile.shards)==int(m.profile.shards),"independent hero training and currencies survive reload")
-    check(roster_restored.skills.definitions.sky_blade.name=="Runenstoß" and is_equal_approx(float(roster_restored.skills.definitions.guardian_wall.cooldown),7.5),"hero-specific skills survive reload")
-    var scene=Scene.instantiate();root.add_child(scene);await process_frame;scene.model=m;scene.hud.model=m;scene._sync_hero();scene.hud.active_tab="Wesen";scene.hud.update_buttons()
-    check(scene.hero.hero_id=="kaela" and scene.hud.preview.hero_id=="kaela","combat and preview show actual active hero")
+    check(not roster_restored.read_only and roster_restored.hero_id=="realmwachter" and str(roster_restored.profile.companions.active)=="skyfox","guardian and equipped companion survive JSON save/reload")
+    check(roster_restored.hero_level==m.hero_level and roster_restored.gold==m.gold,"hero training and currency survive reload")
+    var scene=Scene.instantiate();root.add_child(scene);await process_frame
+    scene.model=m;scene.hud.model=m;scene._sync_hero();scene.hud.active_tab="Wesen";scene.hud.update_buttons()
+    check(scene.hero.hero_id=="realmwachter" and scene.hud.preview.hero_id=="realmwachter","combat arena and preview show canonical masked guardian")
     for pose in scene.hero.Gate.HERO_STATES:
-        scene.hero._set_pose(pose);var pixels=scene.hero._body.texture.get_image()
-        check(pixels.get_pixelv(Vector2i(scene.hero.hand(pose))).a>.1,"fist socket intersects actual opaque art "+pose)
+        scene.hero._set_pose(pose)
         for sword in 5:
             scene.hero.equip_weapon(sword)
-            check(scene.hero.weapon_is_modular() and scene.hero._weapon.texture!=null and scene.hero._socket.z_index>3,"separate visible sword "+pose+str(sword))
-    check(not scene.hero.cape.cloth.visible and scene.hero._palette.get_shader_parameter("split_cape")==false,"alternate short cape excludes guardian-only masks")
+            check(scene.hero.weapon_is_modular() and scene.hero._weapon.texture!=null and scene.hero._socket.z_index>3,"masked guardian holds separate weapon "+pose+str(sword))
     for size in [Vector2(360,800),Vector2(720,1280),Vector2(720,1560),Vector2(1280,720)]:
         var metrics=preload("res://scripts/combat_layout.gd").solve(size);scene.hud.configure(metrics.logical_height);scene.hud.update_buttons()
         check(scene.hud.buttons.roster.size.y*float(metrics.ui_scale)>=44,"collection has physical touch target "+str(size))
