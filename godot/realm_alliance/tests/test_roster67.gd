@@ -31,9 +31,16 @@ func run():
     check(m.unlock_hero("kaela") and m.gold==850 and m.profile.shards==92,"actual hero cost deducted once")
     check(not m.unlock_hero("kaela") and m.gold==850,"duplicate hero acquisition rejected")
     check(m.hero_id=="realmwachter" and m.Roster.xp(m.profile,"realmwachter")==xp,"unlock does not silently switch hero")
-    m.request_basic();m.tick(.1);var old_run=m.run_id
+    m.request_basic();m.tick(.1)
+    var old_run=m.run_id
+    var old_clock=m.clock
+    var old_wave=m.wave
+    var old_enemy=m.enemy_hp
+    var old_hp=m.player_hp
+    var old_claims=m.profile.claims.duplicate(true)
     check(m.select_hero("kaela"),"owned hero selection accepted")
-    check(m.clock==0 and m.run_id!=old_run and m.pending.is_empty() and m.enemy_hp==m.enemy_max_hp and m.player_hp==m.player_max_hp,"switch resets run; no mid-boss healing exploit")
+    check(is_equal_approx(m.clock,old_clock) and m.run_id==old_run and m.wave==old_wave and m.enemy_hp==old_enemy and m.pending.is_empty(),"hero switch preserves active wave, run and enemy HP, cancels stale attack")
+    check(m.player_hp==old_hp and m.profile.claims==old_claims,"hero switch cannot heal, regenerate boss or duplicate loot")
     check(m.hero_level==1 and m.profile.xp==xp and m.hero_damage()<old_damage and m.player_max_hp>=188 and m.defense>=3,"independent training and actual tank stats")
     check(m.skills.definitions.sky_blade.name=="Runenstoß" and m.skills.definitions.guardian_wall.cooldown==7.5,"distinct real skill definitions")
     m.player_hp=80;m.momentum=100;m.behavior.deadline=10000
@@ -49,7 +56,9 @@ func run():
     var kaela_xp=m.Roster.xp(m.profile,"kaela");m.select_hero("realmwachter")
     check(m.Roster.xp(m.profile,"kaela")==kaela_xp and m.hero_damage()==old_damage,"switch retains individual XP and guardian power")
     m=prepared();check(m.acquire_companion("skyfox") and m.gold==960 and m.profile.shards==98,"real companion cost")
+    var pet_run=m.run_id;var pet_wave=m.wave;var pet_enemy=m.enemy_hp
     check(not m.acquire_companion("skyfox") and m.select_companion("skyfox"),"single purchase and owned selection")
+    check(m.run_id==pet_run and m.wave==pet_wave and m.enemy_hp==pet_enemy,"pet equip preserves run, stage and enemy health")
     m.behavior.deadline=10000;m.drain_events();var before=m.enemy_hp;var momentum=m.momentum;var rage=m.rage
     m.tick(1.0/60);check(m.enemy_hp==before and not m.companion.pending.is_empty(),"pet attack has genuine windup")
     var saved=m.snapshot();var restored=Session.new(JSON.parse_string(JSON.stringify(saved)))
@@ -100,6 +109,15 @@ func run():
         check(scene.hud.buttons.roster.size.y*float(metrics.ui_scale)>=44,"collection has physical touch target "+str(size))
     var pet=scene.companion_visual;pet.sync(m.profile,10);var texture=pet.sprite.texture;m.profile.companions.owned.skyfox.evolution=1;pet.sync(m.profile,10)
     check(texture!=pet.sprite.texture,"actual evolved multi-tail sprite swapped")
+    scene._on_hud_action("Wesen")
+    check(scene.hud.buttons.roster.visible and scene.hud.buttons.roster.position.y<230,"Wesen has visible prominent roster button")
+    scene.hud.buttons.roster.pressed.emit()
+    var entered=false
+    for child in scene.get_children():
+        if child is RARosterDialog:
+            entered=child.tabs.get_tab_count()==2
+            child.queue_free()
+    check(entered,"tapping Wesen roster action opens both collection tabs")
     var dialog=preload("res://scripts/ui/roster_dialog.gd").new();scene.add_child(dialog);dialog.configure(m);check(dialog.tabs.get_tab_count()==2,"collection has two real content tabs")
     scene.queue_free();await process_frame
     print("Roster/Pets 6.7: %d/%d checks"%[checks-failures,checks]);quit(1 if failures else 0)
