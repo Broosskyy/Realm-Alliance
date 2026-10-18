@@ -22,6 +22,7 @@ var orbs: Array[Texture2D] = []
 var buttons: Dictionary = {}
 const Progress = preload("res://scripts/systems/player_progress.gd")
 const Equipment = preload("res://scripts/systems/equipment.gd")
+const HeroEquipment=preload("res://scripts/systems/hero_equipment.gd")
 const HeroPreview = preload("res://scripts/production_hero.gd")
 var preview
 var toast
@@ -60,8 +61,8 @@ func _ready() -> void:
         portrait.region = Rect2(310, 25, 230, 220)
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet"]:
-        var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") else FantasyButton.new())
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate"]:
+        var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
         b.tooltip_text = _tooltip(id)
@@ -152,6 +153,17 @@ func update_buttons() -> void:
         preview.visible = active_tab == "Wesen"
         preview.equip_weapon(model.weapon_index)
         preview.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
+        preview.set_gear(model.profile)
+    for index in 2:
+        var id=["astral_plate","eclipse_plate"][index]
+        var b=buttons["gear_"+id]
+        b.visible=active_tab=="Wesen";b.compact=true
+        var d:Dictionary=HeroEquipment.CATALOG[id]
+        var data=model.profile.hero_equipment if HeroEquipment.ensure(model.profile) else {"owned":{},"equipped":{}}
+        var owned=data.owned.has(id)
+        b.set_item("Stern" if index==0 else "Eklipse","",CYAN if index==0 else PURPLE,str(data.equipped.get("chest",""))==id,owned,load("res://assets/equipment/"+id+".png"))
+        b.tooltip_text=d.name+" · Details / anlegen / aufwerten"
+        b.position=Vector2(62,345+index*104);b.size=Vector2(92,92)
     for id in ["auto", "skill0", "skill1", "locked", "skill2"]:
         buttons[id].visible = in_combat
     for id in ["weapon", "upgrade", "look", "aura"]:
@@ -373,14 +385,14 @@ func _draw_shell() -> void:
             _center("%s · Waffenlevel %d"%[Equipment.definition(model.profile.equipped).name,model.upgrade_level+1],Rect2(38,231,644,28),18,GOLD)
             _center(Equipment.definition(model.profile.equipped).description,Rect2(50,269,620,30),15,MUTED)
             _text("Angriff %d"%model.hero_damage(),Vector2(61,595),19,GOLD,true)
-            _text("HP %d · Kraft %d"%[model.player_max_hp,model.hero_damage()*10+model.player_max_hp],Vector2(426,595),16,MUTED)
+            _text("HP %d · DEF %d"%[model.player_max_hp,model.defense],Vector2(426,595),16,MUTED)
             _panel(Rect2(38,644,310,64),Color("#11334f"),CYAN.darkened(0.3))
             _panel(Rect2(368,644,314,64),Color("#3c2851"),PURPLE.darkened(0.2))
             _center("Waffe wechseln",Rect2(38,644,310,64),20,INK,true)
             _center("Aufwerten · %d G%s"%[model.upgrade_cost()," +1 Splitter" if model.upgrade_level>=2 else ""],Rect2(368,644,314,64),15,MUTED if buttons.upgrade.disabled else GOLD,true)
             _panel(Rect2(38,733,310,58),Color("#123b3a"),CYAN.darkened(0.3))
             _panel(Rect2(368,733,314,58),Color("#18233b"),PURPLE.darkened(0.4))
-            _center("Umhang: %s"%("Smaragd" if model.profile.look=="emerald" else "Original"),Rect2(38,733,310,58),17,INK,true)
+            _center("Umhang: %s"%{"canonical":"Original","emerald":"Smaragd","astral":"Astral"}.get(model.profile.look,"Original"),Rect2(38,733,310,58),17,INK,true)
             _center("Aura: %s"%("Lv. 3" if model.level<3 else ("An" if model.profile.aura else "Aus")),Rect2(368,733,314,58),17,MUTED if model.level<3 else CYAN,true)
         "Beute":
             _panel(Rect2(38,178,644,68))
@@ -408,7 +420,7 @@ func _draw_shell() -> void:
                 _text("Aufgaben" if i == 0 else "Events", Vector2(x + 80, 253), 22, INK, true)
             _panel(Rect2(38, 320, 644, 180))
             _text("REALM ALLIANCE", Vector2(61, 361), 24, INK, true)
-            _text("Wolkgarten · Combat 0.6.3", Vector2(61, 402), 18, MUTED)
+            _text("Wolkgarten · Combat 0.6.4 · Vorschau", Vector2(61, 402), 18, MUTED)
             _text("Spielstand wird lokal gespeichert.", Vector2(61, 447), 18, MUTED)
             _text("Weitere Bereiche werden nach und nach geöffnet.", Vector2(61, 479), 17, MUTED)
             for i in 2:

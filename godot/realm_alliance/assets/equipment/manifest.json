@@ -6,24 +6,25 @@
       "id": "astral_plate",
       "path": "astral_plate.png",
       "source_sha256": "b44c2f01d5d5eca5452dc2d9b123179cba75d62e87b9d7fbed1964f8bf3b4fe3",
-      "sha256": "2e4cbdb37e1ac353fe2c1b7322794be5aae03ba6da0ec851dd0c3e32d715141f",
+      "sha256": "d31afbdb2da447fb79f2945de6883080054ace6e76134b6dcd0c2e47d86fa4b6",
       "size": [
         272,
         272
       ],
       "alpha": true,
-      "normalization": "Alpha bbox crop, constrained uniform scale, transparent padding. No generated pixels repainted."
+      "normalization": "Meaningful-alpha bbox (>128) plus 4px source padding, uniform scale to 256px, 272px alpha canvas. Interior alpha preserved."
     },
     {
       "id": "eclipse_plate",
       "path": "eclipse_plate.png",
       "source_sha256": "c57afa14074872618bd80ab81aefe159f4db27bc9e65ab98a90bd0d3a5b64a46",
-      "sha256": "7d51ac807e7bb42f05825604f03a5a084c881b1896a0daff9b97d5029f6d29cb",
+      "sha256": "201cebe4e6d8e5d9395bef10f59301e7c94cfab1071fa84b79750028c41462e6",
       "size": [
         272,
         272
       ],
-      "alpha": true
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox (>128) plus 4px source padding, uniform scale to 256px, 272px alpha canvas. Interior alpha preserved."
     }
   ]
 }

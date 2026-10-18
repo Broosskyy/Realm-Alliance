@@ -57,11 +57,12 @@ const VISUAL_SOCKETS = {
     "idle": {"chest":Vector2(427,296),"head":Vector2(424,182),"back":Vector2(349,266)},
     "ready": {"chest":Vector2(432,291),"head":Vector2(429,178),"back":Vector2(354,257)},
     "windup": {"chest":Vector2(400,291),"head":Vector2(403,184),"back":Vector2(328,263)},
-    "attack_contact": {"chest":Vector2(462,313),"head":Vector2(456,219),"back":Vector2(388,290)},
+    "attack_contact": {"chest":Vector2(407,329),"head":Vector2(456,219),"back":Vector2(388,290)},
     "recovery": {"chest":Vector2(400,315),"head":Vector2(404,212),"back":Vector2(326,286)},
     "hit": {"chest":Vector2(420,310),"head":Vector2(416,207),"back":Vector2(345,281)}
 }
 var layer_sockets: Dictionary = {}
+var attachments
 
 func _ready() -> void:
     texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -109,6 +110,8 @@ func _ready() -> void:
     _grip.z_index=13
     _grip.material=_palette
     _art.add_child(_grip)
+    attachments=preload("res://scripts/hero_attachments.gd").new()
+    attachments.attach(self)
     _set_pose("idle")
     equip_weapon(_selected)
     set_look(_look, false)
@@ -130,6 +133,7 @@ func _set_pose(name: String) -> void:
     for id in layer_sockets:
         var anchor: Vector2 = VISUAL_SOCKETS[name].get(id,VISUAL_SOCKETS[name].get("back",PIVOT))
         layer_sockets[id].position = anchor - PIVOT
+    if attachments:attachments.sync_pose(self,name)
 
 func _world_layer() -> int:
     var value=0
@@ -177,8 +181,12 @@ func set_look(id: String, evolution: bool = false) -> void:
     _look = id
     if _palette:
         _palette.set_shader_parameter("emerald",id == "emerald")
+        _palette.set_shader_parameter("astral",id == "astral")
     if aura:
         aura.evolution = evolution
+
+func set_gear(profile: Dictionary) -> void:
+    if attachments:attachments.apply(self,profile)
 
 func set_shield(active: bool, ratio: float = 1.0) -> void:
     if aura:

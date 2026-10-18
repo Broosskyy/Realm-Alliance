@@ -17,18 +17,20 @@ static func box(role: String="panel") -> StyleBoxTexture:
     return _styles[role]
 static func native_theme() -> Theme:
     if _theme:return _theme
-    _theme=Theme.new();_theme.default_font=FONT;_theme.default_font_size=20
+    _theme=Theme.new();_theme.default_font=FONT;_theme.default_font_size=28
     _theme.set_stylebox("panel","AcceptDialog",box("panel"))
-    _theme.set_stylebox("embedded_border","Window",box("hero"))
-    _theme.set_stylebox("embedded_unfocused_border","Window",box("panel"))
+    var window_frame=box("hero").duplicate()
+    window_frame.set_expand_margin(SIDE_TOP,36)
+    _theme.set_stylebox("embedded_border","Window",window_frame)
+    _theme.set_stylebox("embedded_unfocused_border","Window",window_frame)
     _theme.set_color("title_color","Window",INK)
     _theme.set_font("title_font","Window",BOLD)
-    _theme.set_font_size("title_font_size","Window",20)
+    _theme.set_font_size("title_font_size","Window",28)
     for state in ["normal","hover","pressed","disabled","focus"]:_theme.set_stylebox(state,"Button",box("panel" if state in ["normal","disabled"] else "hero"))
     _theme.set_font("font","Button",BOLD)
-    _theme.set_font_size("font_size","Button",18)
+    _theme.set_font_size("font_size","Button",28)
     _theme.set_constant("outline_size","Button",3)
     _theme.set_color("font_outline_color","Button",Color("#020815"))
     _theme.set_color("font_color","Label",INK);_theme.set_color("font_color","Button",INK)
-    _theme.set_constant("buttons_min_height","AcceptDialog",52)
+    _theme.set_constant("buttons_min_height","AcceptDialog",88)
     return _theme

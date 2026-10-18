@@ -1,0 +1,35 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS small portrait: valid scene scale
+PASS small portrait: tap stays inside screen
+PASS small portrait: tap does not cover HUD
+PASS small portrait: tap does not cover controls
+PASS small portrait: stage in arena
+PASS small portrait: lowered stage still fits below controls
+PASS small portrait: controls reserve at most 30 percent of height
+PASS small portrait: panel fits screen
+PASS standard portrait: valid scene scale
+PASS standard portrait: tap stays inside screen
+PASS standard portrait: tap does not cover HUD
+PASS standard portrait: tap does not cover controls
+PASS standard portrait: stage in arena
+PASS standard portrait: lowered stage still fits below controls
+PASS standard portrait: controls reserve at most 30 percent of height
+PASS standard portrait: panel fits screen
+PASS tall portrait: valid scene scale
+PASS tall portrait: tap stays inside screen
+PASS tall portrait: tap does not cover HUD
+PASS tall portrait: tap does not cover controls
+PASS tall portrait: stage in arena
+PASS tall portrait: lowered stage still fits below controls
+PASS tall portrait: controls reserve at most 30 percent of height
+PASS tall portrait: panel fits screen
+PASS large phone: valid scene scale
+PASS large phone: tap stays inside screen
+PASS large phone: tap does not cover HUD
+PASS large phone: tap does not cover controls
+PASS large phone: stage in arena
+PASS large phone: lowered stage still fits below controls
+PASS large phone: controls reserve at most 30 percent of height
+PASS large phone: panel fits screen
+Combat layout: 32/32 checks.

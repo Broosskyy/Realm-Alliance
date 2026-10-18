@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: starts at wave 1
+PASS: enemy starts with full HP
+PASS: base player damage
+PASS: cannot purchase unaffordable upgrade
+PASS: cannot skip a living enemy
+PASS: strong attack defeats first enemy
+PASS: first kill awards 17 gold
+PASS: kill counted once
+PASS: cannot hit an already defeated enemy
+PASS: no duplicate reward
+PASS: cleared wave advances
+PASS: next wave spawns enemy
+PASS: purchase upgrade after earning gold
+PASS: upgrade level increases
+PASS: weapon index cycles
+PASS: equipment and upgrades change damage
+PASS: lethal-hit save resumes next wave
+PASS: save restores equipment
+PASS: save restores gold
+PASS: resume begins at wave checkpoint
+Combat model: 20/20 checks passed.

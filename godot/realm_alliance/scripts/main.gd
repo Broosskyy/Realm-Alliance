@@ -68,7 +68,7 @@ func _ready() -> void:
         var d:Dictionary=model.pending.definition
         hero.play_action(str(d.id),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup))
         hero.sync_clock(model.clock)
-    print("REALM 6.3: canonical hero, weapons and survival systems loaded")
+    print("REALM 6.4 preview: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -163,12 +163,14 @@ func _show_encounter() -> void:
     camera_feedback.reset()
 
 func _sync_hero() -> void:
-    var key="%s:%d:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura)]
+    var key="%s:%d:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),JSON.stringify(model.profile.hero_equipment)]
     if key!=_last_visual_key:
         _last_visual_key=key
         hero.equip_weapon(model.weapon_index)
         hero.set_upgrade_tier(model.upgrade_level)
-        if _production_enabled: hero.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
+        if _production_enabled:
+            hero.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
+            hero.set_gear(model.profile)
     if _production_enabled:
         var shield=model.hero_status.active.get("shield",{})
         hero.set_shield(model.hero_status.has("shield",model.clock),clampf(float(shield.get("amount",0))/maxf(1,model.player_max_hp*0.35),0,1))
@@ -226,6 +228,8 @@ func _on_hud_action(id: String) -> void:
             _persist()
     elif id=="weapon":
         model.cycle_weapon();_sync_hero();_persist()
+    elif id.begins_with("gear_"):
+        _open_gear(id.trim_prefix("gear_"))
     elif id.begins_with("equip_"):
         var item=id.trim_prefix("equip_")
         if model.equip(item):
@@ -241,7 +245,8 @@ func _on_hud_action(id: String) -> void:
             audio.play("reward")
             _sync_hero();_persist();hud.notify("Waffe aufgewertet","Level %d · Angriff %d"%[model.upgrade_level+1,model.hero_damage()])
     elif id=="look":
-        model.set_look("emerald" if model.profile.look=="canonical" else "canonical")
+        var looks=["canonical","emerald","astral"]
+        model.set_look(looks[(looks.find(model.profile.look)+1)%looks.size()])
         _sync_hero();_persist()
     elif id=="aura":
         if model.toggle_aura(): _sync_hero();_persist()
@@ -250,6 +255,19 @@ func _on_hud_action(id: String) -> void:
         active_tab="Mehr";hud.active_tab=active_tab;stage.visible=false;touch_zone.visible=false
         hud.notify("Noch nicht geöffnet","Dieser Bereich folgt später")
     _refresh()
+
+func _open_gear(id: String) -> void:
+    if active_tab!="Wesen" or not model.HeroEquipment.CATALOG.has(id):return
+    if model.read_only:
+        hud.notify("Ausrüstung gesperrt","Spielstand bleibt unverändert.");return
+    var dialog=preload("res://scripts/ui/hero_equipment_dialog.gd").new()
+    add_child(dialog);dialog.configure(model,id)
+    dialog.operation.connect(func(item,kind):
+        if model.change_gear(item,kind):
+            if kind=="acquire":model.change_gear(item)
+            _sync_hero();_persist();_refresh()
+            hud.notify("Ausrüstung aktualisiert","HP %d · Verteidigung %d"%[model.player_max_hp,model.defense]))
+    dialog.popup_centered(Vector2i(mini(600,int(get_viewport_rect().size.x)-24),380))
 
 func _apply_preferences() -> void:
     if audio:audio.enabled=preferences.sound

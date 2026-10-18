@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS weapon socket is parented to the moving hand
+PASS starter sword has separate blade and hilt parts
+PASS equipping swaps four weapon parts instead of overlaying
+PASS weapon follows the rotated arm
+PASS hero can start an attack
+PASS attack returns hand to its rest angle
+PASS skill attack is available after recovery
+PASS wave spawn preserves original enemy scale
+PASS enemy HP bar reflects damage
+PASS boss wave applies intentional size bonus
+PASS new enemy resets death transparency
+Visual contract: 11/11 checks.

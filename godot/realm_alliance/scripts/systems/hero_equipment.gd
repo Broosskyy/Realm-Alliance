@@ -2,13 +2,11 @@ extends RefCounted
 class_name RAHeroEquipment
 # Additive, versioned profile domain. V1/V2 envelopes and unknown profile data survive.
 const Progress=preload("res://scripts/systems/player_progress.gd")
-const IDS=["astral_plate","eclipse_plate","sentinel_circlet","sky_wings"]
+const IDS=["astral_plate","eclipse_plate"]
 const SLOTS=["chest","head","back"]
 const CATALOG={
     "astral_plate":{"name":"Sternenpanzer","slot":"chest","rarity":"rare","unlock":1,"gold":35,"shards":2,"hp":20,"defense":2},
-    "eclipse_plate":{"name":"Eklipsenpanzer","slot":"chest","rarity":"epic","unlock":4,"gold":140,"shards":6,"hp":35,"defense":4},
-    "sentinel_circlet":{"name":"Wächterdiadem","slot":"head","rarity":"rare","unlock":2,"gold":30,"shards":2,"hp":5,"defense":1},
-    "sky_wings":{"name":"Himmelsflügel","slot":"back","rarity":"epic","unlock":3,"gold":60,"shards":4,"hp":15,"defense":1}
+    "eclipse_plate":{"name":"Eklipsenpanzer","slot":"chest","rarity":"epic","unlock":4,"gold":140,"shards":6,"hp":35,"defense":4}
 }
 static func ensure(profile: Dictionary) -> bool:
     if not profile.has("hero_equipment"):
