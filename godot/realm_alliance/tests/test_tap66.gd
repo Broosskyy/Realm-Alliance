@@ -100,6 +100,9 @@ func run():
     m.tick(.5333333333);check(m.enemy_hp==hp,"ultimate has real charge-up timing")
     m.tick(1.0/60);check(m.enemy_hp<hp and count(m.drain_events(),"damage")==1,"ultimate contact resolves once")
     m.tap.charge=100;m.tick(1);check(not m.request_action("ultimate"),"ultimate cooldown cannot be bypassed by charge")
+    m=prepared();m.tap.charge=100;m.request_basic();buffer=Buffer.new()
+    check(buffer.request_ultimate(m)==Buffer.QUEUED and m.tap.charge==100,"AUTO recovery cannot swallow ultimate or spend early")
+    m.tick(.5);check(buffer.drain(m) and m.tap.charge==0 and m.pending.definition.id=="ultimate","buffered ultimate starts at real readiness")
     m=prepared();m.start_stage("wolkgarten",4);m.enemy_hp=100000;m.enemy_max_hp=100000;m.player_hp=m.player_max_hp
     m.boss.meter=9;m.behavior.state="windup";m.behavior.deadline=.23;m.request_basic();m.tick(.5)
     check(m.clock<m.boss.break_until and m.player_hp==m.player_max_hp,"real armor break interrupts upcoming boss hit")

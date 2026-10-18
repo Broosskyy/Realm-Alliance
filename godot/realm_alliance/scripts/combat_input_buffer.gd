@@ -16,7 +16,7 @@ func request(model,index: int) -> int:
     if index not in range(4) or model.outcome!="fighting":return REJECTED
     var id: String=model.SKILL_IDS[index]
     if model.request_action(id):clear();return CAST
-    if not model.skills.can_cast(id,model.clock,model.level,{"momentum":model.momentum,"rage":model.rage}):return REJECTED
+    if not _available(model,id):return REJECTED
     if model.pending.is_empty() and model.clock>=model.busy_until:return REJECTED
     skill=id;expires_at=model.clock+WINDOW;tap_pending=false
     return QUEUED
@@ -28,7 +28,7 @@ func drain(model) -> bool:
         return false
     if model.outcome!="fighting" or model.clock>expires_at:
         clear();return false
-    if not model.skills.can_cast(skill,model.clock,model.level,{"momentum":model.momentum,"rage":model.rage}):
+    if not _available(model,skill):
         clear();return false
     if model.request_action(skill):clear();return true
     return false
@@ -41,3 +41,11 @@ func request_tap(model) -> int:
     if model.request_basic():tap_pending=false;return CAST
     if tap_pending:return REJECTED
     tap_pending=true;tap_expires=model.clock+.85;return QUEUED
+
+func _available(model,id: String) -> bool:
+    if id=="ultimate":return model.Tap.ultimate_unlocked(model.profile) and model.tap.charge>=100 and model.clock>=model.tap.ultimate_at
+    return model.skills.can_cast(id,model.clock,model.level,{"momentum":model.momentum,"rage":model.rage})
+func request_ultimate(model) -> int:
+    if model.outcome!="fighting" or not _available(model,"ultimate"):return REJECTED
+    if model.request_action("ultimate"):clear();return CAST
+    skill="ultimate";expires_at=model.clock+WINDOW;tap_pending=false;return QUEUED

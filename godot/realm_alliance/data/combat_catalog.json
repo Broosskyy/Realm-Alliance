@@ -7,11 +7,11 @@
   {"id":"guardian_wall","name":"Wächterwall","cooldown":9.0,"cost_type":"momentum","cost":20,"multiplier":0.0,"windup":0.0,"recovery":0.15,"unlock_level":2,"effect":"shield","duration":4.0,"absorb_fraction":0.35,"counter_multiplier":1.5,"vfx":"shield"}
  ],
  "weapons":[
-  {"id":"steel","name":"Wächterstahl","rarity":"common","base_damage":15,"trait":"guard","description":"Treffer geben 3 Schildpunkte.","asset":"steel"},
-  {"id":"crystal","name":"Himmelskristall","rarity":"rare","base_damage":23,"trait":"critical","description":"Jeder vierte Waffentreffer ist kritisch.","asset":"crystal"},
-  {"id":"ember","name":"Glutklinge","rarity":"rare","base_damage":33,"trait":"burn","description":"Waffentreffer entzünden den Gegner.","asset":"ember"},
-  {"id":"rune_gold","name":"Goldrune","rarity":"epic","base_damage":28,"trait":"momentum","description":"+5 Momentum pro Treffer, +20% Gold.","asset":"rune_gold"},
-  {"id":"shadow_violet","name":"Nachtschatten","rarity":"epic","base_damage":30,"trait":"lifesteal","description":"Heilt 12% des direkten Trefferschadens.","asset":"shadow_violet"}
+  {"id":"steel","name":"Wächterstahl","rarity":"common","base_damage":15,"trait":"guard","description":"Ein Angriff gibt 3 Schildpunkte.","asset":"steel"},
+  {"id":"crystal","name":"Himmelskristall","rarity":"rare","base_damage":23,"trait":"critical","description":"Jeder vierte direkte Angriff ist kritisch.","asset":"crystal"},
+  {"id":"ember","name":"Glutklinge","rarity":"rare","base_damage":33,"trait":"burn","description":"Waffenangriffe entzünden den Gegner.","asset":"ember"},
+  {"id":"rune_gold","name":"Goldrune","rarity":"epic","base_damage":28,"trait":"momentum","description":"+5 Momentum pro Angriff, +20% Gold.","asset":"rune_gold"},
+  {"id":"shadow_violet","name":"Nachtschatten","rarity":"epic","base_damage":30,"trait":"lifesteal","description":"Heilt 12% des direkten Angriffsschadens.","asset":"shadow_violet"}
  ],
  "encounters":[
   {"id":"cloud_slime","name":"Wolkenschleim","kind":"normal","visual":"slime","hp":85,"damage":8,"interval":4.3,"windup":0.85,"pattern":"single","xp":24,"gold":17,"drop":""},

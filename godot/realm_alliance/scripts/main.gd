@@ -219,7 +219,10 @@ func _on_hud_action(id: String) -> void:
             if model.Tap.unlocked(model.profile,candidate):next=candidate;break
         if model.select_hit_mode(next):_persist();hud.notify("Angriffsfolge x%d"%next,"x2: Lv.3 + Elite · x4: Lv.6 + Gartenkoloss")
     elif id=="ultimate":
-        if active_tab=="Kampf" and model.request_action("ultimate"):_consume_events();_refresh()
+        if active_tab=="Kampf":
+            var accepted=manual_input.request_ultimate(model)
+            if accepted==ManualInput.QUEUED:hud.notify("Sternenfall vorgemerkt","Startet nach dem laufenden Schlag",.8)
+            _consume_events();_refresh()
     elif id=="combat_options":
         var dialog=preload("res://scripts/ui/combat_options_dialog.gd").new();add_child(dialog);dialog.configure(model);dialog.policy_changed.connect(func():_persist();_refresh());dialog.popup_centered(Vector2i(620,760))
     elif id=="sound":
@@ -523,6 +526,10 @@ func _consume_events() -> void:
             "victory":
                 hud.notify("Boss besiegt","Wächtertruhe in Beute verfügbar",4)
                 _persist()
+    var unlock_labels=[]
+    for event in consumed_events:
+        if event.type=="combat_unlock":unlock_labels.append("Sternenfall" if event.id=="ultimate" else event.id+" Treffer")
+    if not unlock_labels.is_empty():hud.notify("Freigeschaltet: "+" · ".join(unlock_labels),model.Tap.next_goal(model.profile),5)
     _sync_hero()
     if not consumed_events.is_empty():hud.queue_redraw()
     if _production_enabled:hero.sync_clock(model.clock)

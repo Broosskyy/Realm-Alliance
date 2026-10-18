@@ -163,7 +163,7 @@ func update_buttons() -> void:
     var in_combat = active_tab == "Kampf"
     buttons.hit_mode.visible=in_combat;buttons.ultimate.visible=in_combat
     buttons.combat_options.visible=active_tab=="Mehr"
-    buttons.ultimate.disabled=not model.Tap.ultimate_unlocked(model.profile) or model.tap.charge<100 or model.clock<model.tap.ultimate_at or model.clock<model.busy_until or model.outcome!="fighting"
+    buttons.ultimate.disabled=not model.Tap.ultimate_unlocked(model.profile) or model.tap.charge<100 or model.clock<model.tap.ultimate_at or model.outcome!="fighting"
     buttons.ultimate.tooltip_text="Sternenfall · 4,8× Schaden · 100 Ladung · 16 s Abklingzeit"
     buttons.hit_mode.tooltip_text="x2: Level 3 + Elite · x4: Level 6 + Gartenkoloss · mehrere echte Treffer"
     if _last_tab!=active_tab:
