@@ -4,6 +4,7 @@ const CombatModel = preload("res://scripts/systems/combat_session.gd")
 const ManualInput = preload("res://scripts/combat_input_buffer.gd")
 var manual_input = ManualInput.new()
 const SaveStore = preload("res://scripts/save_store.gd")
+const AdminQA=preload("res://scripts/systems/admin_qa.gd")
 const SaveTransfer=preload("res://scripts/save_transfer.gd")
 var save_transfer
 var _pending_import: Dictionary = {}
@@ -44,6 +45,8 @@ var _save_clock = 0.0
 var _save_failed = false
 var _last_visual_key = ""
 var _ui_clock = 0.0
+var _qa_active:bool=false
+var _qa_original_model
 
 func _ready() -> void:
     model = CombatModel.new(SaveStore.load_state())
@@ -216,6 +219,12 @@ func _layout() -> void:
         enemy.set_layout_scale(0.75 if model.enemy_definition.visual=="boar" else (lerpf(0.82, 1.12, tall) if model.enemy_definition.visual == "golem" else 0.90))
 
 func _on_hud_action(id: String) -> void:
+    if id=="admin":
+        _open_admin_qa()
+        return
+    if _qa_active and id in ["save_export","save_import"]:
+        hud.notify("QA-Schutz","Import und Export sind im Testmodus gesperrt",3)
+        return
     if id=="roster":
         if active_tab!="Wesen":return
         var dialog=preload("res://scripts/ui/roster_dialog.gd").new();add_child(dialog);dialog.configure(model)
@@ -300,6 +309,65 @@ func _on_hud_action(id: String) -> void:
         active_tab="Mehr";hud.active_tab=active_tab;stage.visible=false;touch_zone.visible=false
         hud.notify("Noch nicht geöffnet","Dieser Bereich folgt später")
     _refresh()
+
+func _open_admin_qa() -> void:
+    if not AdminQA.enabled() or active_tab!="Mehr" or model.read_only:
+        return
+    if not _qa_active:
+        # Commit the original session first, then work on a *different* in-memory session.
+        if not SaveStore.save_state(model.snapshot()):
+            hud.notify("QA nicht gestartet","Normalen Spielstand zuerst sichern",6)
+            return
+        _qa_original_model=model
+        model=CombatModel.new(_qa_original_model.snapshot())
+        if model.read_only:
+            model=_qa_original_model
+            _qa_original_model=null
+            hud.notify("QA nicht gestartet","Spielstand konnte nicht kopiert werden",6)
+            return
+        _qa_active=true
+        hud.model=model
+        hud.qa_mode=true
+        manual_input.clear()
+        _last_visual_key=""
+        _show_encounter()
+        _sync_hero()
+        _refresh()
+    var dialog=preload("res://scripts/ui/admin_qa_dialog.gd").new()
+    add_child(dialog)
+    dialog.configure(model)
+    dialog.operation_requested.connect(func(kind:String):
+        if kind=="leave":
+            _leave_admin_qa()
+            dialog.queue_free()
+            return
+        if AdminQA.apply(model,kind):
+            manual_input.clear()
+            hero.revive()
+            _last_visual_key=""
+            _show_encounter()
+            _sync_hero()
+            _refresh()
+            dialog.refresh(model)
+            hud.notify("QA-Testaktion",kind+" · wird nicht gespeichert",3)
+        else:
+            hud.notify("QA-Testaktion","Nicht möglich oder bereits erledigt",3))
+    dialog.popup_centered(Vector2i(620,850))
+
+func _leave_admin_qa() -> void:
+    if not _qa_active:return
+    model=_qa_original_model
+    _qa_original_model=null
+    _qa_active=false
+    hud.model=model
+    hud.qa_mode=false
+    manual_input.clear()
+    _last_visual_key=""
+    if _production_enabled:hero.revive()
+    _show_encounter()
+    _sync_hero()
+    _refresh()
+    hud.notify("QA verlassen","Dein normaler Spielstand ist wieder aktiv",5)
 
 func _open_gear(id: String) -> void:
     if active_tab not in ["Wesen","Beute"] or not model.HeroEquipment.CATALOG.has(id):return
@@ -592,6 +660,7 @@ func _popup(text: String, at: Vector2, color: Color, caption: String = "") -> vo
 
 func _refresh() -> void:
     if hud==null: return
+    hud.qa_mode=_qa_active
     enemy.set_health(model.enemy_hp,model.enemy_max_hp)
     hud.auto_enabled=auto_enabled
     touch_zone.visible=active_tab=="Kampf" and model.outcome=="fighting"
@@ -599,6 +668,8 @@ func _refresh() -> void:
     hud.queue_redraw()
 
 func _persist() -> void:
+    # Never write the in-memory QA sandbox to the player's real save or Web journal.
+    if _qa_active:return
     if model!=null and not model.read_only:
         if not SaveStore.save_state(model.snapshot()) and not _save_failed:
             _save_failed=true
@@ -628,6 +699,7 @@ func _confirm_import(data: Dictionary) -> void:
     dialog.popup_centered(Vector2i(580,220))
 
 func _apply_import() -> bool:
+    if _qa_active:return false
     if _pending_import.is_empty(): return false
     var candidate=CombatModel.new(_pending_import)
     _pending_import={}
