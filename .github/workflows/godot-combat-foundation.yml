@@ -10,6 +10,7 @@ on:
       - feature/work-6-6-tap-combat
       - feature/work-6-7-heroes-pets
       - feature/work-6-7-admin-qa
+      - feature/work-6-7-1-hero-art-direction
     paths:
       - 'godot/realm_alliance/**'
       - '.github/workflows/godot-combat-foundation.yml'
