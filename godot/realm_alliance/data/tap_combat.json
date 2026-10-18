@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "contact_spacing": 0.065,
+  "chain_grace": 0.85,
+  "combo_window": 1.6,
+  "charge_per_basic": 12,
+  "charge_per_skill": 8,
+  "chains": [
+    {"id":"cut","multiplier":1.0,"windup":0.20,"recovery":0.22},
+    {"id":"rising_cut","multiplier":1.08,"windup":0.19,"recovery":0.22},
+    {"id":"finisher","multiplier":1.30,"windup":0.24,"recovery":0.28}
+  ],
+  "modes": {
+    "1":{"budget":1.0,"level":1,"stage":-1},
+    "2":{"budget":1.25,"level":3,"region":"wolkgarten","stage":2},
+    "4":{"budget":1.6,"level":6,"region":"wolkgarten","stage":4}
+  },
+  "ultimate": {
+    "id":"ultimate","name":"Sternenfall","effect":"direct","multiplier":4.8,
+    "windup":0.55,"recovery":0.42,"vfx":"ultimate","cooldown":16.0,
+    "cost_type":"charge","cost":100,"unlock_level":4,"region":"wolkgarten","stage":4
+  }
+}

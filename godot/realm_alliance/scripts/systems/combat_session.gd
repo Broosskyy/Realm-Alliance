@@ -236,8 +236,8 @@ func request_action(id: String = "basic", options: Dictionary={}) -> bool:
     var d: Dictionary
     if id=="ultimate":
         if not Tap.ultimate_unlocked(profile) or tap.charge<100 or clock<tap.ultimate_at:return false
-        d={"id":"ultimate","effect":"direct","multiplier":4.8,"windup":.55,"recovery":.42,"vfx":"ultimate"}
-        tap.charge=0;tap.ultimate_at=clock+16
+        d=Tap.catalog().ultimate.duplicate(true)
+        tap.charge=0;tap.ultimate_at=clock+float(d.cooldown)
     elif id == "basic":
         d = {"id":"basic","effect":"direct","multiplier":1.0,"windup":0.28,"recovery":0.35,"vfx":"basic"}
     else:
@@ -355,7 +355,7 @@ func _resolve(d: Dictionary) -> void:
     var damage = maxi(1,int(round(base_damage * multiplier)))
     var actual_damage = mini(enemy_hp,damage)
     _damage_enemy(damage,str(d.vfx),critical,d)
-    if d.id!="ultimate":tap.charge=mini(100,tap.charge+8)
+    if d.id!="ultimate":tap.charge=mini(100,tap.charge+int(Tap.catalog().charge_per_skill))
     momentum = minf(100,momentum + 9 + (5 if weapon_trait == "momentum" else 0))
     rage = minf(100,rage + 7)
     if weapon_trait == "lifesteal":

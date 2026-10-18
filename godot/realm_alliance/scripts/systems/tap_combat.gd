@@ -3,6 +3,10 @@ class_name RATapCombat
 const Validate=preload("res://scripts/systems/domain_validation.gd")
 const Progress=preload("res://scripts/systems/player_progress.gd")
 const World=preload("res://scripts/systems/world_progress.gd")
+static var _catalog: Dictionary={}
+static func catalog() -> Dictionary:
+    if _catalog.is_empty():_catalog=JSON.parse_string(FileAccess.get_file_as_string("res://data/tap_combat.json"))
+    return _catalog
 const MODES=[1,2,4]
 const SKILLS=["sky_blade","arcane_eye","rage_flame","guardian_wall"]
 var chain=0
@@ -21,17 +25,19 @@ static func ensure(profile: Dictionary) -> bool:
         seen.append(id)
     return true
 static func unlocked(profile: Dictionary,mode: int) -> bool:
-    if mode==1:return true
-    if not World.ensure(profile):return false
-    var level=Progress.level(int(profile.xp))
-    return (level>=3 and World.stars(profile,"wolkgarten",2)>0) if mode==2 else (mode==4 and level>=6 and World.stars(profile,"wolkgarten",4)>0)
+    if mode not in MODES or not World.ensure(profile):return false
+    var gate:Dictionary=catalog().modes[str(mode)]
+    if Progress.level(int(profile.xp))<int(gate.level):return false
+    return int(gate.stage)<0 or World.stars(profile,str(gate.region),int(gate.stage))>0
+
 static func mode(profile: Dictionary) -> int:
     return int(profile.combat_mastery.mode) if ensure(profile) and unlocked(profile,int(profile.combat_mastery.mode)) else 1
 static func select(profile: Dictionary,value: int) -> bool:
     if not ensure(profile) or not unlocked(profile,value):return false
     profile.combat_mastery.mode=value;return true
 static func ultimate_unlocked(profile: Dictionary) -> bool:
-    return Progress.level(int(profile.xp))>=4 and World.stars(profile,"wolkgarten",4)>0
+    var d:Dictionary=catalog().ultimate
+    return Progress.level(int(profile.xp))>=int(d.unlock_level) and World.stars(profile,str(d.region),int(d.stage))>0
 static func split_damage(total: int,count: int) -> Array:
     var parts=[]
     # Progressed basic attacks always have enough total damage for every contact.
@@ -40,15 +46,19 @@ static func split_damage(total: int,count: int) -> Array:
 func plan(profile: Dictionary,now: float) -> Dictionary:
     if now>chain_until:chain=0
     var step=chain;var hits=mode(profile)
-    var windup=[.20,.19,.24][step]
-    var recovery=[.22,.22,.28][step]+(hits-1)*.065
-    return {"id":"basic","effect":"chain","multiplier":[1.0,1.08,1.30][step]*{1:1.0,2:1.25,4:1.6}[hits],"windup":windup,"recovery":recovery,"vfx":"chain","contacts":hits,"spacing":.065,"chain_step":step,"animation":"chain_%d_%d"%[step,hits]}
+    var rules:Dictionary=catalog()
+    var frame:Dictionary=rules.chains[step]
+    var spacing=float(rules.contact_spacing)
+    var windup=float(frame.windup)
+    var recovery=float(frame.recovery)+(hits-1)*spacing
+    return {"id":"basic","effect":"chain","multiplier":float(frame.multiplier)*float(rules.modes[str(hits)].budget),"windup":windup,"recovery":recovery,"vfx":"chain","contacts":hits,"spacing":spacing,"chain_step":step,"animation":"chain_%d_%d"%[step,hits]}
+
 func accepted(d: Dictionary,now: float) -> void:
-    chain=(int(d.chain_step)+1)%3;chain_until=now+float(d.windup)+float(d.recovery)+.85
+    chain=(int(d.chain_step)+1)%3;chain_until=now+float(d.windup)+float(d.recovery)+float(catalog().chain_grace)
 func contact(now: float,finished_action: bool=false) -> void:
     if now>combo_until:combo=0
-    combo+=1;combo_until=now+1.6
-    if finished_action:charge=mini(100,charge+12)
+    combo+=1;combo_until=now+float(catalog().combo_window)
+    if finished_action:charge=mini(100,charge+int(catalog().charge_per_basic))
 func reset_chain() -> void:
     chain=0;chain_until=0.0;combo=0;combo_until=0.0
 func snapshot() -> Dictionary:

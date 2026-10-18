@@ -138,5 +138,8 @@ func run():
         for id in ["hit_mode","ultimate"]:check(scene.hud.buttons[id].size.y*scale>=44 and scene.hud.buttons[id].size.x*scale>=44,"new combat controls are real touch targets "+id+str(v))
         var local_floor=(scene._stage_home.y-scene.hud.position.y)/scene.hud.scale.x
         check(local_floor<scene.hud.buttons.hit_mode.position.y,"new controls do not cover actor ground line "+str(v))
+    scene.vfx.status.mark=true;scene.vfx.status.intensity=0
+    var status_clock=scene.vfx.status.clock;scene.vfx.status._process(1)
+    check(scene.vfx.status.clock==status_clock,"effects off stops ambient status redraw clock")
     scene.queue_free();await process_frame
     print("Tap Combat 6.6: %d/%d checks"%[checks-failures,checks]);quit(1 if failures else 0)

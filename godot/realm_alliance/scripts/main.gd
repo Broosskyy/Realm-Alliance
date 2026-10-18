@@ -325,7 +325,7 @@ func _open_skill_info(index: int) -> void:
         "shield":detail="Schild: %d%% maximale HP · erster Block kontert."%roundi(float(d.absorb_fraction)*100)
     var dialog=preload("res://scripts/ui/modal_dialog.gd").new()
     var cost_text="Kostenfrei" if d.cost_type=="none" else "Kosten: %d %s"%[d.cost,{"momentum":"Momentum","rage":"Zorn"}[d.cost_type]]
-    dialog.title=d.name;dialog.dialog_text="%s\n\nAb Heldenlevel %d · %.1f s Abklingzeit\n%s\nAUTO nutzt nur normale Angriffe."%[detail,d.unlock_level,d.cooldown,cost_text]
+    dialog.title=d.name;dialog.dialog_text="%s\n\nAb Heldenlevel %d · %.1f s Abklingzeit\n%s\nAUTO-Skills optional unter Mehr."%[detail,d.unlock_level,d.cooldown,cost_text]
     var skill_id:String=model.SKILL_IDS[index]
     var rank=model.Advancement.rank(model.profile,skill_id)
     var upgrade=model.Advancement.cost(model.profile,skill_id)

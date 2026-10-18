@@ -12,9 +12,10 @@ var intensity: float = 1
 var hero_at: Vector2
 var enemy_at: Vector2
 func _process(delta: float) -> void:
-    if not (mark or burn or shielded):return
+    if intensity<=0 or not (mark or burn or shielded):return
     clock+=delta;queue_redraw()
 func _draw() -> void:
+    if intensity<=0:return
     if mark:
         draw_texture_rect(eye,Rect2(enemy_at+Vector2(-55,-100),Vector2(110,110)),false,Color(1,1,1,0.65+0.12*sin(clock*3)))
     if burn:
