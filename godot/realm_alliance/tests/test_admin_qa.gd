@@ -31,9 +31,9 @@ func run() -> void:
         if child is RAAdminQADialog:dialog=child
     check(dialog!=null,"working QA dialog opened")
     if dialog!=null:dialog.operation_requested.emit("showcase")
-    check(scene.model.hero_id=="kaela" and scene.model.profile.companions.active=="skyfox","showcase activates Kaela and companion")
+    check(scene.model.hero_id=="realmwachter" and scene.model.profile.companions.active=="skyfox","showcase activates guardian and fox")
     scene._on_hud_action("Wesen")
-    check(scene.hero.hero_id=="kaela" and scene.hud.preview.hero_id=="kaela","active QA hero appears in arena and Wesen preview")
+    check(scene.hero.hero_id=="realmwachter" and scene.hud.preview.hero_id=="realmwachter","canonical guardian appears in arena and Wesen preview")
     scene._on_hud_action("Mehr")
     check(scene.model.hero_level>=12 and scene.model.World.can_enter(scene.model.profile,"glutkern",4),"QA bypasses grind only in its sandbox")
     var pet_before=scene.model.Companions.strength(scene.model.profile,"skyfox")
