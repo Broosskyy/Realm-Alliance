@@ -87,6 +87,8 @@ jobs:
         run: XDG_DATA_HOME=/tmp/realm62-test-presentation godot --headless --path . --script res://tests/test_presentation621.gd
       - name: Shared UI components and layout contract
         run: XDG_DATA_HOME=/tmp/realm62-test-ui63 godot --headless --path . --script res://tests/test_ui63.gd
+      - name: Hero equipment acquisition, defense and compatibility tests
+        run: XDG_DATA_HOME=/tmp/realm64-test-equipment godot --headless --path . --script res://tests/test_hero_equipment64.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
