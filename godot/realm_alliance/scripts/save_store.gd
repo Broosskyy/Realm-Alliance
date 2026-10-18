@@ -2,7 +2,16 @@ extends RefCounted
 class_name RASaveStore
 const SAVE_PATH = "user://realm_alliance_combat_v2.json"
 const LEGACY_PATH = "user://realm_alliance_combat_v1.json"
+const WebJournal=preload("res://scripts/web_save_journal.gd")
 static var write_blocked: bool = false
+static var _local_commit: int = 0
+
+static func _newest(disk: Dictionary, journal: Dictionary) -> Dictionary:
+    # Both candidates are independently validated; wall clock is a local ordering
+    # aid only, incremented monotonically within this client, not online authority.
+    if _valid(journal) and (not _valid(disk) or int(journal.get("_local_commit",0))>=int(disk.get("_local_commit",0))):
+        return journal
+    return disk
 
 static func _read(path: String) -> Dictionary:
     var parser=JSON.new()
@@ -12,6 +21,18 @@ static func _read(path: String) -> Dictionary:
 
 static func load_state() -> Dictionary:
     write_blocked = false
+    var journal=WebJournal.read()
+    var disk=_read(SAVE_PATH) if FileAccess.file_exists(SAVE_PATH) else {}
+    _local_commit=maxi(int(journal.get("_local_commit",0)),int(disk.get("_local_commit",0)))
+    if int(journal.get("version",0))>2 or int(disk.get("version",0))>2:
+        write_blocked=true
+        return {"load_error":"Neuerer Spielstand: Laden und Speichern gesperrt.","read_only":true}
+    var newest=_newest(disk,journal)
+    if _valid(newest):
+        if FileAccess.file_exists(SAVE_PATH) and not _valid(disk):
+            DirAccess.copy_absolute(SAVE_PATH,SAVE_PATH+".damaged")
+            newest.load_error="Web-Sicherung wiederhergestellt; beschädigte Datei bleibt erhalten."
+        return newest
     if FileAccess.file_exists(SAVE_PATH):
         var d = _read(SAVE_PATH)
         if int(d.get("version",0)) > 2:
@@ -57,7 +78,11 @@ static func save_state(data: Dictionary) -> bool:
     var f = FileAccess.open(temp,FileAccess.WRITE)
     if f == null:
         return false
-    f.store_string(JSON.stringify(data))
+    var payload=data.duplicate(true)
+    if OS.has_feature("web"):
+        _local_commit=maxi(_local_commit+1,int(Time.get_unix_time_from_system()*1000000))
+        payload._local_commit=_local_commit
+    f.store_string(JSON.stringify(payload))
     f.flush()
     var ok = f.get_error() == OK
     f.close()
@@ -73,11 +98,13 @@ static func save_state(data: Dictionary) -> bool:
     # rename happens afterwards, so explicitly queue another persistent sync.
     if OS.has_feature("web"):
         JavaScriptBridge.force_fs_sync()
+        return WebJournal.commit(payload)
     return true
 
 static func install_import(data: Dictionary) -> bool:
     # This path is reached only after the player confirms a validated import.
     if not _valid(data): return false
+    if not WebJournal.backup_before_import():return false
     if FileAccess.file_exists(SAVE_PATH):
         var backup=SAVE_PATH+".before-import-"+str(Time.get_ticks_usec())
         if DirAccess.copy_absolute(SAVE_PATH,backup)!=OK: return false

@@ -58,4 +58,10 @@ func _initialize() -> void:
     check(found_backup,"explicit import keeps previous bytes in independent recovery backup")
     for path in [Store.SAVE_PATH,Store.SAVE_PATH+".bak",Store.SAVE_PATH+".tmp",Store.SAVE_PATH+".damaged",Store.LEGACY_PATH]:
         if FileAccess.file_exists(path):DirAccess.remove_absolute(path)
+    var a=s.snapshot();var b=s.snapshot()
+    a._local_commit=100;b._local_commit=101;b.profile.gold=999
+    check(Store._newest(a,b).profile.gold==999,"newer valid Web journal wins")
+    check(Store._newest(b,a).profile.gold==999,"older journal cannot roll back file")
+    check(Store._newest(a,{"version":2,"_local_commit":999}).profile.gold==a.profile.gold,"invalid journal cannot replace valid save")
+    check(Store._newest({},b).profile.gold==999,"valid journal recovers missing file")
     print("Save 6.2: %d/%d checks"%[checks-failures,checks]);quit(1 if failures else 0)
