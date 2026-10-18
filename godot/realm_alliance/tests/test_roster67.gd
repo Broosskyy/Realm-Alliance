@@ -74,9 +74,18 @@ func run():
     m.profile.companions.owned.skyfox.xp=100;var strength=m.Companions.strength(m.profile,"skyfox");var gold=m.gold
     check(m.evolve_companion("skyfox") and m.gold==gold-100 and m.Companions.strength(m.profile,"skyfox")>strength,"evolution spends currency and increases effectiveness")
     check(not m.evolve_companion("skyfox"),"evolution cannot spend twice")
+    var evolved_restored=Session.new(JSON.parse_string(JSON.stringify(m.snapshot())))
+    check(not evolved_restored.read_only and str(evolved_restored.profile.companions.active)=="skyfox" and int(evolved_restored.profile.companions.owned.skyfox.evolution)==1,"active evolved companion survives JSON save/reload")
+    check(evolved_restored.Companions.strength(evolved_restored.profile,"skyfox")==m.Companions.strength(m.profile,"skyfox"),"evolved companion strength survives reload")
+    var post_reload_gold=evolved_restored.gold
+    check(not evolved_restored.evolve_companion("skyfox") and evolved_restored.gold==post_reload_gold,"evolved companion cannot repurchase after reload")
     var future=m.snapshot();future.checkpoint.companion_runtime.schema=2;check(Session.new(future).read_only,"future companion runtime protected")
     future=m.snapshot();future.profile.companions.owned.skyfox.xp=1.5;check(Session.new(future).read_only,"fractional training counter rejected")
     m=prepared();m.unlock_hero("kaela");m.select_hero("kaela");m.acquire_companion("skyfox");m.select_companion("skyfox")
+    var roster_restored=Session.new(JSON.parse_string(JSON.stringify(m.snapshot())))
+    check(not roster_restored.read_only and roster_restored.hero_id=="kaela" and str(roster_restored.profile.companions.active)=="skyfox","Kaela and equipped companion survive JSON save/reload")
+    check(roster_restored.hero_level==m.hero_level and roster_restored.gold==m.gold and int(roster_restored.profile.shards)==int(m.profile.shards),"independent hero training and currencies survive reload")
+    check(roster_restored.skills.definitions.sky_blade.name=="Runenstoß" and is_equal_approx(float(roster_restored.skills.definitions.guardian_wall.cooldown),7.5),"hero-specific skills survive reload")
     var scene=Scene.instantiate();root.add_child(scene);await process_frame;scene.model=m;scene.hud.model=m;scene._sync_hero();scene.hud.active_tab="Wesen";scene.hud.update_buttons()
     check(scene.hero.hero_id=="kaela" and scene.hud.preview.hero_id=="kaela","combat and preview show actual active hero")
     for pose in scene.hero.Gate.HERO_STATES:
