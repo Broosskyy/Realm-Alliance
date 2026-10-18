@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "perf": {
+    "frames": 209,
+    "seconds": 10.0042,
+    "median_ms": 50,
+    "p95_ms": 66.79999999999927
+  },
+  "browser_version": "155.0.8059.84",
+  "outcome": "fighting",
+  "simulation_clock": 9.98333333333341,
+  "kills": 9,
+  "cooldowns": {
+    "arcane_eye": 10.5,
+    "rage_flame": 20.5333333333333,
+    "sky_blade": 11.7666666666666
+  },
+  "environment": "Hosted Linux SwiftShader; 720x1560; all four gear items, awakened form, full effects, AUTO basics and manual skill requests. Browser rAF telemetry, not physical Android or certified Godot render FPS."
+}
