@@ -5,7 +5,7 @@ signal selection_changed
 var model
 var tabs:TabContainer
 func configure(value) -> void:
-    model=value;title="Helden & Begleiter";ok_button_text="Schließen";get_cancel_button().hide()
+    model=value;title="Wesen · Helden & Begleiter";ok_button_text="Zurück zu Wesen";get_cancel_button().hide()
     confirmed.connect(queue_free);canceled.connect(queue_free);_build(0)
 func _label(parent:Control,text:String,small:bool=false) -> void:
     var l=Label.new();l.text=text;l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;l.add_theme_font_size_override("font_size",18 if small else 22);l.size_flags_horizontal=Control.SIZE_EXPAND_FILL;parent.add_child(l)
@@ -13,29 +13,33 @@ func _button(parent:Control,text:String,enabled:bool,callback:Callable) -> void:
     var b=Button.new();b.text=text;b.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;b.custom_minimum_size=Vector2(0,88);b.disabled=not enabled or model.read_only;parent.add_child(b);b.pressed.connect(callback)
 func _build(selected:int) -> void:
     if tabs:remove_child(tabs);tabs.queue_free()
-    tabs=TabContainer.new();tabs.custom_minimum_size=Vector2(540,660);add_child(tabs)
+    tabs=TabContainer.new();tabs.custom_minimum_size=Vector2(540,710);add_child(tabs)
     for kind in ["Helden","Begleiter"]:
         var scroll=ScrollContainer.new();scroll.name=kind;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;tabs.add_child(scroll)
         var list=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",18);scroll.add_child(list)
-        _label(list,"Helden und Begleiter sofort wechseln – ohne Stage-Neustart. Gegner-HP, Beute und Fortschritt bleiben erhalten. Helden trainieren eigene Level; Talente und Skillränge gelten kontoweit.",true)
+        _label(list,"DEINE SAMMLUNG  ✦  Wechsel ohne Stage-Neustart",true)
+        _label(list,"Region, Gegner-HP, Loot und Fortschritt bleiben erhalten. Helden trainieren eigene Level.",true)
         if kind=="Helden":
             _label(list,"Der maskierte Realmwächter ist dein Hauptheld. Andere Helden erscheinen erst, wenn eigene vollständige Kampfassets in unserem kanonischen Stil bereitstehen.",true)
             _label(list,"Kaela bleibt als zukünftige Runenhüterin-NPC in unserem Art-/Story-Katalog erhalten. Früherer Kaela-Fortschritt wurde archiviert.",true)
         var catalog:Dictionary=model.Roster.playable_catalog() if kind=="Helden" else model.Companions.catalog()
         for id in catalog:
             var d:Dictionary=catalog[id];var owned=model.profile.hero_roster.owned.has(id) if kind=="Helden" else model.profile.companions.owned.has(id)
-            var card=PanelContainer.new();card.add_theme_stylebox_override("panel",Kit.box("panel"));list.add_child(card);var content=VBoxContainer.new();content.add_theme_constant_override("separation",8);card.add_child(content)
+            var card=PanelContainer.new();card.add_theme_stylebox_override("panel",Kit.box("hero" if kind=="Helden" else "slot"));list.add_child(card);var content=VBoxContainer.new();content.add_theme_constant_override("separation",8);card.add_child(content)
             var row=HBoxContainer.new();content.add_child(row)
-            var icon=TextureRect.new();icon.custom_minimum_size=Vector2(100,100);icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;row.add_child(icon)
+            var icon=TextureRect.new();icon.custom_minimum_size=Vector2(134,146);icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;row.add_child(icon)
             if kind=="Helden":
                 var portrait=AtlasTexture.new()
                 portrait.atlas=load("res://assets/production/hero/idle.png")
                 portrait.region=Rect2(310,25,230,220)
                 icon.texture=portrait
             else:icon.texture=load("res://assets/roster67/"+id+("/evolved_idle.png" if owned and int(model.profile.companions.owned[id].evolution)>0 else "/base_idle.png"))
-            var info=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(info)
+            var info=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;info.add_theme_constant_override("separation",6);row.add_child(info)
             var rank=model.Roster.level(model.profile,id) if kind=="Helden" else model.Companions.level(model.profile,id)
-            _label(info,d.name+(" · Lv. %d"%rank if owned else " · Gesperrt"));_label(info,d.role,true);_label(info,{"rare":"Selten","epic":"Episch","legendary":"Legendär"}.get(d.get("rarity","rare"),"Selten"),true);_label(content,d.description,true)
+            _label(info,("✦ " if kind=="Helden" else "◆ ")+d.name+(" · Lv. %d"%rank if owned else " · Gesperrt"))
+            _label(info,d.role,true)
+            _label(info,{"rare":"Selten","epic":"Episch","legendary":"Legendär"}.get(d.get("rarity","rare"),"Selten")+"  •  "+("Ausgerüstet" if (id==model.hero_id if kind=="Helden" else id==str(model.profile.companions.active)) else "Sammlung"),true)
+            _label(content,d.description,true)
             if owned:
                 var xp=model.Roster.xp(model.profile,id) if kind=="Helden" else int(model.profile.companions.owned[id].xp)
                 _label(content,"%d Kampf-XP · %s"%[xp,"Rang 2 · Entwickelt" if kind=="Begleiter" and int(model.profile.companions.owned[id].evolution)>0 else "Rang 1"],true)
