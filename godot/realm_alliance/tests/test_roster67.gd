@@ -59,6 +59,10 @@ func run():
     var pet_run=m.run_id;var pet_wave=m.wave;var pet_enemy=m.enemy_hp
     check(not m.acquire_companion("skyfox") and m.select_companion("skyfox"),"single purchase and owned selection")
     check(m.run_id==pet_run and m.wave==pet_wave and m.enemy_hp==pet_enemy,"pet equip preserves run, stage and enemy health")
+    # Test snapshots must carry a valid HP total. prepared() intentionally inflates
+    # enemy HP for combat tests; old equip used to reset it, in-place equip does not.
+    m.enemy_max_hp=int(m.enemy_definition.hp)
+    m.enemy_hp=m.enemy_max_hp
     m.behavior.deadline=10000;m.drain_events();var before=m.enemy_hp;var momentum=m.momentum;var rage=m.rage
     m.tick(1.0/60);check(m.enemy_hp==before and not m.companion.pending.is_empty(),"pet attack has genuine windup")
     var saved=m.snapshot();var restored=Session.new(JSON.parse_string(JSON.stringify(saved)))
@@ -73,7 +77,11 @@ func run():
     for event in e:
         if event.type=="damage":check(event.actor_id=="companion:skyfox:local" and str(event.action_id).contains("companion:skyfox"),"independent actor/action identifiers")
     m.tick(.5);check(m.companion.pending.is_empty(),"pending actions cancelled across transitions")
-    m=prepared();m.acquire_companion("sunbird");m.select_companion("sunbird");m.behavior.deadline=10000;m.drain_events();m.tick(1)
+    m=prepared();m.acquire_companion("sunbird");m.select_companion("sunbird")
+    # The fixture raises XP directly after initialization, not through gameplay.
+    # Hero switching no longer refills HP; start healer test at true max HP.
+    m.player_hp=m.player_max_hp
+    m.behavior.deadline=10000;m.drain_events();m.tick(1)
     check(m.companion.pending.is_empty() and count(m.drain_events(),"heal")==0,"healer waits at full health")
     m.player_hp=20;m.tick(1.0/60);check(m.player_hp==20,"heal not applied on activation");m.tick(.46)
     check(m.player_hp>20 and m.player_hp<=m.player_max_hp,"real delayed bounded healing")
