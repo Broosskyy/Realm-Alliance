@@ -68,7 +68,7 @@ func _ready() -> void:
         var d:Dictionary=model.pending.definition
         hero.play_action(str(d.id),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup))
         hero.sync_clock(model.clock)
-    print("REALM 6.4 preview: canonical hero, weapons and survival systems loaded")
+    print("REALM 6.4: canonical hero, weapons and survival systems loaded")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -163,7 +163,7 @@ func _show_encounter() -> void:
     camera_feedback.reset()
 
 func _sync_hero() -> void:
-    var key="%s:%d:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),JSON.stringify(model.profile.hero_equipment)]
+    var key="%s:%d:%s:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),JSON.stringify(model.profile.hero_equipment),JSON.stringify(model.profile.hero_evolution)]
     if key!=_last_visual_key:
         _last_visual_key=key
         hero.equip_weapon(model.weapon_index)
@@ -230,6 +230,10 @@ func _on_hud_action(id: String) -> void:
         model.cycle_weapon();_sync_hero();_persist()
     elif id.begins_with("gear_"):
         _open_gear(id.trim_prefix("gear_"))
+    elif id=="evolve":
+        _open_evolution()
+    elif id.begins_with("hero_skill_"):
+        _open_skill_info(int(id.trim_prefix("hero_skill_")))
     elif id.begins_with("equip_"):
         var item=id.trim_prefix("equip_")
         if model.equip(item):
@@ -269,9 +273,36 @@ func _open_gear(id: String) -> void:
             hud.notify("Ausrüstung aktualisiert","HP %d · Verteidigung %d"%[model.player_max_hp,model.defense]))
     dialog.popup_centered(Vector2i(mini(600,int(get_viewport_rect().size.x)-24),380))
 
+func _open_evolution() -> void:
+    if active_tab!="Wesen":return
+    var dialog=preload("res://scripts/ui/evolution_dialog.gd").new()
+    add_child(dialog);dialog.configure(model)
+    dialog.activate.connect(func():
+        if model.change_evolution():
+            _sync_hero();_persist();_refresh()
+            audio.play("reward");hud.notify("Wächter-Form","Erwacht" if model.Evolution.active(model.profile) else "Basisform"))
+    dialog.popup_centered(Vector2i(620,400))
+
+func _open_skill_info(index: int) -> void:
+    if active_tab!="Wesen" or index not in range(4):return
+    var d:Dictionary=model.Definitions.all()[model.SKILL_IDS[index]]
+    var detail=""
+    match d.effect:
+        "direct":detail="Konzentrierter Schwertschlag: %.1f× Angriff."%d.multiplier
+        "mark":detail="Markierung: %.1f s lang +%d%% Trefferschaden."%[d.duration,roundi((float(d.amplify)-1)*100)]
+        "burn":detail="Feuerschlag: %.1f× Angriff · %.1f s Brennen."%[d.multiplier,d.duration]
+        "shield":detail="Schild: %d%% maximale HP · erster Block kontert."%roundi(float(d.absorb_fraction)*100)
+    var dialog=preload("res://scripts/ui/modal_dialog.gd").new()
+    var cost_text="Kostenfrei" if d.cost_type=="none" else "Kosten: %d %s"%[d.cost,{"momentum":"Momentum","rage":"Zorn"}[d.cost_type]]
+    dialog.title=d.name;dialog.dialog_text="%s\n\nAb Heldenlevel %d · %.1f s Abklingzeit\n%s\nAUTO nutzt nur normale Angriffe."%[detail,d.unlock_level,d.cooldown,cost_text]
+    dialog.ok_button_text="Schließen";dialog.cancel_button_text="Zurück"
+    dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free)
+    add_child(dialog);dialog.popup_centered(Vector2i(620,380))
+
 func _apply_preferences() -> void:
     if audio:audio.enabled=preferences.sound
     if vfx:vfx.intensity=preferences.intensity()
+    if _production_enabled and hero.aura:hero.aura.fx_intensity=preferences.intensity()
     camera_feedback.intensity=preferences.intensity()
     hud.sound_enabled=preferences.sound;hud.effect_level=preferences.effects
     hud.queue_redraw()

@@ -9,7 +9,9 @@ func configure(model,id: String) -> void:
     title=d.name
     var equipped_name=str(Gear.CATALOG[current].name) if current!="" else "Basisform"
     var level=int(model.profile.hero_equipment.owned[id].level) if owned else 1
-    dialog_text="%s · Level %d\n+%d HP · +%d Verteidigung\nAktiv: %s\n\n"%["Episch" if d.rarity=="epic" else "Selten",level,int(d.hp)+(level-1)*3,int(d.defense)+level-1,equipped_name]
+    var values=Gear.item_stats(model.profile,id)
+    var equipped_values=Gear.item_stats(model.profile,current)
+    dialog_text="%s · Level %d\n+%d HP · +%d Verteidigung\nAktiv: %s\nVergleich: HP %d · DEF %d\n\n"%["Episch" if d.rarity=="epic" else "Selten",level,values.hp,values.defense,equipped_name,values.hp-equipped_values.hp,values.defense-equipped_values.defense]
     if owned:
         ok_button_text="Ablegen" if current==id else "Anlegen"
         confirmed.connect(func():operation.emit(str(d.slot) if current==id else id,"unequip" if current==id else "equip"))

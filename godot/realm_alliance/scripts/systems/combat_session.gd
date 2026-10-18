@@ -7,6 +7,7 @@ const Status = preload("res://scripts/systems/combat_status.gd")
 const Behavior = preload("res://scripts/systems/enemy_behavior.gd")
 const Equipment = preload("res://scripts/systems/equipment.gd")
 const HeroEquipment=preload("res://scripts/systems/hero_equipment.gd")
+const Evolution=preload("res://scripts/systems/hero_evolution.gd")
 const Progress = preload("res://scripts/systems/player_progress.gd")
 const Rewards = preload("res://scripts/systems/reward_system.gd")
 const Migration = preload("res://scripts/systems/save_migration.gd")
@@ -52,9 +53,11 @@ var total_kills: int:
 var level: int:
     get: return Progress.level(int(profile.xp))
 var player_max_hp: int:
-    get: return 150 + (level - 1) * 12 + int(HeroEquipment.stats(profile).hp)
+    get: return 150 + (level - 1) * 12 + int(HeroEquipment.stats(profile).hp) + int(Evolution.bonuses(profile).hp)
 var defense: int:
     get: return int(HeroEquipment.stats(profile).defense)
+var power: int:
+    get: return hero_damage()*10+player_max_hp+defense*12
 
 func _init(data: Dictionary = {}) -> void:
     var normalized: Dictionary = Migration.normalize(data)
@@ -64,6 +67,9 @@ func _init(data: Dictionary = {}) -> void:
     if not HeroEquipment.ensure(profile):
         read_only=true
         load_error="Ausrüstungsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
+    if not Evolution.ensure(profile):
+        read_only=true
+        load_error="Evolutionsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
     var checkpoint: Dictionary = normalized.get("checkpoint", {})
     tier = clampi(int(checkpoint.get("tier",0)),0,100)
     encounter = clampi(int(checkpoint.get("encounter",0)),0,4)
@@ -91,7 +97,7 @@ func _init(data: Dictionary = {}) -> void:
     events.clear()
 
 func hero_damage() -> int:
-    return Equipment.damage(profile) + 2 * (level - 1)
+    return Equipment.damage(profile) + 2 * (level - 1) + int(Evolution.bonuses(profile).attack)
 
 func upgrade_cost() -> int:
     return Equipment.upgrade_cost(profile)
@@ -128,6 +134,13 @@ func change_gear(id: String, operation: String="equip") -> bool:
         "equip":accepted=HeroEquipment.equip(profile,id)
         "unequip":accepted=HeroEquipment.unequip(profile,id)
         "upgrade":accepted=HeroEquipment.upgrade(profile,id)
+    if accepted and player_hp>0:player_hp=clampi(player_hp+player_max_hp-before,1,player_max_hp)
+    return accepted
+
+func change_evolution() -> bool:
+    if read_only:return false
+    var before=player_max_hp
+    var accepted=Evolution.toggle(profile) if Evolution.unlocked(profile) else Evolution.unlock(profile)
     if accepted and player_hp>0:player_hp=clampi(player_hp+player_max_hp-before,1,player_max_hp)
     return accepted
 

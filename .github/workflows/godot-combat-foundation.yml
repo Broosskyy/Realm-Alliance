@@ -91,6 +91,8 @@ jobs:
         run: XDG_DATA_HOME=/tmp/realm64-test-equipment godot --headless --path . --script res://tests/test_hero_equipment64.gd
       - name: Hero attachments, native equipment interaction and look tests
         run: XDG_DATA_HOME=/tmp/realm64-test-visual godot --headless --path . --script res://tests/test_hero_visual64.gd
+      - name: Head and wing sockets, evolution and expanded mobile hero UI
+        run: XDG_DATA_HOME=/tmp/realm64-test-extensions godot --headless --path . --script res://tests/test_hero_extensions64.gd
       - name: Start real combat scene (headless smoke)
         run: |
           godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
@@ -105,7 +107,7 @@ jobs:
       - name: Upload isolated Web artifact
         uses: actions/upload-artifact@v4
         with:
-          name: realm-alliance-work64-wip-web
+          name: realm-alliance-work64-web
           path: build/godot-web/
           if-no-files-found: error
       - name: Build Android ARM64 debug APK
@@ -119,7 +121,7 @@ jobs:
       - name: Upload Android debug artifact
         uses: actions/upload-artifact@v4
         with:
-          name: realm-alliance-work64-wip-android
+          name: realm-alliance-work64-android
           path: build/godot-android/*.apk
           if-no-files-found: error
 

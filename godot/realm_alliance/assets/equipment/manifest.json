@@ -25,6 +25,38 @@
       ],
       "alpha": true,
       "normalization": "Meaningful-alpha bbox (>128) plus 4px source padding, uniform scale to 256px, 272px alpha canvas. Interior alpha preserved."
+    },
+    {
+      "id": "sentinel_circlet",
+      "path": "sentinel_circlet.png",
+      "source_sha256": "80b4a47aefd42017ec7694283a4651ba3d702dd690eafa216ed4d46e35b190e8",
+      "sha256": "201f9f2e02fcc33766693f0d9cf50b889d0566081df585144bef808c4ecac59a",
+      "size": [
+        320,
+        144
+      ],
+      "pivot": [
+        258.687,
+        85.907
+      ],
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox crop plus padding, uniform scale, transparent canvas. RGB outside alpha zero is ignored; checker-composite inspection validates actual transparency."
+    },
+    {
+      "id": "sky_wings",
+      "path": "sky_wings.png",
+      "source_sha256": "fb123b4255fa85a0f99ccbabca5c577bd3e9604f9b0ea3b2b5dd3ec91dcf7916",
+      "sha256": "5ab26f53ebdce4866a1bcc25c92503fbcf9590fff629b394001db207eb2c0d3e",
+      "size": [
+        544,
+        416
+      ],
+      "pivot": [
+        403.357,
+        261.561
+      ],
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox crop plus padding, uniform scale, transparent canvas. RGB outside alpha zero is ignored; checker-composite inspection validates actual transparency."
     }
   ]
 }

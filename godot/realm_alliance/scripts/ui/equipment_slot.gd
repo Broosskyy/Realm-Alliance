@@ -8,6 +8,7 @@ var active: bool=false
 var owned: bool=false
 var item_texture: Texture2D
 var compact: bool=false
+var icon_rotation: float=0.0
 func set_item(title: String,subtitle: String,tint: Color,selected: bool,available: bool,icon: Texture2D) -> void:
     item_name=title;detail=subtitle;rarity_color=tint;active=selected;owned=available;item_texture=icon;queue_redraw()
 func _draw() -> void:
@@ -15,7 +16,13 @@ func _draw() -> void:
         super._draw();return
     Kit.box("hero" if active else "panel").draw(get_canvas_item(),Rect2(Vector2.ZERO,size))
     if compact:
-        if item_texture:draw_texture_rect(item_texture,Rect2(16,5,60,60),false,Color(1,1,1,1 if owned else .5))
+        if item_texture:
+            var texture_size=item_texture.get_size()
+            var factor=minf((70.0 if icon_rotation!=0 else 60.0)/texture_size.x,60/texture_size.y)
+            var extent=texture_size*factor
+            draw_set_transform(Vector2(size.x/2,35),icon_rotation)
+            draw_texture_rect(item_texture,Rect2(-extent/2,extent),false,Color(1,1,1,1 if owned else .5))
+            draw_set_transform(Vector2.ZERO)
         draw_string(Kit.BOLD,Vector2(6,size.y-9),item_name,HORIZONTAL_ALIGNMENT_LEFT,size.x-12,18,Kit.INK if owned else Color("#8395ac"))
         draw_line(Vector2(9,size.y-4),Vector2(size.x-9,size.y-4),rarity_color,2)
         super._draw();return

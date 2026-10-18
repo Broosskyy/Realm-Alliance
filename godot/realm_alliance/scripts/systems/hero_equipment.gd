@@ -2,15 +2,17 @@ extends RefCounted
 class_name RAHeroEquipment
 # Additive, versioned profile domain. V1/V2 envelopes and unknown profile data survive.
 const Progress=preload("res://scripts/systems/player_progress.gd")
-const IDS=["astral_plate","eclipse_plate"]
-const SLOTS=["chest","head","back"]
+const IDS=["astral_plate","eclipse_plate","sentinel_circlet","sky_wings"]
+const SLOTS=["chest","head","shoulder","back","wings","accessory"]
 const CATALOG={
     "astral_plate":{"name":"Sternenpanzer","slot":"chest","rarity":"rare","unlock":1,"gold":35,"shards":2,"hp":20,"defense":2},
-    "eclipse_plate":{"name":"Eklipsenpanzer","slot":"chest","rarity":"epic","unlock":4,"gold":140,"shards":6,"hp":35,"defense":4}
+    "eclipse_plate":{"name":"Eklipsenpanzer","slot":"chest","rarity":"epic","unlock":4,"gold":140,"shards":6,"hp":35,"defense":4},
+    "sentinel_circlet":{"name":"Wächterdiadem","slot":"head","rarity":"rare","unlock":2,"gold":30,"shards":2,"hp":5,"defense":1},
+    "sky_wings":{"name":"Himmelsflügel","slot":"wings","rarity":"epic","unlock":3,"gold":60,"shards":4,"hp":15,"defense":1}
 }
 static func ensure(profile: Dictionary) -> bool:
     if not profile.has("hero_equipment"):
-        profile.hero_equipment={"schema":1,"owned":{},"equipped":{"chest":"","head":"","back":""},"cosmetics":{}}
+        profile.hero_equipment={"schema":1,"owned":{},"equipped":{"chest":"","head":"","shoulder":"","back":"","wings":"","accessory":""},"cosmetics":{}}
     var d=profile.hero_equipment
     if not d is Dictionary or int(d.get("schema",0))!=1:return false
     if not d.get("owned") is Dictionary or not d.get("equipped") is Dictionary or not d.get("cosmetics") is Dictionary:return false
@@ -30,10 +32,14 @@ static func stats(profile: Dictionary) -> Dictionary:
     for slot in SLOTS:
         var id=str(profile.hero_equipment.equipped.get(slot,""))
         if id=="":continue
-        var level=int(profile.hero_equipment.owned[id].level)
-        result.hp+=int(CATALOG[id].hp)+(level-1)*3
-        result.defense+=int(CATALOG[id].defense)+(level-1)
+        var values=item_stats(profile,id)
+        result.hp+=values.hp;result.defense+=values.defense
     return result
+static func item_stats(profile: Dictionary,id: String) -> Dictionary:
+    if not CATALOG.has(id):return {"hp":0,"defense":0}
+    var level=1
+    if ensure(profile) and profile.hero_equipment.owned.has(id):level=int(profile.hero_equipment.owned[id].level)
+    return {"hp":int(CATALOG[id].hp)+(level-1)*3,"defense":int(CATALOG[id].defense)+level-1}
 static func can_acquire(profile: Dictionary,id: String) -> bool:
     if not ensure(profile) or not CATALOG.has(id) or profile.hero_equipment.owned.has(id):return false
     var d:Dictionary=CATALOG[id]
