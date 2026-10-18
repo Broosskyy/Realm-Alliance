@@ -23,10 +23,6 @@ static func const_world(p:Dictionary) -> void:
         for i in 5:
             p.world_progress.stars[region+":"+str(i)]=3
 
-static func _heroes(p:Dictionary) -> void:
-    if not p.hero_roster.owned.has("kaela"):
-        p.hero_roster.owned.kaela={"xp":0,"source":"qa_sandbox"}
-
 static func _pets(p:Dictionary) -> void:
     for id in ["skyfox","sunbird"]:
         if not p.companions.owned.has(id):
@@ -51,8 +47,6 @@ static func apply(session,kind:String) -> bool:
             p.hero_roster.owned[id].xp=maxi(int(p.hero_roster.owned[id].xp),target)
         "world":
             _world(p)
-        "heroes":
-            _heroes(p)
         "pets":
             _pets(p)
         "evolve":
@@ -63,12 +57,12 @@ static func apply(session,kind:String) -> bool:
             p.shards=maxi(int(p.shards),6)
             if not session.evolve_companion("skyfox"):return false
         "showcase":
-            _world(p);_heroes(p);_pets(p)
+            _world(p);_pets(p)
             var xp=xp_for_level(LEVEL_TARGET)
             p.xp=maxi(int(p.xp),xp)
-            p.hero_roster.owned.kaela.xp=maxi(int(p.hero_roster.owned.kaela.xp),xp)
+            p.hero_roster.owned.realmwachter.xp=maxi(int(p.hero_roster.owned.realmwachter.xp),xp)
             p.companions.active="skyfox"
-            p.hero_roster.active="kaela"
+            p.hero_roster.active="realmwachter"
             session._refresh_skill_definitions()
         "boss":
             _world(p)
