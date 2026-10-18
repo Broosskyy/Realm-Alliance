@@ -96,6 +96,12 @@ func run() -> void:
                 if c is Button:check(c.size.x*scale>=44 and c.size.y*scale>=44,"RPG target >=44 physical pixels "+str(v)+str(c.name))
         check(not scene._on_tap(),"RPG menus cannot cause combat hits "+str(v))
     scene._on_hud_action("Kampf");scene.vfx.clear()
+    var catalog=scene.model.enemy_definition
+    scene.model.enemy_definition=scene.model.World.encounter("glutkern",4);scene.model.behavior.second=false
+    check(scene.hud.enemy_attack_cue()=="Eruption","HUD names actual first boss strike")
+    scene.model.behavior.second=true;check(scene.hud.enemy_attack_cue()=="Nachbeben","HUD distinguishes actual aftershock")
+    scene.model.enemy_definition=catalog
+    check(scene.hud.buttons.skill0.tooltip_text.contains("Stufe 2"),"skill tooltip uses actual saved rank")
     scene.vfx.enemy_warning(scene.model,"eruption",1.5,Vector2.ZERO)
     var warning
     for c in scene.vfx.get_children():

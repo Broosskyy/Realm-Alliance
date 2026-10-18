@@ -195,6 +195,9 @@ func update_buttons() -> void:
     var ids=["sky_blade","arcane_eye","rage_flame","guardian_wall"]
     var controls=["skill0","skill1","skill2","locked"]
     for i in 4:
+        var definition:Dictionary=model.skills.definitions[ids[i]]
+        var rank=model.Advancement.rank(model.profile,ids[i])
+        buttons[controls[i]].tooltip_text="%s · Stufe %d · %.1f s Abklingzeit"%[definition.name,rank,definition.cooldown]
         buttons[controls[i]].disabled = model.outcome!="fighting" or not model.skills.can_cast(ids[i],model.clock,model.level,{"momentum":model.momentum,"rage":model.rage})
     # Locked defense remains tappable to explain the actual level requirement.
     if model.level<2: buttons["locked"].disabled=false
@@ -325,7 +328,7 @@ func _draw_combat() -> void:
             _text(statuses[i][1],Vector2(389+i*105,263),13,INK)
     if model.behavior.state=="windup" and model.outcome=="fighting":
         _panel(Rect2(293,282,355,32),Color(0.22,0.035,0.035,0.92),Color("#e98f65"),12)
-        var cue="Doppelschlag" if model.enemy_definition.pattern=="double" else ("Wuchtschlag" if boss else "Angriff")
+        var cue=enemy_attack_cue()
         _center("%s in %.1fs"%[cue,maxf(0,model.behavior.deadline-model.clock)],Rect2(293,282,355,32),16,Color("#ffca9b"),true)
     draw_texture_rect(_bottom_fade, Rect2(0, controls_top - 90, 720, 330 + 90), false)
     var y = controls_top + 8
@@ -347,6 +350,12 @@ func _resource(r: Rect2, icon: String, value: String, ratio: float, color: Color
     _icon(icon, Rect2(r.position + Vector2(9, 12), Vector2(31, 34)))
     _center(value, Rect2(r.position + Vector2(46, 4), Vector2(r.size.x - 57, 23)), 16, INK, true)
     _bar(Rect2(r.position + Vector2(46, 32), Vector2(r.size.x - 58, 14)), ratio, color)
+
+func enemy_attack_cue() -> String:
+    if model.enemy_definition.pattern=="eruption":return "Nachbeben" if model.behavior.second else "Eruption"
+    if model.enemy_definition.pattern=="double":return "Folgetreffer" if model.behavior.second else "Doppelschlag"
+    if model.enemy_definition.pattern=="heavy":return "Wuchtschlag" if (model.behavior.strikes+1)%2==0 else "Angriff"
+    return "Angriff"
 
 func _skill(i: int, _center: Vector2) -> void:
     var id=["sky_blade","arcane_eye","guardian_wall","rage_flame"][i]
