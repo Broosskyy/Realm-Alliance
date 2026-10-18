@@ -33,6 +33,7 @@ var effect_level: int = 0
 var hit_flash: float = 0.0
 var model
 var auto_enabled = true
+var qa_mode:bool=false
 var active_tab = "Kampf"
 var logical_height = 1280.0
 var controls_top = 1000.0
@@ -75,7 +76,7 @@ func _ready() -> void:
         guardian_portrait=portrait
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options", "roster"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options", "roster", "admin"]:
         var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id in ["evolve","talents"] else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
@@ -131,6 +132,7 @@ func configure(height: float) -> void:
     _place("hit_mode",Rect2(18,controls_top-100,160,88))
     _place("ultimate",Rect2(538,controls_top-100,160,88))
     _place("combat_options",Rect2(38,943,644,88))
+    _place("admin",Rect2(368,631,314,61))
     _place("mail", Rect2(612, 18, 44, 52))
     _place("settings", Rect2(664, 18, 44, 52))
     _place("auto", Rect2(628, controls_top + 3, 70, 70))
@@ -167,6 +169,7 @@ func update_buttons() -> void:
     var in_combat = active_tab == "Kampf"
     buttons.hit_mode.visible=in_combat;buttons.ultimate.visible=in_combat
     buttons.combat_options.visible=active_tab=="Mehr"
+    buttons.admin.visible=OS.is_debug_build() and active_tab=="Mehr"
     buttons.ultimate.disabled=not model.Tap.ultimate_unlocked(model.profile) or model.tap.charge<100 or model.clock<model.tap.ultimate_at or model.outcome!="fighting"
     buttons.ultimate.tooltip_text="Sternenfall · 4,8× Schaden · 100 Ladung · 16 s Abklingzeit"
     buttons.hit_mode.tooltip_text="x2: Level 3 + Elite · x4: Level 6 + Gartenkoloss · mehrere echte Treffer"
@@ -302,6 +305,7 @@ func _draw() -> void:
         draw_rect(Rect2(0, 0, 720, h), Color(0.015,0.035,0.075,0.45 if active_tab=="Wesen" else .91))
     draw_texture_rect(_top_fade, Rect2(0, 0, 720, 190), false)
     _draw_header()
+    if qa_mode:_center("QA TEST · NICHT GESPEICHERT",Rect2(168,75,385,23),15,GOLD,true)
     if active_tab == "Kampf":
         _draw_combat()
     else:
@@ -509,7 +513,10 @@ func _draw_shell() -> void:
                 _icon("map" if i==0 else "crown",Rect2(x+126,459,60,60),GOLD)
                 _center("Aufgaben" if i==0 else "Erfolge",Rect2(x,529,312,32),24,INK,true)
                 _center("Ziele & Belohnungen" if i==0 else "Deine Meilensteine",Rect2(x,568,312,26),18,MUTED)
-            _text("SPIELSTAND",Vector2(40,684),18,MUTED,true)
+            if OS.is_debug_build():
+                _panel(Rect2(368,631,314,61),Color.WHITE,Color.WHITE,16,"primary")
+                _center("QA-Testlabor öffnen",Rect2(368,631,314,61),19,GOLD,true)
+            _text("SPIELSTAND",Vector2(40,699),18,MUTED,true)
             for i in 2:
                 var r=Rect2(38+i*332,715,312,62)
                 _panel(r,Color.WHITE,Color.WHITE,16,"secondary")
@@ -521,7 +528,8 @@ func _draw_shell() -> void:
                 _center(("Klang: "+("An" if sound_enabled else "Aus")) if i==0 else ("Effekte: "+["Voll","Reduziert","Aus"][effect_level]),r,18,INK,true)
             _panel(Rect2(38,943,644,88))
             _center("AUTO-Skills konfigurieren",Rect2(38,943,644,88),22,INK,true)
-            _center("REALM ALLIANCE · 0.6.6 · Offline-Abenteuer",Rect2(38,1045,644,30),17,MUTED)
+            _center("REALM ALLIANCE · 0.6.7 · Offline-Abenteuer",Rect2(38,1045,644,30),17,MUTED)
+            if qa_mode:_center("TEMPORÄRES TESTPROFIL · KEINE SPEICHERUNG",Rect2(38,1069,644,27),15,GOLD,true)
             if model.read_only:
                 _center("Spielstand geschützt · Diese Sitzung wird nicht gespeichert",Rect2(38,986,644,34),18,GOLD,true)
     _panel(Rect2(38, logical_height - 188, 644, 62), Color("#13314c"), CYAN.darkened(0.4))
