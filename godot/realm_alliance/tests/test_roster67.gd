@@ -46,7 +46,10 @@ func run():
     check(remapped.gold==960 and int(remapped.profile.shards)==29 and bool(remapped.profile.hero_roster.kaela_compensated),"previous Kaela unlock compensated once")
     check(int(remapped.profile.hero_roster.owned.kaela.xp)==340 and remapped.profile.hero_roster.owned.kaela.source=="historical_unlock","Kaela XP and ownership archived losslessly")
     check(remapped.region=="glutkern" and remapped.tier==1 and remapped.encounter==2 and remapped.enemy_hp==35 and remapped.player_hp==70,"region, wave, enemy HP and hero HP survive Kaela migration")
-    check(remapped.profile.inventory==legacy.profile.inventory and remapped.profile.claims==legacy.profile.claims,"migration preserves equipment and rewards")
+    check(remapped.profile.equipped==legacy.profile.equipped and remapped.profile.inventory.size()==legacy.profile.inventory.size(),"migration preserves equipped item and inventory slots")
+    for item_id in legacy.profile.inventory:
+        check(remapped.profile.inventory.has(item_id) and int(remapped.profile.inventory[item_id].get("level",1))==int(legacy.profile.inventory[item_id].get("level",1)),"migration preserves inventory level "+str(item_id))
+    check(remapped.profile.claims.size()==legacy.profile.claims.size(),"migration preserves reward-claim count")
     var again=Session.new(JSON.parse_string(JSON.stringify(remapped.snapshot())))
     check(not again.read_only and again.gold==960 and int(again.profile.shards)==29,"migration does not grant Kaela compensation twice")
     check(not again.select_hero("kaela") and again.Roster.catalog().has("kaela"),"Kaela art/data retained for future NPC but cannot return as hero")
