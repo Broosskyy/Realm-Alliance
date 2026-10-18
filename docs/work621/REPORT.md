@@ -18,3 +18,6 @@ Menu navigation now pauses bound actor tweens and VFX processing together with s
 ![Fire impact](screenshots/720x1560-rage_flame.webp)
 ![Arcane cast](screenshots/720x1560-arcane_eye.webp)
 ![Defense](screenshots/720x1560-guardian_wall.webp)
+
+## Browser regression found during final gate
+The full five-encounter Web run, all five drops, equipment/cosmetics and import succeeded. A rapid reload after import could restore the previous IndexedDB save. The atomic temp-file close could schedule persistence before the subsequent rename. SaveStore now requests JavaScriptBridge.force_fs_sync() after successful atomic rename, preserving the existing backup/migration scheme. Final repeated rapid-reload test is required on the new export; the earlier browser gate is not claimed fully green. Defensive shield presentation also retains its brace during its immediate cast/recovery.

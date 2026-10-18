@@ -72,6 +72,7 @@ func run() -> void:
         check(im.get_size()==Vector2i(512,512) and im.get_pixel(0,0).a==0,"VFX alpha and common canvas")
     scene._on_hud_action("Mehr")
     check(scene.hud.buttons.sound.visible and scene.hud.buttons.effects.visible,"accessible audio/VFX controls")
+    check(Timeline.sample("guardian_wall",0.05,0,0.15).pose=="hit","instant shield retains a readable defensive brace")
     scene.queue_free();await process_frame
     print("Presentation 6.2.1: %d/%d checks"%[checks-failures,checks]);quit(1 if failures else 0)
 func snap(id: String) -> void:

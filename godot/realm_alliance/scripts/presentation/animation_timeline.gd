@@ -6,6 +6,8 @@ static func sample(id: String, elapsed: float, hit_at: float, recovery: float) -
     var p=clampf(elapsed/windup,0,1)
     var after=clampf((elapsed-windup)/maxf(recovery,0.01),0,1)
     var casting=id in ["arcane_eye","guardian_wall"]
+    if id=="guardian_wall":
+        return {"pose":"hit" if elapsed<recovery*0.75 else "ready","offset":Vector2(-8*(1-after),0),"done":elapsed>=hit_at+recovery,"phase":"guard"}
     var pose="ready"
     var offset=Vector2.ZERO
     if elapsed<windup:

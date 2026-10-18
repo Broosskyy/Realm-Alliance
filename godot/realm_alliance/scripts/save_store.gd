@@ -67,7 +67,13 @@ static func save_state(data: Dictionary) -> bool:
         if _valid(_read(SAVE_PATH)):
             if DirAccess.copy_absolute(SAVE_PATH,SAVE_PATH+".bak") != OK:
                 return false
-    return DirAccess.rename_absolute(temp,SAVE_PATH) == OK
+    if DirAccess.rename_absolute(temp,SAVE_PATH)!=OK:
+        return false
+    # FileAccess.close() schedules IDB sync for the temporary file. The atomic
+    # rename happens afterwards, so explicitly queue another persistent sync.
+    if OS.has_feature("web"):
+        JavaScriptBridge.force_fs_sync()
+    return true
 
 static func install_import(data: Dictionary) -> bool:
     # This path is reached only after the player confirms a validated import.
