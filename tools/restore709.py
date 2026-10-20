@@ -45,7 +45,7 @@ def read_zip(kind: str, destination: Path) -> ZipFile:
         path = PurePosixPath(entry.filename)
         if path.is_absolute() or ".." in path.parts or not path.parts:
             raise ValueError(f"Unsafe ZIP path: {entry.filename}")
-        if (entry.external_attr >> 16) & 0o170000 == 0o120000:
+        if ((entry.external_attr >> 16) & 0o170000) == 0o120000:
             raise ValueError(f"Symlink ZIP entry: {entry.filename}")
         if any(x in entry.filename.lower() for x in (".keystore", ".jks", ".env", ".pem", ".sqlite")):
             raise ValueError(f"Potentially confidential entry: {entry.filename}")
