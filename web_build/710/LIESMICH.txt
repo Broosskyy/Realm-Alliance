@@ -1,0 +1,3 @@
+REALM ALLIANCE 710
+Python 3.10+: python3 START_WEB.py; http://127.0.0.1:8765 öffnen.
+Normaler Spielbuild ohne QA-Adapter. Kein öffentlicher Realm vorverbunden.

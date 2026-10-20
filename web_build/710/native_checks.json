@@ -1,0 +1,167 @@
+[
+  {
+    "test": "test_admin_qa.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nAdmin QA: 18/18 checks\n"
+  },
+  {
+    "test": "test_art_preview.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPASS: source texture imported: hero/idle.png\nPASS: source texture imported: hero/ready.png\nPASS: source texture imported: hero/windup.png\nPASS: source texture imported: hero/contact.png\nPASS: source texture imported: hero/recovery.png\nPASS: source texture imported: weapon/longsword.png\nPASS: source texture imported: stage/glow_stump.png\nPASS: source texture imported: stage/swamp_willow.png\nPASS: source texture imported: stage/lantern_post.png\nPASS: source texture imported: enemy/idle.png\nPASS: source texture imported: enemy/attack.png\nPASS: source texture imported: enemy/hit.png\nPASS: source texture imported: enemy/defeated.png\nPASS: source texture imported: vfx/00_glint.png\nPASS: source texture imported: vfx/01_arc_start.png\nPASS: source texture imported: vfx/02_arc_grow.png\nPASS: source texture imported: vfx/03_slash_peak.png\nPASS: source texture imported: vfx/04_impact_peak.png\nPASS: source texture imported: vfx/05_burst.png\nPASS: source texture imported: vfx/06_arc_fade.png\nPASS: source texture imported: vfx/07_motes_fade.png\nPASS: image decodes: hero/idle.png\nPASS: transparent corner: hero/idle.png\nPASS: image decodes: weapon/longsword.png\nPASS: transparent corner: weapon/longsword.png\nPASS: image decodes: enemy/idle.png\nPASS: transparent corner: enemy/idle.png\nPASS: image decodes: vfx/03_slash_peak.png\nPASS: transparent corner: vfx/03_slash_peak.png\nART_BOUNDS hero/idle.png canvas=(306, 524) opaque=[P: (30, 30), S: (246, 464)]\nART_BOUNDS hero/ready.png canvas=(512, 512) opaque=[P: (130, 54), S: (253, 410)]\nART_BOUNDS hero/windup.png canvas=(512, 512) opaque=[P: (133, 44), S: (247, 420)]\nART_BOUNDS hero/contact.png canvas=(512, 512) opaque=[P: (118, 63), S: (277, 401)]\nART_BOUNDS hero/recovery.png canvas=(512, 512) opaque=[P: (143, 57), S: (227, 407)]\nART_BOUNDS weapon/longsword.png canvas=(404, 518) opaque=[P: (24, 24), S: (356, 470)]\nART_BOUNDS enemy/idle.png canvas=(407, 421) opaque=[P: (30, 30), S: (347, 361)]\nART_BOUNDS enemy/hit.png canvas=(383, 390) opaque=[P: (30, 30), S: (323, 330)]\nART_BOUNDS enemy/defeated.png canvas=(437, 296) opaque=[P: (30, 30), S: (377, 236)]\nPASS: weapon is a separate sprite parented to hand\nPASS: authored body starts idle\nPASS: idle pivot uses real 306x524 sprite ground\nPASS: idle hand uses the visible right fist instead of empty right margin\nPASS: sword is anchored by wrapped handle rather than pommel\nPASS: idle sword draws behind gripping hand\nPASS: authored attack starts\nPASS: authored keyposes advance\nPASS: attack pose preserves invariant foot pivot\nPASS: authored attack finishes and restores idle\nPASS: boss scales relative to original artwork\nPASS: enemy idle aligns visible sole to ground despite transparent padding\nPASS: enemy hit frame preserves the same ground pivot\nPASS: art-backed enemy HP updates\nPASS: monster preview imports four states\nPASS: eight source-authored slash VFX frames are available\nPASS: basic slash stays within readable enemy silhouette size\nShared art preview: 46/46 checks passed.\n"
+  },
+  {
+    "test": "test_bestiary706.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nBestiary and polish 706: 42/42 checks\n"
+  },
+  {
+    "test": "test_combat.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPASS: starts at wave 1\nPASS: enemy starts with full HP\nPASS: base player damage\nPASS: cannot purchase unaffordable upgrade\nPASS: cannot skip a living enemy\nPASS: strong attack defeats first enemy\nPASS: first kill awards 17 gold\nPASS: kill counted once\nPASS: cannot hit an already defeated enemy\nPASS: no duplicate reward\nPASS: cleared wave advances\nPASS: next wave spawns enemy\nPASS: purchase upgrade after earning gold\nPASS: upgrade level increases\nPASS: weapon index cycles\nPASS: equipment and upgrades change damage\nPASS: lethal-hit save resumes next wave\nPASS: save restores equipment\nPASS: save restores gold\nPASS: resume begins at wave checkpoint\nCombat model: 20/20 checks passed.\n"
+  },
+  {
+    "test": "test_combat_input64.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nCombat input 6.4: 20/20 checks\n"
+  },
+  {
+    "test": "test_combat_ui.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nCombat UI 6.2: 67/67 checks\n"
+  },
+  {
+    "test": "test_equipment710.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nEquipment 710: 618/618 checks\n"
+  },
+  {
+    "test": "test_event69.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nEvent/Progression 6.9\u20137.0: 63/63 checks\n"
+  },
+  {
+    "test": "test_foundation709.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nFoundation 709: 28/28 checks\n"
+  },
+  {
+    "test": "test_hero_equipment64.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nHero equipment 6.4: 23/23 checks\n"
+  },
+  {
+    "test": "test_hero_extensions64.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nHero extensions 6.4: 109/109 checks\n"
+  },
+  {
+    "test": "test_hero_visual64.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nHero visual 6.4: 61/61 checks\n"
+  },
+  {
+    "test": "test_layout.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPASS small portrait: valid scene scale\nPASS small portrait: tap stays inside screen\nPASS small portrait: tap does not cover HUD\nPASS small portrait: tap does not cover controls\nPASS small portrait: stage in arena\nPASS small portrait: lowered stage still fits below controls\nPASS small portrait: controls reserve at most 30 percent of height\nPASS small portrait: panel fits screen\nPASS standard portrait: valid scene scale\nPASS standard portrait: tap stays inside screen\nPASS standard portrait: tap does not cover HUD\nPASS standard portrait: tap does not cover controls\nPASS standard portrait: stage in arena\nPASS standard portrait: lowered stage still fits below controls\nPASS standard portrait: controls reserve at most 30 percent of height\nPASS standard portrait: panel fits screen\nPASS tall portrait: valid scene scale\nPASS tall portrait: tap stays inside screen\nPASS tall portrait: tap does not cover HUD\nPASS tall portrait: tap does not cover controls\nPASS tall portrait: stage in arena\nPASS tall portrait: lowered stage still fits below controls\nPASS tall portrait: controls reserve at most 30 percent of height\nPASS tall portrait: panel fits screen\nPASS large phone: valid scene scale\nPASS large phone: tap stays inside screen\nPASS large phone: tap does not cover HUD\nPASS large phone: tap does not cover controls\nPASS large phone: stage in arena\nPASS large phone: lowered stage still fits below controls\nPASS large phone: controls reserve at most 30 percent of height\nPASS large phone: panel fits screen\nCombat layout: 32/32 checks.\n"
+  },
+  {
+    "test": "test_mastery708.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\n708 hero mastery and community: 129/129 checks\n"
+  },
+  {
+    "test": "test_mockup704.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nMockup 704: 52/52 checks\n"
+  },
+  {
+    "test": "test_mockup705.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nMockup 705 reconstruction: 104/104 checks\n"
+  },
+  {
+    "test": "test_polish702.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nPolish 7.0.2: 43/43 checks\n"
+  },
+  {
+    "test": "test_polish707.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\n707 scroll fixture: 64 / 1417.0 page 926.0\n707 previews and polish: 170/170 checks\n"
+  },
+  {
+    "test": "test_presentation621.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nPresentation 6.2.1: 100/100 checks\n"
+  },
+  {
+    "test": "test_production_art.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPASS weapon sprite is separate from body\nPASS hero starts in idle\nPASS common ground pivot\nPASS wrapped sword handle attaches to socket\nPASS weapon swaps independently\nPASS idle: grounded body texture\nPASS idle: calibrated hand\nPASS ready: grounded body texture\nPASS ready: calibrated hand\nPASS windup: grounded body texture\nPASS windup: calibrated hand\nPASS attack_contact: grounded body texture\nPASS attack_contact: calibrated hand\nPASS recovery: grounded body texture\nPASS recovery: calibrated hand\nPASS hit: grounded body texture\nPASS hit: calibrated hand\nPASS attack can start\nPASS attack recovers\nPASS boss scale\nPASS golem hit grounded\nPASS golem defeated grounded\nProduction art: 22/22 checks\n"
+  },
+  {
+    "test": "test_roster67.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nRoster/Pets 6.7: 84/84 checks\n"
+  },
+  {
+    "test": "test_rpg65.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nRPG 6.5: 87/87 checks\n"
+  },
+  {
+    "test": "test_rpg70.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nRPG 6.8\u20137.0: 59/59 checks\n"
+  },
+  {
+    "test": "test_rpg_ui65.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nRPG UI 6.5: 133/133 checks\n"
+  },
+  {
+    "test": "test_save62.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSave 6.2: 26/26 checks\n"
+  },
+  {
+    "test": "test_scroll70.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nScroll UI 7.0: 101/101 checks\n"
+  },
+  {
+    "test": "test_systems62.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nSystems 6.2: 63/63 checks\n"
+  },
+  {
+    "test": "test_tap66.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nTap Combat 6.6: 147/147 checks\n"
+  },
+  {
+    "test": "test_touch702.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nTouch 7.0.2: 6/6 checks\n"
+  },
+  {
+    "test": "test_ui63.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nUI 6.3: 50/50 checks\n"
+  },
+  {
+    "test": "test_ui651.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nMaster UI 6.5.1: 28/28 checks\n"
+  },
+  {
+    "test": "test_visual_contract.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nPASS weapon socket is parented to the moving hand\nPASS starter sword has separate blade and hilt parts\nPASS equipping swaps four weapon parts instead of overlaying\nPASS weapon follows the rotated arm\nPASS hero can start an attack\nPASS attack returns hand to its rest angle\nPASS skill attack is available after recovery\nPASS wave spawn preserves original enemy scale\nPASS enemy HP bar reflects damage\nPASS boss wave applies intentional size bonus\nPASS new enemy resets death transparency\nVisual contract: 11/11 checks.\n"
+  },
+  {
+    "test": "test_weapon_track.gd",
+    "passed": true,
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nContinuous weapon track: 93/93 checks\n"
+  }
+]

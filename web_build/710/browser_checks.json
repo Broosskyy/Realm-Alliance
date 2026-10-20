@@ -1,0 +1,249 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "actual fresh boot uses Runenpaladin model and art"
+    },
+    {
+      "ok": true,
+      "label": "fresh player does not own legendary guardian"
+    },
+    {
+      "ok": true,
+      "label": "candidate wing rig renders above preview background 320"
+    },
+    {
+      "ok": true,
+      "label": "equipment comparison preserves actual profile 320"
+    },
+    {
+      "ok": true,
+      "label": "actual wing equip through native touch 320"
+    },
+    {
+      "ok": true,
+      "label": "equipped wings visible in collection hero 320"
+    },
+    {
+      "ok": true,
+      "label": "candidate wing rig renders above preview background 390"
+    },
+    {
+      "ok": true,
+      "label": "equipment comparison preserves actual profile 390"
+    },
+    {
+      "ok": true,
+      "label": "actual wing equip through native touch 390"
+    },
+    {
+      "ok": true,
+      "label": "equipped wings visible in collection hero 390"
+    },
+    {
+      "ok": true,
+      "label": "candidate wing rig renders above preview background 430"
+    },
+    {
+      "ok": true,
+      "label": "equipment comparison preserves actual profile 430"
+    },
+    {
+      "ok": true,
+      "label": "actual wing equip through native touch 430"
+    },
+    {
+      "ok": true,
+      "label": "equipped wings visible in collection hero 430"
+    },
+    {
+      "ok": true,
+      "label": "candidate wing rig renders above preview background 960"
+    },
+    {
+      "ok": true,
+      "label": "equipment comparison preserves actual profile 960"
+    },
+    {
+      "ok": true,
+      "label": "actual wing equip through native touch 960"
+    },
+    {
+      "ok": true,
+      "label": "equipped wings visible in collection hero 960"
+    },
+    {
+      "ok": true,
+      "label": "old profile transitions without deleting guardian"
+    },
+    {
+      "ok": true,
+      "label": "transition preserves currencies and earned XP"
+    },
+    {
+      "ok": true,
+      "label": "boss result suppresses overlapping level celebration"
+    },
+    {
+      "ok": true,
+      "label": "continue does not duplicate boss reward"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 0"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 1"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 1"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 2"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 2"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 3"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 3"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 4"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 4"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 5"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 5"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 6"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 6"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 7"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 7"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 8"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 8"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 9"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 9"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 10"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 10"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 11"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 11"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 12"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 12"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 13"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 13"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 14"
+    },
+    {
+      "ok": true,
+      "label": "actual and next visual stage 14"
+    },
+    {
+      "ok": true,
+      "label": "real touch upgrade and exact charge 15"
+    },
+    {
+      "ok": true,
+      "label": "wing forging does not alter character XP"
+    },
+    {
+      "ok": true,
+      "label": "maximum cannot be upgraded again"
+    },
+    {
+      "ok": true,
+      "label": "max wing layout preserves save 320"
+    },
+    {
+      "ok": true,
+      "label": "max wing layout preserves save 390"
+    },
+    {
+      "ok": true,
+      "label": "max wing layout preserves save 960"
+    },
+    {
+      "ok": true,
+      "label": "actual fitted armor equipped astral_plate"
+    },
+    {
+      "ok": true,
+      "label": "actual fitted armor equipped eclipse_plate"
+    },
+    {
+      "ok": true,
+      "label": "effects off retains max-level wing shape"
+    },
+    {
+      "ok": true,
+      "label": "no script or browser exceptions"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,10 @@
+{
+  "version": 710,
+  "qa": false,
+  "engine": "Godot 4.7.2; unchanged verified 709 JavaScript/WASM runtime",
+  "sha256": {
+    "index.wasm": "11ea19645368f8e73cf337b59cfd7ceeb4ebb51f7a3bbf77d1a5c3ddfedbc522",
+    "index.js": "ffc3898b59fba6f5af0c02f76e5ee526cc061e65c7d2d6f4f98186876cea15c4",
+    "index.pck": "448921f2558233242b70dd2064c2b74f6e407a8314ec296d6ab45ccd1c53a533"
+  }
+}
