@@ -24,6 +24,7 @@ func _draw() -> void:
         var side=-1.0 if i%2==0 else 1.0
         var row=int(i/2)
         var anchor=Vector2(-145,-18+row*10) if side<0 else Vector2(12,-22+row*7)
+        if bool(layout.second_fan) and row>=4:anchor+=Vector2(-25 if side<0 else 12,18)
         var points=PackedVector2Array();var uv=PackedVector2Array()
         for v in FEATHER:
             var offset=(v-Vector2(224,130))*Vector2(1 if side<0 else -.5,1)

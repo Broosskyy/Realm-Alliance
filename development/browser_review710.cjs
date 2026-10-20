@@ -122,13 +122,26 @@ let browser, secondBrowser, server, page;
     await page.screenshot({path:path.join(shots,'wing15-equipment-'+vp.width+'.png')});
     check(JSON.stringify((await state()).profile)===capped,'max wing layout preserves save '+vp.width);
   }
-  await name('SheetBack');await cmd('tab:Kampf');await page.screenshot({path:path.join(shots,'wing15-combat.png')});
+  await page.setViewportSize({width:390,height:844});await name('SheetBack');await cmd('tab:Kampf');await page.screenshot({path:path.join(shots,'wing15-combat.png')});
   await page.setViewportSize({width:390,height:844});
   for(const plus of [0,1,5,10,15]){
     await cmd('fixture710:'+plus);await cmd('tab:Wesen');s=await state();if(s.collection_detail)await text('< Sammlung');
     await name('HeroCard_runenpaladin');await page.screenshot({path:path.join(shots,'wing-stage-'+plus+'.png')});
   }
+  await cmd('close');await cmd('tab:Wesen');await cmd('open:equipment');await click(page,'EquipmentTab_chest');
+  for(const id of ['astral_plate','eclipse_plate']){
+    if(id==='eclipse_plate'){
+      let found=false;
+      for(let i=0;i<8;i++){s=await state();if(s.buttons.some(b=>b.item?.id===id)){found=true;break;}await swipe();}
+      if(!found)throw Error('Missing armor card '+id);
+      await tap(b=>b.item?.id===id,id);
+    }
+    s=await state();if(!s.profile.hero_equipment.owned[id])await text('Freischalten');
+    s=await state();if(s.profile.hero_equipment.equipped.chest!==id)await text('Ausrüsten');
+    s=await state();check(s.profile.hero_equipment.equipped.chest===id&&s.hero_rigs.some(r=>r.armor===id&&r.armor_details),'actual fitted armor equipped '+id);
+    await page.screenshot({path:path.join(shots,'armor-'+id+'.png')});
+  }
   await cmd('fixture710:effects_off');s=await state();check(s.hero_rigs.some(r=>r.wings_visible&&r.wing_plus===15),'effects off retains max-level wing shape');
   check(errors.length===0,'no script or browser exceptions');fs.writeFileSync(report,JSON.stringify({checks,errors},null,2));console.log(JSON.stringify({passed:checks.filter(x=>x.ok).length,total:checks.length}));
   await browser.close();await new Promise(resolve=>server.close(resolve));process.exitCode=checks.every(x=>x.ok)?0:1;
-})().catch(async error=>{console.error(error);if(page){await page.screenshot({path:path.join(shots,'failure.png')}).catch(()=>{});fs.writeFileSync(report+'.state.json',JSON.stringify(await page.evaluate(()=>window.realmQAState).catch(()=>null),null,2));}fs.writeFileSync(report,JSON.stringify({checks,errors,error:String(error)},null,2));if(browser)await browser.close();if(server)server.close();process.exitCode=1;});
+})().catch(async error=>{console.error(error);if(page){await page.screenshot({path:path.join(shots,'failure.png')}).catch(()=>{});fs.writeFileSync(report+'.state.json',JSON.stringify(await page.evaluate(()=>window.realmQAState??null).catch(()=>null),null,2));}fs.writeFileSync(report,JSON.stringify({checks,errors,error:String(error)},null,2));if(browser)await browser.close();if(server)server.close();process.exitCode=1;});

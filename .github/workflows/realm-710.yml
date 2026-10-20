@@ -1,0 +1,82 @@
+name: REALM 710 Godot validation and web release
+on:
+  push:
+    branches: [main, feature/work-710-visible-equipment]
+    paths: ['godot/**', 'development/**', 'backend/**', '.github/workflows/realm-710.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: realm710-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned Godot and browser
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libfontconfig1 >/dev/null
+          mkdir -p "$RUNNER_TEMP/godot"
+          curl -fL --retry 2 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot.zip"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          chmod +x "$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64"
+          echo "REALM_GODOT=$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64" >> "$GITHUB_ENV"
+          npm install --prefix "$RUNNER_TEMP/browser" playwright@1.56.1
+          "$RUNNER_TEMP/browser/node_modules/.bin/playwright" install --with-deps chromium
+          echo "REALM_PLAYWRIGHT=$RUNNER_TEMP/browser/node_modules/playwright" >> "$GITHUB_ENV"
+          echo "REALM_BROWSER=$(node -e "console.log(require('$RUNNER_TEMP/browser/node_modules/playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+      - name: Import and verify all native systems
+        run: |
+          "$REALM_GODOT" --headless --path godot/realm_alliance --import
+          python3 development/run_checks.py --godot "$REALM_GODOT" --report "$RUNNER_TEMP/checks710.json"
+          python3 backend/test_service708.py "$RUNNER_TEMP/backend710.json"
+      - name: Export and test normal and isolated QA web builds
+        run: |
+          python3 development/build_web710.py --godot "$REALM_GODOT" --output "$RUNNER_TEMP/web710"
+          python3 development/build_web710.py --godot "$REALM_GODOT" --output "$RUNNER_TEMP/qa710" --qa
+          node development/browser_review710.cjs --web-root "$RUNNER_TEMP/qa710" --screenshots "$RUNNER_TEMP/screens710" --report "$RUNNER_TEMP/browser710.json"
+          node development/normal_web710.cjs --web-root "$RUNNER_TEMP/web710" --browser "$REALM_BROWSER" --screenshots "$RUNNER_TEMP/normal710" --report "$RUNNER_TEMP/normal710.json"
+      - name: Save verified web export on main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p web_build/710
+          cp -a "$RUNNER_TEMP/web710/." web_build/710/
+          cp "$RUNNER_TEMP/checks710.json" web_build/710/native_checks.json
+          cp "$RUNNER_TEMP/backend710.json" web_build/710/backend_checks.json
+          cp "$RUNNER_TEMP/browser710.json" web_build/710/browser_checks.json
+          cp "$RUNNER_TEMP/normal710.json" web_build/710/normal_checks.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web_build/710
+          git diff --cached --quiet || git commit -m "build(710): save verified normal web export and test evidence [skip ci]"
+          git push origin HEAD:main
+      - name: Package full deliverables
+        run: |
+          python3 development/package_710.py --web "$RUNNER_TEMP/web710" --output "$RUNNER_TEMP/release710"
+          cp "$RUNNER_TEMP/checks710.json" "$RUNNER_TEMP/release710/native_checks.json"
+          cp "$RUNNER_TEMP/backend710.json" "$RUNNER_TEMP/release710/backend_checks.json"
+          cp "$RUNNER_TEMP/browser710.json" "$RUNNER_TEMP/release710/browser_checks.json"
+          cp "$RUNNER_TEMP/normal710.json" "$RUNNER_TEMP/release710/normal_checks.json"
+          cp README_MOCKUP_710.md "$RUNNER_TEMP/release710/REALM_ALLIANCE_710_Bericht.md"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_ALLIANCE_710
+          path: ${{ runner.temp }}/release710/
+          retention-days: 14
+      - name: Publish checked preview release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "realm-710-${GITHUB_SHA:0:7}" "$RUNNER_TEMP/release710/"* --title "REALM ALLIANCE 710 · Flügelentwicklung und Ausrüstung" --notes-file README_MOCKUP_710.md --target "$(git rev-parse HEAD)" --prerelease

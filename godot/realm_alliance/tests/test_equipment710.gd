@@ -80,5 +80,27 @@ func run():
             check(identity.class_id=="adventurer" and identity.equipment_layers.is_empty(),"basic begins without invented class or gear")
     check(Appearance.basic("male","white").is_empty(),"special hair is not a free starter choice")
     check(JSON.stringify(legacy.profile)==original and not legacy.profile.has("character_identity"),"future architecture never converts existing saves")
+    for armor in ["astral_plate","eclipse_plate"]:
+        legacy.profile.hero_equipment.owned[armor]={"level":5}
+        legacy.profile.hero_equipment.equipped.chest=armor
+        for id in ["runenpaladin","schattenjager","realmwachter"]:
+            hero.set_hero(id);hero.set_gear(legacy.profile)
+            for pose in ["idle","ready","windup","attack_contact","recovery","hit"]:
+                hero._set_pose(pose)
+                check(hero.attachments.armor_details.visible==(id!="realmwachter"),"armor detail follows compatible body "+id+pose)
+                check(hero.attachments.armor_details.corners.size()==4 and hero.weapon_is_modular(),"fitted armor preserves hand weapon "+pose)
+    hero.fx_intensity=1;hero.set_upgrade_tier(8)
+    check(hero.weapon_glow.refinement==8,"weapon refinement follows actual upgrade level")
+    hero.fx_intensity=0;hero.set_upgrade_tier(8)
+    check(not hero.weapon_glow.is_processing(),"effects off stops weapon motes")
+    var scene=preload("res://scenes/main.tscn").instantiate();root.add_child(scene)
+    scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
+    legacy.profile.hero_equipment.cosmetics.erase("wings")
+    legacy.profile.hero_equipment.owned.sky_wings.level=16
+    scene.model=legacy;scene.hud.model=legacy;scene._sync_hero();scene._layout()
+    check(scene.hero.scale.x>=.66,"large wings do not shrink main hero")
+    check(scene.hero.position.x>-185,"large wings receive presentation space")
+    check(scene.hero.attachments.wings.to_global(Vector2.ZERO).x>=0,"full max wing canvas stays inside combat left edge")
+    scene.queue_free();await process_frame
     hero.queue_free();await process_frame
     print("Equipment 710: %d/%d checks"%[checks-failures,checks]);quit(1 if failures else 0)

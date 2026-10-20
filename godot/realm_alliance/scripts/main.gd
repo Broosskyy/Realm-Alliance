@@ -79,7 +79,7 @@ func _ready() -> void:
         hero.play_action(str(d.get("animation",d.id)),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup)-int(model.pending.get("contact",0))*float(d.get("spacing",0)))
         hero.sync_clock(model.clock)
     if model.profile.kills>0 and model.load_error=="":hud.notify("Willkommen zurück",model.Tap.next_goal(model.profile),3)
-    print("REALM 709: Runenpaladin starter, visible gear and clear progression")
+    print("REALM 710: evolving wings +15 and modular equipment")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -188,10 +188,18 @@ func _sync_hero() -> void:
             hero.set_hero(model.hero_id)
             hero.set_look(model.profile.look,bool(model.profile.aura) and model.level>=3)
             hero.set_gear(model.profile)
+            _fit_equipped_wings()
     if _production_enabled:
         var shield=model.hero_status.active.get("shield",{})
         if companion_visual:companion_visual.sync(model.profile,model.clock)
         hero.set_shield(model.hero_status.has("shield",model.clock),clampf(float(shield.get("amount",0))/maxf(1,model.player_max_hp*0.35),0,1))
+
+func _fit_equipped_wings() -> void:
+    if not _production_enabled:return
+    hero.position.x=-185
+    if hero.attachments and hero.attachments.wings.visible:
+        # Preserve hero scale; move the presentation anchor enough for large back art.
+        hero.position.x+=maxf(0,hero.attachments.wings.scale.x-.70)*405*hero.scale.x
 
 func _layout() -> void:
     if stage == null or hud == null:
@@ -219,6 +227,7 @@ func _layout() -> void:
     if _production_enabled:
         var tall=clampf((float(metrics.logical_height)-1280.0)/280.0,0,1)
         hero.scale=Vector2.ONE*lerpf(.66,.71,tall)
+        _fit_equipped_wings()
         var boss=model.enemy_definition.kind=="boss"
         var available=(_stage_home.y-safe_top)/float(metrics.ui_scale)-300.0
         var height=clampf(available,420,660) if boss else (350.0 if model.enemy_definition.kind=="elite" else 245.0)

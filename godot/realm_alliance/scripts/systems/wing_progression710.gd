@@ -9,4 +9,4 @@ static func cost(level:int) -> Dictionary:
     return {"gold":25*level,"shards":1+maxi(0,int((level-9)/3))}
 static func visual(plus:int) -> Dictionary:
     var p=clampi(plus,0,MAX_PLUS)
-    return {"plus":p,"scale":.34+.028*p,"feathers":p,"crystals":int(p/5),"second_fan":p>=8,"rim":p>=10,"crown":p>=12,"final":p==MAX_PLUS}
+    return {"plus":p,"scale":.34+.046*p,"feathers":p,"crystals":int(p/5),"second_fan":p>=8,"rim":p>=10,"crown":p>=12,"final":p==MAX_PLUS}

@@ -12,7 +12,7 @@ def export(project):
  subprocess.run(base+['--export-pack','Web',str(output/'index.pck')],check=True)
 if a.qa:
  with tempfile.TemporaryDirectory(prefix='realm710-qa-') as t:
-  project=Path(t)/'project';shutil.copytree(source,project,ignore=shutil.ignore_patterns('.godot','*.import'))
+  project=Path(t)/'project';shutil.copytree(source,project,ignore=shutil.ignore_patterns('.git'))
   c=project/'project.godot';c.write_text(c.read_text().replace('run/main_scene="res://scenes/main.tscn"','run/main_scene="res://tests/review702.tscn"'))
   c=project/'export_presets.cfg';c.write_text(c.read_text().replace(',tests/*',''))
   export(project)

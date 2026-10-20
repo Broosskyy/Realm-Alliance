@@ -63,7 +63,7 @@ func _build(restore_scroll:bool=false) -> void:
                 var d=model.HeroEquipment.CATALOG[item.id];_label(body,"Ab Level %d · %d G / %d Splitter"%[d.unlock,d.gold,d.shards],Color("#ffd16b"))
                 _button(actions,"Eventbelohnung" if bool(d.get("event",false)) else "Freischalten",model.HeroEquipment.can_acquire(model.profile,item.id),func():_change(model.change_gear(item.id,"acquire"),"Ausrüstung freigeschaltet"),true)
         body.move_child(actions,body.get_child_count()-1)
-        var comparison=HBoxContainer.new();comparison.add_theme_constant_override("separation",12);body.add_child(comparison)
+        var comparison:BoxContainer=HBoxContainer.new() if get_tree().root.get_visible_rect().size.x>=1100 else VBoxContainer.new();comparison.add_theme_constant_override("separation",12);body.add_child(comparison)
         _preview_hero(comparison,"Aktuell",model.profile)
         var candidate=model.profile.duplicate(true)
         if category=="weapon":candidate.equipped=item.id
@@ -102,6 +102,6 @@ func _preview_hero(parent:Control,caption:String,profile:Dictionary) -> void:
     _label(col,caption,Color("#ffd16b"),20)
     var stage=Control.new();stage.custom_minimum_size=Vector2(0,300);stage.clip_contents=true;col.add_child(stage)
     var bg=Panel.new();bg.add_theme_stylebox_override("panel",Kit.box("hero"));bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;stage.add_child(bg)
-    var rig=preload("res://scripts/production_hero.gd").new();rig.name="EquipmentComparisonHero";rig.preview_mode=true;rig.z_index=4;stage.add_child(rig);rig.set_hero(model.hero_id);rig.equip_weapon(model.Equipment.IDS.find(str(profile.equipped)));rig.set_gear(profile);rig.scale=Vector2.ONE*.48;rig.position=Vector2(110,280)
+    var rig=preload("res://scripts/production_hero.gd").new();rig.name="EquipmentComparisonHero";rig.preview_mode=true;rig.z_index=4;stage.add_child(rig);rig.set_hero(model.hero_id);rig.equip_weapon(model.Equipment.IDS.find(str(profile.equipped)));rig.set_gear(profile);rig.scale=Vector2.ONE*(.48 if get_tree().root.get_visible_rect().size.x>=1100 else .64);rig.position=Vector2(110,280)
     stage.resized.connect(func():
         if is_instance_valid(rig):rig.position=Vector2(stage.size.x*.5-35,280))

@@ -87,7 +87,7 @@ func command(args:Array):
     state.hero_rigs=[]
     for rig in scene.find_children("*","Node2D",true,false):
         if rig is RAProductionHero and rig.is_visible_in_tree():
-            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
+            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
     state.preview={}
     for actor in scene.hud.collection_page.find_children("*","Node2D",true,false):
         if actor is RAProductionHero:state.preview={"kind":"hero","busy":actor._busy,"pose":actor._pose}
