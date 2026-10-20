@@ -1,4 +1,4 @@
-name: REALM 709 verified archive restore
+name: REALM 709 verified archive restore (safe workflows)
 
 on:
   push:
