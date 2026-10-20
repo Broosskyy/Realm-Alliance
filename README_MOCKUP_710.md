@@ -29,6 +29,8 @@ Der Webexport verwendet den unveränderten, in 709 gespeicherten Godot-4.7.2-Jav
 Web-ZIP entpacken, Python 3.10+ verwenden und python3 START_WEB.py ausführen. http://127.0.0.1:8765 öffnet Spiel und bestehenden lokalen Realm-Dienst. Ein öffentlicher Realm ist weiterhin nicht vorverbunden.
 
 ## Prüfungen und Abgabe
+
+Geprüfter Quellstand: 44bff9220e0d77e6ee7e818477e643cd0a9e8cb1. Unabhängiger GitHub-Lauf erfolgreich: https://github.com/Broosskyy/Realm-Alliance/actions/runs/39484337583. **33 Godot-Suiten / 2.655 Checks**, darunter **618 neue Ausrüstungsprüfungen**, **61 Browser-/Touch-Prüfungen**, **2 Prüfungen des normalen Webexports** und **48 HTTP-Prüfungen** bestanden. Keine Browser-/Godot-Skriptfehler. Repräsentative Aufnahmen von +0/+15, maximalen Flügeln im Hochformat-Kampf und beiden getragenen Rüstungen wurden visuell kontrolliert. Kein Android-Gerätetest.
 Die 710-Pipeline importiert das echte Projekt, führt alle Godot- und Backend-Suiten aus, exportiert Normal-/QA-Web getrennt und prüft Browser, echte Touchaktionen, Upgradepreise und vier Bildschirmgrößen. Protokolle werden der Abgabe beigefügt; die finalen Zahlen stehen in den tatsächlichen JSON-Berichten.
 
 Beim wiederhergestellten unveränderten 709-Stand bestand ein veralteter Test noch auf vier Inventarspalten, obwohl die tatsächliche 709-Oberfläche drei verwendet. Diese einzelne Erwartung wurde korrigiert. Die bestehende Vorschauprüfung verwendet jetzt die jeweiligen tatsächlichen Slotgrenzen, damit die neue Flügelgrenze geprüft wird und Rüstungen begrenzt bleiben.
