@@ -38,7 +38,7 @@ Beim wiederhergestellten unveränderten 709-Stand bestand ein veralteter Test no
 Die GitHub-Automation erstellt nach erfolgreichen Prüfungen einen normalen Web-Build im Repository und eine Vorschauveröffentlichung mit Web-ZIP, vollständigen getrackten Quellen, Hashes und Prüfprotokollen. Interne Browseraufnahmen gehören nicht zu den Abgabedateien.
 
 ## Android
-Keine 710-APK wird mit einer Ersatzidentität erzeugt. Für ein kompatibles Update fehlen in dieser Umgebung der ursprüngliche private Signaturschlüssel und die Android-Signierkonfiguration. Der optionale Android-Build verlangt ausdrücklich den Originalschlüssel; Zugangsdaten und Schlüssel werden nicht öffentlich gespeichert. Kein Android-Gerätetest.
+Die 710-APK wurde aus Commit 495580737cdc59efd1dfcd5e3e5de0ea69d0cd34 mit dem aus dem privaten 709-Quellpaket wiederhergestellten Originalschlüssel gebaut. Signatur, Paketkennung, Versionscode 710, ARM64-Inhalt, ZIP-Integrität und Ausrichtung sind geprüft; alle 33 Godot-Suiten / 2.655 Checks wurden erneut erfolgreich ausgeführt. Kein Android-Gerätetest. APK-SHA-256: 77b618e03bc83e8428c92f52f544cd49ddc10773f27e1495a5d3b6f3413c31d3. Siehe ANDROID_710.md und development/reports/APK_710.json. Der private Schlüssel wird nicht veröffentlicht; für unbeaufsichtigte GitHub-Builds ist weiterhin das private Actions-Secret erforderlich.
 
 ## Offen für 711/712
 Vollständige neue Rüstungsfamilien, zwei eigenständige Kostümsets und weitere Flügelgrafikfamilien bleiben ausdrücklich Teil der Folgearbeiten. Die neuen hochgeladenen Basic-/Klassenmockups konnten über die gelieferten lokalen Pfade noch nicht visuell gelesen werden; sie werden nicht als bereits integrierte Produktionsassets ausgegeben.

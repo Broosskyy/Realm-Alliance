@@ -1,5 +1,9 @@
 # Android-APK 710
 
+## Erfolgreicher Build vom 20.10.2026
+
+Die APK wurde aus Quellcommit `495580737cdc59efd1dfcd5e3e5de0ea69d0cd34` mit dem Originalschlüssel des privaten 709-Quellpakets erstellt. Größe: 73325736 Bytes. SHA-256: `77b618e03bc83e8428c92f52f544cd49ddc10773f27e1495a5d3b6f3413c31d3`. Signatur, Paketkennung/Versionscode, ARM64, ZIP-Integrität und Ausrichtung geprüft; 33 Godot-Suiten / 2.655 Checks erneut bestanden. Kein Android-Gerätetest. Der gebaute Download wird separat bereitgestellt; die private Schlüsseldatei wird nicht committed. Für zukünftige unbeaufsichtigte GitHub-Builds muss weiterhin das unten genannte Actions-Secret eingerichtet werden.
+
 Der Workflow [REALM 710 Android update APK](https://github.com/Broosskyy/Realm-Alliance/actions/workflows/realm-710-android.yml) erstellt einen eigenständigen Android-Build aus dem Godot-Projekt. Er läuft bei Änderungen am Android-Buildablauf und lässt sich über **Run workflow** erneut starten.
 
 ## Private Signierung
