@@ -70,7 +70,7 @@ def main():
         log.write_text(
             "# REALM ALLIANCE 709 restoration\n\n"
             "Restored from the verified full 709 source archive provided by the project owner.\n\n"
-            f"Sanitized source archive SHA-256: \`{EXPECTED_SHA256}\`\n\n"
+            f"Sanitized source archive SHA-256: `{EXPECTED_SHA256}`\n\n"
             "Android debug signing keystore intentionally excluded from the public repository.\n"
             "The original full 709 ZIP must be retained privately to preserve APK update signing.\n"
             "Existing repository contents not present in the snapshot have not been deleted.\n",
