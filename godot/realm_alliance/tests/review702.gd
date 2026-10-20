@@ -36,6 +36,16 @@ func command(args:Array):
         "open":scene._on_hud_action(value)
         "attack":scene._on_hud_action("Kampf");scene.set_process(true);scene._on_tap()
         "pause":scene.set_process(false)
+        "fixture710":
+            if value=="funds":
+                scene.model.gold=20000;scene.model.profile.shards=2000;scene.model.profile.xp=440
+            elif value=="effects_off":
+                scene.hero.fx_intensity=0;scene.hero.set_gear(scene.model.profile)
+            else:
+                var plus=clampi(int(value),0,15)
+                scene.model.profile.hero_equipment.owned.sky_wings={"level":plus+1,"source":"qa710"}
+                scene.model.profile.hero_equipment.equipped.wings="sky_wings"
+            scene.hud.model=scene.model;scene._sync_hero();scene._refresh()
         "fixture709":
             if value=="legacy":scene.model=preload("res://scripts/systems/combat_session.gd").new(preload("res://tests/legacy_fixture709.gd").guardian());scene.model.profile.xp=440
             if value=="rich":
@@ -77,7 +87,7 @@ func command(args:Array):
     state.hero_rigs=[]
     for rig in scene.find_children("*","Node2D",true,false):
         if rig is RAProductionHero and rig.is_visible_in_tree():
-            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
+            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
     state.preview={}
     for actor in scene.hud.collection_page.find_children("*","Node2D",true,false):
         if actor is RAProductionHero:state.preview={"kind":"hero","busy":actor._busy,"pose":actor._pose}

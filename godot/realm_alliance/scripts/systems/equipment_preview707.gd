@@ -14,6 +14,6 @@ static func gear(profile:Dictionary,id:String) -> Dictionary:
     var copy=profile.duplicate(true)
     var owned=profile.hero_equipment.owned.has(id)
     var level=int(profile.hero_equipment.owned[id].level) if owned else 1
-    copy.hero_equipment.owned[id]={"level":mini(10,level+1)}
+    copy.hero_equipment.owned[id]={"level":mini(Gear.max_level(id),level+1)}
     var cost=Gear.upgrade_cost(profile,id) if owned else {}
-    return {"level":level,"maximum":level>=10,"cost":cost,"current":Gear.item_stats(profile,id),"next":Gear.item_stats(copy,id),"affordable":owned and level<10 and int(profile.gold)>=int(cost.gold) and int(profile.shards)>=int(cost.shards)}
+    return {"level":level,"maximum":level>=Gear.max_level(id),"cost":cost,"current":Gear.item_stats(profile,id),"next":Gear.item_stats(copy,id),"affordable":owned and level<Gear.max_level(id) and int(profile.gold)>=int(cost.gold) and int(profile.shards)>=int(cost.shards)}

@@ -29,7 +29,7 @@ func _build(restore_scroll:bool=false) -> void:
         for id in model.HeroEquipment.IDS:
             var d:Dictionary=model.HeroEquipment.CATALOG[id]
             if d.slot!=category:continue
-            items.append({"id":id,"kind":"gear","name":d.name,"rarity":d.rarity,"level":model.profile.hero_equipment.owned.get(id,{}).get("level",1),"active":model.profile.hero_equipment.equipped.get(category,"")==id,"icon":"res://assets/equipment/"+id+".png"})
+            items.append({"id":id,"kind":"gear","name":d.name,"rarity":d.rarity,"level":model.profile.hero_equipment.owned.get(id,{}).get("level",1),"progress_label":model.HeroEquipment.display_level(model.profile,id),"active":model.profile.hero_equipment.equipped.get(category,"")==id,"icon":"res://assets/equipment/"+id+".png"})
     if selected=="" and not items.is_empty():
         selected=items[0].id
         for item in items:
@@ -41,7 +41,7 @@ func _build(restore_scroll:bool=false) -> void:
         var row=HBoxContainer.new();row.add_theme_constant_override("separation",22);body.add_child(row)
         var art=preload("res://scripts/ui/item_illustration.gd").new();art.configure(item.icon);art.custom_minimum_size=Vector2(210,230);row.add_child(art)
         var info=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;info.add_theme_constant_override("separation",12);row.add_child(info)
-        var rarity=model.Economy.RARITIES[item.rarity];_label(info,item.name,Color(rarity.color),26);_label(info,rarity.name+" · Lv. %d"%item.level,Color(rarity.color))
+        var rarity=model.Economy.RARITIES[item.rarity];_label(info,item.name,Color(rarity.color),26);_label(info,rarity.name+" · "+str(item.get("progress_label","Lv. %d"%item.level)),Color(rarity.color))
         var actions=HBoxContainer.new();actions.add_theme_constant_override("separation",12);body.add_child(actions)
         if category=="weapon":
             _label(info,"Angriff %d (%+d)"%[model.Equipment.item_damage(model.profile,item.id),model.Equipment.item_damage(model.profile,item.id)-model.Equipment.damage(model.profile)])
@@ -57,7 +57,7 @@ func _build(restore_scroll:bool=false) -> void:
                 var preview=Preview.gear(model.profile,item.id);var cost=preview.cost
                 _label(body,"Maximalstufe erreicht" if preview.maximum else "Nächste Stufe: HP +%d → +%d · DEF +%d → +%d"%[preview.current.hp,preview.next.hp,preview.current.defense,preview.next.defense],Color("#ffd16b"),22)
                 _upgrade_status(body,cost,preview.maximum)
-                _button(actions,"Maximalstufe" if preview.maximum else "Verbessern\n%d G / 1 Splitter"%cost.gold,preview.affordable,func():_change(model.change_gear(item.id,"upgrade"),"Ausrüstung verbessert"),true)
+                _button(actions,"Maximalstufe" if preview.maximum else "Verbessern\n%d G / %d Splitter"%[cost.gold,cost.shards],preview.affordable,func():_change(model.change_gear(item.id,"upgrade"),"Ausrüstung verbessert"),true)
                 _button(actions,"Ablegen" if item.active else "Ausrüsten",true,func():_change(model.change_gear(category,"unequip") if item.active else model.change_gear(item.id),"Ausrüstung aktualisiert"))
             else:
                 var d=model.HeroEquipment.CATALOG[item.id];_label(body,"Ab Level %d · %d G / %d Splitter"%[d.unlock,d.gold,d.shards],Color("#ffd16b"))
@@ -71,9 +71,15 @@ func _build(restore_scroll:bool=false) -> void:
             if not candidate.hero_equipment.owned.has(item.id):candidate.hero_equipment.owned[item.id]={"id":item.id,"level":1,"source":"preview_only"}
             candidate.hero_equipment.equipped[category]=item.id
             candidate.hero_equipment.cosmetics.erase(category)
-        _preview_hero(comparison,"Mit "+item.name,candidate)
+        var caption="Mit "+item.name
+        if category=="wings" and model.profile.hero_equipment.owned.has(item.id):
+            var next_level=mini(model.HeroEquipment.max_level(item.id),int(candidate.hero_equipment.owned[item.id].level)+1)
+            candidate.hero_equipment.owned[item.id].level=next_level
+            caption=("Endform" if next_level==16 and int(item.level)==16 else "Nächste Aufwertung")+" +%d"%(next_level-1)
+        _preview_hero(comparison,caption,candidate)
+        if category=="wings":_label(body,"Flügel +0 bis +15 · Jede Stufe wächst sichtbar. Seltenheit bleibt unverändert.",Color("#ffd16b"),20)
         _label(body,"Aussehen-Vorschau · Werte und Besitz ändern sich erst durch deine Aktion.",Color("#a9c1dc"),20)
-    var grid=GridContainer.new();grid.columns=4;grid.add_theme_constant_override("h_separation",12);grid.add_theme_constant_override("v_separation",12);list.add_child(grid)
+    var grid=GridContainer.new();grid.columns=3;grid.add_theme_constant_override("h_separation",12);grid.add_theme_constant_override("v_separation",12);list.add_child(grid)
     for item in items:
         var card=Card.new();card.configure(item);card.custom_minimum_size.x=140;grid.add_child(card);card.pressed.connect(func():selected=item.id;_build())
     if visible:call_deferred("_prepare_body")

@@ -23,17 +23,21 @@ const TORSO={
     "recovery":[Vector2(356,284),Vector2(421,299),Vector2(427,355),Vector2(367,343)],
     "hit":[Vector2(386,262),Vector2(456,281),Vector2(434,341),Vector2(376,311)]
 }
+var armor_details
 var plate: Polygon2D
 var foreground_arm: Sprite2D
 var active_id: String=""
 var head: Sprite2D
+var wing_evolution
 var wings: Sprite2D
 var head_mount: Node2D
 var wing_mount: Node2D
 var visible_items: Dictionary={}
+var armor_level=1
 func attach(hero) -> void:
     plate=Polygon2D.new();plate.name="ReplaceableBreastplate";plate.z_index=1
     hero.layer_sockets.chest.add_child(plate)
+    armor_details=preload("res://scripts/presentation/armor_details710.gd").new();armor_details.name="ArmorDetails710";plate.add_child(armor_details)
     foreground_arm=Sprite2D.new();foreground_arm.name="ForegroundArmOccluder"
     foreground_arm.region_enabled=true;foreground_arm.centered=false;foreground_arm.z_index=2
     foreground_arm.material=hero._palette;hero._art.add_child(foreground_arm)
@@ -48,15 +52,22 @@ func attach(hero) -> void:
     wings=Sprite2D.new();wings.name="ReplaceableWings";wings.centered=false
     wings.scale=Vector2.ONE*.76;wings.position=-Vector2(403.357,261.561)*.76
     wing_mount.add_child(wings)
+    wing_evolution=preload("res://scripts/presentation/wing_evolution710.gd").new();wing_evolution.name="WingEvolution710";wing_evolution.z_index=-1;wing_mount.add_child(wing_evolution)
     apply(hero,{})
 func apply(hero,profile: Dictionary) -> void:
     active_id=Gear.visible_id(profile,"chest") if profile.has("hero_equipment") else ""
     plate.texture=TEXTURES.get(active_id)
+    armor_level=Gear.item_level(profile,active_id)
     plate.visible=plate.texture!=null and hero.hero_id!="realmwachter"
     visible_items.clear()
     for slot in Gear.SLOTS:visible_items[slot]=Gear.visible_id(profile,slot) if profile.has("hero_equipment") else ""
     head.texture=TEXTURES.get(visible_items.head);head.visible=head.texture!=null
     wings.texture=TEXTURES.get(visible_items.wings);wings.visible=wings.texture!=null
+    var wing_plus=Gear.plus(profile,str(visible_items.wings))
+    var wing_scale=float(Gear.WingProgress.visual(wing_plus).scale)
+    wings.scale=Vector2.ONE*wing_scale;wings.position=-Vector2(403.357,261.561)*wing_scale
+    wing_evolution.scale=wings.scale;wing_evolution.visible=wings.visible
+    wing_evolution.configure(wings.texture,wing_plus,str(visible_items.wings),hero.fx_intensity)
     if hero.cape:hero.cape.set_folded(hero,wings.visible)
     if hero.aura:hero.aura.form_rank=Evolution.form_rank(profile) if profile.has("hero_evolution") else 0
     if hero.aura:hero.aura.awakened=Evolution.active(profile) if profile.has("hero_evolution") else false
@@ -74,6 +85,8 @@ func sync_pose(hero,pose: String) -> void:
     if plate.texture:
         var extent=plate.texture.get_size()
         plate.uv=PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
+    armor_details.configure(corners,active_id,armor_level,plate.texture)
+    armor_details.visible=plate.visible
     head_mount.position=Vector2(0,-26) if hero.hero_id=="realmwachter" and hero._outfit!="" else (Vector2(4,-24) if hero.hero_id=="realmwachter" else Vector2(0,-26))
     head.scale=Vector2.ONE*(.30 if hero.hero_id=="kaela" else (.28 if hero.hero_id=="realmwachter" else .34))
     head.position=-Vector2(258.687,85.907)*head.scale

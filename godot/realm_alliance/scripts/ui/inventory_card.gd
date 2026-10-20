@@ -25,7 +25,7 @@ func _draw() -> void:
         while second.length()>1 and Kit.BOLD.get_string_size(second,HORIZONTAL_ALIGNMENT_LEFT,-1,21).x>width:second=second.left(second.length()-2)+"…"
     draw_string(Kit.BOLD,Vector2(10,137),first,HORIZONTAL_ALIGNMENT_LEFT,width,21,Kit.INK)
     if second!="":draw_string(Kit.BOLD,Vector2(10,161),second,HORIZONTAL_ALIGNMENT_LEFT,width,21,Kit.INK)
-    var detail="×%d"%int(item.get("count",1)) if item.kind in ["material","chest"] else "Lv. %d"%item.level
+    var detail="×%d"%int(item.get("count",1)) if item.kind in ["material","chest"] else str(item.get("progress_label","Lv. %d"%item.level))
     draw_string(Kit.FONT,Vector2(10,189),detail,HORIZONTAL_ALIGNMENT_LEFT,width,20,tint)
     if item.get("better",false) and not item.get("active",false):draw_string(Kit.BOLD,Vector2(size.x-28,29),"↑",HORIZONTAL_ALIGNMENT_LEFT,24,25,Color("#62d998"))
     draw_line(Vector2(12,size.y-8),Vector2(size.x-12,size.y-8),tint,3)

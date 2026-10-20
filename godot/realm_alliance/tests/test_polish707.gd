@@ -27,7 +27,7 @@ func run() -> void:
             var before=JSON.stringify(model.profile);var quote=Preview.gear(model.profile,id)
             check(JSON.stringify(model.profile)==before,"gear preview is pure "+id+str(level))
             var copy=model.profile.duplicate(true);var result=model.HeroEquipment.upgrade(copy,id)
-            check(result==(level<10),"gear cap "+id+str(level))
+            check(result==(level<model.HeroEquipment.max_level(id)),"gear cap "+id+str(level))
             check(model.HeroEquipment.item_stats(copy,id)==quote.next,"gear next values match actual upgrade "+id+str(level))
     model.profile.inventory.steel.level=3;model.gold=53;model.profile.shards=0
     check(not Preview.weapon(model.profile,"steel").affordable,"insufficient gold and shards rejected")

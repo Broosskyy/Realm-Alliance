@@ -15,7 +15,7 @@ static func items(profile: Dictionary,filter: String="all",rarity_sort: bool=fal
         for id in Gear.IDS:
             if not profile.hero_equipment.owned.has(id):continue
             var d:Dictionary=Gear.CATALOG[id]
-            result.append({"id":id,"kind":"gear","name":d.name,"rarity":d.rarity,"level":int(profile.hero_equipment.owned[id].level),"active":str(profile.hero_equipment.equipped.get(d.slot,""))==id,"icon":"res://assets/equipment/"+id+".png"})
+            result.append({"id":id,"kind":"gear","name":d.name,"rarity":d.rarity,"level":int(profile.hero_equipment.owned[id].level),"progress_label":Gear.display_level(profile,id),"active":str(profile.hero_equipment.equipped.get(d.slot,""))==id,"icon":"res://assets/equipment/"+id+".png"})
     if filter in ["all","material"]:
         if int(profile.shards)>0:result.append({"id":"sky_shard","kind":"material","name":"Himmelssplitter","rarity":"common","count":int(profile.shards),"icon":"res://assets/work706/items/sky_shard.tres"})
         if Chests.ensure(profile) and not profile.chests.sealed.is_empty():result.append({"id":"boss_chest","kind":"chest","name":"Wächtertruhe","rarity":"epic","count":profile.chests.sealed.size(),"icon":"res://assets/work706/items/boss_chest.tres"})

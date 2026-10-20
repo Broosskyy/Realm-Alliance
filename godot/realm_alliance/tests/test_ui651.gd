@@ -41,7 +41,7 @@ func run() -> void:
     var cards=[]
     for c in descendants(pages):
         if c is Card:cards.append(c)
-        if c is GridContainer:check(c.columns==4,"master four-column inventory")
+        if c is GridContainer:check(c.columns==3,"readable three-column inventory retained from 709")
     check(cards.size()==1 and cards[0].item.id=="steel","only actual starter inventory is shown")
     scene._on_hud_action("Wesen");await process_frame
     var key=scene.hud._preview_key
