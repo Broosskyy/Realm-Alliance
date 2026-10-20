@@ -1,0 +1,25 @@
+name: REALM 709 source restore
+on:
+  push:
+    branches:
+      - restore/realm-709
+    paths:
+      - "transfer/709/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    name: Verify and restore 709 into review branch
+    if: github.ref == 'refs/heads/restore/realm-709'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout temporary upload branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Verify multipart ZIP and create review branch
+        run: python3 scripts/restore_realm709.py
