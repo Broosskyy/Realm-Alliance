@@ -1,0 +1,27 @@
+name: REALM 709 verified archive restore
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-709-main.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore-709:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Check out current main including eight uploaded chunks
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Verify archives and assemble review branch with backup
+        run: python3 tools/restore709.py
+      - name: Show restoration reference
+        run: echo 'Open branch restore/realm709-full and check RESTORE_709.md before merging.'
