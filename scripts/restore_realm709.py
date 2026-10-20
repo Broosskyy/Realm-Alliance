@@ -61,6 +61,8 @@ def main():
             shutil.copy2(path, target)
         ignore = ROOT / ".gitignore"
         current = ignore.read_text(encoding="utf-8") if ignore.exists() else ""
+        # Godot .uid references and production artwork are required for a full reproducible 709 checkout.
+        current = "\n".join(line for line in current.splitlines() if line.strip() not in ("**/*.uid", "/godot/realm_alliance/assets/production/")) + "\n"
         safe_lines = ["**/*.keystore", "**/*.jks", "**/.env", "**/.env.*", "**/.godot/"]
         with ignore.open("w", encoding="utf-8") as f:
             f.write(current.rstrip() + "\n" + "\n".join(x for x in safe_lines if x not in current.splitlines()) + "\n")
