@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-19",
+  "file_name": "REALM_ALLIANCE_Work_7_0_UI_Fix.apk",
+  "size_bytes": 57513632,
+  "sha256": "0880654a38163f0eabe32c7729330bd8fa28120037f03f6701abf73ea0980a12",
+  "gameplay_commit": "cd1656eadb7125dda49430e2cd96272a73032b28",
+  "version_name": "0.7.0-ui.1",
+  "version_code": 701,
+  "package": "com.avenor.realmalliance.preview",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "architecture": "arm64-v8a",
+  "minimum_android_api": 24,
+  "target_android_api": 36,
+  "signature_verified": true,
+  "signature_certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+  "zip_alignment_verified": true,
+  "scroll_and_modal_bytecode_markers_verified": true,
+  "physical_device_tested": false
+}

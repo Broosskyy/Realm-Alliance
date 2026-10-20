@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "real hero portrait card"
+    },
+    {
+      "ok": true,
+      "label": "button Held wechseln"
+    },
+    {
+      "ok": true,
+      "label": "real touch hero switch preserves encounter"
+    },
+    {
+      "ok": true,
+      "label": "button < Sammlung"
+    },
+    {
+      "ok": true,
+      "label": "button Rüstung"
+    },
+    {
+      "ok": true,
+      "label": "upgrade available"
+    },
+    {
+      "ok": true,
+      "label": "touch armor upgrade spends exact costs and applies level"
+    },
+    {
+      "ok": true,
+      "label": "shop has real scrollable offers"
+    },
+    {
+      "ok": true,
+      "label": "real finger swipe scrolls shop"
+    },
+    {
+      "ok": true,
+      "label": "swipe cannot buy or spend"
+    },
+    {
+      "ok": true,
+      "label": "no browser script errors"
+    }
+  ],
+  "errors": []
+}

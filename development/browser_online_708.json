@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "real UI creates authenticated account"
+    },
+    {
+      "ok": true,
+      "label": "second independent browser session has separate account"
+    },
+    {
+      "ok": true,
+      "label": "UI creates guild with real owner"
+    },
+    {
+      "ok": true,
+      "label": "second browser joins same guild"
+    },
+    {
+      "ok": true,
+      "label": "first browser sees shared membership"
+    },
+    {
+      "ok": true,
+      "label": "second browser damages same boss"
+    },
+    {
+      "ok": false,
+      "label": "first browser polls shared boss HP"
+    },
+    {
+      "ok": false,
+      "label": "raid displays both real contributors"
+    },
+    {
+      "ok": true,
+      "label": "real UI runs server-owned PvP duel"
+    },
+    {
+      "ok": true,
+      "label": "PvP rating comes from server"
+    },
+    {
+      "ok": true,
+      "label": "ranking has real players without demo entries"
+    },
+    {
+      "ok": true,
+      "label": "UI stores versioned private cloud backup"
+    },
+    {
+      "ok": true,
+      "label": "local title collection is visible"
+    },
+    {
+      "ok": true,
+      "label": "no browser exceptions or Godot script errors"
+    }
+  ],
+  "errors": []
+}

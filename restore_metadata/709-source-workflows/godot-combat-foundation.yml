@@ -1,0 +1,154 @@
+name: REALM Godot Combat Foundation
+
+on:
+  push:
+    branches:
+      - feature/godot-combat-foundation-01
+      - feature/work-6-2-combat-progression
+      - feature/work-6-2-1-full-game-experience
+      - feature/work-6-5-1-master-ui
+      - feature/work-6-6-tap-combat
+      - feature/work-6-7-heroes-pets
+      - feature/work-6-7-admin-qa
+      - feature/work-6-7-1-hero-art-direction
+      - feature/work-6-8-rpg-economy
+    paths:
+      - 'godot/realm_alliance/**'
+      - '.github/workflows/godot-combat-foundation.yml'
+      - 'development/realm-preview-debug.keystore'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-and-web:
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:4.7.2
+    defaults:
+      run:
+        working-directory: godot/realm_alliance
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare Godot export templates
+        run: |
+          set -eux
+          mkdir -p "$HOME/.local/share/godot/export_templates" "$HOME/.config"
+          if [ -d /root/.config/godot ] && [ "$HOME" != "/root" ]; then
+            cp -a /root/.config/godot "$HOME/.config/"
+          fi
+          if [ -d /root/.local/share/godot/export_templates/4.7.2.stable ]; then
+            cp -a /root/.local/share/godot/export_templates/4.7.2.stable "$HOME/.local/share/godot/export_templates/"
+          fi
+          godot --version
+      - name: Unpack optional REALM canonical art bundle
+        run: |
+          set -eu
+          if [ -f REALM_ALLIANCE_CANONICAL_GODOT_INTEGRATION_AND_WEB_PREVIEW.zip ]; then
+            ZIP="REALM_ALLIANCE_CANONICAL_GODOT_INTEGRATION_AND_WEB_PREVIEW.zip"
+            TMP_DIR="$(mktemp -d)"
+            unzip -t "$ZIP" >/dev/null
+            unzip -oq "$ZIP" 'godot/realm_alliance/assets/production/*' -d "$TMP_DIR"
+            mkdir -p assets/production
+            cp -a "$TMP_DIR/godot/realm_alliance/assets/production/." assets/production/
+            rm -rf "$TMP_DIR"
+            echo "Canonical production art extracted from the uploaded integration ZIP"
+          elif [ -f assets/packs/realm_canonical_batch_v2.zip ]; then
+            mkdir -p assets/production
+            unzip -o assets/packs/realm_canonical_batch_v2.zip -d assets/production
+            echo "Canonical production art extracted from compact asset pack"
+          else
+            echo "Canonical asset bundle not committed; Bramble preview remains active"
+          fi
+          if [ -d assets/production/hero ]; then
+            for asset in \
+              hero/idle.png hero/ready.png hero/windup.png hero/attack_contact.png hero/recovery.png hero/hit.png \
+              weapons/steel.png weapons/crystal.png weapons/ember.png weapons/rune_gold.png weapons/shadow_violet.png \
+              enemy/golem_idle_ready.png enemy/golem_attack.png enemy/golem_hit_damage.png enemy/golem_defeated.png \
+              world/wolkgarten_battle_plate.png; do
+              test -s "assets/production/$asset"
+            done
+            echo "All 16 required canonical art files found; production-art tests will run"
+          fi
+      - name: Import project
+        run: godot --headless --path . --import
+      - name: Model regression tests
+        run: godot --headless --path . --script res://tests/test_combat.gd
+      - name: Responsive layout regression tests
+        run: godot --headless --path . --script res://tests/test_layout.gd
+      - name: Hero and enemy visual-contract tests
+        run: godot --headless --path . --script res://tests/test_visual_contract.gd
+      - name: Imported Bramble art preview regression tests
+        run: godot --headless --path . --script res://tests/test_art_preview.gd
+      - name: Production art and weapon-socket tests
+        run: godot --headless --path . --script res://tests/test_production_art.gd
+      - name: Deterministic skill, survival, equipment and reward tests
+        run: godot --headless --path . --script res://tests/test_systems62.gd
+      - name: Save migration, corruption and recovery tests
+        run: XDG_DATA_HOME=/tmp/realm62-test-save godot --headless --path . --script res://tests/test_save62.gd
+      - name: Combat UI, navigation and skill interaction tests
+        run: godot --headless --path . --script res://tests/test_combat_ui.gd
+      - name: Animation timing, weapon layers and VFX regression tests
+        run: XDG_DATA_HOME=/tmp/realm62-test-presentation godot --headless --path . --script res://tests/test_presentation621.gd
+      - name: Shared UI components and layout contract
+        run: XDG_DATA_HOME=/tmp/realm62-test-ui63 godot --headless --path . --script res://tests/test_ui63.gd
+      - name: Hero equipment acquisition, defense and compatibility tests
+        run: XDG_DATA_HOME=/tmp/realm64-test-equipment godot --headless --path . --script res://tests/test_hero_equipment64.gd
+      - name: Hero attachments, native equipment interaction and look tests
+        run: XDG_DATA_HOME=/tmp/realm64-test-visual godot --headless --path . --script res://tests/test_hero_visual64.gd
+      - name: Head and wing sockets, evolution and expanded mobile hero UI
+        run: XDG_DATA_HOME=/tmp/realm64-test-extensions godot --headless --path . --script res://tests/test_hero_extensions64.gd
+      - name: Manual skill buffering during AUTO attacks
+        # Manual skill intent must survive an AUTO attack without early costs.
+        run: XDG_DATA_HOME=/tmp/realm64-test-input godot --headless --path . --script res://tests/test_combat_input64.gd
+      - name: World, inventory, quest, skill progression and second region
+        run: XDG_DATA_HOME=/tmp/realm62-test-rpg65 godot --headless --path . --script res://tests/test_rpg65.gd
+      - name: Native RPG pages, inventory dialogs and responsive content
+        run: XDG_DATA_HOME=/tmp/realm62-test-rpg-ui65 godot --headless --path . --script res://tests/test_rpg_ui65.gd
+      - name: Master UI, live map and inventory contracts
+        run: XDG_DATA_HOME=/tmp/realm651-test-ui godot --headless --path . --script res://tests/test_ui651.gd
+      - name: Tap chains, multihit balance, boss break, saves and wing visibility
+        run: XDG_DATA_HOME=/tmp/realm66-test-tap godot --headless --path . --script res://tests/test_tap66.gd
+      - name: Hero roster, companion actions, training and migration
+        run: XDG_DATA_HOME=/tmp/realm67-test-roster godot --headless --path . --script res://tests/test_roster67.gd
+      - name: Developer QA sandbox, roster previews and save isolation
+        run: XDG_DATA_HOME=/tmp/realm67-test-admin-qa godot --headless --path . --script res://tests/test_admin_qa.gd
+      - name: Economy, dungeon checkpoints, daily claims and full RPG journey
+        run: XDG_DATA_HOME=/tmp/realm62-test-rpg70 godot --headless --path . --script res://tests/test_rpg70.gd
+      - name: Complete Halloween loop, original hero rig and four visible forms
+        run: XDG_DATA_HOME=/tmp/realm62-test-event69 godot --headless --path . --script res://tests/test_event69.gd
+      - name: Scroll reachability and responsive dialog regression
+        run: XDG_DATA_HOME=/tmp/realm70-test-scroll godot --headless --path . --script res://tests/test_scroll70.gd
+      - name: Start real combat scene (headless smoke)
+        run: |
+          godot --headless --path . --quit-after 120 > scene-smoke.log 2>&1
+          cat scene-smoke.log
+          if grep -E "SCRIPT ERROR|Parse Error|Invalid call|Cannot call method" scene-smoke.log; then
+            exit 1
+          fi
+      - name: Build Web debug artifact
+        run: |
+          mkdir -p ../../build/godot-web
+          godot --headless --path . --export-debug "Web" ../../build/godot-web/index.html
+      - name: Upload isolated Web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-alliance-work70-web
+          path: build/godot-web/
+          if-no-files-found: error
+      - name: Build Android ARM64 debug APK
+        run: |
+          mkdir -p ../../build/godot-android "$HOME/.android"
+          cp ../../development/realm-preview-debug.keystore "$HOME/.android/realm-preview-debug.keystore"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PATH="$HOME/.android/realm-preview-debug.keystore"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_USER="androiddebugkey"
+          export GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD="android"
+          godot --headless --path . --export-debug "Android Debug" ../../build/godot-android/realm-alliance-debug.apk
+      - name: Upload Android debug artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-alliance-work70-android
+          path: build/godot-android/*.apk
+          if-no-files-found: error
+

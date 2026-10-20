@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 960"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 960"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 960"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 960"
+    }
+  ],
+  "errors": [],
+  "error": "Error: Missing button: Öffnen"
+}

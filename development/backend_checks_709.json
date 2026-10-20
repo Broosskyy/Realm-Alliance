@@ -1,0 +1,196 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "HTTP service boots"
+    },
+    {
+      "ok": true,
+      "label": "exported web index can be served"
+    },
+    {
+      "ok": true,
+      "label": "database inside web root cannot be downloaded"
+    },
+    {
+      "ok": true,
+      "label": "backend source cannot be downloaded"
+    },
+    {
+      "ok": true,
+      "label": "static directory listings disabled"
+    },
+    {
+      "ok": true,
+      "label": "private state requires authentication"
+    },
+    {
+      "ok": true,
+      "label": "short password rejected"
+    },
+    {
+      "ok": true,
+      "label": "first account registered"
+    },
+    {
+      "ok": true,
+      "label": "second account registered"
+    },
+    {
+      "ok": true,
+      "label": "leaderboard contains exactly real accounts"
+    },
+    {
+      "ok": true,
+      "label": "arena opponent is actual other account"
+    },
+    {
+      "ok": true,
+      "label": "wrong password denied"
+    },
+    {
+      "ok": true,
+      "label": "password login succeeds"
+    },
+    {
+      "ok": true,
+      "label": "password stored as salted hash"
+    },
+    {
+      "ok": true,
+      "label": "duplicate account name rejected"
+    },
+    {
+      "ok": true,
+      "label": "create real guild"
+    },
+    {
+      "ok": true,
+      "label": "second client joins guild"
+    },
+    {
+      "ok": true,
+      "label": "first client sees second member"
+    },
+    {
+      "ok": true,
+      "label": "double membership rejected"
+    },
+    {
+      "ok": true,
+      "label": "arena rating calculated by server"
+    },
+    {
+      "ok": true,
+      "label": "arena returns actual simulated combat actions"
+    },
+    {
+      "ok": true,
+      "label": "duel retry is idempotent"
+    },
+    {
+      "ok": true,
+      "label": "duel retry cannot grant repeated rating"
+    },
+    {
+      "ok": true,
+      "label": "arena cooldown enforced"
+    },
+    {
+      "ok": true,
+      "label": "self PvP rejected"
+    },
+    {
+      "ok": true,
+      "label": "unearned online title denied"
+    },
+    {
+      "ok": true,
+      "label": "two separate clients attack same boss"
+    },
+    {
+      "ok": true,
+      "label": "shared HP reflects both contributions"
+    },
+    {
+      "ok": true,
+      "label": "both contributors visible"
+    },
+    {
+      "ok": true,
+      "label": "boss retry cannot cause duplicate damage"
+    },
+    {
+      "ok": true,
+      "label": "boss attack cooldown enforced"
+    },
+    {
+      "ok": true,
+      "label": "private save backup created"
+    },
+    {
+      "ok": true,
+      "label": "second account cannot read first backup"
+    },
+    {
+      "ok": true,
+      "label": "query-string ID cannot bypass backup ownership"
+    },
+    {
+      "ok": true,
+      "label": "stale cloud revision rejected"
+    },
+    {
+      "ok": true,
+      "label": "conflicting write preserves existing backup"
+    },
+    {
+      "ok": true,
+      "label": "foreign browser origin rejected"
+    },
+    {
+      "ok": true,
+      "label": "server resolves final boss blow"
+    },
+    {
+      "ok": true,
+      "label": "all contributors receive one reward"
+    },
+    {
+      "ok": true,
+      "label": "boss completion retry cannot duplicate reward"
+    },
+    {
+      "ok": true,
+      "label": "earned online title can be equipped"
+    },
+    {
+      "ok": true,
+      "label": "guild owner can leave"
+    },
+    {
+      "ok": true,
+      "label": "guild ownership transfers to remaining member"
+    },
+    {
+      "ok": true,
+      "label": "guest upgrades in place without losing identity"
+    },
+    {
+      "ok": true,
+      "label": "upgraded guest supports durable password login"
+    },
+    {
+      "ok": true,
+      "label": "service restart preserves memberships"
+    },
+    {
+      "ok": true,
+      "label": "service restart preserves online progression"
+    },
+    {
+      "ok": true,
+      "label": "logout invalidates current bearer token"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "baseline_source_commit": "811786352bc562fe0a3e79b76d571096e294cc73",
+  "candidate": "mockup-709-starter-wings-equipment",
+  "candidate_export_version": 709,
+  "apk_created": true,
+  "engine": "Godot 4.7.2",
+  "git_push_performed": false,
+  "base_note": "Continues saved full 708. Actual Runenpaladin starter, compatible optional legacy transition, visible preview wings, equipment appearance comparison and world continuation. Existing Realm service retained; no public deployment.",
+  "version_name": "0.7.0-mockup.9-starter-gear",
+  "android_package": "com.avenor.realmalliance.mockuptest",
+  "validation": {
+    "godot_suites": 32,
+    "godot_checks": 2037,
+    "backend_http_checks": 48,
+    "browser_checks": 23,
+    "android_device_test": false,
+    "apk_signature_verified": true,
+    "apk_alignment_verified": true,
+    "normal_web_qa_bridge_absent": true,
+    "normal_web_checks": 2,
+    "browser_script_errors": 0
+  },
+  "apk_sha256": "6deea25e6a133eea632ed76a7b2b87d8fc859498ecb0c6d6bec293c1f26a0e1e",
+  "public_online_deployment": false,
+  "online_backend": "Python stdlib HTTP + SQLite"
+}

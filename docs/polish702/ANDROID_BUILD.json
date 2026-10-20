@@ -1,0 +1,15 @@
+{
+  "file": "REALM_ALLIANCE_0_7_0_Polish_2.apk",
+  "version_code": 702,
+  "version_name": "0.7.0-polish.2",
+  "package": "com.avenor.realmalliance.preview",
+  "size_bytes": 61167989,
+  "sha256": "129c385cdd19d20e1669ec698622dc0d29bb475d3b734109c3999ee2721a1375",
+  "architecture": "arm64-v8a",
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "signature_v2_v3_verified": true,
+  "zipalign_verified": true,
+  "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+  "physical_device_tested": false
+}

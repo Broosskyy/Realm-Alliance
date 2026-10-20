@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "perf": {
+    "frames": 247,
+    "seconds": 10.028099999999814,
+    "median_ms": 33.399999999999636,
+    "p95_ms": 66.70000000000073
+  },
+  "simulation_clock": 10.1333333333334,
+  "kills": 1,
+  "environment": "Chromium 151 / SwiftShader / hosted Linux; default AUTO basic attacks, full effects, active combat, no skills; not Android device telemetry"
+}

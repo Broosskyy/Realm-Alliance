@@ -1,0 +1,161 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "suites": [
+    {
+      "suite": "test_admin_qa",
+      "passed": 18,
+      "checks": 18,
+      "script_errors": false
+    },
+    {
+      "suite": "test_art_preview",
+      "passed": 46,
+      "checks": 46,
+      "script_errors": false
+    },
+    {
+      "suite": "test_combat",
+      "passed": 20,
+      "checks": 20,
+      "script_errors": false
+    },
+    {
+      "suite": "test_combat_input64",
+      "passed": 20,
+      "checks": 20,
+      "script_errors": false
+    },
+    {
+      "suite": "test_combat_ui",
+      "passed": 67,
+      "checks": 67,
+      "script_errors": false
+    },
+    {
+      "suite": "test_event69",
+      "passed": 63,
+      "checks": 63,
+      "script_errors": false
+    },
+    {
+      "suite": "test_hero_equipment64",
+      "passed": 23,
+      "checks": 23,
+      "script_errors": false
+    },
+    {
+      "suite": "test_hero_extensions64",
+      "passed": 109,
+      "checks": 109,
+      "script_errors": false
+    },
+    {
+      "suite": "test_hero_visual64",
+      "passed": 57,
+      "checks": 57,
+      "script_errors": false
+    },
+    {
+      "suite": "test_layout",
+      "passed": 32,
+      "checks": 32,
+      "script_errors": false
+    },
+    {
+      "suite": "test_presentation621",
+      "passed": 100,
+      "checks": 100,
+      "script_errors": false
+    },
+    {
+      "suite": "test_production_art",
+      "passed": 22,
+      "checks": 22,
+      "script_errors": false
+    },
+    {
+      "suite": "test_roster67",
+      "passed": 84,
+      "checks": 84,
+      "script_errors": false
+    },
+    {
+      "suite": "test_rpg65",
+      "passed": 87,
+      "checks": 87,
+      "script_errors": false
+    },
+    {
+      "suite": "test_rpg70",
+      "passed": 59,
+      "checks": 59,
+      "script_errors": false
+    },
+    {
+      "suite": "test_rpg_ui65",
+      "passed": 125,
+      "checks": 125,
+      "script_errors": false
+    },
+    {
+      "suite": "test_save62",
+      "passed": 26,
+      "checks": 26,
+      "script_errors": false
+    },
+    {
+      "suite": "test_systems62",
+      "passed": 63,
+      "checks": 63,
+      "script_errors": false
+    },
+    {
+      "suite": "test_tap66",
+      "passed": 147,
+      "checks": 147,
+      "script_errors": false
+    },
+    {
+      "suite": "test_ui63",
+      "passed": 49,
+      "checks": 49,
+      "script_errors": false
+    },
+    {
+      "suite": "test_ui651",
+      "passed": 28,
+      "checks": 28,
+      "script_errors": false
+    },
+    {
+      "suite": "test_visual_contract",
+      "passed": 11,
+      "checks": 11,
+      "script_errors": false
+    }
+  ],
+  "checks": 1256,
+  "passed": 1256,
+  "native_render_sizes": [
+    [
+      360,
+      800
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      720,
+      1560
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "native_renderer": "Mesa llvmpipe OpenGL Compatibility; not a physical Android device",
+  "browser": "Chromium Headless Shell 151, 360x800, SwiftShader; Godot boot, tap, inventory, shop and reload/save persistence passed; no page or script errors",
+  "physical_android_test": false,
+  "public_push": "blocked by automatic approval review; local commit retained"
+}

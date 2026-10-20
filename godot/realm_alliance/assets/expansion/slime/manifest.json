@@ -1,0 +1,38 @@
+{
+  "enemy": "cloud_slime",
+  "source": "Built-in image_gen; one monster, four poses",
+  "states": {
+    "idle": {
+      "pivot": [
+        320,
+        488
+      ],
+      "source_scale": 0.74,
+      "sha256": "66e82cc70a73c851f194ec16296ad0e25d2d9f1d9c1df1a61758a4833a7d1d9a"
+    },
+    "attack": {
+      "pivot": [
+        320,
+        488
+      ],
+      "source_scale": 0.74,
+      "sha256": "54adff5652edee0115b9b06f22f91ccd8b817039dae1de9d695588f9371db1b0"
+    },
+    "hit": {
+      "pivot": [
+        320,
+        488
+      ],
+      "source_scale": 0.74,
+      "sha256": "43ce925efe75704ced35fc99d6e21ef9eefccb8325adb9cd1140a67865db50be"
+    },
+    "defeated": {
+      "pivot": [
+        320,
+        488
+      ],
+      "source_scale": 0.74,
+      "sha256": "9696e4e6c8fff66ec36a0b9c71316a5bcfe46067d804f1972a1fafafa0f13a00"
+    }
+  }
+}

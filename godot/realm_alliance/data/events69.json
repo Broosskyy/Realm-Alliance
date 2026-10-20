@@ -1,0 +1,19 @@
+{
+ "harvest_2026": {
+  "name":"Nacht der Ernte",
+  "description":"Wiederholbares lokales Halloween-Abenteuer. Sammle Erntezeichen für Flügel und Laternengeist.",
+  "activity":"harvest_abbey",
+  "quests":[
+   {"id":"harvest_scout","name":"Lichter im Nebel","metric":"kills","goal":5,"tokens":5,"requires":""},
+   {"id":"harvest_king","name":"Entthrone den Erntekönig","metric":"bosses","goal":1,"tokens":8,"requires":"harvest_scout"},
+   {"id":"harvest_warden","name":"Wächter der Herbstabtei","metric":"clears","goal":3,"tokens":15,"requires":"harvest_king"}
+  ],
+  "encounters":[
+   {"id":"pumpkin_sprout","name":"Kürbiswächter","kind":"normal","visual":"pumpkin","hp":170,"damage":13,"interval":4.2,"windup":1.1,"pattern":"single","xp":32,"gold":24,"drop":""},
+   {"id":"shadow_wolf","name":"Kristallschatten","kind":"normal","visual":"shadow","hp":205,"damage":14,"interval":3.8,"windup":0.9,"pattern":"double","xp":38,"gold":28,"drop":""},
+   {"id":"pumpkin_elite","name":"Erntehauer","kind":"elite","visual":"pumpkin","hp":280,"damage":17,"interval":4.2,"windup":1.3,"pattern":"heavy","xp":58,"gold":42,"drop":"ember"},
+   {"id":"shadow_elite","name":"Nachtsplitter","kind":"elite","visual":"shadow","hp":300,"damage":18,"interval":4.0,"windup":1.1,"pattern":"double","xp":62,"gold":46,"drop":""},
+   {"id":"harvest_king","name":"Erntekönig","kind":"boss","visual":"harvest_boss","hp":750,"damage":26,"interval":4.4,"windup":1.5,"pattern":"eruption","xp":160,"gold":130,"drop":""}
+  ]
+ }
+}

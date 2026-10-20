@@ -1,0 +1,17 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "real chest reward opens animated reveal"
+    },
+    {
+      "ok": true,
+      "label": "closing reveal cannot consume another chest"
+    },
+    {
+      "ok": true,
+      "label": "no browser exceptions or Godot script errors"
+    }
+  ],
+  "errors": []
+}

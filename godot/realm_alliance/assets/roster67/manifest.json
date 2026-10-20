@@ -1,0 +1,488 @@
+{
+  "schema": 1,
+  "provenance": "Built-in imagegen 2026-10-18; technical extraction/normalization only, original alpha retained",
+  "sources": {
+    "kaela": {
+      "file": "exec-c2a6eabe-ac55-4a66-aee2-6e6231fa88a0.png",
+      "sha256": "8c869870f629666e71099607000cd4818250cb7319b5d03b92dbfdfd12ae7e96",
+      "size": [
+        1774,
+        887
+      ]
+    },
+    "skyfox": {
+      "file": "exec-56bc84cb-9051-4785-a31a-24f19580442d.png",
+      "sha256": "e755018cf069dd988ba1e86c6c58b232a68a2e677e55ee50af234d94e60096f6",
+      "size": [
+        1774,
+        887
+      ]
+    },
+    "sunbird": {
+      "file": "exec-c1b18bbc-d5fb-44a1-8eeb-858fd6f08ca9.png",
+      "sha256": "7cf20f992cef179e9abcc619e996e3f27749ce63f84c785051383c249b23742c",
+      "size": [
+        1774,
+        887
+      ]
+    }
+  },
+  "assets": {
+    "kaela/idle": {
+      "path": "assets/roster67/kaela/idle.png",
+      "bounds": [
+        79,
+        24,
+        326,
+        432
+      ],
+      "origin": [
+        307,
+        143
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "701de6c839cdfb520b1d91fc53f3bd05c0a2b37a49cf2e6a3212f0595b77d5d5"
+    },
+    "kaela/ready": {
+      "path": "assets/roster67/kaela/ready.png",
+      "bounds": [
+        519,
+        43,
+        830,
+        433
+      ],
+      "origin": [
+        304,
+        159
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "0c3c4abe2e966b81852c1489cb1afdfdaa2ec3f772e553a7b705cda657edded5"
+    },
+    "kaela/windup": {
+      "path": "assets/roster67/kaela/windup.png",
+      "bounds": [
+        962,
+        21,
+        1268,
+        433
+      ],
+      "origin": [
+        304,
+        140
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "d7348dd024f310dfcbfab2411bcb94a9b84dbfee1a8c1ca14c670ee645a43214"
+    },
+    "kaela/attack_contact": {
+      "path": "assets/roster67/kaela/attack_contact.png",
+      "bounds": [
+        1338,
+        81,
+        1741,
+        431
+      ],
+      "origin": [
+        247,
+        191
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "1cab8673249f1d764a361861837a2223dcd000f7c400188d2d605c60de317888"
+    },
+    "kaela/recovery": {
+      "path": "assets/roster67/kaela/recovery.png",
+      "bounds": [
+        97,
+        467,
+        362,
+        861
+      ],
+      "origin": [
+        322,
+        142
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "37d95e4f650d7bc32bcd9e8c1aa57ea1ba89b349c3758eb7b3353938a4e316a3"
+    },
+    "kaela/hit": {
+      "path": "assets/roster67/kaela/hit.png",
+      "bounds": [
+        480,
+        470,
+        824,
+        860
+      ],
+      "origin": [
+        271,
+        145
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "69f3e25425b2a3fb7cadb11ca5377fb161dd04491a7a894dc6329dbcd4e4cb30"
+    },
+    "kaela/defeated": {
+      "path": "assets/roster67/kaela/defeated.png",
+      "bounds": [
+        910,
+        534,
+        1241,
+        852
+      ],
+      "origin": [
+        260,
+        199
+      ],
+      "scale": 0.85,
+      "size": [
+        640,
+        512
+      ],
+      "sha256": "74d12ff994db807a1ceba0ee6f25b419f04327e6557eede7ddc1e026ac702728"
+    },
+    "kaela/portrait": {
+      "path": "assets/roster67/kaela/portrait.png",
+      "bounds": [
+        1320,
+        458,
+        1702,
+        862
+      ],
+      "origin": [
+        107,
+        155
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "2b167c9ee3e60cd43f76f7d2b91c8e1c425a0b05b4f2ee3ee9309a7618b738be"
+    },
+    "skyfox/base_idle": {
+      "path": "assets/roster67/skyfox/base_idle.png",
+      "bounds": [
+        36,
+        53,
+        412,
+        393
+      ],
+      "origin": [
+        110,
+        205
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "2d3d2f7fdebf90f7db645c9bb5c9e5f6b920c1fa42cbb5c5052547e2eea5ad09"
+    },
+    "skyfox/base_ready": {
+      "path": "assets/roster67/skyfox/base_ready.png",
+      "bounds": [
+        461,
+        49,
+        899,
+        367
+      ],
+      "origin": [
+        85,
+        222
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "3207684044c798236e12586842ac384cfb864d08e5485c59bbebe81686905bef"
+    },
+    "skyfox/base_cast": {
+      "path": "assets/roster67/skyfox/base_cast.png",
+      "bounds": [
+        940,
+        28,
+        1309,
+        410
+      ],
+      "origin": [
+        112,
+        172
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "e6a77ea78e7bb070cd9308d70880ce46396d00fd4987b6ddee2ad2a01644abd0"
+    },
+    "skyfox/base_reward": {
+      "path": "assets/roster67/skyfox/base_reward.png",
+      "bounds": [
+        1389,
+        59,
+        1742,
+        396
+      ],
+      "origin": [
+        118,
+        207
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "7d79121e27f9fc73f7d72abd05b456d38f0167effc43367c641cce5fe3e48389"
+    },
+    "skyfox/evolved_idle": {
+      "path": "assets/roster67/skyfox/evolved_idle.png",
+      "bounds": [
+        13,
+        459,
+        423,
+        830
+      ],
+      "origin": [
+        96,
+        181
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "a25da7532195ef08f797c08f5409638b46265dc778577f79d94a247dd83d3cc7"
+    },
+    "skyfox/evolved_ready": {
+      "path": "assets/roster67/skyfox/evolved_ready.png",
+      "bounds": [
+        450,
+        462,
+        931,
+        792
+      ],
+      "origin": [
+        68,
+        213
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "3d0f9b73aaddafc589c3dc3617fd79913456adfbcf566bb2cff494f6b42fa18c"
+    },
+    "skyfox/evolved_cast": {
+      "path": "assets/roster67/skyfox/evolved_cast.png",
+      "bounds": [
+        928,
+        450,
+        1340,
+        846
+      ],
+      "origin": [
+        96,
+        161
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "922698dd16c1aaa1a5521a183add7b40527c4b0ed18f2c4fe00450754c451f14"
+    },
+    "skyfox/evolved_reward": {
+      "path": "assets/roster67/skyfox/evolved_reward.png",
+      "bounds": [
+        1373,
+        484,
+        1760,
+        837
+      ],
+      "origin": [
+        105,
+        195
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "5e42e3689bd24b3036c8a7ded2a050a103e7bf3032bac69bf98b881e697f88f2"
+    },
+    "sunbird/base_idle": {
+      "path": "assets/roster67/sunbird/base_idle.png",
+      "bounds": [
+        116,
+        70,
+        390,
+        368
+      ],
+      "origin": [
+        149,
+        238
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "087ffef011856039db9b7a0d234ab033ee919fe5e32a9266afd8218d84b8ccfc"
+    },
+    "sunbird/base_ready": {
+      "path": "assets/roster67/sunbird/base_ready.png",
+      "bounds": [
+        524,
+        71,
+        831,
+        369
+      ],
+      "origin": [
+        136,
+        238
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "90ceda61eea0aac618decd546b27ff78a628d5c2a42f5cc42f8db83801b0c4af"
+    },
+    "sunbird/base_cast": {
+      "path": "assets/roster67/sunbird/base_cast.png",
+      "bounds": [
+        950,
+        15,
+        1321,
+        379
+      ],
+      "origin": [
+        112,
+        186
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "33a4f32d24a665dd6d7ad2be5af138118bef2e72b71816b43da3b2b768c48903"
+    },
+    "sunbird/base_reward": {
+      "path": "assets/roster67/sunbird/base_reward.png",
+      "bounds": [
+        1429,
+        72,
+        1753,
+        379
+      ],
+      "origin": [
+        130,
+        231
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "f16963d785d9da09b60828753e23af1076d6b4927ae0bc9d876b9ec11d91b65b"
+    },
+    "sunbird/evolved_idle": {
+      "path": "assets/roster67/sunbird/evolved_idle.png",
+      "bounds": [
+        22,
+        429,
+        398,
+        850
+      ],
+      "origin": [
+        110,
+        142
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "bed89dedd8a3dae8c9f77c90449a81dd6bb87322b3228bbb9b200a6e07047adb"
+    },
+    "sunbird/evolved_ready": {
+      "path": "assets/roster67/sunbird/evolved_ready.png",
+      "bounds": [
+        462,
+        430,
+        841,
+        865
+      ],
+      "origin": [
+        108,
+        131
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "3d566e8dc9989a91dd6aa1a806575b1da77113a2a9d28a226779572ee5c611a9"
+    },
+    "sunbird/evolved_cast": {
+      "path": "assets/roster67/sunbird/evolved_cast.png",
+      "bounds": [
+        907,
+        378,
+        1346,
+        864
+      ],
+      "origin": [
+        85,
+        91
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "9e76eaec037003b1757efd29bca54fc377f8be7987bcc4326e2fe29f121bc2d5"
+    },
+    "sunbird/evolved_reward": {
+      "path": "assets/roster67/sunbird/evolved_reward.png",
+      "bounds": [
+        1361,
+        438,
+        1761,
+        860
+      ],
+      "origin": [
+        100,
+        141
+      ],
+      "scale": 0.78,
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "6a9adfc2f2f32512fa0ccccc9ca57eeecd5570a9d5d3ee2d20bd8780a9140955"
+    }
+  }
+}

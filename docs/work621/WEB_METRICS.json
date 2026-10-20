@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "perf": {
+    "frames": 200,
+    "seconds": 10.02939999999993,
+    "median_ms": 50,
+    "p95_ms": 83.30000000000018
+  },
+  "environment": "Chromium 151 / SwiftShader / hosted Linux; not Android device telemetry"
+}

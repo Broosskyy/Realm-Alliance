@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 320"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 320"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 320"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 320"
+    },
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 390"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 390"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 390"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 390"
+    },
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 430"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 430"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 430"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 430"
+    },
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 960"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 960"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 960"
+    },
+    {
+      "ok": false,
+      "label": "community entry has mobile target 960"
+    }
+  ],
+  "errors": [],
+  "error": "Error: Missing button: Öffnen"
+}

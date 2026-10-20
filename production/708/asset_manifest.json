@@ -1,0 +1,59 @@
+{
+  "atlas": "godot/realm_alliance/assets/work708/ui/relics.png",
+  "cells": [
+    [
+      0,
+      0,
+      512,
+      512
+    ],
+    [
+      512,
+      0,
+      512,
+      512
+    ],
+    [
+      1024,
+      0,
+      512,
+      512
+    ],
+    [
+      0,
+      512,
+      512,
+      512
+    ],
+    [
+      512,
+      512,
+      512,
+      512
+    ],
+    [
+      1024,
+      512,
+      512,
+      512
+    ]
+  ],
+  "note": "Six isolated transparent painted props. Atlas windows preserve 512×512 cells. Frames are code-native SVG nine-slice assets. Runtime uses existing work705 ruins courtyard. No new playable hero art or complete outfit sets in 708.",
+  "provider": "Built-in image generation",
+  "generated": "2026-10-20",
+  "size": [
+    1536,
+    1024
+  ],
+  "transparent_background": true,
+  "sha256": "7cd07571fa317d3f467b83f6768843e03df62c81d3d74b87ec6153b45cc4ce73",
+  "cell_names": [
+    "chest_closed",
+    "chest_open",
+    "ascension",
+    "codex",
+    "title_crest",
+    "guild_banner"
+  ],
+  "prompt": "Production game asset atlas for REALM ALLIANCE fantasy RPG. EXACTLY SIX isolated painted objects in THREE columns and TWO rows of equal square cells with generous empty transparent gutters: top row closed ornate blue-and-gold treasure chest, same treasure chest open with golden light, blue-silver ascension medallion with five small gem sockets; bottom row open magical blue training codex, gold laurel-and-star title crest, navy guild banner with silver wings. Western fantasy premium mobile-game style, crisp silhouettes, antique gold/navy/violet palette. Each entire object fits inside its own cell with plenty of transparent margin. Background genuinely transparent, no solid background or checkerboard, no characters, no text, no numbers, no labels, no border."
+}

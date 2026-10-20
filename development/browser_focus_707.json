@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "final hero preview touch 320"
+    },
+    {
+      "ok": true,
+      "label": "final preview remains presentation-only 320"
+    },
+    {
+      "ok": true,
+      "label": "next values remain visible in final sheet 320"
+    },
+    {
+      "ok": true,
+      "label": "final action order performs exact upgrade 320"
+    },
+    {
+      "ok": true,
+      "label": "final hero preview touch 390"
+    },
+    {
+      "ok": true,
+      "label": "final preview remains presentation-only 390"
+    },
+    {
+      "ok": true,
+      "label": "next values remain visible in final sheet 390"
+    },
+    {
+      "ok": true,
+      "label": "final action order performs exact upgrade 390"
+    },
+    {
+      "ok": true,
+      "label": "final hero preview touch 430"
+    },
+    {
+      "ok": true,
+      "label": "final preview remains presentation-only 430"
+    },
+    {
+      "ok": true,
+      "label": "next values remain visible in final sheet 430"
+    },
+    {
+      "ok": true,
+      "label": "final action order performs exact upgrade 430"
+    },
+    {
+      "ok": true,
+      "label": "final hero preview touch 960"
+    },
+    {
+      "ok": true,
+      "label": "final preview remains presentation-only 960"
+    },
+    {
+      "ok": true,
+      "label": "next values remain visible in final sheet 960"
+    },
+    {
+      "ok": true,
+      "label": "final action order performs exact upgrade 960"
+    },
+    {
+      "ok": true,
+      "label": "final UI has no script or browser errors"
+    }
+  ],
+  "errors": []
+}

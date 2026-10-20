@@ -1,0 +1,17 @@
+{
+  "normal_build_loaded": true,
+  "qa_bridge_absent": true,
+  "real_taps": 12,
+  "main_tabs_opened": 5,
+  "errors": [],
+  "checks": [
+    {
+      "ok": true,
+      "label": "normal export has no QA bridge"
+    },
+    {
+      "ok": true,
+      "label": "normal boot and main navigation have no script or browser errors"
+    }
+  ]
+}

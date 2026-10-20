@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "focused raid has real authenticated browser account"
+    },
+    {
+      "ok": true,
+      "label": "browser raid touch reaches server during automatic polling"
+    },
+    {
+      "ok": true,
+      "label": "first browser polls shared boss HP"
+    },
+    {
+      "ok": true,
+      "label": "raid displays both real contributors"
+    }
+  ],
+  "errors": [],
+  "error": "Error: Missing button: Öffnen"
+}

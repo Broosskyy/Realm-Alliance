@@ -1,0 +1,600 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "height": 88,
+      "name": "Action_mail",
+      "text": "",
+      "width": 88,
+      "x": 526,
+      "y": 6
+    },
+    {
+      "disabled": false,
+      "height": 88,
+      "name": "Action_settings",
+      "text": "",
+      "width": 88,
+      "x": 622,
+      "y": 6
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "Action_Kampf",
+      "text": "",
+      "width": 136,
+      "x": 4,
+      "y": 1452
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "Action_Abenteuer",
+      "text": "",
+      "width": 136,
+      "x": 148,
+      "y": 1452
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "Action_Wesen",
+      "text": "",
+      "width": 136,
+      "x": 292,
+      "y": 1452
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "Action_Beute",
+      "text": "",
+      "width": 136,
+      "x": 436,
+      "y": 1452
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "Action_Mehr",
+      "text": "",
+      "width": 136,
+      "x": 580,
+      "y": 1452
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@337",
+      "text": "Shop / Schmiede",
+      "width": 332,
+      "x": 366,
+      "y": 166
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@339",
+      "text": "Alles",
+      "width": 127,
+      "x": 22,
+      "y": 282
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@340",
+      "text": "Waffen",
+      "width": 128,
+      "x": 157,
+      "y": 282
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@341",
+      "text": "Rüstung",
+      "width": 131,
+      "x": 293,
+      "y": 282
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@342",
+      "text": "Material",
+      "width": 130,
+      "x": 432,
+      "y": 282
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@343",
+      "text": "Besser",
+      "width": 128,
+      "x": 570,
+      "y": 282
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "active": false,
+        "better": true,
+        "icon": "res://assets/equipment/eclipse_plate.png",
+        "id": "eclipse_plate",
+        "kind": "gear",
+        "level": 1,
+        "name": "Eklipsenpanzer",
+        "rarity": "epic"
+      },
+      "name": "@Button@348",
+      "text": "",
+      "width": 162,
+      "x": 22,
+      "y": 514
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "better": false,
+        "count": 20,
+        "icon": "res://assets/work706/items/harvest_token.tres",
+        "id": "harvest_token",
+        "kind": "material",
+        "name": "Erntezeichen",
+        "rarity": "epic"
+      },
+      "name": "@Button@349",
+      "text": "",
+      "width": 162,
+      "x": 194,
+      "y": 514
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "better": false,
+        "count": 6,
+        "icon": "res://assets/work706/items/ember_core.tres",
+        "id": "ember_core",
+        "kind": "material",
+        "name": "Glutkern",
+        "rarity": "rare"
+      },
+      "name": "@Button@350",
+      "text": "",
+      "width": 161,
+      "x": 366,
+      "y": 514
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "active": true,
+        "better": false,
+        "icon": "res://assets/equipment/sky_wings.png",
+        "id": "sky_wings",
+        "kind": "gear",
+        "level": 1,
+        "name": "Himmelsflügel",
+        "rarity": "epic"
+      },
+      "name": "@Button@351",
+      "text": "",
+      "width": 161,
+      "x": 537,
+      "y": 514
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "better": false,
+        "count": 9998,
+        "icon": "res://assets/work706/items/sky_shard.tres",
+        "id": "sky_shard",
+        "kind": "material",
+        "name": "Himmelssplitter",
+        "rarity": "common"
+      },
+      "name": "@Button@352",
+      "text": "",
+      "width": 162,
+      "x": 22,
+      "y": 706
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "better": false,
+        "count": 40,
+        "icon": "res://assets/work706/items/forge_dust.tres",
+        "id": "forge_dust",
+        "kind": "material",
+        "name": "Runenstaub",
+        "rarity": "uncommon"
+      },
+      "name": "@Button@353",
+      "text": "",
+      "width": 162,
+      "x": 194,
+      "y": 706
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "active": true,
+        "better": false,
+        "icon": "res://assets/equipment/astral_plate.png",
+        "id": "astral_plate",
+        "kind": "gear",
+        "level": 1,
+        "name": "Sternenpanzer",
+        "rarity": "rare"
+      },
+      "name": "@Button@354",
+      "text": "",
+      "width": 161,
+      "x": 366,
+      "y": 706
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "active": true,
+        "better": false,
+        "icon": "res://assets/equipment/sentinel_circlet.png",
+        "id": "sentinel_circlet",
+        "kind": "gear",
+        "level": 1,
+        "name": "Wächterdiadem",
+        "rarity": "rare"
+      },
+      "name": "@Button@355",
+      "text": "",
+      "width": 161,
+      "x": 537,
+      "y": 706
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "active": true,
+        "better": false,
+        "icon": "res://assets/production/weapons/steel.png",
+        "id": "steel",
+        "kind": "weapon",
+        "level": 1,
+        "name": "Wächterstahl",
+        "rarity": "common"
+      },
+      "name": "@Button@356",
+      "text": "",
+      "width": 162,
+      "x": 22,
+      "y": 898
+    },
+    {
+      "disabled": false,
+      "height": 182,
+      "item": {
+        "better": false,
+        "count": 1,
+        "icon": "res://assets/work706/items/boss_chest.tres",
+        "id": "boss_chest",
+        "kind": "chest",
+        "name": "Wächtertruhe",
+        "rarity": "epic"
+      },
+      "name": "@Button@357",
+      "text": "",
+      "width": 162,
+      "x": 194,
+      "y": 898
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@347",
+      "text": "Sortieren: Name",
+      "width": 336,
+      "x": 362,
+      "y": 1096
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "@Button@358",
+      "text": "Ausrüstung öffnen",
+      "width": 676,
+      "x": 22,
+      "y": 1212
+    },
+    {
+      "disabled": false,
+      "height": 100,
+      "name": "SheetBack",
+      "text": "<",
+      "width": 104,
+      "x": 32,
+      "y": 551
+    }
+  ],
+  "collection_category": "Helden",
+  "collection_detail": "realmwachter",
+  "community_tab": "",
+  "enemy_hp": 85,
+  "fields": [
+    {
+      "focused": false,
+      "height": 100,
+      "name": "InventorySearch",
+      "secret": false,
+      "text": "",
+      "width": 676,
+      "x": 22,
+      "y": 398
+    }
+  ],
+  "online": {
+    "busy": false,
+    "connected": false,
+    "message": "Nicht verbunden · lokales Abenteuer bleibt spielbar",
+    "result": {},
+    "state": {}
+  },
+  "preview": {
+    "busy": false,
+    "kind": "hero",
+    "pose": "idle"
+  },
+  "profile": {
+    "activities": {
+      "best_seconds": {},
+      "clears": {},
+      "receipts": {},
+      "schema": 1
+    },
+    "aura": false,
+    "best_wave": 1,
+    "bestiary": {
+      "claimed": {},
+      "kills": {},
+      "schema": 1
+    },
+    "chests": {
+      "opened": {},
+      "schema": 1,
+      "sealed": [
+        "review706-chest"
+      ]
+    },
+    "claims": {},
+    "combat_mastery": {
+      "auto_enabled": false,
+      "auto_skills": [],
+      "mode": 1,
+      "schema": 1
+    },
+    "companions": {
+      "active": "",
+      "owned": {
+        "skyfox": {
+          "evolution": 0,
+          "source": "qa_sandbox",
+          "xp": 0
+        },
+        "sunbird": {
+          "evolution": 0,
+          "source": "qa_sandbox",
+          "xp": 0
+        }
+      },
+      "schema": 1
+    },
+    "economy": {
+      "enchants": {},
+      "materials": {
+        "ember_core": 6,
+        "forge_dust": 40,
+        "harvest_token": 20
+      },
+      "receipts": {},
+      "schema": 1,
+      "serial": 0
+    },
+    "equipped": "steel",
+    "event_progress": {
+      "packs": {},
+      "schema": 1
+    },
+    "gold": 99430,
+    "hero_equipment": {
+      "cosmetics": {},
+      "equipped": {
+        "accessory": "",
+        "back": "",
+        "chest": "astral_plate",
+        "head": "sentinel_circlet",
+        "shoulder": "",
+        "wings": "sky_wings"
+      },
+      "owned": {
+        "astral_plate": {
+          "id": "astral_plate",
+          "level": 1,
+          "source": "local_forge_v1"
+        },
+        "eclipse_plate": {
+          "id": "eclipse_plate",
+          "level": 1,
+          "source": "local_forge_v1"
+        },
+        "sentinel_circlet": {
+          "id": "sentinel_circlet",
+          "level": 1,
+          "source": "local_forge_v1"
+        },
+        "sky_wings": {
+          "id": "sky_wings",
+          "level": 1,
+          "source": "local_forge_v1"
+        }
+      },
+      "schema": 1
+    },
+    "hero_evolution": {
+      "active": "base",
+      "schema": 1,
+      "unlocked": [
+        "base"
+      ]
+    },
+    "hero_mastery": {
+      "heroes": {
+        "realmwachter": {
+          "rank": 1
+        }
+      },
+      "schema": 1
+    },
+    "hero_roster": {
+      "active": "realmwachter",
+      "independent_xp": true,
+      "owned": {
+        "realmwachter": {
+          "source": "legacy_guardian",
+          "xp": 101000
+        },
+        "runenpaladin": {
+          "source": "local_roster_v1",
+          "xp": 100000
+        },
+        "schattenjager": {
+          "source": "local_roster_v1",
+          "xp": 100000
+        }
+      },
+      "schema": 1
+    },
+    "inventory": {
+      "steel": {
+        "id": "steel",
+        "level": 1,
+        "rarity": "common"
+      }
+    },
+    "journey": {
+      "claimed": {},
+      "daily_kills": 0,
+      "day": 20746,
+      "last_seen": 1792454400,
+      "metrics": {
+        "boss_trials": 0,
+        "crafts": 0,
+        "dungeons": 0
+      },
+      "schema": 1,
+      "specialization": "",
+      "title": "",
+      "week": 2964,
+      "weekly_bosses": 0
+    },
+    "kills": 0,
+    "legacy_snapshot": {},
+    "look": "canonical",
+    "loot": [],
+    "quests": {
+      "claimed": {},
+      "counters": {
+        "bosses": 0,
+        "skills": 0,
+        "upgrades": 0
+      },
+      "schema": 1
+    },
+    "run_serial": 6,
+    "shards": 9998,
+    "skill_progress": {
+      "levels": {},
+      "schema": 1,
+      "talents": {
+        "might": 0,
+        "vitality": 0
+      }
+    },
+    "titles": {
+      "active": "wanderer",
+      "schema": 1
+    },
+    "world_progress": {
+      "schema": 1,
+      "stars": {
+        "glutkern:0": 3,
+        "glutkern:1": 3,
+        "glutkern:2": 3,
+        "glutkern:3": 3,
+        "glutkern:4": 3,
+        "wolkgarten:0": 3,
+        "wolkgarten:1": 3,
+        "wolkgarten:2": 3,
+        "wolkgarten:3": 3,
+        "wolkgarten:4": 3
+      }
+    },
+    "xp": 1980
+  },
+  "run_id": "run-6",
+  "scrolls": [
+    {
+      "height": 1272,
+      "max": 1146,
+      "name": "RPGPages",
+      "offset": 0,
+      "page": 1146,
+      "width": 676,
+      "x": 22,
+      "y": 166
+    },
+    {
+      "height": 241,
+      "max": 90,
+      "name": "ModalScroll",
+      "offset": 0,
+      "page": 90,
+      "width": 656,
+      "x": 32,
+      "y": 667
+    }
+  ],
+  "tab": "Beute",
+  "viewport": [
+    720,
+    1558
+  ],
+  "window_labels": [
+    "Eine echte Bossbelohnung. Enthält Gold, Splitter und ein Ausrüstungsteil; ein Duplikat ergibt zusätzliche Splitter.",
+    "Wächtertruhe",
+    "",
+    "Eine echte Bossbelohnung. Enthält Gold, Splitter und ein Ausrüstungsteil; ein Duplikat ergibt zusätzliche Splitter."
+  ],
+  "windows": [
+    {
+      "height": 487,
+      "title": "Wächtertruhe",
+      "width": 688,
+      "x": 16,
+      "y": 535
+    }
+  ]
+}

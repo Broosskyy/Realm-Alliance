@@ -1,0 +1,7 @@
+{
+  "origin": "built-in image generation",
+  "asset": "ruins_courtyard.webp",
+  "source": "exec-9e656f47-794f-490b-b766-4e8f8eeaaece.png",
+  "prompt": "Painterly western fantasy ruined courtyard at blue hour, mossy stone columns framing the scene, distant ruined arches and fir trees, navy/sapphire shadows with warm gold light. Empty central circular stone pedestal, top surface at 85 percent image height, slight elevated front camera. No characters, creatures, weapons, UI, text, logos or watermark; not anime. Standalone 4:3 scenery plate.",
+  "integration": "Converted to RGB WebP quality 90; used by collection_page.gd. No hero art replaced."
+}

@@ -1,0 +1,21 @@
+{
+  "origin": "built-in image generation",
+  "prompt": "Use case: stylized-concept. Asset type: REALM ALLIANCE RPG inventory item atlas. Make exactly SIX separate western fantasy painted item illustrations on a genuinely transparent background, arranged in a strict 3 columns by 2 rows equal cell grid, landscape 1536x1024. Each isolated object centered in its own cell with at least 20 percent empty margin to all cell edges, no overlaps, no ground plane, no frames, no labels, no letters. Top row left: a tiny dark leather pouch spilled with sparkling turquoise and silver rune dust. Top row middle: a chunky faceted volcanic ember core with black stone crust and glowing orange molten cracks. Top row right: a round copper harvest token with an embossed pumpkin emblem and a small purple ribbon. Bottom row left: a brilliant cyan faceted floating sky crystal shard. Bottom row middle: an ornate closed dark navy wooden guardian treasure chest with polished brass gold trim, large central blue gem clasp. Bottom row right: an antique gold monster mastery medallion with a stylized beast paw relief and sapphire center. Detailed painterly mobile game inventory art, clean readable silhouettes, restrained glow fully contained inside each cell, consistent soft top-left lighting, blue/gold fantasy palette. No anime, no people, no UI, no watermark. All six equally prominent, complete objects unclipped. Transparent background.",
+  "atlas": "item_atlas.png",
+  "grid": {
+    "columns": 3,
+    "rows": 2,
+    "cell_width": 512,
+    "cell_height": 512
+  },
+  "transparent": true,
+  "items": [
+    "forge_dust",
+    "ember_core",
+    "harvest_token",
+    "sky_shard",
+    "boss_chest",
+    "mastery_medallion"
+  ],
+  "integration": "Original PNG preserved. Separate AtlasTexture resources select each cell; no Python background editing or changes to hero/weapon art."
+}

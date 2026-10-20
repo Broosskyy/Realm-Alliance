@@ -1,0 +1,33 @@
+{
+  "revision": "0.6.1",
+  "generation": "Built-in image_gen: transparent 2x2 fantasy skill orb sheet; four equal tiles sliced with alpha retained, resized into 280px runtime canvases.",
+  "prompt": "Four circular skill icons, 2x2 on transparent alpha with separate gutters. Cyan sword-slash comet, purple arcane eye, orange flame face, silver locked navy orb. Match the approved REALM ALLIANCE combat mockup. No text, digits, characters or scene.",
+  "vector_icons": "20 original deterministic SVG glyphs. Regenerate with tools/build_ui_icons.py.",
+  "fonts": "Subset DejaVu Sans and DejaVu Sans Bold; see fonts/LICENSE.txt.",
+  "files": {
+    "arrow.svg": "5143218b59b2c4cbbdc2d9994bdd3246328981167abf424c5a142fba657c053a",
+    "chest.svg": "60c78401896b255da2315f02f8b34faead169352d5c02b294fb5f63d0c877ae3",
+    "crown.svg": "bb4f7efac2429ee7ef1cbe52936d18ee40697e15f6489699e244793ba26791b1",
+    "eye.svg": "9d3f4657a30f1216a0b002ae5cf52c6e051d86f15b74197c99cfdd98726d98dd",
+    "flame.svg": "ed21d1fd188b5ca5fa36860ba83da20af7e20b419f0f2b16becce0cf01aea73b",
+    "gear.svg": "dec1c5b224e3607530a2321ee4c80391cc0ae62a22420170280b4056dedfea1a",
+    "gem.svg": "0334609f7282a48a4c3641896cce04d5f57822f55074e258eb0f0b0074a6c4f7",
+    "gold.svg": "ec804200387a3ae435c5a8f6d1aab800d0a63c1d3f2b8fffa449a451a6012b03",
+    "grid.svg": "a3a815ff0044d01cdc92821437b832f7c5bdf8f7d45370cee9a89d5b40399e33",
+    "heart.svg": "cebb75ab6750db7104c4b5bef7e36fbccefc2d8fb4065188532e7f84e9c2b4c6",
+    "lock.svg": "113f7a29b4c128dd19ca5683a6e31a7ea56d175f7da4e0ad0e4ba404bc91214b",
+    "mail.svg": "c681d6af2198f82abe3b45500f53a5c5bbc708a95847bd80d795ae36b28d87d4",
+    "map.svg": "65e97d3bc23bb831480e6650961d6801dde53672c9643381a564564457d6e1cc",
+    "mountain.svg": "ebc3e74d17aae60fcbb2fcfc88a44be897cd2830601592f657df839b4662cf01",
+    "paw.svg": "73fc2cbc09131f85b2de094c0c632d4b12bbe24e3c46a2bbfaa8e7695f58ea04",
+    "rock.svg": "38a3f72e0c3eb5674ca895776706b512bf0e74cc7fbc23517764875dd50da948",
+    "shard.svg": "34cdbf909fc95855da94d3dbd5882d17a2f23292eadbcf36e042df129277c682",
+    "shield.svg": "e341040011b2524042f0e90f92692e36f95bb5a1fc504fb8d7c785b41de697c0",
+    "skill_eye.png": "c2d429d6ea4276421fc247e12a341a0e7dc74d3cdb428777785424892d2e9e76",
+    "skill_locked.png": "8f5fa110875ca7cb1b201de1e7dc3a9b54b7616f19f85617fdcffb9f87e53d62",
+    "skill_rage.png": "446f3f7f6218ab944b70d02d243967f4098245ff0297b1c5605f5d4dc46ebc6b",
+    "skill_slash.png": "1b744923a91ceadaf53d6218490fcfefea95a385b44784fa156ee740fc5a4b93",
+    "star.svg": "468dfb8de256a65083d2968ec6e705f50079130b2ba02222d6e187c74b54bf43",
+    "swords.svg": "8be89b4edbaef9bcd39ae047b717b84e5475f3cfa49252f3d28687c4cef45ebd"
+  }
+}

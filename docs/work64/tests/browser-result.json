@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "perf": {
+    "frames": 237,
+    "seconds": 10.02900000000028,
+    "median_ms": 33.400000000001455,
+    "p95_ms": 66.69999999999982
+  },
+  "environment": "Post-run rAF, reduced effects, hosted Linux SwiftShader; not active-combat or Android-device telemetry",
+  "browser_version": "155.0.8059.84"
+}

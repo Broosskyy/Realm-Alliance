@@ -1,3 +1,5 @@
+> Aktuelle ausgelieferte Fassung: **Godot-Testversion 709**. Einstieg: [START_HERE.md](START_HERE.md), Änderungen und Grenzen: [README_MOCKUP_709.md](README_MOCKUP_709.md). Der folgende Web-First-Text beschreibt die erhaltene ältere React-Vorlage.
+
 # REALM ALLIANCE V2 — Web First
 
 Technical restart for REALM ALLIANCE with a browser-first, mobile-first runtime.

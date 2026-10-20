@@ -1,0 +1,7 @@
+{
+  "signature_passed": true,
+  "alignment_16k_passed": true,
+  "signature": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): true\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: CN=REALM Public Preview Debug, O=REALM ALLIANCE, C=DE\nSigner #1 certificate SHA-256 digest: 317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219\nSigner #1 certificate SHA-1 digest: e4fcc80d5dec77e871c9db1646752cccce3acbd6\nSigner #1 certificate MD5 digest: 52be3c1da6af85ee262c3eb9a52f6d6a\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: 918a1de4646c60b979f076254b9dca6f11ed5d22100e8e4d1c91adbb1db176c4\nSigner #1 public key SHA-1 digest: 3f81a04197dad52948c02d0e10a5ea08693aa4c5\nSigner #1 public key MD5 digest: c33b9d09bf674308f46da5fa87e14c05\n",
+  "package": "package: name='com.avenor.realmalliance.mockuptest' versionCode='707' versionName='0.7.0-mockup.7-preview' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+  "sha256": "328567e945786afb68407cf0d53a7cd5d809890e2e1389112b7c3be0fe47f260"
+}

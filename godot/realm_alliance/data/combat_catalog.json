@@ -1,0 +1,23 @@
+{
+ "schema_version":2,
+ "skills":[
+  {"id":"sky_blade","name":"Himmelsklinge","cooldown":5.5,"cost_type":"none","cost":0,"multiplier":2.8,"windup":0.28,"recovery":0.38,"unlock_level":1,"effect":"direct","vfx":"sky"},
+  {"id":"arcane_eye","name":"Arkanblick","cooldown":8.0,"cost_type":"momentum","cost":25,"multiplier":0.7,"windup":0.24,"recovery":0.30,"unlock_level":1,"effect":"mark","duration":5.0,"amplify":1.35,"vfx":"arcane"},
+  {"id":"rage_flame","name":"Zornesflamme","cooldown":12.0,"cost_type":"rage","cost":40,"multiplier":2.5,"windup":0.42,"recovery":0.35,"unlock_level":1,"effect":"burn","duration":4.0,"tick_interval":1.0,"tick_multiplier":0.4,"vfx":"fire"},
+  {"id":"guardian_wall","name":"Wächterwall","cooldown":9.0,"cost_type":"momentum","cost":20,"multiplier":0.0,"windup":0.0,"recovery":0.15,"unlock_level":2,"effect":"shield","duration":4.0,"absorb_fraction":0.35,"counter_multiplier":1.5,"vfx":"shield"}
+ ],
+ "weapons":[
+  {"id":"steel","name":"Wächterstahl","rarity":"common","base_damage":15,"trait":"guard","description":"Ein Angriff gibt 3 Schildpunkte.","asset":"steel"},
+  {"id":"crystal","name":"Himmelskristall","rarity":"rare","base_damage":23,"trait":"critical","description":"Jeder vierte direkte Angriff ist kritisch.","asset":"crystal"},
+  {"id":"ember","name":"Glutklinge","rarity":"rare","base_damage":33,"trait":"burn","description":"Waffenangriffe entzünden den Gegner.","asset":"ember"},
+  {"id":"rune_gold","name":"Goldrune","rarity":"epic","base_damage":28,"trait":"momentum","description":"+5 Momentum pro Angriff, +20% Gold.","asset":"rune_gold"},
+  {"id":"shadow_violet","name":"Nachtschatten","rarity":"epic","base_damage":30,"trait":"lifesteal","description":"Heilt 12% des direkten Angriffsschadens.","asset":"shadow_violet"}
+ ],
+ "encounters":[
+  {"id":"cloud_slime","name":"Wolkenschleim","kind":"normal","visual":"slime","hp":85,"damage":8,"interval":4.3,"windup":0.85,"pattern":"single","xp":24,"gold":17,"drop":""},
+  {"id":"stone_sentry","name":"Steinwächter","kind":"normal","visual":"stone_sentry","hp":110,"damage":10,"interval":4.0,"windup":0.95,"pattern":"single","xp":30,"gold":22,"drop":"crystal"},
+  {"id":"runic_elite","name":"Runengolem","kind":"elite","visual":"golem","hp":165,"damage":12,"interval":3.7,"windup":0.85,"pattern":"double","xp":48,"gold":35,"drop":"ember"},
+  {"id":"elder_slime","name":"Wolkenschleim","kind":"normal","visual":"slime","hp":135,"damage":10,"interval":3.8,"windup":0.8,"pattern":"single","xp":32,"gold":27,"drop":"rune_gold"},
+  {"id":"garden_colossus","name":"Gartenkoloss","kind":"boss","visual":"golem","hp":330,"damage":19,"interval":3.5,"windup":1.2,"pattern":"heavy","xp":100,"gold":90,"drop":"shadow_violet"}
+ ]
+}

@@ -1,0 +1,151 @@
+{
+  "suites": [
+    {
+      "suite": "test_admin_qa.gd",
+      "passed": true,
+      "summary": "Admin QA: 18/18 checks"
+    },
+    {
+      "suite": "test_art_preview.gd",
+      "passed": true,
+      "summary": "Shared art preview: 46/46 checks passed."
+    },
+    {
+      "suite": "test_combat.gd",
+      "passed": true,
+      "summary": "Combat model: 20/20 checks passed."
+    },
+    {
+      "suite": "test_combat_input64.gd",
+      "passed": true,
+      "summary": "Combat input 6.4: 20/20 checks"
+    },
+    {
+      "suite": "test_combat_ui.gd",
+      "passed": true,
+      "summary": "Combat UI 6.2: 67/67 checks"
+    },
+    {
+      "suite": "test_event69.gd",
+      "passed": true,
+      "summary": "Event/Progression 6.9\u20137.0: 63/63 checks"
+    },
+    {
+      "suite": "test_hero_equipment64.gd",
+      "passed": true,
+      "summary": "Hero equipment 6.4: 23/23 checks"
+    },
+    {
+      "suite": "test_hero_extensions64.gd",
+      "passed": true,
+      "summary": "Hero extensions 6.4: 109/109 checks"
+    },
+    {
+      "suite": "test_hero_visual64.gd",
+      "passed": true,
+      "summary": "Hero visual 6.4: 61/61 checks"
+    },
+    {
+      "suite": "test_layout.gd",
+      "passed": true,
+      "summary": "Combat layout: 32/32 checks."
+    },
+    {
+      "suite": "test_polish702.gd",
+      "passed": true,
+      "summary": "Polish 7.0.2: 43/43 checks"
+    },
+    {
+      "suite": "test_presentation621.gd",
+      "passed": true,
+      "summary": "Presentation 6.2.1: 100/100 checks"
+    },
+    {
+      "suite": "test_production_art.gd",
+      "passed": true,
+      "summary": "Production art: 22/22 checks"
+    },
+    {
+      "suite": "test_roster67.gd",
+      "passed": true,
+      "summary": "Roster/Pets 6.7: 84/84 checks"
+    },
+    {
+      "suite": "test_rpg65.gd",
+      "passed": true,
+      "summary": "RPG 6.5: 87/87 checks"
+    },
+    {
+      "suite": "test_rpg70.gd",
+      "passed": true,
+      "summary": "RPG 6.8\u20137.0: 59/59 checks"
+    },
+    {
+      "suite": "test_rpg_ui65.gd",
+      "passed": true,
+      "summary": "RPG UI 6.5: 125/125 checks"
+    },
+    {
+      "suite": "test_save62.gd",
+      "passed": true,
+      "summary": "Save 6.2: 26/26 checks"
+    },
+    {
+      "suite": "test_scroll70.gd",
+      "passed": true,
+      "summary": "Scroll UI 7.0: 101/101 checks"
+    },
+    {
+      "suite": "test_systems62.gd",
+      "passed": true,
+      "summary": "Systems 6.2: 63/63 checks"
+    },
+    {
+      "suite": "test_tap66.gd",
+      "passed": true,
+      "summary": "Tap Combat 6.6: 147/147 checks"
+    },
+    {
+      "suite": "test_touch702.gd",
+      "passed": true,
+      "summary": "Touch 7.0.2: 6/6 checks"
+    },
+    {
+      "suite": "test_ui63.gd",
+      "passed": true,
+      "summary": "UI 6.3: 49/49 checks"
+    },
+    {
+      "suite": "test_ui651.gd",
+      "passed": true,
+      "summary": "Master UI 6.5.1: 28/28 checks"
+    },
+    {
+      "suite": "test_visual_contract.gd",
+      "passed": true,
+      "summary": "Visual contract: 11/11 checks."
+    },
+    {
+      "suite": "test_weapon_track.gd",
+      "passed": true,
+      "summary": "Continuous weapon track: 93/93 checks"
+    }
+  ],
+  "total": 1503,
+  "weapon_regression": {
+    "before_passed": 10,
+    "after_passed": 93,
+    "checks": 93
+  },
+  "browser": {
+    "errors": [],
+    "viewport": [
+      360,
+      780
+    ],
+    "capture": "actual Godot runtime via excluded deterministic animation adapter",
+    "frames": 48
+  },
+  "physical_android_tested": false,
+  "apk_created": false
+}

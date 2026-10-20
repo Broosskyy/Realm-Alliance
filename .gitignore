@@ -1,0 +1,13 @@
+# Godot import cache and reconstructed canonical art (the committed ZIP is canonical)
+**/.godot/
+**/*.import
+/build/
+/node_modules/
+/dist/
+**/*.keystore
+**/*.jks
+**/.env
+**/.env.*
+**/*.pem
+**/*.p12
+**/*.pfx

@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "perf": {
+    "frames": 158,
+    "seconds": 10.014600000000046,
+    "median_ms": 66.60000000000218,
+    "p95_ms": 116.59999999999854
+  },
+  "browser_version": "155.0.8059.84",
+  "outcome": "breathe",
+  "simulation_clock": 10.4333333333334,
+  "kills": 12,
+  "cooldowns": {
+    "arcane_eye": 10.7166666666667,
+    "rage_flame": 20.8,
+    "sky_blade": 12.05
+  },
+  "environment": "Hosted Linux SwiftShader; 720x1560; actual earned equipment, skill rank 2, full effects, AUTO basics and manual skill requests. Browser rAF telemetry, not physical Android or certified Godot render FPS."
+}

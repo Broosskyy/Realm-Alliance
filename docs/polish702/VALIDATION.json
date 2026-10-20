@@ -1,0 +1,293 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "suites": [
+    {
+      "suite": "test_admin_qa.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Admin QA: 18/18 checks"
+    },
+    {
+      "suite": "test_art_preview.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Shared art preview: 46/46 checks passed."
+    },
+    {
+      "suite": "test_combat.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Combat model: 20/20 checks passed."
+    },
+    {
+      "suite": "test_combat_input64.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Combat input 6.4: 20/20 checks"
+    },
+    {
+      "suite": "test_combat_ui.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Combat UI 6.2: 67/67 checks"
+    },
+    {
+      "suite": "test_event69.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Event/Progression 6.9\u20137.0: 63/63 checks"
+    },
+    {
+      "suite": "test_hero_equipment64.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Hero equipment 6.4: 23/23 checks"
+    },
+    {
+      "suite": "test_hero_extensions64.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Hero extensions 6.4: 109/109 checks"
+    },
+    {
+      "suite": "test_hero_visual64.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Hero visual 6.4: 61/61 checks"
+    },
+    {
+      "suite": "test_layout.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Combat layout: 32/32 checks."
+    },
+    {
+      "suite": "test_polish702.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Polish 7.0.2: 43/43 checks"
+    },
+    {
+      "suite": "test_presentation621.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Presentation 6.2.1: 100/100 checks"
+    },
+    {
+      "suite": "test_production_art.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Production art: 22/22 checks"
+    },
+    {
+      "suite": "test_roster67.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Roster/Pets 6.7: 84/84 checks"
+    },
+    {
+      "suite": "test_rpg65.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "RPG 6.5: 87/87 checks"
+    },
+    {
+      "suite": "test_rpg70.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "RPG 6.8\u20137.0: 59/59 checks"
+    },
+    {
+      "suite": "test_rpg_ui65.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "RPG UI 6.5: 125/125 checks"
+    },
+    {
+      "suite": "test_save62.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Save 6.2: 26/26 checks"
+    },
+    {
+      "suite": "test_scroll70.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Scroll UI 7.0: 101/101 checks"
+    },
+    {
+      "suite": "test_systems62.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Systems 6.2: 63/63 checks"
+    },
+    {
+      "suite": "test_tap66.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Tap Combat 6.6: 147/147 checks"
+    },
+    {
+      "suite": "test_touch702.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Touch 7.0.2: 6/6 checks"
+    },
+    {
+      "suite": "test_ui63.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "UI 6.3: 49/49 checks"
+    },
+    {
+      "suite": "test_ui651.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Master UI 6.5.1: 28/28 checks"
+    },
+    {
+      "suite": "test_visual_contract.gd",
+      "passed": true,
+      "exit_code": 0,
+      "summary": "Visual contract: 11/11 checks."
+    }
+  ],
+  "total_checks": 1410,
+  "all_passed": true,
+  "mobile_browser": {
+    "viewport": [
+      360,
+      640
+    ],
+    "isMobile": true,
+    "hasTouch": true,
+    "input": "CDP Input.dispatchTouchEvent; touchStart/move/end",
+    "fixture": "isolated test-only adapter with earned-state fixtures; excluded from player exports",
+    "scenarios": [
+      {
+        "scenario": "page Wesen",
+        "overflow": 198,
+        "before": 0,
+        "after": 198,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "page Mehr",
+        "overflow": 198,
+        "before": 0,
+        "after": 198,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "page Abenteuer",
+        "overflow": 312,
+        "before": 0,
+        "after": 312,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "page Beute",
+        "overflow": 0,
+        "before": 0,
+        "after": 0,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window roster",
+        "overflow": 594,
+        "before": 0,
+        "after": 434,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window economy",
+        "overflow": 1306,
+        "before": 0,
+        "after": 435,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window activities",
+        "overflow": 1617,
+        "before": 0,
+        "after": 389,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window journey",
+        "overflow": 1945,
+        "before": 0,
+        "after": 428,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window talents",
+        "overflow": 0,
+        "before": 0,
+        "after": 0,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window combat_options",
+        "overflow": 0,
+        "before": 0,
+        "after": 0,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window admin",
+        "overflow": 303,
+        "before": 0,
+        "after": 303,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window quests",
+        "overflow": 0,
+        "before": 0,
+        "after": 0,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      },
+      {
+        "scenario": "window events",
+        "overflow": 0,
+        "before": 0,
+        "after": 0,
+        "profile_unchanged": true,
+        "windows_stationary": true,
+        "passed": true
+      }
+    ],
+    "script_errors": []
+  },
+  "additional_viewport": [
+    360,
+    780
+  ],
+  "physical_android_device_tested": false,
+  "target_device_performance_measured": false
+}

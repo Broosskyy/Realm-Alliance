@@ -1,0 +1,46 @@
+{
+  "build": 707,
+  "created": "2026-10-20",
+  "impact": {
+    "prompt": "Production sprite sheet for a premium painted 2D fantasy mobile RPG: exactly FOUR consecutive frames of ONE blue silver magical blade impact, arranged in one straight horizontal row in FOUR equal square cells on a transparent background. Wide 4:1 composition. All impact centers at the exact center of each cell, same scale, generous transparent margins, no overlap between cells. Frame1 compact sharp white-blue four-point impact spark. Frame2 the spark blooms into a dramatic crescent slash with a few silver shards and blue sparks. Frame3 the slash disperses into smaller translucent blue silver particles. Frame4 a sparse few tiny blue embers fading away, much less visible. Rich cobalt blue, ice blue and pale silver, delicate gold accent only. Crisp authored painted game VFX, clear silhouette at 100pixels, restrained bloom, no hard circular rings, no background, no ground, no text, no labels, no numbers, no weapons, no characters. Every frame is a short instant in the same dissipating impact animation, not four icons.",
+    "source": "godot/realm_alliance/assets/work707/vfx/blade_impact.png",
+    "size": [
+      2048,
+      681
+    ],
+    "cells": [
+      [
+        0,
+        84,
+        512,
+        512
+      ],
+      [
+        512,
+        84,
+        512,
+        512
+      ],
+      [
+        1024,
+        84,
+        512,
+        512
+      ],
+      [
+        1536,
+        84,
+        512,
+        512
+      ]
+    ],
+    "accepted": true,
+    "normalization": "Fixed equal square atlas regions preserve shared scale and vertical anchor. No per-frame bounding-box rescale."
+  },
+  "body": {
+    "prompt": "Create a production 2D animation sprite strip from the approved reference character. First image is a large transparent edit canvas with FOUR equal horizontal slots; the only existing sprite is approved windup in slot1. Preserve exactly the same white-haired masked guardian identity, black and gold leather armor, royal blue cape, chibi proportions, right-facing direction, high detail painted game sprite. Other references show canonical contact and recovery poses. Fill the four slots with four successive WEAPON-FREE body frames between windup and contact: 1 exact reference windup, 2 shoulder begins forward and fist descends slightly, 3 torso lunges forward with fist halfway between high and forward positions, 4 exact contact reference pose. Fists closed and empty, no sword, no weapon, no text, no border, no scenery, no glow, no duplicates within a slot. All four sprites full body, same size, feet on same baseline, evenly centered within equal slots. Single horizontal strip, transparent background, large empty padding above/below acceptable, do not stack rows.",
+    "source": "production/707/body_candidate_REJECTED.png",
+    "accepted": false,
+    "reason": "Frame2 drops hand into recovery instead of continuing windup-to-contact; frame1 differs from approved windup. Not loaded by game or exported."
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "suites": [
+    {
+      "suite": "test_admin_qa.log",
+      "passed": 18,
+      "total": 18,
+      "script_errors": false
+    },
+    {
+      "suite": "test_art_preview.log",
+      "passed": 46,
+      "total": 46,
+      "script_errors": false
+    },
+    {
+      "suite": "test_combat.log",
+      "passed": 20,
+      "total": 20,
+      "script_errors": false
+    },
+    {
+      "suite": "test_combat_input64.log",
+      "passed": 20,
+      "total": 20,
+      "script_errors": false
+    },
+    {
+      "suite": "test_combat_ui.log",
+      "passed": 67,
+      "total": 67,
+      "script_errors": false
+    },
+    {
+      "suite": "test_event69.log",
+      "passed": 63,
+      "total": 63,
+      "script_errors": false
+    },
+    {
+      "suite": "test_hero_equipment64.log",
+      "passed": 23,
+      "total": 23,
+      "script_errors": false
+    },
+    {
+      "suite": "test_hero_extensions64.log",
+      "passed": 109,
+      "total": 109,
+      "script_errors": false
+    },
+    {
+      "suite": "test_hero_visual64.log",
+      "passed": 57,
+      "total": 57,
+      "script_errors": false
+    },
+    {
+      "suite": "test_layout.log",
+      "passed": 32,
+      "total": 32,
+      "script_errors": false
+    },
+    {
+      "suite": "test_presentation621.log",
+      "passed": 100,
+      "total": 100,
+      "script_errors": false
+    },
+    {
+      "suite": "test_production_art.log",
+      "passed": 22,
+      "total": 22,
+      "script_errors": false
+    },
+    {
+      "suite": "test_roster67.log",
+      "passed": 84,
+      "total": 84,
+      "script_errors": false
+    },
+    {
+      "suite": "test_rpg65.log",
+      "passed": 87,
+      "total": 87,
+      "script_errors": false
+    },
+    {
+      "suite": "test_rpg70.log",
+      "passed": 59,
+      "total": 59,
+      "script_errors": false
+    },
+    {
+      "suite": "test_rpg_ui65.log",
+      "passed": 125,
+      "total": 125,
+      "script_errors": false
+    },
+    {
+      "suite": "test_save62.log",
+      "passed": 26,
+      "total": 26,
+      "script_errors": false
+    },
+    {
+      "suite": "test_scroll70.log",
+      "passed": 101,
+      "total": 101,
+      "script_errors": false
+    },
+    {
+      "suite": "test_systems62.log",
+      "passed": 63,
+      "total": 63,
+      "script_errors": false
+    },
+    {
+      "suite": "test_tap66.log",
+      "passed": 147,
+      "total": 147,
+      "script_errors": false
+    },
+    {
+      "suite": "test_ui63.log",
+      "passed": 49,
+      "total": 49,
+      "script_errors": false
+    },
+    {
+      "suite": "test_ui651.log",
+      "passed": 28,
+      "total": 28,
+      "script_errors": false
+    },
+    {
+      "suite": "test_visual_contract.log",
+      "passed": 11,
+      "total": 11,
+      "script_errors": false
+    }
+  ],
+  "passed": 1357,
+  "total": 1357
+}

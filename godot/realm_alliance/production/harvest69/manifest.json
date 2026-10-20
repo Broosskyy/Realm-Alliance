@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "provenance": "Built-in imagegen 2026-10-18; original alpha preserved, deterministic crop/scale/pivot normalization only.",
+  "sources": {
+    "pumpkin": {
+      "sha256": "c3bd8ea3f089a567fccceda3f850ea1aa514d8ae89bfd703730f919575dc72a1",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha": true
+    },
+    "shadow": {
+      "sha256": "54a497c93d616f5062e08a7141e9976b7938820220e64dea0a937f6fc4418103",
+      "size": [
+        1402,
+        1122
+      ],
+      "alpha": true
+    },
+    "harvest_boss": {
+      "sha256": "9fad905c816b30c61fb836a358eb38d437a2bdd961d8fb363d8763ecf1de9cd8",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha": true
+    },
+    "lanternwisp": {
+      "sha256": "a8fc6f52ed4d0fd4737f3b1b99208a019c92a699f0c486f55c3fa88a6ee95139",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha": true
+    },
+    "harvest_wings": {
+      "sha256": "e3b9f69e5b5d5c557a9a8d8a85103811e48131d11de993e40fc7eceaf0888ead",
+      "size": [
+        1402,
+        1122
+      ],
+      "alpha": true
+    },
+    "harvest_world": {
+      "sha256": "9f110900ba6b941c0860fce3486a60bef463e41c6e42a4a4057558d9f1cacbb4",
+      "size": [
+        1024,
+        1536
+      ],
+      "alpha": false
+    }
+  },
+  "assets": {
+    "assets/events69/harvest_world.webp": {
+      "sha256": "ae613d925069f8d01efe7d7851164120ea793a930cbf52c68c53f42665e9f190"
+    },
+    "assets/events69/shadow/attack.png": {
+      "sha256": "7bddd678a7be38f1516f024d5298d9121a99ed3833417a645a8e49cc1bdc40a9"
+    },
+    "assets/events69/shadow/hit.png": {
+      "sha256": "752291542bac1ba94f5aa6fcabe36370c475d6ac5ff9a0616f643b243f1d376a"
+    },
+    "assets/events69/shadow/defeated.png": {
+      "sha256": "e1b678a8e6add0f7e071b1b9222cd886c95fb1b5437a7a9f8d03361d859ff41f"
+    },
+    "assets/events69/shadow/idle.png": {
+      "sha256": "cbc298f37c19dabeb89bc8721939f130caf002da758060fe27cc05c4c305e894"
+    },
+    "assets/events69/pumpkin/attack.png": {
+      "sha256": "b4a0aa42d153d8b702aaed4a8c43b42fad6638502c734575492406a1e2090d12"
+    },
+    "assets/events69/pumpkin/hit.png": {
+      "sha256": "6b600b3321a70f9fff717b045ac27e3e4c9a607ffca5fc7856ec6477e69cd1d0"
+    },
+    "assets/events69/pumpkin/defeated.png": {
+      "sha256": "94ef5e9cd546216b08288a4c21086f113c0aa93f79622aef6608318cf003f24d"
+    },
+    "assets/events69/pumpkin/idle.png": {
+      "sha256": "fc23a8e3cabcf83502573b9b9e5e859216dcbf47554527a6678cc2060b9c4744"
+    },
+    "assets/events69/harvest_boss/attack.png": {
+      "sha256": "80f221c8c402082164e354e354c73098f338ac73a767947d016aa0490ab2eee3"
+    },
+    "assets/events69/harvest_boss/hit.png": {
+      "sha256": "6bc385a4297203982326e8a97813ebd86463595722c1dd651d854b90977aff90"
+    },
+    "assets/events69/harvest_boss/defeated.png": {
+      "sha256": "26ebafaae72245ea4c87987d6a5fae802ec655e55087f0f7cba42ad38e6eb0f2"
+    },
+    "assets/events69/harvest_boss/idle.png": {
+      "sha256": "a4a8c198865ff663fb03895de7dbc6b721aed97f29fb8eb142e4236201249480"
+    },
+    "assets/roster67/lanternwisp/base_cast.png": {
+      "sha256": "cbcfcb06babada99a691964da75d65c02da07f5ff6ff923b7a115f9cf6c41ebd"
+    },
+    "assets/roster67/lanternwisp/base_idle.png": {
+      "sha256": "16193f857eb8e6b1dc8bc6525021f22f65a8cf4ea38f233cb3bc42eea4c79ffb"
+    },
+    "assets/roster67/lanternwisp/evolved_reward.png": {
+      "sha256": "fd7df8ada8f0a0591fce80250a2b3520192fb8f0cf8d702b9430bc18253ecd0e"
+    },
+    "assets/roster67/lanternwisp/evolved_cast.png": {
+      "sha256": "60d703770c5551e33787a374199db7d2122c69c47af2d302c9a739c04bf12c8b"
+    },
+    "assets/roster67/lanternwisp/base_reward.png": {
+      "sha256": "7a53d15c3c33f3ee289e943cb49c3c23aa042b5790085ff10d8d760a101c0a8d"
+    },
+    "assets/roster67/lanternwisp/evolved_ready.png": {
+      "sha256": "afd3d7a20d785b765d6d68d9addd34af364a79fca1eba9902632da6117ae1c37"
+    },
+    "assets/roster67/lanternwisp/base_ready.png": {
+      "sha256": "c4e2488d9f3c3613c64081603ba4a721d633c4c60362319ba4691faad926b48f"
+    },
+    "assets/roster67/lanternwisp/evolved_idle.png": {
+      "sha256": "b2c9283d04ef971a5aba67d4e746df8f40e8a6d5913914e140144ad0e4ceb493"
+    },
+    "assets/equipment/harvest_wings.png": {
+      "sha256": "b0a2eb8bcaeea29f64ef077854d31874442dbd0cd09128e108642f44d3f84b17"
+    }
+  }
+}

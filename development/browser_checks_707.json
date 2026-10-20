@@ -1,0 +1,374 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "real touch opens monster collection 320x568"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster entry 320x568"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens hero details 320x568"
+    },
+    {
+      "ok": true,
+      "label": "equipped slot opens correct equipment page 320x568"
+    },
+    {
+      "ok": true,
+      "label": "back preserves profile and encounter 320x568"
+    },
+    {
+      "ok": true,
+      "label": "all four skills are reachable by touch scrolling 320x568"
+    },
+    {
+      "ok": true,
+      "label": "actual touch scroll moves skill page 320x568"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Kampf 320x568"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Abenteuer 320x568"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Wesen 320x568"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Beute 320x568"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Mehr 320x568"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch auto 320x568"
+    },
+    {
+      "ok": true,
+      "label": "inventory search exists 320x568"
+    },
+    {
+      "ok": true,
+      "label": "upgrade filter uses actual item comparisons 320x568"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster collection 390x844"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster entry 390x844"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens hero details 390x844"
+    },
+    {
+      "ok": true,
+      "label": "equipped slot opens correct equipment page 390x844"
+    },
+    {
+      "ok": true,
+      "label": "back preserves profile and encounter 390x844"
+    },
+    {
+      "ok": true,
+      "label": "all four skills are reachable by touch scrolling 390x844"
+    },
+    {
+      "ok": true,
+      "label": "actual touch scroll moves skill page 390x844"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Kampf 390x844"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Abenteuer 390x844"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Wesen 390x844"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Beute 390x844"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Mehr 390x844"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch auto 390x844"
+    },
+    {
+      "ok": true,
+      "label": "inventory search exists 390x844"
+    },
+    {
+      "ok": true,
+      "label": "upgrade filter uses actual item comparisons 390x844"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster collection 430x932"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster entry 430x932"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens hero details 430x932"
+    },
+    {
+      "ok": true,
+      "label": "equipped slot opens correct equipment page 430x932"
+    },
+    {
+      "ok": true,
+      "label": "back preserves profile and encounter 430x932"
+    },
+    {
+      "ok": true,
+      "label": "all four skills are reachable by touch scrolling 430x932"
+    },
+    {
+      "ok": true,
+      "label": "actual touch scroll moves skill page 430x932"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Kampf 430x932"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Abenteuer 430x932"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Wesen 430x932"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Beute 430x932"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch Mehr 430x932"
+    },
+    {
+      "ok": true,
+      "label": "target size 44 px touch auto 430x932"
+    },
+    {
+      "ok": true,
+      "label": "inventory search exists 430x932"
+    },
+    {
+      "ok": true,
+      "label": "upgrade filter uses actual item comparisons 430x932"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster collection 960x540"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens monster entry 960x540"
+    },
+    {
+      "ok": true,
+      "label": "real touch opens hero details 960x540"
+    },
+    {
+      "ok": true,
+      "label": "equipped slot opens correct equipment page 960x540"
+    },
+    {
+      "ok": true,
+      "label": "back preserves profile and encounter 960x540"
+    },
+    {
+      "ok": true,
+      "label": "all four skills are reachable by touch scrolling 960x540"
+    },
+    {
+      "ok": true,
+      "label": "actual touch scroll moves skill page 960x540"
+    },
+    {
+      "ok": true,
+      "label": "target size 36 px desktop Kampf 960x540"
+    },
+    {
+      "ok": true,
+      "label": "target size 36 px desktop Abenteuer 960x540"
+    },
+    {
+      "ok": true,
+      "label": "target size 36 px desktop Wesen 960x540"
+    },
+    {
+      "ok": true,
+      "label": "target size 36 px desktop Beute 960x540"
+    },
+    {
+      "ok": true,
+      "label": "target size 36 px desktop Mehr 960x540"
+    },
+    {
+      "ok": true,
+      "label": "target size 36 px desktop auto 960x540"
+    },
+    {
+      "ok": true,
+      "label": "inventory search exists 960x540"
+    },
+    {
+      "ok": true,
+      "label": "upgrade filter uses actual item comparisons 960x540"
+    },
+    {
+      "ok": true,
+      "label": "real touch pays first mastery reward once"
+    },
+    {
+      "ok": true,
+      "label": "paid mastery cannot be reclaimed"
+    },
+    {
+      "ok": true,
+      "label": "search retains keyboard focus while typing"
+    },
+    {
+      "ok": true,
+      "label": "search filters real owned items"
+    },
+    {
+      "ok": true,
+      "label": "hero attack preview starts 320"
+    },
+    {
+      "ok": true,
+      "label": "hero preview preserves real game 320"
+    },
+    {
+      "ok": true,
+      "label": "pet ability visibly animates 320"
+    },
+    {
+      "ok": true,
+      "label": "development form is available as preview 320"
+    },
+    {
+      "ok": true,
+      "label": "pet form preview preserves ownership, currency and encounter 320"
+    },
+    {
+      "ok": true,
+      "label": "return to base preview 320"
+    },
+    {
+      "ok": true,
+      "label": "hero attack preview starts 390"
+    },
+    {
+      "ok": true,
+      "label": "hero preview preserves real game 390"
+    },
+    {
+      "ok": true,
+      "label": "pet ability visibly animates 390"
+    },
+    {
+      "ok": true,
+      "label": "development form is available as preview 390"
+    },
+    {
+      "ok": true,
+      "label": "pet form preview preserves ownership, currency and encounter 390"
+    },
+    {
+      "ok": true,
+      "label": "return to base preview 390"
+    },
+    {
+      "ok": true,
+      "label": "hero attack preview starts 430"
+    },
+    {
+      "ok": true,
+      "label": "hero preview preserves real game 430"
+    },
+    {
+      "ok": true,
+      "label": "pet ability visibly animates 430"
+    },
+    {
+      "ok": true,
+      "label": "development form is available as preview 430"
+    },
+    {
+      "ok": true,
+      "label": "pet form preview preserves ownership, currency and encounter 430"
+    },
+    {
+      "ok": true,
+      "label": "return to base preview 430"
+    },
+    {
+      "ok": true,
+      "label": "hero attack preview starts 960"
+    },
+    {
+      "ok": true,
+      "label": "hero preview preserves real game 960"
+    },
+    {
+      "ok": true,
+      "label": "pet ability visibly animates 960"
+    },
+    {
+      "ok": true,
+      "label": "development form is available as preview 960"
+    },
+    {
+      "ok": true,
+      "label": "pet form preview preserves ownership, currency and encounter 960"
+    },
+    {
+      "ok": true,
+      "label": "return to base preview 960"
+    },
+    {
+      "ok": true,
+      "label": "weapon shows exact next upgrade value"
+    },
+    {
+      "ok": true,
+      "label": "touch upgrade pays exact displayed weapon price"
+    },
+    {
+      "ok": true,
+      "label": "armor shows next HP and DEF"
+    },
+    {
+      "ok": true,
+      "label": "no Godot script errors or browser exceptions"
+    }
+  ],
+  "errors": [],
+  "screenshots": "/tmp/realm707-review"
+}

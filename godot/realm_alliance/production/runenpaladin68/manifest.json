@@ -1,0 +1,248 @@
+{
+  "schema": 1,
+  "provenance": "Built-in imagegen, 2026-10-18; reference: canonical Realmw\u00e4chter idle. Original alpha preserved; cropped and placed on rig canvases.",
+  "source_sha256": "a2751dbf792fced43adcf992bdd5157a8874d544cca2a60af994e0bd2a3bf692",
+  "poses": {
+    "idle": {
+      "crop": [
+        0,
+        0,
+        443,
+        480
+      ],
+      "scale": 0.96,
+      "offset": [
+        142,
+        32
+      ],
+      "hand": [
+        513,
+        360
+      ],
+      "chest": [
+        433,
+        289
+      ],
+      "head": [
+        433,
+        200
+      ],
+      "back": [
+        390,
+        279
+      ],
+      "sha256": "fb1425e0ca13469c118a9a36f9afa1183cf12708da3c261fc9e12e308eae694d"
+    },
+    "ready": {
+      "crop": [
+        443,
+        0,
+        887,
+        480
+      ],
+      "scale": 0.96,
+      "offset": [
+        161,
+        32
+      ],
+      "hand": [
+        539,
+        310
+      ],
+      "chest": [
+        449,
+        293
+      ],
+      "head": [
+        452,
+        226
+      ],
+      "back": [
+        411,
+        282
+      ],
+      "sha256": "9b78626ca264aca8060f5415b15288226c70e94a567ca2e06cc4cc140d81acae"
+    },
+    "windup": {
+      "crop": [
+        887,
+        0,
+        1331,
+        480
+      ],
+      "scale": 0.96,
+      "offset": [
+        175,
+        32
+      ],
+      "hand": [
+        346,
+        152
+      ],
+      "chest": [
+        443,
+        286
+      ],
+      "head": [
+        462,
+        215
+      ],
+      "back": [
+        409,
+        262
+      ],
+      "sha256": "f6a25eb418cd273c59e1e41b7db7b0d973626754f93eb27db7d9d1cb93944cb3"
+    },
+    "attack_contact": {
+      "crop": [
+        1331,
+        0,
+        1774,
+        480
+      ],
+      "scale": 0.96,
+      "offset": [
+        199,
+        32
+      ],
+      "hand": [
+        582,
+        298
+      ],
+      "chest": [
+        487,
+        310
+      ],
+      "head": [
+        517,
+        250
+      ],
+      "back": [
+        452,
+        291
+      ],
+      "sha256": "d15b51b3f4b5e7db85282e88b0447d194ef6da7430f502de214f3e2296650adb"
+    },
+    "recovery": {
+      "crop": [
+        0,
+        480,
+        443,
+        887
+      ],
+      "scale": 1.04,
+      "offset": [
+        134,
+        119
+      ],
+      "hand": [
+        477,
+        454
+      ],
+      "chest": [
+        452,
+        359
+      ],
+      "head": [
+        479,
+        282
+      ],
+      "back": [
+        409,
+        346
+      ],
+      "sha256": "4a08d894892a77ea8155f69e4c555ea7f1d1e419f4c9996c8b164f0d164137d8"
+    },
+    "hit": {
+      "crop": [
+        443,
+        480,
+        887,
+        887
+      ],
+      "scale": 1.04,
+      "offset": [
+        139,
+        119
+      ],
+      "hand": [
+        550,
+        304
+      ],
+      "chest": [
+        428,
+        309
+      ],
+      "head": [
+        394,
+        229
+      ],
+      "back": [
+        381,
+        304
+      ],
+      "sha256": "69002fe7a305495b32b6dec0f8b10354da84451d75f233a061f2df9c171ea340"
+    },
+    "defeated": {
+      "crop": [
+        887,
+        480,
+        1331,
+        887
+      ],
+      "scale": 1.04,
+      "offset": [
+        165,
+        119
+      ],
+      "hand": [
+        472,
+        475
+      ],
+      "chest": [
+        415,
+        436
+      ],
+      "head": [
+        529,
+        439
+      ],
+      "back": [
+        401,
+        421
+      ],
+      "sha256": "19d86453b7cae138325f7be35c5824d657e1362e383fdfc64f88e66cb5aafc20"
+    },
+    "run": {
+      "crop": [
+        1331,
+        480,
+        1774,
+        887
+      ],
+      "scale": 1.04,
+      "offset": [
+        139,
+        124
+      ],
+      "hand": [
+        530,
+        311
+      ],
+      "chest": [
+        442,
+        359
+      ],
+      "head": [
+        465,
+        250
+      ],
+      "back": [
+        400,
+        350
+      ],
+      "sha256": "86230b9bc154f7d47ffa95fc0a2d8c4210a59191e68a45169534948ad5f4c49a"
+    }
+  },
+  "status": "candidate_under_scene_validation"
+}

@@ -1,0 +1,5 @@
+REALM ALLIANCE 709
+ZIP entpacken, Python 3.10+ verwenden, python3 START_WEB.py ausführen und http://127.0.0.1:8765 öffnen.
+Spiel und echter lokaler Realm-Dienst starten gemeinsam. Zwei Browserprofile erlauben zwei getrennte Konten.
+Die normale Spielfassung enthält keinen QA-Adapter. Öffentlicher HTTPS-Realm ist noch nicht bereitgestellt.
+Weitere Serverhinweise: backend/README.md.

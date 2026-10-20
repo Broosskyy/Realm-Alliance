@@ -1,0 +1,5 @@
+{
+  "status": "blocked",
+  "checks_passed": 0,
+  "reason": "Chrome launch aborted: process_singleton_posix.cc socket() failed: Operation not permitted (1). No browser visual or touch checks are claimed."
+}

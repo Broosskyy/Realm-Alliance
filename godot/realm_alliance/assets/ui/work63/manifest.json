@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "source": "OpenAI built-in image generation; no third-party kit. Transparent component atlas; crop and common constrained scale, no UI screenshot slicing.",
+  "source_sha256": "84848a6756e163fab419924496049df1728842aaa9345d1e7c2f8016c24a5973",
+  "assets": [
+    {
+      "id": "panel",
+      "path": "panel.png",
+      "size": [
+        320,
+        157
+      ],
+      "nine_slice_margin": 22,
+      "sha256": "9bb9ba9debfec4a8675c043dc6e38934c22564b2120b3ee3a6294d7b0663960a"
+    },
+    {
+      "id": "boss",
+      "path": "boss.png",
+      "size": [
+        320,
+        160
+      ],
+      "nine_slice_margin": 22,
+      "sha256": "131d84e6cf60e9dfc6b7bc60293a44eee16aba40c3c4acd5682e81a233fc898a"
+    },
+    {
+      "id": "hero",
+      "path": "hero.png",
+      "size": [
+        320,
+        159
+      ],
+      "nine_slice_margin": 22,
+      "sha256": "29b77392f83eccc315b98764e8759534b967ab4307bc442c5e85d3f438299733"
+    },
+    {
+      "id": "primary",
+      "path": "primary.png",
+      "size": [
+        320,
+        104
+      ],
+      "nine_slice_margin": 22,
+      "sha256": "9ab72219f21bbd336d1c60e69ad3f9f30931e5627d97066b2886408e05e3793b"
+    },
+    {
+      "id": "secondary",
+      "path": "secondary.png",
+      "size": [
+        320,
+        101
+      ],
+      "nine_slice_margin": 22,
+      "sha256": "ec2d6efad3517c23a753d025b6fc04312409366e35b27e5d3f1cea788c4de870"
+    },
+    {
+      "id": "slot",
+      "path": "slot.png",
+      "size": [
+        256,
+        186
+      ],
+      "nine_slice_margin": 22,
+      "sha256": "3ef6bdc85c1c202aee71405de612170a053e482803c4a3ad17979fccebd3e677"
+    },
+    {
+      "id": "bar_back",
+      "path": "bar_back.svg",
+      "source": "project-authored SVG extending the existing native UI icon language",
+      "sha256": "ce75afe6cc9eb01b6f3cbebe21b16eafa05ce8a5d50f32f313a62eb2dc5f8aea"
+    },
+    {
+      "id": "bar_fill",
+      "path": "bar_fill.svg",
+      "source": "project-authored SVG extending the existing native UI icon language",
+      "sha256": "587b8b0fdbde5eb2f86410dcfd92aa82d009d46ea2a3e145a2c8c09a429da470"
+    },
+    {
+      "id": "panel_compact",
+      "path": "panel_compact.svg",
+      "nine_slice_margin": 8,
+      "source": "Project-authored compact SVG variant; same navy/cyan/violet/gold palette, reduced border for small information modules.",
+      "sha256": "87d3a796dabd1524760acef5116341894a09e1f4e574a91b576a1fc77b488512"
+    },
+    {
+      "id": "boss_compact",
+      "path": "boss_compact.svg",
+      "nine_slice_margin": 8,
+      "source": "Project-authored compact SVG variant; same navy/cyan/violet/gold palette, reduced border for small information modules.",
+      "sha256": "dbdd118b9d5ee5792935bafdc29e8d79d2915d08d3f9e1dbc1e5512e899f9ee8"
+    },
+    {
+      "id": "hero_compact",
+      "path": "hero_compact.svg",
+      "nine_slice_margin": 8,
+      "source": "Project-authored compact SVG variant; same navy/cyan/violet/gold palette, reduced border for small information modules.",
+      "sha256": "0faf2dfbf2deab3613659c372aa77b488c1f6d7bc311d7e25b8d032e548ebd45"
+    }
+  ]
+}

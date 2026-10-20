@@ -1,0 +1,190 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 320"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 320"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 320"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 320"
+    },
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 390"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 390"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 390"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 390"
+    },
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 430"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 430"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 430"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 430"
+    },
+    {
+      "ok": true,
+      "label": "rank preview is cosmetic only 960"
+    },
+    {
+      "ok": true,
+      "label": "individual training through touch 960"
+    },
+    {
+      "ok": true,
+      "label": "individual ascension through touch 960"
+    },
+    {
+      "ok": true,
+      "label": "community entry has mobile target 960"
+    },
+    {
+      "ok": true,
+      "label": "real UI creates authenticated account"
+    },
+    {
+      "ok": true,
+      "label": "second independent browser session has separate account"
+    },
+    {
+      "ok": true,
+      "label": "UI creates guild with real owner"
+    },
+    {
+      "ok": true,
+      "label": "second browser joins same guild"
+    },
+    {
+      "ok": true,
+      "label": "first browser sees shared membership"
+    },
+    {
+      "ok": true,
+      "label": "second browser damages same boss"
+    },
+    {
+      "ok": true,
+      "label": "first browser polls shared boss HP"
+    },
+    {
+      "ok": true,
+      "label": "raid displays both real contributors"
+    },
+    {
+      "ok": true,
+      "label": "real UI runs server-owned PvP duel"
+    },
+    {
+      "ok": true,
+      "label": "PvP rating comes from server"
+    },
+    {
+      "ok": true,
+      "label": "ranking has real players without demo entries"
+    },
+    {
+      "ok": true,
+      "label": "UI stores versioned private cloud backup"
+    },
+    {
+      "ok": true,
+      "label": "local title collection is visible"
+    },
+    {
+      "ok": true,
+      "label": "no browser exceptions or Godot script errors"
+    },
+    {
+      "ok": true,
+      "label": "focused raid has real authenticated browser account"
+    },
+    {
+      "ok": true,
+      "label": "browser raid touch reaches server during automatic polling"
+    },
+    {
+      "ok": true,
+      "label": "real chest reward opens animated reveal"
+    },
+    {
+      "ok": true,
+      "label": "closing reveal cannot consume another chest"
+    }
+  ],
+  "passed": 34,
+  "normal_web_checks": [
+    {
+      "ok": true,
+      "label": "normal export has no QA bridge"
+    },
+    {
+      "ok": true,
+      "label": "normal boot and main navigation have no script or browser errors"
+    }
+  ],
+  "attempt_history": [
+    {
+      "report": "browser_interface_708.json",
+      "interrupted_after_checks": "Error: Missing button: \u00d6ffnen",
+      "failed_checks": [
+        "community entry has mobile target 960"
+      ]
+    },
+    {
+      "report": "browser_wide_708.json",
+      "interrupted_after_checks": "Error: Missing button: \u00d6ffnen",
+      "failed_checks": []
+    },
+    {
+      "report": "browser_online_708.json",
+      "interrupted_after_checks": null,
+      "failed_checks": [
+        "first browser polls shared boss HP",
+        "raid displays both real contributors"
+      ]
+    },
+    {
+      "report": "browser_focus_708.json",
+      "interrupted_after_checks": "Error: Missing button: \u00d6ffnen",
+      "failed_checks": []
+    },
+    {
+      "report": "browser_chest_708.json",
+      "interrupted_after_checks": null,
+      "failed_checks": []
+    }
+  ],
+  "resolutions": [
+    "960px touch target increased to 108 logical pixels; wide hero preview centered.",
+    "Raid uses stable controls and queues actions during background polling; focused browser confirmed shared HP and both contributors.",
+    "Shared-state polling assertions wait for observed server updates; fixed-delay snapshots were premature.",
+    "QA enumerates Godot internal native buttons and uses screen coordinates for embedded window clipping. Chest game buttons were visually present throughout."
+  ],
+  "script_errors": []
+}

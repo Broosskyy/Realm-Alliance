@@ -1,0 +1,43 @@
+name: Unpack production art
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'REALM_ALLIANCE_PRODUCTION_ART_PASS_01.zip'
+      - '.github/workflows/unpack-production-art.yml'
+permissions:
+  contents: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and unpack production art
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP="REALM_ALLIANCE_PRODUCTION_ART_PASS_01.zip"
+          test -f "$ZIP"
+          unzip -t "$ZIP"
+          rm -rf public/assets/production
+          unzip -oq "$ZIP" -d .
+          test -f public/assets/production/manifest.json
+          test -f public/assets/production/hero/realmwaechter/idle.png
+          test -f public/assets/production/monsters/cloud-golem/idle.png
+          test -f public/assets/production/monsters/crystal-wolf/idle.png
+          test -f public/assets/production/weapons/realmblade/blade-basic.png
+          test -f public/assets/production/worlds/wolkgarten/arena-platform.png
+          rm "$ZIP"
+      - name: Commit extracted production assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/assets/production REALM_ALLIANCE_PRODUCTION_ART_PASS_01.zip
+          if git diff --cached --quiet; then
+            echo "No asset changes to commit."
+            exit 0
+          fi
+          git commit -m "assets: unpack production art pass 01"
+          git push

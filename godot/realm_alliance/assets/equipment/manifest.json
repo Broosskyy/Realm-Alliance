@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "source": "OpenAI built-in image generation. Canonical idle hero used as style/perspective reference; actual separate equipment cutout, not hero redraw.",
+  "assets": [
+    {
+      "id": "astral_plate",
+      "path": "astral_plate.png",
+      "source_sha256": "b44c2f01d5d5eca5452dc2d9b123179cba75d62e87b9d7fbed1964f8bf3b4fe3",
+      "sha256": "d31afbdb2da447fb79f2945de6883080054ace6e76134b6dcd0c2e47d86fa4b6",
+      "size": [
+        272,
+        272
+      ],
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox (>128) plus 4px source padding, uniform scale to 256px, 272px alpha canvas. Interior alpha preserved."
+    },
+    {
+      "id": "eclipse_plate",
+      "path": "eclipse_plate.png",
+      "source_sha256": "c57afa14074872618bd80ab81aefe159f4db27bc9e65ab98a90bd0d3a5b64a46",
+      "sha256": "201cebe4e6d8e5d9395bef10f59301e7c94cfab1071fa84b79750028c41462e6",
+      "size": [
+        272,
+        272
+      ],
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox (>128) plus 4px source padding, uniform scale to 256px, 272px alpha canvas. Interior alpha preserved."
+    },
+    {
+      "id": "sentinel_circlet",
+      "path": "sentinel_circlet.png",
+      "source_sha256": "80b4a47aefd42017ec7694283a4651ba3d702dd690eafa216ed4d46e35b190e8",
+      "sha256": "201f9f2e02fcc33766693f0d9cf50b889d0566081df585144bef808c4ecac59a",
+      "size": [
+        320,
+        144
+      ],
+      "pivot": [
+        258.687,
+        85.907
+      ],
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox crop plus padding, uniform scale, transparent canvas. RGB outside alpha zero is ignored; checker-composite inspection validates actual transparency."
+    },
+    {
+      "id": "sky_wings",
+      "path": "sky_wings.png",
+      "source_sha256": "fb123b4255fa85a0f99ccbabca5c577bd3e9604f9b0ea3b2b5dd3ec91dcf7916",
+      "sha256": "5ab26f53ebdce4866a1bcc25c92503fbcf9590fff629b394001db207eb2c0d3e",
+      "size": [
+        544,
+        416
+      ],
+      "pivot": [
+        403.357,
+        261.561
+      ],
+      "alpha": true,
+      "normalization": "Meaningful-alpha bbox crop plus padding, uniform scale, transparent canvas. RGB outside alpha zero is ignored; checker-composite inspection validates actual transparency."
+    }
+  ]
+}

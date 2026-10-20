@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "milestone": "6.5.1",
+  "origin": "Original code-authored SVG UI, REALM ALLIANCE",
+  "nine_slice_margin": 20,
+  "assets": [
+    {
+      "id": "ui.boss",
+      "file": "boss.svg",
+      "sha256": "377ca6784f4a4fed368483c8ea7b7a3f4b94049accd289705ced85dfbbd13d00",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "id": "ui.hero",
+      "file": "hero.svg",
+      "sha256": "d60078f91f023a1ca0082fd09d00e03c54be9c621071eb6d2971f413990e7440",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "id": "ui.panel",
+      "file": "panel.svg",
+      "sha256": "56ca391f8abdbc33247c8347e9d52a27f407f907294d350ddbda286c42ab42ba",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "id": "ui.primary",
+      "file": "primary.svg",
+      "sha256": "6666d3fda484fbc8fe84ee3398a44036692939bdd06271b1a3916a4b8c7ef544",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "id": "ui.secondary",
+      "file": "secondary.svg",
+      "sha256": "72d3ba8f46a6fb709f3dbaa675095f68453ff5c21a8f24092777bbf7cc4f23f1",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "id": "ui.slot",
+      "file": "slot.svg",
+      "sha256": "4b9b35ae189fba2a89475b8251834b7cc4b70a708cf56be6eceeead6050f3241",
+      "size": [
+        96,
+        96
+      ]
+    }
+  ]
+}

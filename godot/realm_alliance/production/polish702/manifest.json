@@ -1,0 +1,496 @@
+{
+  "schema": 1,
+  "provider": "built-in imagegen",
+  "date": "2026-10-19",
+  "policy": "Original RGBA retained; mechanical crop/resample/rig placement only. No recoloring or generated replacement by code.",
+  "assets": {
+    "stone_sentry": {
+      "source_sha256": "49f499fde27e244aa57b4f0d54d91ab8c0c034620531d119ce88325c5ed04f69",
+      "canvas": [
+        736,
+        736
+      ],
+      "ground": [
+        368,
+        704
+      ],
+      "poses": {
+        "idle": {
+          "cell": [
+            0,
+            0,
+            768,
+            512
+          ],
+          "crop": [
+            181,
+            9,
+            768,
+            503
+          ],
+          "scale": 0.92,
+          "offset": [
+            181,
+            250
+          ],
+          "sha256": "b99d86fb8d5b918bdc34296349eb752cd1aed5a94d49929bc9e81272c8fa06cc"
+        },
+        "attack": {
+          "cell": [
+            768,
+            0,
+            1536,
+            512
+          ],
+          "crop": [
+            0,
+            18,
+            690,
+            512
+          ],
+          "scale": 0.92,
+          "offset": [
+            15,
+            250
+          ],
+          "sha256": "c04d5d45bc044dd00a3f63586f2a022ba7bf15d5985a4087aa48620a55db8b76"
+        },
+        "hit": {
+          "cell": [
+            0,
+            512,
+            768,
+            1024
+          ],
+          "crop": [
+            126,
+            21,
+            723,
+            494
+          ],
+          "scale": 0.92,
+          "offset": [
+            131,
+            269
+          ],
+          "sha256": "ad3fb819dec9bb2ea724403bfe7320c42bbc9aa6b489e2635a1099c8a4207183"
+        },
+        "defeated": {
+          "cell": [
+            768,
+            512,
+            1536,
+            1024
+          ],
+          "crop": [
+            12,
+            179,
+            734,
+            485
+          ],
+          "scale": 0.92,
+          "offset": [
+            26,
+            422
+          ],
+          "sha256": "c70d72c07c30ffef730538038864637db243612d65819b2f7c191846c83027e7"
+        }
+      }
+    },
+    "cinder_colossus": {
+      "source_sha256": "4a9cf2227c73e4113ddfaff41ae68344f6a8e8085ee31d3109a3a2600b1c2951",
+      "canvas": [
+        736,
+        736
+      ],
+      "ground": [
+        368,
+        704
+      ],
+      "poses": {
+        "idle": {
+          "cell": [
+            0,
+            0,
+            768,
+            512
+          ],
+          "crop": [
+            166,
+            16,
+            681,
+            500
+          ],
+          "scale": 0.92,
+          "offset": [
+            167,
+            259
+          ],
+          "sha256": "28d074b638ffcb77f528c1d61eea4cb71ae6e126150ead01dae30796d6b282da"
+        },
+        "attack": {
+          "cell": [
+            768,
+            0,
+            1536,
+            512
+          ],
+          "crop": [
+            0,
+            18,
+            736,
+            496
+          ],
+          "scale": 0.92,
+          "offset": [
+            15,
+            264
+          ],
+          "sha256": "0e1ced75eec7c90b2538a1ccdb95fc4f70a0ab6338a0cce9a4242b7cb3b3839a"
+        },
+        "hit": {
+          "cell": [
+            0,
+            512,
+            768,
+            1024
+          ],
+          "crop": [
+            122,
+            10,
+            709,
+            478
+          ],
+          "scale": 0.92,
+          "offset": [
+            127,
+            273
+          ],
+          "sha256": "a561f3c9a3d00a16ad834a373cf6246030d23c3f1f607855a69056ba14262191"
+        },
+        "defeated": {
+          "cell": [
+            768,
+            512,
+            1536,
+            1024
+          ],
+          "crop": [
+            65,
+            71,
+            731,
+            479
+          ],
+          "scale": 0.92,
+          "offset": [
+            75,
+            329
+          ],
+          "sha256": "95fbb0d9b954cf617817f25b4ff85b69c348afa807f70f8a0754d343dc7d118f"
+        }
+      }
+    },
+    "schattenjager": {
+      "source_sha256": "ee99f246e659017e2458d261a55a5bc90ddb38d5023fdf55f51e497c421144d2",
+      "canvas": [
+        640,
+        512
+      ],
+      "ground": [
+        320,
+        488
+      ],
+      "poses": {
+        "idle": {
+          "cell": [
+            0,
+            0,
+            512,
+            430
+          ],
+          "crop": [
+            95,
+            21,
+            416,
+            414
+          ],
+          "scale": 0.98,
+          "offset": [
+            214,
+            103
+          ],
+          "hand": [
+            508,
+            342
+          ],
+          "chest": [
+            430,
+            283
+          ],
+          "head": [
+            451,
+            192
+          ],
+          "back": [
+            391,
+            275
+          ],
+          "sha256": "19b47b0651d554bdc1fc490e169b86d7dd3bdb8c14610a45d70bab02d6a844dd"
+        },
+        "ready": {
+          "cell": [
+            512,
+            0,
+            1024,
+            430
+          ],
+          "crop": [
+            46,
+            86,
+            440,
+            414
+          ],
+          "scale": 0.98,
+          "offset": [
+            203,
+            167
+          ],
+          "hand": [
+            551,
+            353
+          ],
+          "chest": [
+            430,
+            318
+          ],
+          "head": [
+            479,
+            252
+          ],
+          "back": [
+            389,
+            309
+          ],
+          "sha256": "4ee3bc301a11ecddb1d8383f16ef6f1b75c4014d7f0e772ddbdb6a42b1bebc76"
+        },
+        "windup": {
+          "cell": [
+            0,
+            430,
+            512,
+            822
+          ],
+          "crop": [
+            55,
+            8,
+            470,
+            384
+          ],
+          "scale": 0.98,
+          "offset": [
+            160,
+            120
+          ],
+          "hand": [
+            374,
+            138
+          ],
+          "chest": [
+            430,
+            301
+          ],
+          "head": [
+            477,
+            228
+          ],
+          "back": [
+            382,
+            296
+          ],
+          "sha256": "7dcdc54e712471feeb91e5c7424ab8438e4f93a16b3449003f83b37a20ee20fa"
+        },
+        "attack_contact": {
+          "cell": [
+            512,
+            430,
+            1024,
+            822
+          ],
+          "crop": [
+            37,
+            43,
+            492,
+            384
+          ],
+          "scale": 0.98,
+          "offset": [
+            159,
+            154
+          ],
+          "hand": [
+            585,
+            278
+          ],
+          "chest": [
+            430,
+            301
+          ],
+          "head": [
+            472,
+            228
+          ],
+          "back": [
+            380,
+            304
+          ],
+          "sha256": "5416add07c40ff2b446af40e57c89f67a5060cc2e6471ecb38ce6e08b99a8750"
+        },
+        "recovery": {
+          "cell": [
+            0,
+            822,
+            512,
+            1220
+          ],
+          "crop": [
+            83,
+            26,
+            482,
+            391
+          ],
+          "scale": 0.98,
+          "offset": [
+            202,
+            130
+          ],
+          "hand": [
+            545,
+            334
+          ],
+          "chest": [
+            430,
+            290
+          ],
+          "head": [
+            480,
+            215
+          ],
+          "back": [
+            385,
+            289
+          ],
+          "sha256": "f199f6dd0bb51d3a1aba283e4d6f11c0c4141eb6b92fed456d175d841ec281b7"
+        },
+        "hit": {
+          "cell": [
+            512,
+            822,
+            1024,
+            1220
+          ],
+          "crop": [
+            63,
+            11,
+            452,
+            390
+          ],
+          "scale": 0.98,
+          "offset": [
+            224,
+            117
+          ],
+          "hand": [
+            538,
+            272
+          ],
+          "chest": [
+            430,
+            283
+          ],
+          "head": [
+            396,
+            198
+          ],
+          "back": [
+            391,
+            292
+          ],
+          "sha256": "7a547254cc8a428fbfbd864fd4c24abf2b106d95c76d37122056776fd64334a9"
+        },
+        "defeated": {
+          "cell": [
+            0,
+            1220,
+            560,
+            1536
+          ],
+          "crop": [
+            22,
+            125,
+            555,
+            287
+          ],
+          "scale": 0.98,
+          "offset": [
+            98,
+            329
+          ],
+          "hand": [
+            600,
+            448
+          ],
+          "chest": [
+            380,
+            412
+          ],
+          "head": [
+            504,
+            402
+          ],
+          "back": [
+            361,
+            412
+          ],
+          "sha256": "65224bccef59ae9833fe4cf71ebdc61c826c40748948d7cbbc82f1478cdadd4c"
+        },
+        "run": {
+          "cell": [
+            560,
+            1220,
+            1024,
+            1536
+          ],
+          "crop": [
+            14,
+            7,
+            431,
+            295
+          ],
+          "scale": 0.98,
+          "offset": [
+            189,
+            206
+          ],
+          "hand": [
+            577,
+            330
+          ],
+          "chest": [
+            430,
+            351
+          ],
+          "head": [
+            530,
+            284
+          ],
+          "back": [
+            394,
+            346
+          ],
+          "sha256": "97b7cf992a0153d8868ebbba0b7395ce5cfeaf940a6a364f558dbbcd134984c8"
+        }
+      },
+      "portrait_sha256": "d7c543d3996a3f929707d94ffab685d5ea0f7ca779031ea4122fc068dd31ea7b"
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "heroes": {
+    "realmwachter": {
+      "name": "Realmwächter",
+      "role": "Klinge · Licht",
+      "attack_scale": 1,
+      "hp_scale": 1,
+      "defense": 0,
+      "gold": 650,
+      "shards": 24,
+      "unlock_level": 14,
+      "stage": "glutkern:4",
+      "description": "Kanonischer Wächter mit hohem Schwertschaden.",
+      "skills": {},
+      "rarity": "legendary",
+      "playable": true
+    },
+    "kaela": {
+      "name": "Kaela",
+      "role": "Runenhüterin · Erde",
+      "attack_scale": 0.85,
+      "hp_scale": 1.25,
+      "defense": 3,
+      "gold": 150,
+      "shards": 8,
+      "unlock_level": 6,
+      "stage": "glutkern:4",
+      "description": "Ehemaliger Testheld; zukünftig Runenhüterin-NPC. Historische Spielstände bleiben erhalten.",
+      "skills": {
+        "sky_blade": {
+          "name": "Runenstoß",
+          "multiplier": 2.2
+        },
+        "arcane_eye": {
+          "name": "Runensiegel",
+          "duration": 6
+        },
+        "rage_flame": {
+          "name": "Esse der Hüterin"
+        },
+        "guardian_wall": {
+          "name": "Runenbastion",
+          "absorb_fraction": 0.5,
+          "cooldown": 7.5
+        }
+      },
+      "rarity": "epic",
+      "playable": false,
+      "npc_id": "npc_kaela_runenhueterin"
+    },
+    "runenpaladin": {
+      "name": "Runenpaladin",
+      "role": "Tank · Runenlicht",
+      "attack_scale": 0.9,
+      "hp_scale": 1.2,
+      "defense": 3,
+      "gold": 0,
+      "shards": 0,
+      "unlock_level": 1,
+      "stage": "",
+      "description": "Dein erster Held. Runenlicht, eine getrennte Klinge und eigene Aufstiegsränge.",
+      "skills": {
+        "sky_blade": {
+          "name": "Runenstoß",
+          "multiplier": 2.4
+        },
+        "arcane_eye": {
+          "name": "Lichtsiegel",
+          "duration": 6
+        },
+        "rage_flame": {
+          "name": "Sonnenbrand"
+        },
+        "guardian_wall": {
+          "name": "Runenbastion",
+          "absorb_fraction": 0.5,
+          "cooldown": 7.5
+        }
+      },
+      "rarity": "common",
+      "playable": true
+    },
+    "schattenjager": {
+      "name": "Schattenjäger",
+      "role": "Angriff · Schattenklinge",
+      "attack_scale": 1.1,
+      "hp_scale": 0.9,
+      "defense": 0,
+      "gold": 180,
+      "shards": 8,
+      "unlock_level": 6,
+      "stage": "wolkgarten:4",
+      "description": "Agiler Klingenjäger mit kurzen Skill-Ausholzeiten und verstärktem Nachtsiegel. Eigene Kampfposen und getrennte Waffen.",
+      "skills": {
+        "sky_blade": {
+          "name": "Nachtschnitt",
+          "multiplier": 3.0,
+          "windup": 0.22,
+          "recovery": 0.32
+        },
+        "arcane_eye": {
+          "name": "Nachtsiegel",
+          "duration": 4.0,
+          "amplify": 1.45
+        },
+        "rage_flame": {
+          "name": "Schattenbrand",
+          "windup": 0.34
+        },
+        "guardian_wall": {
+          "name": "Nebelwall",
+          "absorb_fraction": 0.25,
+          "cooldown": 8.0
+        }
+      },
+      "rarity": "rare",
+      "playable": true
+    }
+  },
+  "pets": {
+    "skyfox": {
+      "name": "Himmelsfuchs",
+      "role": "Angriff · Arkane Salve",
+      "gold": 40,
+      "shards": 2,
+      "unlock_level": 3,
+      "stage": "wolkgarten:2",
+      "interval": 2.8,
+      "windup": 0.32,
+      "attack_scale": 0.32,
+      "heal_fraction": 0,
+      "description": "Arkane Salve alle 2,8 s. Keine zusätzlichen Combo- oder Ressourcenboni.",
+      "rarity": "rare"
+    },
+    "sunbird": {
+      "name": "Morgenphönix",
+      "role": "Heilung · Morgenlicht",
+      "gold": 80,
+      "shards": 4,
+      "unlock_level": 5,
+      "stage": "glutkern:2",
+      "interval": 6,
+      "windup": 0.45,
+      "attack_scale": 0,
+      "heal_fraction": 0.08,
+      "description": "Heilt alle 6 s bis zu 8% der maximalen HP. Wartet bei vollen HP; keine Wiederbelebung.",
+      "rarity": "epic"
+    },
+    "lanternwisp": {
+      "name": "Laternengeist",
+      "role": "Angriff · Erntefunke",
+      "gold": 0,
+      "shards": 0,
+      "unlock_level": 4,
+      "stage": "wolkgarten:2",
+      "interval": 3.5,
+      "windup": 0.45,
+      "attack_scale": 0.4,
+      "heal_fraction": 0,
+      "description": "Eventbegleiter aus der Herbstabtei. Ein Erntefunke trifft alle 3,5 s. Erhältlich für 30 Erntezeichen im Shop.",
+      "rarity": "epic",
+      "event": true
+    }
+  },
+  "npcs": {
+    "npc_kaela_runenhueterin": {
+      "name": "Kaela",
+      "role": "Runenhüterin",
+      "zone": "glutkern",
+      "status": "archived_for_future_open_world",
+      "portrait": "res://assets/roster67/kaela/portrait.png",
+      "poses": "res://assets/roster67/kaela/",
+      "description": "Eigenständige Weltenfigur für spätere Quests und Dungeon-Einführungen; derzeit kein spielbarer Hero."
+    }
+  }
+}

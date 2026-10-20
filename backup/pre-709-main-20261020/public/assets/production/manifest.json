@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "world": "wolkgarten",
+  "hero": "realmwaechter",
+  "weapon": "realmblade",
+  "paths": {
+    "world": "/assets/production/worlds/wolkgarten/",
+    "hero": "/assets/production/hero/realmwaechter/",
+    "weapon": "/assets/production/weapons/realmblade/",
+    "golem": "/assets/production/monsters/cloud-golem/",
+    "wolf": "/assets/production/monsters/crystal-wolf/"
+  },
+  "heroStateMap": {
+    "idle": "idle.png",
+    "attack": "attack.png",
+    "skill": "skill.png",
+    "hit": "hit.png",
+    "victory": "victory.png",
+    "defeat": "defeated.png"
+  },
+  "enemyPoseMap": {
+    "idle": "idle.png",
+    "attack": "attack.png",
+    "hit": "hit.png",
+    "defeated": "defeated.png"
+  }
+}
