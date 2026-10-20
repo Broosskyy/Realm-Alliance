@@ -223,7 +223,7 @@ func update_buttons() -> void:
     if preview:
         preview.visible = active_tab == "Wesen"
         var visual_key=model.hero_id+str(model.weapon_index)+str(model.upgrade_level)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
-        visual_key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)
+        visual_key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)+JSON.stringify(model.profile.wardrobe)
         if preview.visible and visual_key!=_preview_key:
             _preview_key=visual_key
             preview.set_hero(model.hero_id)

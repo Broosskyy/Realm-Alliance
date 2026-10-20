@@ -73,6 +73,7 @@ const VISUAL_SOCKETS = {
 }
 var layer_sockets: Dictionary = {}
 var attachments
+var wardrobe_visual
 var cape
 var weapon_glow
 var _upgrade_level=0
@@ -129,6 +130,7 @@ func _ready() -> void:
     cape=preload("res://scripts/hero_cape.gd").new();cape.attach(self)
     attachments=preload("res://scripts/hero_attachments.gd").new()
     attachments.attach(self)
+    wardrobe_visual=preload("res://scripts/presentation/wardrobe_visual711.gd").new();wardrobe_visual.attach(self)
     for pose in Gate.HERO_STATES:_outfit_poses[pose]=load("res://assets/work704/guardian_astral/"+pose+".png")
     _outfit_meta=JSON.parse_string(FileAccess.get_file_as_string("res://assets/work704/armor_sockets.json"))
     _set_pose("idle")
@@ -146,7 +148,7 @@ func set_hero(id:String) -> void:
         hero_sets[id]=frames
     hero_id=id;_poses=hero_sets[id];revive()
 func hand(pose:String) -> Vector2:
-    if hero_id=="realmwachter" and _outfit!="" and _outfit_meta.has(pose):return Vector2(_outfit_meta[pose].hand[0],_outfit_meta[pose].hand[1])
+    if hero_id=="realmwachter" and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):return Vector2(_outfit_meta[pose].hand[0],_outfit_meta[pose].hand[1])
     if hero_id=="schattenjager":return ShadowHunter.HANDS.get(pose,ShadowHunter.HANDS.hit)
     if hero_id=="runenpaladin":return Paladin.HANDS.get(pose,Paladin.HANDS.hit)
     return Alternate.HANDS.get(pose,Alternate.HANDS.hit) if hero_id=="kaela" else HANDS.get(pose,HANDS.hit)
@@ -154,7 +156,7 @@ func angle(pose:String) -> float:
     if hero_id=="schattenjager":return float(ShadowHunter.ANGLES.get(pose,-45))
     return float(Alternate.ANGLES.get(pose,-45)) if hero_id=="kaela" else float(ANGLES.get(pose,-45))
 func sockets(pose:String) -> Dictionary:
-    if hero_id=="realmwachter" and _outfit!="" and _outfit_meta.has(pose):
+    if hero_id=="realmwachter" and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):
         var d=_outfit_meta[pose];var chest=Vector2(d.chest[0],d.chest[1]);return {"head":Vector2(d.head[0],d.head[1]),"chest":chest,"back":chest+Vector2(-55,-12)}
     if hero_id=="schattenjager":return ShadowHunter.SOCKETS.get(pose,ShadowHunter.SOCKETS.hit)
     if hero_id=="runenpaladin":return Paladin.SOCKETS.get(pose,Paladin.SOCKETS.hit)
@@ -163,7 +165,7 @@ func _set_pose(name: String) -> void:
     _pose = name
     if _body == null:
         return
-    _body.texture = _outfit_poses.get(name,_poses.get(name)) if hero_id=="realmwachter" and _outfit!="" else _poses.get(name)
+    _body.texture = _outfit_poses.get(name,_poses.get(name)) if hero_id=="realmwachter" and _outfit in ["astral_plate","eclipse_plate"] else _poses.get(name)
     _body.position = -PIVOT
     _socket.position = hand(name) - PIVOT
     _socket.rotation_degrees = angle(name)
@@ -177,6 +179,7 @@ func _set_pose(name: String) -> void:
         var anchor: Vector2 = sockets(name).get(id,sockets(name).get("back",PIVOT))
         layer_sockets[id].position = anchor - PIVOT
     if attachments:attachments.sync_pose(self,name)
+    if wardrobe_visual:wardrobe_visual.sync_pose(name)
     if cape:cape.sync(self,name)
 
 func _world_layer() -> int:
@@ -245,7 +248,10 @@ func set_gear(profile: Dictionary) -> void:
     var next=preload("res://scripts/systems/hero_equipment.gd").visible_id(profile,"chest") if profile.has("hero_equipment") else ""
     if next!=_outfit:_outfit=next;_set_pose(_pose)
     if _palette:_palette.set_shader_parameter("eclipse_armor",_outfit=="eclipse_plate")
+    if wardrobe_visual:wardrobe_visual.configure(profile)
     if attachments:attachments.apply(self,profile)
+    if wardrobe_visual:wardrobe_visual.sync_pose(_pose)
+    if cape:cape.sync(self,_pose)
     var rank=preload("res://scripts/systems/hero_evolution.gd").form_rank(profile) if profile.has("hero_evolution") else 0
     if _palette:_palette.set_shader_parameter("evolution_rank",rank)
     if cape and cape.material:cape.material.set_shader_parameter("evolution_rank",rank)

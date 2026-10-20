@@ -1,4 +1,7 @@
 shader_type canvas_item;
+uniform bool modular_outfit = false;
+uniform float modular_rear_cut = 0.62;
+uniform vec4 modular_cloth_color : source_color = vec4(1.0);
 uniform int evolution_rank = 0;
 uniform int mastery_rank = 0;
 uniform bool eclipse_armor = false;
@@ -18,6 +21,14 @@ void fragment() {
     float blue = smoothstep(0.035, 0.12, tex.b - max(tex.r, tex.g));
     float purple = smoothstep(0.035, 0.15, tex.b - tex.g) * (1.0 - smoothstep(0.5, 0.8, tex.r));
     float mask = max(blue, purple) * (1.0 - smoothstep(0.49, 0.64, UV.x));
+    if (modular_outfit) {
+        float cyan = smoothstep(0.025,0.10,min(tex.g,tex.b)-tex.r);
+        float textile = max(max(blue,purple),cyan);
+        float rear = 1.0-smoothstep(modular_rear_cut-0.02,modular_rear_cut,UV.x);
+        tex.a *= 1.0-textile*rear;
+        float lightness=dot(tex.rgb,vec3(0.2126,0.7152,0.0722));
+        tex.rgb=mix(tex.rgb,modular_cloth_color.rgb*lightness*1.55,textile*0.90);
+    }
     if (emerald) {
         vec3 tint = vec3(tex.r * 0.55, tex.b * 0.82 + tex.g * 0.18, tex.b * 0.72);
         tex.rgb = mix(tex.rgb, tint, mask);

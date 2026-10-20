@@ -22,6 +22,13 @@ func set_folded(hero,value: bool) -> void:
     material.set_shader_parameter("split_cape",value)
     sync(hero,hero._pose)
 func sync(hero,pose: String) -> void:
+    if hero.wardrobe_visual!=null and hero.wardrobe_visual.visible:
+        var mask=PackedVector2Array()
+        for point in SHAPES.get(pose,SHAPES.idle):mask.append(point/Vector2(640,512))
+        hero._palette.set_shader_parameter("cape_polygon",mask)
+        hero._palette.set_shader_parameter("split_cape",true)
+        cloth.visible=false
+        return
     if hero.hero_id!="realmwachter" or hero._outfit!="":
         hero._palette.set_shader_parameter("split_cape",false);cloth.visible=false;return
     var polygon=PackedVector2Array()

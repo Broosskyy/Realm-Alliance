@@ -2,6 +2,7 @@ extends "res://scripts/ui/modal_dialog.gd"
 signal changed(message:String)
 const Inventory=preload("res://scripts/systems/inventory_view.gd")
 const Card=preload("res://scripts/ui/inventory_card.gd")
+const Wardrobe=preload("res://scripts/systems/wardrobe711.gd")
 const Preview=preload("res://scripts/systems/equipment_preview707.gd")
 var model
 var category="weapon"
@@ -20,9 +21,14 @@ func _build(restore_scroll:bool=false) -> void:
     if is_instance_valid(scroll):scroll.get_parent().remove_child(scroll);scroll.queue_free()
     scroll=Scroll.new();scroll.name="EquipmentScroll";add_child(scroll)
     var list=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",18);scroll.add_child(list)
-    var tabs=HBoxContainer.new();tabs.add_theme_constant_override("separation",10);list.add_child(tabs)
-    for pair in [["weapon","Waffe"],["chest","Rüstung"],["head","Kopf"],["wings","Flügel"]]:
+    var tabs=GridContainer.new();tabs.columns=5 if get_tree().root.get_visible_rect().size.x>=1100 else 3;tabs.add_theme_constant_override("h_separation",10);tabs.add_theme_constant_override("v_separation",10);list.add_child(tabs)
+    for pair in [["weapon","Waffe"],["chest","Rüstung"],["head","Kopf"],["wings","Flügel"],["costume","Kostüm"]]:
         var b=_button(tabs,pair[1],true,func():category=pair[0];selected="";_build());b.name="EquipmentTab_"+pair[0];b.add_theme_stylebox_override("normal",Kit.box("primary" if category==pair[0] else "panel"))
+    if category=="costume":
+        _build_costumes(list)
+        if visible:call_deferred("_prepare_body")
+        _restore_scroll(scroll,offset)
+        return
     var items=[]
     if category=="weapon":items=Inventory.items(model.profile,"weapon")
     else:
@@ -51,6 +57,9 @@ func _build(restore_scroll:bool=false) -> void:
             _button(actions,"Maximalstufe" if preview.maximum else "Verbessern\n%d G / %d Splitter"%[cost.gold,cost.shards],preview.affordable,func():_change(model.upgrade_weapon(item.id),"Waffe verbessert"),true)
             _button(actions,"Ausgerüstet" if item.active else "Ausrüsten",not item.active,func():_change(model.equip(item.id),"Waffe angelegt"))
         else:
+            if category=="chest" and Wardrobe.active(model.profile)!="":
+                _label(body,"Dein Kostüm überdeckt die getragene Rüstung. Ihre Werte bleiben aktiv.",Color("#a9c1dc"),20)
+                _button(body,"Kostüm ablegen",true,func():_change(model.equip_costume(""),"Rüstung wieder sichtbar"))
             var values=model.HeroEquipment.item_stats(model.profile,item.id);var current=model.HeroEquipment.item_stats(model.profile,str(model.profile.hero_equipment.equipped.get(category,"")))
             _label(info,"HP +%d (%+d)\nDEF +%d (%+d)"%[values.hp,values.hp-current.hp,values.defense,values.defense-current.defense])
             if model.profile.hero_equipment.owned.has(item.id):
@@ -71,7 +80,8 @@ func _build(restore_scroll:bool=false) -> void:
             if not candidate.hero_equipment.owned.has(item.id):candidate.hero_equipment.owned[item.id]={"id":item.id,"level":1,"source":"preview_only"}
             candidate.hero_equipment.equipped[category]=item.id
             candidate.hero_equipment.cosmetics.erase(category)
-        var caption="Mit "+item.name
+            if category=="chest":candidate.wardrobe.active=""
+        var caption=("Rüstung ohne Kostüm: " if category=="chest" and Wardrobe.active(model.profile)!="" else "Mit ")+item.name
         if category=="wings" and model.profile.hero_equipment.owned.has(item.id):
             var next_level=mini(model.HeroEquipment.max_level(item.id),int(candidate.hero_equipment.owned[item.id].level)+1)
             candidate.hero_equipment.owned[item.id].level=next_level
@@ -105,3 +115,40 @@ func _preview_hero(parent:Control,caption:String,profile:Dictionary) -> void:
     var rig=preload("res://scripts/production_hero.gd").new();rig.name="EquipmentComparisonHero";rig.preview_mode=true;rig.z_index=4;stage.add_child(rig);rig.set_hero(model.hero_id);rig.equip_weapon(model.Equipment.IDS.find(str(profile.equipped)));rig.set_gear(profile);rig.scale=Vector2.ONE*(.48 if get_tree().root.get_visible_rect().size.x>=1100 else .64);rig.position=Vector2(110,280)
     stage.resized.connect(func():
         if is_instance_valid(rig):rig.position=Vector2(stage.size.x*.5-35,280))
+
+func _build_costumes(list:VBoxContainer) -> void:
+    if selected not in Wardrobe.IDS:selected=Wardrobe.IDS[0]
+    var id=selected
+    var d:Dictionary=Wardrobe.CATALOG[id]
+    var owned=model.profile.wardrobe.owned.has(id)
+    var active=Wardrobe.active(model.profile)
+    var box=PanelContainer.new();box.add_theme_stylebox_override("panel",Kit.box("slot"));list.add_child(box)
+    var body=VBoxContainer.new();body.add_theme_constant_override("separation",16);box.add_child(body)
+    var row=HBoxContainer.new();row.add_theme_constant_override("separation",18);body.add_child(row)
+    var art=preload("res://scripts/ui/item_illustration.gd").new();art.configure(Wardrobe.icon(id));art.custom_minimum_size=Vector2(160,190);row.add_child(art)
+    var info=VBoxContainer.new();info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(info)
+    _label(info,d.name,Color(model.Economy.RARITIES[d.rarity].color),28)
+    _label(info,d.description,Kit.INK,21)
+    _label(body,"Rein kosmetisch · Keine Kampfboni · Deine Rüstung und ihre Aufwertungen bleiben angelegt.",Color("#a9c1dc"),21)
+    if owned:
+        var wear=_button(body,"Kostüm ablegen" if active==id else "Kostüm anlegen",true,func():_change(model.equip_costume("" if active==id else id),"Kostüm aktualisiert"),true)
+        wear.name="CostumeEquip_"+id
+    else:
+        _label(body,"Dauerhaft kostenlos freispielen: "+d.requirement,Color("#ffd16b"),22)
+        var progress="Gegner: %d / %d"%[mini(int(model.profile.kills),int(d.kills)),d.kills] if int(d.kills)>0 else "Kampfstufe: %d / %d"%[mini(int(model.profile.best_wave),int(d.wave)),d.wave]
+        _label(body,progress,Kit.INK,21)
+        var claim=_button(body,"Belohnung abholen",Wardrobe.ready(model.profile,id),func():_change(model.claim_costume(id),"Kostüm dauerhaft freigeschaltet"),true)
+        claim.name="CostumeClaim_"+id
+    var comparison:BoxContainer=HBoxContainer.new() if get_tree().root.get_visible_rect().size.x>=1100 else VBoxContainer.new();comparison.add_theme_constant_override("separation",12);body.add_child(comparison)
+    _preview_hero(comparison,"Aktuell",model.profile)
+    var candidate=model.profile.duplicate(true)
+    candidate.wardrobe.owned[id]={"source":"preview_only"};candidate.wardrobe.active=id
+    _preview_hero(comparison,"Vorschau: "+str(d.name),candidate)
+    _label(body,"Die Vorschau ist kostenlos und verändert weder Besitz noch Fortschritt.",Color("#a9c1dc"),20)
+    var grid=GridContainer.new();grid.columns=2;grid.add_theme_constant_override("h_separation",14);list.add_child(grid)
+    for costume in Wardrobe.IDS:
+        var item=Wardrobe.CATALOG[costume]
+        var card=Card.new();card.name="CostumeCard_"+costume
+        card.configure({"id":costume,"name":item.name,"kind":"costume","rarity":item.rarity,"level":1,"progress_label":"Angelegt" if active==costume else ("Freigeschaltet" if model.profile.wardrobe.owned.has(costume) else "Vorschau"),"active":active==costume,"icon":Wardrobe.icon(costume)})
+        card.size_flags_horizontal=Control.SIZE_EXPAND_FILL;grid.add_child(card)
+        card.pressed.connect(func():selected=costume;_build())

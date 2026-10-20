@@ -50,8 +50,8 @@ func _collection() -> void:
     if category=="Monster":_monsters();return
     var row=HBoxContainer.new();row.add_theme_constant_override("separation",16);content.add_child(row)
     var tools=VBoxContainer.new();tools.custom_minimum_size.x=96;tools.add_theme_constant_override("separation",14);row.add_child(tools)
-    var labels=["Ausrüst.","Skills","Talente","Evolution","Skins"]
-    var actions=["equipment","hero_skill_0","talents","evolve","look"]
+    var labels=["Ausrüst.","Skills","Talente","Evolution","Kostüme"]
+    var actions=["equipment","hero_skill_0","talents","evolve","equipment:costume"]
     for i in 5:
         var b=_button(tools,"",func():action.emit(actions[i]));b.custom_minimum_size=Vector2(104,120)
         var icon=TextureRect.new();icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;icon.texture=load("res://assets/ui/work61/"+["swords","flame","star","crown","shield"][i]+".svg");icon.position=Vector2(28,12);icon.size=Vector2(40,40);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;b.add_child(icon)
@@ -141,7 +141,7 @@ func _detail() -> void:
         var unlock=_button(content,"Im Eventshop erhältlich" if bool(d.get("event",false)) else "Freischalten",func():action.emit(("hero_unlock:" if hero else "pet_unlock:")+id),true);unlock.disabled=model.read_only or (not model.Roster.can_unlock(model.profile,id) if hero else not model.Companions.can_acquire(model.profile,id))
     var tools=HBoxContainer.new();content.add_child(tools)
     if hero:
-        for pair in [["Skills","hero_skill_0"],["Ausrüstung","equipment"],["Entwicklung","develop:"+id],["Skins","look"]]:_button(tools,pair[0],func():action.emit(pair[1]))
+        for pair in [["Skills","hero_skill_0"],["Ausrüstung","equipment"],["Entwicklung","develop:"+id],["Kostüme","equipment:costume"],["Farbstil","look"]]:_button(tools,pair[0],func():action.emit(pair[1]))
 
 func _monsters() -> void:
     var bestiary=model.Bestiary

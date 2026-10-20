@@ -3,9 +3,11 @@ class_name RAHeroEquipment
 # Additive, versioned profile domain. V1/V2 envelopes and unknown profile data survive.
 const Progress=preload("res://scripts/systems/player_progress.gd")
 const WingProgress=preload("res://scripts/systems/wing_progression710.gd")
-const IDS=["astral_plate","eclipse_plate","sentinel_circlet","sky_wings","harvest_wings"]
+const IDS=["wander_leather","silver_guard","astral_plate","eclipse_plate","sentinel_circlet","sky_wings","harvest_wings"]
 const SLOTS=["chest","head","shoulder","back","wings","accessory"]
 const CATALOG={
+    "wander_leather":{"name":"Wanderleder","slot":"chest","rarity":"common","unlock":1,"gold":15,"shards":0,"hp":8,"defense":1},
+    "silver_guard":{"name":"Silberwacht","slot":"chest","rarity":"rare","unlock":3,"gold":85,"shards":3,"hp":28,"defense":3},
     "harvest_wings":{"name":"Ernteschwingen","slot":"wings","rarity":"epic","unlock":4,"gold":0,"shards":0,"hp":20,"defense":2,"event":true},
     "astral_plate":{"name":"Sternenpanzer","slot":"chest","rarity":"rare","unlock":1,"gold":35,"shards":2,"hp":20,"defense":2},
     "eclipse_plate":{"name":"Eklipsenpanzer","slot":"chest","rarity":"epic","unlock":4,"gold":140,"shards":6,"hp":35,"defense":4},

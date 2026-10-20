@@ -58,7 +58,7 @@ func apply(hero,profile: Dictionary) -> void:
     active_id=Gear.visible_id(profile,"chest") if profile.has("hero_equipment") else ""
     plate.texture=TEXTURES.get(active_id)
     armor_level=Gear.item_level(profile,active_id)
-    plate.visible=plate.texture!=null and hero.hero_id!="realmwachter"
+    plate.visible=plate.texture!=null and hero.hero_id!="realmwachter" and not (hero.wardrobe_visual and hero.wardrobe_visual.visible)
     visible_items.clear()
     for slot in Gear.SLOTS:visible_items[slot]=Gear.visible_id(profile,slot) if profile.has("hero_equipment") else ""
     head.texture=TEXTURES.get(visible_items.head);head.visible=head.texture!=null
@@ -93,7 +93,7 @@ func sync_pose(hero,pose: String) -> void:
     plate.rotation_degrees=0
     head_mount.rotation_degrees={"idle":0,"ready":-2,"windup":-5,"attack_contact":15,"recovery":8,"hit":8}.get(pose,8)
     wing_mount.rotation_degrees=float(d.angle)*.5
-    foreground_arm.visible=plate.visible
+    foreground_arm.visible=plate.visible or (hero.wardrobe_visual!=null and hero.wardrobe_visual.visible)
     foreground_arm.texture=hero._body.texture
     foreground_arm.region_rect=d.arm
     foreground_arm.position=d.arm.position-hero.PIVOT

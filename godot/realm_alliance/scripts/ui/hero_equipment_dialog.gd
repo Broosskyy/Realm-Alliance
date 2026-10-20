@@ -11,17 +11,17 @@ func configure(model,id: String) -> void:
     var level=int(model.profile.hero_equipment.owned[id].level) if owned else 1
     var values=Gear.item_stats(model.profile,id)
     var equipped_values=Gear.item_stats(model.profile,current)
-    dialog_text="%s · Level %d\n+%d HP · +%d Verteidigung\nAktiv: %s\nVergleich: HP %d · DEF %d\n\n"%["Episch" if d.rarity=="epic" else "Selten",level,values.hp,values.defense,equipped_name,values.hp-equipped_values.hp,values.defense-equipped_values.defense]
+    dialog_text="%s · Level %d\n+%d HP · +%d Verteidigung\nAktiv: %s\nVergleich: HP %d · DEF %d\n\n"%[str(model.Economy.RARITIES[d.rarity].name),level,values.hp,values.defense,equipped_name,values.hp-equipped_values.hp,values.defense-equipped_values.defense]
     if owned:
         ok_button_text="Ablegen" if current==id else "Anlegen"
         confirmed.connect(func():operation.emit(str(d.slot) if current==id else id,"unequip" if current==id else "equip"))
         var cost=Gear.upgrade_cost(model.profile,id)
         var button=add_button("Stufe +1",true,"upgrade")
         button.custom_minimum_size.y=100
-        button.disabled=level>=10 or model.gold<int(cost.gold) or int(model.profile.shards)<1 or model.read_only
+        button.disabled=level>=Gear.max_level(id) or cost.is_empty() or model.gold<int(cost.get("gold",0)) or int(model.profile.shards)<int(cost.get("shards",0)) or model.read_only
         custom_action.connect(func(action):
             if action=="upgrade":operation.emit(id,"upgrade");queue_free())
-        dialog_text+="Aufwertung: %d Gold +1 Splitter\n+3 HP · +1 Verteidigung."%cost.gold
+        dialog_text+="Maximalstufe erreicht." if level>=Gear.max_level(id) else "Aufwertung: %d Gold + %d Splitter\n+3 HP · +1 Verteidigung."%[cost.get("gold",0),cost.get("shards",0)]
     else:
         dialog_text+="Freischaltung: Heldenlevel %d\nKosten: %d Gold + %d Himmelssplitter"%[d.unlock,d.gold,d.shards]
         ok_button_text="Freischalten"

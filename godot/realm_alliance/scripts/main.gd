@@ -179,7 +179,7 @@ func _show_encounter() -> void:
 var companion_visual
 func _sync_hero() -> void:
     var key="%s:%d:%s:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),model.hero_id+JSON.stringify(model.profile.hero_equipment),JSON.stringify(model.profile.hero_evolution)]
-    key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)
+    key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)+JSON.stringify(model.profile.wardrobe)
     if key!=_last_visual_key:
         _last_visual_key=key
         hero.equip_weapon(model.weapon_index)

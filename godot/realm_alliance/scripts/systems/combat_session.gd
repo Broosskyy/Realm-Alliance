@@ -26,6 +26,7 @@ const Events=preload("res://scripts/systems/event69.gd")
 const Journey=preload("res://scripts/systems/journey70.gd")
 const Bestiary=preload("res://scripts/systems/bestiary706.gd")
 const Mastery=preload("res://scripts/systems/hero_mastery708.gd")
+const Wardrobe=preload("res://scripts/systems/wardrobe711.gd")
 const Titles=preload("res://scripts/systems/titles708.gd")
 var activity:Dictionary={}
 var companion=PetRuntime.new()
@@ -102,7 +103,7 @@ func _init(data: Dictionary = {}) -> void:
         read_only=true
         load_error="Evolutionsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
     var checkpoint: Dictionary = normalized.get("checkpoint", {})
-    for domain in [World,Advancement,Quests,Chests,Tap,Roster,Companions,Economy,Activities,Journey,Events,Bestiary,Mastery,Titles]:
+    for domain in [World,Advancement,Quests,Chests,Tap,Roster,Companions,Economy,Activities,Journey,Events,Bestiary,Mastery,Titles,Wardrobe]:
         var valid=domain.ensure(profile,checkpoint) if domain==World else domain.ensure(profile)
         if not valid:
             read_only=true;load_error="Fortschrittsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
@@ -262,6 +263,12 @@ func set_look(id: String) -> bool:
         return false
     profile.look = id
     return true
+
+func claim_costume(id:String) -> bool:
+    return not read_only and Wardrobe.claim(profile,id)
+
+func equip_costume(id:String) -> bool:
+    return not read_only and Wardrobe.equip(profile,id)
 
 func change_gear(id: String, operation: String="equip") -> bool:
     if read_only:return false
