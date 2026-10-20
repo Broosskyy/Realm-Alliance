@@ -1,0 +1,120 @@
+name: REALM 710 Android update APK
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/realm-710-android.yml'
+      - '.github/scripts/build_android710.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: realm710-android-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  syntax:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Android builder syntax
+        run: python3 -m py_compile .github/scripts/build_android710.py
+  apk:
+    needs: syntax
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Require original signing identity
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$REALM_ANDROID_KEYSTORE_BASE64" ]; then
+            echo "::error::Original 709 signing key is unavailable. Add REALM_ANDROID_KEYSTORE_BASE64 as a repository Actions secret. No replacement key or incompatible APK will be created."
+            exit 1
+          fi
+          umask 077
+          mkdir -p "$RUNNER_TEMP/realm710-private"
+          python3 - <<'PY'
+          import base64, os
+          from pathlib import Path
+          value = "".join(os.environ["REALM_ANDROID_KEYSTORE_BASE64"].split())
+          data = base64.b64decode(value, validate=True)
+          if not data:
+              raise SystemExit("Signing keystore is empty")
+          (Path(os.environ["RUNNER_TEMP"]) / "realm710-private/signing.keystore").write_bytes(data)
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Check original 709 certificate before installing tools
+        env:
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, os, subprocess
+          from pathlib import Path
+          key = Path(os.environ["RUNNER_TEMP"]) / "realm710-private/signing.keystore"
+          result = subprocess.run(["keytool", "-exportcert", "-keystore", str(key),
+              "-alias", os.environ["REALM_ANDROID_KEY_ALIAS"], "-storepass:env",
+              "REALM_ANDROID_KEYSTORE_PASSWORD"], capture_output=True, check=True)
+          if hashlib.sha256(result.stdout).hexdigest() != "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219":
+              raise SystemExit("Certificate differs from 709; refusing incompatible update.")
+          print("Original 709 signing certificate confirmed.")
+          PY
+      - name: Install verified Godot 4.7.2 Android tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libfontconfig1 >/dev/null
+          mkdir -p "$RUNNER_TEMP/realm710-godot"
+          curl -fL --retry 2 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/realm710-godot.zip"
+          curl -fL --retry 2 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz -o "$RUNNER_TEMP/realm710-templates.tpz"
+          python3 - <<'PY'
+          import hashlib, os, zipfile
+          from pathlib import Path
+          temp = Path(os.environ["RUNNER_TEMP"])
+          for filename, expected in [
+              ("realm710-godot.zip", "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4"),
+              ("realm710-templates.tpz", "f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011")]:
+              with (temp / filename).open("rb") as stream:
+                  if hashlib.file_digest(stream, "sha256").hexdigest() != expected:
+                      raise SystemExit("Godot download integrity check failed: " + filename)
+          with zipfile.ZipFile(temp / "realm710-godot.zip") as archive:
+              archive.extract("Godot_v4.7.2-stable_linux.x86_64", temp / "realm710-godot")
+          templates = Path.home() / ".local/share/godot/export_templates/4.7.2.stable"
+          templates.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(temp / "realm710-templates.tpz") as archive:
+              for filename in ("android_debug.apk", "version.txt"):
+                  (templates / filename).write_bytes(archive.read("templates/" + filename))
+          PY
+          chmod +x "$RUNNER_TEMP/realm710-godot/Godot_v4.7.2-stable_linux.x86_64"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "build-tools;35.0.0" "platforms;android-35"
+      - name: Export and verify compatible 710 APK
+        env:
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+        run: |
+          python3 .github/scripts/build_android710.py --godot "$RUNNER_TEMP/realm710-godot/Godot_v4.7.2-stable_linux.x86_64" --keystore "$RUNNER_TEMP/realm710-private/signing.keystore" --output "$RUNNER_TEMP/realm710-apk"
+      - name: Save verified APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: REALM_ALLIANCE_710_APK
+          path: |
+            ${{ runner.temp }}/realm710-apk/REALM_ALLIANCE_710.apk
+            ${{ runner.temp }}/realm710-apk/APK_710.json
+            ${{ runner.temp }}/realm710-apk/SHA256_APK_710.txt
+          if-no-files-found: error
+          retention-days: 30
+      - name: Publish verified APK download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "realm-710-apk-${GITHUB_SHA:0:7}" "$RUNNER_TEMP/realm710-apk/REALM_ALLIANCE_710.apk" "$RUNNER_TEMP/realm710-apk/APK_710.json" "$RUNNER_TEMP/realm710-apk/SHA256_APK_710.txt" --target "$GITHUB_SHA" --title "REALM ALLIANCE 710 · Android APK" --notes "710 ARM64 update APK. Original 709 signing certificate, package/version, ZIP integrity and alignment verified. No Android device test performed." --prerelease
+      - name: Remove private signing material
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/realm710-private"
