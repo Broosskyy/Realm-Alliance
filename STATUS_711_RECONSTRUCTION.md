@@ -1,0 +1,3 @@
+# REALM ALLIANCE 711: Code-Rekonstruktion, unvollständig
+
+Dieser Branch sichert aus dem Workchat wiederhergestellten 711-Code. Er ist noch kein vollständig wiederhergestellter oder erneut geprüfter 711-Build. Die Original-Arbeitsumgebung ist nicht zugänglich; 34 neue PNG-Dateien und die zugehörigen endgültigen Buildartefakte fehlen hier noch. Die historischen Testresultate des lokalen Arbeitsstands gelten nicht automatisch für diese Rekonstruktion. Basis bleibt der vollständige 710-Stand b603918857911cc62b314eb46f529a386db95de9. Weitere wiederhergestellte Quelldateien werden in nachvollziehbaren Commits ergänzt. Kein Signaturschlüssel wird veröffentlicht.
