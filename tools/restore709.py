@@ -81,12 +81,22 @@ def main():
                 continue
             dest = BACKUP / item
             (ROOT / dest).parent.mkdir(parents=True, exist_ok=True)
-            run("git", "mv", item, str(dest))
+            if item.startswith(".github/workflows/"):
+                # GitHub's scoped Actions token cannot remove or alter live workflows.
+                # Keep them unchanged and separately back them up in the same folder.
+                shutil.copy2(ROOT / item, ROOT / dest)
+            else:
+                run("git", "mv", item, str(dest))
         for member in source.infolist():
             if member.is_dir():
                 continue
             rel = PurePosixPath(member.filename).relative_to("Source")
-            target = ROOT.joinpath(*rel.parts)
+            # Do not modify .github/workflows with a token lacking workflow scope.
+            # Preserve every ZIP member, but store historical workflow definitions inertly.
+            if rel.parts[:2] == (".github", "workflows"):
+                target = ROOT / "restore_metadata" / "709-source-workflows" / rel.name
+            else:
+                target = ROOT.joinpath(*rel.parts)
             target.parent.mkdir(parents=True, exist_ok=True)
             with source.open(member) as s, target.open("wb") as d:
                 shutil.copyfileobj(s, d)
