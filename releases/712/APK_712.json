@@ -1,0 +1,13 @@
+{
+  "version": 712,
+  "package": "com.avenor.realmalliance.mockuptest",
+  "source_commit": "2c37ce2f39e012351735a212bd96a19083f5aef4",
+  "apk": "REALM_ALLIANCE_712.apk",
+  "size_bytes": 79519277,
+  "sha256": "289135a6d8d505f2fd95724330abe25f9a6715cb3c44bf35dd2ab210adea221a",
+  "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+  "signature_verified": true,
+  "alignment_verified": true,
+  "arm64_verified": true,
+  "android_device_tested": false
+}
