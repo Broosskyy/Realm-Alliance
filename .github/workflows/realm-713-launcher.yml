@@ -1,0 +1,32 @@
+name: REALM 713 Launcher Validation
+on:
+  push:
+    branches: [feature/work-713-1-launcher]
+permissions:
+  contents: read
+jobs:
+  launcher:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verified Godot 4.7.2
+        run: |
+          curl -fL --retry 2 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot.zip"
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/godot.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP"
+          chmod +x "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+      - name: Import game and run launcher checks
+        run: |
+          export GAME="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+          "$GAME" --headless --path godot/realm_alliance --import
+          "$GAME" --headless --path godot/realm_alliance --script res://tests/test_launcher713.gd
+      - name: Create normal web build
+        run: |
+          python3 development/build_web713.py --godot "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64" --output "$RUNNER_TEMP/realm713"
+          python3 -c 'import json,sys; from pathlib import Path; p=Path(sys.argv[1]); d=json.loads((p/"BUILD_713.json").read_text()); assert d["version"]==713 and not d["qa"]; assert (p/"index.pck").stat().st_size>0' "$RUNNER_TEMP/realm713"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_713_Launcher_Web
+          path: ${{ runner.temp }}/realm713/
+          retention-days: 30

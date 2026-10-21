@@ -83,7 +83,11 @@ func _ready() -> void:
         hero.sync_clock(model.clock)
     if model.profile.kills>0 and model.load_error=="":hud.notify("Willkommen zurück",model.Tap.next_goal(model.profile),3)
     if initial_creation_enabled and saved.is_empty() and not model.read_only:call_deferred("_open_character_creation",true)
-    print("REALM 712: own adventurer and same-character classes")
+    if get_tree().root.has_meta("realm_launcher_open_account"):
+        var account_requested=bool(get_tree().root.get_meta("realm_launcher_open_account",false))
+        get_tree().root.remove_meta("realm_launcher_open_account")
+        if account_requested and not saved.is_empty() and not model.read_only:call_deferred("_open_community")
+    print("REALM 713: 712 game with launcher")
 
 func _build_arena() -> void:
     var background := ColorRect.new()

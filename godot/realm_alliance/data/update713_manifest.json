@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "channel": "test",
+  "min_app_version_code": 713,
+  "latest_app_version_code": 713,
+  "content_revision": "713.1A",
+  "packs": [],
+  "release_notes": "Safe 2D launcher; no content packages yet"
+}
