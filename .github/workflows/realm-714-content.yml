@@ -1,0 +1,48 @@
+name: REALM 714 2D Real Asset Update Validation
+on:
+  push:
+    branches: [feature/work-714-1b-content]
+permissions:
+  contents: read
+jobs:
+  launcher:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verified Godot 4.7.2
+        run: |
+          curl -fL --retry 2 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot.zip"
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/godot.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP"
+          chmod +x "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+      - name: Import game and run launcher checks
+        run: |
+          export GAME="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+          "$GAME" --headless --path godot/realm_alliance --import
+          "$GAME" --headless --path godot/realm_alliance --script res://tests/test_updater714.gd
+      - name: Verify online v1 graphics pack
+        run: |
+          curl -fsSL --retry 2 'https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/update714_manifest.json' -o "$RUNNER_TEMP/realm-manifest.json"
+          curl -fsSL --retry 2 'https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v1.json' -o "$RUNNER_TEMP/realm-v1.json"
+          python3 - <<'PY'
+          import json,hashlib,os
+          from pathlib import Path
+          tmp=Path(os.environ['RUNNER_TEMP'])
+          m=json.loads((tmp/'realm-manifest.json').read_text())
+          p=m['packs'][0]
+          b=(tmp/'realm-v1.json').read_bytes()
+          assert m['content_revision']=='graphics-v1'
+          assert len(b)==p['bytes'] and hashlib.sha256(b).hexdigest()==p['sha256']
+          assert json.loads(b)['revision']=='graphics-v1'
+          print('REALM 714 online HTTPS v1 asset SHA256 verified')
+          PY
+      - name: Create normal web build
+        run: |
+          python3 development/build_web714.py --godot "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64" --output "$RUNNER_TEMP/realm714"
+          python3 -c 'import json,sys; from pathlib import Path; p=Path(sys.argv[1]); d=json.loads((p/"BUILD_714.json").read_text()); assert d["version"]==714 and not d["qa"]; assert (p/"index.pck").stat().st_size>0' "$RUNNER_TEMP/realm714"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_714_Launcher_Web
+          path: ${{ runner.temp }}/realm714/
+          retention-days: 30

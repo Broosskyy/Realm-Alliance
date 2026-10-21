@@ -1,0 +1,91 @@
+name: REALM 714 unsigned Android package for local original-key signing
+on:
+  push:
+    branches: [feature/work-714-asset-updater]
+    paths: ['.github/workflows/realm-714-apk.yml']
+permissions:
+  contents: read
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download and verify Godot 4.7.2 engine and Android templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot.zip"
+          curl -fL --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz -o "$RUNNER_TEMP/templates.tpz"
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/godot.zip" | sha256sum -c -
+          echo "f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011  $RUNNER_TEMP/templates.tpz" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/godot"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          chmod +x "$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64"
+          python3 - <<'PY'
+          import zipfile
+          from pathlib import Path
+          import os
+          root=Path.home()/'.local/share/godot/export_templates/4.7.2.stable'
+          root.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(Path(os.environ['RUNNER_TEMP'])/'templates.tpz') as z:
+              for n in ('android_debug.apk','version.txt'):
+                  (root/n).write_bytes(z.read('templates/'+n))
+          PY
+      - name: Android tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "build-tools;35.0.0" "platforms;android-35"
+          test -f "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar"
+      - name: Export unsigned APK from Work 714 without uploading signing keys
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('godot/realm_alliance/export_presets.cfg')
+          c=p.read_text()
+          assert 'version/code=714' in c
+          assert 'package/unique_name="com.avenor.realmalliance.mockuptest"' in c
+          assert 'package/signed=true' in c
+          p.write_text(c.replace('package/signed=true','package/signed=false'))
+          PY
+          mkdir -p "$RUNNER_TEMP/apk714"
+          GODOT="$RUNNER_TEMP/godot/Godot_v4.7.2-stable_linux.x86_64"
+          "$GODOT" --headless --path godot/realm_alliance --import
+          "$GODOT" --headless --path godot/realm_alliance --export-debug 'Android Debug' "$RUNNER_TEMP/apk714/REALM_ALLIANCE_714_unsigned.apk"
+          test -s "$RUNNER_TEMP/apk714/REALM_ALLIANCE_714_unsigned.apk"
+      - name: Align, inspect and package signing tools for offline secure signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/apk714"
+          TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          "$TOOLS/zipalign" -f -P 16 4 "$ROOT/REALM_ALLIANCE_714_unsigned.apk" "$ROOT/REALM_ALLIANCE_714_aligned_unsigned.apk"
+          "$TOOLS/zipalign" -c -P 16 4 "$ROOT/REALM_ALLIANCE_714_aligned_unsigned.apk"
+          "$TOOLS/aapt" dump badging "$ROOT/REALM_ALLIANCE_714_aligned_unsigned.apk" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='714'"
+          python3 - <<'PY'
+          import json,os,hashlib,zipfile
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP'])/'apk714'
+          apk=p/'REALM_ALLIANCE_714_aligned_unsigned.apk'
+          with zipfile.ZipFile(apk) as z:
+              assert z.testzip() is None
+              assert any(x.startswith('lib/arm64-v8a/') and x.endswith('.so') for x in z.namelist())
+          d={'version':714,'package':'com.avenor.realmalliance.mockuptest','source_commit':os.environ['GITHUB_SHA'],'bytes':apk.stat().st_size,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'aligned':True,'arm64':True,'signed':False,'signing_note':'Sign locally with preserved original 709 identity, NEVER upload keystore to GitHub'}
+          (p/'BUILD_INFO_UNSIGNED.json').write_text(json.dumps(d,indent=2)+'\n')
+          print(json.dumps(d,indent=2))
+          PY
+          cp "$TOOLS/lib/apksigner.jar" "$ROOT/apksigner.jar"
+          rm "$ROOT/REALM_ALLIANCE_714_unsigned.apk"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_714_APK_FOR_PRIVATE_SIGNING
+          path: ${{ runner.temp }}/apk714/
+          if-no-files-found: error
+          retention-days: 30

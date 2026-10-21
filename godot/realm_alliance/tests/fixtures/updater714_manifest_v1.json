@@ -1,0 +1,17 @@
+{
+  "schema": 2,
+  "channel": "test",
+  "min_app_version_code": 714,
+  "latest_app_version_code": 714,
+  "content_revision": "graphics-v1",
+  "packs": [
+    {
+      "id": "realm_announcement",
+      "kind": "svg_announcement",
+      "revision": "graphics-v1",
+      "bytes": 915,
+      "sha256": "c4610c7de070516ba102743df3c00f18e951e6969ca384f826e09aa47ee990ce",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v1.json"
+    }
+  ]
+}
