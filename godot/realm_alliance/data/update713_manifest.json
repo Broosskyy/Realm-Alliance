@@ -3,7 +3,15 @@
   "channel": "test",
   "min_app_version_code": 713,
   "latest_app_version_code": 713,
-  "content_revision": "713.1A",
-  "packs": [],
-  "release_notes": "Safe 2D launcher; no content packages yet"
+  "content_revision": "713.1B-news-v1",
+  "packs": [
+    {
+      "id": "launcher_news",
+      "kind": "json_news",
+      "bytes": 191,
+      "sha256": "f913e94e18ecf78168c9307675a9b6a02e63dd69a41ffcfc23cb213511fd0b69",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/feature/work-713-1b-content/godot/realm_alliance/data/updates713/news-v1.json"
+    }
+  ],
+  "release_notes": "Verified launcher announcement content patch (first real download)."
 }

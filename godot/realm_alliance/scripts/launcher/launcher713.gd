@@ -1,5 +1,6 @@
 extends Control
 const Gate=preload("res://scripts/launcher/update_gate713.gd")
+const Cache=preload("res://scripts/launcher/content_cache713.gd")
 const Kit=preload("res://scripts/ui/fantasy_theme.gd")
 const VERSION_CODE=713
 const SETTINGS="res://data/update713_config.json"
@@ -16,6 +17,8 @@ var _card:PanelContainer
 var _center:CenterContainer
 var _config:Dictionary={}
 var _want_account=false
+var _phase="manifest"
+var _pack:Dictionary={}
 
 func _ready() -> void:
     theme=Kit.native_theme()
@@ -130,6 +133,9 @@ func _display(message:String,detail:String,loading:bool) -> void:
 
 func _check() -> void:
     if _busy or _launching:return
+    _phase="manifest"
+    _progress.indeterminate=true
+    _progress.value=0
     var settings=JSON.parse_string(FileAccess.get_file_as_string(SETTINGS))
     if not settings is Dictionary:
         _display("Offline bereit","Die Updatekonfiguration ist ungültig.",false)
@@ -144,18 +150,51 @@ func _check() -> void:
     if _request.request(address,PackedStringArray(["Accept: application/json"]))!=OK:
         _display("Offline bereit","Verbindung konnte nicht gestartet werden.",false)
 
+func _process(_delta:float) -> void:
+    if _phase=="pack" and _busy and not _pack.is_empty() and int(_pack.bytes)>0:
+        _progress.value=clampf(100.0*float(_request.get_downloaded_bytes())/float(_pack.bytes),0.0,99.0)
+
 func _on_manifest(result:int,status_code:int,_headers:PackedStringArray,body:PackedByteArray) -> void:
     if not _busy:return
-    if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
-        _display("Offline bereit","Updateprüfung derzeit nicht erreichbar. Dein lokaler Spielstand bleibt erhalten.",false)
+    if _phase=="pack":
+        _finish_pack(result,status_code,body)
         return
-    var state=Gate.inspect(JSON.parse_string(body.get_string_from_utf8()),VERSION_CODE,str(_config.get("channel","test")))
+    if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
+        _display("Offline bereit","Versionsdienst nicht erreichbar. Dein Spielstand bleibt erhalten.",false)
+        return
+    var manifest=JSON.parse_string(body.get_string_from_utf8())
+    var state=Gate.inspect(manifest,VERSION_CODE,str(_config.get("channel","test")))
     match str(state.status):
         "current":_display("Spiel ist aktuell",str(state.message),false)
         "app_optional":_display("Neue App-Version",str(state.message),false)
         "app_required":_display("App-Update erforderlich",str(state.message),false)
-        "content_pending":_display("Neue Inhalte angekündigt",str(state.message),false)
+        "content_pending":
+            _pack=manifest.packs[0]
+            if Cache.installed(_pack):
+                var cached=Cache.read(_pack)
+                _display("Inhalte aktuell",str(cached.get("message","Inhalt bereits vorhanden.")),false)
+            else:
+                _phase="pack"
+                _progress.indeterminate=false
+                _progress.value=0
+                _display("Neue Inhalte werden geladen …","Sicherer Download und Prüfsumme: %d Bytes"%int(_pack.bytes),true)
+                call_deferred("_fetch_pack")
         _:_display("Offline bereit","Ungültige Updateantwort. Dein Spielstand bleibt erhalten.",false)
+
+func _fetch_pack() -> void:
+    if not _busy or _phase!="pack" or _launching:return
+    if _request.request(str(_pack.url),PackedStringArray(["Accept: application/json"]))!=OK:
+        _display("Update nicht verfügbar","Download konnte nicht gestartet werden. Offline spielen bleibt möglich.",false)
+
+func _finish_pack(result:int,code:int,body:PackedByteArray) -> void:
+    if result!=HTTPRequest.RESULT_SUCCESS or code!=200:
+        _display("Download unterbrochen","Inhalte konnten nicht geladen werden. Vorherige Daten bleiben erhalten.",false)
+        return
+    if not Cache.install(_pack,body):
+        _display("Update abgelehnt","Prüfsumme oder Inhalt ungültig. Vorherige Daten bleiben erhalten.",false)
+        return
+    _progress.value=100
+    _display("Inhalte aktualisiert",str(Cache.read(_pack).get("message","Inhalt erfolgreich geladen.")),false)
 
 func _start_game(open_account:bool) -> void:
     if _launching:return

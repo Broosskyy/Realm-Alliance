@@ -1,7 +1,7 @@
-name: REALM 713 Launcher Validation
+name: REALM 713 Content Patch Validation
 on:
   push:
-    branches: [feature/work-713-1-launcher]
+    branches: [feature/work-713-1b-content]
 permissions:
   contents: read
 jobs:
