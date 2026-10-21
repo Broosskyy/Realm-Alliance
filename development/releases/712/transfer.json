@@ -1,0 +1,78 @@
+{
+  "version": 712,
+  "apk": {
+    "version": 712,
+    "package": "com.avenor.realmalliance.mockuptest",
+    "source_commit": "2c37ce2f39e012351735a212bd96a19083f5aef4",
+    "apk": "REALM_ALLIANCE_712.apk",
+    "size_bytes": 79519277,
+    "sha256": "289135a6d8d505f2fd95724330abe25f9a6715cb3c44bf35dd2ab210adea221a",
+    "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+    "signature_verified": true,
+    "alignment_verified": true,
+    "arm64_verified": true,
+    "android_device_tested": false
+  },
+  "parts": [
+    {
+      "name": "apk.part01",
+      "bytes": 8388576,
+      "sha256": "3994c8e630a70cb66b8e1d43681e277058d3472af87c9bc3c5a297100dc57951",
+      "git_sha": "1a5721fb9a0c47e1089e913436c8d50dc647d197"
+    },
+    {
+      "name": "apk.part02",
+      "bytes": 8388576,
+      "sha256": "b2cad2b81c86102571f091cb5b626e04fe3d1753d0e73819063ba2bafc381f7c",
+      "git_sha": "a679e2ff7223da1b4618e2b3e48c74fa23b52690"
+    },
+    {
+      "name": "apk.part03",
+      "bytes": 8388576,
+      "sha256": "fffc22fc48b11ed69b89d4e1f7b7f5f5395db1e723f81381375b59a8fc9991a4",
+      "git_sha": "a1048d34fca73598066d1170e900993b5ff8064f"
+    },
+    {
+      "name": "apk.part04",
+      "bytes": 8388576,
+      "sha256": "cc7c6f25bc4e6dd4be5bcb69bcd7e5da43084c704ed7fca427b0e4482743157b",
+      "git_sha": "2cfe8b85ef7d398c79ce66beb69bce55cbdf7243"
+    },
+    {
+      "name": "apk.part05",
+      "bytes": 8388576,
+      "sha256": "2ab61783bc652ee21f1ba1c65b2f30317537155a8987dd05d310d400cd5a4f69",
+      "git_sha": "3be14e96c923b2459a2bd326e63d2f99a5220214"
+    },
+    {
+      "name": "apk.part06",
+      "bytes": 8388576,
+      "sha256": "c040fda82ba2b1d9b9abad638a920e7a44f3e277a5e73d810bbea1157891b04b",
+      "git_sha": "b31a3b0f75cbc000fa8f7b87f2ff463d38b2063f"
+    },
+    {
+      "name": "apk.part07",
+      "bytes": 8388576,
+      "sha256": "a426f8a39388772c5b0afdb6b2a84a0936ca51df93636561bf97739807083111",
+      "git_sha": "971f2947515ab0b8cdae6f3443c2a20851452aba"
+    },
+    {
+      "name": "apk.part08",
+      "bytes": 8388576,
+      "sha256": "e628730d5d00c44b451723731c39185770813e40e090d4afb05f53cddfdfec59",
+      "git_sha": "1980e5b8fb0c47fabcd44d9fee3a8784ffcb257c"
+    },
+    {
+      "name": "apk.part09",
+      "bytes": 8388576,
+      "sha256": "f8dc802d3d98dcc9cd96fc687fda57ba31d422bdb570a96b68d3eba4bd20446f",
+      "git_sha": "58086cef17a5652a7f81dccef3848b261ad23035"
+    },
+    {
+      "name": "apk.part10",
+      "bytes": 4022093,
+      "sha256": "abea351d24dd044b4f77683118dc1ab594d07d97bf3df2cb6b436fef62c830c1",
+      "git_sha": "cb60b10472db8d6c705f7292c4620d88f3632a88"
+    }
+  ]
+}

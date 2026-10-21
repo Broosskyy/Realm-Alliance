@@ -21,6 +21,7 @@ jobs:
       - name: Restore APK and verify original signing certificate
         run: |
           python3 .github/scripts/assemble_delivery712.py --manifest development/releases/712/transfer.json --output "$RUNNER_TEMP/delivery712"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;35.0.0"
           tools="$ANDROID_HOME/build-tools/35.0.0"
           "$tools/apksigner" verify --verbose --print-certs "$RUNNER_TEMP/delivery712/REALM_ALLIANCE_712.apk" > "$RUNNER_TEMP/signature712.txt"
           grep -F 'Signer #1 certificate SHA-256 digest: 317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219' "$RUNNER_TEMP/signature712.txt"
