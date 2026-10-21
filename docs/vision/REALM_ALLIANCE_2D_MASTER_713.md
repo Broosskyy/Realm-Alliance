@@ -41,3 +41,30 @@ Ein eigener erstellter Hauptcharakter (Basic-Abenteurer m/w, natürliche Haarfar
 
 ## Lieferstandard
 GitHub-Branch pro Phase, kleine reproduzierbare Commits, vorhandene Builds nicht überschreiben, signiertes Android nur mit Originalschlüssel; keine privaten Schlüssel in Repository/Artefakten. Für jeden Meilenstein: Quellcode, exportierter normaler Web-Build, realer Android-APK-Build falls verfügbar, Screenshots/Touch-Tests, Save-/Regressionstests, konkreter offener Reststand. Git-Commit/Artifact-Hash müssen zur veröffentlichten Version passen.
+
+
+## Zusätzliche Plattform- und Layout-Locks (21.10.2026)
+**Kein Rebuild des Hauptspiels.** Die bisherige REALM-ALLIANCE-Erfahrung ist das Produkt: Tap-/Idle-Kampf, Bosse, Loot, Inventar, Klassen/Joblevel, Flügel, Pets, Rüstungen, Progression und Menüs. Diese Systeme werden verbessert, nicht durch eine neue Open World ersetzt oder umgestellt. **Open World = späteres, optionales Zusatzmodul.** Keine Implementierung einer Open World ohne separaten Scope-/Performance-Prototyp und ausdrückliche Freigabe.
+
+### Cross-Platform und Crossplay
+- Zielplattformen langfristig: Android, iOS, Browser, Windows und macOS, jeweils dasselbe Spielerprofil, Inhalte und Fortschritt. Der aktuelle Stand belegt noch **keine** fertige Crossplay-/Cross-Save-Funktion zwischen diesen Plattformen.
+- **Cross-Save/Cross-Progression** (ein Spielstand/Gerätewechsel) von **Crossplay** (gemeinsame Online-Aktivitäten auf verschiedenen Geräten) technisch unterscheiden. Bestehenden lokalen Gastspielstand behalten; freiwillige, sichere Konto-Verknüpfung und später servergestützte Synchronisierung. Save-/Item-/Währungsduplikation, Versionskonflikte und Offline-Synchronisierung gesondert testen.
+- Gemeinsames Godot-2D-Spiel und gemeinsames Datenmodell beibehalten, aber Eingabe, Layout, Export und Leistungsoptionen je Gerät anpassen. Android und Browser zuerst testen; Windows/macOS später; iOS nur mit geeigneter macOS-/Xcode-/Signierumgebung und realem Gerät. Kein unbelegtes „unterstützt iOS“ vor einem Build.
+- Online-Familien, Raids, Handel, Gilden oder gemeinsames Bewegen verlangen eine erreichbare, getestete Serverarchitektur. Den vorhandenen lokalen Realm-Dienst nicht als vollständig produktiven Crossplay-Server bezeichnen.
+
+### Portrait first, Landscape wirklich adaptiv
+- **Hochformat ist die primäre Designansicht**, Godot-Baseline derzeit 720×1280. Im Hochformat sollen alle Kernaktionen, Kampf, Dialoge und Ausrüstungsfenster mit dem Daumen bequem erreichbar sein.
+- **Querformat bleibt voll spielbar**, aber bekommt eine eigene responsive Panel-Anordnung. Keine bloße Rotation, Stretch-Verzerrung oder abgeschnittene Figur. Beispiel: Landscape Kampf/Welt in der Mitte, Status links und Skills rechts; Portrait übersichtlicher vertikaler Aufbau mit Menüs als Sheets.
+- Vorhandene UI nicht blind neu gestalten: zuerst echte Breakpoint-/Touch-/Scroll-Probleme feststellen, dann kleine überprüfbare Anpassungen. Rotation/Resize auch während Gameplay/Modal mit erhaltenem Zustand; Notches, Safe Areas, Tablet-/Desktop-Größen und Tastatur/Mouse berücksichtigen.
+- Testmatrix mindestens: 320×568, 390×844, 430×932, 960×540, 1280×720 sowie Desktop. Bestehende Animationen und Spielstände müssen unverändert funktionieren.
+
+### Open World: bewusst ein optionaler späterer Spielmodus
+- **Nicht Teil der ersten 712-Optimierung und nicht Voraussetzung für Charaktererstellung, Klassen, Pets oder Idle-Bosse.** Das Hauptspiel bleibt auch ohne Open World vollständig spielbar.
+- Prototyp als **kleine separate 2D-Region** mit einer `Camera2D`: Figur folgen, Kamera-Pan per Touchziehen/Mausziehen, Zoom per Zwei-Finger-Pinch/Mausrad, „Zur Figur“-Button, Zoomgrenzen, Randbegrenzung und Minimap.
+- Weltausrichtung als 2D-Top-down oder leicht schräge 2D-Spriteansicht. 2.5D-Look über Layer/Parallax/Shadows, **keine 3D-Modelle oder 3D-Kameras**.
+- Im optionalen Weltmodus: Fingerziehen = Kamera oder Bewegung nach klarer Gestenkonvention; kurzer Tap = Interaktion bzw. Bewegungsziel. **Im bestehenden Hauptkampf bleiben Tap-Angriffe wie bisher.** Keine mehrdeutigen Gesten, ungewollte Käufe oder Angriffe bei Pinch/Scroll.
+- Welt in kleine Zonen aufteilen, Assets bedarfsorientiert laden, ohne riesige offene Karte auf einmal im RAM zu halten. Gleicher Charakter und Inventar; Open World soll zusätzliche Erkundung/Quests/NPCs bieten, keinen Zwang zur täglichen Bedienung.
+- **Gate vor Umsetzung:** 1 Region, 1 NPC, 1 Quest, frei bewegliche Kamera, Portrait-/Landscape-Performance und zurück ins Kernspiel. Erst nach überzeugendem Mobile-Test weitere Regionen planen.
+
+### Disziplinierte Feature-Priorisierung und Beratung
+Neue Wünsche vor Umsetzung nach Aufwand, Nutzen für das vorhandene Spiel, Mobil-UX, Daten-/Backend-Folgen und Risiken bewerten. Bei Scope-Ausweitung ausdrücklich alternative kleinere Versionen empfehlen und nicht alles zugleich starten. Empfohlene Reihenfolge: **712 sichern & abnehmen → Charakter/2D-Mockup-Passform und Bedienung verbessern → Portrait/Landscape sauber testen → Cross-Save-Grundlagen → Spezialisten/Elemente als einzeln testbare Vertikalschnitte → erst danach optionale Weltregion.** Kein unfertiges Open-World-/Crossplay-System darf die aktuelle 712-Spielschleife destabilisieren.
