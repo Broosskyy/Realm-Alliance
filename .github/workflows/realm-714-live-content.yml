@@ -1,0 +1,37 @@
+name: REALM 714 live content manifest test (no app rebuild)
+on:
+  push:
+    branches: [distribution/realm-714-test]
+    paths:
+      - 'godot/realm_alliance/data/update714_manifest.json'
+      - 'godot/realm_alliance/data/updates714/**'
+      - '.github/workflows/realm-714-live-content.yml'
+permissions:
+  contents: read
+jobs:
+  verify-external-v2:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check actual live HTTPS manifest and new 2D content
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fLsS --retry 4 'https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/update714_manifest.json' -o "$RUNNER_TEMP/live-manifest.json"
+          curl -fLsS --retry 4 'https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v2.json' -o "$RUNNER_TEMP/live-v2.json"
+          python3 - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP'])
+          manifest=json.loads((p/'live-manifest.json').read_bytes())
+          remote=(p/'live-v2.json').read_bytes()
+          pack=manifest['packs'][0]
+          expected='510ed220494a72a450613d86ea827efd299a78fd29f92f5413a670825d9477b9'
+          assert manifest['schema']==2 and manifest['content_revision']=='graphics-v2'
+          assert pack['bytes']==940 and len(remote)==940
+          assert pack['sha256']==expected and hashlib.sha256(remote).hexdigest()==expected
+          payload=json.loads(remote)
+          assert payload['revision']=='graphics-v2' and payload['id']=='realm_announcement'
+          assert payload['banner_svg'].startswith('<svg ') and payload['title']=='Kristallnacht im Reich'
+          print('LIVE V2 PASSED: updated remote 2D texture and text, no APK/code build')
+          PY
