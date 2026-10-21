@@ -46,6 +46,7 @@ jobs:
           python3 development/build_web711.py --godot "$REALM_GODOT" --output "$RUNNER_TEMP/web711"
           python3 development/build_web711.py --godot "$REALM_GODOT" --output "$RUNNER_TEMP/qa711" --qa
           node development/browser_review711.cjs --web-root "$RUNNER_TEMP/qa711" --screenshots "$RUNNER_TEMP/screens711" --report "$RUNNER_TEMP/browser711.json"
+          node development/browser_fit711.cjs --web-root "$RUNNER_TEMP/qa711" --screenshots "$RUNNER_TEMP/fitting711" --report "$RUNNER_TEMP/fitting711.json"
           node development/browser_review710.cjs --web-root "$RUNNER_TEMP/qa711" --browser "$REALM_BROWSER" --screenshots "$RUNNER_TEMP/regression711" --report "$RUNNER_TEMP/regression711.json"
           node development/normal_web711.cjs --web-root "$RUNNER_TEMP/web711" --browser "$REALM_BROWSER" --screenshots "$RUNNER_TEMP/normal711" --report "$RUNNER_TEMP/normal711.json"
       - name: Save verified web export on main
@@ -68,6 +69,7 @@ jobs:
           cp "$RUNNER_TEMP/checks711.json" "$RUNNER_TEMP/release711/native_checks.json"
           cp "$RUNNER_TEMP/backend711.json" "$RUNNER_TEMP/release711/backend_checks.json"
           cp "$RUNNER_TEMP/browser711.json" "$RUNNER_TEMP/release711/browser_checks.json"
+          cp "$RUNNER_TEMP/fitting711.json" "$RUNNER_TEMP/release711/fitting_checks.json"
           cp "$RUNNER_TEMP/regression711.json" "$RUNNER_TEMP/release711/regression_checks.json"
           cp "$RUNNER_TEMP/normal711.json" "$RUNNER_TEMP/release711/normal_checks.json"
           cp README_MOCKUP_711.md "$RUNNER_TEMP/release711/REALM_ALLIANCE_711_Bericht.md"

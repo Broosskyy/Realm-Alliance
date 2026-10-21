@@ -34,6 +34,7 @@ const Paladin=preload("res://scripts/presentation/paladin_visual.gd")
 var hero_id="realmwachter"
 var preview_mode=false
 var _outfit=""
+var _modular_body=false
 var _outfit_poses:Dictionary={}
 var _outfit_meta:Dictionary={}
 var hero_sets:Dictionary={}
@@ -148,7 +149,7 @@ func set_hero(id:String) -> void:
         hero_sets[id]=frames
     hero_id=id;_poses=hero_sets[id];revive()
 func hand(pose:String) -> Vector2:
-    if hero_id=="realmwachter" and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):return Vector2(_outfit_meta[pose].hand[0],_outfit_meta[pose].hand[1])
+    if hero_id=="realmwachter" and not _modular_body and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):return Vector2(_outfit_meta[pose].hand[0],_outfit_meta[pose].hand[1])
     if hero_id=="schattenjager":return ShadowHunter.HANDS.get(pose,ShadowHunter.HANDS.hit)
     if hero_id=="runenpaladin":return Paladin.HANDS.get(pose,Paladin.HANDS.hit)
     return Alternate.HANDS.get(pose,Alternate.HANDS.hit) if hero_id=="kaela" else HANDS.get(pose,HANDS.hit)
@@ -156,7 +157,7 @@ func angle(pose:String) -> float:
     if hero_id=="schattenjager":return float(ShadowHunter.ANGLES.get(pose,-45))
     return float(Alternate.ANGLES.get(pose,-45)) if hero_id=="kaela" else float(ANGLES.get(pose,-45))
 func sockets(pose:String) -> Dictionary:
-    if hero_id=="realmwachter" and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):
+    if hero_id=="realmwachter" and not _modular_body and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):
         var d=_outfit_meta[pose];var chest=Vector2(d.chest[0],d.chest[1]);return {"head":Vector2(d.head[0],d.head[1]),"chest":chest,"back":chest+Vector2(-55,-12)}
     if hero_id=="schattenjager":return ShadowHunter.SOCKETS.get(pose,ShadowHunter.SOCKETS.hit)
     if hero_id=="runenpaladin":return Paladin.SOCKETS.get(pose,Paladin.SOCKETS.hit)
@@ -165,7 +166,7 @@ func _set_pose(name: String) -> void:
     _pose = name
     if _body == null:
         return
-    _body.texture = _outfit_poses.get(name,_poses.get(name)) if hero_id=="realmwachter" and _outfit in ["astral_plate","eclipse_plate"] else _poses.get(name)
+    _body.texture = _outfit_poses.get(name,_poses.get(name)) if hero_id=="realmwachter" and not _modular_body and _outfit in ["astral_plate","eclipse_plate"] else _poses.get(name)
     _body.position = -PIVOT
     _socket.position = hand(name) - PIVOT
     _socket.rotation_degrees = angle(name)
@@ -247,7 +248,8 @@ func set_look(id: String, evolution: bool = false) -> void:
 
 func set_gear(profile: Dictionary) -> void:
     var next=preload("res://scripts/systems/hero_equipment.gd").visible_id(profile,"chest") if profile.has("hero_equipment") else ""
-    if next!=_outfit:_outfit=next;_set_pose(_pose)
+    var modular=preload("res://scripts/systems/wardrobe711.gd").active(profile)!="" or next in ["wander_leather","silver_guard"]
+    if next!=_outfit or modular!=_modular_body:_outfit=next;_modular_body=modular;_set_pose(_pose)
     if _palette:_palette.set_shader_parameter("eclipse_armor",_outfit=="eclipse_plate")
     if wardrobe_visual:wardrobe_visual.configure(profile)
     if attachments:attachments.apply(self,profile)

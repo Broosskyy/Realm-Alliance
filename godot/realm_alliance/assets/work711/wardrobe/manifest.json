@@ -413,5 +413,12 @@
       ],
       "sha256": "b8a2996d170623b53fc4a98c623bdfdd475c65df6103f10f456e4a80de2db44b"
     }
+  },
+  "fitting": {
+    "revision": "711.1",
+    "anchors": "assets/work711/wardrobe/fit_anchors.json",
+    "source_alpha_bounds": "assets/work711/wardrobe/texture_bounds.json",
+    "pose_configurations": 22,
+    "neutral_body_redraw": false
   }
 }

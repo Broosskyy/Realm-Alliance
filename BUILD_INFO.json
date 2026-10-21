@@ -1,25 +1,28 @@
 {
-  "candidate": "mockup-711-restored-with-replacement-art",
+  "candidate": "mockup-711.1-wardrobe-fit",
   "candidate_export_version": 711,
   "engine": "Godot 4.7.2",
   "baseline_source_commit": "b603918857911cc62b314eb46f529a386db95de9",
-  "restored_source_base_commit": "39932918ca0b5dac0b3ab979baa9af98c1f31104",
-  "status": "validated_source_with_generated_replacement_art",
+  "restored_source_base_commit": "d8378b3813e97951a1b13cee2d913c28d0d12564",
+  "status": "validated_wardrobe_fit_patch",
   "android_package": "com.avenor.realmalliance.mockuptest",
-  "version_name": "0.7.0-mockup.11-modular-wardrobe",
+  "version_name": "0.7.0-mockup.11.1-wardrobe-fit",
   "missing_png_files": 0,
   "replacement_png_files": 34,
   "original_711_png_bytes_recovered": false,
   "validation": {
     "godot_suites": 34,
-    "godot_checks": 3513,
+    "godot_checks": 3677,
     "browser_711_checks": 26,
     "browser_710_regression_checks": 61,
     "normal_web_checks": 2,
     "backend_checks": 48,
-    "android_device_test": false
+    "android_device_test": false,
+    "fitting_browser_checks": 17
   },
   "signing_certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
   "art_manifest": "godot/realm_alliance/assets/work711/wardrobe/manifest.json",
-  "note": "APK and web artifact reports record their exact build hashes. Historical web_build/709 and web_build/710 remain historical. This is not a byte-identical recovery of the lost original 711 art."
+  "note": "APK and web artifact reports record their exact build hashes. Historical web_build/709 and web_build/710 remain historical. This is not a byte-identical recovery of the lost original 711 art.",
+  "patch_revision": "711.1",
+  "fitting_configurations": 22
 }

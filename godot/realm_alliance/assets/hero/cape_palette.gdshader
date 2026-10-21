@@ -2,6 +2,8 @@ shader_type canvas_item;
 uniform bool modular_outfit = false;
 uniform float modular_rear_cut = 0.62;
 uniform vec4 modular_cloth_color : source_color = vec4(1.0);
+uniform vec4 modular_head_region = vec4(0.0);
+uniform float modular_leg_start = 1.0;
 uniform int evolution_rank = 0;
 uniform int mastery_rank = 0;
 uniform bool eclipse_armor = false;
@@ -24,8 +26,6 @@ void fragment() {
     if (modular_outfit) {
         float cyan = smoothstep(0.025,0.10,min(tex.g,tex.b)-tex.r);
         float textile = max(max(blue,purple),cyan);
-        float rear = 1.0-smoothstep(modular_rear_cut-0.02,modular_rear_cut,UV.x);
-        tex.a *= 1.0-textile*rear;
         float lightness=dot(tex.rgb,vec3(0.2126,0.7152,0.0722));
         tex.rgb=mix(tex.rgb,modular_cloth_color.rgb*lightness*1.55,textile*0.90);
     }
@@ -61,7 +61,17 @@ void fragment() {
             vec2 b = cape_polygon[(i + 7) % 8];
             if (((a.y > UV.y) != (b.y > UV.y)) && (UV.x < (b.x-a.x)*(UV.y-a.y)/(b.y-a.y+0.000001)+a.x)) { inside = !inside; }
         }
-        tex.a *= cape_pass ? float(inside) : 1.0-float(inside);
+        if (modular_outfit) {
+            bool head = UV.x >= modular_head_region.x && UV.x <= modular_head_region.z && UV.y >= modular_head_region.y && UV.y <= modular_head_region.w;
+            bool legs = UV.y >= modular_leg_start;
+            float cyan = smoothstep(0.025,0.10,min(tex.g,tex.b)-tex.r);
+            float textile = max(max(blue,purple),cyan);
+            // Source bodies contain painted armour, hair and skin. A cape mask
+            // must never erase those opaque body parts when a pose leans left.
+            tex.a *= 1.0-float(inside && !head && !legs)*textile;
+        } else {
+            tex.a *= cape_pass ? float(inside) : 1.0-float(inside);
+        }
     }
     COLOR = tex * sprite_modulate;
 }

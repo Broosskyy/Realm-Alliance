@@ -1,6 +1,6 @@
-# REALM ALLIANCE 711
+# REALM ALLIANCE 711.1
 
-Aktueller Stand: vollständige Wiederherstellung mit neu generierten Ersatzgrafiken.
+Aktueller Stand: 711.1 mit Korrekturen für Kostümpassform, Kopfteil und mobile Heldenvorschau. Grafikbasis: wiederhergestellte 711 mit Ersatzgrafiken.
 
 Einstieg und Grenzen: [README_MOCKUP_711.md](README_MOCKUP_711.md).
 Godot-Projekt: `godot/realm_alliance/project.godot`, Godot 4.7.2.

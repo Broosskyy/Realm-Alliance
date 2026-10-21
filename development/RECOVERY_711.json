@@ -6,11 +6,11 @@
   "missing_png_count": 0,
   "other_unrestored_changes": [],
   "current_tests_run": [
-    "34 Godot suites: 3513 checks",
-    "backend HTTP: 48 checks",
-    "710 browser regression: 61 checks",
-    "normal web: 2 checks",
-    "711 browser touch and actual effects settings: 26 checks"
+    "34 native suites / 3677 checks",
+    "17 fitting browser checks",
+    "26 wardrobe browser checks",
+    "61 legacy browser checks",
+    "normal web smoke"
   ],
   "apk_711_present": true,
   "normal_web_711_present": true,
@@ -68,5 +68,6 @@
   "missing_other_known_paths": [],
   "replacement_png_count": 34,
   "original_png_bytes_recovered": false,
-  "art_manifest": "godot/realm_alliance/assets/work711/wardrobe/manifest.json"
+  "art_manifest": "godot/realm_alliance/assets/work711/wardrobe/manifest.json",
+  "patch_revision": "711.1"
 }

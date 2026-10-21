@@ -56,7 +56,7 @@ func run() -> void:
         for pose in actor.Gate.HERO_STATES:
             actor._set_pose(pose)
             var rig=actor.attachments
-            var head_point=rig.head.position+Vector2(258.687,85.907)*rig.head.scale
+            var head_point=rig.head.position+rig.head.texture.get_size()*.5*rig.head.scale
             var back_point=rig.wings.position+Vector2(403.357,261.561)*rig.wings.scale
             check(head_point.length()<.01,"diadem pivots around its physical forehead anchor: "+pose)
             check(back_point.length()<.01,"wings pivot around the clasp: "+pose)

@@ -1,4 +1,4 @@
-> Aktueller Arbeitsstand: **Godot-Testversion 711**, vollständig wiederhergestellt mit neuen Ersatzgrafiken. Einstieg: [START_HERE.md](START_HERE.md), Inhalte und Grenzen: [README_MOCKUP_711.md](README_MOCKUP_711.md). Der folgende Web-First-Text beschreibt die erhaltene ältere React-Vorlage.
+> Aktueller Arbeitsstand: **Godot-Testversion 711.1**, vollständig wiederhergestellt mit neuen Ersatzgrafiken. Einstieg: [START_HERE.md](START_HERE.md), Inhalte und Grenzen: [README_MOCKUP_711.md](README_MOCKUP_711.md). Der folgende Web-First-Text beschreibt die erhaltene ältere React-Vorlage.
 
 # REALM ALLIANCE V2 — Web First
 

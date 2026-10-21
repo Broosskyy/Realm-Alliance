@@ -114,7 +114,7 @@ func _preview_hero(parent:Control,caption:String,profile:Dictionary) -> void:
     var bg=Panel.new();bg.add_theme_stylebox_override("panel",Kit.box("hero"));bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;stage.add_child(bg)
     var rig=preload("res://scripts/production_hero.gd").new();rig.name="EquipmentComparisonHero";rig.preview_mode=true;rig.z_index=4;stage.add_child(rig);rig.set_hero(model.hero_id);rig.equip_weapon(model.Equipment.IDS.find(str(profile.equipped)));rig.set_gear(profile);rig.scale=Vector2.ONE*(.48 if get_tree().root.get_visible_rect().size.x>=1100 else .64);rig.position=Vector2(110,280)
     stage.resized.connect(func():
-        if is_instance_valid(rig):rig.position=Vector2(stage.size.x*.5-35,280))
+        if is_instance_valid(rig):preload("res://scripts/presentation/hero_preview_frame711.gd").fit(rig,Rect2(14,14,stage.size.x-28,stage.size.y-28)))
 
 func _build_costumes(list:VBoxContainer) -> void:
     if selected not in Wardrobe.IDS:selected=Wardrobe.IDS[0]

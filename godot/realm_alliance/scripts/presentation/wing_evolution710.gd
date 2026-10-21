@@ -16,6 +16,16 @@ func configure(texture:Texture2D,value:int,id:String,fx:float=1.0) -> void:
     layout=Progress.visual(plus);set_process(plus>=10 and intensity>0);queue_redraw()
 func _process(delta:float) -> void:
     clock+=delta;queue_redraw()
+func visual_bounds() -> Rect2:
+    var rect=Rect2(Vector2(-100,-90),Vector2(130,160))
+    for i in int(layout.get("feathers",0)):
+        var side=-1.0 if i%2==0 else 1.0;var row=int(i/2)
+        var anchor=Vector2(-145,-18+row*10) if side<0 else Vector2(12,-22+row*7)
+        if bool(layout.second_fan) and row>=4:anchor+=Vector2(-25 if side<0 else 12,18)
+        for v in FEATHER:
+            var offset=(v-Vector2(224,130))*Vector2(1 if side<0 else -.5,1)
+            rect=rect.expand(anchor+offset.rotated(-.12+row*.13)*(.9+plus*.012))
+    return rect
 func _draw() -> void:
     if source==null or layout.is_empty():return
     var colors=PackedColorArray([Color.WHITE])

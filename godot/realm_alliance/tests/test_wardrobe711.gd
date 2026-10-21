@@ -64,6 +64,18 @@ func run():
                 before=JSON.stringify(s.snapshot())
                 check(not s.change_gear(id,"upgrade") and JSON.stringify(s.snapshot())==before,"armor cap atomic")
     var hero=Rig.new();root.add_child(hero)
+    var dressed=Session.new();dressed.profile.hero_equipment.owned.eclipse_plate={"level":10};dressed.profile.hero_equipment.equipped.chest="eclipse_plate"
+    dressed.profile.wardrobe.owned.sand_traveler={};dressed.profile.wardrobe.active="sand_traveler"
+    var dressed_before=JSON.stringify(dressed.snapshot())
+    hero.set_hero("realmwachter");hero.set_gear(dressed.profile)
+    for pose in ["idle","ready","windup","attack_contact","recovery","hit"]:
+        hero._set_pose(pose)
+        check(hero._body.texture==hero._poses[pose],"costume over legacy armor uses calibrated base "+pose)
+        check(hero.hand(pose)==hero.HANDS[pose],"costume keeps matching base hand "+pose)
+        check(not hero.attachments.foreground_arm.visible,"old armor rectangle cannot cover costume "+pose)
+    check(JSON.stringify(dressed.snapshot())==dressed_before,"fitting never rewrites worn gear or progression")
+    dressed.profile.wardrobe.active="";hero.set_gear(dressed.profile)
+    check(hero._body.texture==hero._outfit_poses[hero._pose],"removing costume restores authored equipped armor")
     for hero_id in ["runenpaladin","schattenjager","realmwachter"]:
         hero.set_hero(hero_id)
         for family in hero.wardrobe_visual.FAMILIES:
@@ -75,7 +87,7 @@ func run():
             hero.set_gear(s.profile)
             check(hero.wardrobe_visual.active_id==family and hero.wardrobe_visual.visible,"family visible "+hero_id+family)
             check(not hero.attachments.armor_details.visible,"legacy armor details suppressed")
-            for pose in ["idle","ready","windup","attack_contact","recovery","hit"]:
+            for pose in hero.Gate.HERO_STATES+(["run","defeated"] if hero._poses.has("run") else []):
                 hero._set_pose(pose)
                 check(hero.weapon_is_modular(),"independent weapon "+hero_id+family+pose)
                 check(not hero._body.texture.resource_path.contains("outfit"),"base hero identity retained")

@@ -1,0 +1,73 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "stable base under worn eclipse costume runenpaladin 390"
+    },
+    {
+      "ok": true,
+      "label": "full worn silhouette stays inside preview runenpaladin 390"
+    },
+    {
+      "ok": true,
+      "label": "stable base under worn eclipse costume runenpaladin 320"
+    },
+    {
+      "ok": true,
+      "label": "full worn silhouette stays inside preview runenpaladin 320"
+    },
+    {
+      "ok": true,
+      "label": "stable base under worn eclipse costume schattenjager 390"
+    },
+    {
+      "ok": true,
+      "label": "full worn silhouette stays inside preview schattenjager 390"
+    },
+    {
+      "ok": true,
+      "label": "stable base under worn eclipse costume schattenjager 320"
+    },
+    {
+      "ok": true,
+      "label": "full worn silhouette stays inside preview schattenjager 320"
+    },
+    {
+      "ok": true,
+      "label": "stable base under worn eclipse costume realmwachter 390"
+    },
+    {
+      "ok": true,
+      "label": "full worn silhouette stays inside preview realmwachter 390"
+    },
+    {
+      "ok": true,
+      "label": "stable base under worn eclipse costume realmwachter 320"
+    },
+    {
+      "ok": true,
+      "label": "full worn silhouette stays inside preview realmwachter 320"
+    },
+    {
+      "ok": true,
+      "label": "extra costume pose uses its actual body runenpaladin run"
+    },
+    {
+      "ok": true,
+      "label": "extra costume pose uses its actual body runenpaladin defeated"
+    },
+    {
+      "ok": true,
+      "label": "extra costume pose uses its actual body schattenjager run"
+    },
+    {
+      "ok": true,
+      "label": "extra costume pose uses its actual body schattenjager defeated"
+    },
+    {
+      "ok": true,
+      "label": "no script or browser errors in fitted presentation"
+    }
+  ],
+  "errors": []
+}

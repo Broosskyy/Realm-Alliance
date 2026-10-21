@@ -34,7 +34,9 @@ var head_mount: Node2D
 var wing_mount: Node2D
 var visible_items: Dictionary={}
 var armor_level=1
+var fits:Dictionary={}
 func attach(hero) -> void:
+    fits=JSON.parse_string(FileAccess.get_file_as_string("res://assets/work711/wardrobe/fit_anchors.json")).heroes
     plate=Polygon2D.new();plate.name="ReplaceableBreastplate";plate.z_index=1
     hero.layer_sockets.chest.add_child(plate)
     armor_details=preload("res://scripts/presentation/armor_details710.gd").new();armor_details.name="ArmorDetails710";plate.add_child(armor_details)
@@ -87,13 +89,19 @@ func sync_pose(hero,pose: String) -> void:
         plate.uv=PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
     armor_details.configure(corners,active_id,armor_level,plate.texture)
     armor_details.visible=plate.visible
-    head_mount.position=Vector2(0,-26) if hero.hero_id=="realmwachter" and hero._outfit!="" else (Vector2(4,-24) if hero.hero_id=="realmwachter" else Vector2(0,-26))
-    head.scale=Vector2.ONE*(.30 if hero.hero_id=="kaela" else (.28 if hero.hero_id=="realmwachter" else .34))
-    head.position=-Vector2(258.687,85.907)*head.scale
+    var frames:Dictionary=fits.get(hero.hero_id,fits.realmwachter)
+    var band:Array=frames.get(pose,frames.idle).head
+    var center=Vector2(band[0],band[1])
+    if hero.hero_id=="realmwachter" and not hero._modular_body and hero._outfit in ["astral_plate","eclipse_plate"]:
+        center=hero.sockets(pose).head+Vector2(0,-14)
+    head_mount.position=center-hero.PIVOT-hero.layer_sockets.head.position
+    if head.texture:
+        head.scale=Vector2.ONE*float(band[2])/head.texture.get_width()
+        head.position=-head.texture.get_size()*.5*head.scale
     plate.rotation_degrees=0
-    head_mount.rotation_degrees={"idle":0,"ready":-2,"windup":-5,"attack_contact":15,"recovery":8,"hit":8}.get(pose,8)
+    head_mount.rotation_degrees=float(band[3])
     wing_mount.rotation_degrees=float(d.angle)*.5
-    foreground_arm.visible=plate.visible or (hero.wardrobe_visual!=null and hero.wardrobe_visual.visible)
+    foreground_arm.visible=plate.visible and not (hero.wardrobe_visual!=null and hero.wardrobe_visual.visible)
     foreground_arm.texture=hero._body.texture
     foreground_arm.region_rect=d.arm
     foreground_arm.position=d.arm.position-hero.PIVOT

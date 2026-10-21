@@ -1,0 +1,254 @@
+{
+  "res://assets/production/hero/hit.png": [
+    98,
+    138,
+    444,
+    350
+  ],
+  "res://assets/production/hero/recovery.png": [
+    106,
+    148,
+    429,
+    340
+  ],
+  "res://assets/production/hero/attack_contact.png": [
+    58,
+    145,
+    524,
+    343
+  ],
+  "res://assets/production/hero/idle.png": [
+    119,
+    90,
+    402,
+    398
+  ],
+  "res://assets/production/hero/windup.png": [
+    88,
+    122,
+    464,
+    366
+  ],
+  "res://assets/production/hero/ready.png": [
+    97,
+    131,
+    446,
+    357
+  ],
+  "res://assets/production/weapons/shadow_violet.png": [
+    51,
+    63,
+    1049,
+    257
+  ],
+  "res://assets/production/weapons/crystal.png": [
+    56,
+    59,
+    1039,
+    266
+  ],
+  "res://assets/production/weapons/rune_gold.png": [
+    56,
+    60,
+    1040,
+    263
+  ],
+  "res://assets/production/weapons/ember.png": [
+    55,
+    53,
+    1042,
+    278
+  ],
+  "res://assets/production/weapons/steel.png": [
+    62,
+    81,
+    1027,
+    221
+  ],
+  "res://assets/roster68/runenpaladin/hit.png": [
+    162,
+    128,
+    415,
+    361
+  ],
+  "res://assets/roster68/runenpaladin/recovery.png": [
+    159,
+    180,
+    436,
+    307
+  ],
+  "res://assets/roster68/runenpaladin/attack_contact.png": [
+    199,
+    155,
+    408,
+    333
+  ],
+  "res://assets/roster68/runenpaladin/idle.png": [
+    162,
+    94,
+    371,
+    396
+  ],
+  "res://assets/roster68/runenpaladin/portrait.png": [
+    0,
+    0,
+    256,
+    256
+  ],
+  "res://assets/roster68/runenpaladin/windup.png": [
+    192,
+    117,
+    375,
+    373
+  ],
+  "res://assets/roster68/runenpaladin/run.png": [
+    147,
+    143,
+    414,
+    355
+  ],
+  "res://assets/roster68/runenpaladin/defeated.png": [
+    165,
+    322,
+    462,
+    172
+  ],
+  "res://assets/roster68/runenpaladin/ready.png": [
+    170,
+    125,
+    412,
+    365
+  ],
+  "res://assets/expansion702/schattenjager/hit.png": [
+    225,
+    117,
+    380,
+    371
+  ],
+  "res://assets/expansion702/schattenjager/recovery.png": [
+    202,
+    130,
+    390,
+    358
+  ],
+  "res://assets/expansion702/schattenjager/attack_contact.png": [
+    159,
+    154,
+    446,
+    334
+  ],
+  "res://assets/expansion702/schattenjager/idle.png": [
+    214,
+    104,
+    315,
+    384
+  ],
+  "res://assets/expansion702/schattenjager/portrait.png": [
+    48,
+    50,
+    159,
+    155
+  ],
+  "res://assets/expansion702/schattenjager/windup.png": [
+    160,
+    120,
+    406,
+    368
+  ],
+  "res://assets/expansion702/schattenjager/run.png": [
+    190,
+    206,
+    408,
+    282
+  ],
+  "res://assets/expansion702/schattenjager/defeated.png": [
+    98,
+    329,
+    522,
+    158
+  ],
+  "res://assets/expansion702/schattenjager/ready.png": [
+    204,
+    167,
+    385,
+    321
+  ],
+  "res://assets/work704/guardian_astral/hit.png": [
+    121,
+    135,
+    398,
+    353
+  ],
+  "res://assets/work704/guardian_astral/recovery.png": [
+    128,
+    127,
+    384,
+    361
+  ],
+  "res://assets/work704/guardian_astral/attack_contact.png": [
+    97,
+    155,
+    447,
+    333
+  ],
+  "res://assets/work704/guardian_astral/idle.png": [
+    147,
+    100,
+    347,
+    388
+  ],
+  "res://assets/work704/guardian_astral/windup.png": [
+    131,
+    84,
+    378,
+    404
+  ],
+  "res://assets/work704/guardian_astral/ready.png": [
+    119,
+    149,
+    403,
+    339
+  ],
+  "res://assets/equipment/astral_plate.png": [
+    9,
+    8,
+    253,
+    256
+  ],
+  "res://assets/equipment/harvest_wings.png": [
+    2,
+    12,
+    595,
+    429
+  ],
+  "res://assets/equipment/eclipse_plate.png": [
+    8,
+    24,
+    256,
+    223
+  ],
+  "res://assets/equipment/sentinel_circlet.png": [
+    16,
+    21,
+    288,
+    101
+  ],
+  "res://assets/equipment/sky_wings.png": [
+    16,
+    35,
+    512,
+    345
+  ],
+  "res://assets/equipment/silver_guard.png": [
+    8,
+    36,
+    240,
+    232
+  ],
+  "res://assets/equipment/wander_leather.png": [
+    8,
+    19,
+    240,
+    266
+  ]
+}

@@ -19,7 +19,7 @@ func _process(delta:float) -> void:
     super._process(delta)
     if not is_instance_valid(_sticky):return
     _sticky.visible=is_visible_in_tree() and detail!="" and scroll_vertical>80
-    _sticky.text="< Monsterbuch" if category=="Monster" else "< Sammlung";_sticky.position=position;_sticky.size=Vector2(size.x,100)
+    _sticky.text="< Monsterbuch" if category=="Monster" else "< Sammlung · "+str(model.Roster.playable_catalog().get(detail,model.Companions.catalog().get(detail,{})).get("name",""));_sticky.position=position;_sticky.size=Vector2(size.x,100)
 func _exit_tree() -> void:
     if is_instance_valid(_sticky):_sticky.queue_free()
 func refresh(tab:String,value,height:float) -> void:
@@ -87,20 +87,25 @@ func _detail() -> void:
     var role=_label(content,d.role+" · Lv. %d"%level,22,Color("#a9c1dc"));role.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     var showcase=Control.new();showcase.custom_minimum_size=Vector2(644,490);showcase.clip_contents=true;content.add_child(showcase)
     var bg=TextureRect.new();bg.texture=load("res://assets/work705/ruins_courtyard.webp");bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;bg.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;bg.size=Vector2(644,490);bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;showcase.add_child(bg)
+    bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     if hero:
         var rig=preload("res://scripts/production_hero.gd").new();rig.name="CollectionHeroRig";rig.preview_mode=true;rig.z_index=4;showcase.add_child(rig);rig.set_hero(id);rig.equip_weapon(model.weapon_index);rig.set_gear(model.profile);rig.set_look(model.profile.look,false);rig.scale=Vector2.ONE*.76;rig.position=Vector2(270,432)
+        preload("res://scripts/presentation/hero_preview_frame711.gd").fit(rig,Rect2(18,18,608,448))
+        showcase.resized.connect(func():
+            if is_instance_valid(rig):preload("res://scripts/presentation/hero_preview_frame711.gd").fit(rig,Rect2(18,18,showcase.size.x-36,showcase.size.y-42)))
         var preview=_button(content,"Angriff ansehen",func():rig.play_action("chain_0_1"));preview.name="HeroPreviewAttack"
+        var slot_row=HBoxContainer.new();slot_row.name="CollectionEquipmentSlots";slot_row.add_theme_constant_override("separation",12);content.add_child(slot_row)
         var slots=["weapon","chest","head","wings"]
         for i in 4:
             var slot=slots[i];var item=str(model.profile.equipped) if slot=="weapon" else str(model.profile.hero_equipment.equipped.get(slot,""))
-            var b=_button(showcase,"",func():action.emit("equipment:"+slot));b.name="EquippedSlot_"+slot;b.set_meta("equipped_item",item);b.custom_minimum_size=Vector2(96,112);b.size=Vector2(96,112);b.position=Vector2(8 if i%2==0 else 540,32+floori(i/2.0)*150)
+            var b=_button(slot_row,"",func():action.emit("equipment:"+slot));b.name="EquippedSlot_"+slot;b.set_meta("equipped_item",item);b.custom_minimum_size=Vector2(0,126);b.z_index=30
             if item!="":
                 var path="res://assets/production/weapons/"+item+".png" if slot=="weapon" else "res://assets/equipment/"+item+".png"
-                var icon=Art.new();icon.configure(path);icon.position=Vector2(9,7);icon.size=Vector2(78,72);icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;b.add_child(icon)
+                var icon=Art.new();icon.configure(path);icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);icon.offset_left=14;icon.offset_right=-14;icon.offset_top=6;icon.offset_bottom=-39;icon.mouse_filter=Control.MOUSE_FILTER_IGNORE;b.add_child(icon)
                 b.tooltip_text=model.Equipment.definition(item).name if slot=="weapon" else model.HeroEquipment.CATALOG[item].name
             else:
-                var empty=_label(b,"Leer",18,Color("#a9c1dc"));empty.position=Vector2(0,28);empty.size=Vector2(96,40);empty.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;empty.mouse_filter=Control.MOUSE_FILTER_IGNORE
-            var label=_label(b,["Waffe","Rüstung","Kopf","Flügel"][i],16);label.position=Vector2(0,81);label.size=Vector2(96,26);label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.mouse_filter=Control.MOUSE_FILTER_IGNORE
+                var empty=_label(b,"Leer",18,Color("#a9c1dc"));empty.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);empty.offset_top=22;empty.offset_bottom=-40;empty.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;empty.mouse_filter=Control.MOUSE_FILTER_IGNORE
+            var label=_label(b,["Waffe","Rüstung","Kopf","Flügel"][i],18);label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);label.offset_top=-34;label.offset_bottom=-6;label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.mouse_filter=Control.MOUSE_FILTER_IGNORE
     else:
         var pet=preload("res://scripts/presentation/companion_visual.gd").new();pet.name="CompanionPreview";showcase.add_child(pet);pet.position=Vector2(322,465);pet.scale=Vector2.ONE*.90
         var evolved=int(model.profile.companions.owned.get(id,{}).get("evolution",0))>0
@@ -139,7 +144,7 @@ func _detail() -> void:
         if d.stage!="":var parts=str(d.stage).split(":");gate+=" · "+model.World.NAMES[parts[0]]+" %d"%(int(parts[1])+1)
         _label(content,gate,21,Color("#ffd16b"))
         var unlock=_button(content,"Im Eventshop erhältlich" if bool(d.get("event",false)) else "Freischalten",func():action.emit(("hero_unlock:" if hero else "pet_unlock:")+id),true);unlock.disabled=model.read_only or (not model.Roster.can_unlock(model.profile,id) if hero else not model.Companions.can_acquire(model.profile,id))
-    var tools=HBoxContainer.new();content.add_child(tools)
+    var tools=GridContainer.new();tools.columns=3;tools.add_theme_constant_override("h_separation",12);tools.add_theme_constant_override("v_separation",12);content.add_child(tools)
     if hero:
         for pair in [["Skills","hero_skill_0"],["Ausrüstung","equipment"],["Entwicklung","develop:"+id],["Kostüme","equipment:costume"],["Farbstil","look"]]:_button(tools,pair[0],func():action.emit(pair[1]))
 

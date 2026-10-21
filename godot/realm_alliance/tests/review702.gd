@@ -50,6 +50,11 @@ func command(args:Array):
             var spec=value.split("@",true,1)
             if value=="rich":
                 scene.model.gold=20000;scene.model.profile.shards=2000;scene.model.profile.xp=440;scene.model.profile.kills=25;scene.model.profile.best_wave=15
+            elif value=="worn":
+                for item in ["eclipse_plate","sentinel_circlet","harvest_wings"]:
+                    scene.model.profile.hero_equipment.owned[item]={"level":16 if item=="harvest_wings" else 10,"source":"qa711-fit"}
+                    scene.model.profile.hero_equipment.equipped[scene.model.HeroEquipment.CATALOG[item].slot]=item
+                scene.model.profile.inventory.shadow_violet={"id":"shadow_violet","level":20,"rarity":"epic"};scene.model.profile.equipped="shadow_violet"
             elif spec[0]=="hero":
                 scene.model.profile.hero_roster.owned[spec[1]]={"xp":0,"source":"qa711"};scene.model.select_hero(spec[1])
             elif spec[0]=="family":
@@ -105,7 +110,12 @@ func command(args:Array):
     state.hero_rigs=[]
     for rig in scene.find_children("*","Node2D",true,false):
         if rig is RAProductionHero and rig.is_visible_in_tree():
-            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"costume":rig.wardrobe_visual.active_id,"costume_visible":rig.wardrobe_visual.visible,"cloth_motion":rig.wardrobe_visual.cloth.get_shader_parameter("motion_strength"),"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
+            var entry={"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"costume":rig.wardrobe_visual.active_id,"costume_visible":rig.wardrobe_visual.visible,"cloth_motion":rig.wardrobe_visual.cloth.get_shader_parameter("motion_strength"),"back_layer":rig.z_index+rig.attachments.wing_mount.z_index,"pose":rig._pose,"body_texture":rig._body.texture.resource_path,"modular_body":rig._modular_body}
+            if rig.name=="CollectionHeroRig":
+                var bounds=preload("res://scripts/presentation/hero_preview_frame711.gd").bounds(rig)
+                var frame=rig.get_parent();var inverse=frame.get_global_transform().affine_inverse();var upper=inverse*rig.to_global(bounds.position);var lower=inverse*rig.to_global(bounds.end)
+                entry["frame_bounds"]=[upper.x,upper.y,lower.x,lower.y];entry["frame_size"]=[frame.size.x,frame.size.y]
+            state.hero_rigs.append(entry)
     state.preview={}
     for actor in scene.hud.collection_page.find_children("*","Node2D",true,false):
         if actor is RAProductionHero:state.preview={"kind":"hero","busy":actor._busy,"pose":actor._pose}

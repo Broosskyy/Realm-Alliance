@@ -162,7 +162,7 @@
   {
     "test": "test_wardrobe711.gd",
     "passed": true,
-    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nWardrobe 711: 834/834 checks\n"
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 710: evolving wings +15 and modular equipment\nWardrobe 711: 998/998 checks\n"
   },
   {
     "test": "test_weapon_track.gd",

@@ -11,6 +11,8 @@ var armor_plus=0
 var pieces:Dictionary={}
 var textures:Dictionary={}
 var feet:Dictionary={}
+var fits:Dictionary={}
+var forearm:Polygon2D
 var ornaments:Node2D
 var cloth:ShaderMaterial
 var hero
@@ -18,12 +20,14 @@ var fx=1.0
 func attach(value) -> void:
     hero=value;name="ModularOutfit711";hero._art.add_child(self)
     feet=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"foot_anchors.json"))
+    fits=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"fit_anchors.json")).heroes
     cloth=ShaderMaterial.new();cloth.shader=preload("res://assets/work711/wardrobe/cloth711.gdshader")
     for part in PARTS:
         var mesh=Polygon2D.new();mesh.name="Outfit_"+part;mesh.z_index=3 if part.begins_with("shoulder") else (-1 if part=="cape" else 1)
         if part=="cape":mesh.material=cloth
         add_child(mesh);pieces[part]=mesh
     ornaments=Node2D.new();ornaments.name="RefinementInlays711";ornaments.z_index=4;add_child(ornaments);ornaments.draw.connect(_draw_refinement)
+    forearm=Polygon2D.new();forearm.name="PoseFittedGlove711";forearm.z_index=4;add_child(forearm)
     visible=false
 func configure(profile:Dictionary) -> void:
     active_id=Wardrobe.active(profile)
@@ -58,30 +62,45 @@ func set_effects(value:float) -> void:
     if ornaments:ornaments.queue_redraw()
 func sync_pose(pose:String) -> void:
     if not visible or hero==null:return
-    var socket:Vector2=hero.sockets(pose).chest
-    var tilt=float(TILT.get(pose,0))
-    var center=socket+Vector2(-15,-7) if hero.hero_id=="realmwachter" else socket+Vector2(9,5)
-    if hero.hero_id=="schattenjager":center=socket+Vector2(-8,9)
+    var frames:Dictionary=fits.get(hero.hero_id,fits.realmwachter)
+    var fit:Dictionary=frames.get(pose,frames.idle)
+    var head_center=Vector2(fit.head[0],fit.head[1])
+    hero._palette.set_shader_parameter("modular_head_region",Vector4((head_center.x-100.0)/640.0,(head_center.y-90.0)/512.0,(head_center.x+100.0)/640.0,(head_center.y+90.0)/512.0))
+    hero._palette.set_shader_parameter("modular_leg_start",(minf(fit.hips[0][1],fit.hips[1][1])+24.0)/512.0)
     var fabric=active_id in ["forest_path","sand_traveler"]
-    _quad("torso",Rect2(-40,-44,80,94),center,tilt)
-    _quad("shoulder_left",Rect2(-57,-40,42,45 if not fabric else 57),center,tilt-7)
-    _quad("shoulder_right",Rect2(20,-32,37,43 if not fabric else 53),center,tilt+7)
-    _quad("hips",Rect2(-42,33,86,76 if fabric else 57),center,tilt*.5)
-    var back:Vector2=hero.sockets(pose).back
-    hero._palette.set_shader_parameter("modular_rear_cut",(back.x+18.0)/640.0)
-    var cape_size=Vector2(208,180) if fabric else Vector2(165,140)
+    _surface("torso",fit.torso,.68)
+    _surface("hips",fit.hips)
+    for part in ["shoulder_left","shoulder_right"]:
+        var p:Array=fit[part]
+        _quad(part,Rect2(-float(p[2])*.5,-float(p[3])*.5,float(p[2]),float(p[3])),Vector2(float(p[0])+float(p[2])*.5,float(p[1])+float(p[3])*.5),float(p[4]))
+    var back=Vector2(fit.torso[0][0],fit.torso[0][1])+Vector2(0,12)
+    var cape_size=Vector2(172,178) if fabric else Vector2(144,153)
     var folded=hero.attachments!=null and hero.attachments.wings.visible
     if folded:cape_size.x*=.63
-    _quad("cape",Rect2(-cape_size.x+20,-26,cape_size.x,cape_size.y),back,float(TILT.get(pose,0))*.3)
-    var frames:Dictionary=feet.get(hero.hero_id,feet.realmwachter)
-    var boots:Array=frames.get(pose,frames.idle)
+    _quad("cape",Rect2(-cape_size.x+28,-16,cape_size.x,cape_size.y),back)
+    var boots:Array=fit.boots
     for i in 2:
         var b:Array=boots[i]
-        _quad("boot_left" if i==0 else "boot_right",Rect2(float(b[0])-3,float(b[1])-9,float(b[2])+6,float(b[3])+12),Vector2.ZERO)
+        _quad("boot_left" if i==0 else "boot_right",Rect2(float(b[0]),float(b[1]),float(b[2]),float(b[3])),Vector2.ZERO)
+    var vertices=PackedVector2Array();var uv=PackedVector2Array()
+    for p in fit.forearm:
+        var v=Vector2(p[0],p[1]);vertices.append(v-hero.PIVOT);uv.append(v)
+    forearm.texture=hero._body.texture;forearm.polygon=vertices;forearm.uv=uv
     if ornaments:ornaments.queue_redraw()
+func _surface(part:String,corners:Array,bottom:float=1.0) -> void:
+    var mesh:Polygon2D=pieces[part];var vertices=PackedVector2Array()
+    for p in corners:vertices.append(Vector2(p[0],p[1])-hero.PIVOT)
+    mesh.polygon=vertices
+    var extent=mesh.texture.get_size();extent.y*=bottom
+    mesh.uv=PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
+func cape_mask(pose:String) -> PackedVector2Array:
+    var frames:Dictionary=fits.get(hero.hero_id,fits.realmwachter);var fit:Dictionary=frames.get(pose,frames.idle)
+    var upper=Vector2(fit.torso[0][0],fit.torso[0][1]);var lower=Vector2(fit.hips[3][0],fit.hips[3][1])
+    return PackedVector2Array([Vector2(0,160),Vector2(upper.x-55,160),upper+Vector2(-18,-20),upper+Vector2(-10,45),lower+Vector2(-5,-8),lower+Vector2(0,80),Vector2(0,512),Vector2(0,300)])
 func _draw_refinement() -> void:
     if not visible or armor_plus<4 or fx<=0 or active_id not in ["wander_leather","silver_guard"]:return
-    var socket:Vector2=hero.sockets(hero._pose).chest-hero.PIVOT
+    var surface:PackedVector2Array=pieces.torso.polygon
+    var socket=(surface[0]+surface[1]+surface[2]+surface[3])*.25
     var color=Color("#e8c38c") if active_id=="wander_leather" else Color("#9de4ff")
     for i in 1+int((armor_plus-4)/2):
         var at=socket+Vector2(-21+i*13,-7)
