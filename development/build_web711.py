@@ -17,8 +17,8 @@ if a.qa:
   c=project/'export_presets.cfg';c.write_text(c.read_text().replace(',tests/*',''))
   export(project)
 else:export(source)
-for f in engine.iterdir():
- if f.is_file() and f.name!='index.pck':shutil.copy2(f,output/f.name)
+for name in ['index.html','index.js','index.wasm','index.png','index.audio.worklet.js','index.audio.position.worklet.js']:
+ shutil.copy2(engine/name,output/name)
 index=output/'index.html';text=index.read_text();text,count=re.subn(r'("index.pck"\s*:\s*)\d+',lambda m:m[1]+str((output/'index.pck').stat().st_size),text)
 if count!=1:raise SystemExit('Expected exactly one Godot pack size entry')
 index.write_text(text)

@@ -46,6 +46,24 @@ func command(args:Array):
                 scene.model.profile.hero_equipment.owned.sky_wings={"level":plus+1,"source":"qa710"}
                 scene.model.profile.hero_equipment.equipped.wings="sky_wings"
             scene.hud.model=scene.model;scene._sync_hero();scene._refresh()
+        "fixture711":
+            var spec=value.split("@",true,1)
+            if value=="rich":
+                scene.model.gold=20000;scene.model.profile.shards=2000;scene.model.profile.xp=440;scene.model.profile.kills=25;scene.model.profile.best_wave=15
+            elif spec[0]=="hero":
+                scene.model.profile.hero_roster.owned[spec[1]]={"xp":0,"source":"qa711"};scene.model.select_hero(spec[1])
+            elif spec[0]=="family":
+                var family=spec[1]
+                if family in scene.model.Wardrobe.IDS:
+                    scene.model.profile.wardrobe.owned[family]={"source":"qa711"};scene.model.equip_costume(family)
+                else:
+                    scene.model.equip_costume("");scene.model.profile.hero_equipment.owned[family]={"level":1,"source":"qa711"};scene.model.change_gear(family)
+            scene.hud.model=scene.model;scene._sync_hero();scene._refresh()
+            if spec[0]=="pose":scene.hero.set_process(false);scene.hero._set_pose(spec[1])
+        "gallery711":
+            for old in scene.find_children("OutfitGallery711","CanvasLayer",true,false):old.queue_free()
+            if value!="close":
+                var gallery=preload("res://tests/outfit_gallery711.gd").new();gallery.family=value;scene.add_child(gallery)
         "fixture709":
             if value=="legacy":scene.model=preload("res://scripts/systems/combat_session.gd").new(preload("res://tests/legacy_fixture709.gd").guardian());scene.model.profile.xp=440
             if value=="rich":
@@ -87,7 +105,7 @@ func command(args:Array):
     state.hero_rigs=[]
     for rig in scene.find_children("*","Node2D",true,false):
         if rig is RAProductionHero and rig.is_visible_in_tree():
-            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
+            state.hero_rigs.append({"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"costume":rig.wardrobe_visual.active_id,"costume_visible":rig.wardrobe_visual.visible,"cloth_motion":rig.wardrobe_visual.cloth.get_shader_parameter("motion_strength"),"back_layer":rig.z_index+rig.attachments.wing_mount.z_index})
     state.preview={}
     for actor in scene.hud.collection_page.find_children("*","Node2D",true,false):
         if actor is RAProductionHero:state.preview={"kind":"hero","busy":actor._busy,"pose":actor._pose}

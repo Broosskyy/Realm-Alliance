@@ -1,3 +1,5 @@
+> Historischer Checkpoint des unterbrochenen Arbeitslaufs. Der aktuelle, erneut geprüfte Stand wird in `README_MOCKUP_711.md` und `development/reports/*711.json` beschrieben. Die Grafiken des aktuellen Stands sind neue Ersatzvarianten.
+
 # Work 711 – geprüfter Arbeitsstand, noch keine fertige Veröffentlichung
 
 Basis: main `b603918857911cc62b314eb46f529a386db95de9` (710 samt original signierter APK). Hauptprojekt bleibt Godot, Backup und historische Webexports unverändert.

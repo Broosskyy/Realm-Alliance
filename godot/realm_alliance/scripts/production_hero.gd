@@ -231,6 +231,7 @@ func equip_weapon(index: int) -> void:
 func set_upgrade_tier(_level: int) -> void:
     _upgrade_level=clampi(_level,0,19)
     if weapon_glow:weapon_glow.configure(_upgrade_level,fx_intensity)
+    if wardrobe_visual:wardrobe_visual.set_effects(fx_intensity)
     if attachments and attachments.wing_evolution:
         var wings=attachments.wing_evolution
         wings.configure(wings.source,wings.plus,wings.family,fx_intensity)

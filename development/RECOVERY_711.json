@@ -1,10 +1,21 @@
 {
   "date": "2026-10-21",
-  "status": "incomplete_reconstruction",
+  "status": "restored_with_generated_replacement_art",
   "baseline_commit": "b603918857911cc62b314eb46f529a386db95de9",
   "recovered_code_commit": "9beb9b5efe36ff8ebf528469f042e7840d549725",
-  "missing_png_count": 34,
-  "missing_png_paths": [
+  "missing_png_count": 0,
+  "other_unrestored_changes": [],
+  "current_tests_run": [
+    "34 Godot suites: 3513 checks",
+    "backend HTTP: 48 checks",
+    "710 browser regression: 61 checks",
+    "normal web: 2 checks",
+    "711 browser touch and actual effects settings: 26 checks"
+  ],
+  "apk_711_present": true,
+  "normal_web_711_present": true,
+  "historical_recovery_status": "incomplete_reconstruction",
+  "historical_missing_png_paths": [
     "godot/realm_alliance/assets/work711/wardrobe/wander_leather/torso.png",
     "godot/realm_alliance/assets/work711/wardrobe/wander_leather/shoulder_left.png",
     "godot/realm_alliance/assets/work711/wardrobe/wander_leather/shoulder_right.png",
@@ -40,7 +51,7 @@
     "godot/realm_alliance/assets/equipment/wander_leather.png",
     "godot/realm_alliance/assets/equipment/silver_guard.png"
   ],
-  "missing_other_known_paths": [
+  "historical_missing_other_known_paths": [
     "godot/realm_alliance/assets/work711/wardrobe/manifest.json",
     "godot/realm_alliance/tests/test_wardrobe711.gd",
     "godot/realm_alliance/tests/outfit_gallery711.gd",
@@ -53,12 +64,9 @@
     ".github/workflows/realm-711.yml",
     ".github/workflows/realm-711-android.yml"
   ],
-  "other_unrestored_changes": [
-    "godot/realm_alliance/tests/review702.gd QA adapter extensions",
-    "710 workflow branch restriction",
-    "final 711 tests, documentation and build reports"
-  ],
-  "current_tests_run": [],
-  "apk_711_present": false,
-  "normal_web_711_present": false
+  "missing_png_paths": [],
+  "missing_other_known_paths": [],
+  "replacement_png_count": 34,
+  "original_png_bytes_recovered": false,
+  "art_manifest": "godot/realm_alliance/assets/work711/wardrobe/manifest.json"
 }

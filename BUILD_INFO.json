@@ -1,24 +1,25 @@
 {
-  "candidate": "mockup-711-recovered-source-incomplete",
+  "candidate": "mockup-711-restored-with-replacement-art",
   "candidate_export_version": 711,
   "engine": "Godot 4.7.2",
   "baseline_source_commit": "b603918857911cc62b314eb46f529a386db95de9",
-  "recovered_source_commit": "9beb9b5efe36ff8ebf528469f042e7840d549725",
-  "status": "incomplete_reconstruction",
-  "apk_created": false,
-  "web_export_711_created": false,
+  "restored_source_base_commit": "39932918ca0b5dac0b3ab979baa9af98c1f31104",
+  "status": "validated_source_with_generated_replacement_art",
   "android_package": "com.avenor.realmalliance.mockuptest",
   "version_name": "0.7.0-mockup.11-modular-wardrobe",
-  "missing_png_files": 34,
+  "missing_png_files": 0,
+  "replacement_png_files": 34,
+  "original_711_png_bytes_recovered": false,
   "validation": {
-    "current_reconstruction_tested": false,
+    "godot_suites": 34,
+    "godot_checks": 3513,
+    "browser_711_checks": 26,
+    "browser_710_regression_checks": 61,
+    "normal_web_checks": 2,
+    "backend_checks": 48,
     "android_device_test": false
   },
-  "historical_builds": [
-    "web_build/709",
-    "web_build/710"
-  ],
-  "recovery_manifest": "development/RECOVERY_711.json",
-  "historical_710_info": "development/reports/BUILD_INFO_710.json",
-  "note": "Historical 710 APK/tests and original local 711 test reports do not validate this incomplete reconstruction."
+  "signing_certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+  "art_manifest": "godot/realm_alliance/assets/work711/wardrobe/manifest.json",
+  "note": "APK and web artifact reports record their exact build hashes. Historical web_build/709 and web_build/710 remain historical. This is not a byte-identical recovery of the lost original 711 art."
 }

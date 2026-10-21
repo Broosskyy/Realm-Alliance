@@ -130,7 +130,7 @@ let browser, secondBrowser, server, page;
   }
   await cmd('close');await cmd('tab:Wesen');await cmd('open:equipment');await click(page,'EquipmentTab_chest');
   for(const id of ['astral_plate','eclipse_plate']){
-    if(id==='eclipse_plate'){
+    if(id==='astral_plate'||id==='eclipse_plate'){
       let found=false;
       for(let i=0;i<8;i++){s=await state();if(s.buttons.some(b=>b.item?.id===id)){found=true;break;}await swipe();}
       if(!found)throw Error('Missing armor card '+id);

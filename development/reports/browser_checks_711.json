@@ -1,0 +1,109 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "fresh starter and no starter costume"
+    },
+    {
+      "ok": true,
+      "label": "milestone initially locked"
+    },
+    {
+      "ok": true,
+      "label": "actual costume preview 320"
+    },
+    {
+      "ok": true,
+      "label": "preview does not mutate profile 320"
+    },
+    {
+      "ok": true,
+      "label": "free claim and real touch equip 320"
+    },
+    {
+      "ok": true,
+      "label": "equipment touch scroll 320"
+    },
+    {
+      "ok": true,
+      "label": "actual main hero updates 320"
+    },
+    {
+      "ok": true,
+      "label": "actual costume preview 390"
+    },
+    {
+      "ok": true,
+      "label": "preview does not mutate profile 390"
+    },
+    {
+      "ok": true,
+      "label": "free claim and real touch equip 390"
+    },
+    {
+      "ok": true,
+      "label": "equipment touch scroll 390"
+    },
+    {
+      "ok": true,
+      "label": "actual main hero updates 390"
+    },
+    {
+      "ok": true,
+      "label": "actual costume preview 430"
+    },
+    {
+      "ok": true,
+      "label": "preview does not mutate profile 430"
+    },
+    {
+      "ok": true,
+      "label": "free claim and real touch equip 430"
+    },
+    {
+      "ok": true,
+      "label": "equipment touch scroll 430"
+    },
+    {
+      "ok": true,
+      "label": "actual main hero updates 430"
+    },
+    {
+      "ok": true,
+      "label": "actual costume preview 960"
+    },
+    {
+      "ok": true,
+      "label": "preview does not mutate profile 960"
+    },
+    {
+      "ok": true,
+      "label": "free claim and real touch equip 960"
+    },
+    {
+      "ok": true,
+      "label": "equipment touch scroll 960"
+    },
+    {
+      "ok": true,
+      "label": "actual main hero updates 960"
+    },
+    {
+      "ok": true,
+      "label": "real touch unequip updates main hero"
+    },
+    {
+      "ok": true,
+      "label": "real touch buys and equips leather armor"
+    },
+    {
+      "ok": true,
+      "label": "real settings touch stops and restores costume cloth"
+    },
+    {
+      "ok": true,
+      "label": "no browser, script or shader errors"
+    }
+  ],
+  "errors": []
+}

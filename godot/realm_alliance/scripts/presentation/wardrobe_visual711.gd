@@ -52,6 +52,10 @@ func _quad(part:String,rect:Rect2,origin:Vector2,angle:float=0.0) -> void:
     if mesh.texture:
         var extent=mesh.texture.get_size()
         mesh.uv=PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
+func set_effects(value:float) -> void:
+    fx=clampf(value,0.0,1.0)
+    if cloth:cloth.set_shader_parameter("motion_strength",2.2*fx if visible else 0.0)
+    if ornaments:ornaments.queue_redraw()
 func sync_pose(pose:String) -> void:
     if not visible or hero==null:return
     var socket:Vector2=hero.sockets(pose).chest
