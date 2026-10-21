@@ -1,0 +1,5 @@
+{
+  "schema": 2,
+  "channel": "test",
+  "manifest_url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/update714_manifest.json"
+}
