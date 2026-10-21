@@ -13,7 +13,7 @@ func _initialize() -> void:call_deferred("run")
 func run() -> void:
     capture="--capture-ui" in OS.get_cmdline_user_args()
     root.size=Vector2i(720,1560)
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false
     await process_frame
     var hero=scene.hero
     for index in 5:

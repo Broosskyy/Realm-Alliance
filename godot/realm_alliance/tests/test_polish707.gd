@@ -41,7 +41,7 @@ func run() -> void:
     impact.age=99;check(impact.frame_index()==3,"clamped final frame")
     fx.intensity=0;check(fx.emit_effect("blade_impact",Vector2.ZERO)==null,"reduced effects suppress new animation")
     fx.queue_free()
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
     scene.model=Session.new(preload("res://tests/legacy_fixture709.gd").guardian());scene.hud.model=scene.model;scene._on_hud_action("Wesen");await process_frame
     var page=scene.hud.collection_page;page.category="Helden";page.detail="realmwachter";page._reload();await process_frame
     var before=JSON.stringify(scene.model.snapshot());page.find_child("HeroPreviewAttack",true,false).pressed.emit()

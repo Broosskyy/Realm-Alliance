@@ -4,7 +4,7 @@ var scene
 var callback
 func _ready():
     Engine.max_fps=20
-    scene=preload("res://scenes/main.tscn").instantiate();add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
+    scene=preload("res://scenes/main.tscn").instantiate();scene.initial_creation_enabled=false;add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
     scene._qa_active=true
     scene.model=preload("res://scripts/systems/combat_session.gd").new()
     var m=scene.model
@@ -16,6 +16,17 @@ func command(args:Array):
     var parts=str(args[0]).split(":",true,1)
     var kind=parts[0];var value=parts[1] if parts.size()>1 else ""
     match kind:
+        "fixture712":
+            var spec=value.split("@")
+            if spec[0]=="fresh":
+                for child in scene.get_children():
+                    if child is Window:child.queue_free()
+                scene.model=preload("res://scripts/systems/combat_session.gd").new();scene.hud.model=scene.model
+                scene.hud.collection_page.category="Charakter";scene.hud.collection_page.detail=""
+                scene._on_hud_action("Kampf");scene._sync_hero();scene._refresh();scene._open_character_creation(true)
+            elif spec[0]=="job":scene.model.Character.gain(scene.model.profile,160);scene._refresh()
+            elif spec[0]=="body":scene.model.profile.character712.appearance.body_variant=spec[1];scene._character_changed()
+            elif spec[0]=="reload":scene.model=preload("res://scripts/systems/combat_session.gd").new(JSON.parse_string(JSON.stringify(scene.model.snapshot())));scene.hud.model=scene.model;scene._character_changed()
         "impact":
             scene._on_hud_action("Kampf");scene.vfx.clear()
             var fx=scene.vfx.emit_effect("blade_impact",scene.enemy.position+Vector2(-40,-155),145,.4)
@@ -105,12 +116,13 @@ func command(args:Array):
     _buttons(scene,state.buttons)
     for field in scene.find_children("*","LineEdit",true,false):
         if field.is_visible_in_tree():state.fields.append({"name":field.name,"text":"" if field.secret else field.text,"secret":field.secret,"x":field.get_screen_transform().origin.x,"y":field.get_screen_transform().origin.y,"width":field.size.x,"height":field.size.y,"focused":field.has_focus()})
+    state.character_level=scene.model.hero_level;state.power=scene.model.power;state.actor_id=scene.model.actor_id
     state.actual_hero=scene.hero.hero_id
     state.banners=scene.hud.find_children("ProgressCelebration","Control",true,false).size()
     state.hero_rigs=[]
     for rig in scene.find_children("*","Node2D",true,false):
         if rig is RAProductionHero and rig.is_visible_in_tree():
-            var entry={"name":rig.name,"hero":rig.hero_id,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"costume":rig.wardrobe_visual.active_id,"costume_visible":rig.wardrobe_visual.visible,"cloth_motion":rig.wardrobe_visual.cloth.get_shader_parameter("motion_strength"),"back_layer":rig.z_index+rig.attachments.wing_mount.z_index,"pose":rig._pose,"body_texture":rig._body.texture.resource_path,"modular_body":rig._modular_body}
+            var entry={"name":rig.name,"hero":rig.hero_id,"weapon_texture":rig._weapon.texture.resource_path if rig._weapon.texture else "","class":rig.basic_class,"wings":rig.attachments.visible_items.get("wings",""),"wings_visible":rig.attachments.wings.visible,"armor":rig.attachments.active_id,"armor_details":rig.attachments.armor_details.visible,"wing_plus":rig.attachments.wing_evolution.plus,"wing_scale":rig.attachments.wings.scale.x,"costume":rig.wardrobe_visual.active_id,"costume_visible":rig.wardrobe_visual.visible,"cloth_motion":rig.wardrobe_visual.cloth.get_shader_parameter("motion_strength"),"back_layer":rig.z_index+rig.attachments.wing_mount.z_index,"pose":rig._pose,"body_texture":rig._body.texture.resource_path,"modular_body":rig._modular_body}
             if rig.name=="CollectionHeroRig":
                 var bounds=preload("res://scripts/presentation/hero_preview_frame711.gd").bounds(rig)
                 var frame=rig.get_parent();var inverse=frame.get_global_transform().affine_inverse();var upper=inverse*rig.to_global(bounds.position);var lower=inverse*rig.to_global(bounds.end)

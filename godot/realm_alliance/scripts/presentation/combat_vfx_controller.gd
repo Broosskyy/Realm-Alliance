@@ -10,6 +10,7 @@ const TEX={
     "fire_slash":preload("res://assets/vfx/fire_slash.png"),"fire_impact":preload("res://assets/vfx/fire_impact.png"),
     "shield":preload("res://assets/vfx/shield.png"),"reward":preload("res://assets/vfx/reward.png")}
 const RUNE_SHADER=preload("res://assets/vfx/paladin_runes.gdshader")
+var class_style=""
 var hero_style="realmwachter"
 var intensity: float = 1
 var status
@@ -35,6 +36,10 @@ func enemy_warning(model,pattern: String,duration: float,ground: Vector2) -> voi
     if fx:fx.model_deadline=model.clock+duration
 func action(e: Dictionary, weapon_socket: Node2D=null) -> void:
     var id=str(e.id);var duration=maxf(0.08,float(e.get("windup",0.28)))
+    if class_style in ["archer","mage"] and id!="guardian_wall":
+        var shot=emit_effect("sky_impact" if class_style=="archer" else "arcane_eye",hero_at,70 if class_style=="archer" else 90,duration,"arrow" if class_style=="archer" else "projectile",15)
+        if shot:shot.origin=hero_at;shot.target=enemy_at
+        return
     match id:
         "ultimate":
             emit_effect("arcane_seal",hero_at+Vector2(0,80),260,duration,"charge",7)
@@ -53,6 +58,10 @@ func action(e: Dictionary, weapon_socket: Node2D=null) -> void:
         "guardian_wall":emit_effect("shield",hero_at,270,0.4,"spawn",17)
         _:emit_effect("sky_slash",hero_at+Vector2(90,0),95,duration,"charge",11)
 func impact(source: String, critical: bool=false, rank: int=1) -> void:
+    if class_style in ["archer","mage"] and source not in ["burn","counter"]:
+        emit_effect("sky_impact" if class_style=="archer" else "arcane_eye",enemy_at,140,.3)
+        if critical:emit_effect("reward",enemy_at,200,.35)
+        return
     match source:
         "sky":
             emit_effect("sky_slash",hero_at.lerp(enemy_at,0.56),390,0.48,"slash")
@@ -70,6 +79,7 @@ func impact(source: String, critical: bool=false, rank: int=1) -> void:
         _:emit_effect("blade_impact",enemy_at,125,0.25)
     if critical:emit_effect("reward",enemy_at,280,0.5)
 func sync(model, hero_pos: Vector2, enemy_pos: Vector2) -> void:
+    class_style=model.Character.class_id(model.profile) if model.Character.active(model.profile) else ""
     hero_style=model.hero_id
     for child in get_children():
         if child is RASkillVFX and child.model_deadline>=0:
@@ -92,6 +102,7 @@ func clear() -> void:
     if status:status.mark=false;status.burn=false;status.shielded=false;status.queue_redraw()
 
 func chain_contact(step: int,index: int,contacts: int,critical: bool=false) -> void:
+    if class_style in ["archer","mage"]:impact("basic",critical,step);return
     var fx=emit_effect("sky_slash",hero_at.lerp(enemy_at,.6),190+step*45, .20,"slash")
     if fx:fx.rotation=(-.65 if step==1 else .18)+(index%2)*.3
     emit_effect("blade_impact",enemy_at+Vector2((index%2)*18-9,-(index%2)*10),105+step*20,.24)

@@ -102,7 +102,7 @@ func run():
     var roster_restored=Session.new(JSON.parse_string(JSON.stringify(m.snapshot())))
     check(not roster_restored.read_only and roster_restored.hero_id=="realmwachter" and str(roster_restored.profile.companions.active)=="skyfox","guardian and equipped companion survive JSON save/reload")
     check(roster_restored.hero_level==m.hero_level and roster_restored.gold==m.gold,"hero training and currency survive reload")
-    var scene=Scene.instantiate();root.add_child(scene);await process_frame
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";await process_frame
     scene.model=m;scene.hud.model=m;scene._sync_hero();scene.hud.active_tab="Wesen";scene.hud.update_buttons()
     check(scene.hero.hero_id=="realmwachter" and scene.hud.preview.hero_id=="realmwachter","combat arena and preview show canonical masked guardian")
     for pose in scene.hero.Gate.HERO_STATES:

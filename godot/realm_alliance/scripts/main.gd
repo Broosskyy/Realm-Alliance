@@ -48,11 +48,14 @@ var _ui_clock = 0.0
 var _qa_active:bool=false
 var _qa_original_model
 
+var initial_creation_enabled=true
+var creation_dialog
 var realm_online
 
 func _ready() -> void:
     realm_online=preload("res://scripts/online/realm_client708.gd").new();realm_online.name="RealmOnline";add_child(realm_online)
-    model = CombatModel.new(SaveStore.load_state())
+    var saved=SaveStore.load_state()
+    model = CombatModel.new(saved)
     _production_enabled = ProductionArtGate.available()
     _build_arena()
     _build_hud()
@@ -79,7 +82,8 @@ func _ready() -> void:
         hero.play_action(str(d.get("animation",d.id)),float(d.windup),float(d.recovery),float(model.pending.hit_at)-float(d.windup)-int(model.pending.get("contact",0))*float(d.get("spacing",0)))
         hero.sync_clock(model.clock)
     if model.profile.kills>0 and model.load_error=="":hud.notify("Willkommen zurück",model.Tap.next_goal(model.profile),3)
-    print("REALM 710: evolving wings +15 and modular equipment")
+    if initial_creation_enabled and saved.is_empty() and not model.read_only:call_deferred("_open_character_creation",true)
+    print("REALM 712: own adventurer and same-character classes")
 
 func _build_arena() -> void:
     var background := ColorRect.new()
@@ -179,7 +183,7 @@ func _show_encounter() -> void:
 var companion_visual
 func _sync_hero() -> void:
     var key="%s:%d:%s:%s:%s:%s"%[model.profile.equipped,model.upgrade_level,model.profile.look,str(model.profile.aura),model.hero_id+JSON.stringify(model.profile.hero_equipment),JSON.stringify(model.profile.hero_evolution)]
-    key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)+JSON.stringify(model.profile.wardrobe)
+    key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)+JSON.stringify(model.profile.wardrobe)+JSON.stringify(model.profile.get("character712",{}))
     if key!=_last_visual_key:
         _last_visual_key=key
         hero.equip_weapon(model.weapon_index)
@@ -235,6 +239,22 @@ func _layout() -> void:
         enemy.fit_height(height,230.0 if boss else 205.0)
 
 func _on_hud_action(id: String) -> void:
+    if is_instance_valid(creation_dialog) and creation_dialog.visible:return
+    if id=="character_create":_open_character_creation();return
+    if id=="character_activate":
+        if model.activate_character():_character_changed()
+        return
+    if id.begins_with("character_hair:"):
+        if not model.read_only and model.Character.set_hair(model.profile,id.trim_prefix("character_hair:")):_character_changed()
+        return
+    if id.begins_with("character_class:"):
+        var selected=id.trim_prefix("character_class:")
+        if not model.Character.can_choose(model.profile,selected):return
+        var dialog=preload("res://scripts/ui/modal_dialog.gd").new();add_child(dialog);dialog.title="Klasse wählen"
+        dialog.dialog_text=model.Character.config().classes[selected].name+" wird die Klasse deiner Figur. Körper, Haare und Charakterlevel bleiben erhalten. Der neue Job startet auf Level 1. Diese erste Klassenwahl ist dauerhaft."
+        dialog.get_ok_button().text="Klasse bestätigen"
+        dialog.confirmed.connect(func():if model.choose_class(selected):_character_changed())
+        dialog.popup_centered(Vector2i(620,520));return
     if id.begins_with("bestiary_claim:"):
         if not model.read_only and model.Bestiary.claim(model.profile,id.trim_prefix("bestiary_claim:")):
             _persist();_refresh();hud.notify("Meisterschaft belohnt","Gold und Himmelssplitter erhalten",2)
@@ -462,6 +482,8 @@ func _open_community() -> void:
     dialog.popup_centered(Vector2i(696,1000))
 
 func _open_evolution(hero_id:String="") -> void:
+    if (hero_id=="" and model.Character.active(model.profile)) or hero_id.begins_with("adventurer_"):
+        _on_hud_action("Wesen");hud.collection_page.category="Charakter";hud.collection_page.detail="";hud.collection_page._reload();return
     if active_tab!="Wesen":return
     var dialog=preload("res://scripts/ui/hero_development708.gd").new();add_child(dialog)
     dialog.configure(model,hero_id)
@@ -586,12 +608,13 @@ func _on_stage_input(event: InputEvent) -> void:
         touch_zone.accept_event()
 
 func _on_tap() -> bool:
-    if active_tab!="Kampf": return false
+    if active_tab!="Kampf" or is_instance_valid(creation_dialog) and creation_dialog.visible: return false
     var result=manual_input.request_tap(model)
     _consume_events()
     return result!=ManualInput.REJECTED
 
 func _on_skill(index: int = 0) -> bool:
+    if is_instance_valid(creation_dialog) and creation_dialog.visible:return false
     if active_tab!="Kampf" or index<0 or index>=4: return false
     var result=manual_input.request(model,index)
     if result==ManualInput.QUEUED:
@@ -601,7 +624,7 @@ func _on_skill(index: int = 0) -> bool:
     return result!=ManualInput.REJECTED
 
 func _process(delta: float) -> void:
-    if model==null or active_tab!="Kampf": return
+    if model==null or active_tab!="Kampf" or is_instance_valid(creation_dialog) and creation_dialog.visible: return
     camera_feedback.step(delta)
     model.tick(delta)
     manual_input.drain(model)
@@ -641,8 +664,8 @@ func _consume_events() -> void:
                 vfx.emit_effect("arcane_eye" if e.id!="sunbird" else "shield",enemy.position+Vector2(0,-150) if e.id!="sunbird" else hero.position+Vector2(0,-120),130,.3)
             "hero_level_up", "pet_level_up":
                 if completed:continue
-                hud.notify((str(model.Roster.catalog()[e.id].name) if e.type=="hero_level_up" else str(model.Companions.catalog()[e.id].name))+" · Level %d"%e.level,"Durch XP gewachsen")
-                _celebrate((str(model.Roster.catalog()[e.id].name) if e.type=="hero_level_up" else str(model.Companions.catalog()[e.id].name))+" · Lv. %d"%e.level,"Dein Begleiter wächst" if e.type=="pet_level_up" else "Dein Held wird stärker")
+                hud.notify((str(model.Roster.catalog().get(e.id,{"name":model.hero_name}).name) if e.type=="hero_level_up" else str(model.Companions.catalog()[e.id].name))+" · Level %d"%e.level,"Durch XP gewachsen")
+                _celebrate((str(model.Roster.catalog().get(e.id,{"name":model.hero_name}).name) if e.type=="hero_level_up" else str(model.Companions.catalog()[e.id].name))+" · Lv. %d"%e.level,"Dein Begleiter wächst" if e.type=="pet_level_up" else "Dein Held wird stärker")
                 vfx.emit_effect("reward",hero.position+Vector2(0,-110),180,.55,"spawn",18)
             "combat_unlock":
                 if completed:continue
@@ -863,3 +886,19 @@ func _open_rpg_hub(index:int=0) -> void:
         if not state.is_empty():
             model=CombatModel.new(state);hud.model=model;hero.revive();_last_visual_key="";_show_encounter();_sync_hero();_persist();_on_hud_action("Kampf");_refresh())
     dialog.popup_centered_clamped(Vector2i(680,mini(1350,int(get_viewport_rect().size.y)-130)))
+
+func _open_character_creation(required:bool=false) -> void:
+    if model.read_only or model.Character.exists(model.profile):return
+    if is_instance_valid(creation_dialog):creation_dialog.queue_free()
+    manual_input.clear()
+    creation_dialog=preload("res://scripts/ui/character_creation712.gd").new();add_child(creation_dialog);creation_dialog.configure(model,required)
+    creation_dialog.created.connect(func(body,hair):
+        if model.create_character(body,hair):
+            creation_dialog.hide();_character_changed();_on_hud_action("Wesen")
+            hud.collection_page.category="Charakter";hud.collection_page.detail="";hud.collection_page._reload())
+    creation_dialog.popup_centered(Vector2i(680,1000))
+func _character_changed() -> void:
+    manual_input.clear();_last_visual_key=""
+    if vfx:vfx.clear()
+    if _production_enabled:hero.revive()
+    _sync_hero();_persist();_refresh()

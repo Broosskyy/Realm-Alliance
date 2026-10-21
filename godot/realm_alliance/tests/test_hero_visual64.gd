@@ -13,7 +13,7 @@ func find_dialog(scene):
         if child is Dialog:return child
     return null
 func run() -> void:
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
     scene.model=Session.new(preload("res://tests/legacy_fixture709.gd").guardian());scene.hud.model=scene.model;scene._sync_hero();scene._refresh();scene._on_hud_action("Wesen")
     scene._open_gear("eclipse_plate")
     var dialog=find_dialog(scene)

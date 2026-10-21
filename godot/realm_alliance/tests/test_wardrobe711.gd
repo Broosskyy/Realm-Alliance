@@ -100,7 +100,7 @@ func run():
             check(float(hero.wardrobe_visual.cloth.get_shader_parameter("motion_strength"))>0,"actual settings path restores cloth "+family)
         hero.set_gear(Session.new().profile)
         check(not hero.wardrobe_visual.visible,"removal restores base hero "+hero_id)
-    var scene=preload("res://scenes/main.tscn").instantiate();root.add_child(scene)
+    var scene=preload("res://scenes/main.tscn").instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden"
     scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
     scene.model=Session.new();scene.hud.model=scene.model;scene._sync_hero()
     scene.model.profile.wardrobe.owned.forest_path={};scene.model.equip_costume("forest_path");scene._sync_hero()

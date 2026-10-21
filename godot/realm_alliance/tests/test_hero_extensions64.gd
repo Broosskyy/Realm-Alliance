@@ -27,7 +27,7 @@ func run() -> void:
     var protected_save=Session.new(future)
     check(protected_save.read_only and protected_save.profile.hero_evolution.schema==8,"future evolution domain preserved")
     check(not protected_save.change_evolution(),"future evolution cannot mutate")
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
     scene.model=Session.new(preload("res://tests/legacy_fixture709.gd").guardian());scene.model.profile.xp=1000;scene.model.gold=1500;scene.model.profile.shards=100;scene.hud.model=scene.model
     scene._on_hud_action("Wesen")
     for id in Gear.IDS:

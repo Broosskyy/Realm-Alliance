@@ -11,7 +11,7 @@ func settle():
     for i in 5:await process_frame
 func _initialize():call_deferred("run")
 func run():
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
     scene.model=Session.new(preload("res://tests/legacy_fixture709.gd").guardian());scene.hud.model=scene.model
     for op in ["gold","shards","level","world"]:QA.apply(scene.model,op)
     scene.model.unlock_hero("runenpaladin");scene._sync_hero();scene._refresh()

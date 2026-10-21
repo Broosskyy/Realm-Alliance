@@ -16,7 +16,7 @@ func gesture(viewport:Viewport,at:Vector2,delta:Vector2):
     touch=InputEventScreenTouch.new();touch.index=0;touch.pressed=false;touch.position=at+delta;viewport.push_input(touch,true);await settle()
 func _initialize():call_deferred("run")
 func run():
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
     scene.model=Session.new(preload("res://tests/legacy_fixture709.gd").guardian());scene.hud.model=scene.model;scene._refresh()
     root.size=Vector2i(360,640);await settle();scene._layout()
     for tab in ["Wesen","Mehr"]:

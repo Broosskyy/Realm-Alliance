@@ -37,7 +37,7 @@ func run():
         var after=Timeline.sample("chain_%d_1"%step,.2801,.28,.35)
         check(before.offset.distance_to(after.offset)<.2,"no root teleport at chain impact "+str(step))
         check(after.pose=="attack_contact","impact uses contact pose "+str(step))
-    var scene=Main.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
+    var scene=Main.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false
     scene.model=prepared();scene.hud.model=scene.model;scene._sync_hero();scene._show_encounter();scene._refresh()
     for intensity in [0.0,.4,1.0]:
         scene.model.clock=0;scene.camera_feedback.intensity=intensity;scene.camera_feedback.impact(4,.08);scene._process(1.0/30)

@@ -46,7 +46,7 @@ func run() -> void:
             check(hero.aura.mastery_rank==r and hero._palette.get_shader_parameter("mastery_rank")==r,"visual rank applies "+id+str(r))
             check(hero._weapon.texture==weapon,"rank keeps weapon modular "+id+str(r))
     hero.queue_free()
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
     scene._on_hud_action("Mehr");await process_frame
     check(scene.hud.buttons.community.visible,"community has visible main-menu entry")
     scene.hud.buttons.community.pressed.emit();await process_frame

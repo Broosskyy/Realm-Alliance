@@ -17,7 +17,7 @@ func _initialize() -> void:
 func run() -> void:
     check(QA.enabled(),"QA tools available in test/debug export")
     var scene=Scene.instantiate()
-    root.add_child(scene)
+    scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden"
     await process_frame
     scene.auto_enabled=false
     scene._on_hud_action("Mehr")

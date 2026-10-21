@@ -114,7 +114,7 @@ func run():
     m.tick(.1);check(count(m.drain_events(),"boss_phase")==0,"phase does not flash every tick")
     var data=m.snapshot();data.profile.combat_mastery.schema=9;var unknown=data.profile.combat_mastery.duplicate(true);restored=Session.new(data)
     check(restored.read_only and restored.profile.combat_mastery==unknown,"future mastery protects original save")
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false
     scene.model=prepared();scene.hud.model=scene.model
     scene.model.gold=10000;scene.model.profile.shards=100
     scene.model.change_gear("sky_wings","acquire");scene.model.change_gear("sky_wings")

@@ -42,7 +42,7 @@ func run():
     var chest_count=natural.profile.chests.sealed.size()
     check(natural.continue_after_victory() and natural.region=="glutkern" and natural.encounter==0,"continue enters Glutkern instead of looping Wolkgarten")
     check(natural.profile.chests.sealed.size()==chest_count,"continuing cannot grant another boss chest")
-    var scene=Scene.instantiate();root.add_child(scene);scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
+    var scene=Scene.instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
     check(scene.model.hero_id=="runenpaladin" and scene.hero.hero_id=="runenpaladin","real first boot shows Runenpaladin in combat")
     scene.model=legacy;scene.hud.model=legacy;legacy.profile.hero_equipment.owned.sky_wings={"id":"sky_wings","level":1,"source":"test"};legacy.change_gear("sky_wings");scene._sync_hero();scene._on_hud_action("Wesen")
     var page=scene.hud.collection_page;page.detail="runenpaladin";page._reload();await process_frame;await process_frame

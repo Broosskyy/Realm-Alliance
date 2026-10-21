@@ -14,7 +14,7 @@ func _run() -> void:
     capture="--capture-ui" in OS.get_cmdline_user_args()
     scene=load("res://scenes/main.tscn").instantiate()
     root.size=Vector2i(720,1280)
-    root.add_child(scene)
+    scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden"
     scene.set_process(false)
     scene.auto_enabled=false
     scene.model=Session.new(preload("res://tests/legacy_fixture709.gd").guardian())

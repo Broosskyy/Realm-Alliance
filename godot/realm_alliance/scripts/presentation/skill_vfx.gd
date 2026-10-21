@@ -24,6 +24,14 @@ func _draw() -> void:
     var alpha=(1-smoothstep(0.28,1,t))*intensity
     var size=diameter*lerpf(0.45,1.08,ease(t,0.25))
     var angle=0.0
+    if kind=="arrow":
+        position=origin.lerp(target,smoothstep(0,1,t))
+        var direction=(target-origin).normalized();var rear=-direction*44;var normal=direction.orthogonal()
+        draw_line(rear,Vector2.ZERO,Color(.64,.42,.22,alpha),4,true)
+        draw_colored_polygon(PackedVector2Array([direction*10,-direction*8+normal*6,-direction*8-normal*6]),Color(.82,.88,.92,alpha))
+        draw_line(rear,rear+direction*10+normal*7,Color(.82,.75,.60,alpha),3,true)
+        draw_line(rear,rear+direction*10-normal*7,Color(.82,.75,.60,alpha),3,true)
+        return
     if kind=="charge":
         alpha=sin(t*PI)*0.8*intensity;size=diameter*lerpf(0.45,1,t);angle=t*0.5
     elif kind=="projectile":

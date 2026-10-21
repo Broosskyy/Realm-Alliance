@@ -48,6 +48,7 @@ var momentum = 0.0
 var rage = 0.0
 var hero_texture: Texture2D
 var weapon_texture: Texture2D
+var character_portrait:TextureRect
 var portrait: Texture2D
 var guardian_portrait:Texture2D
 var companion_preview
@@ -218,12 +219,21 @@ func update_buttons() -> void:
         toast.display(toast_title,toast_detail,in_combat)
     buttons.roster.visible=active_tab=="Wesen";buttons.roster.tooltip_text="Helden & Begleiter anzeigen und ohne Neustart wechseln";_place("roster",Rect2(38,155,644,100))
     portrait=_texture("res://assets/expansion702/schattenjager/portrait.png") if model.hero_id=="schattenjager" else (_texture("res://assets/roster68/runenpaladin/portrait.png") if model.hero_id=="runenpaladin" else guardian_portrait)
+    if not character_portrait:
+        character_portrait=TextureRect.new();character_portrait.name="CharacterPortrait712";character_portrait.mouse_filter=Control.MOUSE_FILTER_IGNORE;character_portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;character_portrait.position=Vector2(16,13);character_portrait.size=Vector2(63,63)
+        var mat=ShaderMaterial.new();mat.shader=preload("res://assets/work712/portrait_hair.gdshader");character_portrait.material=mat;character_portrait.z_index=50;add_child(character_portrait)
+    character_portrait.visible=model.Character.active(model.profile)
+    if model.Character.active(model.profile):portrait=_texture("res://assets/work712/adventurer/"+str(model.profile.character712.appearance.body_variant)+"/portrait.png")
+    if character_portrait.visible:
+        character_portrait.texture=portrait
+        var colors={"blond":Color("#dbc184"),"black":Color("#242632"),"brown":Color("#916547"),"copper":Color("#bf683b"),"white":Color("#eee8e0"),"silver":Color("#b8c6d9"),"blue":Color("#4161c5"),"red":Color("#b32d45"),"violet":Color("#9454c5")}
+        character_portrait.material.set_shader_parameter("hair_tint",colors.get(str(model.profile.character712.appearance.hair_color),colors.brown))
     if companion_preview:
         companion_preview.sync(model.profile,Time.get_ticks_msec()/1000.0);companion_preview.visible=active_tab=="Wesen" and str(model.profile.companions.active)!=""
     if preview:
         preview.visible = active_tab == "Wesen"
         var visual_key=model.hero_id+str(model.weapon_index)+str(model.upgrade_level)+str(model.profile.look)+str(model.profile.aura)+str(model.level)+JSON.stringify(model.profile.hero_equipment)+JSON.stringify(model.profile.hero_evolution)
-        visual_key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)+JSON.stringify(model.profile.wardrobe)
+        visual_key+=str(model.Economy.enchant_bonus(model.profile,model.profile.equipped))+JSON.stringify(model.profile.hero_mastery)+JSON.stringify(model.profile.wardrobe)+JSON.stringify(model.profile.get("character712",{}))
         if preview.visible and visual_key!=_preview_key:
             _preview_key=visual_key
             preview.set_hero(model.hero_id)
@@ -481,7 +491,8 @@ func _skill(i: int, _center: Vector2) -> void:
     var d:Dictionary=model.skills.definitions[id]
     var button=buttons[["skill0","skill1","locked","skill2"][i]]
     var resource=model.momentum if d.cost_type=="momentum" else model.rage
-    button.configure(orbs[i],d,model.skills.remaining(id,model.clock),model.hero_level<int(d.unlock_level),d.cost_type=="none" or resource>=float(d.cost),(["Runenstoß","Siegel","Bastion","Esse"] if model.hero_id=="runenpaladin" else (["Nachtschnitt","Nachtsiegel","Nebelwall","Schattenbrand"] if model.hero_id=="schattenjager" else ["Klinge","Arkanblick","Wächterwall","Zornesflamme"]))[i])
+    var short_name=str(d.name) if model.Character.active(model.profile) else (["Runenstoß","Siegel","Bastion","Esse"] if model.hero_id=="runenpaladin" else (["Nachtschnitt","Nachtsiegel","Nebelwall","Schattenbrand"] if model.hero_id=="schattenjager" else ["Klinge","Arkanblick","Wächterwall","Zornesflamme"]))[i]
+    button.configure(orbs[i],d,model.skills.remaining(id,model.clock),model.hero_level<int(d.unlock_level),d.cost_type=="none" or resource>=float(d.cost),short_name)
 
 func _draw_result() -> void:
     _paint_target.draw_rect(Rect2(0,96,720,logical_height-192),Color(0.01,0.025,0.055,0.68))

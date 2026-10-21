@@ -93,7 +93,7 @@ func run():
     check(hero.weapon_glow.refinement==8,"weapon refinement follows actual upgrade level")
     hero.fx_intensity=0;hero.set_upgrade_tier(8)
     check(not hero.weapon_glow.is_processing(),"effects off stops weapon motes")
-    var scene=preload("res://scenes/main.tscn").instantiate();root.add_child(scene)
+    var scene=preload("res://scenes/main.tscn").instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden"
     scene.set_process(false);scene.auto_enabled=false;scene.audio.enabled=false;scene._qa_active=true
     legacy.profile.hero_equipment.cosmetics.erase("wings")
     legacy.profile.hero_equipment.owned.sky_wings.level=16

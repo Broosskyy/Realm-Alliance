@@ -46,7 +46,8 @@ func _portrait(id:String,hero:bool) -> Texture2D:
     var art=AtlasTexture.new();art.atlas=load("res://assets/production/hero/idle.png");art.region=Rect2(300,90,260,245);return art
 func _collection() -> void:
     var tabs=HBoxContainer.new();tabs.add_theme_constant_override("separation",12);content.add_child(tabs)
-    for name in ["Helden","Monster","Begleiter"]:_button(tabs,name,func():category=name;scroll_vertical=0;_reload(),category==name)
+    for name in ["Charakter","Helden","Monster","Begleiter"]:_button(tabs,name,func():category=name;scroll_vertical=0;_reload(),category==name).name="CollectionTab_"+name
+    if category=="Charakter":_character();return
     if category=="Monster":_monsters();return
     var row=HBoxContainer.new();row.add_theme_constant_override("separation",16);content.add_child(row)
     var tools=VBoxContainer.new();tools.custom_minimum_size.x=96;tools.add_theme_constant_override("separation",14);row.add_child(tools)
@@ -72,7 +73,7 @@ func _collection() -> void:
         _button(content,"Runenpaladin als Startheld übernehmen",func():action.emit("adopt_starter")).name="AdoptStarter709"
         _label(content,"Kostenfrei für frühere Teststände. Bisherige Helden und Fortschritte bleiben erhalten.",21,Color("#a9c1dc"))
     var active_id=model.hero_id if hero else str(model.profile.companions.active)
-    _label(content,("Aktiver Held: "+catalog[active_id].name if hero else "Aktiver Begleiter: "+catalog[active_id].name if active_id!="" else "Kein Begleiter aktiv"),22,Color("#ffd16b"))
+    _label(content,("Aktiver Held: "+model.hero_name if hero else "Aktiver Begleiter: "+catalog[active_id].name if active_id!="" else "Kein Begleiter aktiv"),22,Color("#ffd16b"))
     _label(content,"Wähle eine Karte für Werte, Ausrüstung und Freischaltung. Dein laufender Kampf bleibt erhalten.",21,Color("#a9c1dc"))
 func _detail() -> void:
     if category=="Monster":_monster_detail();return
@@ -176,3 +177,34 @@ func _monster_detail() -> void:
     card.configure("Meisterschaft vollständig" if rank==3 else "Nächste Meisterschaft","Alle Belohnungen erhalten." if rank==3 else "%d Gold + %d Himmelssplitter"%[bestiary.GOLD[rank],bestiary.SHARDS[rank]],"res://assets/work706/items/mastery_medallion.tres",kills,goal);content.add_child(card)
     var claim=_button(card.body,"Alle Ränge erhalten" if rank==3 else "Belohnung abholen",func():action.emit("bestiary_claim:"+id),true);claim.name="BestiaryClaim";claim.disabled=model.read_only or not bestiary.can_claim(model.profile,id)
     _button(content,"Dungeon ansehen" if d.region=="event" else "Zur Weltkarte",func():action.emit("activities" if d.region=="event" else "Abenteuer"))
+
+func _character() -> void:
+    _label(content,"Dein Abenteurer",30,Color("#ffd16b"))
+    if not model.Character.exists(model.profile):
+        _label(content,"Erstelle deine eigene Figur. Später wird sie Schwertkämpfer, Bogenschütze oder Magier. Deine bisherigen Helden und Fortschritte bleiben gespeichert.",23)
+        _button(content,"Abenteurer erstellen",func():action.emit("character_create"),true).name="CreateCharacter712"
+        return
+    var d=model.profile.character712;var current=model.Character.class_id(model.profile)
+    _label(content,model.Character.config().classes[current].name+" · Charakter Lv. %d · Job Lv. %d"%[model.Character.level(model.profile),model.Character.job_level(model.profile)],25)
+    var showcase=Control.new();showcase.name="CharacterShowcase712";showcase.custom_minimum_size=Vector2(0,430);showcase.clip_contents=true;content.add_child(showcase)
+    var bg=TextureRect.new();bg.texture=load("res://assets/work705/ruins_courtyard.webp");bg.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;bg.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED;bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);showcase.add_child(bg)
+    var rig=preload("res://scripts/production_hero.gd").new();rig.name="CharacterRig712";rig.preview_mode=true;rig.z_index=4;showcase.add_child(rig);rig.set_hero("adventurer_"+str(d.appearance.body_variant));rig.equip_weapon(model.weapon_index)
+    var p=model.profile.duplicate(true);p.character712.active=true;rig.set_gear(p);rig.set_look("canonical",false)
+    showcase.resized.connect(func():if is_instance_valid(rig):preload("res://scripts/presentation/hero_preview_frame711.gd").fit(rig,Rect2(18,14,showcase.size.x-36,showcase.size.y-28)))
+    _button(content,"Angriff ansehen",func():rig.play_action("chain_0_1")).name="CharacterAttack712"
+    if not model.Character.active(model.profile):_button(content,"Mit Abenteurer weiterspielen",func():action.emit("character_activate"),true).name="ActivateCharacter712"
+    _label(content,"Kostenlose Haarfarbe",23)
+    var colors=GridContainer.new();colors.columns=2;colors.add_theme_constant_override("h_separation",12);colors.add_theme_constant_override("v_separation",12);content.add_child(colors)
+    for pair in [["blond","Blond"],["black","Schwarz"],["brown","Braun"],["copper","Kupfer"]]:
+        var b=_button(colors,pair[1],func():action.emit("character_hair:"+pair[0]),d.appearance.hair_color==pair[0]);b.name="CharacterHair_"+pair[0];b.disabled=model.read_only
+    _label(content,"Charakter-EP %d · Job-EP %d"%[d.xp,d.jobs[current]],21,Color("#a9c1dc"))
+    if current=="adventurer":
+        _label(content,"Klassenwahl ab Abenteurer-Joblevel %d"%int(model.Character.config().class_job_level),25,Color("#ffd16b"))
+        _label(content,"Vorläufiger Testwert für 712. Siege geben Charakter- und Job-EP. Deine Figur und ihr Charakterlevel bleiben beim Klassenaufstieg erhalten.",21,Color("#a9c1dc"))
+        for id in ["swordsman","archer","mage"]:
+            var c=model.Character.config().classes[id];var b=_button(content,c.name+" · "+c.role,func():action.emit("character_class:"+id));b.name="ChooseClass_"+id;b.disabled=model.read_only or not model.Character.can_choose(model.profile,id)
+    else:
+        _label(content,"Klassenaufstieg abgeschlossen · "+model.Character.config().classes[current].role,24,Color("#ffd16b"))
+        if current in ["archer","mage"]:_label(content,"Deine Klassenwaffe nutzt die Werte und Upgrades deiner ausgerüsteten Waffe.",21,Color("#a9c1dc"))
+    var tools=GridContainer.new();tools.columns=2;tools.add_theme_constant_override("h_separation",12);tools.add_theme_constant_override("v_separation",12);content.add_child(tools)
+    for pair in [["Ausrüstung","equipment"],["Kostüme","equipment:costume"],["Skills","hero_skill_0"],["Talente","talents"]]:_button(tools,pair[0],func():action.emit(pair[1]))

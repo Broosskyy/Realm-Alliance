@@ -8,7 +8,7 @@ var selected_hero=""
 var selected_pet=""
 func configure(value) -> void:
     game_page=true
-    model=value;selected_hero=model.hero_id;selected_pet=str(model.profile.companions.active)
+    model=value;selected_hero=str(model.profile.hero_roster.active);selected_pet=str(model.profile.companions.active)
     if selected_pet=="":selected_pet="skyfox"
     title="Wesen";ok_button_text="Zurück zu Wesen";get_cancel_button().hide()
     confirmed.connect(queue_free);canceled.connect(queue_free);_build(0)

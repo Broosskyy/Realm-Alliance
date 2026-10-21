@@ -93,7 +93,7 @@ func run():
     check(m.journey_command("specialize","sentinel") and m.gold==200 and m.defense==3,"respecialization spends real gold")
     var bad=m.snapshot();bad.profile.economy.materials.forge_dust=1.5;check(Session.new(bad).read_only,"fractional material counter protected")
     bad=m.snapshot();bad.checkpoint.activity={"id":"unknown"};check(Session.new(bad).read_only,"unknown activity protected")
-    var scene=load("res://scenes/main.tscn").instantiate();root.add_child(scene);scene.set_process(false)
+    var scene=load("res://scenes/main.tscn").instantiate();scene.initial_creation_enabled=false;root.add_child(scene);scene.hud.collection_page.category="Helden";scene.set_process(false)
     scene._on_hud_action("Beute");scene._on_hud_action("economy");await process_frame
     var hub
     for child in scene.get_children():
