@@ -1,0 +1,74 @@
+name: REALM 712 durable downloads
+on:
+  push:
+    branches: [feature/work-712-character]
+    paths: ['development/releases/712/transfer.json']
+permissions:
+  contents: write
+concurrency:
+  group: realm712-delivery
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Restore APK and verify original signing certificate
+        run: |
+          python3 .github/scripts/assemble_delivery712.py --manifest development/releases/712/transfer.json --output "$RUNNER_TEMP/delivery712"
+          tools="$ANDROID_HOME/build-tools/35.0.0"
+          "$tools/apksigner" verify --verbose --print-certs "$RUNNER_TEMP/delivery712/REALM_ALLIANCE_712.apk" > "$RUNNER_TEMP/signature712.txt"
+          grep -F 'Signer #1 certificate SHA-256 digest: 317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219' "$RUNNER_TEMP/signature712.txt"
+          "$tools/zipalign" -c -P 16 4 "$RUNNER_TEMP/delivery712/REALM_ALLIANCE_712.apk"
+          "$tools/aapt" dump badging "$RUNNER_TEMP/delivery712/REALM_ALLIANCE_712.apk" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='712'"
+      - name: Install verified Godot
+        run: |
+          curl -fL --retry 2 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot712.zip"
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/godot712.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot712.zip" -d "$RUNNER_TEMP/godot712"
+          chmod +x "$RUNNER_TEMP/godot712/Godot_v4.7.2-stable_linux.x86_64"
+      - name: Build normal Web package
+        run: |
+          python3 development/build_web712.py --godot "$RUNNER_TEMP/godot712/Godot_v4.7.2-stable_linux.x86_64" --output "$RUNNER_TEMP/web712"
+          python3 - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          temp = Path(os.environ["RUNNER_TEMP"])
+          web, out = temp / "web712", temp / "delivery712"
+          assert not json.loads((web / "BUILD_712.json").read_text())["qa"]
+          names = ["index.html","index.js","index.wasm","index.png","index.pck","index.audio.worklet.js","index.audio.position.worklet.js","BUILD_712.json","START_WEB.py","LIESMICH.txt","backend/realm_service.py","backend/README.md"]
+          with zipfile.ZipFile(out / "REALM_ALLIANCE_712_Web.zip", "w", zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+              for name in names:
+                  archive.write(web / name, name)
+          with zipfile.ZipFile(out / "REALM_ALLIANCE_712_Web.zip") as archive:
+              assert archive.testzip() is None
+          checksums = {p.name: {"bytes": p.stat().st_size, "sha256": hashlib.file_digest(p.open("rb"), "sha256").hexdigest()} for p in out.iterdir() if p.is_file()}
+          (out / "SHA256_712.json").write_text(json.dumps(checksums, indent=2) + "\n")
+          PY
+      - name: Save downloadable files in a separate GitHub branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          delivery_branch="deliveries/712-${GITHUB_SHA:0:7}"
+          git checkout --orphan "$delivery_branch"
+          git rm -rf --quiet .
+          mkdir -p releases/712
+          cp "$RUNNER_TEMP/delivery712/"* releases/712/
+          git add releases/712
+          git -c user.name=github-actions[bot] -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m "Save verified 712 APK and normal Web download"
+          git push origin "$delivery_branch"
+          echo "## 712 downloads" >> "$GITHUB_STEP_SUMMARY"
+          echo "APK: https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$delivery_branch/releases/712/REALM_ALLIANCE_712.apk" >> "$GITHUB_STEP_SUMMARY"
+          echo "Web: https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$delivery_branch/releases/712/REALM_ALLIANCE_712_Web.zip" >> "$GITHUB_STEP_SUMMARY"
+          echo "Sources: https://github.com/$GITHUB_REPOSITORY/tree/feature/work-712-character" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_ALLIANCE_712
+          path: ${{ runner.temp }}/delivery712/
+          retention-days: 90
+          if-no-files-found: error
