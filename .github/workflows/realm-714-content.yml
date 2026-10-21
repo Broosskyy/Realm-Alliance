@@ -1,7 +1,7 @@
 name: REALM 714 2D Real Asset Update Validation
 on:
   push:
-    branches: [feature/work-714-1b-content]
+    branches: [feature/work-714-asset-updater]
 permissions:
   contents: read
 jobs:
