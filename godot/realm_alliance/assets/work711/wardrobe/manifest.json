@@ -1,0 +1,417 @@
+{
+  "version": 711,
+  "date": "2026-10-21",
+  "provenance": "New image_gen replacements, not the lost original 711 bytes. Style reference assets/production/hero/idle.png. No character body or weapon baked into layers.",
+  "sources": {
+    "wander_leather": {
+      "path": "production/work711/wander_leather_atlas.png",
+      "sha256": "de1ae4c4b9024e387568e1d21b9bf4bc406fa4313d6b65c77af33187cb2c34bc"
+    },
+    "silver_guard": {
+      "path": "production/work711/silver_guard_atlas.png",
+      "sha256": "4afb9e8ecea43130fb68f153f38009ebba5a1589757327644aa9fe700410ab06"
+    },
+    "forest_path": {
+      "path": "production/work711/forest_path_atlas.png",
+      "sha256": "3ecc0fbb1981b93497ba30bbfe15a261c9a66913c57f48dca8a966f6b501b005"
+    },
+    "sand_traveler": {
+      "path": "production/work711/sand_traveler_atlas.png",
+      "sha256": "1656daae4110e05309abae31e3efdd2ef9d92c548cea4aac815281f4293d66ea"
+    }
+  },
+  "components": {
+    "wander_leather/torso": {
+      "path": "assets/work711/wardrobe/wander_leather/torso.png",
+      "size": [
+        256,
+        304
+      ],
+      "alpha_bbox": [
+        8,
+        19,
+        248,
+        285
+      ],
+      "sha256": "f089369e6cdd3bddf503d848997cf8f7be9a106eb5ba8a5845e52dc4a8ef9508"
+    },
+    "wander_leather/shoulder_left": {
+      "path": "assets/work711/wardrobe/wander_leather/shoulder_left.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        8,
+        21,
+        168,
+        170
+      ],
+      "sha256": "12ea910ef92bea9d38d520ca9bd920fafc486fe1d86b7f18f1b717d51ab129b4"
+    },
+    "wander_leather/shoulder_right": {
+      "path": "assets/work711/wardrobe/wander_leather/shoulder_right.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        8,
+        21,
+        168,
+        170
+      ],
+      "sha256": "e4a7fa0f7b9ed4c882d4411a5c661fe1f063254aa74cd12fe8504d7af948f129"
+    },
+    "wander_leather/hips": {
+      "path": "assets/work711/wardrobe/wander_leather/hips.png",
+      "size": [
+        272,
+        272
+      ],
+      "alpha_bbox": [
+        8,
+        45,
+        264,
+        227
+      ],
+      "sha256": "8c6f4f91885b14991fea05e1ede50db9672431505e89e32c24b4e8d97931fbf7"
+    },
+    "wander_leather/boot_left": {
+      "path": "assets/work711/wardrobe/wander_leather/boot_left.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        8,
+        120,
+        167
+      ],
+      "sha256": "931299e55d8460c14b9dc14fa7c24f918272b26a9b797285c3d74e983bc917b7"
+    },
+    "wander_leather/boot_right": {
+      "path": "assets/work711/wardrobe/wander_leather/boot_right.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        25,
+        120,
+        151
+      ],
+      "sha256": "63d273b6b5af343990c100cc2be52b8e4e163670213fe907a764707b232c8bd6"
+    },
+    "wander_leather/cape": {
+      "path": "assets/work711/wardrobe/wander_leather/cape.png",
+      "size": [
+        416,
+        336
+      ],
+      "alpha_bbox": [
+        8,
+        19,
+        408,
+        316
+      ],
+      "sha256": "e0f46db315d028f5752b0ec87858919dfee14b3fab3672e505f7fbd9191d27ee"
+    },
+    "silver_guard/torso": {
+      "path": "assets/work711/wardrobe/silver_guard/torso.png",
+      "size": [
+        256,
+        304
+      ],
+      "alpha_bbox": [
+        8,
+        36,
+        248,
+        268
+      ],
+      "sha256": "6f478b4f09d5acf13d5824f007cad18922c0593599720ec7071c344ab2b1cf47"
+    },
+    "silver_guard/shoulder_left": {
+      "path": "assets/work711/wardrobe/silver_guard/shoulder_left.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        9,
+        8,
+        167,
+        184
+      ],
+      "sha256": "83010a4fe8bff9f4ffee9461328e22bc3c8f7d2dd3323ae0625434721baf7f00"
+    },
+    "silver_guard/shoulder_right": {
+      "path": "assets/work711/wardrobe/silver_guard/shoulder_right.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        11,
+        8,
+        164,
+        184
+      ],
+      "sha256": "0d8c1a1ba9a7c4a0cdf9e95e2aa5f1b840d22cb19e8755cec62f757fa08f7516"
+    },
+    "silver_guard/hips": {
+      "path": "assets/work711/wardrobe/silver_guard/hips.png",
+      "size": [
+        272,
+        272
+      ],
+      "alpha_bbox": [
+        8,
+        45,
+        264,
+        226
+      ],
+      "sha256": "8f671f0b1ed18d3fb1d6c924151d98f199f3c4a52e82f28345d703bb2b4f53c8"
+    },
+    "silver_guard/boot_left": {
+      "path": "assets/work711/wardrobe/silver_guard/boot_left.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        14,
+        120,
+        161
+      ],
+      "sha256": "2edea70ca99c1be7938ba26b9db4e6a84deb7aee569b9302d05f3ca420171b64"
+    },
+    "silver_guard/boot_right": {
+      "path": "assets/work711/wardrobe/silver_guard/boot_right.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        27,
+        120,
+        148
+      ],
+      "sha256": "4141106bd1fb7fb92a954ac67095ec4cd53022734c1643ffdb5f9ff4ddfaf03e"
+    },
+    "silver_guard/cape": {
+      "path": "assets/work711/wardrobe/silver_guard/cape.png",
+      "size": [
+        416,
+        336
+      ],
+      "alpha_bbox": [
+        8,
+        11,
+        408,
+        325
+      ],
+      "sha256": "e0fdb2c3f96b623b8c158e909f3bf4124be5d15ed810df23286e695e18b91b63"
+    },
+    "forest_path/torso": {
+      "path": "assets/work711/wardrobe/forest_path/torso.png",
+      "size": [
+        256,
+        304
+      ],
+      "alpha_bbox": [
+        8,
+        23,
+        248,
+        280
+      ],
+      "sha256": "d3f1cc8f2015b88b9e0a6d7ef6060da5475672bfe49f25fd1ca5380d5c049612"
+    },
+    "forest_path/shoulder_left": {
+      "path": "assets/work711/wardrobe/forest_path/shoulder_left.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        8,
+        13,
+        168,
+        179
+      ],
+      "sha256": "169e6f24b731f075ae02002ddba5d88e8e222c35b807fa39551db4f5422f53f3"
+    },
+    "forest_path/shoulder_right": {
+      "path": "assets/work711/wardrobe/forest_path/shoulder_right.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        9,
+        8,
+        167,
+        184
+      ],
+      "sha256": "d16e9c61b459737c12fa9a67c637a2c93cbf4edc1cafd895c5aab465139c0b2e"
+    },
+    "forest_path/hips": {
+      "path": "assets/work711/wardrobe/forest_path/hips.png",
+      "size": [
+        272,
+        272
+      ],
+      "alpha_bbox": [
+        8,
+        39,
+        264,
+        233
+      ],
+      "sha256": "9af92172c036a3819f8f0374c641f290c06f06e04700ad5133b2478d1f08095c"
+    },
+    "forest_path/boot_left": {
+      "path": "assets/work711/wardrobe/forest_path/boot_left.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        16,
+        120,
+        159
+      ],
+      "sha256": "47be2f6d046477ee234c17370401988a4c29726fb6b3e6f4ba92aca4e6d593c0"
+    },
+    "forest_path/boot_right": {
+      "path": "assets/work711/wardrobe/forest_path/boot_right.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        31,
+        120,
+        144
+      ],
+      "sha256": "874de2a9ab2c767fcd0af717f2923adad048521975816bcf337e0c021187a955"
+    },
+    "forest_path/cape": {
+      "path": "assets/work711/wardrobe/forest_path/cape.png",
+      "size": [
+        416,
+        336
+      ],
+      "alpha_bbox": [
+        8,
+        12,
+        408,
+        322
+      ],
+      "sha256": "bbfe2c55b4e8b9120b8b622c35768cc82035363e76c5caab0c8a461c957fc24b"
+    },
+    "sand_traveler/torso": {
+      "path": "assets/work711/wardrobe/sand_traveler/torso.png",
+      "size": [
+        256,
+        304
+      ],
+      "alpha_bbox": [
+        8,
+        8,
+        248,
+        296
+      ],
+      "sha256": "b034b72906b2a0cb4bdf2cdb5c20a431e374429ee396785720b6afd6fbdfbcec"
+    },
+    "sand_traveler/shoulder_left": {
+      "path": "assets/work711/wardrobe/sand_traveler/shoulder_left.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        18,
+        8,
+        157,
+        184
+      ],
+      "sha256": "1fff13f012d9dd15017ba3f4eaf41d30a263698d0fbcc3bd840e557e9fb2ff25"
+    },
+    "sand_traveler/shoulder_right": {
+      "path": "assets/work711/wardrobe/sand_traveler/shoulder_right.png",
+      "size": [
+        176,
+        192
+      ],
+      "alpha_bbox": [
+        13,
+        8,
+        163,
+        184
+      ],
+      "sha256": "d44a98f0633313cf61f8ff0af569af4dfaba34af1f8fb824520ad85486ca2cd3"
+    },
+    "sand_traveler/hips": {
+      "path": "assets/work711/wardrobe/sand_traveler/hips.png",
+      "size": [
+        272,
+        272
+      ],
+      "alpha_bbox": [
+        8,
+        23,
+        264,
+        249
+      ],
+      "sha256": "fc94aa3368c34a5fb74beb46029222290a93cb6b2ba3d1ad36891bb5e8eabd83"
+    },
+    "sand_traveler/boot_left": {
+      "path": "assets/work711/wardrobe/sand_traveler/boot_left.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        23,
+        120,
+        153
+      ],
+      "sha256": "d46c16ba1869b8d9f34789177d3573bec7000a22fa96d5521d095113c224a2ec"
+    },
+    "sand_traveler/boot_right": {
+      "path": "assets/work711/wardrobe/sand_traveler/boot_right.png",
+      "size": [
+        128,
+        176
+      ],
+      "alpha_bbox": [
+        8,
+        27,
+        120,
+        149
+      ],
+      "sha256": "fd015df1b3431a9da1e25bf03a9980645e3433ddd7b9071517ed46fed4513081"
+    },
+    "sand_traveler/cape": {
+      "path": "assets/work711/wardrobe/sand_traveler/cape.png",
+      "size": [
+        416,
+        336
+      ],
+      "alpha_bbox": [
+        12,
+        8,
+        403,
+        328
+      ],
+      "sha256": "b8a2996d170623b53fc4a98c623bdfdd475c65df6103f10f456e4a80de2db44b"
+    }
+  }
+}
