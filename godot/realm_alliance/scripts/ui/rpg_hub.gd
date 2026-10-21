@@ -1,5 +1,6 @@
 extends "res://scripts/ui/modal_dialog.gd"
 class_name RARPGHub
+const RemoteArt=preload("res://scripts/launcher/content_cache714.gd")
 signal changed(message:String)
 signal activity_requested(id:String)
 signal leave_requested
@@ -84,6 +85,20 @@ func _activities(list:Control) -> void:
             if not model.read_only and model.Events.claim(model.profile,event_id,quest.id):changed.emit("Eventbelohnung erhalten");_build())
 
 func _journey(list:Control) -> void:
+    # Rein kosmetische 2D-Ankündigung aus nachgeladenem, SHA-geprüftem Inhalt.
+    var remote=RemoteArt.last()
+    if not remote.is_empty():
+        var card=_card(list,"Neuigkeiten · "+str(remote.title),str(remote.message))
+        var tex=RemoteArt.preview_texture()
+        if tex!=null:
+            var banner=TextureRect.new()
+            banner.name="LiveContentBanner714"
+            banner.texture=tex
+            banner.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+            banner.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+            banner.custom_minimum_size=Vector2(0,142)
+            banner.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+            card.add_child(banner)
     var now=int(Time.get_unix_time_from_system())
     if not model.read_only:model.Journey.refresh(model.profile,now)
     _card(list,"Dein nächstes Ziel",model.Journey.next_goal(model.profile))

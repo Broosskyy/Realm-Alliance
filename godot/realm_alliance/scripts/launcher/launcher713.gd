@@ -2,8 +2,10 @@ extends Control
 const Gate=preload("res://scripts/launcher/update_gate713.gd")
 const Cache=preload("res://scripts/launcher/content_cache713.gd")
 const Kit=preload("res://scripts/ui/fantasy_theme.gd")
-const VERSION_CODE=713
-const SETTINGS="res://data/update713_config.json"
+const ArtGate=preload("res://scripts/launcher/update_gate714.gd")
+const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
+const VERSION_CODE=714
+const SETTINGS="res://data/update714_config.json"
 var auto_check=true
 var _busy=false
 var _launching=false
@@ -19,10 +21,13 @@ var _config:Dictionary={}
 var _want_account=false
 var _phase="manifest"
 var _pack:Dictionary={}
+var _art:TextureRect
+var _art_label:Label
 
 func _ready() -> void:
     theme=Kit.native_theme()
     _build()
+    _show_art()
     get_viewport().size_changed.connect(_fit)
     _fit()
     if auto_check:call_deferred("_check")
@@ -72,6 +77,16 @@ func _build() -> void:
     _title=_label(stack,"REALM ALLIANCE",36,Color("#ffe3a2"))
     _title.name="LaunchTitle"
     _label(stack,"Dein Abenteuer beginnt hier",21,Color("#a9c4e4"))
+    _art=TextureRect.new()
+    _art.name="RemotePatchBanner"
+    _art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+    _art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+    _art.custom_minimum_size.y=135
+    _art.visible=false
+    stack.add_child(_art)
+    _art_label=_label(stack,"",18,Color("#e0d4ff"))
+    _art_label.name="PatchAnnouncement"
+    _art_label.visible=false
     stack.add_child(HSeparator.new())
     _status=_label(stack,"Vorbereitung …",24,Color("#f5ebd2"))
     _status.name="LaunchStatus"
@@ -93,7 +108,7 @@ func _build() -> void:
     _request=HTTPRequest.new()
     _request.name="LaunchRequest"
     _request.timeout=8
-    _request.body_size_limit=65536
+    _request.body_size_limit=32768
     add_child(_request)
     _request.request_completed.connect(_on_manifest)
     _display("Bereit","Version 713 · Testkanal",false)
@@ -160,41 +175,51 @@ func _on_manifest(result:int,status_code:int,_headers:PackedStringArray,body:Pac
         _finish_pack(result,status_code,body)
         return
     if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
-        _display("Offline bereit","Versionsdienst nicht erreichbar. Dein Spielstand bleibt erhalten.",false)
+        _display("Offline bereit","Server nicht erreichbar. Vorhandene Inhalte und Spielstände bleiben erhalten.",false)
         return
     var manifest=JSON.parse_string(body.get_string_from_utf8())
-    var state=Gate.inspect(manifest,VERSION_CODE,str(_config.get("channel","test")))
+    var state=ArtGate.inspect(manifest,VERSION_CODE,str(_config.get("channel","test")))
     match str(state.status):
-        "current":_display("Spiel ist aktuell",str(state.message),false)
         "app_optional":_display("Neue App-Version",str(state.message),false)
         "app_required":_display("App-Update erforderlich",str(state.message),false)
-        "content_pending":
+        "content":
             _pack=manifest.packs[0]
-            if Cache.installed(_pack):
-                var cached=Cache.read(_pack)
-                _display("Inhalte aktuell",str(cached.get("message","Inhalt bereits vorhanden.")),false)
+            if ArtCache.installed(_pack):
+                _show_art()
+                _display("Spielinhalte aktuell","2D-Grafik "+str(_pack.revision)+" ist bereits geladen.",false)
             else:
                 _phase="pack"
                 _progress.indeterminate=false
                 _progress.value=0
-                _display("Neue Inhalte werden geladen …","Sicherer Download und Prüfsumme: %d Bytes"%int(_pack.bytes),true)
+                _display("Neue 2D-Inhalte werden geladen …","%d Bytes · Prüfsumme wird kontrolliert"%int(_pack.bytes),true)
                 call_deferred("_fetch_pack")
-        _:_display("Offline bereit","Ungültige Updateantwort. Dein Spielstand bleibt erhalten.",false)
+        _:_display("Offline bereit","Updateinformation abgelehnt. Vorherige Inhalte bleiben erhalten.",false)
 
 func _fetch_pack() -> void:
     if not _busy or _phase!="pack" or _launching:return
     if _request.request(str(_pack.url),PackedStringArray(["Accept: application/json"]))!=OK:
-        _display("Update nicht verfügbar","Download konnte nicht gestartet werden. Offline spielen bleibt möglich.",false)
+        _display("Offline bereit","Assetdownload nicht möglich. Bisherige Inhalte bleiben erhalten.",false)
 
 func _finish_pack(result:int,code:int,body:PackedByteArray) -> void:
     if result!=HTTPRequest.RESULT_SUCCESS or code!=200:
-        _display("Download unterbrochen","Inhalte konnten nicht geladen werden. Vorherige Daten bleiben erhalten.",false)
+        _display("Download unterbrochen","Offline spielen ist möglich, dein alter Inhalt bleibt erhalten.",false)
         return
-    if not Cache.install(_pack,body):
-        _display("Update abgelehnt","Prüfsumme oder Inhalt ungültig. Vorherige Daten bleiben erhalten.",false)
+    if not ArtCache.install(_pack,body):
+        _display("Update abgelehnt","Ungültige Prüfsumme oder Grafik. Alter Inhalt bleibt aktiv.",false)
         return
     _progress.value=100
-    _display("Inhalte aktualisiert",str(Cache.read(_pack).get("message","Inhalt erfolgreich geladen.")),false)
+    _show_art()
+    _display("2D-Grafik aktualisiert","Installiert: "+str(_pack.revision)+" · ohne App-Installation",false)
+
+func _show_art() -> void:
+    if not is_instance_valid(_art):return
+    var info=ArtCache.last()
+    var texture=ArtCache.preview_texture()
+    _art.visible=texture!=null
+    _art.texture=texture
+    _art_label.visible=not info.is_empty()
+    if not info.is_empty():
+        _art_label.text=str(info.get("title","Neues aus dem Reich"))+" · "+str(info.get("message",""))
 
 func _start_game(open_account:bool) -> void:
     if _launching:return
