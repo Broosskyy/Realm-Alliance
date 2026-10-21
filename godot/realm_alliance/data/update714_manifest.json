@@ -3,16 +3,16 @@
   "channel": "test",
   "min_app_version_code": 714,
   "latest_app_version_code": 714,
-  "content_revision": "graphics-v1",
+  "content_revision": "graphics-v2",
   "packs": [
     {
       "id": "realm_announcement",
       "kind": "svg_announcement",
-      "revision": "graphics-v1",
-      "bytes": 915,
-      "sha256": "c4610c7de070516ba102743df3c00f18e951e6969ca384f826e09aa47ee990ce",
-      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v1.json"
+      "revision": "graphics-v2",
+      "bytes": 940,
+      "sha256": "510ed220494a72a450613d86ea827efd299a78fd29f92f5413a670825d9477b9",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v2.json"
     }
   ],
-  "release_notes": "Reines 2D-News-und-Banner-Inhaltsupdate ohne neue APK"
+  "release_notes": "Neues violettes Realm-Banner und Event-Hinweis – keine neue APK notwendig."
 }
