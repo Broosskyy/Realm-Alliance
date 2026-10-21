@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "balancing": "provisional_test_712",
+  "class_job_level": 5,
+  "job_xp_step": 40,
+  "classes": {
+    "adventurer": {
+      "name": "Abenteurer",
+      "role": "Grundausbildung",
+      "attack_scale": 1,
+      "hp_scale": 1,
+      "defense": 0,
+      "skills": {
+        "sky_blade": {
+          "name": "Übungshieb"
+        },
+        "arcane_eye": {
+          "name": "Fokus"
+        },
+        "rage_flame": {
+          "name": "Entschlossenheit"
+        },
+        "guardian_wall": {
+          "name": "Deckung"
+        }
+      }
+    },
+    "swordsman": {
+      "name": "Schwertkämpfer",
+      "role": "Nahkampf · Schwert",
+      "attack_scale": 1.05,
+      "hp_scale": 1.1,
+      "defense": 2,
+      "skills": {
+        "sky_blade": {
+          "name": "Kreuzhieb",
+          "multiplier": 2.7
+        },
+        "arcane_eye": {
+          "name": "Klingenfokus"
+        },
+        "rage_flame": {
+          "name": "Kampfgeist"
+        },
+        "guardian_wall": {
+          "name": "Parade"
+        }
+      }
+    },
+    "archer": {
+      "name": "Bogenschütze",
+      "role": "Fernkampf · Bogen",
+      "attack_scale": 1.1,
+      "hp_scale": 0.95,
+      "defense": 0,
+      "skills": {
+        "sky_blade": {
+          "name": "Präzisionsschuss",
+          "multiplier": 2.8
+        },
+        "arcane_eye": {
+          "name": "Jägermarke"
+        },
+        "rage_flame": {
+          "name": "Pfeilhagel"
+        },
+        "guardian_wall": {
+          "name": "Waldschutz"
+        }
+      }
+    },
+    "mage": {
+      "name": "Magier",
+      "role": "Fernkampf · Stab",
+      "attack_scale": 1.15,
+      "hp_scale": 0.9,
+      "defense": 0,
+      "skills": {
+        "sky_blade": {
+          "name": "Arkanbolzen",
+          "multiplier": 2.9
+        },
+        "arcane_eye": {
+          "name": "Arkanmal"
+        },
+        "rage_flame": {
+          "name": "Sternenfeuer"
+        },
+        "guardian_wall": {
+          "name": "Manaschild"
+        }
+      }
+    }
+  }
+}
