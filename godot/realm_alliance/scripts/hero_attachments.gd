@@ -83,6 +83,11 @@ func sync_pose(hero,pose: String) -> void:
     var reference=hero.VISUAL_SOCKETS.get(pose,hero.VISUAL_SOCKETS.hit).chest
     for corner in TORSO.get(pose,TORSO.hit):
         corners.append(corner-reference if hero.hero_id=="realmwachter" else (corner-reference)*.82+Vector2(0,-6))
+    if hero.is_basic():
+        corners=PackedVector2Array()
+        var f:Dictionary=fits[hero.hero_id].get(pose,fits[hero.hero_id].idle)
+        for point in f.torso:corners.append(Vector2(point[0],point[1])-hero.PIVOT-hero.layer_sockets.chest.position)
+        var h=hero.hand(pose);d={"angle":0.0,"arm":Rect2(h-Vector2(27,23),Vector2(54,46))}
     plate.polygon=corners
     if plate.texture:
         var extent=plate.texture.get_size()

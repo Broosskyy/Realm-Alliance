@@ -27,6 +27,7 @@ const Journey=preload("res://scripts/systems/journey70.gd")
 const Bestiary=preload("res://scripts/systems/bestiary706.gd")
 const Mastery=preload("res://scripts/systems/hero_mastery708.gd")
 const Wardrobe=preload("res://scripts/systems/wardrobe711.gd")
+const Character=preload("res://scripts/systems/character_progress712.gd")
 const Titles=preload("res://scripts/systems/titles708.gd")
 var activity:Dictionary={}
 var companion=PetRuntime.new()
@@ -83,7 +84,7 @@ var hero_name:String:
 var hero_level:int:
     get:return Roster.level(profile)
 var actor_id:String:
-    get:return "hero:"+hero_id+":local"
+    get:return "hero:player_adventurer:local" if Character.active(profile) else "hero:"+hero_id+":local"
 var player_max_hp: int:
     get: return int(round((150+(hero_level-1)*12)*float(Roster.definition(profile).hp_scale)))+int(HeroEquipment.stats(profile).hp)+int(Evolution.bonuses(profile).hp)+int(Advancement.bonuses(profile).hp)+int(Economy.set_bonus(profile).hp)+int(Journey.bonuses(profile).hp)+int(Mastery.bonuses(profile).hp)
 var defense: int:
@@ -103,7 +104,7 @@ func _init(data: Dictionary = {}) -> void:
         read_only=true
         load_error="Evolutionsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
     var checkpoint: Dictionary = normalized.get("checkpoint", {})
-    for domain in [World,Advancement,Quests,Chests,Tap,Roster,Companions,Economy,Activities,Journey,Events,Bestiary,Mastery,Titles,Wardrobe]:
+    for domain in [World,Advancement,Quests,Chests,Tap,Roster,Companions,Economy,Activities,Journey,Events,Bestiary,Mastery,Titles,Wardrobe,Character]:
         var valid=domain.ensure(profile,checkpoint) if domain==World else domain.ensure(profile)
         if not valid:
             read_only=true;load_error="Fortschrittsdaten nicht kompatibel. Original bleibt unverändert; Speichern gesperrt."
@@ -177,6 +178,7 @@ func select_hero(id:String) -> bool:
     # A roster change is NOT a new dungeon run: keep checkpoint, enemy health,
     # reward claim IDs, run serial, status effects on the enemy and time.
     # Cancel only the outgoing hero's action and defensive effects.
+    if Character.exists(profile):profile.character712.active=false
     profile.hero_roster.active=id
     _refresh_skill_definitions()
     pending.clear()
@@ -185,6 +187,18 @@ func select_hero(id:String) -> bool:
     tap.reset_chain()
     player_hp=clampi(player_hp,0,player_max_hp) # Never heal by switching heroes.
     return true
+func create_character(body:String,hair:String) -> bool:
+    if read_only or not Character.create(profile,body,hair):return false
+    _character_handoff();return true
+func activate_character() -> bool:
+    if read_only or not Character.exists(profile) or Character.active(profile):return false
+    profile.character712.active=true;_character_handoff();return true
+func choose_class(id:String) -> bool:
+    if read_only or not Character.choose(profile,id):return false
+    _character_handoff();return true
+func _character_handoff() -> void:
+    _refresh_skill_definitions();pending.clear();busy_until=clock;hero_status.active.clear();tap.reset_chain()
+    player_hp=clampi(player_hp,0,player_max_hp)
 func acquire_companion(id:String) -> bool:return not read_only and Companions.acquire(profile,id)
 func select_companion(id:String) -> bool:
     if read_only or not Companions.ensure(profile) or id==str(profile.companions.active):return false

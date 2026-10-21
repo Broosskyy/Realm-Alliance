@@ -44,7 +44,8 @@ static func apply(session,kind:String) -> bool:
             var target=xp_for_level(LEVEL_TARGET)
             p.xp=maxi(int(p.xp),target)
             var id:String=session.hero_id
-            p.hero_roster.owned[id].xp=maxi(int(p.hero_roster.owned[id].xp),target)
+            if session.Character.active(p):p.character712.xp=maxi(int(p.character712.xp),target)
+            else:p.hero_roster.owned[id].xp=maxi(int(p.hero_roster.owned[id].xp),target)
         "world":
             _world(p)
         "pets":

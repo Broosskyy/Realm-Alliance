@@ -250,5 +250,77 @@
     19,
     240,
     266
+  ],
+  "res://assets/work712/adventurer/male/idle.png": [
+    67,
+    70,
+    451,
+    442
+  ],
+  "res://assets/work712/adventurer/male/ready.png": [
+    50,
+    81,
+    450,
+    426
+  ],
+  "res://assets/work712/adventurer/male/windup.png": [
+    90,
+    103,
+    411,
+    408
+  ],
+  "res://assets/work712/adventurer/male/attack_contact.png": [
+    101,
+    81,
+    429,
+    427
+  ],
+  "res://assets/work712/adventurer/male/recovery.png": [
+    60,
+    81,
+    451,
+    429
+  ],
+  "res://assets/work712/adventurer/male/hit.png": [
+    107,
+    87,
+    420,
+    420
+  ],
+  "res://assets/work712/adventurer/female/idle.png": [
+    85,
+    59,
+    451,
+    448
+  ],
+  "res://assets/work712/adventurer/female/ready.png": [
+    58,
+    74,
+    451,
+    438
+  ],
+  "res://assets/work712/adventurer/female/windup.png": [
+    86,
+    79,
+    424,
+    432
+  ],
+  "res://assets/work712/adventurer/female/attack_contact.png": [
+    93,
+    62,
+    451,
+    431
+  ],
+  "res://assets/work712/adventurer/female/recovery.png": [
+    58,
+    62,
+    450,
+    432
+  ],
+  "res://assets/work712/adventurer/female/hit.png": [
+    108,
+    62,
+    435,
+    431
   ]
 }

@@ -1,4 +1,7 @@
 shader_type canvas_item;
+uniform bool basic_hair = false;
+uniform vec4 hair_region = vec4(0.0);
+uniform vec4 hair_tint : source_color = vec4(0.55,0.35,0.2,1.0);
 uniform bool modular_outfit = false;
 uniform float modular_rear_cut = 0.62;
 uniform vec4 modular_cloth_color : source_color = vec4(1.0);
@@ -72,6 +75,12 @@ void fragment() {
         } else {
             tex.a *= cape_pass ? float(inside) : 1.0-float(inside);
         }
+    }
+    if (basic_hair && UV.x>hair_region.x && UV.x<hair_region.z && UV.y>hair_region.y && UV.y<hair_region.w) {
+        float warm=smoothstep(.02,.10,tex.r-tex.b)*(1.0-smoothstep(.60,.80,tex.r));
+        float eye=step(.54,tex.r)*step(.29,tex.g)*(1.0-step(.30,tex.b));
+        float lum=dot(tex.rgb,vec3(.2126,.7152,.0722));
+        tex.rgb=mix(tex.rgb,hair_tint.rgb*lum*2.6,warm*(1.0-eye));
     }
     COLOR = tex * sprite_modulate;
 }

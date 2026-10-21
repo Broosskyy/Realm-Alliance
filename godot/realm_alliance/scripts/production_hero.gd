@@ -29,7 +29,11 @@ const ANGLES := {
 
 const Alternate=preload("res://scripts/presentation/hero_visual_catalog.gd")
 const ShadowHunter=preload("res://scripts/presentation/shadow_hunter_visual.gd")
-const ART_ROOTS={"kaela":"res://assets/roster67/kaela/","runenpaladin":"res://assets/roster68/runenpaladin/","schattenjager":"res://assets/expansion702/schattenjager/"}
+const Character=preload("res://scripts/systems/character_progress712.gd")
+var basic_meta:Dictionary={}
+var basic_class="adventurer"
+var hair_color="brown"
+const ART_ROOTS={"adventurer_male":"res://assets/work712/adventurer/male/","adventurer_female":"res://assets/work712/adventurer/female/","kaela":"res://assets/roster67/kaela/","runenpaladin":"res://assets/roster68/runenpaladin/","schattenjager":"res://assets/expansion702/schattenjager/"}
 const Paladin=preload("res://scripts/presentation/paladin_visual.gd")
 var hero_id="realmwachter"
 var preview_mode=false
@@ -81,6 +85,7 @@ var _upgrade_level=0
 var fx_intensity=1.0
 
 func _ready() -> void:
+    basic_meta=JSON.parse_string(FileAccess.get_file_as_string("res://assets/work712/character_sockets.json")).bodies
     texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
     _art = Node2D.new()
     _art.name = "ArtRoot"
@@ -148,15 +153,23 @@ func set_hero(id:String) -> void:
             if ResourceLoader.exists(path):frames[state]=load(path)
         hero_sets[id]=frames
     hero_id=id;_poses=hero_sets[id];revive()
+func basic_frame(pose:String) -> Dictionary:
+    var frames:Dictionary=basic_meta.get(hero_id.trim_prefix("adventurer_"),{})
+    return frames.get(pose,frames.get("idle",{}))
+func is_basic() -> bool:return hero_id.begins_with("adventurer_")
 func hand(pose:String) -> Vector2:
+    if is_basic():var a=basic_frame(pose).hand;return Vector2(a[0],a[1])
     if hero_id=="realmwachter" and not _modular_body and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):return Vector2(_outfit_meta[pose].hand[0],_outfit_meta[pose].hand[1])
     if hero_id=="schattenjager":return ShadowHunter.HANDS.get(pose,ShadowHunter.HANDS.hit)
     if hero_id=="runenpaladin":return Paladin.HANDS.get(pose,Paladin.HANDS.hit)
     return Alternate.HANDS.get(pose,Alternate.HANDS.hit) if hero_id=="kaela" else HANDS.get(pose,HANDS.hit)
 func angle(pose:String) -> float:
+    if is_basic():return 0.0 if basic_class in ["archer","mage"] else float(basic_frame(pose).angle)
     if hero_id=="schattenjager":return float(ShadowHunter.ANGLES.get(pose,-45))
     return float(Alternate.ANGLES.get(pose,-45)) if hero_id=="kaela" else float(ANGLES.get(pose,-45))
 func sockets(pose:String) -> Dictionary:
+    if is_basic():
+        var d=basic_frame(pose);return {"head":Vector2(d.head[0],d.head[1]),"chest":Vector2(d.chest[0],d.chest[1]),"back":Vector2(d.back[0],d.back[1])}
     if hero_id=="realmwachter" and not _modular_body and _outfit in ["astral_plate","eclipse_plate"] and _outfit_meta.has(pose):
         var d=_outfit_meta[pose];var chest=Vector2(d.chest[0],d.chest[1]);return {"head":Vector2(d.head[0],d.head[1]),"chest":chest,"back":chest+Vector2(-55,-12)}
     if hero_id=="schattenjager":return ShadowHunter.SOCKETS.get(pose,ShadowHunter.SOCKETS.hit)
@@ -168,6 +181,9 @@ func _set_pose(name: String) -> void:
         return
     _body.texture = _outfit_poses.get(name,_poses.get(name)) if hero_id=="realmwachter" and not _modular_body and _outfit in ["astral_plate","eclipse_plate"] else _poses.get(name)
     _body.position = -PIVOT
+    if is_basic():
+        var h=basic_frame(name).hair_region
+        _palette.set_shader_parameter("hair_region",Vector4(h[0]/640.0,h[1]/512.0,h[2]/640.0,h[3]/512.0))
     _socket.position = hand(name) - PIVOT
     _socket.rotation_degrees = angle(name)
     _socket.z_index = _world_layer()+8
@@ -220,6 +236,7 @@ func _sample_action() -> void:
         _socket.rotation=lerp_angle(deg_to_rad(angle(track.from)),deg_to_rad(angle(track.to)),float(track.blend))+deg_to_rad(float(track.offset))
     elif frame.has("weapon_angle"):_socket.rotation_degrees=angle(_pose)+float(frame.weapon_angle)
     elif _pose=="windup":_socket.rotation_degrees=angle(_pose)-12*(1-clampf(_action_elapsed/maxf(_windup,0.01),0,1))
+    if is_basic() and basic_class in ["archer","mage"]:_socket.rotation_degrees=0
     if not _impacted and _action_elapsed>=_windup:
         _impacted=true;impact.emit()
     if frame.done:_finish_attack()
@@ -247,6 +264,19 @@ func set_look(id: String, evolution: bool = false) -> void:
     if cape:cape.sync(self,_pose)
 
 func set_gear(profile: Dictionary) -> void:
+    _palette.set_shader_parameter("basic_hair",is_basic())
+    if is_basic() and Character.exists(profile):
+        basic_class=Character.class_id(profile);hair_color=str(profile.character712.appearance.hair_color)
+        var colors={"blond":Color("#dbc184"),"black":Color("#242632"),"brown":Color("#916547"),"copper":Color("#bf683b"),"white":Color("#eee8e0"),"silver":Color("#b8c6d9"),"blue":Color("#4161c5"),"red":Color("#b32d45"),"violet":Color("#9454c5")}
+        _palette.set_shader_parameter("hair_tint",colors.get(hair_color,colors.brown))
+        if basic_class in ["archer","mage"]:
+            var item="bow" if basic_class=="archer" else "staff"
+            _weapon.texture=load("res://assets/work712/weapons/"+item+".png");_weapon.scale=Vector2.ONE*.55
+            _weapon.position=-(Vector2(256,512) if item=="bow" else Vector2(256,620))*.55
+        else:
+            _weapon.scale=Vector2.ONE*BLADE_SCALE;_weapon.position=-BLADE_GRIP*BLADE_SCALE;equip_weapon(_selected)
+    else:
+        _weapon.scale=Vector2.ONE*BLADE_SCALE;_weapon.position=-BLADE_GRIP*BLADE_SCALE;equip_weapon(_selected)
     var next=preload("res://scripts/systems/hero_equipment.gd").visible_id(profile,"chest") if profile.has("hero_equipment") else ""
     var modular=preload("res://scripts/systems/wardrobe711.gd").active(profile)!="" or next in ["wander_leather","silver_guard"]
     if next!=_outfit or modular!=_modular_body:_outfit=next;_modular_body=modular;_set_pose(_pose)
@@ -258,6 +288,7 @@ func set_gear(profile: Dictionary) -> void:
     var rank=preload("res://scripts/systems/hero_evolution.gd").form_rank(profile) if profile.has("hero_evolution") else 0
     if _palette:_palette.set_shader_parameter("evolution_rank",rank)
     if cape and cape.material:cape.material.set_shader_parameter("evolution_rank",rank)
+    if is_basic():_set_pose(_pose)
     set_mastery_visual(preload("res://scripts/systems/hero_mastery708.gd").rank(profile,hero_id))
 
 func set_mastery_visual(rank:int) -> void:

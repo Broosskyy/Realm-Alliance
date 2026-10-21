@@ -1,0 +1,318 @@
+{
+  "schema": 1,
+  "canvas": [
+    640,
+    512
+  ],
+  "pivot": [
+    320,
+    488
+  ],
+  "bodies": {
+    "male": {
+      "idle": {
+        "hand": [
+          375,
+          313
+        ],
+        "angle": -28,
+        "head": [
+          327,
+          119
+        ],
+        "chest": [
+          320,
+          225
+        ],
+        "back": [
+          275,
+          204
+        ],
+        "hair_region": [
+          263,
+          53,
+          382,
+          141
+        ]
+      },
+      "ready": {
+        "hand": [
+          390,
+          278
+        ],
+        "angle": -34,
+        "head": [
+          331,
+          164
+        ],
+        "chest": [
+          320,
+          240
+        ],
+        "back": [
+          275,
+          222
+        ],
+        "hair_region": [
+          267,
+          98,
+          386,
+          186
+        ]
+      },
+      "windup": {
+        "hand": [
+          257,
+          134
+        ],
+        "angle": -40,
+        "head": [
+          352,
+          147
+        ],
+        "chest": [
+          320,
+          231
+        ],
+        "back": [
+          260,
+          201
+        ],
+        "hair_region": [
+          288,
+          81,
+          407,
+          169
+        ]
+      },
+      "attack_contact": {
+        "hand": [
+          508,
+          208
+        ],
+        "angle": -8,
+        "head": [
+          376,
+          164
+        ],
+        "chest": [
+          320,
+          251
+        ],
+        "back": [
+          272,
+          233
+        ],
+        "hair_region": [
+          312,
+          98,
+          431,
+          186
+        ]
+      },
+      "recovery": {
+        "hand": [
+          350,
+          298
+        ],
+        "angle": -25,
+        "head": [
+          345,
+          164
+        ],
+        "chest": [
+          320,
+          254
+        ],
+        "back": [
+          275,
+          237
+        ],
+        "hair_region": [
+          281,
+          98,
+          400,
+          186
+        ]
+      },
+      "hit": {
+        "hand": [
+          303,
+          246
+        ],
+        "angle": -45,
+        "head": [
+          294,
+          165
+        ],
+        "chest": [
+          320,
+          259
+        ],
+        "back": [
+          257,
+          236
+        ],
+        "hair_region": [
+          230,
+          99,
+          349,
+          187
+        ]
+      }
+    },
+    "female": {
+      "idle": {
+        "hand": [
+          379,
+          302
+        ],
+        "angle": -28,
+        "head": [
+          337,
+          115
+        ],
+        "chest": [
+          320,
+          214
+        ],
+        "back": [
+          282,
+          192
+        ],
+        "hair_region": [
+          273,
+          49,
+          392,
+          137
+        ]
+      },
+      "ready": {
+        "hand": [
+          393,
+          255
+        ],
+        "angle": -34,
+        "head": [
+          336,
+          155
+        ],
+        "chest": [
+          320,
+          233
+        ],
+        "back": [
+          282,
+          215
+        ],
+        "hair_region": [
+          272,
+          89,
+          391,
+          177
+        ]
+      },
+      "windup": {
+        "hand": [
+          256,
+          121
+        ],
+        "angle": -40,
+        "head": [
+          350,
+          134
+        ],
+        "chest": [
+          320,
+          212
+        ],
+        "back": [
+          267,
+          186
+        ],
+        "hair_region": [
+          286,
+          68,
+          405,
+          156
+        ]
+      },
+      "attack_contact": {
+        "hand": [
+          502,
+          200
+        ],
+        "angle": -8,
+        "head": [
+          362,
+          140
+        ],
+        "chest": [
+          320,
+          226
+        ],
+        "back": [
+          277,
+          203
+        ],
+        "hair_region": [
+          298,
+          74,
+          417,
+          162
+        ]
+      },
+      "recovery": {
+        "hand": [
+          396,
+          309
+        ],
+        "angle": -25,
+        "head": [
+          346,
+          146
+        ],
+        "chest": [
+          320,
+          235
+        ],
+        "back": [
+          279,
+          214
+        ],
+        "hair_region": [
+          282,
+          80,
+          401,
+          168
+        ]
+      },
+      "hit": {
+        "hand": [
+          358,
+          210
+        ],
+        "angle": -45,
+        "head": [
+          295,
+          138
+        ],
+        "chest": [
+          320,
+          229
+        ],
+        "back": [
+          276,
+          206
+        ],
+        "hair_region": [
+          231,
+          72,
+          350,
+          160
+        ]
+      }
+    }
+  },
+  "source": "built-in image_gen; preserved transparent six-pose atlases; empty gripping hands, basic cloth/leather/backpack, black face and amber eyes, brown hair. Separate weapons."
+}

@@ -1,5 +1,6 @@
 extends RefCounted
 class_name RAHeroRoster
+const Character=preload("res://scripts/systems/character_progress712.gd")
 const Validate=preload("res://scripts/systems/domain_validation.gd")
 const Progress=preload("res://scripts/systems/player_progress.gd")
 # Add IDs only after full pose/socket/weapon art integration and scene tests.
@@ -40,10 +41,11 @@ static func ensure(p:Dictionary) -> bool:
         p.shards=mini(2000000000,int(p.shards)+8)
         d.kaela_compensated=true
     return true
-static func active(p:Dictionary) -> String:return str(p.hero_roster.active) if ensure(p) else "realmwachter"
+static func active(p:Dictionary) -> String:return Character.visual_id(p) if Character.active(p) else str(p.hero_roster.active) if ensure(p) else "realmwachter"
 static func xp(p:Dictionary,id:String="") -> int:
     if not ensure(p):return 0
     if id=="":id=active(p)
+    if id.begins_with("adventurer_") and Character.exists(p):return int(p.character712.xp)
     if not p.hero_roster.owned.has(id):return 0
     if id=="realmwachter" and p.hero_roster.owned.size()==1 and not bool(p.hero_roster.get("independent_xp",false)):return int(p.xp)
     return int(p.hero_roster.owned[id].xp)
@@ -62,9 +64,10 @@ static func unlock(p:Dictionary,id:String) -> bool:
     p.gold-=int(d.gold);p.shards-=int(d.shards);p.hero_roster.owned[id]={"xp":0,"source":"roster709"};return true
 static func gain(p:Dictionary,amount:int) -> void:
     if not ensure(p) or amount<=0:return
+    if Character.active(p):Character.gain(p,amount);return
     var id=active(p)
     p.hero_roster.owned[id].xp=mini(2000000000,xp(p,id)+amount) if p.hero_roster.owned.size()>1 or bool(p.hero_roster.get("independent_xp",false)) else int(p.xp)
-static func definition(p:Dictionary) -> Dictionary:return catalog()[active(p)]
+static func definition(p:Dictionary) -> Dictionary:return Character.definition(p) if Character.active(p) else catalog()[active(p)]
 
 static func can_adopt_starter(p:Dictionary) -> bool:
     return ensure(p) and not p.hero_roster.has("starter_revision") and p.hero_roster.owned.has("realmwachter") and not p.hero_roster.owned.has("runenpaladin")
