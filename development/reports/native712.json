@@ -17,7 +17,7 @@
   {
     "test": "test_character712.gd",
     "passed": true,
-    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 712: own adventurer and same-character classes\nCharacter 712: 259/259 checks\n"
+    "output": "Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org\n\nREALM 712: own adventurer and same-character classes\nCharacter 712: 261/261 checks\n"
   },
   {
     "test": "test_combat.gd",

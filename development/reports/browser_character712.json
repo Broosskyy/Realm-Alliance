@@ -1,0 +1,285 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "fresh creation opens"
+    },
+    {
+      "ok": true,
+      "label": "touch creates chosen appearance"
+    },
+    {
+      "ok": true,
+      "label": "own character page and combat rig"
+    },
+    {
+      "ok": true,
+      "label": "original hero retained"
+    },
+    {
+      "ok": true,
+      "label": "cosmetic hair blond"
+    },
+    {
+      "ok": true,
+      "label": "cosmetic hair black"
+    },
+    {
+      "ok": true,
+      "label": "cosmetic hair brown"
+    },
+    {
+      "ok": true,
+      "label": "cosmetic hair copper"
+    },
+    {
+      "ok": true,
+      "label": "responsive preview 320"
+    },
+    {
+      "ok": true,
+      "label": "responsive preview 390"
+    },
+    {
+      "ok": true,
+      "label": "class review"
+    },
+    {
+      "ok": true,
+      "label": "same character becomes archer"
+    },
+    {
+      "ok": true,
+      "label": "class save roundtrip"
+    },
+    {
+      "ok": true,
+      "label": "legacy hero usable"
+    },
+    {
+      "ok": true,
+      "label": "return to adventurer"
+    },
+    {
+      "ok": true,
+      "label": "body retained male wander_leather idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained male wander_leather ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained male wander_leather windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained male wander_leather attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained male wander_leather recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained male wander_leather hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained male silver_guard idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained male silver_guard ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained male silver_guard windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained male silver_guard attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained male silver_guard recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained male silver_guard hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained male forest_path idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained male forest_path ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained male forest_path windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained male forest_path attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained male forest_path recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained male forest_path hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained male sand_traveler idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained male sand_traveler ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained male sand_traveler windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained male sand_traveler attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained male sand_traveler recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained male sand_traveler hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained female wander_leather idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained female wander_leather ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained female wander_leather windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained female wander_leather attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained female wander_leather recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained female wander_leather hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained female silver_guard idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained female silver_guard ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained female silver_guard windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained female silver_guard attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained female silver_guard recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained female silver_guard hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained female forest_path idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained female forest_path ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained female forest_path windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained female forest_path attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained female forest_path recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained female forest_path hit"
+    },
+    {
+      "ok": true,
+      "label": "body retained female sand_traveler idle"
+    },
+    {
+      "ok": true,
+      "label": "body retained female sand_traveler ready"
+    },
+    {
+      "ok": true,
+      "label": "body retained female sand_traveler windup"
+    },
+    {
+      "ok": true,
+      "label": "body retained female sand_traveler attack_contact"
+    },
+    {
+      "ok": true,
+      "label": "body retained female sand_traveler recovery"
+    },
+    {
+      "ok": true,
+      "label": "body retained female sand_traveler hit"
+    },
+    {
+      "ok": true,
+      "label": "touch class swordsman"
+    },
+    {
+      "ok": true,
+      "label": "separate class weapon swordsman"
+    },
+    {
+      "ok": true,
+      "label": "persist swordsman"
+    },
+    {
+      "ok": true,
+      "label": "touch class mage"
+    },
+    {
+      "ok": true,
+      "label": "separate class weapon mage"
+    },
+    {
+      "ok": true,
+      "label": "persist mage"
+    },
+    {
+      "ok": true,
+      "label": "no script or browser errors"
+    }
+  ],
+  "errors": []
+}

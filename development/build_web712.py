@@ -9,7 +9,10 @@ if hasattr(os,'sched_getaffinity'):os.sched_setaffinity(0,sorted(os.sched_getaff
 def export(project):
  base=[a.godot,'--headless','--path',str(project)]
  subprocess.run(base+['--import'],check=True)
- subprocess.run(base+['--export-pack','Web',str(output/'index.pck')],check=True)
+ with tempfile.TemporaryDirectory(prefix='realm712-pack-') as packdir:
+  pack=Path(packdir)/'index.pck'
+  subprocess.run(base+['--export-pack','Web',str(pack)],check=True)
+  shutil.copy2(pack,output/'index.pck')
 if a.qa:
  with tempfile.TemporaryDirectory(prefix='realm712-qa-') as t:
   project=Path(t)/'project';shutil.copytree(source,project,ignore=shutil.ignore_patterns('.git'))

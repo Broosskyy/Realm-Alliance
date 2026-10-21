@@ -13,3 +13,5 @@ Bogen und Stab haben separate Grafiken und Geschosse. Ihre Werte und Upgrades st
 Die 711.1-Anpassungen an Rüstungen/Kostümen und den mobilen Vorschauen bleiben erhalten. Die neuen Körper verwenden eigene Fitting-Daten. Die generierten Originalatlanten sind im Projekt enthalten; `development/work712/prepare_assets.py` erzeugt daraus reproduzierbar Posen, Porträts, Waffen und die gemessenen Anker.
 
 Build: Godot 4.7.2; `development/build_web712.py`, `.github/scripts/build_android712.py`, `development/package_712.py`. Android benötigt den privaten Originalschlüssel; er gehört nicht in Git oder das Quellenpaket. Normaler Webexport schließt den Testadapter aus. Öffentlicher Realm-Betrieb und Android-Gerätetest sind separate offene Prüfungen.
+
+Prüfung: 35 native Suiten / 3.938 Prüfungen; 70 mobile Browser-Prüfungen; normaler Webexport mit Erstellung, 12 echten Taps und fünf Navigationsseiten ohne Testadapter geprüft. Kein Android-Gerätetest. Berichte: `development/reports/*712.json`.

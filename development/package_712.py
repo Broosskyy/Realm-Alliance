@@ -8,7 +8,8 @@ webzip=out/'REALM_ALLIANCE_712_Web.zip'
 webtmp=webzip.with_suffix('.zip.partial')
 with zipfile.ZipFile(webtmp,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
  for f in sorted(web.rglob('*')):
-  if f.is_file():z.write(f,f.relative_to(web))
+  name=f.relative_to(web).as_posix()
+  if f.is_file() and name in {'index.html','index.js','index.wasm','index.png','index.pck','index.audio.worklet.js','index.audio.position.worklet.js','BUILD_712.json','START_WEB.py','LIESMICH.txt','backend/realm_service.py','backend/README.md'}:z.write(f,name)
 with webtmp.open('rb') as f:os.fsync(f.fileno())
 with zipfile.ZipFile(webtmp) as z:
  if z.testzip() is not None:raise SystemExit('Web archive integrity failed')

@@ -25,6 +25,11 @@ static func create(p:Dictionary,body:String,hair:String) -> bool:
     if p.has("character712"):return false
     var appearance=Appearance.basic(body,hair)
     if appearance.is_empty():return false
+    # Split old account-linked guardian XP before the new character earns account XP.
+    var roster:Dictionary=p.get("hero_roster",{})
+    var owned:Dictionary=roster.get("owned",{})
+    if owned.size()==1 and owned.has("realmwachter") and not bool(roster.get("independent_xp",false)):
+        owned.realmwachter.xp=int(p.get("xp",0));roster.independent_xp=true
     p.character712={"schema":1,"id":"player_adventurer","active":true,"appearance":appearance,"xp":0,"jobs":{"adventurer":0}}
     return true
 static func visual_id(p:Dictionary) -> String:return "adventurer_"+str(p.character712.appearance.body_variant) if active(p) else ""

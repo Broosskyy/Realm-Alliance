@@ -32,6 +32,11 @@ func run():
                 var loaded=Session.new(JSON.parse_string(JSON.stringify(next.snapshot())))
                 check(not loaded.read_only and loaded.profile.character712==next.profile.character712,"save roundtrip "+job)
             check(s.select_hero("runenpaladin") and not Character.active(s.profile) and s.activate_character() and s.actor_id==actor,"switch legacy and back safely")
+    var old=Session.new(preload("res://tests/legacy_fixture709.gd").guardian())
+    old.profile.xp=440;var guardian_xp=old.Roster.xp(old.profile,"realmwachter")
+    check(old.create_character("male","brown"),"legacy guardian can create new character")
+    old.enemy_hp=1;old._damage_enemy(100000,"basic",false)
+    check(old.Roster.xp(old.profile,"realmwachter")==guardian_xp and old.profile.hero_roster.independent_xp,"new character does not advance old account-linked guardian")
     var valid=Session.new();valid.create_character("female","copper")
     for bad in [null,[],true,{"schema":99},valid.profile.character712.duplicate(true)]:
         if bad is Dictionary and bad.has("appearance"):bad.jobs.adventurer=-1
