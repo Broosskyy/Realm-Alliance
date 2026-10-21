@@ -32,5 +32,5 @@ func run() -> void:
         assert_case(is_instance_valid(screen.find_child(name,true,false)),name+" exists")
     screen.queue_free()
     await process_frame
-    print("REALM 713 launcher: %d/%d"%(checks-failed,checks))
+    print("REALM 713 launcher: %d/%d"%[checks-failed,checks])
     quit(1 if failed>0 else 0)
