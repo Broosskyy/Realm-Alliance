@@ -1,0 +1,66 @@
+{
+  "version": 712,
+  "source_commit": "cba2595fd3960ba50fd3d02d43b527ac64391fda",
+  "branch": "feature/work-712-character",
+  "native": {
+    "suites": 35,
+    "checks_passed": 3938
+  },
+  "mobile_browser": {
+    "checks_passed": 70,
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        568
+      ]
+    ],
+    "runtime_errors": 0
+  },
+  "normal_web": {
+    "checks_passed": 2,
+    "creation_touch_flow": true,
+    "combat_taps": 12,
+    "navigation_tabs": 5,
+    "qa_bridge_absent": true
+  },
+  "source_files_verified": 994,
+  "source_all_file_hashes_verified": true,
+  "archives_verified": true,
+  "apk": {
+    "version": 712,
+    "package": "com.avenor.realmalliance.mockuptest",
+    "source_commit": "cba2595fd3960ba50fd3d02d43b527ac64391fda",
+    "apk": "REALM_ALLIANCE_712.apk",
+    "size_bytes": 79519277,
+    "sha256": "3417866834aed385400f4d2b373bb565244f14a96652f22bf883dab16808f781",
+    "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+    "signature_verified": true,
+    "alignment_verified": true,
+    "arm64_verified": true,
+    "android_device_tested": false
+  },
+  "artifacts": {
+    "REALM_ALLIANCE_712.apk": {
+      "bytes": 79519277,
+      "sha256": "3417866834aed385400f4d2b373bb565244f14a96652f22bf883dab16808f781"
+    },
+    "REALM_ALLIANCE_712_Web.zip": {
+      "bytes": 60384156,
+      "sha256": "77a032a2719e0685a98bec48a5ee28c833f9ce1adee8363f9900382a4001c642"
+    },
+    "REALM_ALLIANCE_712_Quellen.zip": {
+      "bytes": 229624174,
+      "sha256": "8eb4aa3c4e2320a1683ee843423188d06a4a70486628166bcafb7c7dce85ce0a"
+    }
+  },
+  "limits": [
+    "No physical Android device test.",
+    "Job level 5 is provisional test balancing.",
+    "Class bodies share six basic poses; bow/staff use existing equipped weapon stats.",
+    "No public Realm preconfigured."
+  ]
+}
