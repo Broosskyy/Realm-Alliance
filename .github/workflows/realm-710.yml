@@ -1,7 +1,7 @@
 name: REALM 710 Godot validation and web release
 on:
   push:
-    branches: [main, feature/work-710-visible-equipment]
+    branches: [feature/work-710-visible-equipment]
     paths: ['godot/**', 'development/**', 'backend/**', '.github/workflows/realm-710.yml']
   workflow_dispatch:
 permissions:
