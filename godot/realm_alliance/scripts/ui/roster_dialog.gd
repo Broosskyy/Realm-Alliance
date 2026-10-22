@@ -40,7 +40,17 @@ func _build(selected:int) -> void:
         _label(list,d.role,true)
         var frame=PanelContainer.new();frame.add_theme_stylebox_override("panel",Kit.box("panel"));list.add_child(frame)
         var showcase=Control.new();showcase.custom_minimum_size=Vector2(0,335);frame.add_child(showcase)
-        if is_hero:
+        if not owned:
+            var locked=CenterContainer.new()
+            locked.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+            showcase.add_child(locked)
+            var locked_text=Label.new()
+            locked_text.name="UnownedPreviewLock716"
+            locked_text.text="Noch nicht freigeschaltet"
+            locked_text.add_theme_font_size_override("font_size",25)
+            locked_text.add_theme_color_override("font_color",Color("#a9b4c6"))
+            locked.add_child(locked_text)
+        elif is_hero:
             var rig=preload("res://scripts/production_hero.gd").new();showcase.add_child(rig);rig.preview_mode=true;rig.set_hero(selected_id);rig.equip_weapon(model.weapon_index);rig.set_gear(model.profile);rig.set_look(model.profile.look,false);rig.scale=Vector2.ONE*.70;rig.position=Vector2(185,325)
         else:
             var art=TextureRect.new();art.texture=_portrait(selected_id,false);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);showcase.add_child(art)
@@ -71,7 +81,7 @@ func _build(selected:int) -> void:
             var card_owned=model.profile.hero_roster.owned.has(id) if is_hero else model.profile.companions.owned.has(id)
             var art=TextureRect.new();art.texture=_portrait(id,is_hero);art.custom_minimum_size=Vector2(0,145);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;col.add_child(art)
             if not card_owned:art.modulate=Color(0.38,0.42,0.49,0.62)
-            var choose=_button(col,data.name if card_owned else "🔒 "+data.name+" (gesperrt)",true,func():
+            var choose=_button(col,data.name if card_owned else "Gesperrt · "+data.name,true,func():
                 if is_hero:selected_hero=id
                 else:selected_pet=id
                 _build(0 if is_hero else 1))
