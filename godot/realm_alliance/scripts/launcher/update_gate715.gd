@@ -19,7 +19,7 @@ static func valid_pack(v:Variant) -> bool:
     pattern.compile("^[0-9a-f]{64}$")
     if pattern.search(digest)==null:return false
     var suffix=".png" if id=="realm_stage_ornament" else ".json"
-    return v.get("url")==BASE+id+"-v"+str(rev)+suffix
+    return v.get("url")==BASE+id+"-v"+str(int(rev))+suffix
 static func inspect(v:Variant,app:int,channel:String) -> Dictionary:
     if not v is Dictionary or v.get("schema")!=3 or v.get("channel")!=channel:return {"status":"invalid"}
     var minimum=v.get("min_app_version_code")

@@ -26,7 +26,8 @@ func run() -> void:
     test(Cache.install(q,catalog),"catalog written")
     test(Cache.installed(p) and Cache.installed(q),"both packs installed")
     test(Cache.texture("realm_stage_ornament")!=null,"PNG sprite loadable")
-    test(Cache.catalog().items[0].name=="Smaragd-Vorposten","catalog read after install")
+    var loaded_catalog=Cache.catalog()
+    test(not loaded_catalog.is_empty() and loaded_catalog.get("items",[]) is Array and loaded_catalog.get("items",[]).size()>0 and str(loaded_catalog.get("items",[])[0].get("name",""))=="Smaragd-Vorposten","catalog read after install")
     var tampered=picture.duplicate()
     tampered[20]=tampered[20]^1
     test(not Cache.valid(p,tampered) and not Cache.install(p,tampered),"corrupt image rejected")
