@@ -37,6 +37,8 @@ jobs:
           dest.mkdir(parents=True,exist_ok=True)
           with zipfile.ZipFile(root/'android_source.zip') as z:
               z.extractall(dest)
+          (dest/'.gdignore').touch()
+          (dest.parent/'.build_version').write_text('4.7.2.stable\n')
           print('GRADLE_INSTALLED',str(dest),sorted(x.name for x in dest.iterdir())[:20])
           PY
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
