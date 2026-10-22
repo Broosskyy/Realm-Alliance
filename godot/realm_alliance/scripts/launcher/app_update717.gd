@@ -7,11 +7,16 @@ const RELEASE_ROOT="https://github.com/Broosskyy/Realm-Alliance/releases/downloa
 const PACKAGE="com.avenor.realmalliance.mockuptest"
 const CERT_SHA256="317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219"
 const MAX_BYTES=350000000
+static func _whole_number(value:Variant) -> bool:
+    # Godot JSON.parse_string normalizes integer JSON numbers to floats.
+    # Only exact, finite whole numbers are accepted as APK metadata.
+    return (value is int or value is float) and is_finite(float(value)) and float(value)==float(int(value))
+
 static func check(value:Variant,current:int,latest:int) -> bool:
     if not value is Dictionary:return false
-    if not value.get("version_code") is int or int(value.version_code)!=latest or latest<=current or latest>1000000:return false
+    if not _whole_number(value.get("version_code")) or int(value.version_code)!=latest or latest<=current or latest>1000000:return false
     if value.get("package")!=PACKAGE or value.get("certificate_sha256")!=CERT_SHA256:return false
-    if not value.get("bytes") is int or int(value.bytes)<1000000 or int(value.bytes)>MAX_BYTES:return false
+    if not _whole_number(value.get("bytes")) or int(value.bytes)<1000000 or int(value.bytes)>MAX_BYTES:return false
     var digest=value.get("sha256")
     if not digest is String or digest.length()!=64:return false
     var regex=RegEx.new()
