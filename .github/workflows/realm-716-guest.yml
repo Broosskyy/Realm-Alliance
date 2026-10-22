@@ -25,13 +25,13 @@ jobs:
         run: |
           python3 - <<'PY'
           import urllib.request,json,hashlib
-          base='https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-716-test/godot/realm_alliance/data/'
-          manifest=json.loads(urllib.request.urlopen(base+'update716_manifest.json',timeout=15).read())
+          base='https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/'
+          manifest=json.loads(urllib.request.urlopen(base+'update715_manifest.json',timeout=15).read())
           assert manifest['schema']==3 and len(manifest['packs'])==2
           for p in manifest['packs']:
               body=urllib.request.urlopen(p['url'],timeout=15).read()
               assert len(body)==p['bytes'] and hashlib.sha256(body).hexdigest()==p['sha256'],p['id']
-              print('REMOTE 716 PASS',p['id'],len(body))
+              print('REMOTE 715 CONTENT PASS',p['id'],len(body))
           PY
       - name: Create normal web build
         run: |
