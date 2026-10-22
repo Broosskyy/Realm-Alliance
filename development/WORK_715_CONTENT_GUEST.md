@@ -14,3 +14,10 @@
 - Native Godot Tests: Versionsprüfung, PNG-Dekodierung, JSON-Katalog, ungültige Hashes, Cache-Neustart, Speicherreset/Journal, Gast-Button und optional Engine-Scene-Laden.
 - GitHub Actions exportiert Web und **unsignierte** Android-APK. Die aus dem originalen 709-Keystore lokal signierte APK ist erforderlich, um alte Version ohne Datenverlust zu aktualisieren.
 - Live-End-to-End-Update nach Installation separat auf Android bestätigen. GitHub-Verfügbarkeit allein ersetzt diesen Test nicht.
+
+## 716 Korrektur – Komplett-Neustart des Gastprofils
+- Bei Reset werden auch vor-Import-Backups beseitigt, Tombstone verhindert Save-Journal-Recovery.
+- Nach Reset wird die **gesamte Startmodell-Domäne** geprüft: keine XP/Gold/Splitter/Kills, nur Stahl-Basiswaffe, nur Runenpaladin-Starter, keine Begleiter und keine frühere Charaktererstellung. Spiel-Asset-Caches bleiben erhalten.
+- Helden-/Begleiter-Menüs enthalten weiterhin den **Katalog** der freischaltbaren Spielfiguren, zeigen aber die tatsächliche Besitzanzahl und alle gesperrten Figuren gedimmt mit Schloss-Symbol. Startheld ist ein designbedingter Default und kein Rest des vorigen Profils.
+- Doppelte Beschriftung auf Reset-Button entfernt.
+- Neuer Programmcode / UI ist ein tatsächliches APK-Update (nicht über JSON/PNG patchbar). Android-Originalsignatur weiterhin beibehalten.

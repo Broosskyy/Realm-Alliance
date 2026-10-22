@@ -60,14 +60,18 @@ func _build(selected:int) -> void:
             _button(list,"Im Eventshop erhältlich" if bool(d.get("event",false)) else "Freischalten",model.Roster.can_unlock(model.profile,selected_id) if is_hero else model.Companions.can_acquire(model.profile,selected_id),func():
                 var ok=model.unlock_hero(selected_id) if is_hero else model.acquire_companion(selected_id)
                 if ok:progression_changed.emit(d.name+" freigeschaltet");_build(0 if is_hero else 1))
-        _label(list,"Deine Helden" if is_hero else "Deine Begleiter")
+        var owned_count=model.profile.hero_roster.owned.size() if is_hero else model.profile.companions.owned.size()
+        _label(list,"Deine Helden (%d freigeschaltet)"%owned_count if is_hero else "Deine Begleiter (%d freigeschaltet)"%owned_count)
+        _label(list,"Gesperrte Figuren sind nur Vorschauen, nicht dein Besitz.",true)
         var grid=GridContainer.new();grid.columns=2;grid.add_theme_constant_override("h_separation",12);grid.add_theme_constant_override("v_separation",12);list.add_child(grid)
         for id in catalog:
             var data:Dictionary=catalog[id]
             var card=PanelContainer.new();card.size_flags_horizontal=Control.SIZE_EXPAND_FILL;card.add_theme_stylebox_override("panel",Kit.box("hero" if id==selected_id else "slot"));grid.add_child(card)
             var col=VBoxContainer.new();card.add_child(col)
+            var card_owned=model.profile.hero_roster.owned.has(id) if is_hero else model.profile.companions.owned.has(id)
             var art=TextureRect.new();art.texture=_portrait(id,is_hero);art.custom_minimum_size=Vector2(0,145);art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;col.add_child(art)
-            var choose=_button(col,data.name,true,func():
+            if not card_owned:art.modulate=Color(0.38,0.42,0.49,0.62)
+            var choose=_button(col,data.name if card_owned else "🔒 "+data.name+" (gesperrt)",true,func():
                 if is_hero:selected_hero=id
                 else:selected_pet=id
                 _build(0 if is_hero else 1))

@@ -73,6 +73,12 @@ func _ready() -> void:
     get_viewport().size_changed.connect(_layout)
     _layout()
     _refresh()
+    if get_tree().root.has_meta("realm_guest_reset_just_completed"):
+        get_tree().root.remove_meta("realm_guest_reset_just_completed")
+        if SaveStore.fresh_profile_ok() and saved.is_empty():
+            hud.notify("Gast-Neustart erfolgreich","Nur Starter-Runenpaladin verfügbar · keine Begleiter oder alten Freischaltungen.",7)
+        else:
+            hud.notify("Neustart prüfen","Spielprofil entspricht nicht dem vorgesehenen Startzustand.",9)
     if model.outcome=="defeat" and _production_enabled: hero.play_death()
     if model.enemy_hp<=0: enemy.play_death()
     if model.load_error != "":
@@ -489,7 +495,7 @@ func _ask_guest_reset() -> void:
     var warning=preload("res://scripts/ui/modal_dialog.gd").new()
     add_child(warning)
     warning.title="Gast-Spielstand zurücksetzen?"
-    warning.dialog_text="Alle LOKALEN Charaktere, Level, Gegenstände, Währungen und Fortschritte werden endgültig zurückgesetzt.\n\nDas ist nicht rückgängig zu machen. Ein verbundenes Konto oder Cloud-Daten werden nicht gelöscht.\n\nWenn du deinen Spielstand behalten möchtest, exportiere ihn vorher unter Mehr."
+    warning.dialog_text="Deine lokalen Gast-Heldenfreischaltungen, Charaktere, Begleiter, Flügel, Waffen-Upgrades, Währungen und Erfolge werden entfernt.\n\nDanach beginnt ein neues Spiel mit dem STARTHELDEN RUNENPALADIN. Andere Helden und Pets bleiben nur als gesperrte Katalogeinträge sichtbar.\n\nNicht rückgängig zu machen. Cloud-Konten bleiben unberührt. Exportiere deinen Stand vorher unter Mehr, wenn du ihn behalten möchtest."
     warning.ok_button_text="Endgültig zurücksetzen"
     warning.cancel_button_text="Abbrechen"
     warning.confirmed.connect(func():warning.queue_free();_reset_guest_now())
@@ -500,11 +506,12 @@ func _reset_guest_now() -> void:
     if _resetting_guest or _qa_active:return
     if realm_online!=null and (not realm_online.token.is_empty() or realm_online.connected):return
     _resetting_guest=true
-    if not SaveStore.reset_guest():
+    if not SaveStore.reset_guest() or not SaveStore.fresh_profile_ok():
         _resetting_guest=false
         hud.notify("Zurücksetzen fehlgeschlagen","Lokale Daten konnten nicht vollständig bereinigt werden.",8)
         return
     # Never call _persist() on the old model while the scene is shutting down.
+    get_tree().root.set_meta("realm_guest_reset_just_completed",true)
     get_tree().call_deferred("change_scene_to_file","res://scenes/main.tscn")
 
 func _open_community() -> void:

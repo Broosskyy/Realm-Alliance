@@ -321,7 +321,8 @@ func update_buttons() -> void:
         _place("combat_options",Rect2(30,1240,660,88));_place("admin",Rect2(30,1454,660,88))
         _place("guest_reset",Rect2(30,1555,660,95))
         buttons.guest_reset.text="Gast-Spielstand zurücksetzen"
-        buttons.guest_reset.add_theme_font_size_override("font_size",24)
+        buttons.guest_reset.add_theme_font_size_override("font_size",23)
+        buttons.guest_reset.tooltip_text="Nur lokale Gastdaten löschen – nicht Cloud-Konten."
 
         buttons.community.text="Gemeinschaft\nFamilie · Arena · Titel · Ranglisten";buttons.community.framed=true
         buttons.community.add_theme_font_size_override("font_size",23)
@@ -603,7 +604,8 @@ func _draw_shell() -> void:
             for i in 2:
                 var rect=Rect2(30+i*336,1340,324,88);_panel(rect);_center("Stand exportieren" if i==0 else "Stand importieren",rect,20,INK,true)
             if OS.is_debug_build():_panel(Rect2(30,1454,660,88));_center("QA-Testlabor",Rect2(30,1454,660,88),22,GOLD,true)
-            _panel(Rect2(30,1555,660,95));_center("Gast-Spielstand zurücksetzen",Rect2(30,1555,660,95),23,INK,true)
+            # The actual FantasyButton draws the label; no duplicate canvas text.
+            _panel(Rect2(30,1555,660,95))
 
 func draw_ellipse_platform() -> void:
     # Open showcase; a native geometric pedestal keeps body/equipment independent.

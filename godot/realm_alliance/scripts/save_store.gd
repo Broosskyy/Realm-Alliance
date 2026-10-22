@@ -124,18 +124,44 @@ static func install_import(data: Dictionary) -> bool:
 # Invoked only from a locally authenticated-as-guest screen after confirmation.
 # A persistent tombstone prevents old backups or an IndexedDB journal from reviving.
 static func reset_guest() -> bool:
+    # Tombstone FIRST. If any removal fails, old data must never be loaded.
     var marker=FileAccess.open(RESET_MARKER,FileAccess.WRITE)
     if marker==null:return false
-    marker.store_string("Guest reset requested; old backups must never reload.")
+    marker.store_string("Guest reset: all earlier player state is invalid.")
     marker.flush()
     var wrote=marker.get_error()==OK
     marker.close()
     if not wrote:return false
-    for path in [SAVE_PATH,SAVE_PATH+".bak",SAVE_PATH+".tmp",SAVE_PATH+".damaged",LEGACY_PATH]:
-        if FileAccess.file_exists(path) and DirAccess.remove_absolute(ProjectSettings.globalize_path(path))!=OK:
-            return false
+    var targets=[SAVE_PATH,SAVE_PATH+".bak",SAVE_PATH+".tmp",SAVE_PATH+".damaged",LEGACY_PATH]
+    # Remove local import backups too; they contain complete previous inventories.
+    var directory=DirAccess.open("user://")
+    if directory!=null:
+        directory.list_dir_begin()
+        var name=directory.get_next()
+        while name!="":
+            if not directory.current_is_dir() and name.begins_with("realm_alliance_combat_v2.json.before-import-"):
+                targets.append("user://"+name)
+            name=directory.get_next()
+        directory.list_dir_end()
+    var all_removed=true
+    for path in targets:
+        if FileAccess.file_exists(path):
+            if DirAccess.remove_absolute(ProjectSettings.globalize_path(path))!=OK:all_removed=false
+    if not all_removed:return false
     if not WebJournal.clear_guest():return false
     if OS.has_feature("web"):JavaScriptBridge.force_fs_sync()
     _local_commit=0
     write_blocked=false
+    return load_state().is_empty()
+
+static func fresh_profile_ok() -> bool:
+    # Validate the real model factory, not the source file deletion alone.
+    var new_game=preload("res://scripts/systems/combat_session.gd").new({})
+    var p:Dictionary=new_game.profile
+    if new_game.read_only:return false
+    if int(p.get("xp",-1))!=0 or int(p.get("gold",-1))!=0 or int(p.get("shards",-1))!=0 or int(p.get("kills",-1))!=0:return false
+    if p.get("inventory") is not Dictionary or p.inventory.size()!=1 or not p.inventory.has("steel"):return false
+    if p.get("hero_roster") is not Dictionary or p.hero_roster.owned.size()!=1 or not p.hero_roster.owned.has("runenpaladin"):return false
+    if p.get("companions") is not Dictionary or not p.companions.owned.is_empty() or str(p.companions.active)!="":return false
+    if p.has("character712"):return false
     return true
