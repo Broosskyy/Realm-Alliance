@@ -2,9 +2,9 @@ extends SceneTree
 const App=preload("res://scripts/launcher/app_update717.gd")
 var checks=0
 var failures=0
-func verify(pass:bool,name:String) -> void:
+func verify(ok:bool,name:String) -> void:
     checks+=1
-    if not pass:failures+=1;push_error("AppUpdater717: "+name)
+    if not ok:failures+=1;push_error("AppUpdater717: "+name)
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
     var spec={
