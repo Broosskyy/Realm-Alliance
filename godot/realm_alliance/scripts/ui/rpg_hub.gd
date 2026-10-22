@@ -1,6 +1,7 @@
 extends "res://scripts/ui/modal_dialog.gd"
 class_name RARPGHub
 const RemoteArt=preload("res://scripts/launcher/content_cache714.gd")
+const ExtraContent=preload("res://scripts/launcher/content_cache715.gd")
 signal changed(message:String)
 signal activity_requested(id:String)
 signal leave_requested
@@ -85,6 +86,19 @@ func _activities(list:Control) -> void:
             if not model.read_only and model.Events.claim(model.profile,event_id,quest.id):changed.emit("Eventbelohnung erhalten");_build())
 
 func _journey(list:Control) -> void:
+    var catalog=ExtraContent.catalog()
+    if not catalog.is_empty():
+        for item in catalog.items:
+            var card=_card(list,"Live-Inhalt · "+str(item.name),str(item.description))
+            var texture=ExtraContent.texture(str(item.art))
+            if texture!=null:
+                var preview=TextureRect.new()
+                preview.name="LiveContentImage715"
+                preview.texture=texture
+                preview.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+                preview.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+                preview.custom_minimum_size=Vector2(0,176)
+                card.add_child(preview)
     # Rein kosmetische 2D-Ankündigung aus nachgeladenem, SHA-geprüftem Inhalt.
     var remote=RemoteArt.last()
     if not remote.is_empty():

@@ -112,7 +112,9 @@ func _build_arena() -> void:
     if USE_SHARED_ART_PREVIEW and not _production_enabled:
         var stump := Sprite2D.new()
         stump.name = "SharedStyleSceneryPreview"
-        stump.texture = preload("res://assets/preview/bramble/stage/glow_stump.png")
+        # Gameplay decoration from verified runtime PNG pack; bundled art is fallback.
+        var live_stump=preload("res://scripts/launcher/content_cache715.gd").texture("realm_stage_ornament")
+        stump.texture = live_stump if live_stump!=null else preload("res://assets/preview/bramble/stage/glow_stump.png")
         stump.position = Vector2(-273.0, -115.0)
         stump.scale = Vector2.ONE * 0.41
         stump.modulate = Color(0.83, 0.95, 0.91, 0.62)

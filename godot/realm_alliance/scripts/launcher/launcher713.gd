@@ -4,8 +4,10 @@ const Cache=preload("res://scripts/launcher/content_cache713.gd")
 const Kit=preload("res://scripts/ui/fantasy_theme.gd")
 const ArtGate=preload("res://scripts/launcher/update_gate714.gd")
 const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
-const VERSION_CODE=714
-const SETTINGS="res://data/update714_config.json"
+const NewGate=preload("res://scripts/launcher/update_gate715.gd")
+const NewCache=preload("res://scripts/launcher/content_cache715.gd")
+const VERSION_CODE=715
+const SETTINGS="res://data/update715_config.json"
 var auto_check=true
 var _busy=false
 var _launching=false
@@ -21,6 +23,8 @@ var _config:Dictionary={}
 var _want_account=false
 var _phase="manifest"
 var _pack:Dictionary={}
+var _new_packs:Array=[]
+var _new_downloads=0
 var _art:TextureRect
 var _art_label:Label
 
@@ -108,7 +112,7 @@ func _build() -> void:
     _request=HTTPRequest.new()
     _request.name="LaunchRequest"
     _request.timeout=8
-    _request.body_size_limit=32768
+    _request.body_size_limit=8500000
     add_child(_request)
     _request.request_completed.connect(_on_manifest)
     _display("Bereit","Version 713 · Testkanal",false)
@@ -175,51 +179,67 @@ func _on_manifest(result:int,status_code:int,_headers:PackedStringArray,body:Pac
         _finish_pack(result,status_code,body)
         return
     if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
-        _display("Offline bereit","Server nicht erreichbar. Vorhandene Inhalte und Spielstände bleiben erhalten.",false)
+        _display("Offline bereit","Inhaltsdienst nicht erreichbar. Bereits gespeicherte Inhalte bleiben verfügbar.",false)
         return
     var manifest=JSON.parse_string(body.get_string_from_utf8())
-    var state=ArtGate.inspect(manifest,VERSION_CODE,str(_config.get("channel","test")))
+    var state=NewGate.inspect(manifest,VERSION_CODE,str(_config.get("channel","test")))
     match str(state.status):
-        "app_optional":_display("Neue App-Version",str(state.message),false)
-        "app_required":_display("App-Update erforderlich",str(state.message),false)
+        "app_optional":_display("App-Update verfügbar","Für neue Spielfunktionen ist eine Android-App-Version notwendig.",false)
+        "app_required":_display("App-Update erforderlich","Bitte neue App-Version installieren. Offline spielen bleibt möglich.",false)
         "content":
-            _pack=manifest.packs[0]
-            if ArtCache.installed(_pack):
-                _show_art()
-                _display("Spielinhalte aktuell","2D-Grafik "+str(_pack.revision)+" ist bereits geladen.",false)
-            else:
-                _phase="pack"
-                _progress.indeterminate=false
-                _progress.value=0
-                _display("Neue 2D-Inhalte werden geladen …","%d Bytes · Prüfsumme wird kontrolliert"%int(_pack.bytes),true)
-                call_deferred("_fetch_pack")
-        _:_display("Offline bereit","Updateinformation abgelehnt. Vorherige Inhalte bleiben erhalten.",false)
+            _new_packs=manifest.packs.duplicate(true)
+            _new_downloads=0
+            _next_pack()
+        _:_display("Offline bereit","Nicht unterstütztes Manifest; vorhandene Inhalte bleiben erhalten.",false)
+
+func _next_pack() -> void:
+    if _launching:return
+    while not _new_packs.is_empty():
+        var candidate:Dictionary=_new_packs.pop_front()
+        if NewCache.installed(candidate):continue
+        _pack=candidate
+        _phase="pack"
+        _progress.indeterminate=false
+        _progress.value=0
+        _display("Spielinhalte werden geladen …",str(_pack.id)+" · "+str(_pack.bytes)+" Bytes",true)
+        call_deferred("_fetch_pack")
+        return
+    _phase="manifest"
+    _pack={}
+    _show_art()
+    _display("Spielinhalte aktualisiert" if _new_downloads>0 else "Spielinhalte aktuell",str(_new_downloads)+" Dateien heruntergeladen. Alle Daten geprüft.",false)
 
 func _fetch_pack() -> void:
     if not _busy or _phase!="pack" or _launching:return
-    if _request.request(str(_pack.url),PackedStringArray(["Accept: application/json"]))!=OK:
-        _display("Offline bereit","Assetdownload nicht möglich. Bisherige Inhalte bleiben erhalten.",false)
+    if _request.request(str(_pack.url),PackedStringArray(["Accept: application/octet-stream"]))!=OK:
+        _display("Offline bereit","Dateidownload fehlgeschlagen. Vorherige Inhalte bleiben erhalten.",false)
 
 func _finish_pack(result:int,code:int,body:PackedByteArray) -> void:
     if result!=HTTPRequest.RESULT_SUCCESS or code!=200:
-        _display("Download unterbrochen","Offline spielen ist möglich, dein alter Inhalt bleibt erhalten.",false)
+        _display("Download unterbrochen","Bisherige Grafiken und Spielstände bleiben erhalten.",false)
         return
-    if not ArtCache.install(_pack,body):
-        _display("Update abgelehnt","Ungültige Prüfsumme oder Grafik. Alter Inhalt bleibt aktiv.",false)
+    if not NewCache.install(_pack,body):
+        _display("Update abgelehnt","Die neue Datei war beschädigt oder unsicher.",false)
         return
-    _progress.value=100
-    _show_art()
-    _display("2D-Grafik aktualisiert","Installiert: "+str(_pack.revision)+" · ohne App-Installation",false)
+    _new_downloads+=1
+    _next_pack()
 
 func _show_art() -> void:
     if not is_instance_valid(_art):return
-    var info=ArtCache.last()
-    var texture=ArtCache.preview_texture()
-    _art.visible=texture!=null
+    var item=NewCache.catalog()
+    var texture=NewCache.texture("realm_stage_ornament")
+    if texture!=null:
+        _art.texture=texture
+        _art.visible=true
+        _art_label.visible=true
+        _art_label.text="Neues Spielasset · "+str(item.items[0].name) if not item.is_empty() and not item.items.is_empty() else "Neues 2D-Spielasset geladen"
+        return
+    var old=ArtCache.last()
+    texture=ArtCache.preview_texture()
     _art.texture=texture
-    _art_label.visible=not info.is_empty()
-    if not info.is_empty():
-        _art_label.text=str(info.get("title","Neues aus dem Reich"))+" · "+str(info.get("message",""))
+    _art.visible=texture!=null
+    _art_label.visible=not old.is_empty()
+    if not old.is_empty():_art_label.text=str(old.get("title","Neues aus dem Reich"))+" · "+str(old.get("message",""))
 
 func _start_game(open_account:bool) -> void:
     if _launching:return
