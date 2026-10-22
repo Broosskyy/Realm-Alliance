@@ -3,16 +3,16 @@
   "channel": "test",
   "min_app_version_code": 714,
   "latest_app_version_code": 714,
-  "content_revision": "graphics-v2",
+  "content_revision": "graphics-v3",
   "packs": [
     {
       "id": "realm_announcement",
       "kind": "svg_announcement",
-      "revision": "graphics-v2",
-      "bytes": 940,
-      "sha256": "510ed220494a72a450613d86ea827efd299a78fd29f92f5413a670825d9477b9",
-      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v2.json"
+      "revision": "graphics-v3",
+      "bytes": 942,
+      "sha256": "ce33870e597a7650330f26952a89bc3fd07062046eadb59575e2d2f2fc3ee088",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-714-test/godot/realm_alliance/data/updates714/realm-v3.json"
     }
   ],
-  "release_notes": "Neues violettes Realm-Banner und Event-Hinweis – keine neue APK notwendig."
+  "release_notes": "Live-Test Grafik v2 zu v3 direkt auf installiertem Android ohne neue APK; Testkanal"
 }
