@@ -96,3 +96,27 @@ jobs:
           name: REALM_718_NATIVE_UNSIGNED_FOR_PRIVATE_SIGNING
           path: ${{ runner.temp }}/realm718/
           retention-days: 30
+      - name: Verify original private signer, sign 718, and publish only if trusted
+        shell: bash
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+        run: |
+          set -euo pipefail
+          python3 development/android_updater717/sign_release718.py "$RUNNER_TEMP/realm718"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$RUNNER_TEMP/realm718/REALM_ALLIANCE_718.apk" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='718'"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_718_SIGNED_TEST_APK
+          path: |
+            ${{ runner.temp }}/realm718/REALM_ALLIANCE_718.apk
+            ${{ runner.temp }}/realm718/RELEASE_718.json
+          retention-days: 30
+      - name: Publish signed test on official GitHub Releases
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create realm-718-android "$RUNNER_TEMP/realm718/REALM_ALLIANCE_718.apk" "$RUNNER_TEMP/realm718/RELEASE_718.json" --target "$GITHUB_SHA" --title "REALM ALLIANCE 718 - Android Launcher OTA Test" --notes "Same original signing certificate as 717. Device installation test not yet performed." --prerelease
