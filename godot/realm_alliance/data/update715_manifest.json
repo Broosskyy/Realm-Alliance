@@ -1,0 +1,26 @@
+{
+  "schema": 3,
+  "channel": "test",
+  "min_app_version_code": 715,
+  "latest_app_version_code": 715,
+  "content_revision": "715.1-crystal-outpost",
+  "packs": [
+    {
+      "id": "realm_stage_ornament",
+      "kind": "png_texture",
+      "revision": 1,
+      "bytes": 2164,
+      "sha256": "16f6be300b65e1da9f7734c2f2cec6b34725c971c4e26ea851b8b0bdde79d0fa",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_stage_ornament-v1.png"
+    },
+    {
+      "id": "realm_content_catalog",
+      "kind": "json_catalog",
+      "revision": 1,
+      "bytes": 272,
+      "sha256": "c976e1a8dc657b9231f909c5e175809502e405c72facbeb49850d4256ca0bfd7",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_content_catalog-v1.json"
+    }
+  ],
+  "release_notes": "Zwei echte Content-Dateien: PNG-Spielgrafik und JSON-Reisekatalog ohne spätere APK"
+}
