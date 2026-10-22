@@ -2,7 +2,6 @@ name: REALM 715 unsigned Android package for local original-key signing
 on:
   push:
     branches: [feature/work-715-content-and-guest-reset]
-    paths: ['.github/workflows/realm-715-apk.yml']
 permissions:
   contents: read
 jobs:
