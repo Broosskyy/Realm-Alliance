@@ -47,6 +47,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 development/android_updater717/inject_bridge.py godot/realm_alliance/android/build
+          chmod +x godot/realm_alliance/android/build/gradlew
           python3 - <<'PY'
           from pathlib import Path
           p=Path('godot/realm_alliance/export_presets.cfg')
