@@ -64,7 +64,7 @@ var shell_scroll: ScrollContainer
 var shell_canvas: Control
 var _paint_target: Control
 var _shell_offsets: Dictionary = {}
-const SHELL_ACTIONS = ["community","roster", "weapon", "upgrade", "look", "aura", "talents", "evolve", "journey", "admin", "quests", "events", "save_export", "save_import", "sound", "effects", "combat_options", "economy", "activities", "more_forge", "more_heroes", "more_pets", "more_talents"]
+const SHELL_ACTIONS = ["community","roster", "weapon", "upgrade", "look", "aura", "talents", "evolve", "journey", "admin", "quests", "events", "save_export", "save_import", "guest_reset", "sound", "effects", "combat_options", "economy", "activities", "more_forge", "more_heroes", "more_pets", "more_talents"]
 
 func _texture(path: String) -> Texture2D:
     if not _textures.has(path):_textures[path]=load(path)
@@ -85,7 +85,7 @@ func _ready() -> void:
         guardian_portrait=portrait
     _top_fade = _fade(Color(0.015, 0.055, 0.12, 0.92), Color(0.015, 0.055, 0.12, 0.0))
     _bottom_fade = _fade(Color(0.015, 0.035, 0.07, 0.0), Color(0.015, 0.035, 0.07, 0.99))
-    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options", "roster", "admin", "journey"]:
+    for id in ["mail", "settings", "auto", "skill0", "skill1", "locked", "skill2", "Kampf", "Abenteuer", "Wesen", "Beute", "Mehr", "weapon", "upgrade", "return", "quests", "events", "restart", "look", "aura", "sound", "effects", "save_export", "save_import", "guest_reset", "equip_steel", "equip_crystal", "equip_ember", "equip_rune_gold", "equip_shadow_violet", "gear_astral_plate", "gear_eclipse_plate", "gear_sentinel_circlet", "gear_sky_wings", "evolve", "hero_skill_0", "hero_skill_1", "hero_skill_2", "hero_skill_3", "talents", "hit_mode", "ultimate", "combat_options", "roster", "admin", "journey"]:
         var b = SkillOrb.new() if id in ["skill0","skill1","skill2","locked"] else (EquipmentSlot.new() if id.begins_with("equip_") or id.begins_with("gear_") or id in ["evolve","talents"] else FantasyButton.new())
         b.name = "Action_" + id
         b.text = ""
@@ -109,8 +109,8 @@ func _ready() -> void:
     shell_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
     shell_scroll.follow_focus=true;shell_scroll.scroll_deadzone=2147483647
     add_child(shell_scroll)
-    var page=Control.new();page.custom_minimum_size=Vector2(700,1584);page.size_flags_horizontal=Control.SIZE_EXPAND_FILL;page.mouse_filter=Control.MOUSE_FILTER_IGNORE;shell_scroll.add_child(page)
-    shell_canvas=Control.new();shell_canvas.position=Vector2(0,-96);shell_canvas.size=Vector2(720,1680);shell_canvas.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(shell_canvas)
+    var page=Control.new();page.custom_minimum_size=Vector2(700,1780);page.size_flags_horizontal=Control.SIZE_EXPAND_FILL;page.mouse_filter=Control.MOUSE_FILTER_IGNORE;shell_scroll.add_child(page)
+    shell_canvas=Control.new();shell_canvas.position=Vector2(0,-96);shell_canvas.size=Vector2(720,1850);shell_canvas.mouse_filter=Control.MOUSE_FILTER_IGNORE;page.add_child(shell_canvas)
     shell_canvas.draw.connect(_paint_shell)
     for id in buttons:
         if id in SHELL_ACTIONS or id.begins_with("gear_") or id.begins_with("equip_") or id.begins_with("hero_skill_"):
@@ -169,6 +169,7 @@ func configure(height: float) -> void:
     _place("effects",Rect2(370,910,312,62))
     _place("save_export",Rect2(38,760,312,62))
     _place("save_import",Rect2(370,760,312,62))
+    _place("guest_reset",Rect2(30,1555,660,95))
     _place("restart", Rect2(170, 570, 380, 62))
     _place("look", Rect2(38, 733, 310, 58))
     _place("aura", Rect2(368, 733, 314, 58))
@@ -278,7 +279,7 @@ func update_buttons() -> void:
     buttons.look.disabled=model.hero_id!="realmwachter"
     for id in ["weapon", "upgrade", "look", "aura"]:
         buttons[id].visible = active_tab == "Wesen"
-    for id in ["quests", "events", "save_export", "save_import", "sound", "effects"]:
+    for id in ["quests", "events", "save_export", "save_import", "guest_reset", "sound", "effects"]:
         buttons[id].visible = active_tab == "Mehr"
     for i in 2:_place("quests" if i==0 else "events",Rect2(38+i*332,440,312,176))
     buttons["return"].visible = false
@@ -318,6 +319,9 @@ func update_buttons() -> void:
         for i in 2:
             _place(["sound","effects"][i],Rect2(30+i*336,1138,324,88));_place(["save_export","save_import"][i],Rect2(30+i*336,1340,324,88))
         _place("combat_options",Rect2(30,1240,660,88));_place("admin",Rect2(30,1454,660,88))
+        _place("guest_reset",Rect2(30,1555,660,95))
+        buttons.guest_reset.text="Gast-Spielstand zurücksetzen"
+        buttons.guest_reset.add_theme_font_size_override("font_size",24)
 
         buttons.community.text="Gemeinschaft\nFamilie · Arena · Titel · Ranglisten";buttons.community.framed=true
         buttons.community.add_theme_font_size_override("font_size",23)
@@ -599,6 +603,7 @@ func _draw_shell() -> void:
             for i in 2:
                 var rect=Rect2(30+i*336,1340,324,88);_panel(rect);_center("Stand exportieren" if i==0 else "Stand importieren",rect,20,INK,true)
             if OS.is_debug_build():_panel(Rect2(30,1454,660,88));_center("QA-Testlabor",Rect2(30,1454,660,88),22,GOLD,true)
+            _panel(Rect2(30,1555,660,95));_center("Gast-Spielstand zurücksetzen",Rect2(30,1555,660,95),23,INK,true)
 
 func draw_ellipse_platform() -> void:
     # Open showcase; a native geometric pedestal keeps body/equipment independent.

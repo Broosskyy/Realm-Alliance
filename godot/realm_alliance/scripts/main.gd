@@ -45,6 +45,7 @@ var _save_clock = 0.0
 var _save_failed = false
 var _last_visual_key = ""
 var _ui_clock = 0.0
+var _resetting_guest=false
 var _qa_active:bool=false
 var _qa_original_model
 
@@ -270,6 +271,7 @@ func _on_hud_action(id: String) -> void:
         return
     if id=="more_forge":_open_rpg_hub(1);return
     if id=="community":_open_community();return
+    if id=="guest_reset":_ask_guest_reset();return
     if id=="equipment":_open_gear_slot("weapon");return
     if id.begins_with("develop:"):_open_evolution(id.split(":",true,1)[1]);return
     if id.begins_with("hero_") and ":" in id or id.begins_with("pet_") and ":" in id:
@@ -475,6 +477,33 @@ func _open_gear(id: String) -> void:
             _sync_hero();_persist();_refresh()
             hud.notify("Ausrüstung aktualisiert","HP %d · Verteidigung %d"%[model.player_max_hp,model.defense]))
     dialog.popup_centered(Vector2i(mini(600,int(get_viewport_rect().size.x)-24),380))
+
+func _ask_guest_reset() -> void:
+    if _resetting_guest or _qa_active:return
+    if active_tab!="Mehr":return
+    if realm_online!=null and (not realm_online.token.is_empty() or realm_online.connected):
+        hud.notify("Gast-Reset gesperrt","Bitte zuerst in Gemeinschaft vom Online-Konto abmelden.",6)
+        return
+    var warning=preload("res://scripts/ui/modal_dialog.gd").new()
+    add_child(warning)
+    warning.title="Gast-Spielstand zurücksetzen?"
+    warning.dialog_text="Alle LOKALEN Charaktere, Level, Gegenstände, Währungen und Fortschritte werden endgültig zurückgesetzt.\n\nDas ist nicht rückgängig zu machen. Ein verbundenes Konto oder Cloud-Daten werden nicht gelöscht.\n\nWenn du deinen Spielstand behalten möchtest, exportiere ihn vorher unter Mehr."
+    warning.ok_button_text="Endgültig zurücksetzen"
+    warning.cancel_button_text="Abbrechen"
+    warning.confirmed.connect(func():warning.queue_free();_reset_guest_now())
+    warning.canceled.connect(warning.queue_free)
+    warning.popup_centered(Vector2i(660,600))
+
+func _reset_guest_now() -> void:
+    if _resetting_guest or _qa_active:return
+    if realm_online!=null and (not realm_online.token.is_empty() or realm_online.connected):return
+    _resetting_guest=true
+    if not SaveStore.reset_guest():
+        _resetting_guest=false
+        hud.notify("Zurücksetzen fehlgeschlagen","Lokale Daten konnten nicht vollständig bereinigt werden.",8)
+        return
+    # Never call _persist() on the old model while the scene is shutting down.
+    get_tree().call_deferred("change_scene_to_file","res://scenes/main.tscn")
 
 func _open_community() -> void:
     if active_tab!="Mehr":return
@@ -830,7 +859,7 @@ func _refresh() -> void:
 
 func _persist() -> void:
     # Never write the in-memory QA sandbox to the player's real save or Web journal.
-    if _qa_active:return
+    if _qa_active or _resetting_guest:return
     if model!=null and not model.read_only:
         if not SaveStore.save_state(model.snapshot()) and not _save_failed:
             _save_failed=true

@@ -2,6 +2,7 @@ extends RefCounted
 class_name RASaveStore
 const SAVE_PATH = "user://realm_alliance_combat_v2.json"
 const LEGACY_PATH = "user://realm_alliance_combat_v1.json"
+const RESET_MARKER="user://realm_alliance_guest_reset_715.flag"
 const WebJournal=preload("res://scripts/web_save_journal.gd")
 static var write_blocked: bool = false
 static var _local_commit: int = 0
@@ -21,6 +22,10 @@ static func _read(path: String) -> Dictionary:
 
 static func load_state() -> Dictionary:
     write_blocked = false
+    # Keep stale journal/backups from resurrecting intentionally reset local progress.
+    if FileAccess.file_exists(RESET_MARKER):
+        _local_commit=0
+        return {}
     var journal=WebJournal.read()
     var disk=_read(SAVE_PATH) if FileAccess.file_exists(SAVE_PATH) else {}
     _local_commit=maxi(int(journal.get("_local_commit",0)),int(disk.get("_local_commit",0)))
@@ -98,7 +103,9 @@ static func save_state(data: Dictionary) -> bool:
     # rename happens afterwards, so explicitly queue another persistent sync.
     if OS.has_feature("web"):
         JavaScriptBridge.force_fs_sync()
-        return WebJournal.commit(payload)
+        if not WebJournal.commit(payload):return false
+    if FileAccess.file_exists(RESET_MARKER):
+        DirAccess.remove_absolute(ProjectSettings.globalize_path(RESET_MARKER))
     return true
 
 static func install_import(data: Dictionary) -> bool:
@@ -113,3 +120,22 @@ static func install_import(data: Dictionary) -> bool:
     if save_state(data): return true
     write_blocked=blocked
     return false
+
+# Invoked only from a locally authenticated-as-guest screen after confirmation.
+# A persistent tombstone prevents old backups or an IndexedDB journal from reviving.
+static func reset_guest() -> bool:
+    var marker=FileAccess.open(RESET_MARKER,FileAccess.WRITE)
+    if marker==null:return false
+    marker.store_string("Guest reset requested; old backups must never reload.")
+    marker.flush()
+    var wrote=marker.get_error()==OK
+    marker.close()
+    if not wrote:return false
+    for path in [SAVE_PATH,SAVE_PATH+".bak",SAVE_PATH+".tmp",SAVE_PATH+".damaged",LEGACY_PATH]:
+        if FileAccess.file_exists(path) and DirAccess.remove_absolute(ProjectSettings.globalize_path(path))!=OK:
+            return false
+    if not WebJournal.clear_guest():return false
+    if OS.has_feature("web"):JavaScriptBridge.force_fs_sync()
+    _local_commit=0
+    write_blocked=false
+    return true
