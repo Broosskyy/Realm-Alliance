@@ -65,6 +65,7 @@ jobs:
           set -euo pipefail
           GODOT="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
           "$GODOT" --headless --path godot/realm_alliance --import
+          timeout 90s "$GODOT" --headless --path godot/realm_alliance --script res://tests/test_app_ota718.gd
           "$GODOT" --headless --path godot/realm_alliance --export-debug "Android Debug" "$RUNNER_TEMP/realm718/REALM_ALLIANCE_718_native_unsigned.apk"
           test -s "$RUNNER_TEMP/realm718/REALM_ALLIANCE_718_native_unsigned.apk"
       - name: Inspect Android installer bridge and package
