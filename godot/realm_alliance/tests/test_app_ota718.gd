@@ -15,6 +15,8 @@ func run()->void:
       "bytes":90000000,"sha256":"0123456789abcdef".repeat(4),
       "url":App.RELEASE_ROOT+"realm-719-android/REALM_ALLIANCE_719.apk"}
     check(App.check(valid,718,719),"718 accepts only later release")
+    var parsed:Dictionary=JSON.parse_string(JSON.stringify(valid))
+    check(App.check(parsed,718,719),"a real HTTP JSON manifest must pass release validator")
     check(not App.check(valid,719,719),"reinstall blocked")
     valid.certificate_sha256="ff".repeat(32)
     check(not App.check(valid,718,719),"wrong cert rejected")
