@@ -15,6 +15,7 @@ assert (app / "AndroidManifest.xml").exists(), f"Missing Gradle template manifes
 java = app / "java/com/avenor/realmupdater/RealmApkInstaller.java"
 java.parent.mkdir(parents=True, exist_ok=True)
 shutil.copy2(source / "RealmApkInstaller.java", java)
+shutil.copy2(source / "RealmFileProvider.java", java.parent / "RealmFileProvider.java")
 res = app / "res/xml/realm_apk_paths.xml"
 res.parent.mkdir(parents=True, exist_ok=True)
 shutil.copy2(source / "realm_apk_paths.xml", res)
@@ -28,7 +29,7 @@ new_permission = '<uses-permission android:name="android.permission.REQUEST_INST
 content = content.replace('<application', new_permission + '\n    <application', 1)
 provider = '''<meta-data android:name="org.godotengine.plugin.v2.RealmApkInstaller"
                 android:value="com.avenor.realmupdater.RealmApkInstaller" />
-            <provider android:name="androidx.core.content.FileProvider"
+            <provider android:name="com.avenor.realmupdater.RealmFileProvider"
                 android:authorities="${applicationId}.realmupdater.files"
                 android:exported="false"
                 android:grantUriPermissions="true">
