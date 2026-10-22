@@ -6,7 +6,8 @@ const ArtGate=preload("res://scripts/launcher/update_gate714.gd")
 const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
 const NewGate=preload("res://scripts/launcher/update_gate715.gd")
 const NewCache=preload("res://scripts/launcher/content_cache715.gd")
-const VERSION_CODE=715
+const ApkGate=preload("res://scripts/launcher/app_update717.gd")
+const VERSION_CODE=717
 const SETTINGS="res://data/update715_config.json"
 var auto_check=true
 var _busy=false
@@ -25,6 +26,9 @@ var _phase="manifest"
 var _pack:Dictionary={}
 var _new_packs:Array=[]
 var _new_downloads=0
+var _apk_spec:Dictionary={}
+var _apk_button:Button
+var _apk_path=""
 var _art:TextureRect
 var _art_label:Label
 
@@ -94,7 +98,7 @@ func _build() -> void:
     stack.add_child(HSeparator.new())
     _status=_label(stack,"Vorbereitung …",24,Color("#f5ebd2"))
     _status.name="LaunchStatus"
-    _detail=_label(stack,"Version 713 · Testkanal",19,Color("#c5d5e9"))
+    _detail=_label(stack,"Version 717 · Testkanal",19,Color("#c5d5e9"))
     _detail.name="LaunchDetail"
     _progress=ProgressBar.new()
     _progress.name="LaunchProgress"
@@ -106,6 +110,9 @@ func _build() -> void:
     play.name="LaunchPlay"
     var account=_button(stack,"Zum Konto / Anmelden",func():_start_game(true))
     account.name="LaunchAccount"
+    _apk_button=_button(stack,"Android-App-Update herunterladen",_begin_apk)
+    _apk_button.name="LaunchAppUpdate"
+    _apk_button.visible=false
     _retry=_button(stack,"Updateprüfung wiederholen",_check)
     _retry.name="LaunchRetry"
     _label(stack,"Gast- und Offline-Spiel bleiben möglich. Konto und Registrierung erreichst du im Spiel unter Gemeinschaft.",17,Color("#a6b9cc"))
@@ -115,7 +122,7 @@ func _build() -> void:
     _request.body_size_limit=8500000
     add_child(_request)
     _request.request_completed.connect(_on_manifest)
-    _display("Bereit","Version 713 · Testkanal",false)
+    _display("Bereit","Version 717 · Testkanal",false)
 
 func _label(parent:Node,value:String,sz:int,color:Color) -> Label:
     var label=Label.new()
@@ -149,10 +156,14 @@ func _display(message:String,detail:String,loading:bool) -> void:
     _detail.text=detail
     _progress.visible=loading
     _retry.disabled=loading
+    if is_instance_valid(_apk_button):_apk_button.disabled=loading
 
 func _check() -> void:
     if _busy or _launching:return
     _phase="manifest"
+    _apk_spec={}
+    _apk_button.visible=false
+    _request.download_file=""
     _progress.indeterminate=true
     _progress.value=0
     var settings=JSON.parse_string(FileAccess.get_file_as_string(SETTINGS))
@@ -170,13 +181,24 @@ func _check() -> void:
         _display("Offline bereit","Verbindung konnte nicht gestartet werden.",false)
 
 func _process(_delta:float) -> void:
-    if _phase=="pack" and _busy and not _pack.is_empty() and int(_pack.bytes)>0:
-        _progress.value=clampf(100.0*float(_request.get_downloaded_bytes())/float(_pack.bytes),0.0,99.0)
+    var expected=0
+    if _phase=="pack" and not _pack.is_empty():expected=int(_pack.bytes)
+    elif _phase=="apk" and not _apk_spec.is_empty():expected=int(_apk_spec.bytes)
+    if _busy and expected>0:
+        var received=_request.get_downloaded_bytes()
+        if _phase=="apk" and received>expected:
+            _request.cancel_request()
+            _display("App-Update abgelehnt","Der Download war größer als angekündigt.",false)
+            return
+        _progress.value=clampf(100.0*float(received)/float(expected),0.0,99.0)
 
 func _on_manifest(result:int,status_code:int,_headers:PackedStringArray,body:PackedByteArray) -> void:
     if not _busy:return
     if _phase=="pack":
         _finish_pack(result,status_code,body)
+        return
+    if _phase=="apk":
+        _finish_apk(result,status_code)
         return
     if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
         _display("Offline bereit","Inhaltsdienst nicht erreichbar. Bereits gespeicherte Inhalte bleiben verfügbar.",false)
@@ -184,8 +206,14 @@ func _on_manifest(result:int,status_code:int,_headers:PackedStringArray,body:Pac
     var manifest=JSON.parse_string(body.get_string_from_utf8())
     var state=NewGate.inspect(manifest,VERSION_CODE,str(_config.get("channel","test")))
     match str(state.status):
-        "app_optional":_display("App-Update verfügbar","Für neue Spielfunktionen ist eine Android-App-Version notwendig.",false)
-        "app_required":_display("App-Update erforderlich","Bitte neue App-Version installieren. Offline spielen bleibt möglich.",false)
+        "app_optional","app_required":
+            var entry=manifest.get("app_update",{})
+            if ApkGate.check(entry,VERSION_CODE,int(manifest.latest_app_version_code)):
+                _apk_spec=entry.duplicate(true)
+                _apk_button.visible=OS.has_feature("android")
+                _display("Android-App-Update verfügbar","Version "+str(_apk_spec.version_code)+" · "+str(int(_apk_spec.bytes/1048576))+" MiB · Laden über den Launcher.",false)
+            else:
+                _display("App-Update verfügbar","Noch kein geprüftes, signiertes Android-Paket veröffentlicht. Offline-Spiel bleibt möglich.",false)
         "content":
             _new_packs=manifest.packs.duplicate(true)
             _new_downloads=0
@@ -223,6 +251,57 @@ func _finish_pack(result:int,code:int,body:PackedByteArray) -> void:
         return
     _new_downloads+=1
     _next_pack()
+
+func _begin_apk() -> void:
+    if _busy or _launching or _apk_spec.is_empty():return
+    if not OS.has_feature("android") or not Engine.has_singleton("RealmApkInstaller"):
+        _display("Installer nicht verfügbar","Dieses Android-Paket besitzt noch keine native Update-Bridge.",false)
+        return
+    if not ApkGate.check(_apk_spec,VERSION_CODE,int(_apk_spec.version_code)):
+        _display("App-Update ungültig","Versions- und Sicherheitsdaten abgelehnt.",false)
+        return
+    if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("user://realm_apk_updater"))!=OK:
+        _display("Kein Speicherplatz","Updateordner konnte nicht erstellt werden.",false)
+        return
+    _apk_path="user://realm_apk_updater/update-"+str(_apk_spec.version_code)+".apk"
+    if ApkGate.ready(_apk_spec,_apk_path):
+        _open_android_installer()
+        return
+    if FileAccess.file_exists(_apk_path):
+        DirAccess.remove_absolute(ProjectSettings.globalize_path(_apk_path))
+    _phase="apk"
+    _progress.indeterminate=false
+    _progress.value=0
+    _request.download_file=ProjectSettings.globalize_path(_apk_path)
+    _request.body_size_limit=ApkGate.MAX_BYTES
+    _display("App-Update wird heruntergeladen",str(_apk_spec.bytes)+" Bytes · nur für notwendige Programmupdates",true)
+    if _request.request(str(_apk_spec.url))!=OK:
+        _request.download_file=""
+        _display("Download fehlgeschlagen","App-Update konnte nicht gestartet werden.",false)
+
+func _finish_apk(result:int,status_code:int) -> void:
+    _request.download_file=""
+    if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
+        _display("Download unterbrochen","Der alte Spielstand bleibt erhalten. Erneut versuchen.",false)
+        return
+    if not ApkGate.ready(_apk_spec,_apk_path):
+        DirAccess.remove_absolute(ProjectSettings.globalize_path(_apk_path))
+        _display("App-Update abgelehnt","Dateigröße oder SHA-256 stimmen nicht.",false)
+        return
+    _open_android_installer()
+
+func _open_android_installer() -> void:
+    if not Engine.has_singleton("RealmApkInstaller"):
+        _display("Installer nicht verfügbar","Die native Android-Bridge fehlt.",false)
+        return
+    var bridge=Engine.get_singleton("RealmApkInstaller")
+    var status=str(bridge.installValidatedApk(ProjectSettings.globalize_path(_apk_path),int(_apk_spec.version_code)))
+    if status=="installer_opened":
+        _display("Android-Installation geöffnet","Bestätige das Systemfenster. Deinstalliere die bisherige App nicht.",false)
+    elif status=="permission_required":
+        _display("Installationsberechtigung öffnen","Erlaube die Installation aus REALM ALLIANCE und tippe danach erneut auf App-Update.",false)
+    else:
+        _display("Installation nicht gestartet","Android hat den Installer abgelehnt: "+status,false)
 
 func _show_art() -> void:
     if not is_instance_valid(_art):return
