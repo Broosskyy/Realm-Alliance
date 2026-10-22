@@ -1,7 +1,7 @@
 name: REALM 715 Content Packs and Guest Reset
 on:
   push:
-    branches: [feature/work-715-asset-updater]
+    branches: [feature/work-715-content-and-guest-reset]
 permissions:
   contents: read
 jobs:
