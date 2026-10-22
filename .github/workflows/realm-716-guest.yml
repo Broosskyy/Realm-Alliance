@@ -20,7 +20,7 @@ jobs:
         run: |
           export GAME="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
           "$GAME" --headless --path godot/realm_alliance --import
-          timeout -k 5s 90s "$GAME" --headless --path godot/realm_alliance --script res://tests/test_content716.gd
+          timeout -k 5s 90s "$GAME" --headless --path godot/realm_alliance --script res://tests/test_guest_reset716.gd
       - name: Verify public PNG + JSON content checksums over HTTPS
         run: |
           python3 - <<'PY'
