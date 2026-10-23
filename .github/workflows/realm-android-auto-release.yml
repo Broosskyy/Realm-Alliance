@@ -146,7 +146,13 @@ jobs:
         run: |
           set -euo pipefail
           gh release create "realm-${REALM_VERSION}-android" "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}.apk" "$RUNNER_TEMP/realmrelease/RELEASE_${REALM_VERSION}.json" --target "$GITHUB_SHA" --title "REALM ALLIANCE ${REALM_VERSION} - Android in-app Update" --notes "Same original Android signature; device test after publication." --prerelease
-          EXPECTED=$(python3 -c 'import os,json,pathlib; print(json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"realmrelease"/f"RELEASE_{os.environ[chr(82)+chr(69)+chr(65)+chr(76)+chr(77)+chr(95)+chr(86)+chr(69)+chr(82)+chr(83)+chr(73)+chr(79)+chr(78)]}.json").read_text())["bytes"])')
+          EXPECTED=$(python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ["RUNNER_TEMP"])/"realmrelease"/("RELEASE_"+os.environ["REALM_VERSION"]+".json")
+          print(json.loads(p.read_text())["bytes"])
+          PY
+          )
           ACTUAL=$(gh release view "realm-${REALM_VERSION}-android" --json assets --jq ".assets[] | select(.name==\"REALM_ALLIANCE_${REALM_VERSION}.apk\") | .size")
           if [ "$ACTUAL" != "$EXPECTED" ]; then
             echo "::error::Release asset length mismatch, not advertising update."; exit 1;
