@@ -131,7 +131,7 @@ func _build() -> void:
     _apk_request.timeout=0.0
     _apk_request.use_threads=true
     _apk_request.max_redirects=16
-    _apk_request.keep_partial_download=false
+    # Godot 4.7.2 does not expose keep_partial_download; delete files explicitly on retry.
     _apk_request.accept_gzip=false
     _apk_request.body_size_limit=ApkGate.MAX_BYTES
     add_child(_apk_request)
