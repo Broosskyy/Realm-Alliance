@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [feature/work-722-auto-launcher]
-    paths: ['.github/workflows/realm-722-release.yml','development/android_updater717/**','godot/realm_alliance/scripts/launcher/**','godot/realm_alliance/export_presets.cfg']
+    paths: ['.github/workflows/realm-722-release.yml','development/android_updater717/**','godot/realm_alliance/scripts/launcher/**','godot/realm_alliance/export_presets.cfg','godot/realm_alliance/tests/test_auto_loader722.gd']
 permissions:
   contents: write
 jobs:
