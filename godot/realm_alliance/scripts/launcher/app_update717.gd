@@ -25,6 +25,24 @@ static func check(value:Variant,current:int,latest:int) -> bool:
     var code=str(latest)
     return value.get("url")==RELEASE_ROOT+"realm-"+code+"-android/REALM_ALLIANCE_"+code+".apk"
 
+# Godot HTTPRequest documentation recommends timeout 0.0 for large files.
+static func download_timeout(bytes:int) -> float:
+    return 0.0 if bytes>=1000000 else 8.0
+
+static func error_text(result:int,http_code:int) -> String:
+    match result:
+        HTTPRequest.RESULT_TIMEOUT:return "Zeitlimit erreicht"
+        HTTPRequest.RESULT_CANT_RESOLVE:return "Downloadserver nicht erreichbar (DNS)"
+        HTTPRequest.RESULT_CANT_CONNECT:return "Keine Verbindung zum Downloadserver"
+        HTTPRequest.RESULT_CONNECTION_ERROR:return "Netzwerkverbindung unterbrochen"
+        HTTPRequest.RESULT_TLS_HANDSHAKE_ERROR:return "Sichere Verbindung fehlgeschlagen"
+        HTTPRequest.RESULT_DOWNLOAD_FILE_CANT_OPEN:return "APK-Zieldatei konnte nicht geöffnet werden"
+        HTTPRequest.RESULT_DOWNLOAD_FILE_WRITE_ERROR:return "APK-Datei konnte nicht gespeichert werden"
+        HTTPRequest.RESULT_REDIRECT_LIMIT_REACHED:return "Zu viele Download-Weiterleitungen"
+        HTTPRequest.RESULT_BODY_SIZE_LIMIT_EXCEEDED:return "Datei größer als erlaubt"
+        HTTPRequest.RESULT_SUCCESS:return "HTTP-Code %d" % http_code
+        _:return "Netzwerkfehler %d (HTTP %d)" % [result,http_code]
+
 static func sha256_file(path:String,max_bytes:int=MAX_BYTES) -> String:
     if not FileAccess.file_exists(path):return ""
     var fd=FileAccess.open(path,FileAccess.READ)
@@ -52,4 +70,4 @@ static func ready(spec:Dictionary,path:String) -> bool:
     if f==null:return false
     var n=f.get_length()
     f.close()
-    return check(spec,719,int(spec.get("version_code",0))) and n==int(spec.bytes) and sha256_file(path,int(spec.bytes))==spec.sha256
+    return check(spec,720,int(spec.get("version_code",0))) and n==int(spec.bytes) and sha256_file(path,int(spec.bytes))==spec.sha256

@@ -7,7 +7,7 @@ const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
 const NewGate=preload("res://scripts/launcher/update_gate715.gd")
 const NewCache=preload("res://scripts/launcher/content_cache715.gd")
 const ApkGate=preload("res://scripts/launcher/app_update717.gd")
-const VERSION_CODE=719
+const VERSION_CODE=720
 const SETTINGS="res://data/update715_config.json"
 var auto_check=true
 var _busy=false
@@ -98,7 +98,7 @@ func _build() -> void:
     stack.add_child(HSeparator.new())
     _status=_label(stack,"Vorbereitung …",24,Color("#f5ebd2"))
     _status.name="LaunchStatus"
-    _detail=_label(stack,"Version 719 · App-Updater-Test",19,Color("#c5d5e9"))
+    _detail=_label(stack,"Version 720 · Stabiler APK-Download",19,Color("#c5d5e9"))
     _detail.name="LaunchDetail"
     _progress=ProgressBar.new()
     _progress.name="LaunchProgress"
@@ -118,11 +118,12 @@ func _build() -> void:
     _label(stack,"Gast- und Offline-Spiel bleiben möglich. Konto und Registrierung erreichst du im Spiel unter Gemeinschaft.",17,Color("#a6b9cc"))
     _request=HTTPRequest.new()
     _request.name="LaunchRequest"
-    _request.timeout=8
+    _request.timeout=8.0 # Short timeouts only for small metadata requests.
+    _request.max_redirects=12
     _request.body_size_limit=8500000
     add_child(_request)
     _request.request_completed.connect(_on_manifest)
-    _display("Bereit","Version 719 · App-Updater-Test",false)
+    _display("Bereit","Version 720 · Stabiler APK-Download",false)
 
 func _label(parent:Node,value:String,sz:int,color:Color) -> Label:
     var label=Label.new()
@@ -161,6 +162,7 @@ func _display(message:String,detail:String,loading:bool) -> void:
 func _check() -> void:
     if _busy or _launching:return
     _phase="manifest"
+    _request.timeout=8.0
     _apk_spec={}
     _apk_button.visible=false
     _request.download_file=""
@@ -274,15 +276,21 @@ func _begin_apk() -> void:
     _progress.value=0
     _request.download_file=ProjectSettings.globalize_path(_apk_path)
     _request.body_size_limit=ApkGate.MAX_BYTES
-    _display("App-Update wird heruntergeladen",str(_apk_spec.bytes)+" Bytes · nur für notwendige Programmupdates",true)
-    if _request.request(str(_apk_spec.url))!=OK:
+    # 132 MB cannot reliably complete in eight seconds. For large files
+    # Godot explicitly recommends no overall request timeout.
+    _request.timeout=ApkGate.download_timeout(int(_apk_spec.bytes))
+    _request.keep_partial_download=true
+    _request.use_threads=true
+    _display("App-Update wird heruntergeladen","%.1f MiB · Verbindung bleibt bei langsamen Downloads offen" % (float(_apk_spec.bytes)/1048576.0),true)
+    if _request.request(str(_apk_spec.url),PackedStringArray(["Accept: application/octet-stream"]))!=OK:
         _request.download_file=""
         _display("Download fehlgeschlagen","App-Update konnte nicht gestartet werden.",false)
 
 func _finish_apk(result:int,status_code:int) -> void:
     _request.download_file=""
     if result!=HTTPRequest.RESULT_SUCCESS or status_code!=200:
-        _display("Download unterbrochen","Der alte Spielstand bleibt erhalten. Erneut versuchen.",false)
+        var reason=ApkGate.error_text(result,status_code)
+        _display("Download unterbrochen",reason+". Spielstand bleibt erhalten; du kannst es erneut versuchen.",false)
         return
     if not ApkGate.ready(_apk_spec,_apk_path):
         DirAccess.remove_absolute(ProjectSettings.globalize_path(_apk_path))

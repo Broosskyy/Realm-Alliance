@@ -36,9 +36,13 @@ public final class RealmApkInstaller extends GodotPlugin {
         if (activity == null) return "activity_missing";
         try {
             if (!GAME_ID.equals(activity.getPackageName())) return "wrong_installed_package";
-            final File root = new File(activity.getFilesDir(), "realm_apk_updater").getCanonicalFile();
+            final File internalRoot = new File(activity.getFilesDir(), "realm_apk_updater").getCanonicalFile();
+            final File externalBase = activity.getExternalFilesDir(null);
+            final File externalRoot = externalBase == null ? null : new File(externalBase, "realm_apk_updater").getCanonicalFile();
             final File apk = new File(absolutePath).getCanonicalFile();
-            if (!apk.getPath().startsWith(root.getPath() + File.separator)
+            final boolean approved = apk.getPath().startsWith(internalRoot.getPath() + File.separator)
+                    || (externalRoot != null && apk.getPath().startsWith(externalRoot.getPath() + File.separator));
+            if (!approved
                     || !apk.getName().endsWith(".apk")
                     || !apk.isFile() || apk.length() < 1000000L || apk.length() > 350000000L) {
                 return "untrusted_path_or_size";
