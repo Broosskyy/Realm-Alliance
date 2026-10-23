@@ -26,15 +26,18 @@ def gh(*arguments, payload=None):
     return json.loads(result.stdout)
 
 def main():
-    if len(sys.argv) != 2:
-        raise SystemExit("usage: publish_ota_manifest.py <directory-of-signed-release>")
+    if len(sys.argv) != 3:
+        raise SystemExit("usage: publish_ota_manifest.py <directory-of-signed-release> <version>")
     root = Path(sys.argv[1]).resolve()
-    release_data = root / "RELEASE_718.json"
+    version_argument=int(sys.argv[2])
+    if version_argument<718 or version_argument>1000000:
+        raise SystemExit("Unexpected version argument")
+    release_data = root / f"RELEASE_{version_argument}.json"
     if not release_data.is_file():
         raise SystemExit("Signed release metadata missing; OTA remains disabled")
     spec = json.loads(release_data.read_text())
     version = int(spec["version_code"])
-    if version < 718 or version > 1000000 or spec.get("package") != PACKAGE or spec.get("certificate_sha256") != CERT or spec.get("signed") is not True:
+    if version != version_argument or version < 718 or version > 1000000 or spec.get("package") != PACKAGE or spec.get("certificate_sha256") != CERT or spec.get("signed") is not True:
         raise SystemExit("Unexpected app version, package, certificate, or signature")
     filename = f"REALM_ALLIANCE_{version}.apk"
     path = root / filename
