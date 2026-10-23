@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Fail-closed signing of Realm 718 with the original update identity."""
+"""Fail-closed signing of Realm 718 with the original update identity.
+
+Keep stdout (binary X.509 DER) separate from stderr: keytool emits JKS
+migration warnings to stderr, which MUST NOT be included in the SHA256 digest.
+"""
 import base64
 import hashlib
 import json
@@ -14,7 +18,7 @@ PKG = "com.avenor.realmalliance.mockuptest"
 VERSION = 718
 
 def run(*args):
-    return subprocess.check_output(list(args), stderr=subprocess.STDOUT)
+    return subprocess.check_output(list(args), stderr=subprocess.PIPE)
 
 def main():
     if len(sys.argv) != 2:
