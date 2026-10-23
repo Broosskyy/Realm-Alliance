@@ -1,0 +1,170 @@
+name: REALM Android – Build, Sign, Publish & Notify Launcher
+on:
+  workflow_dispatch:
+  push:
+    branches: [release/android-test]
+    paths:
+      - godot/realm_alliance/export_presets.cfg
+      - .github/workflows/realm-android-auto-release.yml
+permissions:
+  contents: write
+concurrency:
+  group: realm-android-test-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Identify app version and check private signing identity
+        shell: bash
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ -z "$REALM_ANDROID_KEYSTORE_BASE64" ]; then
+            echo "::error::One-time setup required: GitHub Actions secret REALM_ANDROID_KEYSTORE_BASE64 is missing. Nothing was published."
+            exit 1
+          fi
+          python3 - <<'PY'
+          from pathlib import Path
+          import re,os
+          cfg=Path('godot/realm_alliance/export_presets.cfg').read_text()
+          ver=re.search(r'^version/code=(\d+)$',cfg,re.M)
+          pkg=re.search(r'^package/unique_name="([^"]+)"$',cfg,re.M)
+          assert ver and pkg and pkg.group(1)=='com.avenor.realmalliance.mockuptest'
+          n=int(ver.group(1))
+          assert 718<=n<1000000
+          with open(os.environ['GITHUB_ENV'],'a') as out:
+              out.write(f'REALM_VERSION={n}\n')
+          print('Automated REALM version',n)
+          PY
+      - name: Check release tag is new
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if gh release view "realm-${REALM_VERSION}-android" >/dev/null 2>&1; then
+            echo "::error::This version was already published. Bump Android versionCode before releasing."
+            exit 1
+          fi
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verified Godot 4.7.2 and Android Gradle templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot.zip"
+          curl -fL --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz -o "$RUNNER_TEMP/templates.tpz"
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/godot.zip" | sha256sum -c -
+          echo "f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011  $RUNNER_TEMP/templates.tpz" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP"
+          chmod +x "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+          python3 - <<'PY'
+          import os,zipfile
+          from pathlib import Path
+          dest=Path('godot/realm_alliance/android/build')
+          dest.mkdir(parents=True,exist_ok=True)
+          root=Path.home()/'.local/share/godot/export_templates/4.7.2.stable'
+          root.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(Path(os.environ['RUNNER_TEMP'])/'templates.tpz') as archive:
+              for n in ('android_debug.apk','version.txt','android_source.zip'):
+                  (root/n).write_bytes(archive.read('templates/'+n))
+          with zipfile.ZipFile(root/'android_source.zip') as archive:
+              archive.extractall(dest)
+          (dest/'.gdignore').touch()
+          (dest.parent/'.build_version').write_text('4.7.2.stable\n')
+          PY
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Inject native Android updater and export application
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 development/android_updater717/inject_bridge.py godot/realm_alliance/android/build
+          chmod +x godot/realm_alliance/android/build/gradlew
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('godot/realm_alliance/export_presets.cfg')
+          c=p.read_text()
+          assert 'package/unique_name="com.avenor.realmalliance.mockuptest"' in c
+          c=c.replace('gradle_build/use_gradle_build=false','gradle_build/use_gradle_build=true')
+          c=c.replace('package/signed=true','package/signed=false')
+          p.write_text(c)
+          PY
+          mkdir -p "$RUNNER_TEMP/realmrelease"
+          GODOT="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+          "$GODOT" --headless --path godot/realm_alliance --import
+          timeout 90s "$GODOT" --headless --path godot/realm_alliance --script res://tests/test_app_update717.gd
+          timeout 90s "$GODOT" --headless --path godot/realm_alliance --script res://tests/test_guest_reset716.gd
+          if [ "$REALM_VERSION" = "718" ]; then
+            timeout 90s "$GODOT" --headless --path godot/realm_alliance --script res://tests/test_app_ota718.gd
+          fi
+          "$GODOT" --headless --path godot/realm_alliance --export-debug "Android Debug" "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}_native_unsigned.apk"
+          test -s "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}_native_unsigned.apk"
+      - name: Check native installer, APK identity and alignment
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}_native_unsigned.apk"
+          TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          "$TOOLS/aapt" dump badging "$APK" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='${REALM_VERSION}'"
+          "$TOOLS/aapt" dump xmltree "$APK" AndroidManifest.xml > "$RUNNER_TEMP/native-manifest.txt"
+          grep -F "org.godotengine.plugin.v2.RealmApkInstaller" "$RUNNER_TEMP/native-manifest.txt"
+          grep -F "realmupdater.files" "$RUNNER_TEMP/native-manifest.txt"
+          python3 - <<'PY'
+          import os,zipfile
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP'])/'realmrelease'/f"REALM_ALLIANCE_{os.environ['REALM_VERSION']}_native_unsigned.apk"
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert any(x.startswith("lib/arm64-v8a/") and x.endswith(".so") for x in z.namelist())
+              assert b"RealmApkInstaller" in b"".join(z.read(x) for x in z.namelist() if x.endswith(".dex"))
+          print("APK_NATIVE_INSTALLER_VERIFIED",os.environ['REALM_VERSION'])
+          PY
+          "$TOOLS/zipalign" -f -P 16 4 "$APK" "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}_aligned_unsigned.apk"
+          "$TOOLS/zipalign" -c -P 16 4 "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}_aligned_unsigned.apk"
+          cp "$TOOLS/lib/apksigner.jar" "$RUNNER_TEMP/realmrelease/apksigner.jar"
+      - name: Sign and verify with original private key (GitHub Secret)
+        shell: bash
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+        run: |
+          set -euo pipefail
+          python3 development/android_updater717/sign_release.py "$RUNNER_TEMP/realmrelease"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}.apk" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='${REALM_VERSION}'"
+      - name: Publish signed APK to GitHub Releases
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "realm-${REALM_VERSION}-android" "$RUNNER_TEMP/realmrelease/REALM_ALLIANCE_${REALM_VERSION}.apk" "$RUNNER_TEMP/realmrelease/RELEASE_${REALM_VERSION}.json" --target "$GITHUB_SHA" --title "REALM ALLIANCE ${REALM_VERSION} - Android in-app Update" --notes "Same original Android signature; device test after publication." --prerelease
+          EXPECTED=$(python3 -c 'import os,json,pathlib; print(json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"realmrelease"/f"RELEASE_{os.environ[chr(82)+chr(69)+chr(65)+chr(76)+chr(77)+chr(95)+chr(86)+chr(69)+chr(82)+chr(83)+chr(73)+chr(79)+chr(78)]}.json").read_text())["bytes"])')
+          ACTUAL=$(gh release view "realm-${REALM_VERSION}-android" --json assets --jq ".assets[] | select(.name==\"REALM_ALLIANCE_${REALM_VERSION}.apk\") | .size")
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::Release asset length mismatch, not advertising update."; exit 1;
+          fi
+      - uses: actions/checkout@v4
+        with:
+          ref: distribution/realm-715-test
+          path: manifest-checkout
+          persist-credentials: true
+      - name: Update launcher manifest ONLY after a published verified release
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="manifest-checkout/godot/realm_alliance/data/update715_manifest.json"
+          python3 development/android_updater717/publish_release_manifest.py "$RUNNER_TEMP/realmrelease/RELEASE_${REALM_VERSION}.json" "$TARGET"
+          git -C manifest-checkout config user.name 'github-actions[bot]'
+          git -C manifest-checkout config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C manifest-checkout add godot/realm_alliance/data/update715_manifest.json
+          git -C manifest-checkout commit -m "release(android): advertise signed REALM ${REALM_VERSION} OTA update"
+          git -C manifest-checkout push origin HEAD:distribution/realm-715-test
+          echo "RELEASE_AVAILABLE_IN_ANDROID_LAUNCHER=${REALM_VERSION}"
