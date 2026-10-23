@@ -16,6 +16,15 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Require original signing secret before building
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+        shell: bash
+        run: |
+          if [ -z "$REALM_ANDROID_KEYSTORE_BASE64" ]; then
+            echo "::error::One-time setup missing: add REALM_ANDROID_KEYSTORE_BASE64 in GitHub Actions secrets. No APK will be published."
+            exit 1
+          fi
       - name: Download verified Godot, Android Gradle project and SDK
         shell: bash
         run: |
@@ -121,3 +130,11 @@ jobs:
         run: |
           set -euo pipefail
           gh release create realm-718-android "$RUNNER_TEMP/realm718/REALM_ALLIANCE_718.apk" "$RUNNER_TEMP/realm718/RELEASE_718.json" --target "$GITHUB_SHA" --title "REALM ALLIANCE 718 - Android Launcher OTA Test" --notes "Same original signing certificate as 717. Device installation test not yet performed." --prerelease
+      - name: Activate OTA update in existing content manifest
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Only after original-certificate signing, verified upload and GitHub Release.
+          python3 development/android_updater717/publish_ota_manifest.py "$RUNNER_TEMP/realm718"
