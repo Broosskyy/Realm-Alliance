@@ -2,7 +2,7 @@
   "schema": 3,
   "channel": "test",
   "min_app_version_code": 715,
-  "latest_app_version_code": 715,
+  "latest_app_version_code": 718,
   "content_revision": "715.1-crystal-outpost",
   "packs": [
     {
@@ -22,5 +22,13 @@
       "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_content_catalog-v1.json"
     }
   ],
-  "release_notes": "Zwei echte Content-Dateien: PNG-Spielgrafik und JSON-Reisekatalog ohne spätere APK"
+  "release_notes": "REALM ALLIANCE 718: Android update through launcher. Content packs unchanged.",
+  "app_update": {
+    "version_code": 718,
+    "package": "com.avenor.realmalliance.mockuptest",
+    "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
+    "bytes": 131748445,
+    "sha256": "d597d9c237677dda895085c0cbca3fed302acd3337e262e869d72e727d743b1b",
+    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-718-android/REALM_ALLIANCE_718.apk"
+  }
 }
