@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <files-path name="realm_updates" path="realm_apk_updater/" />
+    <files-path name="realm_godot_userdata" path="app_userdata/" />
     <external-files-path name="realm_external_updates" path="realm_apk_updater/" />
 </paths>

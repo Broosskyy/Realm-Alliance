@@ -36,12 +36,17 @@ public final class RealmApkInstaller extends GodotPlugin {
         if (activity == null) return "activity_missing";
         try {
             if (!GAME_ID.equals(activity.getPackageName())) return "wrong_installed_package";
-            final File internalRoot = new File(activity.getFilesDir(), "realm_apk_updater").getCanonicalFile();
             final File externalBase = activity.getExternalFilesDir(null);
-            final File externalRoot = externalBase == null ? null : new File(externalBase, "realm_apk_updater").getCanonicalFile();
             final File apk = new File(absolutePath).getCanonicalFile();
-            final boolean approved = apk.getPath().startsWith(internalRoot.getPath() + File.separator)
-                    || (externalRoot != null && apk.getPath().startsWith(externalRoot.getPath() + File.separator));
+            // Godot user:// can live at files/app_userdata/<game>/realm_apk_updater
+            // Restrict the exact leaf directory within app-owned sandbox only.
+            final File parent = apk.getParentFile();
+            final File internalBase = activity.getFilesDir().getCanonicalFile();
+            final boolean trustedFolder = parent != null && "realm_apk_updater".equals(parent.getName());
+            final boolean internal = apk.getPath().startsWith(internalBase.getPath() + File.separator);
+            final boolean external = externalBase != null
+                    && apk.getPath().startsWith(externalBase.getCanonicalPath() + File.separator);
+            final boolean approved = trustedFolder && (internal || external);
             if (!approved
                     || !apk.getName().endsWith(".apk")
                     || !apk.isFile() || apk.length() < 1000000L || apk.length() > 350000000L) {
