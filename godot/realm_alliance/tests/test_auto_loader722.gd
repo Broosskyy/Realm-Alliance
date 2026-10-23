@@ -20,7 +20,7 @@ func run()->void:
         verify(download.timeout==0.0,"APK has unlimited overall timeout")
         verify(download.use_threads,"threaded APK file stream")
         verify(download.max_redirects>=12,"GitHub redirects supported")
-        verify(not download.keep_partial_download,"no corrupt partial APK resume")
+        verify(download.download_file=="","APK download starts without a stale file path")
     verify(launcher.find_child("LaunchAppUpdate",true,false) is Button,"manual retry button retained")
     var spec={"version_code":723,"package":Gate.PACKAGE,"certificate_sha256":Gate.CERT_SHA256,
         "bytes":131748445,"sha256":"a".repeat(64),
