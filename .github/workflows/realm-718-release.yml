@@ -25,6 +25,13 @@ jobs:
             echo "::error::One-time setup missing: add REALM_ANDROID_KEYSTORE_BASE64 in GitHub Actions secrets. No APK will be published."
             exit 1
           fi
+      - name: Verify original signing certificate before starting build
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+        run: |
+          python3 development/android_updater717/check_secret_identity.py
       - name: Download verified Godot, Android Gradle project and SDK
         shell: bash
         run: |
