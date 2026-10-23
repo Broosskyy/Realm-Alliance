@@ -7,7 +7,7 @@ const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
 const NewGate=preload("res://scripts/launcher/update_gate715.gd")
 const NewCache=preload("res://scripts/launcher/content_cache715.gd")
 const ApkGate=preload("res://scripts/launcher/app_update717.gd")
-const VERSION_CODE=720
+const VERSION_CODE=721
 const SETTINGS="res://data/update715_config.json"
 var auto_check=true
 var _busy=false
@@ -98,7 +98,7 @@ func _build() -> void:
     stack.add_child(HSeparator.new())
     _status=_label(stack,"Vorbereitung …",24,Color("#f5ebd2"))
     _status.name="LaunchStatus"
-    _detail=_label(stack,"Version 720 · Stabiler APK-Download",19,Color("#c5d5e9"))
+    _detail=_label(stack,"Version 721 · OTA-Gerätetest",19,Color("#c5d5e9"))
     _detail.name="LaunchDetail"
     _progress=ProgressBar.new()
     _progress.name="LaunchProgress"
@@ -123,7 +123,7 @@ func _build() -> void:
     _request.body_size_limit=8500000
     add_child(_request)
     _request.request_completed.connect(_on_manifest)
-    _display("Bereit","Version 720 · Stabiler APK-Download",false)
+    _display("Bereit","Version 721 · OTA-Gerätetest",false)
 
 func _label(parent:Node,value:String,sz:int,color:Color) -> Label:
     var label=Label.new()
