@@ -2,7 +2,7 @@
   "schema": 3,
   "channel": "test",
   "min_app_version_code": 715,
-  "latest_app_version_code": 719,
+  "latest_app_version_code": 718,
   "content_revision": "715.1-crystal-outpost",
   "packs": [
     {
@@ -22,13 +22,5 @@
       "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_content_catalog-v1.json"
     }
   ],
-  "release_notes": "REALM ALLIANCE 719: Android update through launcher. Content packs unchanged.",
-  "app_update": {
-    "version_code": 719,
-    "package": "com.avenor.realmalliance.mockuptest",
-    "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
-    "bytes": 131748445,
-    "sha256": "c04d1a08b195b9274d5bfb37b7b12a8d68319e6c498ace68110d97ba1350bead",
-    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-719-android/REALM_ALLIANCE_719.apk"
-  }
+  "release_notes": "Die 719-OTA-Updateaufforderung ist wegen des in 718 enthaltenen kurzen APK-Download-Timeouts vorübergehend ausgesetzt. Grafik- und Spieldatenupdates bleiben unverändert."
 }
