@@ -7,7 +7,7 @@ const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
 const NewGate=preload("res://scripts/launcher/update_gate715.gd")
 const NewCache=preload("res://scripts/launcher/content_cache715.gd")
 const ApkGate=preload("res://scripts/launcher/app_update717.gd")
-const VERSION_CODE=723
+const VERSION_CODE=724
 const SETTINGS="res://data/update715_config.json"
 var auto_check=true
 var _busy=false
@@ -16,6 +16,10 @@ var _request:HTTPRequest
 var _apk_request:HTTPRequest
 var _last_percent=-1
 var _resume_installer=false
+var _play_button:Button
+var _account_button:Button
+var _offline_button:Button
+var _auto_enter_game=true
 var _title:Label
 var _status:Label
 var _detail:Label
@@ -101,7 +105,7 @@ func _build() -> void:
     stack.add_child(HSeparator.new())
     _status=_label(stack,"Vorbereitung …",24,Color("#f5ebd2"))
     _status.name="LaunchStatus"
-    _detail=_label(stack,"Version 723 · Auto-Launcher",19,Color("#c5d5e9"))
+    _detail=_label(stack,"Version 724 · Start-Updater",19,Color("#c5d5e9"))
     _detail.name="LaunchDetail"
     _progress=ProgressBar.new()
     _progress.name="LaunchProgress"
@@ -109,10 +113,13 @@ func _build() -> void:
     _progress.indeterminate=true
     _progress.custom_minimum_size.y=16
     stack.add_child(_progress)
-    var play=_button(stack,"Abenteuer beginnen",func():_start_game(false))
-    play.name="LaunchPlay"
-    var account=_button(stack,"Zum Konto / Anmelden",func():_start_game(true))
-    account.name="LaunchAccount"
+    _play_button=_button(stack,"Abenteuer beginnen",func():_start_game(false))
+    _play_button.name="LaunchPlay"
+    _account_button=_button(stack,"Zum Konto / Anmelden",func():_start_game(true))
+    _account_button.name="LaunchAccount"
+    _offline_button=_button(stack,"Offline weiterspielen (Update überspringen)",func():_start_game(false))
+    _offline_button.name="LaunchSkipUpdate"
+    _offline_button.visible=false
     _apk_button=_button(stack,"Android-App-Update herunterladen",_begin_apk)
     _apk_button.name="LaunchAppUpdate"
     _apk_button.visible=false
@@ -136,7 +143,7 @@ func _build() -> void:
     _apk_request.body_size_limit=ApkGate.MAX_BYTES
     add_child(_apk_request)
     _apk_request.request_completed.connect(_finish_apk)
-    _display("Bereit","Version 723 · Auto-Launcher",false)
+    _display("Bereit","Version 724 · Start-Updater",false)
 
 func _label(parent:Node,value:String,sz:int,color:Color) -> Label:
     var label=Label.new()
@@ -171,6 +178,13 @@ func _display(message:String,detail:String,loading:bool) -> void:
     _progress.visible=loading
     _retry.disabled=loading
     if is_instance_valid(_apk_button):_apk_button.disabled=loading
+    # Full loading screen for automatic checking / content and APK downloads.
+    var preparing=loading or message in ["Update wird vorbereitet","Android-App-Update verfügbar"]
+    if is_instance_valid(_play_button):_play_button.visible=not preparing
+    if is_instance_valid(_account_button):_account_button.visible=not preparing
+    if is_instance_valid(_offline_button):_offline_button.visible=preparing
+    # Manual download button is primarily a retry/fallback, not the default flow.
+    if is_instance_valid(_apk_button) and loading:_apk_button.visible=false
 
 func _check() -> void:
     if _busy or _launching:return
@@ -254,6 +268,9 @@ func _next_pack() -> void:
     _pack={}
     _show_art()
     _display("Spielinhalte aktualisiert" if _new_downloads>0 else "Spielinhalte aktuell",str(_new_downloads)+" Dateien heruntergeladen. Alle Daten geprüft.",false)
+    # Normal startup proceeds to gameplay automatically once the cache is verified.
+    if _auto_enter_game and auto_check and not _launching:
+        call_deferred("_start_game",false)
 
 func _fetch_pack() -> void:
     if not _busy or _phase!="pack" or _launching:return
@@ -309,6 +326,7 @@ func _finish_apk(result:int,code:int,_headers:PackedStringArray,_body:PackedByte
     if result!=HTTPRequest.RESULT_SUCCESS or code!=200:
         _phase="manifest"
         _display("Download unterbrochen",ApkGate.error_text(result,code)+". Bitte erneut versuchen.",false)
+        _apk_button.visible=true
         return
     _progress.value=100
     _display("Update wird geprüft …","Integrität und Signatur werden geprüft …",true)
@@ -317,6 +335,7 @@ func _finish_apk(result:int,code:int,_headers:PackedStringArray,_body:PackedByte
         DirAccess.remove_absolute(ProjectSettings.globalize_path(_apk_path))
         _phase="manifest"
         _display("Update abgelehnt","SHA-256 oder Dateigröße stimmen nicht.",false)
+        _apk_button.visible=true
         return
     _phase="manifest"
     _display("Download abgeschlossen","Android-Installationsdialog wird geöffnet …",false)
