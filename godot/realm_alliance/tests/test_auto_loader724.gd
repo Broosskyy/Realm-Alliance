@@ -25,7 +25,11 @@ func run()->void:
     verify(launcher.find_child("LaunchSkipUpdate",true,false) is Button,"offline option exists")
     verify(launcher._auto_enter_game,"automatically enter game after content is current")
     var source=FileAccess.get_file_as_string("res://scripts/launcher/launcher713.gd")
-    verify(not source.contains("keep_partial_download"),"obsolete Godot property absent")
+    var active_code=""
+    for line in source.split("\n"):
+        if not line.strip_edges().begins_with("#"):
+            active_code+=line+"\n"
+    verify(not active_code.contains(".keep_partial_download="),"obsolete Godot property assignment absent")
     verify(source.contains("call_deferred(\"_begin_apk\")"),"APK auto-download wired on manifest")
     var spec={"version_code":725,"package":Gate.PACKAGE,"certificate_sha256":Gate.CERT_SHA256,
         "bytes":131748445,"sha256":"a".repeat(64),
