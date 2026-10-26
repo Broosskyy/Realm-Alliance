@@ -2,7 +2,7 @@
   "schema": 3,
   "channel": "test",
   "min_app_version_code": 715,
-  "latest_app_version_code": 723,
+  "latest_app_version_code": 724,
   "content_revision": "715.1-crystal-outpost",
   "packs": [
     {
@@ -22,13 +22,13 @@
       "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_content_catalog-v1.json"
     }
   ],
-  "release_notes": "REALM ALLIANCE 723: OTA acceptance test with automatic loading from installed 722; Android install confirmation required. Existing content unchanged.",
+  "release_notes": "724: Automatischer Startbildschirm und zuverlässiger Android-App-Download. Signierte APK erforderlich.",
   "app_update": {
-    "version_code": 723,
+    "version_code": 724,
     "package": "com.avenor.realmalliance.mockuptest",
     "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
-    "bytes": 131748445,
-    "sha256": "686233c2e8c2224b2b9e2469644f49d329ac0506d43e525c946f263f69baec13",
-    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-723-android/REALM_ALLIANCE_723.apk"
+    "bytes": 131752541,
+    "sha256": "aa90676d7f66020b6c650250df1944607519d7d837ca1f2f085b4229248d3ada",
+    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-724-android/REALM_ALLIANCE_724.apk"
   }
 }
