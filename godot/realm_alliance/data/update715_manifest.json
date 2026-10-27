@@ -2,7 +2,7 @@
   "schema": 3,
   "channel": "test",
   "min_app_version_code": 715,
-  "latest_app_version_code": 728,
+  "latest_app_version_code": 729,
   "content_revision": "715.1-crystal-outpost",
   "packs": [
     {
@@ -22,13 +22,13 @@
       "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_content_catalog-v1.json"
     }
   ],
-  "release_notes": "REALM ALLIANCE 728: Android update through launcher. Content packs unchanged.",
+  "release_notes": "REALM ALLIANCE 729: Android update through launcher. Content packs unchanged.",
   "app_update": {
-    "version_code": 728,
+    "version_code": 729,
     "package": "com.avenor.realmalliance.mockuptest",
     "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
     "bytes": 131752541,
-    "sha256": "6b22b9074615ef2ae42cf2fa946c1996b90b5edf422e0ff325af82e9941b374d",
-    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-728-android/REALM_ALLIANCE_728.apk"
+    "sha256": "56c8caba2810506f53fae0fbd9da7dedfe11d5b693cbc8c88f1110490b5907ae",
+    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-729-android/REALM_ALLIANCE_729.apk"
   }
 }
