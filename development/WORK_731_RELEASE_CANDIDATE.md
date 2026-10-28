@@ -1,0 +1,2 @@
+# REALM ALLIANCE 731 — Verified content preview release candidate
+Based on the corrected 730 implementation from 4c2a431. The separate distribution/realm-730-test content channel still serves validated graphics and a catalog; 731 is compatible with it. The active 729 OTA channel remains unchanged. APK is an isolated prerelease requiring real-device installation testing. All player saves and purchased gear remain untouched by the content preview.
