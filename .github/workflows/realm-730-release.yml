@@ -1,0 +1,143 @@
+name: REALM 730 OTA Android Signed Release
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [feature/work-729-auto-device-test]
+  push:
+    branches: [feature/work-730-content-preview]
+    paths: ['.github/workflows/realm-730-release.yml','development/android_updater717/**','godot/realm_alliance/scripts/launcher/**','godot/realm_alliance/export_presets.cfg','godot/realm_alliance/tests/test_auto_loader730.gd']
+permissions:
+  contents: write
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Require original signing secret before building
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+        shell: bash
+        run: |
+          if [ -z "$REALM_ANDROID_KEYSTORE_BASE64" ]; then
+            echo "::error::One-time setup missing: add REALM_ANDROID_KEYSTORE_BASE64 in GitHub Actions secrets. No APK will be published."
+            exit 1
+          fi
+      - name: Verify original signing certificate before starting build
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+        run: |
+          python3 development/android_updater717/check_secret_identity.py
+      - name: Download verified Godot, Android Gradle project and SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o "$RUNNER_TEMP/godot.zip"
+          curl -fL --retry 3 https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz -o "$RUNNER_TEMP/templates.tpz"
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/godot.zip" | sha256sum -c -
+          echo "f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011  $RUNNER_TEMP/templates.tpz" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP"
+          chmod +x "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+          python3 - <<'PY'
+          import os,zipfile
+          from pathlib import Path
+          root=Path.home()/'.local/share/godot/export_templates/4.7.2.stable'
+          root.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(Path(os.environ['RUNNER_TEMP'])/'templates.tpz') as z:
+              for n in ('android_debug.apk','version.txt','android_source.zip'):
+                  (root/n).write_bytes(z.read('templates/'+n))
+          dest=Path('godot/realm_alliance/android/build')
+          dest.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(root/'android_source.zip') as z:
+              z.extractall(dest)
+          (dest/'.gdignore').touch()
+          (dest.parent/'.build_version').write_text('4.7.2.stable\n')
+          print('GRADLE_INSTALLED',str(dest),sorted(x.name for x in dest.iterdir())[:20])
+          PY
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Add native APK installer and enable Android Gradle export
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 development/android_updater717/inject_bridge.py godot/realm_alliance/android/build
+          chmod +x godot/realm_alliance/android/build/gradlew
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('godot/realm_alliance/export_presets.cfg')
+          s=p.read_text()
+          assert 'version/code=730' in s and 'package/unique_name="com.avenor.realmalliance.mockuptest"' in s
+          s=s.replace('gradle_build/use_gradle_build=false','gradle_build/use_gradle_build=true')
+          s=s.replace('package/signed=true','package/signed=false')
+          p.write_text(s)
+          PY
+          mkdir -p "$RUNNER_TEMP/realm730"
+      - name: Export unsigned Android 730 with Android native installer
+        shell: bash
+        run: |
+          set -euo pipefail
+          GODOT="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64"
+          "$GODOT" --headless --path godot/realm_alliance --import
+          timeout 90s "$GODOT" --headless --path godot/realm_alliance --script res://tests/test_auto_loader730.gd
+          timeout 90s "$GODOT" --headless --path godot/realm_alliance --script res://tests/test_content730.gd
+          "$GODOT" --headless --path godot/realm_alliance --export-debug "Android Debug" "$RUNNER_TEMP/realm730/REALM_ALLIANCE_730_native_unsigned.apk"
+          test -s "$RUNNER_TEMP/realm730/REALM_ALLIANCE_730_native_unsigned.apk"
+      - name: Inspect Android installer bridge and package
+        shell: bash
+        run: |
+          set -euo pipefail
+          A="$RUNNER_TEMP/realm730/REALM_ALLIANCE_730_native_unsigned.apk"
+          T="$ANDROID_HOME/build-tools/35.0.0"
+          "$T/aapt" dump badging "$A" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='730'"
+          "$T/aapt" dump xmltree "$A" AndroidManifest.xml | tee "$RUNNER_TEMP/manifest-dump.txt" | grep -F "realmupdater"
+          grep -F "org.godotengine.plugin.v2.RealmApkInstaller" "$RUNNER_TEMP/manifest-dump.txt"
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile,os
+          p=Path(os.environ['RUNNER_TEMP'])/'realm730/REALM_ALLIANCE_730_native_unsigned.apk'
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert any(x.startswith('lib/arm64-v8a/') and x.endswith('.so') for x in z.namelist())
+              # DEX string containing our Java class survives D8 compilation.
+              dex=b''.join(z.read(n) for n in z.namelist() if n.endswith('.dex'))
+              assert b'RealmApkInstaller' in dex, 'Native installer class missing from DEX'
+          print('REALM_730_NATIVE_DEX_PRESENT')
+          PY
+          "$T/zipalign" -f -P 16 4 "$A" "$RUNNER_TEMP/realm730/REALM_ALLIANCE_730_aligned_unsigned.apk"
+          rm "$A"
+          cp "$T/lib/apksigner.jar" "$RUNNER_TEMP/realm730/apksigner.jar"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_730_NATIVE_UNSIGNED_FOR_PRIVATE_SIGNING
+          path: ${{ runner.temp }}/realm730/
+          retention-days: 30
+      - name: Verify original private signer, sign 730, and publish only if trusted
+        shell: bash
+        env:
+          REALM_ANDROID_KEYSTORE_BASE64: ${{ secrets.REALM_ANDROID_KEYSTORE_BASE64 || secrets.ANDROID_KEYSTORE_BASE64 }}
+          REALM_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.REALM_ANDROID_KEYSTORE_PASSWORD || 'android' }}
+          REALM_ANDROID_KEY_ALIAS: ${{ secrets.REALM_ANDROID_KEY_ALIAS || 'androiddebugkey' }}
+        run: |
+          set -euo pipefail
+          python3 development/android_updater717/sign_release730.py "$RUNNER_TEMP/realm730"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$RUNNER_TEMP/realm730/REALM_ALLIANCE_730.apk" | grep -F "package: name='com.avenor.realmalliance.mockuptest' versionCode='730'"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: REALM_730_SIGNED_TEST_APK
+          path: |
+            ${{ runner.temp }}/realm730/REALM_ALLIANCE_730.apk
+            ${{ runner.temp }}/realm730/RELEASE_730.json
+          retention-days: 30
+      - name: Publish signed test on official GitHub Releases
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create realm-730-android "$RUNNER_TEMP/realm730/REALM_ALLIANCE_730.apk" "$RUNNER_TEMP/realm730/RELEASE_730.json" --target "$GITHUB_SHA" --title "REALM ALLIANCE 730 - Android Launcher OTA Test" --notes "Same original signing certificate as 717. Device installation test not yet performed." --prerelease
+      # Intentionally not promoting 730 onto current 729 OTA channel.
