@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "id": "realm_armor_catalog",
+  "revision": 1,
+  "items": [
+    {
+      "id": "astral_plate_preview",
+      "name": "Astrale Plattenrüstung",
+      "slot": "chest",
+      "art": "realm_armor_art",
+      "rarity": "epic",
+      "description": "Eine elegante, sternenverzierte Rüstung. Dies ist zunächst eine Vorschau – kein freigeschalteter Gegenstand."
+    }
+  ]
+}

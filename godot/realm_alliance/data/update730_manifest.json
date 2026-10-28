@@ -1,0 +1,26 @@
+{
+  "schema": 3,
+  "channel": "test",
+  "min_app_version_code": 730,
+  "latest_app_version_code": 730,
+  "content_revision": "730.1-staged-content-preview",
+  "packs": [
+    {
+      "id": "realm_stage_ornament",
+      "kind": "png_texture",
+      "revision": 1,
+      "bytes": 2164,
+      "sha256": "16f6be300b65e1da9f7734c2f2cec6b34725c971c4e26ea851b8b0bdde79d0fa",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/realm_stage_ornament-v1.png"
+    },
+    {
+      "id": "realm_content_catalog",
+      "kind": "json_catalog",
+      "revision": 1,
+      "bytes": 272,
+      "sha256": "c976e1a8dc657b9231f909c5e175809502e405c72facbeb49850d4256ca0bfd7",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/realm_content_catalog-v1.json"
+    }
+  ],
+  "release_notes": "730 isolated content test. Existing 729 channel unchanged."
+}
