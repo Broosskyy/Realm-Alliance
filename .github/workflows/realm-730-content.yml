@@ -1,0 +1,71 @@
+name: REALM 730 Isolated Content Manifest
+on:
+  push:
+    branches: [distribution/realm-730-test]
+    paths:
+      - '.github/workflows/realm-730-content.yml'
+      - 'godot/realm_alliance/data/updates730/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish-content:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate staged armor PNG and catalog, produce pinned manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, struct
+          from pathlib import Path
+          home=Path('godot/realm_alliance/data')
+          path=home/'update730_manifest.json'
+          manifest=json.loads(path.read_text())
+          assert manifest['schema']==3 and manifest['channel']=='test'
+          assert manifest['min_app_version_code']==730 and manifest['latest_app_version_code']==730
+          base='https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/'
+          art=home/'updates730/realm_armor_art-v1.png'
+          raw=art.read_bytes()
+          assert raw[:8]==b'\x89PNG\r\n\x1a\n' and len(raw)<=8388608
+          width,height=struct.unpack('>II',raw[16:24])
+          assert 32<=width<=2048 and 32<=height<=2048
+          cat=home/'updates730/realm_armor_catalog-v1.json'
+          document=cat.read_bytes()
+          data=json.loads(document)
+          assert data['schema']==1 and data['id']=='realm_armor_catalog' and data['revision']==1
+          assert 1<=len(data['items'])<=16
+          for item in data['items']:
+            assert item['slot']=='chest' and item['art']=='realm_armor_art'
+            assert item['rarity'] in ('common','rare','epic','legendary')
+            assert 3<=len(item['name'])<=80 and 4<=len(item['description'])<=240
+          def info(name,kind,ext,blob):
+            return {'id':name,'kind':kind,'revision':1,'bytes':len(blob),
+                    'sha256':hashlib.sha256(blob).hexdigest(),
+                    'url':base+name+'-v1.'+ext}
+          added=[
+            info('realm_armor_art','png_texture','png',raw),
+            info('realm_armor_catalog','json_armor','json',document)
+          ]
+          original=[p for p in manifest['packs'] if p['id'] not in ('realm_armor_art','realm_armor_catalog')]
+          assert len(original)==2 and set(x['id'] for x in original)=={'realm_stage_ornament','realm_content_catalog'}
+          manifest['packs']=original+added
+          manifest['content_revision']='730.2-armor-content-preview'
+          manifest['release_notes']='Signed code required once for 730; subsequent compatible PNG/JSON revisions do not need APK.'
+          rendered=json.dumps(manifest,ensure_ascii=False,indent=2)+'\n'
+          if path.read_text()!=rendered:
+            path.write_text(rendered)
+          print('REALM_730_CONTENT_VERIFIED',json.dumps(added))
+          PY
+      - name: Commit manifest after SHA-256 verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- godot/realm_alliance/data/update730_manifest.json; then
+            git add godot/realm_alliance/data/update730_manifest.json
+            git commit -m "content(730): activate verified armor art and catalog on isolated channel [skip ci]"
+            git push
+          fi
