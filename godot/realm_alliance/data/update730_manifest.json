@@ -3,7 +3,7 @@
   "channel": "test",
   "min_app_version_code": 730,
   "latest_app_version_code": 730,
-  "content_revision": "730.1-staged-content-preview",
+  "content_revision": "730.2-armor-content-preview",
   "packs": [
     {
       "id": "realm_stage_ornament",
@@ -20,7 +20,23 @@
       "bytes": 272,
       "sha256": "c976e1a8dc657b9231f909c5e175809502e405c72facbeb49850d4256ca0bfd7",
       "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/realm_content_catalog-v1.json"
+    },
+    {
+      "id": "realm_armor_art",
+      "kind": "png_texture",
+      "revision": 1,
+      "bytes": 109262,
+      "sha256": "d31afbdb2da447fb79f2945de6883080054ace6e76134b6dcd0c2e47d86fa4b6",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/realm_armor_art-v1.png"
+    },
+    {
+      "id": "realm_armor_catalog",
+      "kind": "json_armor",
+      "revision": 1,
+      "bytes": 388,
+      "sha256": "e53aee66f58f0e771d8ff1cf93cf62cd6bcf590203b7315229fa943b5075074a",
+      "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/realm_armor_catalog-v1.json"
     }
   ],
-  "release_notes": "730 isolated content test. Existing 729 channel unchanged."
+  "release_notes": "Signed code required once for 730; subsequent compatible PNG/JSON revisions do not need APK."
 }
