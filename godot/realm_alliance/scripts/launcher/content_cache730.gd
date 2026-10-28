@@ -1,5 +1,5 @@
 extends RefCounted
-class_name RAContentCache715
+class_name RAContentCache730
 const Gate=preload("res://scripts/launcher/update_gate730.gd")
 const DIR="user://realm_content730"
 static func _digest(body:PackedByteArray) -> String:

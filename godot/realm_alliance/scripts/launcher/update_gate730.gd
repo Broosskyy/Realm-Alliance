@@ -1,5 +1,5 @@
 extends RefCounted
-class_name RAUpdateGate715
+class_name RAUpdateGate730
 # Test channel: app code never executes network content.
 const BASE="https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-730-test/godot/realm_alliance/data/updates730/"
 const IDS={"realm_stage_ornament":"png_texture","realm_content_catalog":"json_catalog","realm_armor_art":"png_texture","realm_armor_catalog":"json_armor"}
