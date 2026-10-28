@@ -1,6 +1,8 @@
 name: REALM 730 OTA Android Signed Release
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [feature/work-729-auto-device-test]
   push:
     branches: [feature/work-730-content-preview]
     paths: ['.github/workflows/realm-730-release.yml','development/android_updater717/**','godot/realm_alliance/scripts/launcher/**','godot/realm_alliance/export_presets.cfg','godot/realm_alliance/tests/test_auto_loader730.gd']
