@@ -113,6 +113,18 @@ func _build_arena() -> void:
     stage = Node2D.new()
     stage.name = "FixedCombatStage"
     add_child(stage)
+    # Validated remote PNG is visible in the real production combat scene.
+    if _production_enabled:
+        var remote_art=preload("res://scripts/launcher/content_cache730.gd").texture("realm_stage_ornament")
+        if remote_art!=null:
+            var ornament=Sprite2D.new()
+            ornament.name="VerifiedRemoteWorldProp730"
+            ornament.texture=remote_art
+            ornament.position=Vector2(-285,-115)
+            ornament.scale=Vector2.ONE*clampf(95.0/maxf(1.0,remote_art.get_height()),0.06,0.55)
+            ornament.modulate=Color(0.80,0.97,1.0,0.56)
+            ornament.z_index=1
+            stage.add_child(ornament)
     if not _production_enabled:
         stage.add_child(StageArt.new())
     if USE_SHARED_ART_PREVIEW and not _production_enabled:

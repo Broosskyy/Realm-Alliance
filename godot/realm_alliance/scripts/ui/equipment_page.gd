@@ -24,6 +24,7 @@ func _build(restore_scroll:bool=false) -> void:
     var tabs=GridContainer.new();tabs.columns=5 if get_tree().root.get_visible_rect().size.x>=1100 else 3;tabs.add_theme_constant_override("h_separation",10);tabs.add_theme_constant_override("v_separation",10);list.add_child(tabs)
     for pair in [["weapon","Waffe"],["chest","Rüstung"],["head","Kopf"],["wings","Flügel"],["costume","Kostüm"]]:
         var b=_button(tabs,pair[1],true,func():category=pair[0];selected="";_build());b.name="EquipmentTab_"+pair[0];b.add_theme_stylebox_override("normal",Kit.box("primary" if category==pair[0] else "panel"))
+    if category in ["chest","costume"]:_show_remote_armor730(list)
     if category=="costume":
         _build_costumes(list)
         if visible:call_deferred("_prepare_body")
@@ -152,3 +153,31 @@ func _build_costumes(list:VBoxContainer) -> void:
         card.configure({"id":costume,"name":item.name,"kind":"costume","rarity":item.rarity,"level":1,"progress_label":"Angelegt" if active==costume else ("Freigeschaltet" if model.profile.wardrobe.owned.has(costume) else "Vorschau"),"active":active==costume,"icon":Wardrobe.icon(costume)})
         card.size_flags_horizontal=Control.SIZE_EXPAND_FILL;grid.add_child(card)
         card.pressed.connect(func():selected=costume;_build())
+
+func _show_remote_armor730(list:VBoxContainer) -> void:
+    # Art is a preview only. Ownership, equip and stats remain local.
+    var remote=preload("res://scripts/launcher/content_cache730.gd")
+    var catalog=remote.armor_catalog()
+    var art=remote.texture("realm_armor_art")
+    if catalog.is_empty() or art==null:return
+    var items=catalog.get("items",[])
+    if not items is Array or items.is_empty():return
+    var entry:Dictionary=items[0]
+    var panel=PanelContainer.new()
+    panel.name="RemoteArmorPreview730"
+    panel.add_theme_stylebox_override("panel",Kit.box("slot"))
+    list.add_child(panel)
+    var column=VBoxContainer.new()
+    column.add_theme_constant_override("separation",10)
+    panel.add_child(column)
+    _label(column,"Neue Rüstung · Live-Content",Color("#ffd16b"),24)
+    var image=TextureRect.new()
+    image.name="RemoteArmorArt730"
+    image.texture=art
+    image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+    image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+    image.custom_minimum_size=Vector2(160,180)
+    column.add_child(image)
+    _label(column,str(entry.get("name","Neue Rüstung")),Color("#e7c994"),22)
+    _label(column,str(entry.get("description","")),Color("#c8d7e9"),18)
+    _label(column,"Nur Vorschau: kein Kauf, keine Freischaltung und keine Änderung der Werte.",Color("#a9c1dc"),17)
