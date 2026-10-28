@@ -31,10 +31,10 @@ func run()->void:
             active_code+=line+"\n"
     verify(not active_code.contains(".keep_partial_download="),"obsolete Godot property assignment absent")
     verify(source.contains("call_deferred(\"_begin_apk\")"),"APK auto-download wired on manifest")
-    var spec={"version_code":730,"package":Gate.PACKAGE,"certificate_sha256":Gate.CERT_SHA256,
+    var spec={"version_code":731,"package":Gate.PACKAGE,"certificate_sha256":Gate.CERT_SHA256,
         "bytes":131748445,"sha256":"a".repeat(64),
-        "url":Gate.RELEASE_ROOT+"realm-730-android/REALM_ALLIANCE_730.apk"}
-    verify(Gate.check(JSON.parse_string(JSON.stringify(spec)),730,730),"JSON numeric types")
+        "url":Gate.RELEASE_ROOT+"realm-731-android/REALM_ALLIANCE_731.apk"}
+    verify(Gate.check(JSON.parse_string(JSON.stringify(spec)),730,731),"JSON numeric types")
     verify(Gate.download_timeout(131748445)==0.0,"large file timeout rule")
     verify(Gate.error_text(HTTPRequest.RESULT_TIMEOUT,0).length()>4,"error is readable")
     launcher.queue_free()

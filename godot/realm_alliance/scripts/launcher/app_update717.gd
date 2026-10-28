@@ -65,9 +65,9 @@ static func sha256_file(path:String,max_bytes:int=MAX_BYTES) -> String:
     fd.close()
     return ctx.finish().hex_encode() if consumed==size else ""
 
-static func ready(spec:Dictionary,path:String) -> bool:
+static func ready(spec:Dictionary,path:String,current:int=729) -> bool:
     var f=FileAccess.open(path,FileAccess.READ)
     if f==null:return false
     var n=f.get_length()
     f.close()
-    return check(spec,729,int(spec.get("version_code",0))) and n==int(spec.bytes) and sha256_file(path,int(spec.bytes))==spec.sha256
+    return check(spec,current,int(spec.get("version_code",0))) and n==int(spec.bytes) and sha256_file(path,int(spec.bytes))==spec.sha256

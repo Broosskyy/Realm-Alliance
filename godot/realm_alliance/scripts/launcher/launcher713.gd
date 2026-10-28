@@ -302,7 +302,7 @@ func _begin_apk() -> void:
         _display("Speicherproblem","Updateordner Fehler %d." % err_dir,false)
         return
     _apk_path=dir+"/update-"+str(int(_apk_spec.version_code))+".apk"
-    if ApkGate.ready(_apk_spec,_apk_path):
+    if ApkGate.ready(_apk_spec,_apk_path,VERSION_CODE):
         _display("Bereits geladen","Datei geprüft, Android-Installer öffnet …",false)
         call_deferred("_open_android_installer")
         return
@@ -331,7 +331,7 @@ func _finish_apk(result:int,code:int,_headers:PackedStringArray,_body:PackedByte
     _progress.value=100
     _display("Update wird geprüft …","Integrität und Signatur werden geprüft …",true)
     await get_tree().process_frame
-    if not ApkGate.ready(_apk_spec,_apk_path):
+    if not ApkGate.ready(_apk_spec,_apk_path,VERSION_CODE):
         DirAccess.remove_absolute(ProjectSettings.globalize_path(_apk_path))
         _phase="manifest"
         _display("Update abgelehnt","SHA-256 oder Dateigröße stimmen nicht.",false)
@@ -361,7 +361,7 @@ func _open_android_installer() -> void:
 func _notification(what:int) -> void:
     if what==NOTIFICATION_APPLICATION_FOCUS_IN and _resume_installer and not _busy:
         _resume_installer=false
-        if ApkGate.ready(_apk_spec,_apk_path):
+        if ApkGate.ready(_apk_spec,_apk_path,VERSION_CODE):
             call_deferred("_open_android_installer")
 
 func _show_art() -> void:
