@@ -83,7 +83,17 @@ public final class RealmApkInstaller extends GodotPlugin {
                 && url.equals(prefs.getString("url", ""));
             if (active > 0 && matching) {
                 try (Cursor cursor = dm.query(new DownloadManager.Query().setFilterById(active))) {
-                    if (cursor != null && cursor.moveToFirst()) return "active";
+                    if (cursor != null && cursor.moveToFirst()) {
+                        int state = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
+                        if (state == DownloadManager.STATUS_PENDING || state == DownloadManager.STATUS_RUNNING
+                            || state == DownloadManager.STATUS_PAUSED) return "active";
+                        if (state == DownloadManager.STATUS_SUCCESSFUL) {
+                            File file = destination(activity, version);
+                            if (file != null && file.isFile() && file.length() == length)
+                                return "active";
+                        }
+                        // Terminal failure, missing file, or bad size: allow an actual retry.
+                    }
                 }
             }
             // Replace only our own previously registered DownloadManager request.
