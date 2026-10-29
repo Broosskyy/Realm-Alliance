@@ -2,7 +2,7 @@
   "schema": 3,
   "channel": "test",
   "min_app_version_code": 715,
-  "latest_app_version_code": 734,
+  "latest_app_version_code": 735,
   "content_revision": "715.1-crystal-outpost",
   "packs": [
     {
@@ -22,13 +22,13 @@
       "url": "https://raw.githubusercontent.com/Broosskyy/Realm-Alliance/distribution/realm-715-test/godot/realm_alliance/data/updates715/realm_content_catalog-v1.json"
     }
   ],
-  "release_notes": "REALM ALLIANCE 734: gameplay armor pose-fit across characters; fitted forearms; larger mobile gear comparison. Android native background downloader remains enabled.",
+  "release_notes": "REALM ALLIANCE 735: larger responsive monsters, clear boss and elite silhouettes, ground-shadows and timed attack warning circles; Android background download retained.",
   "app_update": {
-    "version_code": 734,
+    "version_code": 735,
     "package": "com.avenor.realmalliance.mockuptest",
     "certificate_sha256": "317eb8e2e5bf1c8a5bd8b0433a7536bcc903da97d5ba437c20e9474cdd4af219",
-    "bytes": 131765274,
-    "sha256": "33658befa7d4eb577646881b33c9560e3a907446325c26ca0a9f59af25ef0270",
-    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-734-android/REALM_ALLIANCE_734.apk"
+    "bytes": 131765463,
+    "sha256": "8871ce8043dd2e39e81464ea81fec1bfe44f12587e602ac7a19dadb5eac055b3",
+    "url": "https://github.com/Broosskyy/Realm-Alliance/releases/download/realm-735-android/REALM_ALLIANCE_735.apk"
   }
 }
