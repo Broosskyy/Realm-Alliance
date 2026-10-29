@@ -156,12 +156,26 @@ func _process(delta: float) -> void:
     scale = _display_scale * (1.0 + sin(_clock * (2.55 if _kind=="boss" else 2.0)) * (0.013 if _kind=="boss" else (0.025 if _visual=="slime" else 0.009)))
 
 func _draw() -> void:
-    if not show_local_health:
-        return
+    # A calibrated ground shadow is painted behind the sprite, not over HUD.
+    var bounds:Rect2=STANDING.get(_visual,STANDING.golem)
+    var center=Vector2(bounds.get_center().x-_ground.x,-13.0)
+    var radius=clampf(bounds.size.x*0.41,92.0,255.0)
+    var shadow=PackedVector2Array()
+    for i in 33:
+        var a=TAU*float(i)/32.0
+        shadow.append(center+Vector2(cos(a)*radius,sin(a)*24.0))
+    draw_colored_polygon(shadow,Color(0.015,0.055,0.11,0.32 if _kind=="boss" else 0.23))
+    if _warning_remaining>0 and _warning_duration>0:
+        var progress=clampf(1.0-_warning_remaining/_warning_duration,0.0,1.0)
+        var severe=_warning_pattern in ["heavy","eruption","aftershock"]
+        var warning=Color("#ff6756") if severe else Color("#ffbd61")
+        draw_arc(center,radius*0.92,0,TAU,64,Color(warning.r,warning.g,warning.b,0.24),3.0,true)
+        draw_arc(center,radius*0.92,-PI*0.5,-PI*0.5+TAU*maxf(0.015,progress),64,warning,10.0,true)
+    if not show_local_health:return
     var y: float = -666.0
     var width: float = 224.0
     var x: float = -width * 0.5
-    var boss: bool = wave % 5 == 0
+    var boss: bool = _kind=="boss"
     draw_rect(Rect2(x - 5.0, y - 5.0, width + 10.0, 21.0), Color("#081624", 0.92))
     draw_rect(Rect2(x, y, width, 10.0), Color("#344850"))
     draw_rect(Rect2(x, y, width * health_ratio, 10.0), Color("#f3876b") if boss else Color("#72dbb2"))
