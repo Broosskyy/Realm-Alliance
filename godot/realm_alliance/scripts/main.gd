@@ -12,6 +12,7 @@ const HeroRig = preload("res://scripts/hero_rig.gd")
 const EnemyVisual = preload("res://scripts/enemy_visual.gd")
 const StageArt = preload("res://scripts/stage_art.gd")
 const CombatLayout = preload("res://scripts/combat_layout.gd")
+const EnemyStage735=preload("res://scripts/presentation/enemy_stage735.gd")
 const CombatHUD = preload("res://scripts/combat_hud.gd")
 const VFXController=preload("res://scripts/presentation/combat_vfx_controller.gd")
 const CameraFeedback=preload("res://scripts/presentation/camera_feedback.gd")
@@ -257,11 +258,10 @@ func _layout() -> void:
         var tall=clampf((float(metrics.logical_height)-1280.0)/280.0,0,1)
         hero.scale=Vector2.ONE*lerpf(.66,.71,tall)
         _fit_equipped_wings()
-        var boss=model.enemy_definition.kind=="boss"
+        var kind=str(model.enemy_definition.kind)
         var available=(_stage_home.y-safe_top)/float(metrics.ui_scale)-300.0
-        var height=clampf(available,420,660) if boss else (350.0 if model.enemy_definition.kind=="elite" else 245.0)
-        if model.enemy_definition.visual=="slime":height=190.0
-        enemy.fit_height(height,230.0 if boss else 205.0)
+        var height=EnemyStage735.target_height(kind,str(model.enemy_definition.visual),available)
+        enemy.fit_height(height,230.0 if kind=="boss" else 205.0)
 
 func _on_hud_action(id: String) -> void:
     if is_instance_valid(creation_dialog) and creation_dialog.visible:return
