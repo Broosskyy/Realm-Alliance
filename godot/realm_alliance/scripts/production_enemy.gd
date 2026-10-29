@@ -24,6 +24,9 @@ var _motion: Vector2 = Vector2.ZERO
 var _reaction: Tween
 var _attacking: bool = false
 var _dying: bool = false
+var _warning_duration:float=0.0
+var _warning_remaining:float=0.0
+var _warning_pattern:String=""
 
 func _ready() -> void:
     texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -78,6 +81,10 @@ func play_telegraph(duration: float=0.85, pattern: String="single") -> void:
     if _animation and _animation.is_running():_animation.kill()
     _attacking=true
     _sprite.modulate=Color("#ff9487") if pattern in ["heavy","eruption","aftershock"] else Color("#ffce94")
+    _warning_duration=maxf(duration,0.01)
+    _warning_remaining=_warning_duration
+    _warning_pattern=pattern
+    queue_redraw()
     _animation=create_tween()
     _animation.tween_property(self,"_motion",Vector2(12,0),duration*0.65).set_trans(Tween.TRANS_SINE)
     _animation.tween_callback(func():_set_pose("windup" if _frames.has("windup") and _visual=="golem" else "attack"))
@@ -85,6 +92,8 @@ func play_telegraph(duration: float=0.85, pattern: String="single") -> void:
 
 func play_attack() -> void:
     if _dying:return
+    _warning_remaining=0.0
+    queue_redraw()
     if _animation and _animation.is_running():_animation.kill()
     _attacking=true
     _set_pose("attack")
@@ -102,12 +111,12 @@ func fit_height(height:float,center_x:float) -> void:
     # Bounds are measured offline from the standing sprite, never GPU readbacks.
     var rect:Rect2=STANDING.get(_visual,STANDING.golem)
     var factor=height/rect.size.y
-    set_layout_scale(factor/(1.09 if _kind=="boss" or wave%5==0 else 1.0))
+    set_layout_scale(factor/(1.09 if _kind=="boss" else 1.0))
     set_stage_position(Vector2(center_x-(rect.get_center().x-_ground.x)*factor,0))
 
 func set_layout_scale(value: float) -> void:
     _base_scale = Vector2.ONE * value
-    _display_scale = _base_scale * (1.09 if _kind == "boss" or wave % 5 == 0 else 1.0)
+    _display_scale = _base_scale * (1.09 if _kind == "boss" else 1.0)
     if not _dying:
         scale = _display_scale
 
@@ -117,11 +126,13 @@ func show_wave(number: int) -> void:
     wave = number
     _dying = false
     _attacking=false
+    _warning_remaining=0.0
+    _warning_duration=0.0
     _motion=Vector2.ZERO
     _recoil=Vector2.ZERO
     if _reaction and _reaction.is_running():_reaction.kill()
     health_ratio = 1.0
-    _display_scale = _base_scale * (1.09 if _kind == "boss" or wave % 5 == 0 else 1.0)
+    _display_scale = _base_scale * (1.09 if _kind == "boss" else 1.0)
     scale = _display_scale
     position = _base_pos
     modulate = Color.WHITE
@@ -134,12 +145,15 @@ func set_health(current_hp: int, maximum_hp: int) -> void:
     queue_redraw()
 
 func _process(delta: float) -> void:
+    if _warning_remaining>0:
+        _warning_remaining=maxf(0.0,_warning_remaining-delta)
+        queue_redraw()
     if _sprite:_sprite.position=-_ground+_motion+_recoil
     if _dying or (_animation != null and _animation.is_running()):
         return
     _clock += delta
     if _visual=="golem" and _frames.has("breathe") and not _attacking and (_reaction==null or not _reaction.is_running()):_set_pose("breathe" if int(_clock*.8)%2==1 else "idle")
-    scale = _display_scale * (1.0 + sin(_clock * 2.0) * 0.008)
+    scale = _display_scale * (1.0 + sin(_clock * (2.55 if _kind=="boss" else 2.0)) * (0.013 if _kind=="boss" else (0.025 if _visual=="slime" else 0.009)))
 
 func _draw() -> void:
     if not show_local_health:
@@ -173,6 +187,8 @@ func play_death() -> void:
         _animation.kill()
     _dying = true
     _attacking=false
+    _warning_remaining=0.0
+    queue_redraw()
     if _reaction and _reaction.is_running():_reaction.kill()
     _set_pose("defeated")
     _sprite.modulate = Color.WHITE
@@ -184,6 +200,7 @@ func play_death() -> void:
 
 func interrupt_telegraph() -> void:
     if _animation and _animation.is_running():_animation.kill()
-    _attacking=false;_motion=Vector2.ZERO
+    _attacking=false;_motion=Vector2.ZERO;_warning_remaining=0.0
+    queue_redraw()
     if _sprite:_sprite.modulate=Color.WHITE
     if not _dying:_set_pose("hit")
