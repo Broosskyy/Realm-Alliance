@@ -7,7 +7,7 @@ const ArtCache=preload("res://scripts/launcher/content_cache714.gd")
 const NewGate=preload("res://scripts/launcher/update_gate730.gd")
 const NewCache=preload("res://scripts/launcher/content_cache730.gd")
 const ApkGate=preload("res://scripts/launcher/app_update717.gd")
-const VERSION_CODE=731
+const VERSION_CODE=732
 const SETTINGS="res://data/update730_config.json"
 var auto_check=true
 var _busy=false
@@ -16,6 +16,7 @@ var _request:HTTPRequest
 var _apk_request:HTTPRequest
 var _last_percent=-1
 var _resume_installer=false
+var _native_poll_elapsed=0.0
 var _play_button:Button
 var _account_button:Button
 var _offline_button:Button
@@ -105,7 +106,7 @@ func _build() -> void:
     stack.add_child(HSeparator.new())
     _status=_label(stack,"Vorbereitung …",24,Color("#f5ebd2"))
     _status.name="LaunchStatus"
-    _detail=_label(stack,"Version 731 · Content-Preview-Test",19,Color("#c5d5e9"))
+    _detail=_label(stack,"Version 732 · Background-Download-Test",19,Color("#c5d5e9"))
     _detail.name="LaunchDetail"
     _progress=ProgressBar.new()
     _progress.name="LaunchProgress"
@@ -143,7 +144,7 @@ func _build() -> void:
     _apk_request.body_size_limit=ApkGate.MAX_BYTES
     add_child(_apk_request)
     _apk_request.request_completed.connect(_finish_apk)
-    _display("Bereit","Version 731 · Content-Preview-Test",false)
+    _display("Bereit","Version 732 · Background-Download-Test",false)
 
 func _label(parent:Node,value:String,sz:int,color:Color) -> Label:
     var label=Label.new()
@@ -210,6 +211,12 @@ func _check() -> void:
         _display("Offline bereit","Verbindung konnte nicht gestartet werden.",false)
 
 func _process(_delta:float) -> void:
+    if _phase=="android_background" and _busy:
+        _native_poll_elapsed+=_delta
+        if _native_poll_elapsed>=0.4:
+            _native_poll_elapsed=0.0
+            _poll_native_apk()
+        return
     var expected=0
     if _phase=="pack" and not _pack.is_empty():expected=int(_pack.bytes)
     elif _phase=="apk" and not _apk_spec.is_empty():expected=int(_apk_spec.bytes)
@@ -289,36 +296,82 @@ func _finish_pack(result:int,code:int,body:PackedByteArray) -> void:
 
 func _begin_apk() -> void:
     if _launching or _busy or _apk_spec.is_empty():return
-    _status.text="Update wird vorbereitet …"
     if not OS.has_feature("android") or not Engine.has_singleton("RealmApkInstaller"):
-        _display("Installer nicht verfügbar","Native Android-Brücke fehlt. Bitte Fehler melden.",false)
+        _display("Installer nicht verfügbar","Native Android-Brücke fehlt.",false)
         return
     if not ApkGate.check(_apk_spec,VERSION_CODE,int(_apk_spec.version_code)):
-        _display("Update ungültig","Versions- oder Signaturinformationen abgelehnt.",false)
+        _display("Update ungültig","Manifest oder Signaturdaten abgelehnt.",false)
         return
-    var dir="user://realm_apk_updater"
-    var err_dir=DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(dir))
-    if err_dir!=OK:
-        _display("Speicherproblem","Updateordner Fehler %d." % err_dir,false)
+    var bridge=Engine.get_singleton("RealmApkInstaller")
+    if not bridge.has_method("enqueueBackgroundApk") or not bridge.has_method("queryBackgroundApk"):
+        _display("Updater benötigt Aktualisierung","Android-Hintergrunddienst fehlt. Bitte Fehler melden.",false)
         return
-    _apk_path=dir+"/update-"+str(int(_apk_spec.version_code))+".apk"
-    if ApkGate.ready(_apk_spec,_apk_path,VERSION_CODE):
-        _display("Bereits geladen","Datei geprüft, Android-Installer öffnet …",false)
-        call_deferred("_open_android_installer")
+    var response=str(bridge.enqueueBackgroundApk(str(_apk_spec.url),int(_apk_spec.version_code),str(_apk_spec.sha256),int(_apk_spec.bytes)))
+    if response not in ["active","queued"]:
+        _display("Downloadstart fehlgeschlagen","Android: "+response+" · Offline-Spiel möglich.",false)
+        _apk_button.visible=true
         return
-    if FileAccess.file_exists(_apk_path):
-        DirAccess.remove_absolute(ProjectSettings.globalize_path(_apk_path))
-    _phase="apk"
-    _last_percent=-1
+    _phase="android_background"
+    _native_poll_elapsed=0.0
     _progress.indeterminate=false
     _progress.value=0
-    _apk_request.download_file=ProjectSettings.globalize_path(_apk_path)
-    _display("Spiel wird aktualisiert …","Verbinde zum Downloadserver …",true)
-    var status=_apk_request.request(str(_apk_spec.url),PackedStringArray(["Accept: application/octet-stream"]))
-    if status!=OK:
-        _apk_request.download_file=""
+    _display("Update wird heruntergeladen …","Android lädt weiter, auch wenn du die App wechselst.",true)
+    call_deferred("_poll_native_apk")
+
+func _poll_native_apk() -> void:
+    if _phase!="android_background" or not _busy or _launching:return
+    var bridge=Engine.get_singleton("RealmApkInstaller") if Engine.has_singleton("RealmApkInstaller") else null
+    if bridge==null or not bridge.has_method("queryBackgroundApk"):
         _phase="manifest"
-        _display("Downloadstart fehlgeschlagen","Godot-Fehlercode %d. Offline spielen möglich." % status,false)
+        _display("Downloadstatus fehlt","Android-Downloadstatus nicht verfügbar.",false)
+        _apk_button.visible=true
+        return
+    var state=JSON.parse_string(str(bridge.queryBackgroundApk()))
+    if not state is Dictionary or int(state.get("version",-1))!=int(_apk_spec.version_code):
+        _phase="manifest"
+        _display("Downloadstatus ungültig","Bitte Download erneut starten.",false)
+        _apk_button.visible=true
+        return
+    var status=str(state.get("status","unknown"))
+    if status in ["running","pending","paused"]:
+        var total=int(_apk_spec.bytes)
+        var received=int(state.get("received",0))
+        if received<0 or received>total:
+            _phase="manifest"
+            _display("Download abgelehnt","Gemeldete Dateigröße ungültig.",false)
+            _apk_button.visible=true
+            return
+        _progress.value=clampi(int(100.0*float(received)/float(total)),0,99)
+        _detail.text="%d%% · %.1f / %.1f MiB · Android-Hintergrunddownload" % [int(_progress.value),float(received)/1048576.0,float(total)/1048576.0]
+        if status=="paused":_status.text="Download wartet auf Netzwerk …"
+        elif status=="pending":_status.text="Download wird vorbereitet …"
+        else:_status.text="Spiel wird aktualisiert …"
+        return
+    if status=="complete":
+        _apk_path=str(state.get("path",""))
+        _phase="android_verification"
+        _display("Download abgeschlossen","Datei und Signatur werden geprüft …",true)
+        call_deferred("_verify_native_apk")
+        return
+    _phase="manifest"
+    _display("Download unterbrochen","Android-Status: "+status+" · erneuter Versuch möglich.",false)
+    _apk_button.visible=true
+
+func _verify_native_apk() -> void:
+    if _phase!="android_verification" or _launching:return
+    # Android reports completion; user-space hash and native certificate checks
+    # are still mandatory before opening the Android system installer.
+    if not ApkGate.ready(_apk_spec,_apk_path,VERSION_CODE):
+        if Engine.has_singleton("RealmApkInstaller"):
+            var bridge=Engine.get_singleton("RealmApkInstaller")
+            if bridge.has_method("discardBackgroundApk"):bridge.discardBackgroundApk()
+        _phase="manifest"
+        _display("Update abgelehnt","Dateigröße oder SHA-256 stimmt nicht.",false)
+        _apk_button.visible=true
+        return
+    _phase="manifest"
+    _display("Installation bereit","Bitte Android-Systemdialog bestätigen. Nicht deinstallieren.",false)
+    call_deferred("_open_android_installer")
 
 func _finish_apk(result:int,code:int,_headers:PackedStringArray,_body:PackedByteArray) -> void:
     if _phase!="apk":return
@@ -359,6 +412,8 @@ func _open_android_installer() -> void:
             _display("Android-Installer nicht gestartet","Fehlercode: "+response+". Bitte Screenshot senden.",false)
 
 func _notification(what:int) -> void:
+    if what==NOTIFICATION_APPLICATION_FOCUS_IN and _phase=="android_background" and _busy:
+        call_deferred("_poll_native_apk")
     if what==NOTIFICATION_APPLICATION_FOCUS_IN and _resume_installer and not _busy:
         _resume_installer=false
         if ApkGate.ready(_apk_spec,_apk_path,VERSION_CODE):
@@ -387,7 +442,8 @@ func _start_game(open_account:bool) -> void:
     _want_account=open_account
     if _busy:
         if _phase=="apk":_apk_request.cancel_request()
-        else:_request.cancel_request()
+        elif _phase!="android_background":_request.cancel_request()
+        # Android DownloadManager continues its transfer during offline gameplay.
     _display("Abenteuer wird gestartet …","Dein bestehender Spielstand wird im Spiel geladen.",false)
     call_deferred("_finish_start")
 

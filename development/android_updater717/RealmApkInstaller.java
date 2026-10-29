@@ -1,6 +1,11 @@
 package com.avenor.realmupdater;
 
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import org.json.JSONObject;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -28,6 +33,156 @@ public final class RealmApkInstaller extends GodotPlugin {
     @Override
     public String getPluginName() {
         return "RealmApkInstaller";
+    }
+
+    // DownloadManager is owned by Android, not Godot's foreground process.
+    // It continues transfers when the user switches apps; a new process can
+    // reconnect to the system request id from app-private preferences.
+    private static final String DOWNLOAD_PREFS = "realm_background_apk_v1";
+    private static final String RELEASE_ROOT =
+        "https://github.com/Broosskyy/Realm-Alliance/releases/download/";
+    private static final String UPDATE_DIRECTORY = "realm_apk_updater";
+
+    private static boolean trustedDownload(String url, int version, String digest, int length) {
+        if (version < 1 || version > 1000000 || length < 1000000 || length > 350000000) return false;
+        if (digest == null || !digest.matches("^[0-9a-f]{64}$")) return false;
+        final String code = Integer.toString(version);
+        return (RELEASE_ROOT + "realm-" + code + "-android/REALM_ALLIANCE_" + code + ".apk").equals(url);
+    }
+
+    private static SharedPreferences preferences(Activity activity) {
+        return activity.getSharedPreferences(DOWNLOAD_PREFS, Context.MODE_PRIVATE);
+    }
+
+    private static DownloadManager downloads(Activity activity) {
+        return (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
+    }
+
+    private static File destination(Activity activity, int version) {
+        File base = activity.getExternalFilesDir(null);
+        if (base == null) return null;
+        return new File(new File(base, UPDATE_DIRECTORY), "update-" + version + ".apk");
+    }
+
+    // Returns a small machine-readable result. Never pass arbitrary file paths
+    // or domains from remote manifests into the native download system.
+    @UsedByGodot
+    public String enqueueBackgroundApk(String url, int version, String digest, int length) {
+        final Activity activity = getActivity();
+        if (activity == null) return "activity_missing";
+        if (!GAME_ID.equals(activity.getPackageName())
+            || !trustedDownload(url, version, digest, length)) return "untrusted_manifest";
+        try {
+            DownloadManager dm = downloads(activity);
+            if (dm == null) return "download_service_missing";
+            SharedPreferences prefs = preferences(activity);
+            long active = prefs.getLong("request", -1L);
+            boolean matching = version == prefs.getInt("version", -1)
+                && length == prefs.getInt("length", -1)
+                && digest.equals(prefs.getString("digest", ""))
+                && url.equals(prefs.getString("url", ""));
+            if (active > 0 && matching) {
+                try (Cursor cursor = dm.query(new DownloadManager.Query().setFilterById(active))) {
+                    if (cursor != null && cursor.moveToFirst()) return "active";
+                }
+            }
+            // Replace only our own previously registered DownloadManager request.
+            if (active > 0) dm.remove(active);
+            File file = destination(activity, version);
+            if (file == null || (!file.getParentFile().exists() && !file.getParentFile().mkdirs()))
+                return "storage_unavailable";
+            if (file.exists() && !file.delete()) return "old_file_locked";
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            request.setTitle("REALM ALLIANCE – Update " + version);
+            request.setDescription("Download läuft auch beim App-Wechsel weiter");
+            request.setMimeType("application/vnd.android.package-archive");
+            request.setAllowedOverMetered(true);
+            request.setAllowedOverRoaming(false);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalFilesDir(activity, null, UPDATE_DIRECTORY + "/update-" + version + ".apk");
+            long id = dm.enqueue(request);
+            if (id <= 0) return "enqueue_failed";
+            prefs.edit().putLong("request", id).putInt("version", version)
+                .putInt("length", length).putString("digest", digest)
+                .putString("url", url).apply();
+            return "queued";
+        } catch (Exception ex) {
+            return "enqueue_failed";
+        }
+    }
+
+    @UsedByGodot
+    public String queryBackgroundApk() {
+        final Activity activity = getActivity();
+        if (activity == null) return "{\\"status\\":\\"activity_missing\\"}";
+        JSONObject state = new JSONObject();
+        try {
+            SharedPreferences prefs = preferences(activity);
+            final long id = prefs.getLong("request", -1L);
+            final int version = prefs.getInt("version", -1);
+            final int expected = prefs.getInt("length", -1);
+            state.put("version", version);
+            state.put("total", expected);
+            if (id <= 0) {
+                state.put("status", "missing");
+                return state.toString();
+            }
+            DownloadManager dm = downloads(activity);
+            if (dm == null) {
+                state.put("status", "service_unavailable");
+                return state.toString();
+            }
+            try (Cursor cursor = dm.query(new DownloadManager.Query().setFilterById(id))) {
+                if (cursor == null || !cursor.moveToFirst()) {
+                    state.put("status", "missing");
+                    return state.toString();
+                }
+                int status = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
+                long received = cursor.getLong(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                state.put("received", received);
+                if (status == DownloadManager.STATUS_PENDING) state.put("status", "pending");
+                else if (status == DownloadManager.STATUS_RUNNING) state.put("status", "running");
+                else if (status == DownloadManager.STATUS_PAUSED) state.put("status", "paused");
+                else if (status == DownloadManager.STATUS_FAILED) {
+                    state.put("status", "failed");
+                    state.put("reason", cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON)));
+                } else if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                    File file = destination(activity, version);
+                    if (file == null || !file.isFile() || file.length() != expected) {
+                        state.put("status", "size_mismatch");
+                    } else {
+                        state.put("status", "complete");
+                        state.put("path", file.getCanonicalPath());
+                    }
+                } else state.put("status", "unknown");
+            }
+            return state.toString();
+        } catch (Exception ex) {
+            return "{\\"status\\":\\"query_failed\\"}";
+        }
+    }
+
+    @UsedByGodot
+    public String discardBackgroundApk() {
+        final Activity activity = getActivity();
+        if (activity == null) return "activity_missing";
+        try {
+            SharedPreferences prefs = preferences(activity);
+            long id = prefs.getLong("request", -1L);
+            int version = prefs.getInt("version", -1);
+            if (id > 0) {
+                DownloadManager dm = downloads(activity);
+                if (dm != null) dm.remove(id);
+            }
+            if (version > 0) {
+                File file = destination(activity, version);
+                if (file != null && file.isFile()) file.delete();
+            }
+            prefs.edit().clear().apply();
+            return "cleared";
+        } catch (Exception ex) {
+            return "clear_failed";
+        }
     }
 
     @UsedByGodot
