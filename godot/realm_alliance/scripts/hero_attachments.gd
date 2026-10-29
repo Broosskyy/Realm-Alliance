@@ -26,6 +26,7 @@ const TORSO={
 var armor_details
 var plate: Polygon2D
 var foreground_arm: Sprite2D
+var fitted_forearm:Polygon2D
 var active_id: String=""
 var head: Sprite2D
 var wing_evolution
@@ -43,6 +44,14 @@ func attach(hero) -> void:
     foreground_arm=Sprite2D.new();foreground_arm.name="ForegroundArmOccluder"
     foreground_arm.region_enabled=true;foreground_arm.centered=false;foreground_arm.z_index=2
     foreground_arm.material=hero._palette;hero._art.add_child(foreground_arm)
+    # Polygon follows each authored forearm outline, instead of a mismatched
+    # rectangle cut from the canonical Realmwächter pose.
+    fitted_forearm=Polygon2D.new()
+    fitted_forearm.name="FittedArmorForearm734"
+    fitted_forearm.z_index=2
+    fitted_forearm.material=hero._palette
+    fitted_forearm.visible=false
+    hero._art.add_child(fitted_forearm)
     head_mount=Node2D.new();head_mount.name="DiademPivot";head_mount.position=Vector2(44,-8);head_mount.z_index=3
     hero.layer_sockets.head.add_child(head_mount)
     head=Sprite2D.new();head.name="ReplaceableDiadem";head.centered=false
@@ -79,23 +88,26 @@ func sync_pose(hero,pose: String) -> void:
     var d:Dictionary=POSES.get(pose,POSES.hit)
     if hero.hero_id=="kaela":d={"angle":0.0,"arm":hero.Alternate.ARMS.get(pose,hero.Alternate.ARMS.hit)}
     if hero.hero_id=="schattenjager":d={"angle":0.0,"arm":hero.ShadowHunter.ARMS.get(pose,hero.ShadowHunter.ARMS.hit)}
+    # All supported heroes (including Paladin and Shadow Hunter) use their own
+    # pose-specific torso anchors. The old fallback borrowed a Realmwächter
+    # rectangle and made armor float outside the shoulders during attacks.
+    var frames:Dictionary=fits.get(hero.hero_id,fits.realmwachter)
+    var fit:Dictionary=frames.get(pose,frames.idle)
     var corners=PackedVector2Array()
-    var reference=hero.VISUAL_SOCKETS.get(pose,hero.VISUAL_SOCKETS.hit).chest
-    for corner in TORSO.get(pose,TORSO.hit):
-        corners.append(corner-reference if hero.hero_id=="realmwachter" else (corner-reference)*.82+Vector2(0,-6))
-    if hero.is_basic():
-        corners=PackedVector2Array()
-        var f:Dictionary=fits[hero.hero_id].get(pose,fits[hero.hero_id].idle)
-        for point in f.torso:corners.append(Vector2(point[0],point[1])-hero.PIVOT-hero.layer_sockets.chest.position)
-        var h=hero.hand(pose);d={"angle":0.0,"arm":Rect2(h-Vector2(27,23),Vector2(54,46))}
+    if fit.has("torso"):
+        for p in fit.torso:
+            corners.append(Vector2(p[0],p[1])-hero.PIVOT-hero.layer_sockets.chest.position)
+    else:
+        var reference=hero.VISUAL_SOCKETS.get(pose,hero.VISUAL_SOCKETS.hit).chest
+        for corner in TORSO.get(pose,TORSO.hit):
+            corners.append(corner-reference)
     plate.polygon=corners
     if plate.texture:
         var extent=plate.texture.get_size()
         plate.uv=PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
     armor_details.configure(corners,active_id,armor_level,plate.texture)
     armor_details.visible=plate.visible
-    var frames:Dictionary=fits.get(hero.hero_id,fits.realmwachter)
-    var band:Array=frames.get(pose,frames.idle).head
+    var band:Array=fit.head
     var center=Vector2(band[0],band[1])
     if hero.hero_id=="realmwachter" and not hero._modular_body and hero._outfit in ["astral_plate","eclipse_plate"]:
         center=hero.sockets(pose).head+Vector2(0,-14)
@@ -106,7 +118,20 @@ func sync_pose(hero,pose: String) -> void:
     plate.rotation_degrees=0
     head_mount.rotation_degrees=float(band[3])
     wing_mount.rotation_degrees=float(d.angle)*.5
-    foreground_arm.visible=plate.visible and not (hero.wardrobe_visual!=null and hero.wardrobe_visual.visible)
+    var show_arm=plate.visible and not (hero.wardrobe_visual!=null and hero.wardrobe_visual.visible)
+    var forearm:Array=fit.get("forearm",[])
+    fitted_forearm.visible=show_arm and forearm.size()>=3
+    if fitted_forearm.visible:
+        fitted_forearm.texture=hero._body.texture
+        var shape=PackedVector2Array()
+        var uv=PackedVector2Array()
+        for point in forearm:
+            var p=Vector2(point[0],point[1])
+            shape.append(p-hero.PIVOT)
+            uv.append(p)
+        fitted_forearm.polygon=shape
+        fitted_forearm.uv=uv
+    foreground_arm.visible=show_arm and not fitted_forearm.visible
     foreground_arm.texture=hero._body.texture
     foreground_arm.region_rect=d.arm
     foreground_arm.position=d.arm.position-hero.PIVOT

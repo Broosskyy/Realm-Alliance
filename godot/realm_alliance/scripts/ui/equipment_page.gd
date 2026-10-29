@@ -23,7 +23,11 @@ func _build(restore_scroll:bool=false) -> void:
     var list=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",18);scroll.add_child(list)
     var tabs=GridContainer.new();tabs.columns=5 if get_tree().root.get_visible_rect().size.x>=1100 else 3;tabs.add_theme_constant_override("h_separation",10);tabs.add_theme_constant_override("v_separation",10);list.add_child(tabs)
     for pair in [["weapon","Waffe"],["chest","Rüstung"],["head","Kopf"],["wings","Flügel"],["costume","Kostüm"]]:
-        var b=_button(tabs,pair[1],true,func():category=pair[0];selected="";_build());b.name="EquipmentTab_"+pair[0];b.add_theme_stylebox_override("normal",Kit.box("primary" if category==pair[0] else "panel"))
+        var b=_button(tabs,pair[1],true,func():category=pair[0];selected="";_build())
+        b.name="EquipmentTab_"+pair[0]
+        b.toggle_mode=true
+        b.button_pressed=category==pair[0]
+        b.add_theme_stylebox_override("normal",Kit.box("primary" if category==pair[0] else "panel"))
     if category in ["chest","costume"]:_show_remote_armor730(list)
     if category=="costume":
         _build_costumes(list)
@@ -38,9 +42,18 @@ func _build(restore_scroll:bool=false) -> void:
             if d.slot!=category:continue
             items.append({"id":id,"kind":"gear","name":d.name,"rarity":d.rarity,"level":model.profile.hero_equipment.owned.get(id,{}).get("level",1),"progress_label":model.HeroEquipment.display_level(model.profile,id),"active":model.profile.hero_equipment.equipped.get(category,"")==id,"icon":"res://assets/equipment/"+id+".png"})
     if selected=="" and not items.is_empty():
+        # Show what is actually equipped first. If nothing is equipped, prefer
+        # an owned item over a locked shop item; no inventory state is changed.
         selected=items[0].id
         for item in items:
-            if item.active:selected=item.id
+            if item.active:
+                selected=item.id
+                break
+        if not items.any(func(item):return item.active):
+            for item in items:
+                if category=="weapon" or model.profile.hero_equipment.owned.has(item.id):
+                    selected=item.id
+                    break
     for item in items:
         if item.id!=selected:continue
         var panel=PanelContainer.new();panel.add_theme_stylebox_override("panel",Kit.box("slot"));list.add_child(panel)
@@ -111,11 +124,19 @@ func _change(ok:bool,message:String) -> void:
 func _preview_hero(parent:Control,caption:String,profile:Dictionary) -> void:
     var col=VBoxContainer.new();col.size_flags_horizontal=Control.SIZE_EXPAND_FILL;parent.add_child(col)
     _label(col,caption,Color("#ffd16b"),20)
-    var stage=Control.new();stage.custom_minimum_size=Vector2(0,300);stage.clip_contents=true;col.add_child(stage)
+    var stage=Control.new();stage.custom_minimum_size=Vector2(0,365);stage.clip_contents=true;col.add_child(stage)
     var bg=Panel.new();bg.add_theme_stylebox_override("panel",Kit.box("hero"));bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);bg.mouse_filter=Control.MOUSE_FILTER_IGNORE;stage.add_child(bg)
     var rig=preload("res://scripts/production_hero.gd").new();rig.name="EquipmentComparisonHero";rig.preview_mode=true;rig.z_index=4;stage.add_child(rig);rig.set_hero(model.hero_id);rig.equip_weapon(model.Equipment.IDS.find(str(profile.equipped)));rig.set_gear(profile);rig.scale=Vector2.ONE*(.48 if get_tree().root.get_visible_rect().size.x>=1100 else .64);rig.position=Vector2(110,280)
     stage.resized.connect(func():
         if is_instance_valid(rig):preload("res://scripts/presentation/hero_preview_frame711.gd").fit(rig,Rect2(14,14,stage.size.x-28,stage.size.y-28)))
+    # Also fit after the first layout; resized is not guaranteed to fire if the
+    # dialog was created with its final size before this signal was connected.
+    _deferred_fit734(stage,rig)
+
+func _deferred_fit734(stage:Control,rig:Node2D) -> void:
+    await get_tree().process_frame
+    if is_instance_valid(stage) and is_instance_valid(rig) and stage.size.x>40:
+        preload("res://scripts/presentation/hero_preview_frame711.gd").fit(rig,Rect2(14,14,stage.size.x-28,stage.size.y-28))
 
 func _build_costumes(list:VBoxContainer) -> void:
     if selected not in Wardrobe.IDS:selected=Wardrobe.IDS[0]
