@@ -114,7 +114,7 @@ public final class RealmApkInstaller extends GodotPlugin {
     @UsedByGodot
     public String queryBackgroundApk() {
         final Activity activity = getActivity();
-        if (activity == null) return "{\\"status\\":\\"activity_missing\\"}";
+        if (activity == null) return "{\"status\":\"activity_missing\"}";
         JSONObject state = new JSONObject();
         try {
             SharedPreferences prefs = preferences(activity);
@@ -158,7 +158,7 @@ public final class RealmApkInstaller extends GodotPlugin {
             }
             return state.toString();
         } catch (Exception ex) {
-            return "{\\"status\\":\\"query_failed\\"}";
+            return "{\"status\":\"query_failed\"}";
         }
     }
 
