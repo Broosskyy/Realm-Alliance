@@ -4,6 +4,9 @@ on:
   push:
     branches: [feature/work-732-background-download]
     paths: ['.github/workflows/realm-732-release.yml','development/android_updater717/**','godot/realm_alliance/scripts/launcher/**','godot/realm_alliance/export_presets.cfg','godot/realm_alliance/tests/test_auto_loader732.gd']
+concurrency:
+  group: realm-732-signed-android
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -139,5 +142,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          LATEST_SHA="$(gh api repos/Broosskyy/Realm-Alliance/git/ref/heads/feature/work-732-background-download --jq .object.sha)"
+          if [ "$LATEST_SHA" != "$GITHUB_SHA" ]; then echo "Older build; skip publishing superseded APK"; exit 0; fi
           gh release create realm-732-android "$RUNNER_TEMP/realm732/REALM_ALLIANCE_732.apk" "$RUNNER_TEMP/realm732/RELEASE_732.json" --target "$GITHUB_SHA" --title "REALM ALLIANCE 732 - Android Launcher OTA Test" --notes "Same original signing certificate as 717. Device installation test not yet performed." --prerelease
       # Do not automatically promote until native build/test succeeds.
